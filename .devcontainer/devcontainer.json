@@ -1,1 +1,19 @@
-{"image":"mcr.microsoft.com/devcontainers/universal:2"}
+{
+	"name": "My UOC container",
+	"image": "mcr.microsoft.com/devcontainers/universal:2",
+
+	"extensions": [
+		"ms-python.python",		
+        "ms-azuretools.vscode-docker"
+		],
+
+	"runArgs": [
+		// Additional run arguments if needed
+	],
+
+	"settings": {
+		// Custom VS Code settings for the container
+	}
+
+	// ... other configuration options ...
+}

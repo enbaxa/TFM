@@ -1,10 +1,7 @@
-USER root
 FROM mcr.microsoft.com/devcontainers/universal:2
 
 # Install pdflatex
-RUN apt-get update \
-    && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get install -y --no-install-recommends \
-        texlive-xetex \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+RUN sudo -u root apt-get update \
+    && sudo -u root apt-get install texlive-xetex \
+    && sudo -u root apt-get clean \
+    && sudo -u root rm -rf /var/lib/apt/lists/*
