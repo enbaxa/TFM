@@ -1,3 +1,4 @@
+USER root
 FROM mcr.microsoft.com/devcontainers/universal:2
 
 # Install pdflatex
