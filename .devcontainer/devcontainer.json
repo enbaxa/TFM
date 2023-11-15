@@ -7,6 +7,8 @@
         "ms-azuretools.vscode-docker"
 		],
 
+	"build": { "dockerfile": "Dockerfile" },
+	
 	"runArgs": [
 		// Additional run arguments if needed
 	],
