@@ -45,13 +45,27 @@ class Color:
     cyan: str = "\033[36m"
     white: str = "\033[37m"
     bold: str = "\033[1m"
+    faint: str = "\033[2m"
+    underline: str = "\033[4m"
+    blink: str = "\033[5m"
     reset: str = "\033[0m"
 
-def color_message(msg:str, color:str):
-   try:
-       return "".join((getattr(Color, color), msg, getattr(Color, "reset")))
-   except AttributeError as e:
-       print(e)
-       print(f"No color named \"{color}\" was found. Ignoring Coloring of message")
-       return msg
-   
+def color_message(msg:str, color:str) -> str:
+    """
+    This method simply adds color codes at th beginning and end of a string
+
+    parameters:
+        - msg: str: String to which to add color codes
+        - color: str: Color name. Has to be defined inside the Color object
+
+    Returns:
+        - str: The same string as msg with color code pre-prended
+               and a reset code appended
+    """
+    try:
+        return "".join((getattr(Color, color), msg, getattr(Color, "reset")))
+    except AttributeError as e:
+        print(e)
+        print(f"No color named \"{color}\" was found. Ignoring Coloring of message")
+        return msg
+

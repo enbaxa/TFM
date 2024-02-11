@@ -1,36 +1,39 @@
-
 #!/usr/bin/env python3
 # Author: Enric Basso
 
 import logging
-from Color import Colors
+from Color import Color
 
 
 class _PrettierRecord(logging.Filter):
     """
-    This is a filter to choose whether to process a record sent to
-    the logger.
+    A logging filter that dynamically adds color and module name attributes to log
+    records based on their severity level. This approach avoids the need for specifying
+    these attributes in each log message manually. The filter always returns
+    True to ensure it does not interfere with the log records' processing.
 
-    This is not doing that though, it is a trick:
-    Since this is executed whenever a record is sent to the logger,
-    it used as a chance to append keywords in the dictionary of
-    the record, that can then be accessed by the handler.
-
-        - Avoids having to give them as arguments for every call
-        - filter is always true so does not affect record selection
-
-    In this case this is adding colors, that will be used to make
-    a specific choice according to the severity level of the record.
+    Attributes:
+        color_levels (dict): A mapping of log levels to color codes.
     """
-    color_levels ={"DEBUG": Color.cyan,
-                   "INFO": Color.green,
-                   "WARNING": Color.yellow,
-                   "ERROR": Color.red,
-                   "CRITICAL": Color.magenta
-                   }
+    color_levels = {
+        "DEBUG": Color.cyan,
+        "INFO": Color.green,
+        "WARNING": Color.yellow,
+        "ERROR": Color.red,
+        "CRITICAL": Color.magenta
+    }
 
     def filter(self, record: logging.LogRecord) -> bool:
-        record.color = self.color_levels[record.levelname]
+        """
+        Adds color and module name attributes to the log record.
+
+        Parameters:
+            record (logging.LogRecord): The log record to process.
+
+        Returns:
+            bool: Always returns True to ensure the record is not filtered out.
+        """
+        record.color = self.color_levels.get(record.levelname, '')
         record.module_name = record.pathname.split("/")[-1]
         record.reset = Color.reset
         return True
@@ -38,243 +41,225 @@ class _PrettierRecord(logging.Filter):
 
 class PrettyScreenHandler(logging.StreamHandler):
     """
-    This Handler will send messages to the screen, properly colored
-    according to severity level and taking up a lot of space. Includes
-    delimiters.
+    A logging handler that formats log messages for display on the screen
+    with colors and delimiters for enhanced readability. It uses a custom
+      format that includes the log level, logger name, function name,
+      line number, and the log message itself.
 
-    The message will be of the shape
-    --------------------------------------------------
-    {name} in function {funcName} in line {lineno}: {levelname}:
-     {msg}
-    --------------------------------------------------
-
+    Inherits from logging.StreamHandler.
     """
     def __init__(self):
         super().__init__()
         self.addFilter(_PrettierRecord())
-        _fmt = Formatters.pretty_formatter()
-        self.setFormatter(_fmt)
+        self.setFormatter(Formatters.pretty_formatter())
         self.setLevel(logging.NOTSET)
+
 
 class SimpleScreenHandler(logging.StreamHandler):
     """
-    This Handler will send messages to the screen, properly colored
-    according to severity level. This is enough for most applications,
-    or for top level logging.
+    A logging handler designed for simple, uncolored output to the screen.
+    Suitable for most applications where minimal log information is sufficient.
+    Formats log messages to include only the log level and the message itself.
 
-    The message will be of the shape
-    {levelname}: {msg}
-
+    Inherits from logging.StreamHandler.
     """
     def __init__(self):
         super().__init__()
         self.addFilter(_PrettierRecord())
-        _fmt = Formatters.colored_simple_formatter()
-        self.setFormatter(_fmt)
+        self.setFormatter(Formatters.simple_formatter())
         self.setLevel(logging.NOTSET)
+
 
 class DetailedScreenHandler(logging.StreamHandler):
     """
-    This Handler will send messages to the screen, properly colored
-    according to severity level. It adds some contextual information.
-    This is enough for most applications, or for top level logging.
-    This can be considered a good standard.
+    A logging handler that outputs detailed log messages to the screen without
+    color coding. It includes information such as severity level, module name,
+    function name, and line number, providing a comprehensive context for each log entry.
+    This handler is ideal for environments where color coding is not supported or required.
 
-    The message will be of the shape
-    {levelname}:{module_name}:{funcName} in line {lineno}: {msg}
+    Inherits from logging.StreamHandler.
     """
     def __init__(self):
         super().__init__()
         self.addFilter(_PrettierRecord())
-        _fmt = Formatters.colored_detailed_formatter()
-        self.setFormatter(_fmt)
+        self.setFormatter(Formatters.detailed_formatter())
         self.setLevel(logging.NOTSET)
+
+
+class ColoredDetailedScreenHandler(logging.StreamHandler):
+    """
+    A logging handler designed for outputting detailed log messages to the screen,
+    including severity level, module name, function name, and line number,
+    all with appropriate color coding for enhanced readability.
+    This handler is suitable for applications requiring detailed context in logs,
+    particularly useful for debugging and monitoring.
+
+    Inherits from logging.StreamHandler.
+    """
+    def __init__(self):
+        super().__init__()
+        self.addFilter(_PrettierRecord())
+        self.setFormatter(Formatters.colored_detailed_formatter())
+        self.setLevel(logging.NOTSET)
+
 
 class DetailedFileHandler(logging.FileHandler):
     """
-    This Handler will send messages to the screen, properly colored
-    according to severity level. It adds some contextual information.
-    This is enough for most applications, or for top level logging.
-    This can be considered a good standard.
+    A file-based logging handler that records detailed log messages,
+    including severity level, module name, function name, and line number.
+    This handler is tailored for persistent logging to a file, where detailed
+    contextual information is essential for post-mortem analysis
+    and archiving purposes.
 
-    The message will be of the shape
-    {levelname}:{module_name}:{funcName} in line {lineno}: {msg}
+    Inherits from logging.FileHandler.
     """
-    def __init__(self, filename, mode='w', encoding=None, delay=False, errors=None):
-        super().__init__(filename=filename,
-                         mode=mode,
-                         encoding=encoding,
-                         delay=delay, #errors=errors   # errors is only available on python 3.9+
-                         )
+    def __init__(self, filename, mode='a', encoding=None, delay=False):
+        super().__init__(filename, mode, encoding, delay)
         self.addFilter(_PrettierRecord())
-        _fmt = Formatters.detailed_formatter()
-        self.setFormatter(_fmt)
+        self.setFormatter(Formatters.detailed_formatter())
         self.setLevel(logging.NOTSET)
 
-class ColoredPrinterScreenHandler(logging.StreamHandler):
-    """
-    This Handler will send messages to the screen, properly colored
-    according to severity level. It adds NO contextual information.
-    The message will be of the shape
-    {msg}
-
-    Suggestion: If you give this handler to a logger and you forbid
-    it to propagate to the root logger, you can use it a simple color printing
-    class, while retaining flexibility to add more handlers to also send the
-    messages elsewhere (i.e. a file).
-    """
-    def __init__(self):
-        super().__init__()
-        self.addFilter(_PrettierRecord())
-        _fmt = Formatters.colored_print_formatter()
-        self.setFormatter(_fmt)
-        self.setLevel(logging.NOTSET)
 
 class PrinterScreenHandler(logging.StreamHandler):
     """
-    This Handler will send messages to the screen, properly colored
-    according to severity level. It adds NO contextual information.
-    The message will be of the shape
-    {msg}
+    A logging handler that outputs log messages as plain text to the screen,
+    without any color coding or additional contextual information.
+    Designed for the most straightforward logging needs, this handler is useful
+    for applications where logs are intended to be minimal and unobtrusive.
 
-    Suggestion: If you give this handler to a logger and you forbid
-    it to propagate to the root logger, you can use it a simple color printing
-    class, while retaining flexibility to add more handlers to also send the
-    messages elsewhere (i.e. a file).
+    Inherits from logging.StreamHandler.
     """
     def __init__(self):
         super().__init__()
         self.addFilter(_PrettierRecord())
-        _fmt = Formatters.print_formatter()
-        self.setFormatter(_fmt)
+        self.setFormatter(Formatters.print_formatter())
         self.setLevel(logging.NOTSET)
 
-class Formatters():
+
+class ColoredPrinterScreenHandler(logging.StreamHandler):
     """
-    This is a class just meant to act as a container for functions that return
-    formatters for logger Handlers. It is not meant to be instatiated, and it
-    does not have any functionality other than enclosing the formatters
+    A logging handler for outputting log messages as plain text with severity
+    level-based color coding to the screen.
+    This handler is optimized for simplicity and visual differentiation
+    of log messages, making it suitable for quick debugging tasks
+    where minimal contextual information is required.
+
+    Inherits from logging.StreamHandler.
     """
+    def __init__(self):
+        super().__init__()
+        self.addFilter(_PrettierRecord())
+        self.setFormatter(Formatters.colored_print_formatter())
+        self.setLevel(logging.NOTSET)
+
+
+class Formatters:
+    """
+    Provides static methods for creating various logging.Formatter objects.
+    This class acts as a namespace and is not intended to be instantiated.
+    It encapsulates formatter definitions for ease of use and consistency
+    across different logging handlers.
+    """
+
+    @staticmethod
+    def simple_formatter() -> logging.Formatter:
+        """
+        Creates a formatter for simple logging.
+        Formats log messages to include the log level and the message.
+
+        Returns:
+            logging.Formatter: An instance configured for simple log messages.
+        """
+        return logging.Formatter("{levelname}: {msg}\n", style="{")
 
     @staticmethod
     def colored_simple_formatter() -> logging.Formatter:
         """
-        Method to get a formatter to give to a logger instance.
-        Minimal information.
-        Coloring according to severity level.
-
-        parameters:
-            None
+        Creates a formatter for logging with minimal information,
+        adding color coding according to the severity level.
+        Suitable for concise and visually distinguishable log messages.
 
         Returns:
-            logging.Formatter instance
+            logging.Formatter: An instance configured for simple, colored log messages.
         """
-        _fmt = logging.Formatter(("{color}"
-                                  "{levelname}: "
-                                  "{reset}{msg}\n"
-                                  ), style="{"
-                             )
-        return _fmt
-
-    @staticmethod
-    def colored_detailed_formatter() -> logging.Formatter:
-        """
-        Method to get a formatter to give to a logger instance.
-        Detailed information.
-        Coloring according to severity level.
-
-        parameters:
-            None
-
-        Returns:
-            logging.Formatter instance
-        """
-        _fmt = logging.Formatter(("{color}{levelname} from {name}: "
-                                  "{module_name}:{funcName} in line {lineno}: "
-                                  "{reset}\n{msg}\n"
-                                  ), style="{"
-                             )
-        return _fmt
-
-    @staticmethod
-    def pretty_formatter() -> logging.Formatter:
-        """
-        Method to get a formatter to give to a logger instance.
-        Detailed information.
-        Coloring according to severity level.
-        Uses messages delimiters and newlines to take more space for
-        visual effect.
-
-        parameters:
-            None
-
-        Returns:
-            logging.Formatter instance
-        """
-        _divisor = "-" * 60
-        _fmt = logging.Formatter(("{color}" + _divisor + "\n"
-                              "{levelname} from {name} logger in function \"{funcName}\""
-                              " line {lineno}:\n"
-                              "{reset}\n{msg}\n"
-                              "{color}" + _divisor + "{reset}\n"
-                              ), style="{"
-                             )
-        return _fmt
+        return logging.Formatter("{color}{levelname}: {reset}{msg}\n", style="{")
 
     @staticmethod
     def detailed_formatter() -> logging.Formatter:
         """
-        Method to get a formatter to give to a logger instance.
-        Detailed information. No coloring according to severity level.
-
-        parameters:
-            None
+        Creates a formatter for logging detailed messages without color coding.
+        Includes log level, module name, function name, and line number,
+        providing a comprehensive context for each log message.
 
         Returns:
-            logging.Formatter instance
+            logging.Formatter: An instance configured for detailed log messages.
         """
-        _divisor = "-" * 60
-        _fmt = logging.Formatter(("{levelname}: "
-                                  "{module_name}: {funcName} in line {lineno}: "
-                                  "{msg}\n"
-                                  ), style="{"
-                             )
-        return _fmt
+        return logging.Formatter(
+            "{levelname}: {module_name}: {funcName}"
+            " in line {lineno}: {msg}\n", style="{"
+            )
+
+    @staticmethod
+    def colored_detailed_formatter() -> logging.Formatter:
+        """
+        Generates a formatter that provides detailed logging information,
+        including log level, logger name, module name, function name,
+        and line number, all colored based on the severity level.
+        Ideal for in-depth debugging where context is crucial.
+
+        Returns:
+            logging.Formatter: An instance configured for detailed, colored log messages.
+        """
+        return logging.Formatter(
+            "{color}{levelname} from {name}: "
+            "{module_name}:{funcName} in line {lineno}: {reset}\n{msg}\n",
+            style="{"
+            )
+
+    @staticmethod
+    def pretty_formatter() -> logging.Formatter:
+        """
+        Produces a formatter that enhances log readability by using
+        delimiters and newlines, along with color coding by severity level.
+        Designed to make critical log messages stand out visually in busy logs.
+
+        Returns:
+            logging.Formatter: An instance configured for visually enhanced log messages.
+        """
+        divisor = "-" * 60
+        return logging.Formatter(
+            "{color}"
+            f"{divisor}"
+            "\n{levelname} from {name} "
+            "logger in function \"{funcName}\" line {lineno}:\n"
+            "{reset}\n{msg}\n{color}"
+            f"{divisor}"
+            "{reset}\n",
+            style="{"
+            )
 
     @staticmethod
     def print_formatter() -> logging.Formatter:
         """
-        Method to get a formatter to give to a logger instance.
-        Just prints the message without information.
-        This is useful to print on screen, but through the logger instance.
-        That way the message can also go elsewhere with other handlers,
-        if so desired.
-
-        parameters:
-            None
+        Generates a formatter for logging messages as plain text.
+        This formatter is intended for simple output scenarios where
+        only the message content is of interest, without any
+        additional log metadata.
 
         Returns:
-            logging.Formatter instance
+            logging.Formatter: An instance configured for plain text log messages.
         """
-        _fmt = logging.Formatter("{msg}", style="{")
-        return _fmt
+        return logging.Formatter("{msg}", style="{")
 
     @staticmethod
     def colored_print_formatter() -> logging.Formatter:
         """
-        Method to get a formatter to give to a logger instance.
-        Just prints the message without information.
-        This is useful to print on screen, but through the logger instance.
-        That way the message can also go elsewhere with other handlers,
-        if so desired.
-        It will color according to the severity level given at the call.
-
-        parameters:
-            None
+        Creates a formatter for logging messages as plain text with color
+        coding according to the severity level.
+        It simplifies output while retaining visual distinction of log
+        severity for quick scanning.
 
         Returns:
-            logging.Formatter instance
+            logging.Formatter: An instance configured for plain text, colored log messages.
         """
-        _fmt = logging.Formatter("{color}{msg}{reset}", style="{")
-        return _fmt
-
+        return logging.Formatter("{color}{msg}{reset}", style="{")

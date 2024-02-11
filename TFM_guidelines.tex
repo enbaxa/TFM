@@ -1,63 +1,232 @@
-\documentclass{article}
+\documentclass[a4paper, 12pt]{article}
 \usepackage{graphicx} % Required for inserting images
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{xltabular}
+%\urlstyle{sf}
+% Customize the appearance of hyperlinks
+\hypersetup{
+    colorlinks=true,        % colored links
+    linkcolor=blue,         % color of internal links
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan            % color of external links
+}
 
-\title{TFM}
+\title{Project Charter}
 \author{Enric Bassó Xalabardé}
-\date{November 2023}
+\date{\today}
 
 \begin{document}
-
 \maketitle
 \tableofcontents
+\clearpage
 
-\section{Explicació detallada del problema a resoldre}
-Possibles temes:
-\subsection{Selecció i optimització de dades de prova impulsada per AI per a simulacions HPC}
-Simulacions HPC poden generar grans quantitats de dades. Pot fer difícil la selecció i optimització de dades de prova. L'IA es pot utilitzar per automatitzar aquest procés i assegurar-se que les dades de prova siguin representatives de les condicions del món real que la simulació pretén modelar.
+\section{Introduction}
+The purpose of this document is to present a business case for the development and implementation of an automated tool to enhance a testing facility.
 
-\subsection{Anàlisi de resultats de proves i detecció de errors basada en AI per a aplicacions de processament de grans quantitats de dades}
-Pot ser Difícil identificar la causa arrel dels errors en big data. L'IA es pot utilitzar per analitzar els resultats de les proves i identificar patrons que indiquin la presència d'errors. Això pot ajudar els desenvolupadors a identificar i corregir errors de manera més ràpida i eficient.
+The aim is to improve the efficiency and quality of software by reducing the time and resources required for regular testing of assets present in the facility.
 
-\subsection{Generació de casos de proves per AI per a simulacions basades en física}
-La creació de casos de proves per a simulacions fisiques pot ser laboriosa i complicada. L'IA es pot utilitzar per generar casos de proves automàticament, basant-se en les lleis físiques que regeixen el sistema.
+\subsection{Context and justification for the work}
+\subsubsection{Background}
+The standards of modern software development have led to the need for faster and faster releases while keeping software quality. To comply with said standards, software and applications have to be tested against an ever increasing number of considerations and requirements. This step can lead to struggles to keep up with the demanded speed, and can become a hurdle in and of itself. As a response to this challenge, we aim to introduce an automated testing tool with adaptive capabilities powered through AI.
 
-\subsection{Automatització de la prova de càlculs complexos amb AI:}
-Càlculs matemàtics i exploració de com automatitzar les proves per a aplicacions que involucren matemàtiques complexes.
+\subsubsection{Challenges}
+Generally speaking, most of the testing has to be conducted, or at least set up, manually. The process can become time-consuming, error prone and resource-intensive. A key challenge is that the testing needs to be adapted dynamically to the contextual needs of a variety of situations and therefore, an automated approach to testing can ease the burden remarkably.
 
-\subsection{Paral·lelització eficient en l'automatització de proves amb AI:}
-optimització de l'eficiència de l'automatització de proves mitjançant la paral·lelització.
-algoritmes d'IA per a una assignació dinàmica de recursos
+\subsubsection{The case for automation and AI}
+The rationale behind our idea is to exploit AI automation to address the challenges that arise from the dynamism needed for testing. We target the creation of a tool that can provide quick, reliable and intelligent identification of issues throughout a development.
 
+AI allows for great adaptability, and for natural adjustment during the lifetime of the project by learning from the continuously growing historical data in the project, as well as adapting to changing codebases and intelligently identifying potential issues or problems.
 
-\subsection{Paral·lelització eficient en l'automatització de proves:}
-Utilitza la computació d'alt rendiment per optimitzar l'automatització de proves mitjançant la paral·lelització.
-Investiga mètodes per distribuir casos de prova eficientment.
+\subsection{Objectives and potential benefits}
+\subsubsection{Project objectives}
+Although we stated the objective is to simply provide an automated testing tool, the motivation is to achieve a series of immediate improvements through its use.
+\begin{enumerate}
+    \item Improve software quality: Detecting and identifying potential problems in the project in a timely manner and properly addressing them ensures a more robust and dependable product.
+    \item Accelerate development: Automating the testing step should reduce the time needed for releases and facilitate a more agile development of any project.
+    \item Resource optimization: Reducing the amount of time and effort dedicated to testing by delegating it to an automated tool will allow for more intense focus on the development itself, while simultaneously reducing the human error-proneness of the process.
+    \item Adaptability through AI: Incorporating an AI layer will enable our tool to dynamically adapt to changes in the code base and keep itself up-to-date with the current state of the project. Learning from historical data will keep the tool robust in its environment while enabling it to integrate to other existing environments as well.
+\end{enumerate}
+\subsubsection{Project Benefits}
+Achieving the aforementioned objectives will lead to the following benefits:
 
-\subsection{Proves impulsades per dades per a aplicacions de Big Data:}
-Disseny de proves automatitzades per a aplicacions que manipulen conjunts de dades grans.
-Investiga com les proves impulsades per dades poden millorar la validació d'aplicacions intensives en dades.
-
-\subsection{Proves de rendiment per a HPC:}
-Desenvolupar estratègies de proves de rendiment.
-Investiga tècniques per avaluar i optimitzar el rendiment d'aplicacions en un entorn de computació d'alt rendiment.
-
-\subsection{Integració de la Simulació en l'Automatització de Proves:}
-Combina la teva experiència en simulació amb l'automatització de proves per crear un marc de treball per a proves d'aplicacions a través d'entorns simulats.
-Investiga els avantatges de l'ús de simulacions en el procés de proves.
-
-\subsection{Altres possibilitats}
 \begin{itemize}
-\item Millora del rendiment de l'automatització de proves per a aplicacions de processament de grans quantitats de dades.
-\item Desenvolupament d'un marc de treball d'automatització de proves per a simulacions basades en física.
-\item Ús d'aprenentatge automàtic per millorar l'exactitud i l'eficiència de l'anàlisi de resultats de proves.
-\item Millorar de l'escalabilitat de l'automatització de proves per a sistemes de programari grans i complexos.
-\item Desenvolupament d'un marc de treball d'automatització de proves pde continuous integration (CI/CD).
+    \item Better quality product: Reducing error proneness and bugs will make for a better product and therefore, better customer satisfaction.
+    \item Better cost to benefit ratio: A faster development process will allow businesses to get their products to market sooner while reducing development process costs.
+    \item Wider feasibility of use: The higher adaptability will enable the product to be used across a more extensive customer base, further enhancing the product profitability.
 \end{itemize}
-\section{Enumeració dels objectius que es volen aconseguir amb la realització del TFM.}
-\section{escripció de la metodologia que es seguirà durant el desenvolupament del TFM.}
-\section{Llista de les tasques a realitzar per aconseguir els objectius descrits.}
-\section{Planificació temporal detallada d'aquestes tasques i les seves dependències.}
-\section{Iniciar la revisió de l'estat de l'art o estudi de mercat.}
-\section{Estudi de l'impacte ètic, social i ambiental.} 
+
+Summarizing, the automated testing tool will provide a number of benefits to businesses, including improved software quality, reduced testing costs, accelerated development cycles, and reduced human error. It will also provide a number of advantages, including reduced risk of introducing defects into production, improved customer satisfaction, increased productivity, and reduced development time.
+
+
+\subsection{Impact on sustainability}
+An automated testing tool is designed for resource optimization. As such, this would naturally reduce the energy consumption of manual testing processes, and ultimately also prevent unnecessary tests from being run. The potential impact cannot be understated considering a scale of many and/or large projects.
+
+\subsection{Focus and methodology}
+We suggest a traditional approach to project methodology:
+\begin{enumerate}
+
+\item Project Phase: Planning
+
+\begin{itemize}
+\item  Task 1: Requirement Analysis
+\begin{enumerate}
+\item  Subtask 1.1: Collect testing requirements
+\item  Subtask 1.2: Categorize testing requirements
+\end{enumerate}
+
+\item  Task 2: Design
+\begin{enumerate}
+\item  Subtask 2.1: Define tool components
+\item  Subtask 2.2: Specify tool capabilities
+\item  Subtask 2.3: Determine integration points.
+\end{enumerate}
+
+\item  Task 3: Development
+\begin{enumerate}
+\item  Subtask 3.1: Select coding language
+\item  Subtask 3.2: Design and implement tool components
+\item  Subtask 3.3: Implement AI capabilities
+\item  Subtask 3.4: Build and test prototypes
+\end{enumerate}
+
+\item  Task 4: Fine-tuning
+\begin{enumerate}
+\item  Subtask 4.1: Enhance tool capabilities
+\end{enumerate}
+
+\item  Task 5: Testing and Integration
+\begin{enumerate}
+\item  Subtask 5.1: Conduct rigorous testing. Performance indicators:
+    \begin{itemize}
+        \item \textbf{Integration Tests Results}: Regularly check that different parts of the system work together as intended. Assess success rates and identify any inconsistencies or failures in integration tests, ensuring comprehensive coverage of critical system interactions.
+        \item \textbf{AI Performance Metrics}: Evaluate the AI layer's performance using metrics such as accuracy, precision, recall, and F1 score. Confirm that the AI adapts to changing codebases, learns effectively from historical data, and reliably identifies potential issues in the software.
+        \item \textbf{Performance Evaluation}: Verify that the automated testing tool does not cause issues or bottlenecks in the existing system or the development roadmap. Monitor response times, resource utilization, and system stability to ensure optimal performance without hindering the overall workflow.
+        \item \textbf{Usability }: Assess the user-friendliness of the tool through usability testing. Collect feedback from potential end-users to ensure that the tool is intuitive and easy to use.
+        \item \textbf{Reliability Testing}: Evaluate the reliability of the automated testing tool by assessing its ability to consistently produce accurate and dependable results. Identify and address any instances of tool malfunction or unexpected behavior.
+    \end{itemize}
+\item  Subtask 5.2: Integrate with existing systems
+\end{enumerate}
+
+\item  Task 6: Deployment Evaluation
+\begin{enumerate}
+\item  Subtask 6.1: Evaluate tool performance
+\item  Subtask 6.2: Document results and provide feedback
+\end{enumerate}
+\end{itemize}
+
+\item  Project Phase: Execution
+\begin{itemize}
+\item  Task 1: Plan the execution of the project
+\item  Task 2: Execute the project plan
+\item  Task 3: Handle any unexpected issues that arise during execution
+\end{itemize}
+
+\item  Project Phase: Monitoring
+\begin{itemize}
+\item  Task 1: Monitor the performance of the automated testing tool
+\item  Task 2: Identify any areas for improvement
+\end{itemize}
+
+\item  Project Phase: Completion
+\begin{itemize}
+\item  Task 1: Deliver the automated testing tool i.e., via an API.
+\item  Task 2: Provide training documentation on how to use the tool
+\item  Task 3: Monitor the tool's performance in a real environment.
+\end{itemize}
+
+\end{enumerate}
+\subsubsection{Approximate time distribtuion per task}
+\begin{xltabular}{\textwidth}{|l|c|c|c|c|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Task}} & \multicolumn{1}{c|}{\textbf{Duration}} & \multicolumn{1}{c|}{\textbf{Start Date}} & \multicolumn{1}{c|}{\textbf{End Date}}\\
+\hline
+\endhead
+\multicolumn{4}{|r|}{{Continued on next page}} \\
+\hline
+\endfoot
+\endlastfoot
+\centering
+Decide on a topic & 2 weeks & 2023-11-01 & 2023-11-14\\
+\hline
+Write the work plan & 1 week & 2023-11-15 & 2023-11-21\\
+\hline
+Task 1: Requirement Analysis & 3 weeks & 2023-12-26 & 2024-02-10\\
+\hline
+Task 2: Design & 2 weeks & 2024-02-11 & 2024-02-24\\
+\hline
+Task 3: Development & 5 weeks & 2024-02-25 & 2024-05-05\\
+\hline
+Task 4: Fine Tuning & 2 weeks & 2024-05-06 & 2024-05-19\\
+\hline
+Task 5: Testing and integration & 3 weeks & 2024-05-20 & 2024-06-12\\
+\hline
+Task 6: Delivery and refinement & 3 weeks & 2024-06-13 & 2024-07-03\\
+\hline
+Final task: report writing & 2 weeks & 2024-07-04 & 2024-07-17\\
+\hline
+\caption{Gnatt Chart of project tasks. Revision 1.0}
+\end{xltabular}
+
+\clearpage
+\subsection{Risk assessment}
+\begin{xltabular}{1.2\textwidth}{|c|X|c|c|X|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Risk}} & \multicolumn{1}{c|}{\textbf{Description}} & \multicolumn{1}{c|}{\textbf{Probability}} & \multicolumn{1}{c|}{\textbf{Impact}} & \multicolumn{1}{c|}{\textbf{Mitigation Strategy}} \\
+\hline
+\endhead
+\multicolumn{5}{|r|}{{Continued on next page}} \\
+\hline
+\endfoot
+\endlastfoot
+\centering
+    Technical difficulty & The automated testing tool proves difficult to implement in the given timeframe & High & High & Feasibility studies and evaluation of adherence to the planned schedule. \\
+    \hline
+    AI & The AI capabilities might not work as intended or be too difficult to implement & Medium & High & Select the appropriate AI API or tool \\
+    \hline
+    Integration & The automated testing tool may not integrate seamlessly with existing systems and processes. & Medium & Medium & Define clear integration requirements and specifications. \\
+    \hline
+    Business & The automated testing tool may not achieve the desired business objectives, such as improved software quality, reduced testing costs, and accelerated development cycles. & Low & Medium & Clearly define business objectives and align the project with them. Reassess objectives if necessary with adequate continuous monitoring of the progress.\\
+    \hline
+    \caption{Risk Control Table}
+\end{xltabular}
+
+\clearpage
+\subsection{Deliverables}
+The finalisation of the project aims to delivering:
+\begin{enumerate}
+    \item A functional automated testing tool with an AI layer. It should be able to:
+    \begin{itemize}
+        \item Identify and execute test cases.
+        \item Generate reports on test results.
+        \item Learn from historical data.
+        \item Adapt to changing codebases.
+        \item Intelligently identify potential issues.
+    \end{itemize}
+    \item The tool can be exposed for use via a provided API. It should be able to:
+
+    \begin{itemize}
+        \item Schedule test runs.
+        \item Get test results.
+        \item Configure the tool.
+        \item Generate reports of action undertaken.
+    \end{itemize}
+
+    \item Documentation on the functionality and usage of the tool for user-level recipients.
+    \item Reports on the tools performance, efficiency and potential areas for medium to long term improvement.
+\end{enumerate}
+\subsection{ Brief description of the other chapters of the report}
+Next submissions will focus on:
+\begin{itemize}
+    \item Implementation of the final product according to the scope/planification established and qa gates/metrics adopted.
+    \item Stakeholders final analysis
+    \item Establish a Communication plan for the project execution and its final implementation in production environment
+    \item Integration of all the previous points and monitoring of it in order to make the changes needed according to the risk control/feedback obtained
+\end{itemize}
 
 \end{document}
