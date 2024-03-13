@@ -61,9 +61,9 @@ class CategoricDataset(TorchDataset):
 
     def _create_identifiers(self):
         """
-        Creates unique identifiers for each category in the input and output columns.
+        Creates unique identifiers for each category in the output columns.
 
-        This method iterates over the input columns and output column to create a mapping
+        This method iterates overthe output column to create a mapping
         of categories to unique identifiers. It uses the unique values in each column to
         generate the identifiers.
 
@@ -73,19 +73,14 @@ class CategoricDataset(TorchDataset):
         Returns:
             None
         """
-        for column in self.input_columns:
-            self.category_mappings[column] = {
-                category: code
-                for code, category in enumerate(self.data[column].unique())
-            }
+        self.category_mappings = {}
         for column in self.output_column:
             self.category_mappings[column] = {}
-            for column in self.output_column:
-                entries = self.data[column]
-                for values in entries:
-                    for value in values:
-                        if value not in self.category_mappings[column]:
-                            self.category_mappings[column][value] = len(self.category_mappings[column])
+            entries = self.data[column]
+            for values in entries:
+                for value in values:
+                    if value not in self.category_mappings[column]:
+                        self.category_mappings[column][value] = len(self.category_mappings[column])
 
     def reverse_mapping(self, column, code):
         """
@@ -102,6 +97,17 @@ class CategoricDataset(TorchDataset):
         return next(
             key for key, value in self.category_mappings[column].items() if value == code
         )
+
+    @property
+    def number_input_categories(self):
+        """
+        Returns the number of categories of the input column.
+        This is necessary for the input layer of the neural network.
+
+        Returns:
+            int: The number of input fields
+        """
+        return len(self.input_columns)
 
     @property
     def number_output_categories(self):
@@ -173,12 +179,10 @@ class CategoricDataset(TorchDataset):
         """
         element = self.data.iloc[idx]
 
-        input_features = torch.tensor(
-            [self.category_mappings[column][element[column]]
-             for column in self.input_columns
-             ],
-            dtype=torch.float)
+        # Prepare raw text inputs; placeholders could be used for missing data
+        input_texts = {col: str(element[col]) for col in self.input_columns}  # Dictionary of column: text
 
+        # Prepare the output tensor - one-hot encoding
         desired_outputs = torch.tensor(
             list(
                 map(
@@ -197,8 +201,11 @@ class CategoricDataset(TorchDataset):
                 index=desired_outputs,
                 value=1
                 )
-        return input_features.to(self._device), output_encoded.to(self._device)
 
+        # Assuming the output is categorical and directly usable as a label
+        # label = torch.tensor(self.category_mappings[element[self.output_column]], dtype=torch.long)
+
+        return input_texts, output_encoded
 
 def assess_device():
     """
