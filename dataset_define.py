@@ -5,18 +5,20 @@ import logging
 import pandas as pd
 import torch
 from torch.utils.data import Dataset as TorchDataset
+from typing import List
 
 
 logger = logging.getLogger("TFM")
-
+printer = logging.getLogger("printer")
 
 class CategoricDataset(TorchDataset):
     """
-    A custom dataset class for handling data in a specific format.
-    It also serves as interface to preparing the relevant fields
-    for the training model. It is meant to be a dataset that
-    can use an arbitrary number of its columns as input, but
-    one single categorical column as output.
+
+    A custom dataset class for handling categoric data.
+
+    This class is a subclass of the PyTorch Dataset class. It is designed to handle
+    datasets with categoric data. It is used to prepare the data for training and testing
+    machine learning models.
 
     Args:
         data (list): The data to be used by the dataset.
@@ -38,28 +40,33 @@ class CategoricDataset(TorchDataset):
                                      It should have labelled columns.
         """
         self.data = data
-        logger.info("Creating a new instance of MyDataset.")
-        self.input_columns = []
-        self.output_column = []
-        self.category_mappings = {}
+        printer.debug("Creating a new instance of CategoricDataset.")
+        self.input_columns = None
+        self.output_column = None
+        self.category_mappings = dict()
         self._device = assess_device()
 
-    def define_input_output(self, /, input_columns, output_column):
+    def define_input_output(self, input_columns: List[str], output_column: List[str]) -> None:
         """
         Defines the input and output columns to be used by the dataset.
-        Relies on the data being a pandas DataFrame with labelled cols.
+        Relies on the data being a pandas DataFrame with labelled columns.
 
         Args:
-            input_columns: The names of the columns to be used as input.
-            output_column: The names of the columns to be used as output.
+            input_columns (List[str]): The names of the columns to be used as input.
+            output_column (List[str]): The name of the column to be used as output.
         """
-        self.input_columns = input_columns
-        assert len(output_column) == 1, "Only one output column is allowed."
-        self.output_column = output_column
-        self._group_by()
-        self._create_identifiers()
+        assert isinstance(input_columns, list) and all(isinstance(col, str) for col in input_columns), \
+            "input_columns should be a list of strings."
+        assert isinstance(output_column, list) and len(output_column) == 1 and all(isinstance(col, str) for col in output_column), \
+            "output_column should be a list containing a single string."
 
-    def _create_identifiers(self):
+        self.input_columns = input_columns
+        self.output_column = output_column
+
+        self._create_identifiers(self.output_column)
+        self._create_identifiers(self.input_columns)
+
+    def _create_identifiers(self, columns=None):
         """
         Creates unique identifiers for each category in the output columns.
 
@@ -73,16 +80,28 @@ class CategoricDataset(TorchDataset):
         Returns:
             None
         """
-        self.category_mappings = {}
-        for column in self.output_column:
+        if columns is None:
+            columns = self.output_column
+        # Iterate over each desired column
+        for column in columns:
+            # Create an empty dictionary for the current column
             self.category_mappings[column] = {}
+            # Get the entries for the current column
             entries = self.data[column]
+            # Iterate over each entry
             for values in entries:
-                for value in values:
-                    if value not in self.category_mappings[column]:
-                        self.category_mappings[column][value] = len(self.category_mappings[column])
+                if not isinstance(values, list):
+                    if values not in self.category_mappings[column]:
+                        self.category_mappings[column][values] = len(self.category_mappings[column])
+                else:
+                    # Iterate over each value in the entry
+                    for value in values:
+                        # Check if the value is already in the category mappings
+                        if value not in self.category_mappings[column]:
+                            # If not, assign a unique identifier to the value
+                            self.category_mappings[column][value] = len(self.category_mappings[column])
 
-    def reverse_mapping(self, column, code):
+    def reverse_mapping(self, column: str, code: int):
         """
         Given a column name and a code, returns the original category value.
 
@@ -123,6 +142,53 @@ class CategoricDataset(TorchDataset):
         assert len(self.output_column) == 1
         return len(self.category_mappings[self.output_column[0]])
 
+    def train_test_split(self, train_size: float = 0.8):
+        """
+        Split the dataset into training and testing sets.
+
+        Args:
+            dataset (SingleCategoricDataset): The dataset to split.
+            train_size (float): The proportion of the dataset to include in the training set.
+            output_column (str): The name of the column to be used as output.
+                                 This is optional, and it is only to check if
+                                 all output possibilities are reprsented in the training set.
+
+        Returns:
+            tuple: A tuple containing the training and testing sets.
+        """
+        train = CategoricDataset(self.data.sample(frac=train_size, random_state=0))
+        test = CategoricDataset(self.data.drop(train.data.index))
+        # reset the index of each to avoid crashing the DataLoader
+        train.data.reset_index(drop=True, inplace=True)
+        test.data.reset_index(drop=True, inplace=True)
+        # make test and train datasets be equal to the original dataset except for the data
+        self._copy_specs(train)
+        self._copy_specs(test)
+        printer.debug(f"Training set size: {len(train)}")
+        printer.debug(f"Testing set size: {len(test)}")
+        if self.output_column is not None:
+            # Check if all output possibilities are represented in the training set
+            train_output = set(train.data[self.output_column].nunique())
+            all_output = set(self.data[self.output_column].nunique())
+            if all_output.difference(train_output):
+                printer.warning(
+                    "Not all output possibilities are represented in the training set."
+                    )
+        return train, test
+
+    def standarize(self):
+        """
+        Standarize the dataset by normalizing the data.
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+        # Make all string columns lowercase
+        self.data = self.data.map(lambda x: x.lower() if isinstance(x, str) else x)
+
     @property
     def device(self) -> str:
         """
@@ -142,6 +208,18 @@ class CategoricDataset(TorchDataset):
             value (str): The device to be used for computation.
         """
         self._device = value
+
+    def _copy_specs(self, other):
+        """
+        Copies the specifications of the current dataset to another dataset.
+
+        Args:
+            other (CategoricDataset): The dataset to copy the specifications to.
+        """
+        other.input_columns = self.input_columns
+        other.output_column = self.output_column
+        other.category_mappings = self.category_mappings
+        return None
 
     def _group_by(self):
         """
@@ -169,43 +247,62 @@ class CategoricDataset(TorchDataset):
 
     def __getitem__(self, idx):
         """
-        Get the input and output tensors for the given index.
+        Returns the item at the given index.
+
+        This method is called by the DataLoader to retrieve the data elements.
+        It returns the input and output tensors for the given index.
+        The inputs are the raw text data, and the outputs are multi-hot encoded tensors.
+
+        This allows the inputs to be processed if desired (i.e. by embeddings)
+        while the outputs are ready for use in the neural network.
 
         Args:
             idx (int): The index of the data element to retrieve.
 
         Returns:
             tuple: A tuple containing the input and output tensors.
+
+
         """
         element = self.data.iloc[idx]
-
         # Prepare raw text inputs; placeholders could be used for missing data
         input_texts = {col: str(element[col]) for col in self.input_columns}  # Dictionary of column: text
-
         # Prepare the output tensor - one-hot encoding
-        desired_outputs = torch.tensor(
-            list(
-                map(
-                    lambda x: self.category_mappings[self.output_column[0]][x],
-                    element[self.output_column[0]]
-                    )
-                ),
-            dtype=torch.long
-            )
-
-        output_encoded = torch.zeros(
-            self.number_output_categories,
-            dtype=torch.float
-            ).scatter_(
-                dim=0,
-                index=desired_outputs,
-                value=1
-                )
-
-        # Assuming the output is categorical and directly usable as a label
-        # label = torch.tensor(self.category_mappings[element[self.output_column]], dtype=torch.long)
-
+        output_encoded = self.create_hot_vector(idx)
         return input_texts, output_encoded
+
+    def create_hot_vector(self, idx, column=None):
+        """
+        Creates a multi-hot vector for the specified column at the given index.
+
+        Args:
+            idx (int): The index of the data element to encode.
+            column (str, optional): The column to encode. If None, defaults to the first output column.
+
+        Returns:
+            torch.FloatTensor: The multi-hot encoded vector.
+        """
+        if column is None:
+            column = self.output_column[0]
+
+        element = self.data.iloc[idx]
+        values = element[column]
+
+        if not isinstance(values, list):
+            values = [values]
+
+        desired_outputs = torch.tensor(
+            [self.category_mappings[column][value] for value in values],
+            dtype=torch.long
+        ).unique()
+
+        output_encoded = torch.nn.functional.one_hot(
+            desired_outputs,
+            num_classes=len(self.category_mappings[column])
+        ).sum(dim=0).to(self.device)
+
+        return output_encoded
+
 
 def assess_device():
     """
@@ -221,5 +318,5 @@ def assess_device():
         if torch.backends.mps.is_available()
         else "cpu"
     )
-    logging.info(f"Using {device} device")
+    logger.debug(f"Using {device} device")
     return device

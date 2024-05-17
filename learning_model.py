@@ -8,56 +8,105 @@ from transformers import AutoTokenizer, AutoModel
 
 
 logger = logging.getLogger("TFM")
+printer = logging.getLogger("printer")
+printer.setLevel(logging.INFO)
 
+
+class StopTraining(Exception):
+    """
+    Custom exception to stop training the model.
+    """
+    pass
 
 class CategoricNeuralNetwork(nn.Module):
     """
     Neural Network model for classification for a single category.
 
     Args:
-        input_parameters (int): Number of input parameters.
-        output_parameters (int): Number of output parameters.
+        dataset (CategoricDataset): The dataset used for training the model.
+        hidden_neurons (int): The number of neurons in the hidden layers.
+        use_embedding (bool): Whether to use embeddings or not.
 
     Attributes:
         linear_relu_stack (nn.Sequential): Sequential module containing linear and ReLU layers.
+        tokenizer (AutoTokenizer): The tokenizer used for tokenizing the input data.
+        embedding_model (AutoModel): The model used for generating embeddings.
+        device (torch.device): The device used for training the model.
 
     Methods:
         forward(x): Performs forward pass through the network.
-
+        train_loop(dataloader, loss_fn, optimizer): Trains the model using the given dataloader, loss function, and optimizer.
+        test_loop(dataloader, loss_fn): Evaluates the model on a test dataset.
+        _initialize_weights(): Initializes the weights and biases of the model.
     """
 
-    def __init__(self, dataset, hidden_neurons=None, use_embedding=True):
+    def __init__(self, dataset, hidden_neurons=None, use_input_embedding=True, use_output_embedding=False):
         super(CategoricNeuralNetwork, self).__init__()
-        self.use_embedding = use_embedding
-        self.tokenizer = AutoTokenizer.from_pretrained('microsoft/codebert-base')
-        self.embedding_model = AutoModel.from_pretrained('microsoft/codebert-base')
-        self.device = dataset.device
-        input_size = self.embedding_model.config.hidden_size * dataset.number_input_categories
-        #input_size = 256
-        output_size = dataset.number_output_categories
+        self._device = dataset.device
+        self._use_input_embedding = use_input_embedding
+        self._use_output_embedding = use_output_embedding
+        self.dataset = dataset
+        if self._use_input_embedding:
+            self._tokenizer = AutoTokenizer.from_pretrained('microsoft/codebert-base')
+            self._input_embedding_model = AutoModel.from_pretrained('microsoft/codebert-base').to(self._device)
+            self._input_size = self._input_embedding_model.config.hidden_size * dataset.number_input_categories
+            for param in self._input_embedding_model.parameters():
+                assert param.requires_grad, "requires_grad is not set to True for input embeddings"
+        else:
+            self._input_size = sum([len(dataset.category_mappings[col]) for col in dataset.input_columns])
+        if self._use_output_embedding:
+            # Take a naive guess that half the dimensions should be enough
+            self._output_size = int(dataset.number_output_categories / 2)
+            printer.info(
+                f"Using output embeddings. "
+                f"Condensing the {dataset.number_output_categories} output "
+                f"categories to a lower-dimensional space "
+                f"of {self._output_size} dimensions."
+                )
+            printer.warning(
+                "Output embeddings imply loss of precision due to dimensionality reduction.\n "
+                "Also the logits will need to be converted to embeddings "
+                "for loss calculation, further reducing precision.")
+            self._output_embedding_model = EmbeddingModel(dataset.number_output_categories, self._output_size).to(self._device)
+            for param in self._output_embedding_model.parameters():
+                assert param.requires_grad, "requires_grad is not set to True for output embeddings"
+
+        else:
+            self._output_size = dataset.number_output_categories
+
+        printer.info(f"Input size: {self._input_size}, Output size: {self._output_size}")
         if not hidden_neurons:
-            logging.debug("Estimating the number of neurons in the hidden layers.")
+            printer.debug("Estimating the number of neurons needed in the hidden layers.")
             neurons = 0
             i = 1
-            while neurons < (input_size + output_size) // 1:
+            while neurons < (self._input_size + self._output_size) // 2:
                 neurons = 2**i
                 i += 1
             # hardcoded limit to avoid memory issues
-            neurons = min(neurons, 128)
+            neurons = min(neurons, 2**13)
         else:
             neurons = hidden_neurons
-        logger.info(
+
+        printer.info(
             f"Using a neural network {neurons} neurons in the hidden layers.\n"
-            f"Mapping to {output_size} output categories.")
+            f"Mapping to {self._output_size} output categories.")
         self.linear_relu_stack = nn.Sequential(
-            nn.Linear(input_size, neurons),
-            nn.ReLU(),
+            nn.Linear(self._input_size, neurons),
+            nn.LeakyReLU(),
+            #nn.BatchNorm1d(neurons),
             nn.Linear(neurons, neurons),
-            nn.ReLU(),
-            nn.Linear(neurons, output_size),
+            nn.LeakyReLU(),
+            #nn.BatchNorm1d(neurons),
+            nn.Linear(neurons, neurons),
+            nn.LeakyReLU(),
+            nn.Linear(neurons, self._output_size),
         )
         # Proceed to initialize the weights and biases
         self._initialize_weights()
+        self.softmax = nn.Softmax(dim=-1)
+        for name, param in self.named_parameters():
+            if param.requires_grad:
+                printer.debug(f"{name} will be part of the learning layer.")
 
     def _initialize_weights(self):
         """
@@ -78,30 +127,94 @@ class CategoricNeuralNetwork(nn.Module):
         Returns:
             logits (torch.Tensor): The output of the network.
         """
-        embeddings = []
-        for key, text_list in inputs.items():
-            tokenized = self.tokenizer(text_list, return_tensors="pt", padding="max_length", truncation=True, max_length=32)
-            input_ids, attention_mask = tokenized['input_ids'].to(self.device), tokenized['attention_mask'].to(self.device)
-            #with torch.no_grad():
-            output = self.embedding_model(input_ids=input_ids, attention_mask=attention_mask)
-            pooled = torch.mean(output.last_hidden_state, dim=1)
-            embeddings.append(pooled)
-        # Assuming simple concatenation of embeddings; adjust based on your architecture
-        concatenated_embeddings = torch.cat(embeddings, dim=1)
-        logits = self.linear_relu_stack(concatenated_embeddings)
+        if self._use_input_embedding:
+            pre_processed_inputs = self.preprocess_batch_with_input_embedding(inputs)
+        else:
+            # No embeddings
+            pre_processed_inputs = self.preprocess_batch_without_input_embedding(inputs)
+        logits = self.linear_relu_stack(pre_processed_inputs)
         return logits
 
-        # With the following code use the input_ids directly
-        for key, text_list in inputs.items():
-            tokenized = self.tokenizer(text_list, return_tensors="pt", padding="max_length", truncation=True, max_length=256)
-            input_ids, attention_mask = tokenized['input_ids'].to(self.device), tokenized['attention_mask'].to(self.device)
-            embeddings.append(input_ids)
-        # Assuming simple concatenation of embeddings; adjust based on your architecture
-        concatenated_embeddings = torch.cat(embeddings, dim=1).float()
-        logits = self.linear_relu_stack(concatenated_embeddings)
-        return logits
+    def preprocess_batch_with_input_embedding(self, inputs):
+            """
+            Preprocesses the batch of inputs using embeddings.
 
-    def train_loop(self, dataloader, loss_fn, optimizer):
+            Args:
+                inputs (dict): A dictionary containing the input data.
+
+            Returns:
+                concatenated_embeddings (torch.Tensor): The concatenated embeddings.
+            """
+            # Get the length of the lists in the input dictionary
+            lengths = set([len(v) for v in inputs.values()])
+            assert len(lengths) == 1
+            length = next(iter(lengths))
+
+            # Initialize an empty list to hold the embeddings
+            embeddings = []
+            # With the following code use the embeddings
+            for idx in range(length):
+                # For each index, get the text from each list in the input dictionary
+                text_list = [inputs[key][idx] for key in inputs.keys()]
+                tokenized = self._tokenizer(text_list, return_tensors="pt", padding="max_length", truncation=True, max_length=16)
+                input_ids, attention_mask = tokenized['input_ids'].to(self._device), tokenized['attention_mask'].to(self._device)
+                output = self._input_embedding_model(input_ids=input_ids, attention_mask=attention_mask)
+                # Choose a pooling strategy
+                pooling_strategy = "sum"  # Change this to the desired pooling strategy
+                if pooling_strategy == "mean":
+                    pooled = torch.mean(output.last_hidden_state, dim=1)
+                elif pooling_strategy == "max":
+                    pooled = torch.max(output.last_hidden_state, dim=1).values
+                elif pooling_strategy == "sum":
+                    pooled = torch.sum(output.last_hidden_state, dim=1)
+                elif pooling_strategy == "cls":
+                    pooled = output.last_hidden_state[:, 0, :]
+                else:
+                    raise ValueError("Invalid pooling strategy. Please choose from 'mean', 'max', 'sum', 'cls'.")
+                # Normalize the embedding to avoid exploding gradients
+                pooled = pooled / torch.norm(pooled, p=2)
+                #normalized_pooled = torch.nn.functional.normalize(pooled, p=2, dim=1)
+                pooled = pooled.reshape(-1)
+                embeddings.append(pooled)
+            # Stack the embeddings into a tensor
+            stacked_embeddings = torch.stack(embeddings).to(self._device)
+            return stacked_embeddings
+
+    def preprocess_batch_without_input_embedding(self, inputs):
+            """
+            Preprocesses the batch of inputs without using embeddings.
+
+            Args:
+                inputs (dict): A dictionary containing the input data.
+
+            Returns:
+                processed_inputs (torch.Tensor): The processed input tensor.
+            """
+            # the way dataloader works means we will get a merged dictionary
+            # for the whole batch. However each element of each batch element will
+            # an element in the list in values of the dictionary while  the key is
+            # the input category.
+            lengths = set([len(v) for v in inputs.values()])
+            assert len(lengths) == 1
+            length = next(iter(lengths))
+            # Initialize an empty list to hold the summed one-hot vectors
+            summed_one_hot_vectors = []
+            # Iterate over the range of the length of the lists
+            for idx in range(length):
+                # For each index, sum the one-hot vectors of the elements at that index
+                one_hot_vector_sum = torch.cat([
+                    torch.nn.functional.one_hot(
+                        torch.tensor(self.dataset.category_mappings[input_category][inputs[input_category][idx]]),
+                        num_classes=len(self.dataset.category_mappings[input_category])
+                    ) for input_category in inputs.keys()
+                ], dim=0).float()
+                summed_one_hot_vectors.append(one_hot_vector_sum)
+
+            # Stack the summed one-hot vectors into a tensor
+            processed_inputs = torch.stack(summed_one_hot_vectors).to(self._device)
+            return processed_inputs
+
+    def train_loop(self, dataloader, loss_fn, optimizer, scheduler=None):
         """
         Trains the model using the given dataloader, loss function, and optimizer.
 
@@ -113,24 +226,40 @@ class CategoricNeuralNetwork(nn.Module):
         Returns:
             None
         """
-        size = len(dataloader.dataset)
-        # Set the model to training mode - important for batch normalization and dropout layers
-        # Unnecessary in this situation but added for best practices
-        self.train()
-        for batch, (X, y) in enumerate(dataloader):
-            # Compute prediction and loss
-            pred = self(X)
-            y = y.to(self.device)
-            loss = loss_fn(pred, y)
+        # Save initial weights
+        initial_weights = [param.clone() for param in self.parameters()]
 
-            # Backpropagation
+        size = len(dataloader)
+        # Set the model to training mode - important for batch normalization and dropout layers
+        self.train()
+        for batch, (x, y) in enumerate(dataloader):
+            # Compute prediction and loss
+            batch_logits = self(x)
+            if self._use_output_embedding:
+                y = y.to(int)
+                assert isinstance(loss_fn, torch.nn.CosineEmbeddingLoss), "Output embeddings require CosineEmbeddingLoss."
+                y_embeddings = torch.sum(self._output_embedding_model(y), dim=1)
+                logits_embeddings = torch.sum(self._output_embedding_model(torch.sigmoid(batch_logits).int()), dim=1)
+                target = torch.ones(logits_embeddings.size(0), device=self._device)
+                loss = loss_fn(logits_embeddings, y_embeddings, target)
+            else:
+                y = y.to(float)
+                loss = loss_fn(batch_logits, y)
+            # Backpropagation - ORDER MATTERS!
+            optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-            optimizer.zero_grad()
 
-            if batch % 100 == 0:
-                loss, current = loss.item(), (batch + 1) * len(X)
+            # Check if weights have changed
+            weights_changed = any([(initial_weights[i] != param).any().item() for i, param in enumerate(self.parameters())])
+            if not weights_changed:
+                printer.warning(f"Warning: Weights did not change for batch {batch}")
+
+            if batch % 100 == 0 or batch == size - 1:
+                loss, current = loss.item(), (batch + 1)
                 print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
+        if scheduler is not None:
+            scheduler.step()
 
     def test_loop(self, dataloader, loss_fn):
         """
@@ -147,25 +276,41 @@ class CategoricNeuralNetwork(nn.Module):
         # Unnecessary in this situation but added for best practices
         self.eval()
         num_batches = len(dataloader)
-        test_loss, positives, false_positives = 0, 0, 0
+        test_loss, correct_positives, false_positives = 0, 0, 0
         total_positives = 0
 
         # Evaluating the model with torch.no_grad() ensures that no gradients are computed during test mode
         # also serves to reduce unnecessary gradient computations and memory usage for tensors with requires_grad=True
         with torch.no_grad():
-            for X, y in dataloader:
-                pred = self(X)
-                y = y.to(self.device)
-                test_loss += loss_fn(pred, y).item()
+            for x, y in dataloader:
+                batch_logits = self(x)
+                if self._use_output_embedding:
+                    assert isinstance(loss_fn, torch.nn.CosineEmbeddingLoss), "Output embeddings require CosineEmbeddingLoss."
+                    y = y.to(int)
+                    y_embeddings = torch.sum(self._output_embedding_model(y), dim=1)
+                    logits_embeddings = torch.sum(self._output_embedding_model(torch.sigmoid(batch_logits).int()), dim=1)
+                    target = torch.ones(logits_embeddings.size(0), device=self._device)
+                    test_loss += loss_fn(logits_embeddings, y_embeddings, target)
+                else:
+                    y = y.to(float)
+                    test_loss += loss_fn(batch_logits, y)
                 # Calculate the relevance (or priority) of each option
-                for idx, instance in enumerate(pred):
-                    probabilities = torch.sigmoid(instance)
+                for idx, logits in enumerate(batch_logits):
+                    # use sigmoid to rescale values between 0 and 1 - sigmoid approach
+                    if self._use_output_embedding:
+                        cos_sim = self.compute_cosine_similarity(logits)
+                        probabilities = self.softmax(cos_sim) / self.softmax(cos_sim).max()
+                    else:
+                        probabilities = torch.sigmoid(logits)
+                    # softmax approach.
+                    #probabilities = self.softmax(instance) / self.softmax(instance).max()
                     # Calculate the estimated correct classification
                     # Get indices where relevance > 0.5
                     prb_indices = (probabilities > 0.5).nonzero().squeeze().tolist()
                     # Get indices where y != 0
                     y_indices = (y[idx] != 0).nonzero().squeeze().tolist()
-                    # Convert indices to sets for comparison
+                    # Check if the indices are integers
+                    # If so, convert them to 1-element lists
                     if isinstance(prb_indices, int):
                         prb_indices = [prb_indices]
                     if isinstance(y_indices, int):
@@ -174,20 +319,80 @@ class CategoricNeuralNetwork(nn.Module):
                     prb_set = set(prb_indices)
                     y_set = set(y_indices)
                     # Find the intersection of the sets
-                    estimated_correct = len(prb_set.intersection(y_set))
+                    correct_choices = len(prb_set.intersection(y_set))
                     incorrect_choices = len(prb_set.difference(y_set))
                     # The count of values correctly reurned as positive
-                    positives += estimated_correct
+                    correct_positives += correct_choices
                     # Count of values that wrongly returned as positive
                     false_positives += incorrect_choices
                     # Count of total values that should return as positive
                     total_positives += len(y_indices)
-
         test_loss /= num_batches
-        correct_proportion = positives / total_positives
-        print(f"Test Error: \n Accuracy: {(100*correct_proportion):>0.1f}%, Avg loss: {test_loss:>8f} ")
-        print(f"Correct: {positives:>0.1f} / {total_positives}, False Positives: {false_positives:>0.1f}\n")
+        try:
+            precision = correct_positives / (correct_positives + false_positives)
+        except ZeroDivisionError:
+            precision = 0
+        try:
+            recall = correct_positives / total_positives
+        except ZeroDivisionError:
+            recall = 0
+        try:
+            # compute F1 score
+            f1_score = 2 * (precision * recall) / (precision + recall)
+        except ZeroDivisionError:
+            f1_score = 0
 
+        print(f"Test Error:\nPrecision: {(precision):>0.4f}, Recall: {(recall):>0.4f}, Avg loss: {test_loss:>8f} ")
+        print(f"F1 Score: {f1_score:>12.8f}")
+        print(f"Correct: {correct_positives:>1.0f} / {total_positives}, False Positives: {false_positives:>1.0f}\n")
+        if f1_score > 0.9:
+            raise StopTraining("F1 score is above 0.9. Stopping training.")
+
+    def compute_cosine_similarity(self, logits):
+        """
+        Computes the cosine similarity between the logits and the output embeddings.
+
+        Args:
+            logits (torch.Tensor): The logits from the model.
+
+        Returns:
+            cos_sim (torch.Tensor): The cosine similarities between the logits and the output embeddings.
+        """
+        cos_sim = torch.empty(0, device=self._device)
+        for i in range(self._output_embedding_model.embedding.weight.size(0)):
+            similarity = nn.functional.cosine_similarity(logits, self._output_embedding_model.embedding.weight[i].unsqueeze(0))
+            cos_sim = torch.cat((cos_sim, similarity), dim=0)
+        return cos_sim
+
+class EmbeddingModel(nn.Module):
+    """
+    A simple model that uses an embedding layer to represent categories.
+    """
+    def __init__(self, num_categories, embedding_dim):
+        """
+        Initializes a new instance of the EmbeddingModel class.
+
+        Args:
+            num_categories (int): The number of categories.
+            embedding_dim (int): The dimension of the embedding.
+
+        Returns:
+            None
+        """
+        super(EmbeddingModel, self).__init__()
+        self.embedding = nn.Embedding(num_categories, embedding_dim)
+
+    def forward(self, x):
+        """
+        Forward pass of the model.
+
+        Args:
+            x: The input tensor.
+
+        Returns:
+            The output tensor.
+        """
+        return self.embedding(x) / torch.norm(self.embedding(x), p=2)
 
 if __name__ == "__main__":
     # Do nothing
