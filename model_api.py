@@ -64,14 +64,14 @@ class ConfigRun:
     epochs: int = 50
 
 
-def configure_dataset(df: pd.DataFrame, input_columns: list, output_column: list) -> CategoricDataset:
+def configure_dataset(df: pd.DataFrame, input_columns: list, output_columns: list) -> CategoricDataset:
     """
     Configure the dataset for training the model.
 
     Args:
         df (pd.DataFrame): The data to be used by the dataset.
         input_columns (list): The names of the columns to be used as input.
-        output_column (list): The names of the columns to be used as output.
+        output_columns (list): The names of the columns to be used as output.
 
     Returns:
         dataset (CategoricDataset): The configured dataset.
@@ -79,17 +79,17 @@ def configure_dataset(df: pd.DataFrame, input_columns: list, output_column: list
     # statements to make sure the input is correct
     if not isinstance(input_columns, list):
         raise TypeError("input_columns must be a list")
-    if not isinstance(output_column, list):
-        raise TypeError("output_column must be a list")
+    if not isinstance(output_columns, list):
+        raise TypeError("output_columns must be a list")
     if not isinstance(df, pd.DataFrame):
         raise TypeError("df must be a pandas DataFrame")
     if len(input_columns) == 0:
         raise ValueError("input_columns must have at least one element")
-    if len(output_column) != 1:
-        raise ValueError("output_column must have exactly one element")
+    if len(output_columns) != 1:
+        raise ValueError("output_columns must have exactly one element")
 
     dataset = CategoricDataset(data=df)
-    dataset.define_input_output(input_columns=input_columns, output_column=output_column)
+    dataset.define_input_output(input_columns=input_columns, output_columns=output_columns)
     return dataset
 
 
@@ -115,6 +115,27 @@ def get_dataloaders(dataset: CategoricDataset, batch_size: int = 32, train_size:
         return train_dataloader, test_dataloader
 
 
+def create_model(dataset: CategoricDataset, use_input_embedding: bool = True, use_output_embedding: bool = False) -> CategoricNeuralNetwork:
+    """
+    Create an instance of the CategoricNeuralNetwork model.
+
+    Args:
+        dataset (CategoricDataset): The dataset to be used.
+        use_input_embedding (bool): Whether to use an embedding layer for the input.
+        use_output_embedding (bool): Whether to use an embedding layer for the output.
+
+    Returns:
+        model (CategoricNeuralNetwork): The model to be used.
+    """
+    model = CategoricNeuralNetwork(
+        dataset=dataset,
+        use_input_embedding=use_input_embedding,
+        use_output_embedding=use_output_embedding
+        )
+    model.to(model._device)
+    return model
+
+
 def train(model: CategoricNeuralNetwork,
           train_dataloader: DataLoader,
           test_dataloader: DataLoader,
@@ -137,9 +158,17 @@ def train(model: CategoricNeuralNetwork,
     Returns:
         None
     """
+    printer.debug(
+        f"\nDetails on the training:"
+        f"\nModel: {model}"
+        f"\nLoss Function: {loss_fn}"
+        f"\nOptimizer: {optimizer}"
+        f"\nScheduler: {scheduler}"
+        f"\nEpochs: {epochs}"
+        f"\n\nConfig: {ConfigRun.learning_rate = } {ConfigRun.batch_size = } {ConfigRun.epochs = }")
     try:
         for t in range(epochs):
-            print(f"Epoch {t+1}\n-------------------------------")
+            printer.info(f"\nEpoch {t+1}\n-------------------------------")
             model.train_loop(train_dataloader, loss_fn, optimizer, scheduler)
             model.test_loop(test_dataloader, loss_fn)
     except KeyboardInterrupt:

@@ -39,31 +39,42 @@ class CategoricDataset(TorchDataset):
             data (pandas.DataFrame): The data to be used by the dataset.
                                      It should have labelled columns.
         """
-        self.data = data
         printer.debug("Creating a new instance of CategoricDataset.")
+        # "Public" Variables
+        self.data = data
         self.input_columns = None
-        self.output_column = None
-        self.category_mappings = dict()
-        self._device = assess_device()
+        self.output_columns = None
+        self.category_mappings: dict = dict()
 
-    def define_input_output(self, input_columns: List[str], output_column: List[str]) -> None:
+        # "Private" Variables
+        self._device: str = assess_device()
+        self._already_configured: bool = False
+
+    def define_input_output(self, input_columns: List[str], output_columns: List[str]) -> None:
         """
         Defines the input and output columns to be used by the dataset.
         Relies on the data being a pandas DataFrame with labelled columns.
 
         Args:
             input_columns (List[str]): The names of the columns to be used as input.
-            output_column (List[str]): The name of the column to be used as output.
+            output_columns (List[str]): The name of the column to be used as output.
         """
+        if self._already_configured:
+            raise ValueError(
+                "The dataset has already been configured.\n"
+                "Please create a new instance of the dataset to configure it again.\n"
+            )
+        else:
+            self._already_configured = True
         assert isinstance(input_columns, list) and all(isinstance(col, str) for col in input_columns), \
             "input_columns should be a list of strings."
-        assert isinstance(output_column, list) and len(output_column) == 1 and all(isinstance(col, str) for col in output_column), \
+        assert isinstance(output_columns, list) and len(output_columns) == 1 and all(isinstance(col, str) for col in output_columns), \
             "output_column should be a list containing a single string."
 
         self.input_columns = input_columns
-        self.output_column = output_column
+        self.output_columns = output_columns
 
-        self._create_identifiers(self.output_column)
+        self._create_identifiers(self.output_columns)
         self._create_identifiers(self.input_columns)
 
     def _create_identifiers(self, columns=None):
@@ -81,9 +92,9 @@ class CategoricDataset(TorchDataset):
             None
         """
         if columns is None:
-            columns = self.output_column
+            columns = self.output_columns
         # Iterate over each desired column
-        for column in columns:
+        for idx, column in enumerate(columns):
             # Create an empty dictionary for the current column
             self.category_mappings[column] = {}
             # Get the entries for the current column
@@ -91,6 +102,7 @@ class CategoricDataset(TorchDataset):
             # Iterate over each entry
             for values in entries:
                 if not isinstance(values, list):
+                    # Check if the value is already in the category mappings
                     if values not in self.category_mappings[column]:
                         self.category_mappings[column][values] = len(self.category_mappings[column])
                 else:
@@ -139,8 +151,8 @@ class CategoricDataset(TorchDataset):
         Returns:
             int: The number categories of the output column.
         """
-        assert len(self.output_column) == 1
-        return len(self.category_mappings[self.output_column[0]])
+        assert len(self.output_columns) == 1
+        return len(self.category_mappings[self.output_columns[0]])
 
     def train_test_split(self, train_size: float = 0.8):
         """
@@ -149,7 +161,7 @@ class CategoricDataset(TorchDataset):
         Args:
             dataset (SingleCategoricDataset): The dataset to split.
             train_size (float): The proportion of the dataset to include in the training set.
-            output_column (str): The name of the column to be used as output.
+            output_columns (str):The name of the column to be used as output.
                                  This is optional, and it is only to check if
                                  all output possibilities are reprsented in the training set.
 
@@ -166,10 +178,10 @@ class CategoricDataset(TorchDataset):
         self._copy_specs(test)
         printer.debug(f"Training set size: {len(train)}")
         printer.debug(f"Testing set size: {len(test)}")
-        if self.output_column is not None:
+        if self.output_columns is not None:
             # Check if all output possibilities are represented in the training set
-            train_output = set(train.data[self.output_column].nunique())
-            all_output = set(self.data[self.output_column].nunique())
+            train_output = set(train.data[self.output_columns].nunique())
+            all_output = set(self.data[self.output_columns].nunique())
             if all_output.difference(train_output):
                 printer.warning(
                     "Not all output possibilities are represented in the training set."
@@ -217,7 +229,7 @@ class CategoricDataset(TorchDataset):
             other (CategoricDataset): The dataset to copy the specifications to.
         """
         other.input_columns = self.input_columns
-        other.output_column = self.output_column
+        other.output_columns = self.output_columns
         other.category_mappings = self.category_mappings
         return None
 
@@ -232,7 +244,7 @@ class CategoricDataset(TorchDataset):
             None
         """
         # Aggregate the outputs for each unique input
-        self.data = self.data.groupby(self.input_columns)[self.output_column]\
+        self.data = self.data.groupby(self.input_columns)[self.output_columns]\
             .agg(list)\
             .reset_index()
 
@@ -266,7 +278,8 @@ class CategoricDataset(TorchDataset):
         """
         element = self.data.iloc[idx]
         # Prepare raw text inputs; placeholders could be used for missing data
-        input_texts = {col: str(element[col]) for col in self.input_columns}  # Dictionary of column: text
+        input_texts = [str(element[col]) for col in self.input_columns]  # Dictionary of column: text
+        output_texts = [str(element[col]) for col in self.output_columns]  # Dictionary of column: text
         # Prepare the output tensor - one-hot encoding
         output_encoded = self.create_hot_vector(idx)
         return input_texts, output_encoded
@@ -283,7 +296,7 @@ class CategoricDataset(TorchDataset):
             torch.FloatTensor: The multi-hot encoded vector.
         """
         if column is None:
-            column = self.output_column[0]
+            column = self.output_columns[0]
 
         element = self.data.iloc[idx]
         values = element[column]

@@ -46,12 +46,17 @@ class CategoricNeuralNetwork(nn.Module):
         self._use_input_embedding = use_input_embedding
         self._use_output_embedding = use_output_embedding
         self.dataset = dataset
+        self.category_mappings = dataset.category_mappings
         if self._use_input_embedding:
-            self._tokenizer = AutoTokenizer.from_pretrained('microsoft/codebert-base')
-            self._input_embedding_model = AutoModel.from_pretrained('microsoft/codebert-base').to(self._device)
+            #self._tokenizer = AutoTokenizer.from_pretrained('microsoft/codebert-base')
+            #self._input_embedding_model = AutoModel.from_pretrained('microsoft/codebert-base').to(self._device)
+            # maybe use distilbert-base-uncased for faster training
+            self._tokenizer = AutoTokenizer.from_pretrained('distilbert-base-uncased')
+            self._input_embedding_model = AutoModel.from_pretrained('distilbert-base-uncased').to(self._device)
             self._input_size = self._input_embedding_model.config.hidden_size * dataset.number_input_categories
             for param in self._input_embedding_model.parameters():
-                assert param.requires_grad, "requires_grad is not set to True for input embeddings"
+                # Letting the embedding train makes it difficult to train the model
+                param.requires_grad = False
         else:
             self._input_size = sum([len(dataset.category_mappings[col]) for col in dataset.input_columns])
         if self._use_output_embedding:
@@ -65,12 +70,11 @@ class CategoricNeuralNetwork(nn.Module):
                 )
             printer.warning(
                 "Output embeddings imply loss of precision due to dimensionality reduction.\n "
-                "Also the logits will need to be converted to embeddings "
-                "for loss calculation, further reducing precision.")
+                "Also the logits are unstable and may not be suitable for training.\n"
+                )
             self._output_embedding_model = EmbeddingModel(dataset.number_output_categories, self._output_size).to(self._device)
-            for param in self._output_embedding_model.parameters():
-                assert param.requires_grad, "requires_grad is not set to True for output embeddings"
-
+            #for param in self._output_embedding_model.parameters():
+            #    param.requires_grad = False
         else:
             self._output_size = dataset.number_output_categories
 
@@ -93,13 +97,11 @@ class CategoricNeuralNetwork(nn.Module):
         self.linear_relu_stack = nn.Sequential(
             nn.Linear(self._input_size, neurons),
             nn.LeakyReLU(),
-            #nn.BatchNorm1d(neurons),
             nn.Linear(neurons, neurons),
             nn.LeakyReLU(),
-            #nn.BatchNorm1d(neurons),
-            nn.Linear(neurons, neurons),
-            nn.LeakyReLU(),
-            nn.Linear(neurons, self._output_size),
+            # nn.Linear(neurons, neurons),
+            # nn.LeakyReLU(),
+            nn.Linear(neurons, self._output_size)
         )
         # Proceed to initialize the weights and biases
         self._initialize_weights()
@@ -140,27 +142,25 @@ class CategoricNeuralNetwork(nn.Module):
             Preprocesses the batch of inputs using embeddings.
 
             Args:
-                inputs (dict): A dictionary containing the input data.
+                inputs (list of tuples): A dictionary containing the input data.
 
             Returns:
                 concatenated_embeddings (torch.Tensor): The concatenated embeddings.
             """
             # Get the length of the lists in the input dictionary
-            lengths = set([len(v) for v in inputs.values()])
-            assert len(lengths) == 1
-            length = next(iter(lengths))
+            lengths = set([len(v) for v in inputs])
+            assert len(lengths) == 1, "Not all input fields have the same length in this batch"
 
             # Initialize an empty list to hold the embeddings
             embeddings = []
             # With the following code use the embeddings
-            for idx in range(length):
+            for inp in zip(*inputs):
                 # For each index, get the text from each list in the input dictionary
-                text_list = [inputs[key][idx] for key in inputs.keys()]
-                tokenized = self._tokenizer(text_list, return_tensors="pt", padding="max_length", truncation=True, max_length=16)
+                tokenized = self._tokenizer(inp, return_tensors="pt", padding="max_length", truncation=True, max_length=16)
                 input_ids, attention_mask = tokenized['input_ids'].to(self._device), tokenized['attention_mask'].to(self._device)
                 output = self._input_embedding_model(input_ids=input_ids, attention_mask=attention_mask)
                 # Choose a pooling strategy
-                pooling_strategy = "sum"  # Change this to the desired pooling strategy
+                pooling_strategy = "cls"  # Change this to the desired pooling strategy
                 if pooling_strategy == "mean":
                     pooled = torch.mean(output.last_hidden_state, dim=1)
                 elif pooling_strategy == "max":
@@ -172,8 +172,7 @@ class CategoricNeuralNetwork(nn.Module):
                 else:
                     raise ValueError("Invalid pooling strategy. Please choose from 'mean', 'max', 'sum', 'cls'.")
                 # Normalize the embedding to avoid exploding gradients
-                pooled = pooled / torch.norm(pooled, p=2)
-                #normalized_pooled = torch.nn.functional.normalize(pooled, p=2, dim=1)
+                pooled = torch.nn.functional.normalize(pooled, p=2, dim=1)
                 pooled = pooled.reshape(-1)
                 embeddings.append(pooled)
             # Stack the embeddings into a tensor
@@ -185,34 +184,39 @@ class CategoricNeuralNetwork(nn.Module):
             Preprocesses the batch of inputs without using embeddings.
 
             Args:
-                inputs (dict): A dictionary containing the input data.
+                inputs (list of tuples): A dictionary containing the input data.
 
             Returns:
-                processed_inputs (torch.Tensor): The processed input tensor.
+                processed_inputs (torch.Tensor): The processed inputs.
+                                                 (one long multi-hot encoded tensor)
             """
-            # the way dataloader works means we will get a merged dictionary
-            # for the whole batch. However each element of each batch element will
-            # an element in the list in values of the dictionary while  the key is
-            # the input category.
-            lengths = set([len(v) for v in inputs.values()])
-            assert len(lengths) == 1
-            length = next(iter(lengths))
-            # Initialize an empty list to hold the summed one-hot vectors
-            summed_one_hot_vectors = []
-            # Iterate over the range of the length of the lists
-            for idx in range(length):
-                # For each index, sum the one-hot vectors of the elements at that index
-                one_hot_vector_sum = torch.cat([
-                    torch.nn.functional.one_hot(
-                        torch.tensor(self.dataset.category_mappings[input_category][inputs[input_category][idx]]),
-                        num_classes=len(self.dataset.category_mappings[input_category])
-                    ) for input_category in inputs.keys()
-                ], dim=0).float()
-                summed_one_hot_vectors.append(one_hot_vector_sum)
-
-            # Stack the summed one-hot vectors into a tensor
-            processed_inputs = torch.stack(summed_one_hot_vectors).to(self._device)
-            return processed_inputs
+            # Get the lengths of the lists in the input dictionary
+            lengths = set([len(v) for v in inputs])
+            # Check if all input fields have the same length in this batch
+            assert len(lengths) == 1, "Not all input fields have the same length in this batch"
+            # Initialize an empty list to hold the one-hot vectors
+            all_one_hot_vectors = []
+            # Iterate over each input field in the batch
+            for inp in zip(*inputs):
+                # Initialize an empty list to hold the one-hot vectors for each input category
+                one_hot_vectors = []
+                # Iterate over each input category and its corresponding input field
+                for input_category_id, inp_field in enumerate(inp):
+                    # Get the input category and its corresponding input field index
+                    input_category = self.dataset.input_columns[input_category_id]
+                    inp_field_idx = self.category_mappings[input_category][inp_field]
+                    # Convert the input field index to a one-hot vector
+                    one_hot = nn.functional.one_hot(torch.tensor(inp_field_idx), num_classes=len(self.category_mappings[input_category]))
+                    # Append the one-hot vector to the list
+                    one_hot_vectors.append(one_hot)
+                # Concatenate the one-hot vectors into a single tensor
+                inp_tensor = torch.cat(one_hot_vectors).to(self._device)
+                # Append the tensor to the list of processed inputs
+                all_one_hot_vectors.append(inp_tensor)
+            # Stack the processed inputs into a tensor
+            processed_inputs = torch.stack(all_one_hot_vectors).to(self._device)
+            # Convert the processed inputs to float
+            return processed_inputs.float()
 
     def train_loop(self, dataloader, loss_fn, optimizer, scheduler=None):
         """
@@ -237,11 +241,11 @@ class CategoricNeuralNetwork(nn.Module):
             batch_logits = self(x)
             if self._use_output_embedding:
                 y = y.to(int)
+                batch_logits = nn.functional.normalize(batch_logits, p=2, dim=1)
                 assert isinstance(loss_fn, torch.nn.CosineEmbeddingLoss), "Output embeddings require CosineEmbeddingLoss."
                 y_embeddings = torch.sum(self._output_embedding_model(y), dim=1)
-                logits_embeddings = torch.sum(self._output_embedding_model(torch.sigmoid(batch_logits).int()), dim=1)
-                target = torch.ones(logits_embeddings.size(0), device=self._device)
-                loss = loss_fn(logits_embeddings, y_embeddings, target)
+                target = torch.ones(batch_logits.size(0), device=self._device)
+                loss = loss_fn(batch_logits, y_embeddings, target)
             else:
                 y = y.to(float)
                 loss = loss_fn(batch_logits, y)
@@ -286,11 +290,11 @@ class CategoricNeuralNetwork(nn.Module):
                 batch_logits = self(x)
                 if self._use_output_embedding:
                     assert isinstance(loss_fn, torch.nn.CosineEmbeddingLoss), "Output embeddings require CosineEmbeddingLoss."
+                    batch_logits = nn.functional.normalize(batch_logits, p=2, dim=1)
                     y = y.to(int)
                     y_embeddings = torch.sum(self._output_embedding_model(y), dim=1)
-                    logits_embeddings = torch.sum(self._output_embedding_model(torch.sigmoid(batch_logits).int()), dim=1)
-                    target = torch.ones(logits_embeddings.size(0), device=self._device)
-                    test_loss += loss_fn(logits_embeddings, y_embeddings, target)
+                    target = torch.ones(batch_logits.size(0), device=self._device)
+                    test_loss += loss_fn(batch_logits, y_embeddings, target)
                 else:
                     y = y.to(float)
                     test_loss += loss_fn(batch_logits, y)
@@ -299,7 +303,7 @@ class CategoricNeuralNetwork(nn.Module):
                     # use sigmoid to rescale values between 0 and 1 - sigmoid approach
                     if self._use_output_embedding:
                         cos_sim = self.compute_cosine_similarity(logits)
-                        probabilities = self.softmax(cos_sim) / self.softmax(cos_sim).max()
+                        probabilities = torch.sigmoid(cos_sim)
                     else:
                         probabilities = torch.sigmoid(logits)
                     # softmax approach.
@@ -342,9 +346,11 @@ class CategoricNeuralNetwork(nn.Module):
         except ZeroDivisionError:
             f1_score = 0
 
-        print(f"Test Error:\nPrecision: {(precision):>0.4f}, Recall: {(recall):>0.4f}, Avg loss: {test_loss:>8f} ")
-        print(f"F1 Score: {f1_score:>12.8f}")
-        print(f"Correct: {correct_positives:>1.0f} / {total_positives}, False Positives: {false_positives:>1.0f}\n")
+        printer.info(
+            f"\nTest Result:\nPrecision: {(precision):>0.4f}, Recall: {(recall):>0.4f}, Avg loss: {test_loss:>8f} "
+            f"\nF1 Score: {f1_score:>12.8f}"
+            f"\nCorrect: {correct_positives:>1.0f} / {total_positives}, False Positives: {false_positives:>1.0f}\n"
+            )
         if f1_score > 0.9:
             raise StopTraining("F1 score is above 0.9. Stopping training.")
 
@@ -358,10 +364,14 @@ class CategoricNeuralNetwork(nn.Module):
         Returns:
             cos_sim (torch.Tensor): The cosine similarities between the logits and the output embeddings.
         """
-        cos_sim = torch.empty(0, device=self._device)
-        for i in range(self._output_embedding_model.embedding.weight.size(0)):
-            similarity = nn.functional.cosine_similarity(logits, self._output_embedding_model.embedding.weight[i].unsqueeze(0))
-            cos_sim = torch.cat((cos_sim, similarity), dim=0)
+        num_classes = self.dataset.number_output_categories
+        embedded_base = self._output_embedding_model(
+            torch.arange(num_classes).to(self._device)
+            )
+
+        cos_sim = nn.functional.cosine_similarity(
+            logits,
+            embedded_base)
         return cos_sim
 
 class EmbeddingModel(nn.Module):
@@ -392,7 +402,7 @@ class EmbeddingModel(nn.Module):
         Returns:
             The output tensor.
         """
-        return self.embedding(x) / torch.norm(self.embedding(x), p=2)
+        return self.embedding(x)
 
 if __name__ == "__main__":
     # Do nothing
