@@ -106,12 +106,12 @@ def get_dataloaders(dataset: CategoricDataset, batch_size: int = 32, train_size:
         test_dataloader (DataLoader): The DataLoader for the testing dataset.
     """
     train_dataset, test_dataset = dataset.train_test_split(train_size=train_size)
-    train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
     if train_size == 1.0:
         logger.warning("train_size is 1.0, no test dataset will be created. Its DataLoader will be None.")
         return train_dataloader, None
     else:
-        test_dataloader = DataLoader(test_dataset, batch_size=batch_size, shuffle=True)
+        test_dataloader = DataLoader(test_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
         return train_dataloader, test_dataloader
 
 
@@ -132,7 +132,7 @@ def create_model(dataset: CategoricDataset, use_input_embedding: bool = True, us
         use_input_embedding=use_input_embedding,
         use_output_embedding=use_output_embedding
         )
-    model.to(model._device)
+    model.to(model.device)
     return model
 
 

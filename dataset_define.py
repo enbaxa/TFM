@@ -47,7 +47,6 @@ class CategoricDataset(TorchDataset):
         self.category_mappings: dict = dict()
 
         # "Private" Variables
-        self._device: str = assess_device()
         self._already_configured: bool = False
 
     def define_input_output(self, input_columns: List[str], output_columns: List[str]) -> None:
@@ -201,26 +200,6 @@ class CategoricDataset(TorchDataset):
         # Make all string columns lowercase
         self.data = self.data.map(lambda x: x.lower() if isinstance(x, str) else x)
 
-    @property
-    def device(self) -> str:
-        """
-        Returns the device to be used for computation.
-
-        Returns:
-            str: The device to be used for computation.
-        """
-        return self._device
-
-    @device.setter
-    def device(self, value: str) -> None:
-        """
-        Sets the device to be used for computation.
-
-        Args:
-            value (str): The device to be used for computation.
-        """
-        self._device = value
-
     def _copy_specs(self, other):
         """
         Copies the specifications of the current dataset to another dataset.
@@ -281,55 +260,4 @@ class CategoricDataset(TorchDataset):
         input_texts = [str(element[col]) for col in self.input_columns]  # Dictionary of column: text
         output_texts = [str(element[col]) for col in self.output_columns]  # Dictionary of column: text
         # Prepare the output tensor - one-hot encoding
-        output_encoded = self.create_hot_vector(idx)
-        return input_texts, output_encoded
-
-    def create_hot_vector(self, idx, column=None):
-        """
-        Creates a multi-hot vector for the specified column at the given index.
-
-        Args:
-            idx (int): The index of the data element to encode.
-            column (str, optional): The column to encode. If None, defaults to the first output column.
-
-        Returns:
-            torch.FloatTensor: The multi-hot encoded vector.
-        """
-        if column is None:
-            column = self.output_columns[0]
-
-        element = self.data.iloc[idx]
-        values = element[column]
-
-        if not isinstance(values, list):
-            values = [values]
-
-        desired_outputs = torch.tensor(
-            [self.category_mappings[column][value] for value in values],
-            dtype=torch.long
-        ).unique()
-
-        output_encoded = torch.nn.functional.one_hot(
-            desired_outputs,
-            num_classes=len(self.category_mappings[column])
-        ).sum(dim=0).to(self.device)
-
-        return output_encoded
-
-
-def assess_device():
-    """
-    Determines the device to be used for computation.
-
-    Returns:
-        device (str): The device to be used for computation.
-    """
-    device = (
-        "cuda"
-        if torch.cuda.is_available()
-        else "mps"
-        if torch.backends.mps.is_available()
-        else "cpu"
-    )
-    logger.debug(f"Using {device} device")
-    return device
+        return input_texts, output_texts
