@@ -1,10 +1,6 @@
-#!/usr/bin/env python3
+##!/usr/bin/env python3
 # Author: Enric Basso
 
-"""
-This module contains a class that defines color codes for the terminal
-and a method to color a string with a given color
-"""
 from dataclasses import dataclass
 
 #  """
@@ -41,9 +37,6 @@ from dataclasses import dataclass
 
 @dataclass(init=False, frozen=True)
 class Color:
-    """
-    This class contains color codes for the terminal.
-    """
     red: str = "\033[31m"
     green: str = "\033[32m"
     yellow: str = "\033[33m"
@@ -57,24 +50,22 @@ class Color:
     blink: str = "\033[5m"
     reset: str = "\033[0m"
 
-
-def color_message(msg: str, color: str) -> str:
+def color_message(msg:str, color:str) -> str:
     """
-    Adds color codes at the beginning and end of a string.
+    This method simply adds color codes at th beginning and end of a string
 
-    Args:
-        msg (str): The string to which to add color codes.
-        color (str): The color name. Must be defined inside the Color object.
+    parameters:
+        - msg: str: String to which to add color codes
+        - color: str: Color name. Has to be defined inside the Color object
 
     Returns:
-        str: The same string as `msg` with the color code prepended and a reset code appended.
-
-    Raises:
-        AttributeError: If no color named `color` is found.
+        - str: The same string as msg with color code pre-prended
+               and a reset code appended
     """
     try:
         return "".join((getattr(Color, color), msg, getattr(Color, "reset")))
     except AttributeError as e:
         print(e)
-        print(f"No color named \"{color}\" was found. Ignoring coloring of message.")
+        print(f"No color named \"{color}\" was found. Ignoring Coloring of message")
         return msg
+
