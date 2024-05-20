@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 # Author: Enric Basso
+"""
+This module, `set_logger.py`, is responsible for setting up the logging configuration for the application.
 
+It provides functions to initialize a logger with a specific name, set the logging level, and specify the format of the log messages.
+
+This allows for consistent logging practices across the application, making it easier to debug issues and track application flow.
+"""
 import logging
-from Color import Color
+from color import Color
 
 
 class _PrettierRecord(logging.Filter):
@@ -195,7 +201,7 @@ class Formatters:
             logging.Formatter: An instance configured for detailed log messages.
         """
         return logging.Formatter(
-            "{levelname}: {module_name}: {funcName}"
+            "{levelname}: {module_name}:"
             " in line {lineno}: {msg}\n", style="{"
             )
 
@@ -212,7 +218,7 @@ class Formatters:
         """
         return logging.Formatter(
             "{color}{levelname} from {name}: "
-            "{module_name}:{funcName} in line {lineno}: {reset}\n{msg}\n",
+            "{module_name}: in line {lineno}: {reset}\n{msg}\n",
             style="{"
             )
 
