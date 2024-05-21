@@ -87,8 +87,16 @@ def configure_dataset(df: pd.DataFrame, input_columns: list, output_columns: lis
         raise ValueError("input_columns must have at least one element")
     if len(output_columns) != 1:
         raise ValueError("output_columns must have exactly one element")
+    if any([col not in df.columns for col in input_columns]):
+        raise ValueError("input_columns must be columns in the DataFrame")
+    if any([col not in df.columns for col in output_columns]):
+        raise ValueError("output_columns must be columns in the DataFrame")
+    if any([col in output_columns for col in input_columns]):
+        raise ValueError("input_columns and output_columns must have different elements")
 
+    # create the dataset
     dataset = CategoricDataset(data=df)
+    # define the input and output columns and create auxiliary variables
     dataset.define_input_output(input_columns=input_columns, output_columns=output_columns)
     return dataset
 
@@ -110,12 +118,15 @@ def get_dataloaders(dataset: CategoricDataset, batch_size: int = 32, train_size:
     if train_size == 1.0:
         logger.warning("train_size is 1.0, no test dataset will be created. Its DataLoader will be None.")
         return train_dataloader, None
-    else:
-        test_dataloader = DataLoader(test_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
-        return train_dataloader, test_dataloader
+    test_dataloader = DataLoader(test_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
+    return train_dataloader, test_dataloader
 
 
-def create_model(dataset: CategoricDataset, use_input_embedding: bool = True, use_output_embedding: bool = False) -> CategoricNeuralNetwork:
+def create_model(
+        dataset: CategoricDataset,
+        use_input_embedding: bool = True,
+        use_output_embedding: bool = False
+        ) -> CategoricNeuralNetwork:
     """
     Create an instance of the CategoricNeuralNetwork model.
 
@@ -127,8 +138,9 @@ def create_model(dataset: CategoricDataset, use_input_embedding: bool = True, us
     Returns:
         model (CategoricNeuralNetwork): The model to be used.
     """
+    assert dataset.already_configured, "The dataset must be configured before creating the model."
     model = CategoricNeuralNetwork(
-        dataset=dataset,
+        category_mappings=dataset.category_mappings,
         use_input_embedding=use_input_embedding,
         use_output_embedding=use_output_embedding
         )

@@ -40,35 +40,50 @@ class CategoricNeuralNetwork(nn.Module):
         _initialize_weights(): Initializes the weights and biases of the model.
     """
 
-    def __init__(self, dataset, hidden_neurons=None, use_input_embedding=True, use_output_embedding=False):
-        super(CategoricNeuralNetwork, self).__init__()
+    def __init__(
+            self,
+            /,
+            category_mappings=None,
+            hidden_neurons=None,
+            use_input_embedding=False,
+            freeze_input_embedding=True,
+            use_output_embedding=False,
+            freeze_output_embedding=False
+            ):
+        super().__init__()
         self._device = self.assess_device()
         self._use_input_embedding = use_input_embedding
         self._use_output_embedding = use_output_embedding
         # make a dict of each element of dataset.input_columns and their corresponding index in the lsit
-        self.input_categories = {idx: dataset.input_columns[idx] for idx in range(len(dataset.input_columns))}
-        self.output_categories = {idx: dataset.output_columns[idx] for idx in range(len(dataset.output_columns))}
-        self.category_mappings = dataset.category_mappings
+        self.category_mappings = category_mappings
+        self.input_categories = self.category_mappings["input_categories"]
+        self.output_categories = self.category_mappings["output_categories"]
         self._similarity_threshold = None
+
+        # Initialize the input size
         if self._use_input_embedding:
             self._tokenizer = AutoTokenizer.from_pretrained('microsoft/codebert-base')
-            self._input_embedding_model = AutoModel.from_pretrained('microsoft/codebert-base').to(self._device)
+            self._input_embedding_model = AutoModel.from_pretrained('microsoft/codebert-base').to(self.device)
             # maybe use distilbert-base-uncased for faster training
             # self._tokenizer = AutoTokenizer.from_pretrained('distilbert-base-uncased')
-            # self._input_embedding_model = AutoModel.from_pretrained('distilbert-base-uncased').to(self._device)
-            self._input_size = self._input_embedding_model.config.hidden_size * dataset.number_input_categories
-            for param in self._input_embedding_model.parameters():
-                # Letting the embedding train makes it difficult to train the model
-                # The pretrained model is already trained and should not be retrained
-                param.requires_grad = False
+            # self._input_embedding_model = AutoModel.from_pretrained('distilbert-base-uncased').to(self.device)
+            self._input_size = self._input_embedding_model.config.hidden_size * len(self.input_categories)
+            if freeze_input_embedding:
+                for param in self._input_embedding_model.parameters():
+                    # Letting the embedding train makes it difficult to train the model
+                    # The pretrained model is already trained and should not be retrained
+                    param.requires_grad = False
         else:
-            self._input_size = sum([len(dataset.category_mappings[col]) for col in dataset.input_columns])
+            self._input_size = sum([len(self.category_mappings[col]) for col in self.input_categories.values()])
+
+        # Initialize the output size
+        total_output_fields = sum([len(self.category_mappings[col]) for col in self.output_categories.values()])
         if self._use_output_embedding:
             # Take a naive guess that half the dimensions should be enough
-            self._output_size = int(dataset.number_output_categories // 2)
+            self._output_size = int(total_output_fields // 2)
             printer.info(
                 f"Using output embeddings. "
-                f"Condensing the {dataset.number_output_categories} output "
+                f"Condensing the {total_output_fields} output "
                 f"categories to a lower-dimensional space "
                 f"of {self._output_size} dimensions."
                 )
@@ -76,18 +91,25 @@ class CategoricNeuralNetwork(nn.Module):
                 "Output embeddings imply loss of precision due to dimensionality reduction.\n "
                 "Also the logits are unstable and may not be suitable for training.\n"
                 )
-            self._output_embedding_model = EmbeddingModel(dataset.number_output_categories, self._output_size).to(self._device)
+            self._output_embedding_model = EmbeddingModel(total_output_fields, self._output_size).to(self.device)
             # What is considered a good similarity can vary according to the problem
             # This is a naive guess, but it can be dynamically adjusted during training
             # by monitoring the F1 score
             self._similarity_threshold = 0.5
-            for param in self._output_embedding_model.parameters():
-                # The output embedding model should be trained
-                param.requires_grad = True
+            if freeze_output_embedding:
+                printer.warning(
+                    "Freezing the output embedding model."
+                    " This may not be a good idea."
+                    " The output embedding model should be trained."
+                    )
+                for param in self._output_embedding_model.parameters():
+                    # The output embedding model should be trained
+                    param.requires_grad = False
         else:
-            self._output_size = dataset.number_output_categories
-
+            self._output_size = total_output_fields
         printer.info(f"Input size: {self._input_size}, Output size: {self._output_size}")
+
+        # Initialize the hidden layers
         if not hidden_neurons:
             printer.debug("Estimating the number of neurons needed in the hidden layers.")
             neurons = 0
@@ -103,6 +125,8 @@ class CategoricNeuralNetwork(nn.Module):
         printer.info(
             f"Using a neural network {neurons} neurons in the hidden layers.\n"
             f"Mapping to {self._output_size} output categories.")
+
+        # Define the neural network
         self.linear_relu_stack = nn.Sequential(
             nn.Linear(self._input_size, neurons),
             nn.LeakyReLU(),
@@ -116,10 +140,15 @@ class CategoricNeuralNetwork(nn.Module):
             nn.LeakyReLU(),
             nn.Linear(neurons, self._output_size)
         )
+
         # Proceed to initialize the weights and biases
         self._initialize_weights()
+
+        # Define the softmax and cosine similarity functions for easy access
         self.softmax = nn.Softmax(dim=-1)
         self.cos = nn.CosineSimilarity(dim=1)
+
+        # Print the parameters that will be trained
         for name, param in self.named_parameters():
             if param.requires_grad:
                 printer.debug(f"{name} will be part of the learning layer.")
@@ -156,70 +185,70 @@ class CategoricNeuralNetwork(nn.Module):
         logits = self.linear_relu_stack(pre_processed_inputs)
         return logits
 
-    def process_batch_to_embedding(self, batch, embedding_model, tokenizer = None):
-            """
-            Preprocesses the batch of elements to embeddings.
+    def process_batch_to_embedding(self, batch, embedding_model, tokenizer=None):
+        """
+        Preprocesses the batch of elements to embeddings.
 
-            Args:
-                batch (list): The list of elements to preprocess.
-                embedding_model (AutoModel): The model used for generating embeddings.
-                tokenizer (AutoTokenizer): The tokenizer used for tokenizing the input data.
-                                           Can be None if the input is already tokenized.
+        Args:
+            batch (list): The list of elements to preprocess.
+            embedding_model (AutoModel): The model used for generating embeddings.
+            tokenizer (AutoTokenizer): The tokenizer used for tokenizing the input data.
+                                        Can be None if the input is already tokenized.
 
-            Returns:
-                embeddings (torch.Tensor): The embeddings.
-            """
-            # Get the length of the lists in the input dictionary
-            lengths = set([len(v) for v in batch])
-            assert len(lengths) == 1, "Not all input fields have the same length in this batch"
+        Returns:
+            embeddings (torch.Tensor): The embeddings.
+        """
+        # Get the length of the lists in the input dictionary
+        lengths = set([len(v) for v in batch])
+        assert len(lengths) == 1, "Not all input fields have the same length in this batch"
 
-            # Initialize an empty list to hold the embeddings
-            embeddings = []
-            # With the following code use the embeddings
-            for batch_element in zip(*batch):
-                # For each index, get the text from each list in the input dictionary
-                if tokenizer is not None:
-                    # tokenize each of the elements
-                    tokenized = tokenizer(batch_element, return_tensors="pt", padding="max_length", truncation=True, max_length=16)
-                    # Get the input_ids and attention_mask from tokenizer
-                    input_ids, attention_mask = tokenized['input_ids'].to(self._device), tokenized['attention_mask'].to(self._device)
-                    # apply the embedding model on the input ids and attention mask
-                    output = self._input_embedding_model(input_ids=input_ids, attention_mask=attention_mask)
-                    pooling_strategy = "cls"  # Change this to the desired pooling strategy
-                    if pooling_strategy == "mean":
-                        pooled = torch.mean(output.last_hidden_state, dim=1)
-                    elif pooling_strategy == "max":
-                        pooled = torch.max(output.last_hidden_state, dim=1).values
-                    elif pooling_strategy == "sum":
-                        pooled = torch.sum(output.last_hidden_state, dim=1)
-                    elif pooling_strategy == "cls":
-                        pooled = output.last_hidden_state[:, 0, :]
-                    else:
-                        raise ValueError("Invalid pooling strategy. Please choose from 'mean', 'max', 'sum', 'cls'.")
+        # Initialize an empty list to hold the embeddings
+        embeddings = []
+        # With the following code use the embeddings
+        for batch_element in zip(*batch):
+            # For each index, get the text from each list in the input dictionary
+            if tokenizer is not None:
+                # tokenize each of the elements
+                tokenized = tokenizer(batch_element, return_tensors="pt", padding="max_length", truncation=True, max_length=16)
+                # Get the input_ids and attention_mask from tokenizer
+                input_ids, attention_mask = tokenized['input_ids'].to(self.device), tokenized['attention_mask'].to(self.device)
+                # apply the embedding model on the input ids and attention mask
+                output = self._input_embedding_model(input_ids=input_ids, attention_mask=attention_mask)
+                pooling_strategy = "cls"  # Change this to the desired pooling strategy
+                if pooling_strategy == "mean":
+                    pooled = torch.mean(output.last_hidden_state, dim=1)
+                elif pooling_strategy == "max":
+                    pooled = torch.max(output.last_hidden_state, dim=1).values
+                elif pooling_strategy == "sum":
+                    pooled = torch.sum(output.last_hidden_state, dim=1)
+                elif pooling_strategy == "cls":
+                    pooled = output.last_hidden_state[:, 0, :]
                 else:
-                    # if no tokenizer is provided, assume the input is already tokenized
-                    # i.e. batch_element is a list of tokenized inputs
-                    # which are really just indexes for the embedding model
-                    output = embedding_model(torch.tensor(batch_element).to(self._device))
-                    if len(output.shape) == 2:
-                        output = output.unsqueeze(1)
-                    pooling_strategy = "sum"  # Change this to the desired pooling strategy
-                    if pooling_strategy == "mean":
-                        pooled = torch.mean(output, dim=1)
-                    elif pooling_strategy == "max":
-                        pooled = torch.max(output, dim=1).values
-                    elif pooling_strategy == "sum":
-                        pooled = torch.sum(output, dim=1)
-                    else:
-                        raise ValueError("Invalid pooling strategy. Please choose from 'mean', 'max', 'sum', 'cls'.")
-                # Normalize the embedding to avoid exploding gradients
-                pooled = torch.nn.functional.normalize(pooled, p=2, dim=1)
-                # Reshape the tensor to a 1D tensor representing the whole batch element
-                pooled = pooled.reshape(-1)
-                embeddings.append(pooled)
-            # Stack the embeddings into a tensor. Represents the whole batch
-            stacked_embeddings = torch.stack(embeddings).to(self._device)
-            return stacked_embeddings
+                    raise ValueError("Invalid pooling strategy. Please choose from 'mean', 'max', 'sum', 'cls'.")
+            else:
+                # if no tokenizer is provided, assume the input is already tokenized
+                # i.e. batch_element is a list of tokenized inputs
+                # which are really just indexes for the embedding model
+                output = embedding_model(torch.tensor(batch_element).to(self.device))
+                if len(output.shape) == 2:
+                    output = output.unsqueeze(1)
+                pooling_strategy = "sum"  # Change this to the desired pooling strategy
+                if pooling_strategy == "mean":
+                    pooled = torch.mean(output, dim=1)
+                elif pooling_strategy == "max":
+                    pooled = torch.max(output, dim=1).values
+                elif pooling_strategy == "sum":
+                    pooled = torch.sum(output, dim=1)
+                else:
+                    raise ValueError("Invalid pooling strategy. Please choose from 'mean', 'max', 'sum', 'cls'.")
+            # Normalize the embedding to avoid exploding gradients
+            pooled = torch.nn.functional.normalize(pooled, p=2, dim=1)
+            # Reshape the tensor to a 1D tensor representing the whole batch element
+            pooled = pooled.reshape(-1)
+            embeddings.append(pooled)
+        # Stack the embeddings into a tensor. Represents the whole batch
+        stacked_embeddings = torch.stack(embeddings).to(self.device)
+        return stacked_embeddings
 
     def process_batch_to_one_hot(
             self,
@@ -265,11 +294,11 @@ class CategoricNeuralNetwork(nn.Module):
                     # Append the one-hot vector to the list
                     one_hot_vectors.append(one_hot)
                 # Concatenate the one-hot vectors into a single tensor
-                batch_element_tensor = torch.cat(one_hot_vectors).to(self._device)
+                batch_element_tensor = torch.cat(one_hot_vectors).to(self.device)
                 # Append the tensor to the list of processed inputs
                 all_one_hot_vectors.append(batch_element_tensor)
             # Stack the processed inputs into a tensor
-            processed = torch.stack(all_one_hot_vectors).to(self._device)
+            processed = torch.stack(all_one_hot_vectors).to(self.device)
             # Convert the processed inputs to float
             return processed.float()
 
@@ -299,7 +328,7 @@ class CategoricNeuralNetwork(nn.Module):
             # each tensor in the list is a list of indexes for one element of the batch
             batch_logits = nn.functional.normalize(batch_logits, p=2, dim=1)
             y_embeddings = self.process_batch_to_embedding(indexes_to_embed, embedding_model=self._output_embedding_model)
-            target = torch.ones(batch_logits.size(0), device=self._device)
+            target = torch.ones(batch_logits.size(0), device=self.device)
             loss = loss_fn(batch_logits, y_embeddings, target)
             if return_y_one_hot:
                 # if y is to be returned as one hot, we have to do it now
@@ -469,15 +498,17 @@ class CategoricNeuralNetwork(nn.Module):
                 #
                 self._similarity_threshold = max(thresholds_metrics, key=lambda x: thresholds_metrics[x]["f1"])
                 printer.info(f"Best threshold: {self._similarity_threshold:.2f}")
+                # Get the metrics for the best threshold into an easy-to-access variable
+                best_metrics = thresholds_metrics[self._similarity_threshold]
                 # Get the metrics for the best threshold to printout
                 precision, recall, f1_score, test_loss, correct_positives, false_positives, total_positives = (
-                    thresholds_metrics[self._similarity_threshold]["precision"],
-                    thresholds_metrics[self._similarity_threshold]["recall"],
-                    thresholds_metrics[self._similarity_threshold]["f1"],
-                    thresholds_metrics[self._similarity_threshold]["test_loss"],
-                    thresholds_metrics[self._similarity_threshold]["correct"],
-                    thresholds_metrics[self._similarity_threshold]["false_positives"],
-                    thresholds_metrics[self._similarity_threshold]["total_positives"]
+                    best_metrics["precision"],
+                    best_metrics["recall"],
+                    best_metrics["f1"],
+                    best_metrics["test_loss"],
+                    best_metrics["correct"],
+                    best_metrics["false_positives"],
+                    best_metrics["total_positives"]
                     )
         # Print the results
         message_printout = (
@@ -602,7 +633,7 @@ class EmbeddingModel(nn.Module):
         Returns:
             None
         """
-        super(EmbeddingModel, self).__init__()
+        super().__init__()
         self.embedding = nn.Embedding(num_categories, embedding_dim)
 
     def forward(self, x):
