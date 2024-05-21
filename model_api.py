@@ -41,8 +41,8 @@ from learning_model import CategoricNeuralNetwork
 from torch.utils.data import DataLoader
 
 
-logger = logging.getLogger("TFM")
-printer = logging.getLogger("printer")
+logger: logging.Logger = logging.getLogger("TFM")
+printer: logging.Logger = logging.getLogger("printer")
 
 
 @dataclass
@@ -95,7 +95,7 @@ def configure_dataset(df: pd.DataFrame, input_columns: list, output_columns: lis
         raise ValueError("input_columns and output_columns must have different elements")
 
     # create the dataset
-    dataset = CategoricDataset(data=df)
+    dataset: CategoricDataset = CategoricDataset(data=df)
     # define the input and output columns and create auxiliary variables
     dataset.define_input_output(input_columns=input_columns, output_columns=output_columns)
     return dataset
@@ -111,14 +111,14 @@ def get_dataloaders(dataset: CategoricDataset, batch_size: int = 32, train_size:
 
     Returns:
         train_dataloader (DataLoader): The DataLoader for the training dataset.
-        test_dataloader (DataLoader): The DataLoader for the testing dataset.
+        test_dataloader (DataLoader or None): The DataLoader for the testing dataset.
     """
     train_dataset, test_dataset = dataset.train_test_split(train_size=train_size)
-    train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
+    train_dataloader: DataLoader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
     if train_size == 1.0:
         logger.warning("train_size is 1.0, no test dataset will be created. Its DataLoader will be None.")
         return train_dataloader, None
-    test_dataloader = DataLoader(test_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
+    test_dataloader: DataLoader = DataLoader(test_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
     return train_dataloader, test_dataloader
 
 
@@ -139,7 +139,7 @@ def create_model(
         model (CategoricNeuralNetwork): The model to be used.
     """
     assert dataset.already_configured, "The dataset must be configured before creating the model."
-    model = CategoricNeuralNetwork(
+    model: CategoricNeuralNetwork = CategoricNeuralNetwork(
         category_mappings=dataset.category_mappings,
         use_input_embedding=use_input_embedding,
         use_output_embedding=use_output_embedding
@@ -187,7 +187,6 @@ def train(model: CategoricNeuralNetwork,
         logger.info("Training interrupted by user.")
     finally:
         logger.info("Training stopped.")
-
 
 if __name__ == '__main__':
     pass

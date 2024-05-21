@@ -52,12 +52,12 @@ class CategoricDataset(TorchDataset):
         """
         printer.debug("Creating a new instance of CategoricDataset.")
         # "Public" Variables
-        self.data = data
+        self.data: pd.DataFrame = data
         if standarize:
             self.standarize()  # Standarize the data
-        self.input_columns = None
-        self.output_columns = None
-        self.category_mappings: dict = dict()
+        self.input_columns: None = None
+        self.output_columns: None = None
+        self.category_mappings: dict[dict] = dict()
 
         # "Private" Variables
         self._already_configured: bool = False
@@ -70,6 +70,9 @@ class CategoricDataset(TorchDataset):
         Args:
             input_columns (List[str]): The names of the columns to be used as input.
             output_columns (List[str]): The name of the column to be used as output.
+
+        Returns:
+            None
         """
         if self._already_configured:
             raise ValueError(
@@ -84,8 +87,8 @@ class CategoricDataset(TorchDataset):
             "output_column should be a list containing a single string."
 
         # Store the input and output columns labels
-        self.input_columns = input_columns
-        self.output_columns = output_columns
+        self.input_columns: list[str] = input_columns
+        self.output_columns: list[str] = output_columns
 
         # Group the data by the input columns and aggregate the outputs
         self._create_identifiers(self.input_columns)
@@ -93,15 +96,15 @@ class CategoricDataset(TorchDataset):
         self._create_identifiers(self.input_columns)
 
         # Create a dictionary mapping the input and output categories to unique identifiers
-        self.input_categories = {i: x for i, x in enumerate(input_columns)}
-        self.output_categories = {i: x for i, x in enumerate(output_columns)}
+        self.input_categories: dict[int, str] = {i: x for i, x in enumerate(input_columns)}
+        self.output_categories: dict[int, str] = {i: x for i, x in enumerate(output_columns)}
 
         # add them to the category_mappings
         self.category_mappings["input_categories"] = self.input_categories
         self.category_mappings["output_categories"] = self.output_categories
 
 
-    def _create_identifiers(self, columns=None):
+    def _create_identifiers(self, columns=None) -> None:
         """
         Creates unique identifiers for each value in the input and output columns.
         They are stored in the category_mappings dictionary.
@@ -120,22 +123,22 @@ class CategoricDataset(TorchDataset):
             # Create an empty dictionary for the current column
             self.category_mappings[column] = {}
             # Get the entries for the current column
-            entries = self.data[column]
+            entries: pd.Series = self.data[column]
             # Iterate over each entry
             for values in entries:
                 if not isinstance(values, list):
                     # Check if the value is already in the category mappings
                     if values not in self.category_mappings[column]:
-                        self.category_mappings[column][values] = len(self.category_mappings[column])
+                        self.category_mappings[column][values]: int = len(self.category_mappings[column])
                 else:
                     # Iterate over each value in the entry
                     for value in values:
                         # Check if the value is already in the category mappings
                         if value not in self.category_mappings[column]:
                             # If not, assign a unique identifier to the value
-                            self.category_mappings[column][value] = len(self.category_mappings[column])
+                            self.category_mappings[column][value]: int = len(self.category_mappings[column])
 
-    def reverse_mapping(self, column: str, code: int):
+    def reverse_mapping(self, column: str, code: int) -> str:
         """
         Given a column name and a numeric id, returns the original category value.
 
@@ -152,7 +155,7 @@ class CategoricDataset(TorchDataset):
         )
 
     @property
-    def number_input_categories(self):
+    def number_input_categories(self) -> int:
         """
         Returns the number of categories of the input column.
         This is necessary for the input layer of the neural network.
@@ -163,7 +166,7 @@ class CategoricDataset(TorchDataset):
         return len(self.input_columns)
 
     @property
-    def number_output_categories(self):
+    def number_output_categories(self) -> int:
         """
         Returns the number of categories of the outputs.
 
@@ -171,9 +174,9 @@ class CategoricDataset(TorchDataset):
             int: The number of output categories
 
         """
-        return len(self.category_mappings[self.output_columns])
+        return len(self.output_columns)
 
-    def train_test_split(self, train_size: float = 0.8):
+    def train_test_split(self, train_size: float = 0.8) -> tuple:
         """
         Split the dataset into training and testing sets.
 
@@ -187,8 +190,8 @@ class CategoricDataset(TorchDataset):
         Returns:
             tuple: A tuple containing the training and testing sets.
         """
-        train = CategoricDataset(self.data.sample(frac=train_size, random_state=0))
-        test = CategoricDataset(self.data.drop(train.data.index))
+        train: CategoricDataset = CategoricDataset(self.data.sample(frac=train_size, random_state=0))
+        test: CategoricDataset | None = CategoricDataset(self.data.drop(train.data.index))
         # reset the index of each to avoid crashing the DataLoader
         train.data.reset_index(drop=True, inplace=True)
         test.data.reset_index(drop=True, inplace=True)
@@ -199,15 +202,15 @@ class CategoricDataset(TorchDataset):
         printer.debug(f"Testing set size: {len(test)}")
         if self.output_columns is not None:
             # Check if all output possibilities are represented in the training set
-            train_output = set(train.data[self.output_columns].nunique())
-            all_output = set(self.data[self.output_columns].nunique())
+            train_output: set = set(train.data[self.output_columns].nunique())
+            all_output: set = set(self.data[self.output_columns].nunique())
             if all_output.difference(train_output):
                 printer.warning(
                     "Not all output possibilities are represented in the training set."
                     )
         return train, test
 
-    def standarize(self):
+    def standarize(self) -> None:
         """
         Standarize the dataset by normalizing the data.
 
@@ -218,10 +221,10 @@ class CategoricDataset(TorchDataset):
             None
         """
         # Make all string columns lowercase
-        self.data = self.data.map(lambda x: x.lower() if isinstance(x, str) else x)
+        self.data: pd.DataFrame = self.data.map(lambda x: x.lower() if isinstance(x, str) else x)
 
     @property
-    def already_configured(self):
+    def already_configured(self) -> bool:
         """
         Returns whether the dataset has already been configured.
 
@@ -230,21 +233,22 @@ class CategoricDataset(TorchDataset):
         """
         return self._already_configured
 
-    def _copy_specs(self, other):
+    def _copy_specs(self, other) -> None:
         """
         Copies the specifications of the current dataset to another dataset.
 
         Args:
             other (CategoricDataset): The dataset to copy the specifications to.
         """
-        other.input_columns = self.input_columns
-        other.output_columns = self.output_columns
-        other.category_mappings = self.category_mappings
+        other.input_columns: list[str] = self.input_columns
+        other.output_columns: list[str] = self.output_columns
+        other.category_mappings: dict[dict] = self.category_mappings
         return None
 
-    def _group_by(self):
+    def _group_by(self) -> None:
         """
         Group the data by the specified input columns and aggregate the outputs.
+        The aggregation is done by concatenating the outputs into a list.
 
         Args:
            None
@@ -257,7 +261,7 @@ class CategoricDataset(TorchDataset):
             .agg(list)\
             .reset_index()
 
-    def __len__(self):
+    def __len__(self) -> int:
         """
         Returns the length of the dataset.
 
@@ -266,7 +270,7 @@ class CategoricDataset(TorchDataset):
         """
         return len(self.data)
 
-    def __getitem__(self, idx):
+    def __getitem__(self, idx) -> tuple[list, list]:
         """
         Returns the item at the given index.
 
@@ -285,9 +289,10 @@ class CategoricDataset(TorchDataset):
 
 
         """
-        element = self.data.iloc[idx]
-        # Prepare raw text inputs; placeholders could be used for missing data
-        input_texts = [str(element[col]) for col in self.input_columns]  # Dictionary of column: text
-        output_texts = [str(element[col]) for col in self.output_columns]  # Dictionary of column: text
+        # element is a series of a single row of the dataframe
+        element: pd.Series = self.data.iloc[idx]
+        # Prepare raw text inputs; placeholders could be used for missing data (not implemented)
+        input_texts: list[str] = [str(element[col]) for col in self.input_columns]
+        output_texts: list[str] = [str(element[col]) for col in self.output_columns]
         # Prepare the output tensor - one-hot encoding
         return input_texts, output_texts
