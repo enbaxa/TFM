@@ -32,7 +32,6 @@ class CategoricNeuralNetwork(nn.Module):
     Attributes:
         linear_relu_stack (nn.Sequential): Sequential module containing linear and ReLU layers.
         tokenizer (AutoTokenizer): The tokenizer used for tokenizing the input data.
-        embedding_model (AutoModel): The model used for generating embeddings.
         device (torch.device): The device used for training the model.
 
     Methods:
@@ -50,7 +49,6 @@ class CategoricNeuralNetwork(nn.Module):
             hidden_layers: int = 2,
             use_input_embedding: bool = False,
             use_output_embedding: bool = False,
-            output_embedding_type: str = "categorical",
             train_nlp_embedding: bool = False,
             f1_target: float = 0.7
             ):
@@ -69,14 +67,13 @@ class CategoricNeuralNetwork(nn.Module):
         self._nlp_tokenizer: AutoTokenizer = None
         self._nlp_embedding_model: AutoModel = None
         self._train_nlp_embedding: bool = train_nlp_embedding
-        self._output_embedding_type: str = output_embedding_type
         self._input_size: int = None
         self._output_size: int = None
 
         # Initialize the input size
         self.configure_input()
         # Initialize the output size
-        self.configure_output(output_embedding_type)
+        self.configure_output()
 
         if self._train_nlp_embedding:
             printer.warning(
@@ -197,7 +194,7 @@ class CategoricNeuralNetwork(nn.Module):
         else:
             self._input_size: int = sum([len(self.category_mappings[col]) for col in self.input_categories.values()])
 
-    def configure_output(self, output_embedding_type):
+    def configure_output(self):
         """
         Initializes the output size.
         It also initializes the output embedding model if needed.
@@ -207,45 +204,14 @@ class CategoricNeuralNetwork(nn.Module):
         """
         total_output_fields: int = sum([len(self.category_mappings[col]) for col in self.output_categories.values()])
         if self._use_output_embedding:
-            if output_embedding_type == "categorical":
-                # Take a naive guess that half the dimensions should be enough
-                self._output_size: int = int(total_output_fields//2) if total_output_fields > 10 else total_output_fields
-                printer.info(
-                    f"Using output embeddings. "
-                    f"Condensing the {total_output_fields} output "
-                    f"categories to a "
-                    f"{'lower-' if total_output_fields > self._output_size else '':s}"
-                    f" dimensional space "
-                    f"of {self._output_size} dimensions."
-                    )
-                printer.warning(
-                    "Output embeddings might imply loss of precision due"
-                    " to dimensionality reduction.\n "
-                    "Also, using these embeddings might make it difficult "
-                    "as it might find correlations, but purely between categories."
-                    " This is not the same as finding correlations between inputs and outputs."
-                    "This is a naive approach, but there might be something to learn from it."
-                    )
-                self._categorical_embedding: EmbeddingModel = EmbeddingModel(
-                    total_output_fields,
-                    self._output_size
-                    ).to(self.device)
-                # What is considered a good similarity can vary according to the problem
-                # This is a naive guess, but it can be dynamically adjusted during training
-                # by monitoring the F1 score
-                self._similarity_threshold: float = 0.5
-                for param in self._categorical_embedding.parameters():
-                    # The output embedding model should be trained
-                    param.requires_grad = True
-            elif output_embedding_type == "nlp_embedding":
-                # Use a pretrained model for the output embeddings
-                self._configure_nlp_embedding()
-                self._output_size: int = self._nlp_embedding_model.config.hidden_size * len(self.output_categories)
-                printer.info(
-                    f"Using output embeddings. "
-                    f"Using pretrained model "
-                    f"of {self._output_size} embedded dimensions."
-                    )
+            # Use a pretrained model for the output embeddings
+            self._configure_nlp_embedding()
+            self._output_size: int = self._nlp_embedding_model.config.hidden_size * len(self.output_categories)
+            printer.info(
+                f"Using output embeddings. "
+                f"Using pretrained model "
+                f"of {self._output_size} embedded dimensions."
+                )
         else:
             self._output_size: int = total_output_fields
 
@@ -464,29 +430,12 @@ class CategoricNeuralNetwork(nn.Module):
             batch_logits: torch.Tensor = nn.functional.normalize(
                 batch_logits, p=2, dim=1
                 )
-            if self._output_embedding_type == "categorical":
-                # if the output embeddings are index embeddings
-                # we need to convert the indexes to embeddings
-                indexes_to_embed: list = []
-                for category_id, batch_element in enumerate(y):
-                    output_category: str = self.output_categories[category_id]
-                    # get the index of the field in the category
-                    indexes: list[int] = [self.category_mappings[output_category][field] for field in batch_element]
-                    # consider indexes_to_embed to be a list of tokenized inputs
-                    indexes_to_embed.append(indexes)
-                # each element in the list is a tokenized input for a possible output category
-                # each tensor in the list is a list of indexes for one element of the batch
-                y_embeddings: torch.Tensor = self.process_batch_to_embedding(
-                    batch=indexes_to_embed,
-                    nlp=False
-                    )
-            else:
-                # if the output embeddings are NLP embeddings
-                # we need to convert the output strings to embeddings
-                y_embeddings: torch.Tensor = self.process_batch_to_embedding(
-                    batch=y,
-                    nlp=True
-                    )
+            # if the output embeddings are NLP embeddings
+            # we need to convert the output strings to embeddings
+            y_embeddings: torch.Tensor = self.process_batch_to_embedding(
+                batch=y,
+                nlp=True
+                )
             # in both cases, y_embeddings is a tensor of size (batch_size, embedding_size)
             # and each row is the embedding of the output category
             target: torch.Tensor = torch.ones(batch_logits.size(0), device=self.device)
@@ -611,14 +560,7 @@ class CategoricNeuralNetwork(nn.Module):
             else:
                 # Output embeddings - needed to identify relevant category by
                 # similarity in the embedded space
-                if self._output_embedding_type == "categorical":
-                    category_embedding: torch.Tensor = self._categorical_embedding.embedding.weight
-                    # Normalize the embeddings to avoid exploding gradients
-                    category_embedding_normalized: torch.Tensor = nn.functional.normalize(category_embedding, p=2, dim=1)
-                else:
-                    # NLP embeddings - needed to identify relevant category by
-                    # similarity in the embedded space
-                    category_embedding_normalized: torch.Tensor = self.output_category_embeddings_nlp
+                category_embedding_normalized: torch.Tensor = self.output_category_embeddings_nlp
                 # Initialize a dictionary to hold the metrics for each threshold
                 thresholds_metrics: dict = {}
                 # Iterate over a range of thresholds to find the best one
@@ -813,14 +755,9 @@ class CategoricNeuralNetwork(nn.Module):
         if self._use_output_embedding:
             # if using output embedding we need to run the cosine similarity\
             # with each of the possible outputs
-            if self._output_embedding_type == "categorical":
-                category_embedding: torch.Tensor = self._categorical_embedding.embedding.weight
-                # Normalize the embeddings to avoid exploding gradients
-                category_embedding_normalized: torch.Tensor = nn.functional.normalize(category_embedding, p=2, dim=1)
-            else:
-                # NLP embeddings - needed to identify relevant category by
-                # similarity in the embedded space
-                category_embedding_normalized: torch.Tensor = self.output_category_embeddings_nlp
+            # NLP embeddings - needed to identify relevant category by
+            # similarity in the embedded space
+            category_embedding_normalized: torch.Tensor = self.output_category_embeddings_nlp
             # Normalize the logits to focus on the cosine similarity
             logits: torch.Tensor = nn.functional.normalize(logits, p=2, dim=0)
             # Calculate the cosine similarity between the logits and the category embeddings
@@ -886,8 +823,6 @@ class CategoricNeuralNetwork(nn.Module):
         Returns:
             output_category_embeddings (AutoModel): The output category embeddings for the model.
         """
-        if self._output_embedding_type != "nlp_embedding":
-            raise AttributeError("Output embeddings are not enabled.")
         if self._nlp_embedding_model is None:
             raise AttributeError("Embeddings have not been initialized.")
 
@@ -923,38 +858,6 @@ class CategoricNeuralNetwork(nn.Module):
         )
         logger.info(f"Using {device} device")
         return device
-
-
-class EmbeddingModel(nn.Module):
-    """
-    A simple model that uses an embedding layer to represent categories.
-    """
-    def __init__(self, num_categories, embedding_dim):
-        """
-        Initializes a new instance of the EmbeddingModel class.
-
-        Args:
-            num_categories (int): The number of categories.
-            embedding_dim (int): The dimension of the embedding.
-
-        Returns:
-            None
-        """
-        super().__init__()
-        self.embedding = nn.Embedding(num_categories, embedding_dim)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        """
-        Forward pass of the model.
-
-        Args:
-            x: The input tensor (expects index values in the tensor).
-
-        Returns:
-            The output tensor.
-        """
-        return nn.functional.normalize(self.embedding(x), p=2, dim=1)
-
 
 if __name__ == "__main__":
     # Do nothing

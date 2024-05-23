@@ -130,7 +130,6 @@ def create_model(
         use_output_embedding: bool = False,
         max_hidden_neurons: int = 512,
         hidden_layers: int = 1,
-        output_embedding_type: str = "nlp_embedding",
         train_nlp_embedding: bool = False
         ) -> CategoricNeuralNetwork:
     """
@@ -142,7 +141,6 @@ def create_model(
         use_output_embedding (bool): Whether to use an embedding layer for the output.
         max_hidden_neurons (int): The number of neurons in the hidden layers.
         hidden_layers (int): The number of hidden layers.
-        output_embedding_type (str): The type of output embedding to be used.
         train_nlp_embedding (bool): Whether to train the NLP embedding layer.
 
 
@@ -154,7 +152,6 @@ def create_model(
         category_mappings=dataset.category_mappings,
         use_input_embedding=use_input_embedding,
         use_output_embedding=use_output_embedding,
-        output_embedding_type=output_embedding_type,
         max_hidden_neurons=max_hidden_neurons,
         hidden_layers=hidden_layers,
         train_nlp_embedding=train_nlp_embedding
