@@ -4,11 +4,11 @@ This module contains the definition of a custom dataset class.
 import logging
 import pandas as pd
 from torch.utils.data import Dataset as TorchDataset
-from typing import List
 
 
 logger = logging.getLogger("TFM")
 printer = logging.getLogger("printer")
+
 
 class CategoricDataset(TorchDataset):
     """
@@ -21,8 +21,8 @@ class CategoricDataset(TorchDataset):
 
     Attributes:
         data (pd.DataFrame): The data to be used by the dataset.
-        input_columns (List[str]): The names of the columns to be used as input.
-        output_columns (List[str]): The name of the column to be used as output.
+        input_columns (list[str]): The names of the columns to be used as input.
+        output_columns (list[str]): The name of the column to be used as output.
         input_categories (dict): The categories of the input columns.
         output_categories (dict): The categories of the output columns.
         category_mappings (dict): A dictionary mapping categories to unique identifiers.
@@ -62,14 +62,14 @@ class CategoricDataset(TorchDataset):
         # "Private" Variables
         self._already_configured: bool = False
 
-    def define_input_output(self, input_columns: List[str], output_columns: List[str]) -> None:
+    def define_input_output(self, input_columns: list[str], output_columns: list[str]) -> None:
         """
         Defines the input and output columns to be used by the dataset.
         Relies on the data being a pandas DataFrame with labelled columns.
 
         Args:
-            input_columns (List[str]): The names of the columns to be used as input.
-            output_columns (List[str]): The name of the column to be used as output.
+            input_columns (list[str]): The names of the columns to be used as input.
+            output_columns (list[str]): The name of the column to be used as output.
 
         Returns:
             None
@@ -80,10 +80,12 @@ class CategoricDataset(TorchDataset):
                 "Please create a new instance of the dataset to configure it again.\n"
             )
         else:
-            self._already_configured = True
-        assert isinstance(input_columns, list) and all(isinstance(col, str) for col in input_columns), \
+            self._already_configured: bool = True
+        assert isinstance(input_columns, list) \
+            and all(isinstance(col, str) for col in input_columns), \
             "input_columns should be a list of strings."
-        assert isinstance(output_columns, list) and len(output_columns) == 1 and all(isinstance(col, str) for col in output_columns), \
+        assert isinstance(output_columns, list) and len(output_columns) == 1 \
+            and all(isinstance(col, str) for col in output_columns), \
             "output_column should be a list containing a single string."
 
         # Store the input and output columns labels
@@ -96,13 +98,12 @@ class CategoricDataset(TorchDataset):
         self._create_identifiers(self.input_columns)
 
         # Create a dictionary mapping the input and output categories to unique identifiers
-        self.input_categories: dict[int, str] = {i: x for i, x in enumerate(input_columns)}
-        self.output_categories: dict[int, str] = {i: x for i, x in enumerate(output_columns)}
+        input_categories: dict[int, str] = {i: x for i, x in enumerate(input_columns)}
+        output_categories: dict[int, str] = {i: x for i, x in enumerate(output_columns)}
 
         # add them to the category_mappings
-        self.category_mappings["input_categories"] = self.input_categories
-        self.category_mappings["output_categories"] = self.output_categories
-
+        self.category_mappings["input_categories"] = input_categories
+        self.category_mappings["output_categories"] = output_categories
 
     def _create_identifiers(self, columns=None) -> None:
         """
@@ -129,14 +130,14 @@ class CategoricDataset(TorchDataset):
                 if not isinstance(values, list):
                     # Check if the value is already in the category mappings
                     if values not in self.category_mappings[column]:
-                        self.category_mappings[column][values]: int = len(self.category_mappings[column])
+                        self.category_mappings[column][values] = len(self.category_mappings[column])
                 else:
                     # Iterate over each value in the entry
                     for value in values:
                         # Check if the value is already in the category mappings
                         if value not in self.category_mappings[column]:
                             # If not, assign a unique identifier to the value
-                            self.category_mappings[column][value]: int = len(self.category_mappings[column])
+                            self.category_mappings[column][value] = len(self.category_mappings[column])
 
     def reverse_mapping(self, column: str, code: int) -> str:
         """
@@ -240,9 +241,9 @@ class CategoricDataset(TorchDataset):
         Args:
             other (CategoricDataset): The dataset to copy the specifications to.
         """
-        other.input_columns: list[str] = self.input_columns
-        other.output_columns: list[str] = self.output_columns
-        other.category_mappings: dict[dict] = self.category_mappings
+        other.input_columns = self.input_columns
+        other.output_columns = self.output_columns
+        other.category_mappings = self.category_mappings
         return None
 
     def _group_by(self) -> None:
