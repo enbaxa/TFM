@@ -5,8 +5,7 @@ import logging
 from typing import Union
 import torch
 from torch import nn
-from transformers import AutoTokenizer, AutoModel
-from icecream import ic
+from nlp_embedding import NlpEmbedding
 
 
 logger = logging.getLogger("TFM")
@@ -50,6 +49,7 @@ class CategoricNeuralNetwork(nn.Module):
             use_input_embedding: bool = False,
             use_output_embedding: bool = False,
             train_nlp_embedding: bool = False,
+            nlp_model_name='distilbert-base-uncased',
             f1_target: float = 0.7
             ):
         super().__init__()
@@ -57,6 +57,12 @@ class CategoricNeuralNetwork(nn.Module):
         self.f1_target = f1_target
         self._use_input_embedding: bool = use_input_embedding
         self._use_output_embedding: bool = use_output_embedding
+        if self._use_input_embedding is False and self._use_output_embedding is False:
+            printer.warning("Using no embeddings can lead to poor performance.")
+            self._nlp_embedding_model: NlpEmbedding = None
+        else:
+            self._nlp_embedding_model: NlpEmbedding = NlpEmbedding(model_name=nlp_model_name)
+            self._nlp_embedding_model.device = self.device
         # make a dict of each element of dataset.input_columns and their corresponding index in the list
         self.category_mappings: dict[dict] = category_mappings
         self.input_categories: dict[int, str] = self.category_mappings["input_categories"]
@@ -64,8 +70,6 @@ class CategoricNeuralNetwork(nn.Module):
         # "Private" variables
         self._output_category_embeddings_nlp: torch.Tensor = None
         self._similarity_threshold: None = None
-        self._nlp_tokenizer: AutoTokenizer = None
-        self._nlp_embedding_model: AutoModel = None
         self._train_nlp_embedding: bool = train_nlp_embedding
         self._input_size: int = None
         self._output_size: int = None
@@ -78,13 +82,13 @@ class CategoricNeuralNetwork(nn.Module):
         if self._train_nlp_embedding:
             printer.warning(
                 "Training the NLP embedding model can be very slow and resource-intensive.\n"
-                "It is recommended to not traine pretrained models further."
+                "It is recommended to not train pretrained models further."
                 "It can also be very unstable and might not converge.\n"
                 )
-            for param in self._nlp_embedding_model.parameters():
+            for param in self._nlp_embedding_model.model.parameters():
                 param.requires_grad = True
         elif self._train_nlp_embedding is False and self._nlp_embedding_model is not None:
-            for param in self._nlp_embedding_model.parameters():
+            for param in self._nlp_embedding_model.model.parameters():
                 param.requires_grad = False
         printer.info(f"Input size: {self._input_size}, Output size: {self._output_size}")
 
@@ -126,7 +130,6 @@ class CategoricNeuralNetwork(nn.Module):
         for i in range(0, number_layers):
             neurons_per_layer.append(int(neurons - (neurons - self._output_size) * i / number_layers))
         neurons_per_layer.append(self._output_size)
-        ic(neurons_per_layer)
         self.add_layer("Layer0", nn.Linear, self._input_size, neurons_per_layer[0])
         for i in range(number_layers):
             self.add_layer(f"Layer{1+i}", nn.Linear, neurons_per_layer[i], neurons_per_layer[i+1])
@@ -164,21 +167,6 @@ class CategoricNeuralNetwork(nn.Module):
         if add_drop:
             self.linear_relu_stack.add_module(name+"_3", nn.Dropout(0.1))
 
-    def _configure_nlp_embedding(self):
-        """
-        Initializes the tokenizer and embedding model for NLP embeddings.
-
-        Returns:
-            None
-        """
-        if self._nlp_tokenizer is None:
-            #self._nlp_tokenizer: AutoTokenizer = AutoTokenizer.from_pretrained('microsoft/codebert-base')
-            self._nlp_tokenizer = AutoTokenizer.from_pretrained('distilbert-base-uncased')
-        if self._nlp_embedding_model is None:
-            #self._nlp_embedding_model: AutoModel = AutoModel.from_pretrained('microsoft/codebert-base').to(self.device)
-            # maybe use distilbert-base-uncased for faster training
-            self._nlp_embedding_model = AutoModel.from_pretrained('distilbert-base-uncased').to(self.device)
-
     def configure_input(self):
         """
         Initializes the input size.
@@ -189,8 +177,7 @@ class CategoricNeuralNetwork(nn.Module):
 
         """
         if self._use_input_embedding:
-            self._configure_nlp_embedding()
-            self._input_size: int = self._nlp_embedding_model.config.hidden_size * len(self.input_categories)
+            self._input_size: int = self._nlp_embedding_model.model.config.hidden_size * len(self.input_categories)
         else:
             self._input_size: int = sum([len(self.category_mappings[col]) for col in self.input_categories.values()])
 
@@ -206,7 +193,7 @@ class CategoricNeuralNetwork(nn.Module):
         if self._use_output_embedding:
             # Use a pretrained model for the output embeddings
             self._configure_nlp_embedding()
-            self._output_size: int = self._nlp_embedding_model.config.hidden_size * len(self.output_categories)
+            self._output_size: int = self._nlp_embedding_model.model.config.hidden_size * len(self.output_categories)
             printer.info(
                 f"Using output embeddings. "
                 f"Using pretrained model "
@@ -236,8 +223,7 @@ class CategoricNeuralNetwork(nn.Module):
         """
         if self._use_input_embedding:
             pre_processed_inputs: torch.Tensor = self.process_batch_to_embedding(
-                batch=inputs,
-                nlp=True
+                batch=inputs
                 )
         else:
             # No embeddings
@@ -248,51 +234,9 @@ class CategoricNeuralNetwork(nn.Module):
         logits: torch.Tensor = self.linear_relu_stack(pre_processed_inputs)
         return logits
 
-    def _apply_nlp_embedding(self, batch_element: torch.Tensor) -> torch.Tensor:
-        """
-        Applies the NLP embedding to the input data.
-
-        Args:
-            batch_element (torch.Tensor): The input data to preprocess.
-
-        Returns:
-            None
-        """
-        # tokenize each of the elements
-        tokenized: torch.Tensor = self._nlp_tokenizer(
-            batch_element,
-            return_tensors="pt",
-            padding="max_length",
-            truncation=True,
-            max_length=16
-            )
-        # Get the input_ids and attention_mask from tokenizer
-        input_ids, attention_mask = (
-            tokenized['input_ids'].to(self.device),
-            tokenized['attention_mask'].to(self.device)
-            )
-        # apply the embedding model on the input ids and attention mask
-        output: torch.Tensor = self._nlp_embedding_model(
-            input_ids=input_ids,
-            attention_mask=attention_mask
-            )
-        pooling_strategy: str = "cls"  # Change this to the desired pooling strategy
-        if pooling_strategy == "mean":
-            pooled = torch.mean(output.last_hidden_state, dim=1)
-        elif pooling_strategy == "max":
-            pooled = torch.max(output.last_hidden_state, dim=1).values
-        elif pooling_strategy == "sum":
-            pooled = torch.sum(output.last_hidden_state, dim=1)
-        elif pooling_strategy == "cls":
-            pooled = output.last_hidden_state[:, 0, :]
-        else:
-            raise ValueError("Invalid pooling strategy. Please choose from 'mean', 'max', 'sum', 'cls'.")
-        return pooled
-
     def process_batch_to_embedding(
             self,
             batch: torch.Tensor,
-            nlp: bool = False
             ) -> torch.Tensor:
         """
         Preprocesses the batch of elements to embeddings.
@@ -317,32 +261,7 @@ class CategoricNeuralNetwork(nn.Module):
         # With the following code use the embeddings
         for batch_element in zip(*batch):
             # For each index, get the text from each list in the input dictionary
-            if nlp is True:
-                pooled: torch.Tensor = self._apply_nlp_embedding(batch_element)
-            else:
-                # if no tokenizer is provided, assume the input is already tokenized
-                # i.e. batch_element is a list of tokenized inputs
-                # which are really just indexes for the embedding model
-                output: torch.Tensor = self._categorical_embedding(
-                    torch.tensor(batch_element).to(self.device)
-                    )
-                # if the output is a 2D tensor, we need to add a dimension
-                # to make it a 3D tensor with a batch size of 1
-                if len(output.shape) == 2:
-                    output: torch.Tensor = output.unsqueeze(1)
-                pooling_strategy = "sum"  # Change this to the desired pooling strategy
-                if pooling_strategy == "mean":
-                    pooled = torch.mean(output, dim=1)
-                elif pooling_strategy == "max":
-                    pooled = torch.max(output, dim=1).values
-                elif pooling_strategy == "sum":
-                    pooled = torch.sum(output, dim=1)
-                else:
-                    raise ValueError("Invalid pooling strategy. Please choose from 'mean', 'max', 'sum', 'cls'.")
-            # Normalize the embedding to avoid exploding gradients
-            pooled: torch.Tensor = torch.nn.functional.normalize(pooled, p=2, dim=1)
-            # Reshape the tensor to a 1D tensor representing the whole batch element
-            pooled: torch.Tensor = pooled.reshape(-1)
+            pooled: torch.Tensor = self._nlp_embedding_model.get_embedding(batch_element)
             embeddings.append(pooled)
         # Stack the embeddings into a tensor. Represents the whole batch
         stacked_embeddings: torch.Tensor = torch.stack(embeddings).to(self.device)
@@ -433,8 +352,7 @@ class CategoricNeuralNetwork(nn.Module):
             # if the output embeddings are NLP embeddings
             # we need to convert the output strings to embeddings
             y_embeddings: torch.Tensor = self.process_batch_to_embedding(
-                batch=y,
-                nlp=True
+                batch=y
                 )
             # in both cases, y_embeddings is a tensor of size (batch_size, embedding_size)
             # and each row is the embedding of the output category
@@ -459,7 +377,6 @@ class CategoricNeuralNetwork(nn.Module):
             dataloader: torch.utils.data.DataLoader,
             loss_fn: nn.Module,
             optimizer: torch.optim.Optimizer,
-            scheduler=None
             ) -> None:
         """
         Trains the model using the given dataloader, loss function, and optimizer.
@@ -737,10 +654,10 @@ class CategoricNeuralNetwork(nn.Module):
         return correct_choices, incorrect_choices, total_positives
 
     def evaluate(
-        self,
-        input,
-        multilabel: bool = False
-        ):
+            self,
+            inp,
+            multilabel: bool = False
+            ):
         """
         Evaluates the model on a single input.
 
@@ -751,7 +668,7 @@ class CategoricNeuralNetwork(nn.Module):
         Returns:
             chosen_categories (list): The chosen categories.
         """
-        logits = self(input)
+        logits = self(inp)
         if self._use_output_embedding:
             # if using output embedding we need to run the cosine similarity\
             # with each of the possible outputs
@@ -790,10 +707,9 @@ class CategoricNeuralNetwork(nn.Module):
             probabilities = torch.sigmoid(logits)
             output_possibilites: dict[int, str] = {i: x for x, i in self.category_mappings[list(self.output_categories.values())[0]].items()}
             chosen_categories: list = []
-            ic(probabilities)
             for output_category_idx, category_outcome in enumerate(probabilities):
                 if not multilabel:
-                    prb_indices: list = (category_outcome ==category_outcome.max()).nonzero().squeeze().tolist()
+                    prb_indices: list = (category_outcome == category_outcome.max()).nonzero().squeeze().tolist()
                     assert isinstance(prb_indices, int)
                     chosen: list = output_possibilites[prb_indices]
                 else:
@@ -814,30 +730,35 @@ class CategoricNeuralNetwork(nn.Module):
         return self._device
 
     @property
-    def output_category_embeddings_nlp(self) -> AutoModel:
+    def output_category_embeddings_nlp(self) -> torch.Tensor:
         """
         The output category embeddings for the model.
         Consider it as base against which to compare the embedded logits.
         Consider it as a property to avoid accidental changes.
 
         Returns:
-            output_category_embeddings (AutoModel): The output category embeddings for the model.
+            output_category_embeddings_nlp (torch.Tensor): The output category embeddings.
+
+        Raises:
+            AttributeError: If the embeddings have not been initialized.
         """
         if self._nlp_embedding_model is None:
             raise AttributeError("Embeddings have not been initialized.")
-
         # Make a list of all the output texts which we have to embed
         if not self._train_nlp_embedding and self._output_category_embeddings_nlp is not None:
+            # if we are not training the embeddings and they are already computed
             return self._output_category_embeddings_nlp
         else:
-            printer.debug("this should only happen once")
+            # if we are training the embeddings or they are not computed
+            # we have to compute them also if it is the first time
+            if self._train_nlp_embedding:
+                printer.debug("this should only happen once")
             all_outputs_texts = [
                 [field for field in self.category_mappings[category]]
                 for category in self.output_categories.values()
                 ]
             self._output_category_embeddings_nlp = self.process_batch_to_embedding(
-                batch=all_outputs_texts,
-                nlp=True
+                batch=all_outputs_texts
                 )
             return self._output_category_embeddings_nlp
 

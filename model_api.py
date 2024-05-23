@@ -201,7 +201,7 @@ def train(model: CategoricNeuralNetwork,
         model.f1_target = f1_target if f1_target is not None else model.f1_target
         for t in range(epochs):
             printer.info(f"\nEpoch {t+1}\n-------------------------------")
-            model.train_loop(train_dataloader, loss_fn, optimizer, scheduler)
+            model.train_loop(train_dataloader, loss_fn, optimizer)
             f1_score = model.test_loop(test_dataloader, loss_fn)
         if scheduler is not None:
             scheduler.step(f1_score)
