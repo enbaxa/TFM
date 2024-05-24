@@ -38,7 +38,7 @@ from typing import ClassVar
 import pandas as pd
 import torch
 from dataset_define import CategoricDataset
-from learning_model import CategoricNeuralNetwork
+from learning_model import CategoricNeuralNetwork, StopTraining
 from torch.utils.data import DataLoader
 
 
@@ -61,12 +61,17 @@ class ConfigRun:
         None
 
     """
-    learning_rate: float = 1e-3
-    batch_size: int = 32
-    epochs: int = 50
-    f1_target: float = 0.7
+    learning_rate: ClassVar[float] = 1e-3
+    batch_size: ClassVar[int] = 64
+    epochs: ClassVar[int] = 50
+    f1_target: ClassVar[float] = 0.7
 
-def configure_dataset(df: pd.DataFrame, input_columns: list, output_columns: list) -> CategoricDataset:
+
+def configure_dataset(
+        df: pd.DataFrame,
+        input_columns: list,
+        output_columns: list
+        ) -> CategoricDataset:
     """
     Configure the dataset for training the model.
 
@@ -208,8 +213,9 @@ def train(model: CategoricNeuralNetwork,
 
     except KeyboardInterrupt:
         logger.info("Training interrupted by user.")
-    finally:
-        logger.info("Training stopped.")
+    except StopTraining:
+        printer.info("Training Stopped")
+
 
 if __name__ == '__main__':
     pass

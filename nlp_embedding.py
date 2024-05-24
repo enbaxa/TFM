@@ -1,12 +1,21 @@
 
+"""
+NLP module to handle the NLP embeddings. Can process both text
+or tuples of text. If tuples of text, their outcome will be concatenated.
+
+This module contains the following classes:
+    * NlpEmbedding
+
+This module contains the following functions:
+    * None
+"""
+
 from typing import Union
 
 import torch
 from transformers import AutoTokenizer, AutoModel
 
-"""
 
-"""
 class NlpEmbedding():
     """
     Class to handle the NLP embeddings.
@@ -84,7 +93,12 @@ class NlpEmbedding():
         Gets the embedding for a given text.
 
         Args:
-            text (str): The text to be embedded.
+            text (str or tuple): The text to be embedded.
+                                 Note: If tuple, the embeddings will be concatenated.
+                                 Thus, the output will have a shape of (n, m)
+                                 where n is the number of elements in the tuple
+                                 and m is the embedding size.
+            pooling_strategy (str): The pooling strategy to be used.
 
         Returns:
             embedding (torch.Tensor): The embedding for the text.

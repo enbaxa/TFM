@@ -24,20 +24,17 @@ class CategoricNeuralNetwork(nn.Module):
     Neural Network model for classification for a single category.
 
     Args:
-        dataset (CategoricDataset): The dataset used for training the model.
-        max_hidden_neurons (int): The number of neurons in the hidden layers.
-        use_embedding (bool): Whether to use embeddings or not.
+        category_mappings (dict): A dictionary containing the mappings of the categories.
+        max_hidden_neurons (int): The maximum number of hidden neurons in the model.
+        hidden_layers (int): The number of hidden layers in the model.
+        use_input_embedding (bool): Whether to use input embeddings or not.
+        use_output_embedding (bool): Whether to use output embeddings or not.
+        train_nlp_embedding (bool): Whether to train the NLP embedding model or not.
+        nlp_model_name (str): The name of the NLP model to be used for embeddings.
+        f1_target (float): The target F1 score to stop the training.
 
-    Attributes:
-        linear_relu_stack (nn.Sequential): Sequential module containing linear and ReLU layers.
-        tokenizer (AutoTokenizer): The tokenizer used for tokenizing the input data.
-        device (torch.device): The device used for training the model.
-
-    Methods:
-        forward(x): Performs forward pass through the network.
-        train_loop(dataloader, loss_fn, optimizer): Trains the model using the given dataloader, loss function, and optimizer.
-        test_loop(dataloader, loss_fn): Evaluates the model on a test dataset.
-        _initialize_weights(): Initializes the weights and biases of the model.
+    Returns:
+        None
     """
 
     def __init__(
@@ -133,7 +130,16 @@ class CategoricNeuralNetwork(nn.Module):
         self.add_layer("Layer0", nn.Linear, self._input_size, neurons_per_layer[0])
         for i in range(number_layers):
             self.add_layer(f"Layer{1+i}", nn.Linear, neurons_per_layer[i], neurons_per_layer[i+1])
-        self.add_layer(f"Layer{1+number_layers}", nn.Linear, neurons_per_layer[-1], self._output_size, add_activation=False, add_drop=False, add_normalization=False)
+        # add the output layer
+        self.add_layer(
+            f"Layer{1+number_layers}",
+            nn.Linear,
+            neurons_per_layer[-1],
+            self._output_size,
+            add_activation=False,
+            add_drop=False,
+            add_normalization=False
+            )
 
     def add_layer(
             self,
@@ -192,7 +198,6 @@ class CategoricNeuralNetwork(nn.Module):
         total_output_fields: int = sum([len(self.category_mappings[col]) for col in self.output_categories.values()])
         if self._use_output_embedding:
             # Use a pretrained model for the output embeddings
-            self._configure_nlp_embedding()
             self._output_size: int = self._nlp_embedding_model.model.config.hidden_size * len(self.output_categories)
             printer.info(
                 f"Using output embeddings. "
@@ -200,6 +205,7 @@ class CategoricNeuralNetwork(nn.Module):
                 f"of {self._output_size} embedded dimensions."
                 )
         else:
+            # If no embeddings are used, the output size is the number of categories
             self._output_size: int = total_output_fields
 
     def _initialize_weights(self):
@@ -261,8 +267,8 @@ class CategoricNeuralNetwork(nn.Module):
         # With the following code use the embeddings
         for batch_element in zip(*batch):
             # For each index, get the text from each list in the input dictionary
-            pooled: torch.Tensor = self._nlp_embedding_model.get_embedding(batch_element)
-            embeddings.append(pooled)
+            embedded_element: torch.Tensor = self._nlp_embedding_model.get_embedding(batch_element)
+            embeddings.append(embedded_element)
         # Stack the embeddings into a tensor. Represents the whole batch
         stacked_embeddings: torch.Tensor = torch.stack(embeddings).to(self.device)
         return stacked_embeddings
@@ -354,10 +360,14 @@ class CategoricNeuralNetwork(nn.Module):
             y_embeddings: torch.Tensor = self.process_batch_to_embedding(
                 batch=y
                 )
+            # normalize the output embeddings to avoid exploding gradients
+            y_embeddings_normalized: torch.Tensor = nn.functional.normalize(
+                y_embeddings, p=2, dim=1
+                )
             # in both cases, y_embeddings is a tensor of size (batch_size, embedding_size)
             # and each row is the embedding of the output category
             target: torch.Tensor = torch.ones(batch_logits.size(0), device=self.device)
-            loss: torch.Tensor = loss_fn(batch_logits, y_embeddings, target)
+            loss: torch.Tensor = loss_fn(batch_logits, y_embeddings_normalized, target)
             if return_y_one_hot:
                 # if y is to be returned as one hot, we have to do it now
                 yp: torch.Tensor = self.process_batch_to_one_hot(y, fields_type="outputs")
@@ -392,6 +402,8 @@ class CategoricNeuralNetwork(nn.Module):
         """
         # Save initial weights
         initial_weights: list[torch.Tensor] = [param.clone() for param in self.parameters()]
+
+        # Get the size of the dataloader
         size = len(dataloader)
         # Set the model to training mode - important for batch normalization and dropout layers
         self.train()
@@ -413,6 +425,7 @@ class CategoricNeuralNetwork(nn.Module):
             if not weights_changed:
                 printer.warning(f"Warning: Weights did not change for batch {batch}")
 
+            # Print the loss every 100 batches
             if batch % 100 == 0 or batch == size - 1:
                 loss, current = loss.item(), (batch + 1)
                 print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
@@ -686,7 +699,11 @@ class CategoricNeuralNetwork(nn.Module):
             # but it is a good approximation
             probabilities: torch.Tensor = cos_sim
             # apply selection with the best threshold
-            output_possibilites: dict[int, str] = {i: x for x, i in self.category_mappings[list(self.output_categories.values())[0]].items()}
+            output_possibilites: dict[int, str] = {
+                i: x for x, i in self.category_mappings[
+                    list(self.output_categories.values())[0]
+                    ].items()
+                    }
             chosen_categories: list = []
             for output_category_idx, category_outcome in enumerate(probabilities):
                 if not multilabel:
@@ -705,7 +722,11 @@ class CategoricNeuralNetwork(nn.Module):
             # Get the indices of the highest probabilities by filter with
             # a threshold of 0.5
             probabilities = torch.sigmoid(logits)
-            output_possibilites: dict[int, str] = {i: x for x, i in self.category_mappings[list(self.output_categories.values())[0]].items()}
+            output_possibilites: dict[int, str] = {
+                i: x for x, i in self.category_mappings[
+                    list(self.output_categories.values())[0]
+                    ].items()
+                    }
             chosen_categories: list = []
             for output_category_idx, category_outcome in enumerate(probabilities):
                 if not multilabel:
@@ -757,8 +778,10 @@ class CategoricNeuralNetwork(nn.Module):
                 [field for field in self.category_mappings[category]]
                 for category in self.output_categories.values()
                 ]
-            self._output_category_embeddings_nlp = self.process_batch_to_embedding(
-                batch=all_outputs_texts
+            self._output_category_embeddings_nlp = nn.functional.normalize(
+                self.process_batch_to_embedding(batch=all_outputs_texts),
+                p=2,
+                dim=1
                 )
             return self._output_category_embeddings_nlp
 
@@ -779,6 +802,7 @@ class CategoricNeuralNetwork(nn.Module):
         )
         logger.info(f"Using {device} device")
         return device
+
 
 if __name__ == "__main__":
     # Do nothing
