@@ -62,7 +62,12 @@ class CategoricDataset(TorchDataset):
         # "Private" Variables
         self._already_configured: bool = False
 
-    def define_input_output(self, input_columns: list[str], output_columns: list[str]) -> None:
+    def define_input_output(
+            self,
+            input_columns: list[str],
+            output_columns: list[str],
+            store_input_features: bool = False
+            ) -> None:
         """
         Defines the input and output columns to be used by the dataset.
         Relies on the data being a pandas DataFrame with labelled columns.
@@ -70,6 +75,10 @@ class CategoricDataset(TorchDataset):
         Args:
             input_columns (list[str]): The names of the columns to be used as input.
             output_columns (list[str]): The name of the column to be used as output.
+            store_input_features (bool): Whether to store the input features in the dataset.
+                                        In many cases this can be irrelevant
+                                        and storing them can be memory inefficient.
+                                        Especially when the input features are large.
 
         Returns:
             None
@@ -93,9 +102,9 @@ class CategoricDataset(TorchDataset):
         self.output_columns: list[str] = output_columns
 
         # Group the data by the input columns and aggregate the outputs
-        self._create_identifiers(self.input_columns)
+        if store_input_features:
+            self._create_identifiers(self.input_columns)
         self._create_identifiers(self.output_columns)
-        self._create_identifiers(self.input_columns)
 
         # Create a dictionary mapping the input and output categories to unique identifiers
         input_categories: dict[int, str] = {i: x for i, x in enumerate(input_columns)}

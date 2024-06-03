@@ -41,7 +41,7 @@ class CategoricNeuralNetwork(nn.Module):
     def __init__(
             self,
             /,
-            category_mappings: dict[dict] = None,
+            category_mappings: dict[str, dict[int, str]],
             max_hidden_neurons: int = 2**13,
             hidden_layers: int = 2,
             use_input_embedding: bool = False,
@@ -58,27 +58,25 @@ class CategoricNeuralNetwork(nn.Module):
         self._nlp_model_name = nlp_model_name
         if self._use_input_embedding is False and self._use_output_embedding is False:
             printer.warning("Using no embeddings can lead to poor performance.")
-            self._nlp_embedding_model: NlpEmbedding = None
+            self._nlp_embedding_model: NlpEmbedding | None = None
         else:
-            self._nlp_embedding_model: NlpEmbedding = NlpEmbedding(model_name=nlp_model_name)
+            self._nlp_embedding_model: NlpEmbedding | None = NlpEmbedding(model_name=self._nlp_model_name)
             self._nlp_embedding_model.device = self.device
         # make a dict of each element of dataset.input_columns and their corresponding index in the list
-        self.category_mappings: dict[dict] = category_mappings
-        self.input_categories: dict[int, str] = self.category_mappings["input_categories"]
-        self.output_categories: dict[int, str] = self.category_mappings["output_categories"]
+        self.category_mappings: dict[str, dict[int, str]] = category_mappings
         # "Private" variables
-        self._output_category_embeddings_nlp: torch.Tensor = None
-        self._similarity_threshold: None = None
+        self._output_category_embeddings_nlp: torch.Tensor | None = None
+        self._similarity_threshold: float = 0
         self._train_nlp_embedding: bool = train_nlp_embedding
-        self._input_size: int = None
-        self._output_size: int = None
+        self._input_size: int = 0
+        self._output_size: int = 0
 
         # Initialize the input size
         self.configure_input()
         # Initialize the output size
         self.configure_output()
 
-        if self._train_nlp_embedding:
+        if self._train_nlp_embedding and self._nlp_embedding_model is not None:
             printer.warning(
                 "Training the NLP embedding model can be very slow and resource-intensive.\n"
                 "It is recommended to not train pretrained models further."
@@ -235,10 +233,20 @@ class CategoricNeuralNetwork(nn.Module):
                 )
         else:
             # No embeddings
-            pre_processed_inputs: torch.Tensor = self.process_batch_to_one_hot(
-                batch=inputs,
-                fields_type="inputs"
-                )
+            try:
+                pre_processed_inputs: torch.Tensor = self.process_batch_to_one_hot(
+                    batch=inputs,
+                    fields_type="inputs"
+                    )
+            except KeyError:
+                printer.error(
+                    "The input fields are not correctly defined."
+                    " Please make sure that you set the initial dataset"
+                    " To keep identifiers for the input fields.\n"
+                    " This is the 'store_input_features' of the dataset class "
+                    " method 'define_input_output'. (Should be set to True)"
+                    )
+                raise
         logits: torch.Tensor = self.linear_relu_stack(pre_processed_inputs)
         return logits
 
@@ -583,7 +591,7 @@ class CategoricNeuralNetwork(nn.Module):
             f"\nF1 Score: {f1_score:>12.8f}"
             f"\nCorrect: {correct_positives:>1.0f} / {total_positives}, False Positives: {false_positives:>1.0f}\n"
         )
-        if self._similarity_threshold is not None:
+        if self._similarity_threshold != 0:
             message_printout = (
                 f"\nBest threshold for similarity with embedded outputs: {self._similarity_threshold:.2f}"
                 + message_printout
@@ -786,6 +794,26 @@ class CategoricNeuralNetwork(nn.Module):
                 dim=1
                 )
             return self._output_category_embeddings_nlp
+
+    @property
+    def input_categories(self):
+        """
+        The input categories for the model.
+
+        Returns:
+            input_categories (dict): The input categories for the model.
+        """
+        return self.category_mappings["input_categories"]
+
+    @property
+    def output_categories(self):
+        """
+        The output categories for the model.
+
+        Returns:
+            output_categories (dict): The output categories for the model.
+        """
+        return self.category_mappings["output_categories"]
 
     @staticmethod
     def assess_device() -> str:

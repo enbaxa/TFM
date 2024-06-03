@@ -68,8 +68,8 @@ class ConfigRun:
     batch_size: ClassVar[int] = 64
     epochs: ClassVar[int] = 50
     f1_target: ClassVar[float] = 0.7
-    max_hidden_neurons: ClassVar[float] = 2058,
-    hidden_layers: ClassVar[float] = 2
+    max_hidden_neurons: ClassVar[int] = 2058
+    hidden_layers: ClassVar[int] = 2
 
 
 def configure_dataset(
@@ -195,9 +195,9 @@ def train(model: CategoricNeuralNetwork,
           test_dataloader: DataLoader,
           loss_fn: torch.nn.Module,
           optimizer: torch.optim.Optimizer,
-          scheduler: torch.optim.lr_scheduler._LRScheduler = None,
+          scheduler: torch.optim.lr_scheduler._LRScheduler | None = None,
           epochs: int = 50,
-          f1_target: float = None
+          f1_target: float | None = None
           ) -> None:
     """
     Train the model on the dataset.
