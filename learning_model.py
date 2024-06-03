@@ -31,6 +31,7 @@ class CategoricNeuralNetwork(nn.Module):
         use_output_embedding (bool): Whether to use output embeddings or not.
         train_nlp_embedding (bool): Whether to train the NLP embedding model or not.
         nlp_model_name (str): The name of the NLP model to be used for embeddings.
+                              It should be available through the transformers library.
         f1_target (float): The target F1 score to stop the training.
 
     Returns:
@@ -54,6 +55,7 @@ class CategoricNeuralNetwork(nn.Module):
         self.f1_target = f1_target
         self._use_input_embedding: bool = use_input_embedding
         self._use_output_embedding: bool = use_output_embedding
+        self._nlp_model_name = nlp_model_name
         if self._use_input_embedding is False and self._use_output_embedding is False:
             printer.warning("Using no embeddings can lead to poor performance.")
             self._nlp_embedding_model: NlpEmbedding = None

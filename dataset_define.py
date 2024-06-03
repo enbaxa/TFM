@@ -191,8 +191,11 @@ class CategoricDataset(TorchDataset):
         Returns:
             tuple: A tuple containing the training and testing sets.
         """
-        train: CategoricDataset = CategoricDataset(self.data.sample(frac=train_size, random_state=0))
-        test: CategoricDataset | None = CategoricDataset(self.data.drop(train.data.index))
+        # Split the data into training and testing sets
+        train_df: pd.DataFrame = self.data.sample(frac=train_size, random_state=0)
+        train: CategoricDataset = CategoricDataset(train_df)
+        test_df: pd.DataFrame = self.data.drop(train.data.index)
+        test: CategoricDataset = CategoricDataset(test_df)
         # reset the index of each to avoid crashing the DataLoader
         train.data.reset_index(drop=True, inplace=True)
         test.data.reset_index(drop=True, inplace=True)

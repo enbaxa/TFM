@@ -10,8 +10,7 @@ setup(
         "torch",
         "pandas",
         "numpy",
-        "transformers",
-        "torchinfo"
+        "transformers"
     ],
     author='Enric Basso',
     # author_email='your_email@example.com',

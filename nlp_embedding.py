@@ -134,6 +134,8 @@ class NlpEmbedding():
         elif pooling_strategy == "cls":
             pooled = output.last_hidden_state[:, 0, :]
         else:
-            raise ValueError("Invalid pooling strategy. Please choose from 'mean', 'max', 'sum', 'cls'.")
+            raise ValueError(
+                "Invalid pooling strategy. "
+                "Please choose from 'mean', 'max', 'sum', 'cls'."
+                )
         return pooled.reshape(-1)
-

@@ -27,7 +27,8 @@ This module contains the following functions:
     * get_dataloaders
     * train
 
-If you want to see the documentation of the function or class, please, scroll down to the end of this file.
+If you want to see the documentation of the function or class,
+please, scroll down to the end of this file.
 
 """
 
@@ -49,13 +50,15 @@ printer: logging.Logger = logging.getLogger("printer")
 @dataclass
 class ConfigRun:
     """
-    A dataclass to store the configuration for the model training.
+    A dataclass to store the default configuration for the model training.
 
     Attributes:
         learning_rate (float): The learning rate for the model.
         batch_size (int): The batch size for the model.
         epochs (int): The number of epochs to train the model.
         f1_target (float): The target F1 score to stop the training.
+        max_hidden_neurons (int): The maximum number of hidden neurons.
+        hidden_layers (int): The number of hidden layers.
 
     Methods:
         None
@@ -65,6 +68,8 @@ class ConfigRun:
     batch_size: ClassVar[int] = 64
     epochs: ClassVar[int] = 50
     f1_target: ClassVar[float] = 0.7
+    max_hidden_neurons: ClassVar[float] = 2058,
+    hidden_layers: ClassVar[float] = 2
 
 
 def configure_dataset(
@@ -108,7 +113,11 @@ def configure_dataset(
     return dataset
 
 
-def get_dataloaders(dataset: CategoricDataset, batch_size: int = 32, train_size: float = 0.8) -> tuple:
+def get_dataloaders(
+        dataset: CategoricDataset,
+        batch_size: int = 32,
+        train_size: float = 0.8
+        ) -> tuple:
     """
     Get the dataloaders for the training and testing of the model.
 
@@ -121,11 +130,25 @@ def get_dataloaders(dataset: CategoricDataset, batch_size: int = 32, train_size:
         test_dataloader (DataLoader or None): The DataLoader for the testing dataset.
     """
     train_dataset, test_dataset = dataset.train_test_split(train_size=train_size)
-    train_dataloader: DataLoader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
+    train_dataloader: DataLoader = DataLoader(
+        dataset=train_dataset,
+        batch_size=batch_size,
+        shuffle=True,
+        drop_last=True
+        )
     if train_size == 1.0:
-        logger.warning("train_size is 1.0, no test dataset will be created. Its DataLoader will be None.")
+        logger.warning(
+            "train_size is 1.0. "
+            "No test dataset will be created. "
+            "Its DataLoader will be None."
+            )
         return train_dataloader, None
-    test_dataloader: DataLoader = DataLoader(test_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
+    test_dataloader: DataLoader = DataLoader(
+        dataset=test_dataset,
+        batch_size=batch_size,
+        shuffle=True,
+        drop_last=True
+        )
     return train_dataloader, test_dataloader
 
 
@@ -135,7 +158,8 @@ def create_model(
         use_output_embedding: bool = False,
         max_hidden_neurons: int = 512,
         hidden_layers: int = 1,
-        train_nlp_embedding: bool = False
+        train_nlp_embedding: bool = False,
+        nlp_model_name: str = 'distilbert-base-uncased'
         ) -> CategoricNeuralNetwork:
     """
     Create an instance of the CategoricNeuralNetwork model.
@@ -159,7 +183,8 @@ def create_model(
         use_output_embedding=use_output_embedding,
         max_hidden_neurons=max_hidden_neurons,
         hidden_layers=hidden_layers,
-        train_nlp_embedding=train_nlp_embedding
+        train_nlp_embedding=train_nlp_embedding,
+        nlp_model_name=nlp_model_name
         )
     model.to(model.device)
     return model
