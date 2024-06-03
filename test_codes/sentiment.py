@@ -222,12 +222,16 @@ def main(neurons: int, layers: int):
 
     df = get_data()
     # Create an instance of the ConfigRun class
-    config = model_api.ConfigRun()
+    config = model_api.ConfigRun
     config.learning_rate = 1e-3
     config.epochs = 10
-    config.f1_target = 0.7
+    config.f1_target = 0.75
     config.batch_size = 64
+    config.max_hidden_neurons = neurons
+    config.hidden_layers = layers
+
     printer.info(f"Running test with {neurons} neurons and {layers} layers")
+    printer.info(config)
     # Define the input and output columns
     input_columns = ["text"]
     output_columns = ["label"]
@@ -237,9 +241,7 @@ def main(neurons: int, layers: int):
     model = model_api.create_model(
         dataset=dataset,
         use_input_embedding=True,
-        use_output_embedding=False,
-        max_hidden_neurons=neurons,
-        hidden_layers=layers,
+        use_output_embedding=False
         )
     # Define the loss function.
     loss_fn = torch.nn.BCEWithLogitsLoss()
@@ -253,11 +255,8 @@ def main(neurons: int, layers: int):
         patience=5
         )
     # Get the train and test dataloaders
-    train_dataloader, test_dataloader = model_api.get_dataloaders(
-        dataset,
-        batch_size=64,
-        train_size=0.8
-        )
+    train_dataloader, test_dataloader = model_api.get_dataloaders(dataset)
+
     if test_dataloader is None:
         test_dataloader = train_dataloader
 
@@ -268,8 +267,6 @@ def main(neurons: int, layers: int):
         loss_fn=loss_fn,
         optimizer=optimizer,
         scheduler=scheduler,
-        epochs=config.epochs,
-        f1_target=0.75,
         )
 
     # the model is now trained, let's evaluate it with some sentences

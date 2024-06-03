@@ -32,7 +32,6 @@ class CategoricNeuralNetwork(nn.Module):
         train_nlp_embedding (bool): Whether to train the NLP embedding model or not.
         nlp_model_name (str): The name of the NLP model to be used for embeddings.
                               It should be available through the transformers library.
-        f1_target (float): The target F1 score to stop the training.
 
     Returns:
         None
@@ -44,18 +43,17 @@ class CategoricNeuralNetwork(nn.Module):
             category_mappings: dict[str, dict[int, str]],
             max_hidden_neurons: int = 2**13,
             hidden_layers: int = 2,
-            use_input_embedding: bool = False,
+            use_input_embedding: bool = True,
             use_output_embedding: bool = False,
             train_nlp_embedding: bool = False,
             nlp_model_name='distilbert-base-uncased',
-            f1_target: float = 0.7
             ):
         super().__init__()
         self._device: str = self.assess_device()
-        self.f1_target = f1_target
         self._use_input_embedding: bool = use_input_embedding
         self._use_output_embedding: bool = use_output_embedding
         self._nlp_model_name = nlp_model_name
+        # Initialize the NLP embedding model if needed
         if self._use_input_embedding is False and self._use_output_embedding is False:
             printer.warning("Using no embeddings can lead to poor performance.")
             self._nlp_embedding_model: NlpEmbedding | None = None
@@ -87,24 +85,21 @@ class CategoricNeuralNetwork(nn.Module):
         elif self._train_nlp_embedding is False and self._nlp_embedding_model is not None:
             for param in self._nlp_embedding_model.model.parameters():
                 param.requires_grad = False
-        printer.info(f"Input size: {self._input_size}, Output size: {self._output_size}")
+        printer.info(f"Input size: {self._input_size}, Mapping to Output size: {self._output_size}")
 
         # Initialize the hidden layers
         # Define the neural network
         self.linear_relu_stack = nn.Sequential()
         printer.debug("Estimating the number of neurons needed in the hidden layers.")
         neurons: int = 0
+        # dummy counter variable
         i: int = 1
         while neurons < (self._input_size + self._output_size) // 2:
             neurons = 2**i
             i += 1
-        # hardcoded limit to avoid memory issues
+        # limit to avoid memory issues
         neurons = min(neurons, max_hidden_neurons, self._input_size)
         self.build_neural_network(neurons, number_layers=hidden_layers)
-
-        printer.info(
-            f"Using a neural network {neurons} neurons in the hidden layers.\n"
-            f"Mapping to {self._output_size} output categories.")
 
         # Proceed to initialize the weights and biases
         self._initialize_weights()
@@ -140,6 +135,7 @@ class CategoricNeuralNetwork(nn.Module):
             add_drop=False,
             add_normalization=False
             )
+        printer.info(f"Using a model with the following setup:\n{str(self.linear_relu_stack):s}")
 
     def add_layer(
             self,
@@ -599,9 +595,7 @@ class CategoricNeuralNetwork(nn.Module):
         printer.info(message_printout)
         if self._similarity_threshold is not None:
             printer.debug("Best threshold is chosen by trying and see which one gives the best F1 score.")
-        if f1_score > self.f1_target:
-            raise StopTraining(f"F1 score is above {self.f1_target}. Stopping training.")
-        return f1_score
+        return f1_score, precision, recall
 
     def compute_total_metrics(
             self,

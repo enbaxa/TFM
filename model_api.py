@@ -68,8 +68,17 @@ class ConfigRun:
     batch_size: ClassVar[int] = 64
     epochs: ClassVar[int] = 50
     f1_target: ClassVar[float] = 0.7
+    precision_target: ClassVar[float] = 0.7
+    recall_target: ClassVar[float] = 0.7
     max_hidden_neurons: ClassVar[int] = 2058
     hidden_layers: ClassVar[int] = 2
+    monitor_f1: ClassVar[bool] = True
+    monitor_precision: ClassVar[bool] = False
+    monitor_recall: ClassVar[bool] = False
+    model_uses_input_embedding: ClassVar[bool] = True
+    model_uses_output_embedding: ClassVar[bool] = False
+    model_trains_nlp_embedding: ClassVar[bool] = False
+    nlp_model_name: ClassVar[str] = "distilbert-base-uncased"
 
 
 def configure_dataset(
@@ -115,20 +124,24 @@ def configure_dataset(
 
 def get_dataloaders(
         dataset: CategoricDataset,
-        batch_size: int = 32,
-        train_size: float = 0.8
+        train_size: float = 0.8,
+        batch_size: int = None
         ) -> tuple:
     """
     Get the dataloaders for the training and testing of the model.
 
     Args:
         dataset (CategoricDataset): The dataset to be used.
+        train_size (float): The proportion of the dataset to be used for training.
         batch_size (int): The batch size to be used.
 
     Returns:
         train_dataloader (DataLoader): The DataLoader for the training dataset.
         test_dataloader (DataLoader or None): The DataLoader for the testing dataset.
     """
+    if batch_size is None:
+        batch_size = ConfigRun.batch_size
+
     train_dataset, test_dataset = dataset.train_test_split(train_size=train_size)
     train_dataloader: DataLoader = DataLoader(
         dataset=train_dataset,
@@ -154,29 +167,56 @@ def get_dataloaders(
 
 def create_model(
         dataset: CategoricDataset,
-        use_input_embedding: bool = True,
-        use_output_embedding: bool = False,
-        max_hidden_neurons: int = 512,
-        hidden_layers: int = 1,
-        train_nlp_embedding: bool = False,
-        nlp_model_name: str = 'distilbert-base-uncased'
+        use_input_embedding: bool = None,
+        use_output_embedding: bool = None,
+        max_hidden_neurons: int = None,
+        hidden_layers: int = None,
+        train_nlp_embedding: bool = None,
+        nlp_model_name: str = None
         ) -> CategoricNeuralNetwork:
     """
     Create an instance of the CategoricNeuralNetwork model.
 
     Args:
         dataset (CategoricDataset): The dataset to be used.
+        If None, it will use the configuration in ConfigRun.
         use_input_embedding (bool): Whether to use an embedding layer for the input.
         use_output_embedding (bool): Whether to use an embedding layer for the output.
         max_hidden_neurons (int): The number of neurons in the hidden layers.
+                                  If None, it will use the configuration in ConfigRun.
         hidden_layers (int): The number of hidden layers.
+                                If None, it will use the configuration in ConfigRun.
         train_nlp_embedding (bool): Whether to train the NLP embedding layer.
-
+        nlp_model_name (str): The name of the NLP model to be used.
 
     Returns:
         model (CategoricNeuralNetwork): The model to be used.
     """
     assert dataset.already_configured, "The dataset must be configured before creating the model."
+    if use_input_embedding is None:
+        use_input_embedding = ConfigRun.model_uses_input_embedding
+    if use_output_embedding is None:
+        use_output_embedding = ConfigRun.model_uses_output_embedding
+    if train_nlp_embedding is None:
+        train_nlp_embedding = ConfigRun.model_trains_nlp_embedding
+    if nlp_model_name is None:
+        nlp_model_name = ConfigRun.nlp_model_name
+
+    if max_hidden_neurons is None:
+        max_hidden_neurons = ConfigRun.max_hidden_neurons
+    if hidden_layers is None:
+        hidden_layers = ConfigRun.hidden_layers
+
+    printer.debug(
+        f"\nDetails on the model:"
+        f"\nDataset: {dataset}"
+        f"\nuse_input_embedding = {use_input_embedding}"
+        f"\nuse_output_embedding = {use_output_embedding}"
+        f"\nmax_hidden_neurons = {max_hidden_neurons}"
+        f"\nhidden_layers = {hidden_layers}"
+        f"\ntrain_nlp_embedding = {train_nlp_embedding}"
+        f"\nnlp_model_name = {nlp_model_name}"
+        )
     model: CategoricNeuralNetwork = CategoricNeuralNetwork(
         category_mappings=dataset.category_mappings,
         use_input_embedding=use_input_embedding,
@@ -190,14 +230,20 @@ def create_model(
     return model
 
 
-def train(model: CategoricNeuralNetwork,
-          train_dataloader: DataLoader,
-          test_dataloader: DataLoader,
-          loss_fn: torch.nn.Module,
-          optimizer: torch.optim.Optimizer,
-          scheduler: torch.optim.lr_scheduler._LRScheduler | None = None,
-          epochs: int = 50,
-          f1_target: float | None = None
+def train(
+        model: CategoricNeuralNetwork,
+        train_dataloader: DataLoader,
+        test_dataloader: DataLoader,
+        loss_fn: torch.nn.Module,
+        optimizer: torch.optim.Optimizer,
+        scheduler: torch.optim.lr_scheduler._LRScheduler | None = None,
+        f1_target: float = None,
+        precision_target: float = None,
+        recall_target: float = None,
+        epochs: int = None,
+        monitor_f1: bool = None,
+        monitor_precision: bool = None,
+        monitor_recall: bool = None
           ) -> None:
     """
     Train the model on the dataset.
@@ -209,37 +255,64 @@ def train(model: CategoricNeuralNetwork,
         loss_fn (torch.nn.Module): The loss function to be used.
         optimizer (torch.optim.Optimizer): The optimizer to be used.
         scheduler (torch.optim.lr_scheduler._LRScheduler): The scheduler to be used.
-        epochs (int): The number of epochs to train the model.
+        The following will default to the values in ConfigRun:
         f1_target (float): The target F1 score to stop the training.
-                           if None use the value in model.f1_target
-                           If not none, overwrite the value in model.f1_target
+        precision_target (float): The target precision to stop the training.
+        recall_target (float): The target recall to stop the training.
+        epochs (int): The number of epochs to train the model.
+        monitor_f1 (bool): Whether to monitor the F1 score.
+        monitor_precision (bool): Whether to monitor the precision.
+        monitor_recall (bool): Whether to monitor the recall.
 
     Returns:
         None
     """
-    printer.debug(
-        f"\nDetails on the training:"
-        f"\nModel: {model}"
-        f"\nLoss Function: {loss_fn}"
-        f"\nOptimizer: {optimizer}"
-        f"\nScheduler: {scheduler}"
-        f"\nEpochs: {epochs}"
-        f"\nf1_target = {f1_target}"
-        f"\n\nConfig: {ConfigRun.learning_rate = } {ConfigRun.batch_size = } {ConfigRun.epochs = }"
+
+    if f1_target is None:
+        f1_target = ConfigRun.f1_target
+    if precision_target is None:
+        precision_target = ConfigRun.precision_target
+    if recall_target is None:
+        recall_target = ConfigRun.recall_target
+    if epochs is None:
+        epochs = ConfigRun.epochs
+    if monitor_f1 is None:
+        monitor_f1 = ConfigRun.monitor_f1
+    if monitor_precision is None:
+        monitor_precision = ConfigRun.monitor_precision
+    if monitor_recall is None:
+        monitor_recall = ConfigRun.monitor_recall
+
+    printer.debug("".join((
+        f"\nDetails on the training:",
+        f"\nModel: {model}",
+        f"\nLoss Function: {loss_fn}",
+        f"\nOptimizer: {optimizer}",
+        f"\nScheduler: {scheduler}",
+        f"\nEpochs: {epochs}",
+        f"\nf1_target = {f1_target}" if monitor_f1 else "",
+        f"\nprecision_target = {precision_target}" if monitor_precision else "",
+        f"\nrecall_target = {recall_target}" if monitor_recall else "",
         )
+        ))
     try:
-        model.f1_target = f1_target if f1_target is not None else model.f1_target
         for t in range(epochs):
             printer.info(f"\nEpoch {t+1}\n-------------------------------")
             model.train_loop(train_dataloader, loss_fn, optimizer)
-            f1_score = model.test_loop(test_dataloader, loss_fn)
+            f1_score, precision, recall = model.test_loop(test_dataloader, loss_fn)
         if scheduler is not None:
             scheduler.step(f1_score)
+        if all([
+            f1_score > f1_target if monitor_f1 else True,
+            precision > precision_target if monitor_precision else True,
+            recall > recall_target if monitor_recall else True
+        ]):
+            raise StopTraining("Target reached.")
+    except StopTraining as e:
+        printer.info(e)
 
     except KeyboardInterrupt:
         logger.info("Training interrupted by user.")
-    except StopTraining:
-        printer.info("Training Stopped")
 
 
 if __name__ == '__main__':
