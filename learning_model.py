@@ -2,6 +2,7 @@
 This module contains the definition models for the neural network.
 """
 import logging
+import ast
 from typing import Union
 import torch
 from torch import nn
@@ -273,7 +274,7 @@ class CategoricNeuralNetwork(nn.Module):
         # With the following code use the embeddings
         for batch_element in zip(*batch):
             # For each index, get the text from each list in the input dictionary
-            embedded_element: torch.Tensor = self._nlp_embedding_model.get_embedding(batch_element)
+            embedded_element: torch.Tensor = self._nlp_embedding_model.get_embedding(batch_element, pooling_strategy="mean")
             embeddings.append(embedded_element)
         # Stack the embeddings into a tensor. Represents the whole batch
         stacked_embeddings: torch.Tensor = torch.stack(embeddings).to(self.device)
@@ -314,12 +315,19 @@ class CategoricNeuralNetwork(nn.Module):
             for category_id, field_value in enumerate(batch_element):
                 # Get the input category and its corresponding input field index
                 category: str = fields[category_id]
-                field_id: int = self.category_mappings[category][field_value]
                 # Convert the input field index to a one-hot vector
-                one_hot: torch.Tensor = nn.functional.one_hot(
-                    torch.tensor(field_id),
-                    num_classes=len(self.category_mappings[category])
-                    )
+                # Check if the field value is a string representation of list
+                if field_value.startswith("[") and field_value.endswith("]"):
+                    # field_value is a string representation of a list
+                    one_hot: torch.Tensor = self.get_multi_one_hot(category, field_value)
+                else:
+                    # simple string. Just get the index from mapping
+                    # and put it in a tensor
+                    field_ids: torch.Tensor = torch.tensor(self.category_mappings[category][field_value])
+                    one_hot: torch.Tensor = nn.functional.one_hot(
+                        field_ids,
+                        num_classes=len(self.category_mappings[category])
+                        )
                 # Append the one-hot vector to the list
                 one_hot_vectors.append(one_hot)
             # Concatenate the one-hot vectors into a single tensor
@@ -334,6 +342,32 @@ class CategoricNeuralNetwork(nn.Module):
             )
         # Convert the processed inputs to float
         return processed.float()
+
+    def get_multi_one_hot(self, category:str, field_value:str):
+        """
+        Preprocesses the field value to a multi-hot vector.
+
+        Args:
+            category (str): The category of the field.
+            field_value (str): The field value to preprocess.
+                               This should be a string representation of a list.
+
+        Returns:
+            one_hot (torch.Tensor): The multi-hot vector.
+        """
+        # Convert the field value to a list and get the indexes
+        field_ids: torch.Tensor = torch.tensor(
+            [self.category_mappings[category][value]
+                for value in ast.literal_eval(field_value)]
+                )
+        one_hot: torch.Tensor = nn.functional.one_hot(
+            field_ids,
+            num_classes=len(self.category_mappings[category])
+            )
+        # If there are multiple field indexes, sum them to get the multi-hot vector
+        one_hot = one_hot.sum(dim=0)
+        # Append the one-hot vector to the list
+        return one_hot
 
     def get_batch_loss(
             self,
@@ -476,8 +510,7 @@ class CategoricNeuralNetwork(nn.Module):
                         # Get indices where relevance > 0.5 (default threshold)
                         correct_choices, incorrect_choices, real_positives = (
                             self.get_performance(
-                                y_one_hot,
-                                idx,
+                                y_one_hot[idx],
                                 probabilities))
                         # The count of values correctly reurned as positive
                         correct_positives += correct_choices
@@ -535,8 +568,7 @@ class CategoricNeuralNetwork(nn.Module):
                             # Initialize the metrics for the threshold
                             correct_choices, incorrect_choices, real_positives = (
                                 self.get_performance(
-                                    y_one_hot,
-                                    idx,
+                                    y_one_hot[idx],
                                     probabilities,
                                     threshold=threshold)
                                     )
@@ -634,7 +666,6 @@ class CategoricNeuralNetwork(nn.Module):
     def get_performance(
             self,
             y_one_hot: torch.Tensor,
-            idx: int,
             probabilities: torch.Tensor,
             threshold: float = 0.5
             ) -> tuple[int, int, int]:
@@ -643,7 +674,6 @@ class CategoricNeuralNetwork(nn.Module):
 
         Args:
             y_one_hot (torch.Tensor): The one-hot encoded target values.
-            idx (int): The index of the batch element.
             probabilities (torch.Tensor): The probabilities of the model.
             threshold (float): The threshold for the probabilities.
 
@@ -654,7 +684,7 @@ class CategoricNeuralNetwork(nn.Module):
         """
         prb_indices: list = (probabilities > threshold).nonzero().squeeze().tolist()
         # Get indices where y != 0. This is the correct classification
-        y_indices: list = (y_one_hot[idx]).nonzero().squeeze().tolist()
+        y_indices: list = (y_one_hot).nonzero().squeeze().tolist()
         # Check if the indices are integers
         # If so, convert them to 1-element lists
         if isinstance(prb_indices, int):
@@ -673,76 +703,82 @@ class CategoricNeuralNetwork(nn.Module):
     def evaluate(
             self,
             inp,
-            multilabel: bool = False
+            mode: str = "monolabel",
             ):
         """
         Evaluates the model on a single input.
 
         Args:
             input (dict): The input data.
-            multilabel (bool): Whether the output is multilabel or not.
-
+            mode (str): The mode of evaluation.
+                        Can be either 'monolabel' or 'multilabel' or 'priority'.
         Returns:
-            chosen_categories (list): The chosen categories.
+            chosen_categories (list | str): The chosen category if the mode is "monolabel".
+                                            The chosen categories if the mode is "multilabel" or "priority".
         """
+        assert mode in [
+            "monolabel", "multilabel", "priority"
+            ], \
+            "Mode must be either 'monolabel' or 'multilabel' or 'priority'."
+
         logits = self(inp)
+        output_possibilites: dict[int, str] = {
+            i: x for x, i in self.category_mappings[
+                list(self.output_categories.values())[0]
+                ].items()
+                }
+
         if self._use_output_embedding:
             # if using output embedding we need to run the cosine similarity\
             # with each of the possible outputs
             # NLP embeddings - needed to identify relevant category by
             # similarity in the embedded space
-            category_embedding_normalized: torch.Tensor = self.output_category_embeddings_nlp
+            category_embedding_normalized: torch.Tensor = self._output_category_embeddings_nlp
             # Normalize the logits to focus on the cosine similarity
             logits: torch.Tensor = nn.functional.normalize(logits, p=2, dim=0)
             # Calculate the cosine similarity between the logits and the category embeddings
-            cos_sim: torch.Tensor = self.cos(logits.unsqueeze(0), category_embedding_normalized)
+            cos_sim: torch.Tensor = self.cos(logits, category_embedding_normalized)
             # Calculate the probabilities of the model
             # We identify the cosine similarities
             # between the logits and the category embeddings
             # as the probabilities. This is not strictly correct
             # but it is a good approximation
             probabilities: torch.Tensor = cos_sim
-            # apply selection with the best threshold
-            output_possibilites: dict[int, str] = {
-                i: x for x, i in self.category_mappings[
-                    list(self.output_categories.values())[0]
-                    ].items()
-                    }
-            chosen_categories: list = []
-            for output_category_idx, category_outcome in enumerate(probabilities):
-                if not multilabel:
-                    prb_indices: list = (category_outcome == category_outcome.max()).nonzero().squeeze().tolist()
-                    assert isinstance(prb_indices, int)
-                    chosen: list = output_possibilites[prb_indices]
-                else:
-                    prb_indices: list = (category_outcome > self._similarity_threshold).nonzero().squeeze().tolist()
-                    chosen: list = [output_possibilites[idx] for idx in prb_indices]
-                # Get the category names
-                chosen_categories.append(chosen)
-            return chosen_categories
+            if probabilities.dim() == 1:
+                probabilities = probabilities.unsqueeze(0)
+            threshold: float = self._similarity_threshold
         else:
             # if not using output embedding we need to process the one_hot vectors
             # and return the categories associated with the one hot vectors
             # Get the indices of the highest probabilities by filter with
             # a threshold of 0.5
             probabilities = torch.sigmoid(logits)
-            output_possibilites: dict[int, str] = {
-                i: x for x, i in self.category_mappings[
-                    list(self.output_categories.values())[0]
-                    ].items()
-                    }
-            chosen_categories: list = []
-            for output_category_idx, category_outcome in enumerate(probabilities):
-                if not multilabel:
-                    prb_indices: list = (category_outcome == category_outcome.max()).nonzero().squeeze().tolist()
-                    assert isinstance(prb_indices, int)
-                    chosen: list = output_possibilites[prb_indices]
-                else:
-                    prb_indices: list = (category_outcome > 0.5).nonzero().squeeze().tolist()
-                    chosen: list = [output_possibilites[idx] for idx in prb_indices]
-                # Get the category names
-                chosen_categories.append(chosen)
-            return chosen_categories
+            threshold = 0.5
+
+        for output_category_idx, category_outcome in enumerate(probabilities):
+            if mode == "monolabel":
+                prb_indices: list = (category_outcome == category_outcome.max()).nonzero().squeeze().tolist()
+                assert isinstance(prb_indices, int)
+                # Get the category name
+                chosen: str = output_possibilites[prb_indices]
+            elif mode == "multilabel":
+                prb_indices: list = (category_outcome > threshold).nonzero().squeeze().tolist()
+                if isinstance(prb_indices, int):
+                    prb_indices = [prb_indices]
+                # Get the categor y names
+                chosen: list = [output_possibilites[idx] for idx in prb_indices]
+            else:
+                # priority mode
+                # create a list of tuples with the category and the probability
+                # sort the list by probability and return the categories
+                prb_indices: list = sorted(
+                    [(idx, category_outcome[idx]) for idx in range(len(category_outcome))],
+                    key=lambda x: x[1],
+                    reverse=True
+                    )
+                chosen: list = [output_possibilites[idx] for idx, _ in prb_indices]
+            return chosen
+
 
     @property
     def device(self) -> str:
@@ -790,7 +826,7 @@ class CategoricNeuralNetwork(nn.Module):
             return self._output_category_embeddings_nlp
 
     @property
-    def input_categories(self):
+    def input_categories(self) -> dict:
         """
         The input categories for the model.
 
@@ -800,7 +836,7 @@ class CategoricNeuralNetwork(nn.Module):
         return self.category_mappings["input_categories"]
 
     @property
-    def output_categories(self):
+    def output_categories(self) -> dict:
         """
         The output categories for the model.
 

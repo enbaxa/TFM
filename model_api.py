@@ -33,6 +33,7 @@ please, scroll down to the end of this file.
 """
 
 import logging
+from copy import deepcopy
 from dataclasses import dataclass
 from typing import ClassVar
 
@@ -118,14 +119,15 @@ def configure_dataset(
     # create the dataset
     dataset: CategoricDataset = CategoricDataset(data=df)
     # define the input and output columns and create auxiliary variables
-    dataset.define_input_output(input_columns=input_columns, output_columns=output_columns)
+    dataset.define_input_output(input_columns=input_columns, output_columns=output_columns, store_input_features=False)
     return dataset
 
 
 def get_dataloaders(
         dataset: CategoricDataset,
         train_size: float = 0.8,
-        batch_size: int = None
+        batch_size: int = None,
+        aggregate_outputs: bool = False
         ) -> tuple:
     """
     Get the dataloaders for the training and testing of the model.
@@ -134,6 +136,9 @@ def get_dataloaders(
         dataset (CategoricDataset): The dataset to be used.
         train_size (float): The proportion of the dataset to be used for training.
         batch_size (int): The batch size to be used.
+        aggregate_outputs (bool): Whether to aggregate the outputs.
+                                  This is useful if some input appears multiple times
+                                    with different outputs.
 
     Returns:
         train_dataloader (DataLoader): The DataLoader for the training dataset.
@@ -149,13 +154,9 @@ def get_dataloaders(
         shuffle=True,
         drop_last=True
         )
-    if train_size == 1.0:
-        logger.warning(
-            "train_size is 1.0. "
-            "No test dataset will be created. "
-            "Its DataLoader will be None."
-            )
-        return train_dataloader, None
+
+    if aggregate_outputs:
+        test_dataset._group_by()
     test_dataloader: DataLoader = DataLoader(
         dataset=test_dataset,
         batch_size=batch_size,
@@ -300,14 +301,14 @@ def train(
             printer.info(f"\nEpoch {t+1}\n-------------------------------")
             model.train_loop(train_dataloader, loss_fn, optimizer)
             f1_score, precision, recall = model.test_loop(test_dataloader, loss_fn)
-        if scheduler is not None:
-            scheduler.step(f1_score)
-        if all([
-            f1_score > f1_target if monitor_f1 else True,
-            precision > precision_target if monitor_precision else True,
-            recall > recall_target if monitor_recall else True
-        ]):
-            raise StopTraining("Target reached.")
+            if scheduler is not None:
+                scheduler.step(f1_score)
+            if all([
+                f1_score > f1_target if monitor_f1 else True,
+                precision > precision_target if monitor_precision else True,
+                recall > recall_target if monitor_recall else True
+            ]):
+                raise StopTraining("Target reached.")
     except StopTraining as e:
         printer.info(e)
 

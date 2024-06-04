@@ -223,12 +223,14 @@ def main(neurons: int, layers: int):
     df = get_data()
     # Create an instance of the ConfigRun class
     config = model_api.ConfigRun
-    config.learning_rate = 1e-3
+    config.learning_rate = 1e-2
     config.epochs = 10
     config.f1_target = 0.75
     config.batch_size = 64
     config.max_hidden_neurons = neurons
     config.hidden_layers = layers
+    #config.nlp_model_name = "google/canine-c"
+    config.nlp_model_name = "distilbert-base-uncased"
 
     printer.info(f"Running test with {neurons} neurons and {layers} layers")
     printer.info(config)
@@ -255,7 +257,10 @@ def main(neurons: int, layers: int):
         patience=5
         )
     # Get the train and test dataloaders
-    train_dataloader, test_dataloader = model_api.get_dataloaders(dataset)
+    train_dataloader, test_dataloader = model_api.get_dataloaders(
+        dataset,
+        aggregate_outputs=True
+        )
 
     if test_dataloader is None:
         test_dataloader = train_dataloader
@@ -278,25 +283,25 @@ def main(neurons: int, layers: int):
     # Count the number of correct guesses
     correct, total = 0, 0
     for sentence in positive_sentences:
-        guessed_category = model.evaluate([[sentence]], multilabel=False)
+        guessed_category = model.evaluate([[sentence]], mode="monolabel")
         printer.info(
             f"Input Sentence: '{sentence}'\n"
-            f"Guessed Category: {guessed_category[0]}\n"
+            f"Guessed Category: {guessed_category}\n"
             f"Expected Category: 'positive'\n"
             "-----------------------------"
         )
-        correct += 1 if guessed_category[0] == "positive" else 0
+        correct += 1 if guessed_category == "positive" else 0
         total += 1
 
     for sentence in negative_sentences:
-        guessed_category = model.evaluate([[sentence]], multilabel=False)
+        guessed_category = model.evaluate([[sentence]], mode="monolabel")
         printer.info(
             f"Input Sentence: '{sentence}'\n"
-            f"Guessed Category: {guessed_category[0]}\n"
+            f"Guessed Category: {guessed_category}\n"
             f"Expected Category: 'negative'\n"
             "-----------------------------"
         )
-        correct += 1 if guessed_category[0] == "negative" else 0
+        correct += 1 if guessed_category == "negative" else 0
         total += 1
 
     printer.info(f"correct count: {correct:f} / {total:f}")

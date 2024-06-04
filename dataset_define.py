@@ -3,7 +3,9 @@ This module contains the definition of a custom dataset class.
 """
 import logging
 import pandas as pd
+
 from torch.utils.data import Dataset as TorchDataset
+from icecream import ic
 
 
 logger = logging.getLogger("TFM")
@@ -203,7 +205,15 @@ class CategoricDataset(TorchDataset):
         # Split the data into training and testing sets
         train_df: pd.DataFrame = self.data.sample(frac=train_size, random_state=0)
         train: CategoricDataset = CategoricDataset(train_df)
-        test_df: pd.DataFrame = self.data.drop(train.data.index)
+        if train_size == 1:
+            # If the training set is the whole dataset, return it as the training and testing sets
+            logger.warning(
+                "The training set is the whole dataset."
+                " The test will also be the whole dataset."
+                )
+            test_df = train_df.copy()
+        else:
+            test_df: pd.DataFrame = self.data.drop(train.data.index)
         test: CategoricDataset = CategoricDataset(test_df)
         # reset the index of each to avoid crashing the DataLoader
         train.data.reset_index(drop=True, inplace=True)
