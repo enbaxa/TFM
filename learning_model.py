@@ -274,7 +274,10 @@ class CategoricNeuralNetwork(nn.Module):
         # With the following code use the embeddings
         for batch_element in zip(*batch):
             # For each index, get the text from each list in the input dictionary
-            embedded_element: torch.Tensor = self._nlp_embedding_model.get_embedding(batch_element, pooling_strategy="mean")
+            embedded_element: torch.Tensor = self._nlp_embedding_model.get_embedding(
+                batch_element,
+                pooling_strategy="mean"
+                )
             embeddings.append(embedded_element)
         # Stack the embeddings into a tensor. Represents the whole batch
         stacked_embeddings: torch.Tensor = torch.stack(embeddings).to(self.device)
@@ -343,7 +346,7 @@ class CategoricNeuralNetwork(nn.Module):
         # Convert the processed inputs to float
         return processed.float()
 
-    def get_multi_one_hot(self, category:str, field_value:str):
+    def get_multi_one_hot(self, category: str, field_value: str):
         """
         Preprocesses the field value to a multi-hot vector.
 
@@ -762,7 +765,7 @@ class CategoricNeuralNetwork(nn.Module):
             probabilities = torch.sigmoid(logits)
             threshold = 0.5
 
-        for output_category_idx, category_outcome in enumerate(probabilities):
+        for category_outcome in probabilities:
             if mode == "monolabel":
                 prb_indices: list = (category_outcome == category_outcome.max()).nonzero().squeeze().tolist()
                 assert isinstance(prb_indices, int), "using monolabel mode but multiple categories are chosen"
@@ -785,7 +788,6 @@ class CategoricNeuralNetwork(nn.Module):
                     )
                 chosen: list = [output_possibilites[idx] for idx, _ in prb_indices]
             return chosen
-
 
     @property
     def device(self) -> str:

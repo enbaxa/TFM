@@ -111,9 +111,9 @@ class NlpEmbedding():
         tokenized: torch.Tensor = self.tokenizer(
             elements,
             return_tensors="pt",
-            #padding="max_length",
-            #truncation=True,
-            #max_length=16
+            padding="max_length",
+            truncation=True,
+            max_length=128
             )
         # Get the input_ids and attention_mask from tokenizer
         input_ids, attention_mask = (

@@ -5,7 +5,6 @@ import logging
 import pandas as pd
 
 from torch.utils.data import Dataset as TorchDataset
-from icecream import ic
 
 
 logger = logging.getLogger("TFM")
@@ -36,7 +35,7 @@ class CategoricDataset(TorchDataset):
         train_test_split: Split the dataset into training and testing sets.
         standarize: Standarize the dataset by normalizing the data.
         _copy_specs: Copies the specifications of the current dataset to another dataset.
-        _group_by: Group the data by the specified input columns and aggregate the outputs.
+        group_by: Group the data by the specified input columns and aggregate the outputs.
         __len__: Returns the length of the dataset.
         __getitem__: Returns the item at the given index.
     """
@@ -268,7 +267,7 @@ class CategoricDataset(TorchDataset):
         other.category_mappings = self.category_mappings
         return None
 
-    def _group_by(self) -> None:
+    def group_by(self) -> None:
         """
         Group the data by the specified input columns and aggregate the outputs.
         The aggregation is done by concatenating the outputs into a list.

@@ -1,3 +1,10 @@
+"""
+This script trains a model to classify sentiment and evaluates it with some sentences.
+The dataset used for training is a sentiment dataset with positive and negative sentences.
+The model is trained with different configurations of hidden layers and neurons in the hidden layers.
+The accuracy of the model is evaluated with some test sentences, which are not in the training dataset.
+The test sentences are a mix of positive and negative sentences.
+"""
 import logging
 import re
 from pathlib import Path
@@ -206,7 +213,14 @@ negative_sentences = [
     "I am annoyed by the lack of progress on the project."
 ]
 
+
 def get_data():
+    """
+    Reads the sentiment dataset and returns it as a pandas DataFrame.
+
+    Returns:
+        df (pd.DataFrame): The sentiment dataset as a pandas DataFrame.
+    """
     # Read the sentiment dataset
     dataset_location = Path("test_datasets/sentiment_dataset.txt")
     dataset_path = Path(__file__).resolve().parent.joinpath(dataset_location)
@@ -218,9 +232,20 @@ def get_data():
     df["label"] = ["positive" if x == "1" else "negative" for x in df["label"]]
     return df
 
-def main(neurons: int, layers: int):
 
-    df = get_data()
+def main(neurons: int, layers: int):
+    """
+    Trains a model to classify sentiment and evaluates it with some sentences.
+
+    Args:
+        neurons (int): The number of neurons in the hidden layers.
+        layers (int): The number of hidden layers.
+
+    Returns:
+        accuracy (float): The accuracy of the model on the test sentences.
+        model (model_api.Model): The trained model.
+    """
+    df: pd.DataFrame = get_data()
     # Create an instance of the ConfigRun class
     config = model_api.ConfigRun
     config.learning_rate = 1e-2
@@ -229,7 +254,7 @@ def main(neurons: int, layers: int):
     config.batch_size = 64
     config.max_hidden_neurons = neurons
     config.hidden_layers = layers
-    #config.nlp_model_name = "google/canine-c"
+    # config.nlp_model_name = "google/canine-c"
     config.nlp_model_name = "distilbert-base-uncased"
 
     printer.info(f"Running test with {neurons} neurons and {layers} layers")
@@ -306,24 +331,25 @@ def main(neurons: int, layers: int):
 
     printer.info(f"correct count: {correct:f} / {total:f}")
     printer.info(f"Accuracy: {correct/total*100:.2f}%")
-    return correct/total*100, model
+    return correct / total*100, model
 
 
 if __name__ == "__main__":
+    # Set up the logger
     screen_handler = DetailedScreenHandler()
     screen_handler.setLevel(logging.DEBUG)
     logger.addHandler(screen_handler)
-    print_handler = (DetailedFileHandler("execution.log", mode="w"))
+    # Set up the printer
+    print_handler = DetailedFileHandler("execution.log", mode="w")
     print_handler.setLevel(logging.DEBUG)
     printer.addHandler(print_handler)
 
-    msg = ""
+    # Run the main function with different configurations
+    msg = []
     neurons_attempt = (64, 128, 256)
     layers_attempt = (1, 2, 3)
     for neurons in neurons_attempt:
         for layers in layers_attempt:
             accuracy, model = main(neurons, layers)
-            msg += f"Accuracy with {neurons} neurons and {layers} layers: {accuracy:.2f}%\n"
-    printer.info(msg)
-
-
+            msg.append(f"Accuracy with {neurons} neurons and {layers} layers: {accuracy:.2f}%\n")
+    printer.info("".join(msg))

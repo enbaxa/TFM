@@ -33,7 +33,6 @@ please, scroll down to the end of this file.
 """
 
 import logging
-from copy import deepcopy
 from dataclasses import dataclass
 from typing import ClassVar
 
@@ -156,7 +155,7 @@ def get_dataloaders(
         )
 
     if aggregate_outputs:
-        test_dataset._group_by()
+        test_dataset.group_by()
     test_dataloader: DataLoader = DataLoader(
         dataset=test_dataset,
         batch_size=batch_size,
@@ -285,7 +284,7 @@ def train(
         monitor_recall = ConfigRun.monitor_recall
 
     printer.debug("".join((
-        f"\nDetails on the training:",
+        "\nDetails on the training:",
         f"\nModel: {model}",
         f"\nLoss Function: {loss_fn}",
         f"\nOptimizer: {optimizer}",
