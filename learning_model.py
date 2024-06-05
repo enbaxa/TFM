@@ -536,7 +536,7 @@ class CategoricNeuralNetwork(nn.Module):
                 test_loss: float = 0
                 # Iterate over the test dataset
                 printer.debug("Starting test with thresholds")
-                threshold_candidates = list(x / 100 for x in range(85, 100, 5))
+                threshold_candidates = list(x / 100 for x in range(75, 100, 5))
                 for x, y in dataloader:
                     # Compute prediction and loss
                     batch_logits: torch.Tensor = self(x)
@@ -713,8 +713,9 @@ class CategoricNeuralNetwork(nn.Module):
             mode (str): The mode of evaluation.
                         Can be either 'monolabel' or 'multilabel' or 'priority'.
         Returns:
-            chosen_categories (list | str): The chosen category if the mode is "monolabel".
-                                            The chosen categories if the mode is "multilabel" or "priority".
+            chosen_categories (list): The chosen categories.
+                                      if mode is 'monolabel', single element list.
+
         """
         assert mode in [
             "monolabel", "multilabel", "priority"
@@ -733,9 +734,11 @@ class CategoricNeuralNetwork(nn.Module):
             # with each of the possible outputs
             # NLP embeddings - needed to identify relevant category by
             # similarity in the embedded space
-            category_embedding_normalized: torch.Tensor = self._output_category_embeddings_nlp
+            category_embedding_normalized: torch.Tensor = self.output_category_embeddings_nlp
             # Normalize the logits to focus on the cosine similarity
-            logits: torch.Tensor = nn.functional.normalize(logits, p=2, dim=0)
+            # because here logits have shape [1, n] where 1 is the batch size here
+            # we need to normalize the logits along the 1st dimension (rows)
+            logits: torch.Tensor = nn.functional.normalize(logits, p=2, dim=1)
             # Calculate the cosine similarity between the logits and the category embeddings
             cos_sim: torch.Tensor = self.cos(logits, category_embedding_normalized)
             # Calculate the probabilities of the model
@@ -744,8 +747,12 @@ class CategoricNeuralNetwork(nn.Module):
             # as the probabilities. This is not strictly correct
             # but it is a good approximation
             probabilities: torch.Tensor = cos_sim
+            # nn.functional.cosinesimilarity automatically squeezes the tensor
+            # if it is a 1D tensor. We need to unsqueeze it to make it a 2D tensor
+            # to be consistent with the code below.
             if probabilities.dim() == 1:
                 probabilities = probabilities.unsqueeze(0)
+
             threshold: float = self._similarity_threshold
         else:
             # if not using output embedding we need to process the one_hot vectors
@@ -758,9 +765,9 @@ class CategoricNeuralNetwork(nn.Module):
         for output_category_idx, category_outcome in enumerate(probabilities):
             if mode == "monolabel":
                 prb_indices: list = (category_outcome == category_outcome.max()).nonzero().squeeze().tolist()
-                assert isinstance(prb_indices, int)
+                assert isinstance(prb_indices, int), "using monolabel mode but multiple categories are chosen"
                 # Get the category name
-                chosen: str = output_possibilites[prb_indices]
+                chosen: list = [output_possibilites[prb_indices]]
             elif mode == "multilabel":
                 prb_indices: list = (category_outcome > threshold).nonzero().squeeze().tolist()
                 if isinstance(prb_indices, int):
