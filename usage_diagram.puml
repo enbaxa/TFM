@@ -1,0 +1,54 @@
+@startuml usage
+'legend top
+'=Usage Diagram
+'end legend
+
+title =Usage diagram
+allowmixing
+
+package Dependencies[
+    pyTorch
+    pandas
+    Transformers
+]
+
+skinparam actorStyle awesome
+actor user
+
+database "local dataset" as local
+
+package Application{
+    package model_api{
+        rectangle "Configuration Variables" as ConfigRun
+
+        collections "API functions" as fucs
+        ConfigRun --> fucs : "used as \n default values"
+        user --> Application.model_api.ConfigRun : edits
+        user --> fucs : calls
+
+    }
+    rectangle "Configure dataset" as dataset_define
+    rectangle "Model definition" as learning_model
+    rectangle "NLP utility" as nlp_embedding
+    'package test_codes {
+    '    database test_datasets
+    '    collections "example implementations" as tests
+    '}
+    'test_datasets -->  tests
+    nlp_embedding -up-> learning_model
+    dataset_define --> fucs
+    learning_model --> fucs
+}
+
+rectangle outputs{
+    collections logs
+    rectangle "Trained Model" as model
+}
+
+rectangle "Trained Model" as model
+Dependencies --> Application
+user --> local : prepares
+local --> fucs
+fucs --> outputs
+
+@enduml
