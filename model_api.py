@@ -400,14 +400,16 @@ def train(
     Train the model on the dataset.
 
     Args:
-        model (CategoricNeuralNetwork): The model to be trained.
-        train_dataloader (DataLoader): The DataLoader for the training dataset.
-        test_dataloader (DataLoader): The DataLoader for the testing dataset.
-        loss_fn (torch.nn.Module): The loss function to be used.
-        optimizer (torch.optim.Optimizer): The optimizer to be used.
-        scheduler (torch.optim.lr_scheduler._LRScheduler): The scheduler to be used.
-        The following will default to the values in ConfigRun:
-        epochs (int): The number of epochs to train the model.
+        Necessary:
+            model (CategoricNeuralNetwork): The model to be trained.
+            train_dataloader (DataLoader): The DataLoader for the training dataset.
+            test_dataloader (DataLoader): The DataLoader for the testing dataset.
+            loss_fn (torch.nn.Module): The loss function to be used.
+            optimizer (torch.optim.Optimizer): The optimizer to be used.
+        Optional (will default to the values in ConfigRun):
+            scheduler (torch.optim.lr_scheduler._LRScheduler): The scheduler to be used.
+            The following will default to the values in ConfigRun:
+            epochs (int): The number of epochs to train the model.
 
     Returns:
         None
@@ -467,6 +469,32 @@ def train(
     except KeyboardInterrupt:
         logger.info("Training interrupted by user.")
 
+
+def build_and_train_model(
+        df: pd.DataFrame,
+        input_columns: list,
+        output_columns: list
+        ) -> CategoricNeuralNetwork:
+    """
+    Build and train the model. Will make use of values in ConfigRun.
+    They can be set before hand for a custom configuration.
+
+    Args:
+        dataset (pd.DataFrame): The dataset to be used.
+        input_columns (list): The names of the columns to be used as input.
+        output_columns (list): The names of the columns to be used as output.
+
+    Returns:
+        model (CategoricNeuralNetwork): The trained model.
+    """
+    dataset = configure_dataset(df, input_columns, output_columns)
+    train_dataloader, test_dataloader = get_dataloaders(dataset)
+    model = create_model(dataset)
+    loss_fn = get_loss_fn()
+    optimizer = get_optimizer(model)
+    scheduler = get_scheduler(optimizer)
+    train(model, train_dataloader, test_dataloader, loss_fn, optimizer, scheduler)
+    return model
 
 if __name__ == '__main__':
     pass

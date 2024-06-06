@@ -52,13 +52,10 @@ def main(dataset_name):
     dataset = model_api.configure_dataset(df, input_columns=input_columns, output_columns=output_columns)
     # Define the configuration for the model
     config = model_api.ConfigRun
-    config.learning_rate = 1e-3
     config.epochs = 30
-    config.batch_size = 32
-    config.max_hidden_neurons = 768 * 3
     config.hidden_layers = 2
     config.model_uses_output_embedding = True
-    config.lr_decay_targets = {"f1": 0.7, "recall": 0.7}
+    config.lr_decay_targets = {"f1": 0.75, "recall": 0.75}
     # Create an instance of the model - this will be a neural network
     # Arguments can be used to override the configuration values
     model = model_api.create_model(
