@@ -500,5 +500,6 @@ def build_and_train_model(
     train(model, train_dataloader, test_dataloader, loss_fn, optimizer, scheduler)
     return model
 
+
 if __name__ == '__main__':
     pass

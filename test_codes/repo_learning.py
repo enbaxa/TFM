@@ -13,9 +13,7 @@ import time
 from pathlib import Path
 
 import pandas as pd
-import torch
 from set_logger import DetailedScreenHandler, DetailedFileHandler
-from torch.optim.lr_scheduler import ReduceLROnPlateau
 import model_api
 
 logger = logging.getLogger()
@@ -82,9 +80,10 @@ def main(dataset_name):
         # take a random entry of df and use the input to get some output
         # and compare it with the real output
         inp_name = dataset.data.iloc[i]["method_name"]
-        guess = model.evaluate([[inp_name]], mode="multilabel")
+        expected_output = dataset.data.iloc[i]["test_case_name"]
+        guess = model.execute(inp_name, mode="multilabel")
         inp = f"Input: {inp_name}\nGuess: {guess}"
-        out = f"Real: {dataset.data.iloc[i]['test_case_name']}"
+        out = f"Real: {expected_output}"
         outp.append(inp)
         outp.append(out)
     printer.info("\n".join(outp))

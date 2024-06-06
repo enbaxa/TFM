@@ -726,6 +726,10 @@ class CategoricNeuralNetwork(nn.Module):
         """
         Evaluates the model on a single input.
 
+        This is a low-level function that can be used to evaluate the model
+        on a single input. For a higher-level function that can be used
+        to evaluate the model on a batch of inputs, use the execute function.
+
         Args:
             input (list): The input data.
                           It is a list, each element of which is a list of strings.
@@ -808,6 +812,70 @@ class CategoricNeuralNetwork(nn.Module):
                 chosen: list = [output_possibilites[idx] for idx, _ in prb_indices]
             return chosen
 
+    def execute(self, data: list | str, mode: str = "monolabel") -> list:
+        """
+        Applies the model on a batch of data.
+
+        This is a high-level function that can be used to execute the model
+        on a single input of data. It is just a wrapper around the evaluate function,
+        to make it easier are more intuitive to use.
+
+        Args:
+            data (list|str): The data to execute the model on.
+                         For a single input category, it can be:
+                           A string
+                           A list of strings.
+                         For multiple input categories, it should be a list of lists
+                          Each element of the outer list corresponds to a different input category.
+                          Each element of the inner list corresponds to a value for that category.
+            mode (str): The mode of evaluation.
+                        Can be either 'monolabel' or 'multilabel' or 'priority'.
+
+        Returns:
+            chosen_categories (list): The chosen categories.
+                                      if mode is 'monolabel', single element list.
+        """
+        if isinstance(data, str):
+            if len(self.input_categories) != 1:
+                self._raise_value_error_for_multiple_input_categories()
+            else:
+                data = [data]
+                single_element_batch = [data]
+                return self.evaluate(single_element_batch, mode=mode)
+        elif isinstance(data, list):
+            if all(isinstance(element, str) for element in data):
+                if len(self.input_categories) != 1:
+                    self._raise_value_error_for_multiple_input_categories()
+                else:
+                    outputs = [self.execute(element, mode=mode) for element in data]
+                    return outputs
+            elif all(isinstance(element, list) for element in data):
+                assert len(data) == len(self.input_categories), \
+                                     "The number of input categories does not match the input data."
+                logger.debug(f"Make sure that the order of the input categories is correct: {self.input_order}")
+                batch = [zip(*data)]
+                for single_element_batch in batch:
+                    return self.evaluate(single_element_batch, mode=mode)
+            else:
+                raise ValueError("The input data is not correctly formatted.")
+            return self.evaluate(single_element_batch, mode=mode)
+
+    def _raise_value_error_for_multiple_input_categories(self):
+        """
+        Formats and logs an error message if the input data does
+        not match the expected format or number of categories.
+
+        Returns:
+            None
+        """
+        error_message = []
+        error_message.append("Multiple input categories are expected.")
+        error_message.append("Please provide the input data as a list of lists.")
+        error_message.append("Each element of the outer list should correspond to a different input category.")
+        error_message.append(f"The order of categories MUST be as follows: {self.input_order}")
+        logger.error("\n".join(error_message))
+        raise ValueError
+
     @property
     def device(self) -> str:
         """
@@ -862,6 +930,21 @@ class CategoricNeuralNetwork(nn.Module):
             input_categories (dict): The input categories for the model.
         """
         return self.category_mappings["input_categories"]
+
+    @property
+    def input_order(self) -> list:
+        """
+        The order of the input categories for the model.
+
+        Returns:
+            input_order (list): The order of the input categories for the model.
+        """
+        return list(
+            v for _, v in sorted(
+                self.input_categories.items(),
+                key=lambda x: x[0]
+                )
+                )
 
     @property
     def output_categories(self) -> dict:

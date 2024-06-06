@@ -306,7 +306,7 @@ def main(neurons: int, layers: int):
     # Count the number of correct guesses
     correct, total = 0, 0
     for sentence in positive_sentences:
-        guessed_category = model.evaluate([[sentence]], mode="monolabel")[0]
+        guessed_category = model.execute(sentence, mode="monolabel")[0]
         printer.info(
             f"Input Sentence: '{sentence}'\n"
             f"Guessed Category: {guessed_category}\n"
@@ -317,7 +317,7 @@ def main(neurons: int, layers: int):
         total += 1
 
     for sentence in negative_sentences:
-        guessed_category = model.evaluate([[sentence]], mode="monolabel")[0]
+        guessed_category = model.execute(sentence, mode="monolabel")[0]
         printer.info(
             f"Input Sentence: '{sentence}'\n"
             f"Guessed Category: {guessed_category}\n"
