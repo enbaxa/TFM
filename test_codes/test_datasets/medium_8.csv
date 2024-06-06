@@ -1,0 +1,151 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,15684181,isFalse,(final Boolean b),boolean,testIsFalse,BooleanUtilTest
+1,15684181,add,"(final BigDecimal start, final BigDecimal... values)",BigDecimal,testAddBigDecimalBigDecimalArray,BigDecimalUtilTest
+2,15684181,ifNotNull,"(final BigDecimal bd, final Consumer<BigDecimal> consumer)",boolean,testIfNotNull,BigDecimalUtilTest
+3,15684181,getTotal,(),BigDecimal,testSumInt,TotalTest
+4,15684181,anyEmpty,(final String... strings),boolean,testAnyEmpty,StringUtilTest
+5,15684181,noneNull,(final Object... o1s),boolean,testNoneNull,ObjectUtilTest
+6,15684181,equalsValue,"(final Integer i1, final Integer i2)",boolean,testEqualsValueValueValueBigDecimalBigDecimal,ObjectUtilTest
+7,15684181,allNull,(final Object... o1s),boolean,testAllNull,ObjectUtilTest
+8,15684181,inverse,"(final BigDecimal value, final int scale)",BigDecimal,testInverseBigDecimalIntInt,BigDecimalUtilTest
+9,15684181,containsCcy,(final String ccy),boolean,testContainsCcy,CurrencyPairTest
+10,15684181,calculateCross,"(final CurrencyPair targetPair, final FxRate fx1, final FxRate fx2, final int precision,
+            final int precisionForInverseFxRate, final MajorCurrencyRanking ranking, final int bidRounding, final int askRounding,
+            CurrencyProvider currencyProvider)",FxRate,crossWithUsdMinor,CrossRateCalculatorTest
+11,15684181,atLeastOneNotNull,(final Object... o1s),boolean,testAtLeastOneNotNull,ObjectUtilTest
+12,15684181,toUpperCase,(final String str),String,testToUpperCase,StringUtilTest
+13,15684181,and,(final Predicate<? super T> other),PrintablePredicate<T>,testAnd,PrintablePredicateTest
+14,15684181,safeAdd,"(final Integer v1, final Integer v2)",Integer,testSafeAdd,IntegerUtilTest
+15,15684181,compareTo,"(final String s1, final String s2)",int,testCompareTo,StringUtilTest
+16,15684181,toString,(),String,testToString,CurrencyPairTest
+17,15684181,isNullOrZero,(final Integer value),boolean,testIsNullOrZero,IntegerUtilTest
+18,15684181,isNotSameValue,"(final Integer val1, final Integer val2)",boolean,testIsNotSameValue,IntegerUtilTest
+19,15684181,isNotEmpty,(final Collection<?> col),boolean,testIsNotEmptyCollection,CollectionUtilTest
+20,15684181,isTrueOrNull,(final Boolean b),boolean,testIsTrueOrNull,BooleanUtilTest
+21,15684181,readBlock,"(final String range, final Class<?>... columnTypes)",Object[][],shouldReadTwoLinesAndStop,ExcelTest
+22,15684181,sameContent,"(final Collection<?> c1, final Collection<?> c2)",boolean,testSameContent,CollectionUtilTest
+23,15684181,isNotZero,(final BigDecimal value),boolean,testIsNotZero,BigDecimalUtilTest
+24,15684181,readValueAt,"(final String cellAddress, final Class<E> type)",E,shouldReadSingleCell,ExcelTest
+25,15684181,isSameAbsValue,"(final BigDecimal v1, final BigDecimal v2)",boolean,testIsSameAbsValue,BigDecimalUtilTest
+26,15684181,toLowerCase,(final String str),String,testToLowerCaseString,StringUtilTest
+27,15684181,calculateCross,"(final CurrencyPair targetPair, final FxRate fx1, final FxRate fx2, final int precision,
+            final int precisionForInverseFxRate, final MajorCurrencyRanking ranking, final int bidRounding, final int askRounding,
+            CurrencyProvider currencyProvider)",FxRate,crossWithNonUsdCross,CrossRateCalculatorTest
+28,15684181,noneEmpty,(final Collection<?>... collections),boolean,testNoneEmpty,CollectionUtilTest
+29,15684181,isStrictlyPositive,(final BigDecimal value),boolean,testIsStrictlyPositive,BigDecimalUtilTest
+30,15684181,calculateCross,"(final CurrencyPair targetPair, final FxRate fx1, final FxRate fx2, final int precision,
+            final int precisionForInverseFxRate, final MajorCurrencyRanking ranking, final int bidRounding, final int askRounding,
+            CurrencyProvider currencyProvider)",FxRate,testWithUsdMajor,CrossRateCalculatorTest
+31,15684181,equalsValue,"(final Integer i1, final Integer i2)",boolean,testEqualsValueValueValueIntegerInteger,ObjectUtilTest
+32,15684181,subtract,(final BigDecimal... value),Total,testSubtract,TotalTest
+33,15684181,isNotBlank,(final Object text),boolean,testIsNotBlank,StringUtilTest
+34,15684181,createInverse,(),CurrencyPair,testCreateInverse,CurrencyPairTest
+35,15684181,allEquals,"(final String value, final String... strings)",boolean,testAllEquals,StringUtilTest
+36,15684181,isEmpty,(final Collection<?> col),boolean,testIsEmpty,CollectionUtilTest
+37,15684181,isNotZero,(final Integer value),boolean,testIsNotZero,IntegerUtilTest
+38,15684181,inverse,"(final BigDecimal value, final int scale)",BigDecimal,testInverseBigDecimal,BigDecimalUtilTest
+39,15684181,bd,(final String val),BigDecimal,testBd,BigDecimalUtilTest
+40,15684181,getReceiptAmountForSelling,(final CurrencyAmount amountToSell),CurrencyAmount,testGetReceipAmountForSelling,FxRateImplTest
+41,15684181,isNotZeroOrNegative,(final Integer id),boolean,testIsNotZeroOrNegative,IntegerUtilTest
+42,15684181,divide,"(final BigDecimal numerator, final BigDecimal denominator, final int rounding)",BigDecimal,testDivideBigDecimalBigDecimalInt,BigDecimalUtilTest
+43,15684181,add,(final CurrencyAmount money),CurrencyAmount,testAdd,CashTest
+44,15684181,isZero,(final BigDecimal value),boolean,testIsZero,BigDecimalUtilTest
+45,15684181,anyNull,(final Object... o1s),boolean,testAnyNull,ObjectUtilTest
+46,15684181,inverse,"(final BigDecimal value, final int scale)",BigDecimal,testInverseBigDecimalInt,BigDecimalUtilTest
+47,15684181,trim,(final String str),String,testTrim,StringUtilTest
+48,15684181,hasOneItem,(final Collection<?> col),boolean,testHasOneItem,CollectionUtilTest
+49,15684181,containsAny,"(final Collection<?> collection, final Object... items)",boolean,testContainsAny,CollectionUtilTest
+50,15684181,replaceToken,"(final String original, final String token, final Object replacement)",String,testReplaceTokenStringStringString,StringUtilTest
+51,15684181,setScale,"(final BigDecimal bd, final int scale)",BigDecimal,testSetScaleBigDecimalInt,BigDecimalUtilTest
+52,15684181,validate,(final ExistingPortfolio portfolio),ValidationResults,testValidateEmpty,BasicUcitsConcentrationValidatorTest
+53,15684181,equalsAnyIgnoreCase,"(final String val, final String... strings)",boolean,testEqualsAnyIgnoreCaseStringStringArray,StringUtilTest
+54,15684181,isZero,(final Integer value),boolean,testIsZero,IntegerUtilTest
+55,15684181,equalsAll,"(final Object o1, final Object... o2s)",boolean,testEqualsValueValueValueAll,ObjectUtilTest
+56,15684181,firstCharToUpper,(final String txt),String,testFirstCharToUpper,StringUtilTest
+57,15684181,isNotEmpty,(final Collection<?> col),boolean,testIsNotEmptyObjectArray,CollectionUtilTest
+58,15684181,equalsAnyIgnoreCase,"(final String val, final String... strings)",boolean,testEqualsAnyIgnoreCaseStringString,StringUtilTest
+59,15684181,processCaseTreatment,"(final String str, final CaseTreatment caseTreatment)",String,testProcessCaseTreatment,StringUtilTest
+60,15684181,calculateCross,"(final CurrencyPair targetPair, final FxRate fx1, final FxRate fx2, final int precision,
+            final int precisionForInverseFxRate, final MajorCurrencyRanking ranking, final int bidRounding, final int askRounding,
+            CurrencyProvider currencyProvider)",FxRate,tesCrossWithoutCrossCcy,CrossRateCalculatorTest
+61,15684181,validate,(final ExistingPortfolio portfolio),ValidationResults,testValidate1Line,BasicUcitsConcentrationValidatorTest
+62,15684181,add,(final BigDecimal... value),Total,testAdd,TotalTest
+63,15684181,isTrue,(final Boolean b),boolean,testIsTrueBoolean,BooleanUtilTest
+64,15684181,assign,"(final Integer value, final Integer defaultValueIfNull)",Integer,testAssign,IntegerUtilTest
+65,15684181,notEqualsAny,"(final Object o1, final Object... o2s)",boolean,testNotEqualsAny,ObjectUtilTest
+66,15684181,subtract,(final CurrencyAmount money),CurrencyAmount,testSubtract,CashTest
+67,15684181,equalsValue,"(final Integer i1, final Integer i2)",boolean,testEqualsValueValueValueObjectObject,ObjectUtilTest
+68,15684181,equals,(final Object obj),boolean,testEquals,CurrencyPairTest
+69,15684181,readBlock,"(final String range, final Class<?>... columnTypes)",Object[][],shouldReadWholeBlockGivenTopLine,ExcelTest
+70,15684181,getDistribution,(),List<Bucket>,testOneBucketNoPoint,FrequencyBucketDistributionTest
+71,15684181,isSameValueTreatNullAsZero,"(final BigDecimal val1, final BigDecimal val2)",boolean,testIsSameValueTreatNullAsZero,BigDecimalUtilTest
+72,15684181,size,(final Collection<?> col),int,testSize,CollectionUtilTest
+73,15684181,calculateCross,"(final CurrencyPair targetPair, final FxRate fx1, final FxRate fx2, final int precision,
+            final int precisionForInverseFxRate, final MajorCurrencyRanking ranking, final int bidRounding, final int askRounding,
+            CurrencyProvider currencyProvider)",FxRate,tesCrossWithCrossInTarget,CrossRateCalculatorTest
+74,15684181,findFx,(final CurrencyPair ccyPair),Optional<FxRate>,testEurUsd,FxRateCalculatorImplTest
+75,15684181,getTotal,(),BigDecimal,testSum,TotalTest
+76,15684181,getDistribution,(),List<Bucket>,testNullBucket,FrequencyBucketDistributionTest
+77,15684181,boxify,"(final char boxing, final String text)",String,testBoxify,StringUtilTest
+78,15684181,isSameValue,"(final Integer val1, final Integer val2)",boolean,testIsSameValue,IntegerUtilTest
+79,15684181,readColumn,"(final String rangeOrStartAddress, final Class<E> type)",List<E>,shouldReadColumn,ExcelTest
+80,15684181,concat,(final Object... osToString),String,testConcat,StringUtilTest
+81,15684181,equalsAny,"(final Object o1, final Object... o2s)",boolean,testEqualsValueValueValueAny,ObjectUtilTest
+82,15684181,replace,"(final String originalPattern, final String newPattern, final String originalString)",String,testReplace,StringUtilTest
+83,15684181,noneBlank,(final String... text),boolean,testNoneBlank,StringUtilTest
+85,15684181,concatWithSpaces,(final Object... osToString),String,testConcatWithSpaces,StringUtilTest
+86,15684181,calculateCross,"(final CurrencyPair targetPair, final FxRate fx1, final FxRate fx2, final int precision,
+            final int precisionForInverseFxRate, final MajorCurrencyRanking ranking, final int bidRounding, final int askRounding,
+            CurrencyProvider currencyProvider)",FxRate,crossWithUsdMajorInversed,CrossRateCalculatorTest
+87,15684181,isWildcardOrNull,(final String txt),boolean,testIsWildcardOrNull,StringUtilTest
+88,15684181,calculateCross,"(final CurrencyPair targetPair, final FxRate fx1, final FxRate fx2, final int precision,
+            final int precisionForInverseFxRate, final MajorCurrencyRanking ranking, final int bidRounding, final int askRounding,
+            CurrencyProvider currencyProvider)",FxRate,crossWithMixedUsd,CrossRateCalculatorTest
+89,15684181,calculateCross,"(final CurrencyPair targetPair, final FxRate fx1, final FxRate fx2, final int precision,
+            final int precisionForInverseFxRate, final MajorCurrencyRanking ranking, final int bidRounding, final int askRounding,
+            CurrencyProvider currencyProvider)",FxRate,crossWithNonUsdCross2,CrossRateCalculatorTest
+90,15684181,getDistribution,(),List<Bucket>,testEmptyBucket,FrequencyBucketDistributionTest
+91,15684181,getMid,(),BigDecimal,testMid,FxRateImplTest
+92,15684181,toString,(),String,testToString,TotalTest
+93,15684181,removeTrailingChar,"(final String original, final char charToRemove)",String,testRemoveTrailingChar,StringUtilTest
+94,15684181,prepareForNumericParsing,(final String inputStr),String,testPrepareForNumericParsing,StringUtilTest
+95,15684181,divide,"(final BigDecimal numerator, final BigDecimal denominator, final int rounding)",BigDecimal,testDivideIntBigDecimalBigDecimalInt,BigDecimalUtilTest
+96,15684181,wrapText,"(final String inString, final String newline, final int wrapColumn)",String,testWrapText,StringUtilTest
+97,15684181,replaceToken,"(final String original, final String token, final Object replacement)",String,testReplaceTokenStringStringObject,StringUtilTest
+98,15684181,safeSignum,(final Integer v),int,testSafeSignum,IntegerUtilTest
+99,15684181,findFx,(final CurrencyPair ccyPair),Optional<FxRate>,testNoPossibleCross,FxRateCalculatorImplTest
+100,15684181,isNullOrZero,(final BigDecimal value),boolean,testIsNullOrZero,BigDecimalUtilTest
+101,15684181,nullIfEmpty,(final String txt),String,testNullIfEmpty,StringUtilTest
+102,15684181,getTotal,(),BigDecimal,testgetTotal,TotalTest
+103,15684181,replaceCRToken,(final String original),String,testReplaceCRToken,StringUtilTest
+104,15684181,divide,"(final BigDecimal numerator, final BigDecimal denominator, final int rounding)",BigDecimal,testDivideBigDecimalBigDecimalIntInt,BigDecimalUtilTest
+105,15684181,findFx,(final CurrencyPair ccyPair),Optional<FxRate>,testEurChf,FxRateCalculatorImplTest
+106,15684181,emptyIfNull,(final Object obj),String,testEmptyIfNull,StringUtilTest
+107,15684181,isNegative,(final BigDecimal value),boolean,testIsNegative,BigDecimalUtilTest
+108,15684181,isSameValue,"(final BigDecimal val1, final BigDecimal val2)",boolean,testIsSameValue,BigDecimalUtilTest
+109,15684181,safeCompare,"(final Integer id, final Integer id2)",int,testSafeCompare,IntegerUtilTest
+110,15684181,findCommonCcy,(final CurrencyPair otherPair),Optional<String>,testFindCommonCcy,CurrencyPairTest
+111,15684181,getTotal,(),BigDecimal,testSumBigDecimalInt,TotalTest
+112,15684181,trimAndUpperCase,(final String str),String,testTrimAndUpperCase,StringUtilTest
+113,15684181,defaultFormatDatetime,(final Date date),String,testDefaultFormatDatetime,StringUtilTest
+114,15684181,negate,(),CurrencyAmount,testNegate,CashTest
+115,15684181,isZero,(),boolean,testIsZero,TotalTest
+116,15684181,contains,"(final Collection<?> collection, final Object item)",boolean,testContains,CollectionUtilTest
+117,15684181,or,(final Predicate<? super T> other),PrintablePredicate<T>,testOr,PrintablePredicateTest
+118,15684181,getValue,(),T,testObjectHolderT,ObjectHolderTest
+119,15684181,toString,(final Object object),String,testToStringObject,StringUtilTest
+120,15684181,isTrue,(final Boolean b),boolean,testIsTrueString,BooleanUtilTest
+121,15684181,isFalseOrNull,(final Boolean b),boolean,testIsFalseOrNull,BooleanUtilTest
+122,15684181,getPaymentAmountForBuying,(final CurrencyAmount amountToBuy),CurrencyAmount,testGetPaymentAmountForBuying,FxRateImplTest
+123,15684181,ifTrue,"(final Boolean bool, final Runnable runnable)",boolean,testIfTrue,BooleanUtilTest
+124,15684181,singleQuote,(final String text),String,testSingleQuote,StringUtilTest
+125,15684181,setValue,(final T value),void,testSetValue,ObjectHolderTest
+126,15684181,toStringOrEmpty,(final Object object),String,testToStringOrEmpty,StringUtilTest
+127,15684181,equalsIgnoreCaseOrValueIsWildcard,"(final String value, final String toCheck)",boolean,testEqualsIgnoreCaseOrValueIsWildcard,StringUtilTest
+128,15684181,findFx,(final CurrencyPair ccyPair),Optional<FxRate>,testSecondPossibleCross,FxRateCalculatorImplTest
+129,15684181,calculateWeight,"(final BigDecimal value, final BigDecimal total)",BigDecimal,testCalculateWeight,BigDecimalUtilTest
+130,15684181,ifNotBlank,"(final String text, final Consumer<String> consumer)",boolean,testIfNotBlank,StringUtilTest
+131,15684181,asList,"(final String[] values, final String separator)",String,testAsList,StringUtilTest
+132,15684181,defaultFileFormatTimestamp,(final Date date),String,testDefaultFileFormatTimestamp,StringUtilTest
+133,15684181,equals,(final Object obj),boolean,testEquals,CashTest
+134,15684181,returnIfNotNull,"(final String txt, final String defaultTxt)",String,testReturnIfNotNull,StringUtilTest

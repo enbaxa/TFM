@@ -1,0 +1,425 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,146510094,updateImpersonationPropertyInHiveJdbcUrl,"(String url, String user)",String,testURLWithoutImpersonationPropertyWithQuestionMarkAndWithHash,HiveJdbcUtilsTest
+1,146510094,initialize,(RequestContext requestContext),void,testGetFields_Primitive_RepeatedInt,ParquetResolverTest
+2,146510094,openForRead,(),boolean,testReadFromQueryWithValidSemicolon,JdbcAccessorTest
+3,146510094,toCsvField,"(String s, boolean prependQuoteChar, boolean appendQuoteChar)",String,testToCsvFieldEscapesQuotes,GreenplumCSVTest
+4,146510094,updateImpersonationPropertyInHiveJdbcUrl,"(String url, String user)",String,testURLWithImpersonationPropertyAndQuestionMark,HiveJdbcUtilsTest
+5,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testInvalidNullQuoteString,EnumPartitionTest
+6,146510094,readNextObject,(),OneRow,testReadFromSimpleCsvFileFileAsRow,QuotedLineBreakAccessorTest
+8,146510094,updateImpersonationPropertyInHiveJdbcUrl,"(String url, String user)",String,testURLWithImpersonationPropertyEnd,HiveJdbcUtilsTest
+9,146510094,setStatsMaxFragments,(int statsMaxFragments),void,testStatsMaxFragmentsFailsOnNegative,RequestContextTest
+10,146510094,setStatsSampleRatio,(float statsSampleRatio),void,testStatsSampleRatioFailsOnZero,RequestContextTest
+11,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,typeModCountNegativeIntegerFails,HttpRequestParserTest
+12,146510094,readNextObject,(),OneRow,testReadFromSingleLineCsvFileFileAsRow,QuotedLineBreakAccessorTest
+13,146510094,initialize,(RequestContext context),void,testPartitionByTypeInvalid,JdbcPartitionFragmenterTest
+14,146510094,mapHiveType,(FieldSchema hiveColumn),Metadata.Field,mapHiveTypeWithModifiersNegative,HiveUtilitiesTest
+15,146510094,toCsvField,"(String s, boolean prependQuoteChar, boolean appendQuoteChar)",String,testToCsvFieldStringWithCharacterThatNeedToBeQuoted,GreenplumCSVTest
+16,146510094,generateSamplingBitSet,"(int poolSize, int sampleSize)",BitSet,generateSamplingBitSet,AnalyzeUtilsTest
+17,146510094,stream,"(@Context final ServletContext servletContext,
+                           @Context HttpHeaders headers,
+                           InputStream inputStream)",Response,streamPathWithRegularChars,WritableResourceTest
+18,146510094,setStatsMaxFragments,(int statsMaxFragments),void,testStatsMaxFragmentsFailsOnZero,RequestContextTest
+19,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,profileWithDuplicateProperty,HttpRequestParserTest
+20,146510094,getHandler,(String profileName),String,testGetHandler,ProfilesConfTest
+21,146510094,reloginFromKeytab,"(String serverName, LoginSession loginSession)",void,testReloginFromKeytabNoopTGTValidForLongTime,PxfUserGroupInformationTest
+22,146510094,getFragments,(),List<Fragment>,testInvalidInputPathIgnored,HdfsFileFragmenterTest
+23,146510094,byteArrayToOctalString,"(byte[] bytes, StringBuilder sb)",void,byteArrayToOctalStringNull,UtilitiesTest
+24,146510094,toString,(),String,testToString,LoginSessionTest
+25,146510094,traverse,"(Node node, TreeVisitor... visitors)",Node,testPruningRootNodeAndPromotingRightChildToRootDuringVisit,TreeTraverserTest
+26,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testInvalidNullQuoteString,IntPartitionTest
+27,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,typeMods,HttpRequestParserTest
+28,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,undefinedServer,HttpRequestParserTest
+29,146510094,initConfiguration,"(String configDirectory, String serverName, String userName, Map<String, String> additionalProperties)",Configuration,testConfigurationsNotLoadedForUnknownServer,BaseConfigurationFactoryTest
+30,146510094,byteArrayToOctalString,"(byte[] bytes, StringBuilder sb)",void,byteArrayToOctalString,UtilitiesTest
+31,146510094,parse,(String filterString),Node,parseLogicalUnknownCodeError,FilterParserTest
+32,146510094,toString,(),String,testToString,ScalarOperandNodeTest
+33,146510094,getOptionMappings,(String profileName),"Map<String, String>",testOptionMappingsTwoMappings,ProfilesConfTest
+34,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnRead_WithUserProvidedSchema_Binary_HCFS_Spaces,AvroUtilitiesTest
+35,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testLeftBoundedInclusive,IntPartitionTest
+36,146510094,initConfiguration,"(String configDirectory, String serverName, String userName, Map<String, String> additionalProperties)",Configuration,testConfigurationsLoadedFromMultipleFilesForDefaultServerWithAbsolutePath,BaseConfigurationFactoryTest
+37,146510094,doFilter,"(final ServletRequest request, final ServletResponse response, final FilterChain chain)",void,determineRemoteUser_IsLoginUser_Kerberos_NoImpersonation_NoServiceUser,SecurityServletFilterTest
+38,146510094,getUserGroupInformation,"(SessionId session, boolean isProxyUser)",UserGroupInformation,getUGIFromEmptyCache,UGICacheTest
+39,146510094,isUserImpersonationEnabled,(Configuration configuration),boolean,testServerConfigurationImpersonationPropertyFalse,SecureLoginTest
+40,146510094,initialize,(RequestContext context),void,testSkipHeaderCountIsNotANumber,LineBreakAccessorTest
+41,146510094,getFragments,"(@Context final ServletContext servletContext,
+                                 @Context final HttpHeaders headers)",Response,testMultiThreadedAccessToFragments,FragmenterResourceTest
+42,146510094,traverse,"(Node node, TreeVisitor... visitors)",Node,testPruningRightNodeDuringAfter,TreeTraverserTest
+43,146510094,getUserGroupInformation,"(SessionId session, boolean isProxyUser)",UserGroupInformation,getTwoProxyUGIsWithDifferentTransactionsForSameUser,UGICacheTest
+44,146510094,getUserGroupInformation,"(SessionId session, boolean isProxyUser)",UserGroupInformation,getSameProxyUGITwiceUsesCache,UGICacheTest
+45,146510094,updateImpersonationPropertyInHiveJdbcUrl,"(String url, String user)",String,testURLWithImpersonationPropertyAndQuestionMarkAndHash,HiveJdbcUtilsTest
+46,146510094,formatResponse,"(List<Metadata> metadataList, String path)",MetadataResponse,formatResponseStringWithMultipleItems,MetadataResponseFormatterTest
+47,146510094,isValidDirectoryName,(String name),boolean,invalidDirectoryName,UtilitiesTest
+48,146510094,withEscapeChar,(String escapeString),GreenplumCSV,testCsvOptionWithEscapeCharInvalidLength,GreenplumCSVTest
+49,146510094,reloginFromKeytab,"(String serverName, LoginSession loginSession)",void,testReloginFromKeytabNoValidTGT,PxfUserGroupInformationTest
+50,146510094,openForWrite,(),boolean,testWriteFailsWhenQueryIsSpecified,JdbcAccessorTest
+51,146510094,getOptionMappings,(String profileName),"Map<String, String>",testOptionMappingsOneMapping,ProfilesConfTest
+52,146510094,initConfiguration,"(String configDirectory, String serverName, String userName, Map<String, String> additionalProperties)",Configuration,testConfigurationSetsResourcePath,BaseConfigurationFactoryTest
+53,146510094,traverse,"(Node node, TreeVisitor... visitors)",Node,testPruningRootNodeDuringAfter,TreeTraverserTest
+54,146510094,initialize,(RequestContext requestContext),void,construction,HBaseResolverTest
+55,146510094,toString,(),String,testPoolDescriptorToString,PoolDescriptorTest
+56,146510094,reloginFromKeytab,"(String serverName, LoginSession loginSession)",void,testReloginFromKeytabThrowsExceptionOnLoginFailure,PxfUserGroupInformationTest
+57,146510094,parse,(String filterString),Node,parseLogicalNotOperator,FilterParserTest
+58,146510094,updateImpersonationPropertyInHiveJdbcUrl,"(String url, String user)",String,testURLWithSimilarPropertyName,HiveJdbcUtilsTest
+59,146510094,getNext,(),Writable,getNextRecord100Records90Percent,ReadSamplingBridgeTest
+60,146510094,getNext,(),Writable,getNextRecord100Percent,ReadSamplingBridgeTest
+61,146510094,maskNonPrintables,(String input),String,maskNonPrintable,UtilitiesTest
+62,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,testWireFormatIsPresentAndFormatIsInferredToNothing,HttpRequestParserTest
+63,146510094,getUserGroupInformation,"(SessionId session, boolean isProxyUser)",UserGroupInformation,getTwoProxyUGIsWithDifferentUsers,UGICacheTest
+64,146510094,getSampleFragments,"(List<Fragment> fragments,
+                                                    RequestContext context)",List<Fragment>,getSampleFragments,AnalyzeUtilsTest
+65,146510094,getAvroSchemaFileReader,(String userProvidedSchemaFile),AvroSchemaFileReader,testGetBinaryReader,AvroSchemaFileReaderFactoryTest
+66,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnRead_WithUserProvidedSchema_Binary_HCFS,AvroUtilitiesTest
+67,146510094,reloginFromKeytab,"(String serverName, LoginSession loginSession)",void,testReloginFromKeytabFailsNoKeytab,PxfUserGroupInformationTest
+68,146510094,getAccessorClassName,(RequestContext context),String,testSelectOnUnsupportedFormat,S3ProtocolHandlerTest
+69,146510094,doFilter,"(final ServletRequest request, final ServletResponse response, final FilterChain chain)",void,determineRemoteUser_IsGpdbUser_Kerberos_Impersonation_ServiceUser,SecurityServletFilterTest
+70,146510094,parse,(String filterString),Node,parseLogicalAndOperator,FilterParserTest
+71,146510094,initialize,(RequestContext context),void,constructorCantAccessMetaStore,HiveDataFragmenterTest
+72,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnRead_WithUserProvidedSchema_Binary_FullPathToLocalFile_Spaces,AvroUtilitiesTest
+73,146510094,withQuoteChar,(String quoteString),GreenplumCSV,testCsvOptionWithQuoteCharInvalidLength,GreenplumCSVTest
+74,146510094,openForRead,(),boolean,testReadFromQuery,JdbcAccessorTest
+75,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnRead_WithUserProvidedSchema_Json_OnClasspath,AvroUtilitiesTest
+76,146510094,isUserImpersonationEnabled,(Configuration configuration),boolean,testGlobalImpersonationPropertyTRUE,SecureLoginTest
+77,146510094,getInputSerialization,(RequestContext context),InputSerialization,testCompressionTypeBZIP2,S3SelectAccessorTest
+78,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,filterUtf8,HttpRequestParserTest
+79,146510094,getProtocol,(String profileName),String,testGetMissingProtocol,ProfilesConfTest
+80,146510094,getLoginUser,"(RequestContext context, Configuration configuration)",UserGroupInformation,testLoginKerberosFailsWhenNoKeytab,SecureLoginTest
+81,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnWrite_WithUserProvidedSchema_Json_NotFound,AvroUtilitiesTest
+82,146510094,getPlugins,(String profileName),"Map<String, String>",definedProfile,ProfilesConfTest
+83,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnWrite_WithUserProvidedSchema_Json_FullPathToLocalFile,AvroUtilitiesTest
+84,146510094,getProtocol,(String profileName),String,testUndefinedProfileWhenGettingProtocol,ProfilesConfTest
+85,146510094,formatResponse,"(List<Metadata> metadataList, String path)",MetadataResponse,formatResponseStringWithNullModifier,MetadataResponseFormatterTest
+86,146510094,getFragments,(),List<Fragment>,testInvalidInputPath,HdfsFileFragmenterTest
+87,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnRead_WhenUserProvidedSchema_Json_NotFound,AvroUtilitiesTest
+88,146510094,getInputSerialization,(RequestContext context),InputSerialization,testGetInputSerializationDefaults,S3SelectAccessorTest
+89,146510094,getComparator,"(int type, OperandNode data)",ByteArrayComparable,parseIsNullExpression,HBaseFilterBuilderTest
+90,146510094,createAnyInstance,"(Class<?> confClass,
+                                           String className, RequestContext metaData)",Object,createAnyInstanceOldPackageName,UtilitiesTest
+91,146510094,reloginFromKeytab,"(String serverName, LoginSession loginSession)",void,testReloginFromKeytabValidTGTWillExpireSoon,PxfUserGroupInformationTest
+92,146510094,setFields,(List<OneField> record),OneRow,testSetFields,StringPassResolverTest
+93,146510094,initConfiguration,"(String configDirectory, String serverName, String userName, Map<String, String> additionalProperties)",Configuration,testConfigurationsLoadedWithInterpolationFromMultipleFilesForDefaultServer,BaseConfigurationFactoryTest
+94,146510094,getCodec,"(String name, CompressionCodecName defaultCodec)",CompressionCodecName,getCodecNoConf,CodecFactoryTest
+95,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testRightBounded,DatePartitionTest
+96,146510094,writeNextObject,(OneRow onerow),boolean,testFailsOnWriteNextObject,S3SelectAccessorTest
+97,146510094,getInputSerialization,(RequestContext context),InputSerialization,testPipeDelimiter,S3SelectAccessorTest
+98,146510094,getAvroSchemaFileReader,(String userProvidedSchemaFile),AvroSchemaFileReader,testGetJsonReader,AvroSchemaFileReaderFactoryTest
+99,146510094,getMetadata,(String pattern),List<Metadata>,getTableMetadata,HiveMetadataFetcherTest
+100,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,testWireFormatIsAbsent,HttpRequestParserTest
+101,146510094,getInputSerialization,(RequestContext context),InputSerialization,testJSONInputSerializationWithLinesJsonType,S3SelectAccessorTest
+102,146510094,readNextObject,(),OneRow,testReadFromSimpleCsvFile,QuotedLineBreakAccessorTest
+103,146510094,readNextObject,(),OneRow,testReadFromQuotedCsvFile,QuotedLineBreakAccessorTest
+104,146510094,openForRead,(),boolean,testReadFromQueryEndingInSemicolon,JdbcAccessorTest
+105,146510094,doFilter,"(final ServletRequest request, final ServletResponse response, final FilterChain chain)",void,determineRemoteUser_IsLoginUser_NoKerberos_NoImpersonation_NoServiceUser,SecurityServletFilterTest
+106,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testExcluded3,EnumPartitionTest
+107,146510094,parse,(String filterString),Node,testLongIndexFails,FilterParserTest
+108,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnWrite,AvroUtilitiesTest
+109,146510094,getCodec,(),CompressionCodec,compressCodec,SequenceFileAccessorTest
+110,146510094,traverse,"(Node node, TreeVisitor... visitors)",Node,testFailsWhenNoVisitorIsProvided,TreeTraverserTest
+111,146510094,getTypeName,(int oid),String,testGetType,GPDBWritableTest
+112,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,statsParams,HttpRequestParserTest
+113,146510094,updateImpersonationPropertyInHiveJdbcUrl,"(String url, String user)",String,testURLWithImpersonationPropertyMiddle,HiveJdbcUtilsTest
+114,146510094,reloginFromKeytab,"(String serverName, LoginSession loginSession)",void,testReloginFromKeytabFailsNoLogin,PxfUserGroupInformationTest
+115,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,testHandlerIsCalled,HttpRequestParserTest
+116,146510094,getAccessorClassName,(RequestContext context),String,testSelectOnMissingFormat,S3ProtocolHandlerTest
+117,146510094,getMetadata,(String pattern),List<Metadata>,getTableMetadataView,HiveMetadataFetcherTest
+118,146510094,initialize,(RequestContext requestContext),void,testInitialize,BasePluginTest
+119,146510094,formatResponse,"(List<Metadata> metadataList, String path)",MetadataResponse,formatResponseStringWithModifiers,MetadataResponseFormatterTest
+120,146510094,getData,(),List<String>,testGetData,CollectionOperandNodeTest
+121,146510094,isFragmenterCacheEnabled,(),boolean,testFragmenterCachePropertyEmpty,UtilitiesTest
+122,146510094,getComparator,"(int type, OperandNode data)",ByteArrayComparable,testOrOperator,HBaseFilterBuilderTest
+123,146510094,doFilter,"(final ServletRequest request, final ServletResponse response, final FilterChain chain)",void,throwsWhenRequiredTxnIdHeaderIsEmpty,SecurityServletFilterTest
+124,146510094,getPlugins,(String profileName),"Map<String, String>",testProfileWithSpacesInName,ProfilesConfTest
+125,146510094,openForRead,(),boolean,testReadFromQueryWithWhereWithPartitions,JdbcAccessorTest
+126,146510094,initConfiguration,"(String configDirectory, String serverName, String userName, Map<String, String> additionalProperties)",Configuration,testConfigurationsLoadedFromMultipleFilesForDefaultServerWithCustomName,BaseConfigurationFactoryTest
+127,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testEqualBoundaries,IntPartitionTest
+128,146510094,toCompatibleHiveType,"(DataType type, Integer[] modifiers)",String,testCompatibleHiveType,HiveUtilitiesTest
+129,146510094,getColumnDescriptors,(),List<ColumnDescriptor>,testGetColumnDescriptors,ColumnPredicateBuilderTest
+130,146510094,updateImpersonationPropertyInHiveJdbcUrl,"(String url, String user)",String,testImpersonationPropertyAfterQuestionMark,HiveJdbcUtilsTest
+131,146510094,reset,(),void,testReset,ToStringTreeVisitorTest
+132,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnRead_WhenUserProvidedSchema_Binary_OnClasspath_Spaces,AvroUtilitiesTest
+133,146510094,isUserImpersonationEnabled,(Configuration configuration),boolean,testServerConfigurationImpersonationOverwritesGlobalFalse,SecureLoginTest
+134,146510094,isValidDirectoryName,(String name),boolean,validDirectoryName,UtilitiesTest
+135,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,pluginsDefinedByProfileOnly,HttpRequestParserTest
+136,146510094,aggregateOptimizationsSupported,(RequestContext requestContext),boolean,useAggBridge,UtilitiesTest
+137,146510094,initConfiguration,"(String configDirectory, String serverName, String userName, Map<String, String> additionalProperties)",Configuration,testConfigurationSetsSessionUser,BaseConfigurationFactoryTest
+138,146510094,doFilter,"(final ServletRequest request, final ServletResponse response, final FilterChain chain)",void,determineRemoteUser_IsServiceUser_Kerberos_NoImpersonation_ServiceUser,SecurityServletFilterTest
+139,146510094,dataToJSON,(FragmentStats stats),String,dataToJSON,FragmentStatsTest
+140,146510094,stream,"(@Context final ServletContext servletContext,
+                           @Context HttpHeaders headers,
+                           InputStream inputStream)",Response,streamPathWithSpecialChars,WritableResourceTest
+141,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,testReadPath,HttpRequestParserTest
+142,146510094,getAccessorClassName,(RequestContext context),String,testTextSelectOptionMissing,S3ProtocolHandlerTest
+143,146510094,getInputSerialization,(RequestContext context),InputSerialization,testCompressionTypeGZIP,S3SelectAccessorTest
+144,146510094,childCount,(),int,testChildCount,NodeTest
+145,146510094,doFilter,"(final ServletRequest request, final ServletResponse response, final FilterChain chain)",void,doesNotCleanTheUGICacheOnNonLastCalls,SecurityServletFilterTest
+146,146510094,getCodec,"(String name, CompressionCodecName defaultCodec)",CompressionCodecName,getCodecGzip,CodecFactoryTest
+147,146510094,getProtocolVersion,(),Response,getProtocolVersion,VersionResourceTest
+148,146510094,extractTablesFromPattern,"(IMetaStoreClient client, String pattern)",List<Metadata.Item>,invalidTableName,HiveClientWrapperTest
+149,146510094,traverse,"(Node node, TreeVisitor... visitors)",Node,testPruningLeftNodeDuringBefore,TreeTraverserTest
+150,146510094,formatResponse,"(List<Metadata> metadataList, String path)",MetadataResponse,formatResponseStringNoFields,MetadataResponseFormatterTest
+151,146510094,buildSelectQuery,(),String,testColumnProjection,SQLQueryBuilderTest
+152,146510094,getInputSerialization,(RequestContext context),InputSerialization,testFileHeaderInfoIsUse,S3SelectAccessorTest
+153,146510094,getNext,(),Writable,getNextRecord100Records10Percent,ReadSamplingBridgeTest
+154,146510094,getPlugins,(String profileName),"Map<String, String>",malformedProfileFile,ProfilesConfTest
+155,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,testFragmenterPath,HttpRequestParserTest
+156,146510094,reloginFromKeytab,"(String serverName, LoginSession loginSession)",void,testReloginFromKeytabNoopForNonKeytab,PxfUserGroupInformationTest
+157,146510094,parse,(String filterString),Node,parseLogicalOrOperator,FilterParserTest
+158,146510094,initConfiguration,"(String configDirectory, String serverName, String userName, Map<String, String> additionalProperties)",Configuration,testConfigurationsLoadedForCaseInsensitiveServerName,BaseConfigurationFactoryTest
+159,146510094,reloginFromKeytab,"(String serverName, LoginSession loginSession)",void,testReloginFromKeytabNoopInsufficientTimeElapsed,PxfUserGroupInformationTest
+160,146510094,release,"(SessionId session, boolean cleanImmediatelyIfNoRefs)",void,releaseAnEntryNotInTheCache,UGICacheTest
+161,146510094,convertKeyValue,(Object key),Writable,convertKeyValueBadSecondValue,RecordkeyAdapterTest
+162,146510094,makeInput,(DataInput inputStream),List<OneField>,makeInputBigArrayNoNewLine,BridgeInputBuilderTest
+163,146510094,getComparator,"(int type, OperandNode data)",ByteArrayComparable,testNestedLogicalOperators,HBaseFilterBuilderTest
+164,146510094,getConnection,"(String server, String jdbcUrl, Properties connectionConfiguration, boolean isPoolEnabled, Properties poolConfiguration, String qualifier)",Connection,testGetConnectionPoolEnabledWithPoolProps,ConnectionManagerTest
+165,146510094,isFragmenterCacheEnabled,(),boolean,testFragmenterCachePropertyFALSE,UtilitiesTest
+166,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testLeftBounded,DatePartitionTest
+167,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testInvalidNullQuoteString,NullPartitionTest
+168,146510094,getCodec,"(String name, CompressionCodecName defaultCodec)",CompressionCodecName,getCodecNoName,CodecFactoryTest
+169,146510094,traverse,"(Node node, TreeVisitor... visitors)",Node,testTraverseLeafNode,TreeTraverserTest
+170,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,testWritePath,HttpRequestParserTest
+171,146510094,getUserGroupInformation,"(SessionId session, boolean isProxyUser)",UserGroupInformation,errorsThrownByCreatingAUgiAreNotCaught,UGICacheTest
+172,146510094,getInputSerialization,(RequestContext context),InputSerialization,testFileHeaderInfoIsIgnore,S3SelectAccessorTest
+173,146510094,readNextObject,(),OneRow,testReadFromSingleLineCsvFile,QuotedLineBreakAccessorTest
+174,146510094,isUserImpersonationEnabled,(Configuration configuration),boolean,testGlobalImpersonationPropertyEmpty,SecureLoginTest
+175,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnWrite_WithUserProvidedSchema_Binary_OnClasspath_Spaces,AvroUtilitiesTest
+176,146510094,updateImpersonationPropertyInHiveJdbcUrl,"(String url, String user)",String,testURLWithImpersonationPropertyAndQuestionMark2,HiveJdbcUtilsTest
+177,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnRead_WithUserProvidedSchema_Json_HCFS,AvroUtilitiesTest
+178,146510094,getFragments,(),List<Fragment>,testGetFragments,BaseFragmenterTest
+179,146510094,initialize,(RequestContext requestContext),void,construction,HBaseAccessorTest
+180,146510094,convertToJavaObject,"(int typeCode, String typeName, byte[] val)",Object,testConvertToJavaObject,HBaseResolverTest
+181,146510094,parse,(String filterString),Node,parseFilterWith2Operations,FilterParserTest
+182,146510094,getFragments,(),List<Fragment>,testFragmenterWilcardPath,HdfsFileFragmenterTest
+183,146510094,parse,(String filterString),Node,parseLogicalOperatorNotExpression,FilterParserTest
+184,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,getFragmentMetadataNotBase64,HttpRequestParserTest
+185,146510094,isFragmenterCacheEnabled,(),boolean,testFragmenterCachePropertyFalse,UtilitiesTest
+186,146510094,doFilter,"(final ServletRequest request, final ServletResponse response, final FilterChain chain)",void,determineRemoteUser_IsGpdbUser_NoKerberos_Impersonation_ServiceUser,SecurityServletFilterTest
+187,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,testWireFormatIsPresentAndFormatIsInferred,HttpRequestParserTest
+188,146510094,doFilter,"(final ServletRequest request, final ServletResponse response, final FilterChain chain)",void,cleansUGICacheWhenTheFilterExecutionThrowsAnInterruptedException,SecurityServletFilterTest
+189,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testNormal,IntPartitionTest
+190,146510094,getUserGroupInformation,"(SessionId session, boolean isProxyUser)",UserGroupInformation,getTwoUGIsWithDifferentTransactionsForSameUser,UGICacheTest
+191,146510094,traverse,"(Node node, TreeVisitor... visitors)",Node,testTraverseTree,TreeTraverserTest
+192,146510094,initialize,(RequestContext requestContext),void,testInitialize,AvroFileAccessorTest
+193,146510094,updateImpersonationPropertyInHiveJdbcUrl,"(String url, String user)",String,testURLWithImpersonationPropertyOnly,HiveJdbcUtilsTest
+194,146510094,isUserImpersonationEnabled,(Configuration configuration),boolean,testGlobalImpersonationPropertyAbsent,SecureLoginTest
+195,146510094,getFragments,"(@Context final ServletContext servletContext,
+                                 @Context final HttpHeaders headers)",Response,getFragmentsResponseFromEmptyCache,FragmenterResourceTest
+196,146510094,getInputSerialization,(RequestContext context),InputSerialization,testJSONInputSerializationWithDocumentJsonType,S3SelectAccessorTest
+197,146510094,isInitialized,(),boolean,testDefaults,BasePluginTest
+198,146510094,formatResponse,"(List<Metadata> metadataList, String path)",MetadataResponse,formatResponseStringPartialNull,MetadataResponseFormatterTest
+199,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testNormal,EnumPartitionTest
+200,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnWrite_WithUserProvidedSchema_Binary_HCFS,AvroUtilitiesTest
+201,146510094,makeInput,(DataInput inputStream),List<OneField>,makeInput,BridgeInputBuilderTest
+202,146510094,getAccessorClassName,(RequestContext context),String,testSelectInvalid,S3ProtocolHandlerTest
+203,146510094,traverse,"(Node node, TreeVisitor... visitors)",Node,testPruningRootNodeAndPromotingLeftChildToRootDuringVisit,TreeTraverserTest
+204,146510094,getStringBuilder,(),StringBuilder,testGetStringBuilder,ToStringTreeVisitorTest
+205,146510094,getInputSerialization,(RequestContext context),InputSerialization,testQuoteCharacter,S3SelectAccessorTest
+206,146510094,initConfiguration,"(String configDirectory, String serverName, String userName, Map<String, String> additionalProperties)",Configuration,testInitConfigurationFailsWhenMultipleDirectoriesWithSameName,BaseConfigurationFactoryTest
+207,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,protocolIsSetWhenProfileIsSpecified,HttpRequestParserTest
+208,146510094,fillOneGPDBWritableField,"(OneField oneField, int colIdx)",void,testFillOneGPDBWritableField,BridgeOutputBuilderTest
+209,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,providedTypeModsLessThanTypeModCountFails,HttpRequestParserTest
+210,146510094,getInstance,(),SecureLogin,testSingleton,SecureLoginTest
+211,146510094,getComparator,"(int type, OperandNode data)",ByteArrayComparable,testFilterWithIncompatiblePredicate,HBaseFilterBuilderTest
+212,146510094,getPlugins,(String profileName),"Map<String, String>",undefinedProfile,ProfilesConfTest
+213,146510094,doFilter,"(final ServletRequest request, final ServletResponse response, final FilterChain chain)",void,determineRemoteUser_IsGpdbUser_NoKerberos_Impersonation_NoServiceUser,SecurityServletFilterTest
+214,146510094,getConnection,"(String server, String jdbcUrl, Properties connectionConfiguration, boolean isPoolEnabled, Properties poolConfiguration, String qualifier)",Connection,testGetConnectionPoolDisabled,ConnectionManagerTest
+215,146510094,getFragmentStats,(),FragmentStats,testGetFragmentStatsIsUnsupported,BaseFragmenterTest
+216,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnRead_WithUserProvidedSchema_Json_HCFS_Spaces,AvroUtilitiesTest
+217,146510094,getComparator,"(int type, OperandNode data)",ByteArrayComparable,parseIsNotNullExpression,HBaseFilterBuilderTest
+218,146510094,getInputSerialization,(RequestContext context),InputSerialization,testRecordDelimiter,S3SelectAccessorTest
+219,146510094,getInstance,(),ConnectionManager,testSingletonInstance,ConnectionManagerTest
+220,146510094,doFilter,"(final ServletRequest request, final ServletResponse response, final FilterChain chain)",void,throwsWhenRequiredSegIdHeaderIsEmpty,SecurityServletFilterTest
+221,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnRead_WithUserProvidedSchema_Json_FullPathToLocalFile_Spaces,AvroUtilitiesTest
+222,146510094,getInputSerialization,(RequestContext context),InputSerialization,testJSONInputSerialization,S3SelectAccessorTest
+223,146510094,initialize,(RequestContext requestContext),void,testGetFields_Primitive_With_Projection,ParquetResolverTest
+224,146510094,initConfiguration,"(String configDirectory, String serverName, String userName, Map<String, String> additionalProperties)",Configuration,testConfigurationsLoadedAndOptionsAdded,BaseConfigurationFactoryTest
+225,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testExcluded1,EnumPartitionTest
+226,146510094,doFilter,"(final ServletRequest request, final ServletResponse response, final FilterChain chain)",void,determineRemoteUser_IsServiceUser_NoKerberos_NoImpersonation_ServiceUser,SecurityServletFilterTest
+227,146510094,aggregateOptimizationsSupported,(RequestContext requestContext),boolean,useStats,UtilitiesTest
+228,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnWrite_WithUserProvidedSchema_Json_OnClasspath_Spaces,AvroUtilitiesTest
+229,146510094,readNextObject,(),OneRow,testReadFromQuotedCsvFileFileAsRow,QuotedLineBreakAccessorTest
+230,146510094,parseFileSplit,(RequestContext requestContext),FileSplit,testParseFileSplit,HdfsUtilitiesTest
+231,146510094,initialize,(RequestContext context),void,testSkipHeaderCountIsNotANaturalNumber,LineBreakAccessorTest
+232,146510094,makeInput,(DataInput inputStream),List<OneField>,makeInputBigArray,BridgeInputBuilderTest
+233,146510094,readLine,"(Writable str, int maxBytesToConsume)",int,readOneLine,ChunkReaderTest
+234,146510094,getConnection,"(String server, String jdbcUrl, Properties connectionConfiguration, boolean isPoolEnabled, Properties poolConfiguration, String qualifier)",Connection,testGetConnectionPoolEnabledMaxConnOne,ConnectionManagerTest
+235,146510094,isFragmenterCacheEnabled,(),boolean,testFragmenterCachePropertyAbsent,UtilitiesTest
+236,146510094,traverse,"(Node node, TreeVisitor... visitors)",Node,testPruningRightNodeDuringVisit,TreeTraverserTest
+237,146510094,getUserGroupInformation,"(SessionId session, boolean isProxyUser)",UserGroupInformation,getSameUGITwiceUsesCache,UGICacheTest
+238,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnWrite_WithUserProvidedSchema_Json_HCFS,AvroUtilitiesTest
+239,146510094,openForRead,(),boolean,testReadFromQueryFailsWhenQueryFileIsEmpty,JdbcAccessorTest
+240,146510094,rightTrimWhiteSpace,(String s),String,testRightTrimWhitespace,UtilitiesTest
+241,146510094,buildSelectQuery,(),String,testNamedQueryColumnProjection,SQLQueryBuilderTest
+242,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnWrite_WithUserProvidedSchema_Binary_FullPathToLocalFile_Spaces,AvroUtilitiesTest
+243,146510094,getInstance,(),BaseConfigurationFactory,testGetInstance,BaseConfigurationFactoryTest
+244,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,testWireFormatAndFormatArePresent,HttpRequestParserTest
+245,146510094,openForRead,(),boolean,testGetFragmentsAndReadFromQueryWithPartitions,JdbcAccessorTest
+246,146510094,getMetadata,(String pattern),List<Metadata>,getTableMetadataWithIncompatibleTables,HiveMetadataFetcherTest
+247,146510094,openForWrite,(),boolean,testFailsOnOpenForWrite,S3SelectAccessorTest
+248,146510094,formatResponse,"(List<Metadata> metadataList, String path)",MetadataResponse,formatResponseStringNull,MetadataResponseFormatterTest
+249,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnWrite_WithUserProvidedSchema_Binary_OnClasspath,AvroUtilitiesTest
+250,146510094,hashCode,(),int,testEquality,LoginSessionTest
+251,146510094,updateImpersonationPropertyInHiveJdbcUrl,"(String url, String user)",String,testURLWithoutImpersonationPropertyAndWithQuestionMark,HiveJdbcUtilsTest
+252,146510094,setStatsSampleRatio,(float statsSampleRatio),void,testStatsSampleRatioFailsOnLessThanOneTenThousand,RequestContextTest
+253,146510094,getUserGroupInformation,"(SessionId session, boolean isProxyUser)",UserGroupInformation,anySegmentIdIsValid,UGICacheTest
+254,146510094,getInputSerialization,(RequestContext context),InputSerialization,testFileHeaderInfoIsNone,S3SelectAccessorTest
+255,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,contextCreated,HttpRequestParserTest
+256,146510094,readNextObject,(),OneRow,testReadFromEmptyFileFileAsRow,QuotedLineBreakAccessorTest
+257,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnRead_WhenUserProvidedSchema_Binary_OnClasspath,AvroUtilitiesTest
+258,146510094,makeOutput,(List<OneField> recFields),LinkedList<Writable>,testCSVSerialization,BridgeOutputBuilderTest
+259,146510094,readNextObject,(),OneRow,testReadFromEmptyFile,QuotedLineBreakAccessorTest
+260,146510094,parseFragmentMetadata,(RequestContext context),FragmentMetadata,parseFragmentMetadata,UtilitiesTest
+261,146510094,isUserImpersonationEnabled,(Configuration configuration),boolean,testServerConfigurationImpersonationOverwritesGlobalTrue,SecureLoginTest
+262,146510094,getComparator,"(int type, OperandNode data)",ByteArrayComparable,testSimpleColumnOperator,HBaseFilterBuilderTest
+263,146510094,getOptionMappings,(String profileName),"Map<String, String>",testOptionMappingsEmptyMapping,ProfilesConfTest
+264,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,testEncodedHeaderValuesIsTrue,HttpRequestParserTest
+265,146510094,maskPassword,(String password),String,testMaskPassword,ConnectionManagerTest
+266,146510094,initialize,(RequestContext context),void,testPartitionByFormatInvalid,JdbcPartitionFragmenterTest
+267,146510094,getMetadata,(String pattern),List<Metadata>,getTableMetadataWithMultipleTables,HiveMetadataFetcherTest
+268,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,testInvalidHandlerCausesException,HttpRequestParserTest
+269,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,typeModNonIntegerFails,HttpRequestParserTest
+270,146510094,withNewline,(String newline),GreenplumCSV,testCsvOptionWithNewlineInvalid,GreenplumCSVTest
+271,146510094,getOption,"(String option, String defaultValue)",String,testReturnDefaultNaturalIntOptionValue,RequestContextTest
+272,146510094,getFragments,"(@Context final ServletContext servletContext,
+                                 @Context final HttpHeaders headers)",Response,getSameFragmenterCallTwiceUsesCache,FragmenterResourceTest
+273,146510094,isFragmenterCacheEnabled,(),boolean,testFragmenterCachePropertyFoo,UtilitiesTest
+274,146510094,getOption,"(String option, String defaultValue)",String,testReturnDefaultIntOptionValue,RequestContextTest
+275,146510094,openForRead,(),boolean,testReadFromQueryFailsWhenServerDirectoryIsNotSpecified,JdbcAccessorTest
+276,146510094,toCsvField,"(String s, boolean prependQuoteChar, boolean appendQuoteChar)",String,testToCsvFieldEmptyString,GreenplumCSVTest
+277,146510094,getRecordReader,"(InputSplit split,
+                                        JobConf conf,
+                                        Reporter reporter)",RecordReader,testGetRecordReader,PxfInputFormatTest
+278,146510094,buildSelectQuery,(),String,testSimpleNamedQuery,SQLQueryBuilderTest
+279,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testRightBoundedInclusive,IntPartitionTest
+280,146510094,getInputSerialization,(RequestContext context),InputSerialization,testParquetInputSerialization,S3SelectAccessorTest
+281,146510094,getNext,(),Writable,getNextRecord100000Records30Sample,ReadSamplingBridgeTest
+282,146510094,isSecurityEnabled,(Configuration configuration),boolean,testSecurityIsEnabledWithKerberosAuthentication,UtilitiesTest
+283,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnRead_WithUserProvidedSchema_Binary_FullPathToLocalFile,AvroUtilitiesTest
+284,146510094,validateTypeCompatible,"(DataType gpdbDataType, Integer[] gpdbTypeMods, String hiveType, String gpdbColumnName)",void,validateSchema,HiveUtilitiesTest
+285,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnWrite_WithUserProvidedSchema_Json_FullPathToLocalFile_Spaces,AvroUtilitiesTest
+286,146510094,doFilter,"(final ServletRequest request, final ServletResponse response, final FilterChain chain)",void,tellsTheUGICacheToCleanItselfOnTheLastCallForASegment,SecurityServletFilterTest
+287,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,typeModCountNonIntegerFails,HttpRequestParserTest
+288,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testIsNotNull,NullPartitionTest
+289,146510094,reloginFromKeytab,"(String serverName, LoginSession loginSession)",void,testReloginFromKeytabNoopForNonKerberos,PxfUserGroupInformationTest
+290,146510094,getFragments,"(@Context final ServletContext servletContext,
+                                 @Context final HttpHeaders headers)",Response,testFragmenterCallExpiresAfterTimeout,FragmenterResourceTest
+291,146510094,getFragments,(),List<Fragment>,testFragmenterReturnsListOfFiles,HdfsFileFragmenterTest
+292,146510094,extractTableFromName,(String qualifiedName),Metadata.Item,parseTableQualifiedNameNoDbName,HiveClientWrapperTest
+293,146510094,isUserImpersonationEnabled,(Configuration configuration),boolean,testGlobalImpersonationPropertyFalse,SecureLoginTest
+294,146510094,closeForWrite,(),void,testFailsOnCloseForWrite,S3SelectAccessorTest
+295,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnRead_WhenUserProvidedSchema_Binary_NotFound,AvroUtilitiesTest
+296,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnWrite_WithUserProvidedSchema_Binary_FullPathToLocalFile,AvroUtilitiesTest
+297,146510094,hashCode,(),int,testPoolDescriptorHashCodeAndEquals,PoolDescriptorTest
+298,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,getFragmentMetadata,HttpRequestParserTest
+299,146510094,getDelimiterCode,(StorageDescriptor sd),Integer,getDelimiterCode,HiveClientWrapperTest
+300,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnWrite_WithUserProvidedSchema_Binary_NotFound,AvroUtilitiesTest
+301,146510094,getConnection,"(String server, String jdbcUrl, Properties connectionConfiguration, boolean isPoolEnabled, Properties poolConfiguration, String qualifier)",Connection,testGetConnectionPoolEnabledNoPoolProps,ConnectionManagerTest
+302,146510094,mapHiveType,(FieldSchema hiveColumn),Metadata.Field,mapHiveTypeInvalidModifiers,HiveUtilitiesTest
+303,146510094,traverse,"(Node node, TreeVisitor... visitors)",Node,testChainingVisitors,TreeTraverserTest
+304,146510094,setServerName,(String serverName),void,testInvalidServerName,RequestContextTest
+305,146510094,getPlugins,(String profileName),"Map<String, String>",emptyProfileFile,ProfilesConfTest
+306,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testRightBounded,IntPartitionTest
+307,146510094,openForRead,(),boolean,testReadFromQueryFailsWhenQueryFileIsNotFoundInExistingDirectory,JdbcAccessorTest
+308,146510094,isValidRestrictedDirectoryName,(String name),boolean,invalidRestrictedDirectoryName,UtilitiesTest
+309,146510094,withDelimiter,(String delimiterString),GreenplumCSV,testCsvOptionWithDelimiterInvalid,GreenplumCSVTest
+310,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnWrite_WithUserProvidedSchema_Json_HCFS_Spaces,AvroUtilitiesTest
+311,146510094,getProtocol,(String profileName),String,testGetProtocol,ProfilesConfTest
+312,146510094,doFilter,"(final ServletRequest request, final ServletResponse response, final FilterChain chain)",void,throwsWhenRequiredUserIdHeaderIsMissing,SecurityServletFilterTest
+313,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testLeftBounded,IntPartitionTest
+314,146510094,generateBaseCSVRequest,(RequestContext context),SelectObjectContentRequest,testFailsToParseNullDataSource,S3SelectAccessorTest
+315,146510094,isSecurityEnabled,(Configuration configuration),boolean,testSecurityIsDisabledWithSimpleAuthentication,UtilitiesTest
+316,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,testWireFormatIsPresent,HttpRequestParserTest
+317,146510094,convertTextDataToLines,(byte[] val),void,convertTextDataToLines,BridgeOutputBuilderTest
+318,146510094,dataToString,"(FragmentStats stats, String datapath)",String,dataToString,FragmentStatsTest
+319,146510094,getPlugins,(String profileName),"Map<String, String>",missingOptionalProfileFile,ProfilesConfTest
+320,146510094,formatResponse,"(List<Metadata> metadataList, String path)",MetadataResponse,formatResponseStringWithSourceType,MetadataResponseFormatterTest
+321,146510094,initialize,(RequestContext requestContext),void,testFileAsRowFailsWithMoreThanOneColumn,QuotedLineBreakAccessorTest
+322,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,nullUserThrowsException,HttpRequestParserTest
+323,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,testHandlerIsNotCalledWhenNotDefined,HttpRequestParserTest
+324,146510094,openForRead,(),boolean,testReadFromQueryWithPartitions,JdbcAccessorTest
+325,146510094,traverse,"(Node node, TreeVisitor... visitors)",Node,testPruningRootNodeDuringBefore,TreeTraverserTest
+326,146510094,setFields,(List<OneField> record),OneRow,testSetFieldsEmptyByteArray,StringPassResolverTest
+327,146510094,readChunk,"(Writable str, int maxBytesToConsume)",int,readChunk,ChunkReaderTest
+328,146510094,initConfiguration,"(String configDirectory, String serverName, String userName, Map<String, String> additionalProperties)",Configuration,testConfigurationSetsServerDirectoryPath,BaseConfigurationFactoryTest
+329,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnRead_WhenUserProvidedSchema_Binary_NotFound_Spaces,AvroUtilitiesTest
+330,146510094,append,(byte[] app),void,append,BufferWritableTest
+331,146510094,getInputSerialization,(RequestContext context),InputSerialization,testQuoteEscapeCharacter,S3SelectAccessorTest
+332,146510094,getUserGroupInformation,"(SessionId session, boolean isProxyUser)",UserGroupInformation,getTwoUGIsWithDifferentUsers,UGICacheTest
+333,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,testInvalidStatsMaxFragmentsValue,HttpRequestParserTest
+334,146510094,initConfiguration,"(String configDirectory, String serverName, String userName, Map<String, String> additionalProperties)",Configuration,testConfigurationsLoadedFromMultipleFilesForDefaultServer,BaseConfigurationFactoryTest
+335,146510094,isValidRestrictedDirectoryName,(String name),boolean,validRestrictedDirectoryName,UtilitiesTest
+336,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,whitelistedOptionsAreAddedAsProperties,HttpRequestParserTest
+337,146510094,extractTableFromName,(String qualifiedName),Metadata.Item,parseTableQualifiedName,HiveClientWrapperTest
+338,146510094,getHost,(String uri),String,testGetHost,UtilitiesTest
+339,146510094,toCsvField,"(String s, boolean prependQuoteChar, boolean appendQuoteChar)",String,testToCsvFieldNull,GreenplumCSVTest
+340,146510094,toCsvField,"(String s, boolean prependQuoteChar, boolean appendQuoteChar)",String,testToCsvDoesNotAddPrefixAndSuffixWhenSkipIfQuotingIsNotNeeded,GreenplumCSVTest
+341,146510094,initialize,(RequestContext requestContext),void,testGetFields_Primitive_RepeatedString,ParquetResolverTest
+342,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testSpecialDateValue,DatePartitionTest
+343,146510094,traverse,"(Node node, TreeVisitor... visitors)",Node,testPruningRootNodeDuringVisit,TreeTraverserTest
+344,146510094,updateImpersonationPropertyInHiveJdbcUrl,"(String url, String user)",String,testURLWithoutImpersonationProperty,HiveJdbcUtilsTest
+345,146510094,updateImpersonationPropertyInHiveJdbcUrl,"(String url, String user)",String,testImpersonationPropertyAfterHash,HiveJdbcUtilsTest
+346,146510094,doFilter,"(final ServletRequest request, final ServletResponse response, final FilterChain chain)",void,throwsWhenRequiredUserIdHeaderIsEmpty,SecurityServletFilterTest
+347,146510094,toCompatibleHiveType,"(DataType type, Integer[] modifiers)",String,testCompatibleHiveTypeWithModifiers,HiveUtilitiesTest
+348,146510094,fillGPDBWritable,(List<OneField> recFields),void,testFillGPDBWritable,BridgeOutputBuilderTest
+349,146510094,readLine,"(Writable str, int maxBytesToConsume)",int,readEmptyFile,ChunkReaderTest
+350,146510094,setStatsSampleRatio,(float statsSampleRatio),void,testStatsSampleRatioFailsOnOver1,RequestContextTest
+351,146510094,parse,(String filterString),Node,testNullFilterString,FilterParserTest
+352,146510094,isSecurityEnabled,(Configuration configuration),boolean,testSecurityIsDisabledOnNewConfiguration,UtilitiesTest
+353,146510094,updateImpersonationPropertyInHiveJdbcUrl,"(String url, String user)",String,testURLWithoutImpersonationPropertyAndWithHash,HiveJdbcUtilsTest
+354,146510094,openForRead,(),boolean,testReadFromQueryFailsWhenServerDirectoryDoesNotExist,JdbcAccessorTest
+355,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testExcluded2,EnumPartitionTest
+356,146510094,getUserGroupInformation,"(SessionId session, boolean isProxyUser)",UserGroupInformation,getProxyUGIFromEmptyCache,UGICacheTest
+357,146510094,mapHiveType,(FieldSchema hiveColumn),Metadata.Field,mapHiveTypeWithModifiers,HiveUtilitiesTest
+358,146510094,getValue,(),String,testConstructor,ScalarOperandNodeTest
+359,146510094,getLoginUser,"(RequestContext context, Configuration configuration)",UserGroupInformation,testLoginKerberosFailsWhenNoPrincipal,SecureLoginTest
+360,146510094,getPlugins,(String profileName),"Map<String, String>",duplicateProfileDefinition,ProfilesConfTest
+361,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testNormal,DatePartitionTest
+362,146510094,updateImpersonationPropertyInHiveJdbcUrl,"(String url, String user)",String,testURLWithImpersonationPropertyAndHash,HiveJdbcUtilsTest
+363,146510094,generateSamplingBitSet,"(int poolSize, int sampleSize)",BitSet,generateSamplingBitSetBig,AnalyzeUtilsTest
+364,146510094,doFilter,"(final ServletRequest request, final ServletResponse response, final FilterChain chain)",void,throwsWhenRequiredSegIdHeaderIsMissing,SecurityServletFilterTest
+365,146510094,updateImpersonationPropertyInHiveJdbcUrl,"(String url, String user)",String,testURLWithImpersonationPropertyStart,HiveJdbcUtilsTest
+366,146510094,isUserImpersonationEnabled,(Configuration configuration),boolean,testGlobalImpersonationPropertyTrue,SecureLoginTest
+367,146510094,get,"(InputFormat inputFormat, boolean hasComplexTypes, String userProfileName)",String,get,ProfileFactoryTest
+368,146510094,getNext,(),Writable,getNextRecord350Records50Percent,ReadSamplingBridgeTest
+369,146510094,getPlugins,(String profileName),"Map<String, String>",missingMandatoryProfileFile,ProfilesConfTest
+370,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnWrite_WithUserProvidedSchema_Json_OnClasspath,AvroUtilitiesTest
+371,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,pluginsRedefinedByProfileFails,HttpRequestParserTest
+372,146510094,getPlugins,(String profileName),"Map<String, String>",overrideProfile,ProfilesConfTest
+373,146510094,getUserGroupInformation,"(SessionId session, boolean isProxyUser)",UserGroupInformation,getUGIWithEquivalentSessionsReturnsTheSameInstance,UGICacheTest
+374,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnRead_WithUserProvidedSchema_Json_OnClasspath_Spaces,AvroUtilitiesTest
+375,146510094,getUserGroupInformation,"(SessionId session, boolean isProxyUser)",UserGroupInformation,getProxyUGIWithEquivalentSessionsReturnsTheSameInstance,UGICacheTest
+376,146510094,makeInput,(DataInput inputStream),List<OneField>,makeInputEmptyStream,BridgeInputBuilderTest
+377,146510094,initialize,(RequestContext requestContext),void,testInitialize,JsonResolverTest
+378,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnWrite_WithUserProvidedSchema_Binary_HCFS_Spaces,AvroUtilitiesTest
+379,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testInvalidNullDbProduct,DatePartitionTest
+380,146510094,doFilter,"(final ServletRequest request, final ServletResponse response, final FilterChain chain)",void,throwsWhenRequiredTxnIdHeaderIsMissing,SecurityServletFilterTest
+381,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,getFragmentMetadataNull,HttpRequestParserTest
+382,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,testInvalidStatsSampleRatioValue,HttpRequestParserTest
+383,146510094,initialize,(RequestContext requestContext),void,testGetFields_Primitive,ParquetResolverTest
+384,146510094,getOptionMappings,(String profileName),"Map<String, String>",testOptionMappingsMissingMapping,ProfilesConfTest
+385,146510094,getOptions,(),"Map<String, String>",testReturnsUnmodifiableOptionsMap,RequestContextTest
+386,146510094,toString,(),String,testToString,CollectionOperandNodeTest
+387,146510094,isUserImpersonationEnabled,(Configuration configuration),boolean,testServerConfigurationImpersonationPropertyTrue,SecureLoginTest
+388,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnRead_WithUserProvidedSchema_Json_FullPathToLocalFile,AvroUtilitiesTest
+389,146510094,formatResponse,"(List<Metadata> metadataList, String path)",MetadataResponse,formatResponseString,MetadataResponseFormatterTest
+390,146510094,mapHiveType,(FieldSchema hiveColumn),Metadata.Field,mapHiveTypeComplex,HiveUtilitiesTest
+391,146510094,formatResponse,"(List<Metadata> metadataList, String path)",MetadataResponse,formatResponseStringWithMultiplePathsAndItems,MetadataResponseFormatterTest
+392,146510094,getFragments,(),List<Fragment>,testFragmenterErrorsWhenPathDoesNotExist,HdfsFileFragmenterTest
+393,146510094,initialize,(RequestContext requestContext),void,testInitialize,ParquetResolverTest
+394,146510094,parseRequest,"(HttpHeaders request, RequestContext.RequestType requestType)",RequestContext,testEncodedHeaderValuesIsFalse,HttpRequestParserTest
+395,146510094,toString,(),String,testToString,ColumnIndexOperandNodeTest
+396,146510094,isUserImpersonationEnabled,(Configuration configuration),boolean,testServerConfigurationImpersonationPropertyTRUE,SecureLoginTest
+397,146510094,getOption,"(String option, String defaultValue)",String,testReturnDefaultBooleanOptionValue,RequestContextTest
+398,146510094,mapHiveType,(FieldSchema hiveColumn),Metadata.Field,mapHiveTypeSimple,HiveUtilitiesTest
+399,146510094,doFilter,"(final ServletRequest request, final ServletResponse response, final FilterChain chain)",void,cleansUGICacheWhenTheFilterExecutionThrowsAnUndeclaredThrowableException,SecurityServletFilterTest
+400,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnWrite_WithUserProvidedSchema_Binary_NotFound_Spaces,AvroUtilitiesTest
+401,146510094,toString,"(List<OneField> complexRecord, String delimiter)",String,testToString,HdfsUtilitiesTest
+402,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnWrite_WithUserProvidedSchema_Json_NotFound_Spaces,AvroUtilitiesTest
+403,146510094,index,(),int,testConstructor,ColumnIndexOperandNodeTest
+404,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnRead,AvroUtilitiesTest
+405,146510094,mapHiveType,(FieldSchema hiveColumn),Metadata.Field,mapHiveTypeUnsupported,HiveUtilitiesTest
+406,146510094,toSqlConstraint,"(String quoteString, DbProduct dbProduct)",String,testInvalidNullQuoteString,DatePartitionTest
+407,146510094,getOption,"(String option, String defaultValue)",String,testReturnDefaultOptionValue,RequestContextTest
+408,146510094,updateImpersonationPropertyInHiveJdbcUrl,"(String url, String user)",String,testURLWithoutProperties,HiveJdbcUtilsTest
+409,146510094,emitAggObject,(),OneRow,emitAggObjectCountStatsNotInitialized,HiveORCAccessorTest
+410,146510094,initialize,(RequestContext requestContext),void,testGetFields_Primitive_Repeated_Synthetic,ParquetResolverTest
+411,146510094,obtainSchema,"(RequestContext context, Configuration configuration, HcfsType hcfsType)",Schema,testObtainSchema_OnRead_WhenUserProvidedSchema_Json_NotFound_Spaces,AvroUtilitiesTest
+412,146510094,doFilter,"(final ServletRequest request, final ServletResponse response, final FilterChain chain)",void,determineRemoteUser_IsGpdbUser_Kerberos_Impersonation_NoServiceUser,SecurityServletFilterTest

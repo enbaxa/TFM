@@ -1,0 +1,269 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,14490363,generateCSVFromLastestJSONFiltered,"(String queryString, 
+			@QueryParam(""collectionCode"") String collectionCode, 
+			@QueryParam(""exportLimit"") Integer exportLimit,
+			@QueryParam(""removeRetweet"") boolean removeRetweet,
+			@QueryParam(""userName"") String userName)",Response,testWithInvalidCollectionCodeInGenerateCSVFromLastestJSONFiltered,Persister4TaggerAPITest
+1,14490363,generateTweetsIDSJSONFromAllJSON,"(@QueryParam(""collectionCode"") String collectionCode,
+    			@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited,
+    			@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType)",Response,testGenerateTweetsIDSJSONFromAllJSON,Persister4CollectorAPITest
+2,14490363,getAttributeByID,(Long attributeID),NominalAttributeDTO,testGetAttributeByID,TestNominalAttributeResourceFacadeImp
+3,14490363,generateTweetsIDSCSVFromAllJSON,"(@QueryParam(""collectionCode"") String collectionCode,
+    		@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited)",Response,testNullPointerExceptionOnInvalidCollectionCodeInGenerateTweetsIDSCSVFromAllJSON,Persister4CollectorAPITest
+4,14490363,streamChunkedResponse,"(
+			@PathParam(""crisisCode"") String channelCode,
+			@QueryParam(""callback"") final String callbackName,
+			@DefaultValue(""-1"") @QueryParam(""rate"") Float rate,
+			@DefaultValue(""-1"") @QueryParam(""duration"") String duration)",ChunkedOutput<String>,streamChunkedResponseTest,AsyncStreamTest
+5,14490363,insertOneTaskAssignment,"(Long documentID, Long userID)",int,testInsertOneTaskAssignment,TestTaskAssignmentResourceFacadeImp
+6,14490363,getModelByModelFamilyID,"(Long modelFamilyID, Integer start, Integer limit)",List<ModelHistoryWrapper>,testGetModelByModelFamilyID,TestModelResourceFacadeImp
+7,14490363,returnJedis,(Jedis jedisInstance),void,returnJedisTest,JedisConnectionObjectTest
+8,14490363,generateCSVFromLastestJSONFiltered,"(String queryString, 
+			@QueryParam(""collectionCode"") String collectionCode, 
+			@QueryParam(""exportLimit"") Integer exportLimit,
+			@QueryParam(""removeRetweet"") boolean removeRetweet,
+			@QueryParam(""userName"") String userName)",Response,testOverloadedMethodGenerateCSVFromLastestJSONFiltered,Persister4TaggerAPITest
+9,14490363,getUserById,(Long id),UsersDTO,testGetUserById,TestUsersResourceFacadeImp
+10,14490363,getPendingTaskCount,(Long userID),Integer,testGetPendingTaskCount,TestTaskAssignmentResourceFacadeImp
+11,14490363,editNominalLabel,(NominalLabelDTO nominalLabel),NominalLabelDTO,testEditNominalLabel,TestNominalLabelResourceFacadeImp
+12,14490363,findByCriteria,"(String columnName, Object value)",List<DocumentDTO>,testFindByCriteria,TestDocumentResourceFacadeImp
+13,14490363,getCustomUITemplateByCrisisIDAndAttributeID,"(long crisisID, long attributeID)",List<CustomUiTemplateDTO>,testGetCustomUITemplateByCrisisIDAndAttributeID,TestCustomUiTemplateResourceFacadeImp
+14,14490363,getLatestBufferedAIDRData,"(@QueryParam(""callback"") String callbackName,
+			@DefaultValue(""1"") @QueryParam(""count"") Integer count,
+			@DefaultValue(""0.7"") @QueryParam(""confidence"") Float confidence,
+			@DefaultValue(""true"") @QueryParam(""balanced_sampling"") Boolean balanced_sampling)",Response,getLatestBufferedAIDRDataTest,TestGetBufferedAIDRData
+15,14490363,getBufferedAIDRData,"(@PathParam(""crisisCode"") String channelCode,
+			@QueryParam(""callback"") String callbackName,
+			@DefaultValue(""1000"") @QueryParam(""count"") int count)",Response,getBufferedAIDRDataTest,TestGetBufferedAIDRData
+16,14490363,getAllNominalLabels,(),List<NominalLabelDTO>,testGetAllNominalLabels,TestNominalLabelResourceFacadeImp
+17,14490363,deleteDocument,(DocumentDTO doc),Integer,testDeleteDocument,TestDocumentResourceFacadeImp
+18,14490363,getJedisResource,(),Jedis,getJedisResourceTest,JedisConnectionObjectTest
+19,14490363,addCrisisType,(CrisisTypeDTO crisisType),CrisisTypeDTO,testAddCrisisType,TestCrisisTypeResourceFacadeImp
+20,14490363,deleteNominalLabel,(NominalLabelDTO nominalLabel),Integer,testDeleteNominalLabel,TestNominalLabelResourceFacadeImp
+21,14490363,generateTweetsIDSJSONFromAllJSONFiltered,"(String queryString, 
+			@QueryParam(""collectionCode"") String collectionCode, 
+			@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited,
+			@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType,
+			@QueryParam(""userName"") String userName)",Response,testGenerateTweetsIDSJSONFromAllJSONFiltered,Persister4TaggerAPITest
+22,14490363,getCustomUITemplateBasedOnTypeByCrisisID,"(long crisisID, int templateType)",List<CustomUiTemplateDTO>,testGetCustomUITemplateBasedOnTypeByCrisisID,TestCustomUiTemplateResourceFacadeImp
+23,14490363,getLastMessages,"(String channelName, int msgCount)",List<String>,getLastMessagesTest,ChannelBufferManagerTest
+24,14490363,generateCSVFromLastestJSONFiltered,"(String queryString, 
+			@QueryParam(""collectionCode"") String collectionCode, 
+			@QueryParam(""exportLimit"") Integer exportLimit,
+			@QueryParam(""removeRetweet"") boolean removeRetweet,
+			@QueryParam(""userName"") String userName)",Response,testGenerateCSVFromLastestJSONFiltered,Persister4TaggerAPITest
+25,14490363,task2query,(TwitterCollectionTask collectionTask),FilterQuery,testTask2Query,TwitterStreamTrackerTest
+26,14490363,generateTweetsIDSCSVFromAllJSON,"(@QueryParam(""collectionCode"") String collectionCode,
+			@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited)",Response,testNullPointerExceptionOnInvalidCollectionCodeInGenerateTweetsIDSCSVFromAllJSON,Persister4TaggerAPITest
+27,14490363,addCustomUITemplate,(CustomUiTemplateDTO customUITemplate),CustomUiTemplateDTO,testAddCustomUITemplate,TestCustomUiTemplateResourceFacadeImp
+28,14490363,isChannelPresent,(String channel),boolean,isChannelPresentTest,TestGetBufferedAIDRData
+29,14490363,generateTweetsIDSCSVFromAllJSONFiltered,"(String queryString, 
+			@QueryParam(""collectionCode"") String collectionCode,
+			@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited,
+			@QueryParam(""userName"") String userName)",Response,testOverloadedMethodGenerateTweetsIDSCSVFromAllJSONFiltered,Persister4TaggerAPITest
+30,14490363,deleteModelFamily,(Long modelFamilyID),boolean,testDeleteModelFamily,TestModelFamilyResourceFacadeImp
+31,14490363,generateTweetsIDSJSONFromAllJSONFiltered,"(String queryString, 
+			@QueryParam(""collectionCode"") String collectionCode, 
+			@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited,
+			@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType,
+			@QueryParam(""userName"") String userName)",Response,testNullPointerExceptionOnInvalidDownloadLimitedInGenerateTweetsIDSJSONFromAllJSONFiltered,Persister4TaggerAPITest
+32,14490363,getActiveChannelsList,(),Set<String>,getActiveChannelsListTest,ChannelBufferManagerTest
+33,14490363,getModelFamilyByID,(Long id),ModelFamilyDTO,testGetModelFamilyByID,TestModelFamilyResourceFacadeImp
+34,14490363,generateTweetsIDSJSONFromAllJSON,"(@QueryParam(""collectionCode"") String collectionCode,
+			@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited,
+			@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType)",Response,testGenerateTweetsIDSJSONFromAllJSON,Persister4TaggerAPITest
+35,14490363,generateTweetsIDSJSONFromAllJSONFiltered,"(String queryString, 
+			@QueryParam(""collectionCode"") String collectionCode, 
+			@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited,
+			@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType,
+			@QueryParam(""userName"") String userName)",Response,testNullPointerExceptionOnInvalidJsonTypeInGenerateTweetsIDSJSONFromAllJSONFiltered,Persister4TaggerAPITest
+36,14490363,generateTweetsIDSCSVFromAllJSONFiltered,"(String queryString, 
+			@QueryParam(""collectionCode"") String collectionCode,
+			@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited,
+			@QueryParam(""userName"") String userName)",Response,testGenerateTweetsIDSCSVFromAllJSONFiltered,Persister4TaggerAPITest
+37,14490363,getAllDocuments,(),List<DocumentDTO>,testGetAllDocuments,TestDocumentResourceFacadeImp
+38,14490363,generateCSVFromLastestJSON,"(@QueryParam(""collectionCode"") String collectionCode, 
+			@QueryParam(""exportLimit"") int exportLimit)",Response,testNullPointerExceptionOnInvalidCollectionCodeInGenerateCSVFromLastestJSON,Persister4TaggerAPITest
+39,14490363,isAttributeExists,(String attributeCode),Long,testIsAttributeExists,TestNominalAttributeResourceFacadeImp
+40,14490363,getAllModels,(),List<ModelDTO>,testGetAllModels,TestModelResourceFacadeImp
+41,14490363,findAllCrisisByUserID,(Long id),List<CollectionDTO>,testFindAllCrisisByUserId,TestUsersResourceFacadeImp
+42,14490363,isPoolSetup,(),boolean,isPoolSetupTest,JedisConnectionObjectTest
+43,14490363,generateTweetsIDSJSONFromAllJSONFiltered,"(String queryString, 
+			@QueryParam(""collectionCode"") String collectionCode, 
+			@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited,
+			@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType,
+			@QueryParam(""userName"") String userName)",Response,testNullPointerExceptionOnInvalidCollectionCodeInGenerateTweetsIDSJSONFromAllJSONFiltered,Persister4TaggerAPITest
+44,14490363,isDocumentExists,(Long id),boolean,testIsDocumentExists,TestDocumentResourceFacadeImp
+45,14490363,getTraningDataByCrisisAndAttribute,"(Long crisisID, Long modelFamilyID, int fromRecord, int limit,
+			String sortColumn, String sortDirection)",List<TrainingDataDTO>,testGetTraningDataByCrisisAndAttribute,TestMiscResourceFacadeImp
+46,14490363,findLabeledDocumentByID,(Long id),DocumentNominalLabelDTO,testFindLabeledDocumentByID,TestDocumentNominalLabelResourceFacadeImp
+47,14490363,updateHasHumanLabel,(DocumentDTO document),void,testUpdateHasHumanLabel,TestDocumentResourceFacadeImp
+48,14490363,generateTweetsIDSJSONFromAllJSON,"(@QueryParam(""collectionCode"") String collectionCode,
+    			@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited,
+    			@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType)",Response,testNullPointerExceptionOnInvalidJsonTypeInGenerateTweetsIDSJSONFromAllJSON,Persister4CollectorAPITest
+49,14490363,getModelNominalLabelByID,(Long nominalLabelID),ModelNominalLabelDTO,testGetModelNominalLabelByID,TestModelNominalLabelResourceFacadeImp
+50,14490363,getAllModelFamiliesByCrisis,(Long crisisID),List<ModelFamilyDTO>,testGetAllModelFamiliesByCrisis,TestModelFamilyResourceFacadeImp
+51,14490363,isDocumentExists,(DocumentNominalLabelIdDTO id),boolean,testIsDocumentExists_Long,TestDocumentNominalLabelResourceFacadeImp
+52,14490363,generateJSONFromLastestJSON,"(@QueryParam(""collectionCode"") String collectionCode, 
+			@QueryParam(""exportLimit"") int exportLimit,
+			@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType)",Response,testGenerateJSONFromLastestJSON,Persister4TaggerAPITest
+53,14490363,generateTweetsIDSJSONFromAllJSON,"(@QueryParam(""collectionCode"") String collectionCode,
+			@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited,
+			@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType)",Response,testNullPointerExceptionOnInvalidJsonTypeInGenerateTweetsIDSJSONFromAllJSON,Persister4TaggerAPITest
+54,14490363,insertTaskAssignment,"(List<DocumentDTO> taskList, Long userID)",int,testInsertTaskAssignment,TestTaskAssignmentResourceFacadeImp
+55,14490363,addDocument,(DocumentNominalLabelDTO doc),DocumentNominalLabelDTO,testAddDocument,TestDocumentNominalLabelResourceFacadeImp
+56,14490363,getObjectMapper,(),ObjectMapper,testGetObjectMapper,FasterXmlWrapperTest
+57,14490363,undoTaskAssignment,"(List<DocumentDTO> taskList, Long userID)",int,testUndoTaskAssignmentByDocumentIdAndUserId,TestTaskAssignmentResourceFacadeImp
+58,14490363,generateJSONFromLastestJSONFiltered,"(String queryString, 
+			@QueryParam(""collectionCode"") String collectionCode, 
+			@QueryParam(""exportLimit"") Integer exportLimit,
+			@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType,
+			@QueryParam(""userName"") String userName,
+			@QueryParam(""removeRetweet"") boolean removeRetweet)",Response,testNullPointerExceptionOnInvalidJsonTypeInGenerateJSONFromLastestJSONFiltered,Persister4TaggerAPITest
+59,14490363,generateJSONFromLastestJSON,"(@QueryParam(""collectionCode"") String collectionCode,
+    		@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType)",Response,testNullPointerExceptionOnInvalidCollectionCodeInGenerateJSONFromLastestJSON,Persister4CollectorAPITest
+60,14490363,findByCriteria,"(String columnName, Object value)",List<DocumentNominalLabelDTO>,testFindByCriteria,TestDocumentNominalLabelResourceFacadeImp
+61,14490363,getAllModelFamilies,(),List<ModelFamilyDTO>,testGetAllModelFamilies,TestModelFamilyResourceFacadeImp
+62,14490363,getBufferedAIDRDataPostFilter,"(@PathParam(""crisisCode"") String channelCode,
+			@QueryParam(""callback"") String callbackName,
+			@DefaultValue(""1000"") @QueryParam(""count"") int count)",Response,getBufferedAIDRDataPostFilterTest,TestGetBufferedAIDRData
+63,14490363,getActiveChannelCodes,(),Set<String>,getActiveChannelCodesTest,ChannelBufferManagerTest
+64,14490363,isCrisisTypeExists,(Long id),boolean,testIsCrisisTypeExists,TestCrisisTypeResourceFacadeImp
+65,14490363,deleteUser,(Long id),Integer,testDeleteUser,TestUsersResourceFacadeImp
+66,14490363,generateCSVFromLastestJSON,"(@QueryParam(""collectionCode"") String collectionCode, 
+			@QueryParam(""exportLimit"") int exportLimit)",Response,testGenerateCSVFromLastestJSON,Persister4TaggerAPITest
+67,14490363,getDocumentWithAllFieldsByID,(Long id),DocumentDTO,testGetDocumentWithAllFieldsByID,TestDocumentResourceFacadeImp
+68,14490363,getWordsInStringWithBigrams,"(String inputText,
+			boolean useStemming)",String[],testGetWordsInStringWithBigrams,FeatureExtractorTest
+69,14490363,getLabeledDocumentCollectionForNominalLabel,(Integer nominalLabelID),List<DocumentNominalLabelDTO>,testGetLabeledDocumentCollectionForNominalLabel,TestDocumentNominalLabelResourceFacadeImp
+70,14490363,canProcess,(),boolean,testCanProcess1s,LoadShedderTest
+71,14490363,findCrisisTypeByID,(Long id),CrisisTypeDTO,testFindCrisisTypeByID,TestCrisisTypeResourceFacadeImp
+72,14490363,generateCSVFromLastestJSONFiltered,"(String queryString, 
+			@QueryParam(""collectionCode"") String collectionCode, 
+			@QueryParam(""exportLimit"") Integer exportLimit,
+			@QueryParam(""removeRetweet"") boolean removeRetweet,
+			@QueryParam(""userName"") String userName)",Response,testNullPointerExceptionOnInvalidCollectionCodeInGenerateCSVFromLastestJSONFiltered,Persister4TaggerAPITest
+73,14490363,deleteNominalLabelByID,(Long nominalLabelID),Integer,testDeleteNominalLabelByID,TestNominalLabelResourceFacadeImp
+74,14490363,getModelCountByModelFamilyID,(Long modelFamilyID),Integer,testGetModelCountByModelFamilyID,TestModelResourceFacadeImp
+75,14490363,editCrisisType,(CrisisTypeDTO crisisType),CrisisTypeDTO,testEditCrisisType,TestCrisisTypeResourceFacadeImp
+76,14490363,findDocumentsByCrisisID,(Long crisisId),List<DocumentDTO>,testFindDocumentsByCrisisID,TestDocumentResourceFacadeImp
+77,14490363,addAttribute,(NominalAttributeDTO attribute),NominalAttributeDTO,testAddAttribute,TestNominalAttributeResourceFacadeImp
+78,14490363,findTaskAssignment,"(Long documentID, Long userID)",TaskAssignmentDTO,testFindTaskAssignment,TestTaskAssignmentResourceFacadeImp
+79,14490363,canProcess,(),boolean,testCanProcess5s,LoadShedderTest
+80,14490363,getFilterName,(),String,testGetFilterName,FollowFilterTest
+81,14490363,test,(JsonObject t),boolean,testTest1,FollowFilterTest
+82,14490363,getAllDocuments,(),List<DocumentNominalLabelDTO>,testGetAllDocuments,TestDocumentNominalLabelResourceFacadeImp
+83,14490363,getNominalLabelByCode,(String code),NominalLabelDTO,testGetNominalLabelByCode,TestNominalLabelResourceFacadeImp
+84,14490363,undoTaskAssignment,"(List<DocumentDTO> taskList, Long userID)",int,testUndoTaskAssignmentByTaskMap,TestTaskAssignmentResourceFacadeImp
+85,14490363,generateTweetsIDSJSONFromAllJSON,"(@QueryParam(""collectionCode"") String collectionCode,
+    			@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited,
+    			@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType)",Response,testNullPointerExceptionOnInvalidCollectionCodeInGenerateTweetsIDSJSONFromAllJSON,Persister4CollectorAPITest
+86,14490363,generateCSVFromLastestJSONFiltered,"(String queryString, 
+			@QueryParam(""collectionCode"") String collectionCode, 
+			@QueryParam(""exportLimit"") Integer exportLimit,
+			@QueryParam(""removeRetweet"") boolean removeRetweet,
+			@QueryParam(""userName"") String userName)",Response,testNullPointerExceptionOnInvalidQueryStringInGenerateCSVFromLastestJSONFiltered,Persister4TaggerAPITest
+87,14490363,isNominalLabelExists,(Long nominalLabelID),Boolean,testIsNominalLabelExistsByCode,TestNominalLabelResourceFacadeImp
+88,14490363,isModelNominalLabelExists,(Long nominalLabelID),Boolean,testIsModelNominalLabelExists,TestModelNominalLabelResourceFacadeImp
+89,14490363,generateJSONFromLastestJSONFiltered,"(String queryString, 
+			@QueryParam(""collectionCode"") String collectionCode, 
+			@QueryParam(""exportLimit"") Integer exportLimit,
+			@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType,
+			@QueryParam(""userName"") String userName,
+			@QueryParam(""removeRetweet"") boolean removeRetweet)",Response,testGenerateJSONFromLastestJSONFiltered,Persister4TaggerAPITest
+90,14490363,generateJSONFromLastestJSON,"(@QueryParam(""collectionCode"") String collectionCode, 
+			@QueryParam(""exportLimit"") int exportLimit,
+			@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType)",Response,testNullPointerExceptionOnInvalidJsonTypeInGenerateJSONFromLastestJSON,Persister4TaggerAPITest
+91,14490363,findLabeledDocumentsByCrisisID,(Long crisisId),List<DocumentDTO>,testFindLabeledDocumentsByCrisisID,TestDocumentResourceFacadeImp
+92,14490363,generateJSONFromLastestJSONFiltered,"(String queryString, 
+			@QueryParam(""collectionCode"") String collectionCode, 
+			@QueryParam(""exportLimit"") Integer exportLimit,
+			@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType,
+			@QueryParam(""userName"") String userName,
+			@QueryParam(""removeRetweet"") boolean removeRetweet)",Response,testWithInvalidCollectionCodeInGenerateJSONFromLastestJSONFiltered,Persister4TaggerAPITest
+93,14490363,generateJSONFromLastestJSON,"(@QueryParam(""collectionCode"") String collectionCode,
+    		@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType)",Response,testNullPointerExceptionOnInvalidJsonTypeInGenerateJSONFromLastestJSON,Persister4CollectorAPITest
+94,14490363,deleteUnassignedDocument,(DocumentDTO document),int,testDeleteUnassignedDocument,TestDocumentResourceFacadeImp
+95,14490363,addUser,(UsersDTO user),UsersDTO,testAddUser,TestUsersResourceFacadeImp
+96,14490363,getNominalLabelByID,(Long nominalLabelID),NominalLabelDTO,testGetNominalLabelByID,TestNominalLabelResourceFacadeImp
+97,14490363,deleteModelNominalLabel,(ModelNominalLabelDTO modelNominalLabel),Integer,testDeleteModelNominalLabel,TestModelNominalLabelResourceFacadeImp
+98,14490363,getAllAttributes,(),List<NominalAttributeDTO>,testGetAllAttributes,TestNominalAttributeResourceFacadeImp
+99,14490363,generateTweetsIDSCSVFromAllJSON,"(@QueryParam(""collectionCode"") String collectionCode,
+			@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited)",Response,testGenerateTweetsIDSCSVFromAllJSON,Persister4TaggerAPITest
+100,14490363,test,(JsonObject t),boolean,testTest1,StrictLocationFilterTest
+101,14490363,deleteCrisisType,(Long id),Integer,testDeleteCrisisType,TestCrisisTypeResourceFacadeImp
+102,14490363,getAllModelNominalLabels,(),List<ModelNominalLabelDTO>,testGetAllModelNominalLabels,TestModelNominalLabelResourceFacadeImp
+103,14490363,findDocumentByPrimaryKey,(DocumentNominalLabelIdDTO id),DocumentNominalLabelDTO,testFindDocumentByPrimaryKey,TestDocumentNominalLabelResourceFacadeImp
+104,14490363,getModelByID,(Long id),ModelDTO,testGetModelByID,TestModelResourceFacadeImp
+105,14490363,getAllUsers,(),List<UsersDTO>,testGetAllUsers,TestUsersResourceFacadeImp
+106,14490363,getUserByName,(String name),UsersDTO,testGetUserByName,TestUsersResourceFacadeImp
+107,14490363,getActiveChannelsList,(),Response,getActiveChannelsListTest,TestGetBufferedAIDRData
+108,14490363,generateJSONFromLastestJSON,"(@QueryParam(""collectionCode"") String collectionCode,
+    		@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType)",Response,testGenerateJSONFromLastestJSONTest,Persister4CollectorAPITest
+109,14490363,insertTaskAnswer,(TaskAnswerDTO taskAnswer),void,testInsertTaskAnswer,TestTaskAnswerResourceFacadeImp
+110,14490363,test,(JsonObject t),boolean,test1,TrackFilterTest
+111,14490363,updateCustomUITemplateStatus,"(CustomUiTemplateDTO currentTemplate, CustomUiTemplateDTO updatedTemplate)",CustomUiTemplateDTO,testUpdateCustomUITemplateStatus,TestCustomUiTemplateResourceFacadeImp
+112,14490363,deleteAttribute,(Long attributeID),boolean,testDeleteAttribute,TestNominalAttributeResourceFacadeImp
+113,14490363,findDocumentByID,(Long id),DocumentDTO,testFindDocumentByID,TestDocumentResourceFacadeImp
+114,14490363,isConnectionSetup,(),boolean,isConnectionSetupTest,JedisConnectionObjectTest
+115,14490363,getAllUsersByName,(String name),List<UsersDTO>,testGetAllUsersByName,TestUsersResourceFacadeImp
+116,14490363,updateCustomUITemplate,"(CustomUiTemplateDTO currentTemplate, CustomUiTemplateDTO updatedTemplate)",CustomUiTemplateDTO,testUpdateCustomUITemplate,TestCustomUiTemplateResourceFacadeImp
+117,14490363,getLatestFromAllChannels,(final int msgCount),List<String>,getLatestFromAllChannelsTest,ChannelBufferManagerTest
+118,14490363,generateTweetsIDSCSVFromAllJSON,"(@QueryParam(""collectionCode"") String collectionCode,
+    		@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited)",Response,testGenerateTweetsIDSCSVFromAllJSON,Persister4CollectorAPITest
+119,14490363,isNominalLabelExists,(Long nominalLabelID),Boolean,testIsNominalLabelExistsById,TestNominalLabelResourceFacadeImp
+120,14490363,editModelNominalLabel,(ModelNominalLabelDTO modelNominalLabel),ModelNominalLabelDTO,testEditModelNominalLabel,TestModelNominalLabelResourceFacadeImp
+121,14490363,getModelByCrisisID,(Long crisisID),List<ModelWrapper>,testGetModelByCrisisID,TestModelResourceFacadeImp
+122,14490363,isDocumentExists,(DocumentNominalLabelIdDTO id),boolean,testIsDocumentExists_DocumentNominalLabelIdDTO,TestDocumentNominalLabelResourceFacadeImp
+123,14490363,editDocument,(DocumentDTO doc),DocumentDTO,testEditDocument,TestDocumentResourceFacadeImp
+124,14490363,generateCSVFromLastestJSON,"(@QueryParam(""collectionCode"") String collectionCode,
+    				@QueryParam(""exportLimit"") int exportLimit)",Response,testGenerateCSVFromLastestJSON,Persister4CollectorAPITest
+125,14490363,getNominalLabelWithAllFieldsByID,(Long nominalLabelID),NominalLabelDTO,testGetNominalLabelWithAllFieldsByID,TestNominalLabelResourceFacadeImp
+126,14490363,generateTweetsIDSCSVFromAllJSONFiltered,"(String queryString, 
+			@QueryParam(""collectionCode"") String collectionCode,
+			@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited,
+			@QueryParam(""userName"") String userName)",Response,testNullPointerExceptionOnInvalidCollectionCodeInGenerateTweetsIDSCSVFromAllJSONFiltered,Persister4TaggerAPITest
+127,14490363,deleteUnassignedDocumentCollection,(List<Long> documentIDList),int,testDeleteUnassignedDocumentCollection,TestDocumentResourceFacadeImp
+128,14490363,getTaggersByCodes,(final List<String> codes),List<TaggersForCodes>,testGetTaggersByCodes,TestModelFamilyResourceFacadeImp
+129,14490363,findUnLabeledDocumentsByCrisisID,(Long crisisId),List<DocumentDTO>,testFindUnLabeledDocumentsByCrisisID,TestDocumentResourceFacadeImp
+130,14490363,addDocument,(DocumentDTO doc),DocumentDTO,testAddDocument,TestDocumentResourceFacadeImp
+131,14490363,generateJSONFromLastestJSON,"(@QueryParam(""collectionCode"") String collectionCode, 
+			@QueryParam(""exportLimit"") int exportLimit,
+			@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType)",Response,testWithInvalidCollectionCodeInGenerateJSONFromLastestJSON,Persister4TaggerAPITest
+132,14490363,deleteDocument,(DocumentNominalLabelDTO doc),Integer,testDeleteDocument,TestDocumentNominalLabelResourceFacadeImp
+133,14490363,generateTweetsIDSCSVFromAllJSONFiltered,"(String queryString, 
+			@QueryParam(""collectionCode"") String collectionCode,
+			@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited,
+			@QueryParam(""userName"") String userName)",Response,testInvalidCollectionCodeOnOverloadedMethodGenerateTweetsIDSCSVFromAllJSONFiltered,Persister4TaggerAPITest
+134,14490363,getFilterName,(),String,testGetFilterName,StrictLocationFilterTest
+135,14490363,getObjectMapper,(),ObjectMapper,testGetObjectMapper,JacksonWrapperTest
+136,14490363,generateTweetsIDSJSONFromAllJSON,"(@QueryParam(""collectionCode"") String collectionCode,
+			@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited,
+			@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType)",Response,testNullPointerExceptionOnInvalidDownloadLimitedInGenerateTweetsIDSJSONFromAllJSON,Persister4TaggerAPITest
+137,14490363,getAllCrisisTypes,(),List<CrisisTypeDTO>,testGetAllCrisisTypes,TestCrisisTypeResourceFacadeImp
+138,14490363,findByCriteria,"(String columnName, Object value)",List<UsersDTO>,testFindByCriteria,TestUsersResourceFacadeImp
+139,14490363,generateCSVFromLastestJSON,"(@QueryParam(""collectionCode"") String collectionCode,
+    				@QueryParam(""exportLimit"") int exportLimit)",Response,testNullPointerExceptionOnInvalidCollectionCodeInGenerateCSVFromLastestJSON,Persister4CollectorAPITest
+140,14490363,getNominalLabelWithAllFieldsByCode,(String code),NominalLabelDTO,testGetNominalLabelWithAllFieldsByCode,TestNominalLabelResourceFacadeImp
+141,14490363,addNominalLabel,(NominalLabelDTO nominalLabel),NominalLabelDTO,testAddNominalLabel,TestNominalLabelResourceFacadeImp
+142,14490363,getAllCustomUITemplateByCrisisID,(long crisisID),List<CustomUiTemplateDTO>,testGetAllCustomUITemplateByCrisisID,TestCustomUiTemplateResourceFacadeImp
+143,14490363,undoTaskAssignment,"(List<DocumentDTO> taskList, Long userID)",int,testUndoTaskAssignmentByDocumentListAndUserId,TestTaskAssignmentResourceFacadeImp
+144,14490363,generateTweetsIDSJSONFromAllJSONFiltered,"(String queryString, 
+			@QueryParam(""collectionCode"") String collectionCode, 
+			@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited,
+			@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType,
+			@QueryParam(""userName"") String userName)",Response,testNullPointerExceptionOnInvalidQueryStringInGenerateTweetsIDSJSONFromAllJSONFiltered,Persister4TaggerAPITest
+145,14490363,generateJSONFromLastestJSONFiltered,"(String queryString, 
+			@QueryParam(""collectionCode"") String collectionCode, 
+			@QueryParam(""exportLimit"") Integer exportLimit,
+			@DefaultValue(DownloadType.TEXT_JSON) @QueryParam(""jsonType"") String jsonType,
+			@QueryParam(""userName"") String userName,
+			@QueryParam(""removeRetweet"") boolean removeRetweet)",Response,testNullPointerExceptionOnInvalidQueryStringInGenerateJSONFromLastestJSONFiltered,Persister4TaggerAPITest
+146,14490363,generateTweetsIDSCSVFromAllJSON,"(@QueryParam(""collectionCode"") String collectionCode,
+			@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited)",Response,testNullPointerExceptionOnInvalidDownloadLimitedInGenerateTweetsIDSCSVFromAllJSON,Persister4TaggerAPITest
+147,14490363,findTaskAssignmentByID,(Long documentID),List<TaskAssignmentDTO>,testFindTaskAssignmentByID,TestTaskAssignmentResourceFacadeImp
+148,14490363,generateTweetsIDSCSVFromAllJSONFiltered,"(String queryString, 
+			@QueryParam(""collectionCode"") String collectionCode,
+			@DefaultValue(""true"") @QueryParam(""downloadLimited"") Boolean downloadLimited,
+			@QueryParam(""userName"") String userName)",Response,testNullPointerExceptionOnInvalidQueryStringInGenerateTweetsIDSCSVFromAllJSONFiltered,Persister4TaggerAPITest
+149,14490363,editAttribute,(NominalAttributeDTO attribute),NominalAttributeDTO,testEditAttribute,TestNominalAttributeResourceFacadeImp

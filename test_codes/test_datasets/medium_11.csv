@@ -1,0 +1,286 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,88777477,findIdSet,"(NitriteMap<NitriteId, Document> collection)",Set<NitriteId>,testFindIdSet,NotEqualsFilterTest
+1,88777477,firstOrNull,(Iterable<T> iterable),T,testFirstOrNull2,IterablesTest
+2,88777477,stopWords,(),Set<String>,testStopWords,SomaliTest
+3,88777477,deepEquals,"(Object o1, Object o2)",boolean,testDeepEquals3,ObjectUtilsTest
+4,88777477,floorKey,(Key key),Key,testFloorKey,InMemoryMapTest
+5,88777477,isCompatibleTypes,"(Class<?> type1, Class<?> type2)",boolean,testIsCompatibleTypes,ObjectUtilsTest
+6,88777477,stopWords,(),Set<String>,testStopWords,SlovakTest
+7,88777477,stopWords,(),Set<String>,testStopWords,ArabicTest
+8,88777477,stopWords,(),Set<String>,testStopWords,ArmenianTest
+9,88777477,stopWords,(),Set<String>,testStopWords,PersianTest
+10,88777477,find,(),DocumentCursor,testFind,ReadOperationsTest
+11,88777477,stopWords,(),Set<String>,testStopWords,BengaliTest
+12,88777477,getInfo,(),Document,testGetInfo2,DatabaseMetaDataTest
+13,88777477,isSimilar,"(Document document, Document other, String... fields)",boolean,testIsSimilar,DocumentUtilsTest
+14,88777477,apply,"(Pair<NitriteId, Document> element)",boolean,testApply2,EqualsFilterTest
+15,88777477,convertToDocument,(Source source),Document,testConvertToDocument3,MappableMapperTest
+16,88777477,getRepository,"(NitriteConfig nitriteConfig, Class<T> type)",ObjectRepository<T>,testNullType,RepositoryFactoryTest
+17,88777477,deepEquals,"(Object o1, Object o2)",boolean,testDeepEquals4,ObjectUtilsTest
+18,88777477,stopWords,(),Set<String>,testStopWords,LatinTest
+19,88777477,getRepository,"(NitriteConfig nitriteConfig, Class<T> type)",ObjectRepository<T>,testNullCollection,RepositoryFactoryTest
+20,88777477,size,(),long,testSize,InMemoryMapTest
+21,88777477,setIsFieldIndexed,(Boolean isFieldIndexed),void,testSetIsFieldIndexed3,EqualsFilterTest
+22,88777477,stopWords,(),Set<String>,testStopWords,MarathiTest
+23,88777477,text,(String value),Filter,testText,FluentFilterTest
+24,88777477,deepEquals,"(Object o1, Object o2)",boolean,testDeepEquals2,ObjectUtilsTest
+25,88777477,toList,(Iterable<T> iterable),List<T>,testToList,IterablesTest
+26,88777477,getRepository,"(NitriteConfig nitriteConfig, Class<T> type)",ObjectRepository<T>,testNullContext,RepositoryFactoryTest
+27,88777477,stopWords,(),Set<String>,testStopWords,NorwegianTest
+28,88777477,toArray,"(Iterable<T> iterable, Class<T> type)",T[],testToArray,IterablesTest
+29,88777477,createObjectMapper,(),ObjectMapper,testCreateObjectMapper,ExporterTest
+30,88777477,stopWords,(),Set<String>,testStopWords,VietnameseTest
+31,88777477,deepCopy,(T oldObj),T,testDeepCopy,ObjectUtilsTest
+32,88777477,setIsFieldIndexed,(Boolean isFieldIndexed),void,testSetIsFieldIndexed,EqualsFilterTest
+33,88777477,lowerKey,(Key key),Key,testLowerKey2,InMemoryMapTest
+34,88777477,stopWords,(),Set<String>,testStopWords,HungarianTest
+35,88777477,stopWords,(),Set<String>,testStopWords,CatalanTest
+36,88777477,getInfo,(),Document,testGetInfo,DatabaseMetaDataTest
+37,88777477,stopWords,(),Set<String>,testStopWords,TagalogTest
+38,88777477,project,(Document projection),RecordStream<Document>,testProject,DocumentCursorImplTest
+39,88777477,equals,(Object other),boolean,testEquals3,NitriteDocumentTest
+40,88777477,put,"(Key key, Value value)",void,testPut,InMemoryMapTest
+41,88777477,close,(),void,testClose,InMemoryStoreTest
+42,88777477,containsKey,(Key key),boolean,testContainsKey3,InMemoryMapTest
+43,88777477,stopWords,(),Set<String>,testStopWords,TurkishTest
+44,88777477,updateOptions,(boolean insertIfAbsent),UpdateOptions,testUpdateOptions,UpdateOptionsTest
+45,88777477,getEntityName,(Class<T> type),String,testInvalidEntity2,ObjectUtilsTest
+46,88777477,iterator,(),"Iterator<Pair<NitriteId, Document>>",testIterator,FilteredRecordStreamTest
+47,88777477,remove,(Key key),Value,testRemove,InMemoryMapTest
+48,88777477,openOrCreate,(),Nitrite,testConfigWithFile,NitriteBuilderTest
+49,88777477,listOf,(T... items),List<T>,testListOf,IterablesTest
+50,88777477,findIndexedIdSet,(),Set<NitriteId>,testFindIndexedIdSet,EqualsFilterTest
+51,88777477,convert,"(Source source, Class<Target> type)",Target,testConvert3,MappableMapperTest
+52,88777477,setIsFieldIndexed,(Boolean isFieldIndexed),void,testSetIsFieldIndexed2,NotEqualsFilterTest
+53,88777477,fieldSeparator,(String separator),NitriteBuilder,testFieldSeparator,NitriteBuilderTest
+54,88777477,isValue,(Object object),boolean,testIsValue,MappableMapperTest
+55,88777477,isNullOrEmpty,(String value),boolean,testIsNullOrEmpty,StringUtilsTest
+56,88777477,size,(Iterable<?> iterable),long,testSize,IterablesTest
+57,88777477,getStore,(),NitriteStore<?>,testGetStore,MapDBModuleTest
+58,88777477,getIndexType,(),String,testConstructor,NitriteTextIndexerTest
+59,88777477,project,(Class<P> projectionType),RecordStream<P>,testProjectForAbstractClass,ObjectCursorTest
+60,88777477,firstOrNull,(Iterable<T> iterable),T,testFirstOrDefault,IterablesTest
+61,88777477,stopWords,(),Set<String>,testStopWords,FinnishTest
+62,88777477,loadModule,(NitriteModule module),NitriteBuilder,testNitriteMapper,NitriteBuilderTest
+63,88777477,stopWords,(),Set<String>,testStopWords,AfrikaansTest
+64,88777477,setIsFieldIndexed,(Boolean isFieldIndexed),void,testSetIsFieldIndexed4,NotEqualsFilterTest
+65,88777477,createHeader,"(MessageType messageType, String collectionName,
+                                      String correlationId, String replicaId, String userName)",MessageHeader,testCreateHeader,MessageFactoryTest
+66,88777477,openOrCreate,(),Nitrite,testOpenOrCreateNullPassword,NitriteBuilderTest
+67,88777477,deepEquals,"(Object o1, Object o2)",boolean,testDeepEquals,ObjectUtilsTest
+68,88777477,apply,"(Pair<NitriteId, Document> element)",boolean,testApply,EqualsFilterTest
+69,88777477,openRTree,"(String rTreeName,
+                                                                               Class<?> keyType,
+                                                                               Class<?> valueType)","NitriteRTree<Key, Value>",testOpenRTree,InMemoryStoreTest
+70,88777477,notEmpty,"(String value, String message)",void,testCharSequenceNotEmpty,ValidationUtilsTest
+71,88777477,stopWords,(),Set<String>,testStopWords,HausaTest
+72,88777477,stopWords,(),Set<String>,testStopWords,BulgarianTest
+73,88777477,isInMemory,(),boolean,testConstructor,RocksDBConfigTest
+74,88777477,plugins,(),Set<NitritePlugin>,testPlugins,MapDBModuleTest
+75,88777477,setIsFieldIndexed,(Boolean isFieldIndexed),void,testSetIsFieldIndexed2,EqualsFilterTest
+76,88777477,openOrCreate,(),Nitrite,testConfigWithFileNull,NitriteBuilderTest
+78,88777477,deepEquals,"(Object o1, Object o2)",boolean,testDeepEquals5,ObjectUtilsTest
+79,88777477,sort,"(String field, SortOrder sortOrder, Collator collator, NullOrder nullOrder)",DocumentCursor,testSort,DocumentCursorImplTest
+80,88777477,iterator,(),"Iterator<Pair<NitriteId, Document>>",testIterator,SortedDocumentCursorTest
+81,88777477,skeletonDocument,"(NitriteMapper nitriteMapper, Class<T> type)",Document,testSkeletonDocument2,DocumentUtilsTest
+82,88777477,getIndexType,(),String,testGetIndexType,NitriteTextIndexerTest
+83,88777477,getAffectedCount,(),Single<Integer>,testGetAffectedCount,FlowableWriteResultTest
+84,88777477,arrayContains,"(T[] array, T element)",boolean,testArrayContains,IterablesTest
+85,88777477,hasMap,(String mapName),boolean,testHasMap,InMemoryStoreTest
+86,88777477,toString,(),String,testToString,ProjectedDocumentStreamTest
+87,88777477,getEntityName,(Class<T> type),String,testGetEntityName,ObjectUtilsTest
+88,88777477,apply,"(Pair<NitriteId, Document> element)",boolean,testApply,RegexFilterTest
+89,88777477,findIdSet,"(NitriteMap<NitriteId, Document> collection)",Set<NitriteId>,testFindIdSet3,EqualsFilterTest
+90,88777477,getIndexType,(),String,testGetIndexType,NonUniqueIndexerTest
+91,88777477,indexOptions,(String indexType),IndexOptions,testIndexOptions2,IndexOptionsTest
+92,88777477,stopWords,(),Set<String>,testStopWords,BrazilianPortugueseTest
+93,88777477,apply,"(Pair<NitriteId, Document> element)",boolean,testApply2,RegexFilterTest
+94,88777477,project,(Class<P> projectionType),RecordStream<P>,testProjectForInterface,ObjectCursorTest
+95,88777477,notEq,(Object value),Filter,testNotEq,FluentFilterTest
+96,88777477,compare,"(Number x, Number y)",int,testCompare,NumbersTest
+97,88777477,getField,"(Class<T> type, String name)",Field,testGetFieldNoSuchField,RepositoryOperationsTest
+98,88777477,compareTo,(IndexEntry other),int,testCompareTo2,IndexEntryTest
+99,88777477,newInstance,"(Class<T> type, boolean createSkeleton)",T,testNewInstance,ObjectUtilsTest
+100,88777477,isReadOnly,(),boolean,testIsReadOnly,InMemoryStoreTest
+101,88777477,notEmpty,"(String value, String message)",void,testNotEmpty,ValidationUtilsTest
+102,88777477,join,"(DocumentCursor foreignCursor, Lookup lookup)",RecordStream<Document>,testJoin,DocumentCursorImplTest
+103,88777477,stopWords,(),Set<String>,testStopWords,IndonesianTest
+104,88777477,put,"(String key, Object value)",Document,testPut2,NitriteDocumentTest
+105,88777477,apply,"(Pair<NitriteId, Document> element)",boolean,testApply2,NotEqualsFilterTest
+106,88777477,containsKey,(Key key),boolean,testContainsKey2,InMemoryMapTest
+107,88777477,convertToDocument,(Source source),Document,testConvertToDocument4,MappableMapperTest
+108,88777477,getIdField,(Class<T> type),Field,testGetIdFieldMultipleId,RepositoryOperationsTest
+109,88777477,extractIndices,(Class<T> type),Set<Index>,testIndexes,RepositoryOperationsTest
+110,88777477,regex,(String value),Filter,testRegex,FluentFilterTest
+111,88777477,stopWords,(),Set<String>,testStopWords,UniversalTextTokenizerTest
+112,88777477,iterator,(),"Iterator<Pair<NitriteId, Document>>",testIterator2,SortedDocumentCursorTest
+113,88777477,getEntityName,(Class<T> type),String,testInvalidEntity1,ObjectUtilsTest
+114,88777477,indexOptions,(String indexType),IndexOptions,testIndexOptions,IndexOptionsTest
+115,88777477,convert,"(Source source, Class<Target> type)",Target,testConvert,MappableMapperTest
+116,88777477,getAffectedCount,(),int,testGetAffectedCount,WriteResultImplTest
+117,88777477,toString,(),String,testToString,JoinedDocumentStreamTest
+118,88777477,stopWords,(),Set<String>,testStopWords,LithuanianTest
+119,88777477,getCollection,"(String name, NitriteConfig nitriteConfig, boolean writeCatalogue)",NitriteCollection,testGetCollectionMapStoreNull,CollectionFactoryTest
+120,88777477,createUniqueFilter,(Document document),Filter,testCreateUniqueFilter,DocumentUtilsTest
+121,88777477,openOrCreate,(),Nitrite,testOpenOrCreateNullUserId,NitriteBuilderTest
+122,88777477,getById,(NitriteId nitriteId),Document,testGetById,ReadOperationsTest
+123,88777477,compare,"(Comparable first, Comparable second)",int,testCompare4,ComparablesTest
+124,88777477,getEntityName,(Class<T> type),String,testValidEntity,ObjectUtilsTest
+125,88777477,toSet,(Iterable<T> iterable),Set<T>,testToSet,IterablesTest
+126,88777477,isValueType,(Class<?> type),boolean,testIsValueType2,MappableMapperTest
+127,88777477,containsKey,(Key key),boolean,testContainsKey,InMemoryMapTest
+128,88777477,equals,(Object other),boolean,testEquals,NitriteDocumentTest
+129,88777477,findIndexedIdSet,(),Set<NitriteId>,testFindIndexedIdSet6,EqualsFilterTest
+130,88777477,isReadOnly,(),Boolean,testIsReadOnly,InMemoryConfigTest
+131,88777477,findIndexedIdSet,(),Set<NitriteId>,testFindIndexedIdSet3,TextFilterTest
+132,88777477,stopWords,(),Set<String>,testStopWords,BasqueTest
+133,88777477,keySet,(),RecordStream<Key>,testKeySet,InMemoryMapTest
+134,88777477,isUnique,(),boolean,testIsUnique,UniqueIndexerTest
+135,88777477,stopWords,(),Set<String>,testStopWords,CzechTest
+136,88777477,ceilingKey,(Key key),Key,testCeilingKey,InMemoryMapTest
+137,88777477,getThreadPool,"(int size, String threadName)",ExecutorService,testGetThreadPool,ThreadPoolManagerTest
+138,88777477,extractIndices,(Class<T> type),Set<Index>,testExtractInvalidIndex,RepositoryOperationsTest
+139,88777477,stopWords,(),Set<String>,testStopWords,KurdishTest
+140,88777477,stopWords,(),Set<String>,testStopWords,RomanianTest
+141,88777477,updateOptions,(boolean insertIfAbsent),UpdateOptions,testUpdateOptions2,UpdateOptionsTest
+142,88777477,getWriteLock,(String name),Lock,testGetWriteLock,LockServiceTest
+143,88777477,withConfig,(),MapDBModuleBuilder,testWithConfig,MapDBModuleTest
+144,88777477,toArray,"(Iterable<T> iterable, Class<T> type)",T[],testToArray3,IterablesTest
+145,88777477,extractIndices,(Class<T> type),Set<Index>,testInvalidIndexNonComparable,RepositoryOperationsTest
+146,88777477,stopWords,(),Set<String>,testStopWords,SwedishTest
+147,88777477,stopWords,(),Set<String>,testStopWords,YorubaTest
+148,88777477,stopWords,(),Set<String>,testStopWords,JapaneseTest
+149,88777477,findIdSet,"(NitriteMap<NitriteId, Document> collection)",Set<NitriteId>,testFindIdSet,EqualsFilterTest
+150,88777477,getLanguage,(),Languages,testConstructor3,UniversalTextTokenizerTest
+151,88777477,stopWords,(),Set<String>,testStopWords,GalicianTest
+152,88777477,stopWords,(),Set<String>,testStopWords,HindiTest
+153,88777477,getLanguage,(),Languages,testGetLanguage,UniversalTextTokenizerTest
+154,88777477,addToList,(NitriteId nitriteId),void,testAddToList,WriteResultImplTest
+155,88777477,extractIndices,(Class<T> type),Set<Index>,testFindAnnotationFromInterface,RepositoryOperationsTest
+156,88777477,firstOrNull,(Iterable<T> iterable),T,testFirstOrNull,IterablesTest
+157,88777477,compare,"(Comparable first, Comparable second)",int,testCompare2,ComparablesTest
+158,88777477,notNull,"(Object value, String message)",void,testNotNull,ValidationUtilsTest
+159,88777477,stopWords,(),Set<String>,testStopWords,RussianTest
+160,88777477,isValueType,(Class<?> retType),boolean,testIsValueType,ObjectUtilsTest
+161,88777477,stopWords,(),Set<String>,testStopWords,ThaiTest
+162,88777477,getStoreVersion,(),String,testGetStoreVersion,InMemoryStoreTest
+163,88777477,getField,"(Class<T> type, String name)",Field,testInvalidGetField,RepositoryOperationsTest
+164,88777477,get,(String key),Object,testGet3,NitriteDocumentTest
+165,88777477,compare,"(Comparable first, Comparable second)",int,testCompare3,ComparablesTest
+166,88777477,higherKey,(Key key),Key,testHigherKey,InMemoryMapTest
+167,88777477,stopWords,(),Set<String>,testStopWords,BretonTest
+168,88777477,filePath,(),String,testFilePath,InMemoryConfigTest
+169,88777477,stopWords,(),Set<String>,testStopWords,MalayTest
+170,88777477,stopWords,(),Set<String>,testStopWords,SesothoTest
+171,88777477,findIdSet,"(NitriteMap<NitriteId, Document> collection)",Set<NitriteId>,testFindIdSet2,NotEqualsFilterTest
+172,88777477,isEmpty,(),boolean,testIsEmpty,InMemoryMapTest
+173,88777477,stopWords,(),Set<String>,testStopWords,EnglishTest
+174,88777477,stopWords,(),Set<String>,testStopWords,ChineseTest
+175,88777477,deepEquals,"(Object o1, Object o2)",boolean,testDeepEquals8,ObjectUtilsTest
+176,88777477,stopWords,(),Set<String>,testStopWords,HebrewTest
+177,88777477,convertToDocument,(Source source),Document,testConvertToDocument2,MappableMapperTest
+178,88777477,getFields,(),Set<String>,testGetFields4,NitriteDocumentTest
+179,88777477,stopWords,(),Set<String>,testStopWords,FrenchTest
+180,88777477,stopWords,(),Set<String>,testStopWords,EnglishTextTokenizerTest
+181,88777477,toString,(),String,testToString2,ProjectedDocumentStreamTest
+182,88777477,stopWords,(),Set<String>,testStopWords,IrishTest
+183,88777477,find,(),DocumentCursor,testFind2,ReadOperationsTest
+184,88777477,encodeKey,(T object),byte[],testEncodeKey,KryoObjectFormatterTest
+185,88777477,getReadLock,(String name),Lock,testGetReadLock,LockServiceTest
+186,88777477,stopWords,(),Set<String>,testStopWords,UkrainianTest
+187,88777477,getFieldsUpto,"(Class<?> startClass, Class<?> exclusiveParent)",List<Field>,testGetFieldsUpToNullStartClass,RepositoryOperationsTest
+188,88777477,getCollection,"(String name, NitriteConfig nitriteConfig, boolean writeCatalogue)",NitriteCollection,testGetCollectionContextNull,CollectionFactoryTest
+189,88777477,findRepositoryName,"(Class<T> type, String key)",String,testFindRepositoryName,ObjectUtilsTest
+190,88777477,deepEquals,"(Object o1, Object o2)",boolean,testDeepEquals7,ObjectUtilsTest
+191,88777477,findIndexedIdSet,(),Set<NitriteId>,testFindIndexedIdSet2,TextFilterTest
+192,88777477,stopWords,(),Set<String>,testStopWords,PolishTest
+193,88777477,stopWords,(),Set<String>,testStopWords,LatvianTest
+194,88777477,findIdSet,"(NitriteMap<NitriteId, Document> collection)",Set<NitriteId>,testFindIdSet2,EqualsFilterTest
+195,88777477,findIndexedIdSet,(),Set<NitriteId>,testFindIndexedIdSet,TextFilterTest
+196,88777477,stopWords,(),Set<String>,testStopWords,GermanTest
+197,88777477,findIndexedIdSet,(),Set<NitriteId>,testFindIndexedIdSet,NotEqualsFilterTest
+198,88777477,isClosed,(),boolean,testConstructor,RocksDBStoreTest
+199,88777477,containsKey,(String key),boolean,testContainsKey,NitriteDocumentTest
+200,88777477,getLanguage,(),Languages,testConstructor,EnglishTextTokenizerTest
+201,88777477,apply,"(Pair<NitriteId, Document> element)",boolean,testApply,NotEqualsFilterTest
+202,88777477,openMap,"(String mapName, Class<?> keyType, Class<?> valueType)","NitriteMap<Key, Value>",testOpenMap,InMemoryStoreTest
+203,88777477,get,(Key key),Value,testGet,InMemoryMapTest
+204,88777477,stopWords,(),Set<String>,testStopWords,EsperantoTest
+205,88777477,isRecent,"(Document recent, Document older)",boolean,testIsRecent,DocumentUtilsTest
+206,88777477,stopWords,(),Set<String>,testStopWords,UrduTest
+207,88777477,getStoreVersion,(),String,testGetStoreVersion,MapDBStoreTest
+208,88777477,iterator,(),"Iterator<Pair<NitriteId, Document>>",testIterator2,BoundedDocumentStreamTest
+209,88777477,convert,"(Source source, Class<Target> type)",Target,testConvert2,MappableMapperTest
+210,88777477,skeletonDocument,"(NitriteMapper nitriteMapper, Class<T> type)",Document,testSkeletonDocument,DocumentUtilsTest
+211,88777477,toArray,"(Iterable<T> iterable, Class<T> type)",T[],testToArray2,IterablesTest
+212,88777477,skipLimit,"(long skip, long limit)",DocumentCursor,testSkipLimit,DocumentCursorImplTest
+213,88777477,setNitriteIds,(Set<NitriteId> nitriteIds),void,testSetNitriteIds,WriteResultImplTest
+214,88777477,getLanguage,(),Languages,testGetLanguage,EnglishTextTokenizerTest
+215,88777477,serialize,"(Document value, JsonGenerator gen, SerializerProvider provider)",void,testSerialize,DocumentSerializerTest
+216,88777477,hasId,(),boolean,testHasId,NitriteDocumentTest
+217,88777477,stopWords,(),Set<String>,testStopWords,SlovenianTest
+218,88777477,size,(),long,testSize,InMemoryRTreeTest
+219,88777477,openOrCreate,(),Nitrite,testOpenOrCreate2,NitriteBuilderTest
+220,88777477,iterator,(),"Iterator<Pair<NitriteId, Document>>",testIterator,BoundedDocumentStreamTest
+221,88777477,entries,(),"RecordStream<Pair<Key, Value>>",testEntries,InMemoryMapTest
+222,88777477,equals,(Object other),boolean,testEquals2,NitriteDocumentTest
+223,88777477,createUniqueFilter,(Object object),Filter,testCreateUniqueFilterInvalidId,RepositoryOperationsTest
+224,88777477,findIdSet,"(NitriteMap<NitriteId, Document> collection)",Set<NitriteId>,testFindIdSet3,NotEqualsFilterTest
+225,88777477,openOrCreate,(),Nitrite,testOpenOrCreate,NitriteBuilderTest
+226,88777477,isValueType,(Class<?> type),boolean,testIsValueType,MappableMapperTest
+227,88777477,hasUnsavedChanges,(),boolean,testHasUnsavedChanges,MapDBStoreTest
+228,88777477,setIsFieldIndexed,(Boolean isFieldIndexed),void,testSetIsFieldIndexed3,NotEqualsFilterTest
+229,88777477,getStore,(),NitriteStore<?>,testConstructor,RocksDBModuleTest
+230,88777477,getFieldsUpto,"(Class<?> startClass, Class<?> exclusiveParent)",List<Field>,testGetFieldsUpTo,RepositoryOperationsTest
+231,88777477,convertFromDocument,"(Document source, Class<Target> type)",Target,testConvertFromDocument,MappableMapperTest
+232,88777477,stopWords,(),Set<String>,testStopWords,ItalianTest
+233,88777477,stopWords,(),Set<String>,testStopWords,SwahiliTest
+234,88777477,getField,"(Class<T> type, String name)",Field,testInvalidEmbeddedKey,RepositoryOperationsTest
+235,88777477,stopWords,(),Set<String>,testStopWords,ZuluTest
+236,88777477,skeletonDocument,"(NitriteMapper nitriteMapper, Class<T> type)",Document,testDummyDocument,DocumentUtilsTest
+237,88777477,stopWords,(),Set<String>,testStopWords,EstonianTest
+238,88777477,lowerKey,(Key key),Key,testLowerKey3,InMemoryMapTest
+239,88777477,stopWords,(),Set<String>,testStopWords,KoreanTest
+240,88777477,get,(String key),Object,testGet,NitriteDocumentTest
+241,88777477,isClosed,(),boolean,testIsClosed,MapDBStoreTest
+242,88777477,stopWords,(),Set<String>,testStopWords,CroatianTest
+243,88777477,isClosed,(),boolean,testConstructor,InMemoryStoreTest
+244,88777477,clone,(),Document,testClone,NitriteDocumentTest
+245,88777477,validId,(Object value),boolean,testValidId,NitriteIdTest
+246,88777477,lowerKey,(Key key),Key,testLowerKey,InMemoryMapTest
+247,88777477,compareTo,(NitriteId other),int,testCompareTo,NitriteIdTest
+248,88777477,put,"(String key, Object value)",Document,testPut,NitriteDocumentTest
+249,88777477,stopWords,(),Set<String>,testStopWords,SpanishTest
+250,88777477,isRecent,"(Document recent, Document older)",boolean,testIsRecent2,DocumentUtilsTest
+251,88777477,iterator,(),"Iterator<Pair<NitriteId, Document>>",testIterator3,BoundedDocumentStreamTest
+252,88777477,putIfAbsent,"(Key key, Value value)",Value,testPutIfAbsent,InMemoryMapTest
+253,88777477,convertToDocument,(Source source),Document,testConvertToDocument,MappableMapperTest
+254,88777477,project,(Class<P> projectionType),RecordStream<P>,testProjectForPrimitive,ObjectCursorTest
+255,88777477,remove,"(Filter filter, boolean justOnce)",WriteResult,testRemove,WriteOperationsTest
+256,88777477,stopWords,(),Set<String>,testStopWords,DanishTest
+257,88777477,values,(),RecordStream<Value>,testValues,InMemoryMapTest
+258,88777477,hasUnsavedChanges,(),boolean,testHasUnsavedChanges,InMemoryStoreTest
+259,88777477,deepEquals,"(Object o1, Object o2)",boolean,testDeepEquals6,ObjectUtilsTest
+260,88777477,extractIndices,(Class<T> type),Set<Index>,testInvalidIndexComparableAndIterable,RepositoryOperationsTest
+261,88777477,eq,(Object value),Filter,testEq,FluentFilterTest
+262,88777477,isSimilar,"(Document document, Document other, String... fields)",boolean,testIsSimilar2,DocumentUtilsTest
+263,88777477,findIndexedIdSet,(),Set<NitriteId>,testFindIndexedIdSet2,NotEqualsFilterTest
+264,88777477,project,(Class<P> projectionType),RecordStream<P>,testProjectForArray,ObjectCursorTest
+265,88777477,getIndexType,(),String,testGetIndexType,UniqueIndexerTest
+266,88777477,stopWords,(),Set<String>,testStopWords,GreekTest
+267,88777477,convertFromDocument,"(Document source, Class<Target> type)",Target,testConvertFromDocument3,MappableMapperTest
+268,88777477,compare,"(Number x, Number y)",int,testCompare2,NumbersTest
+269,88777477,stopWords,(),Set<String>,testStopWords,PortugueseTest
+270,88777477,compare,"(Comparable first, Comparable second)",int,testCompare,ComparablesTest
+271,88777477,setIsFieldIndexed,(Boolean isFieldIndexed),void,testSetIsFieldIndexed,NotEqualsFilterTest
+272,88777477,hasNext,(),boolean,testHasNext,UnionStreamIteratorTest
+273,88777477,isFatal,(),boolean,testConstructor,ReplicationExceptionTest
+274,88777477,getFields,(),Set<String>,testGetFields,NitriteDocumentTest
+275,88777477,stopWords,(),Set<String>,testStopWords,DutchTest
+276,88777477,compareTo,(IndexEntry other),int,testCompareTo,IndexEntryTest
+277,88777477,encode,(T object),byte[],testEncode,KryoObjectFormatterTest
+278,88777477,size,(),long,testConstructor,InMemoryRTreeTest
+279,88777477,update,"(Filter filter, Document update, UpdateOptions updateOptions)",WriteResult,testUpdate,WriteOperationsTest
+280,88777477,get,(String key),Object,testGet2,NitriteDocumentTest
+281,88777477,convertFromDocument,"(Document source, Class<Target> type)",Target,testConvertFromDocument2,MappableMapperTest
+282,88777477,isUnique,(),boolean,testIsUnique,NonUniqueIndexerTest

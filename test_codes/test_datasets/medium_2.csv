@@ -1,0 +1,112 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,84916374,parseURI,(String uri),"Map<String, String>",parseURI_NormalTest,URISpecParserTest
+1,84916374,messageTrackDetail,(MessageExt msg),List<MessageTrack>,messageTrackDetail,MessageServiceImplTest
+2,84916374,queryTopicConsumerInfo,(String topic),GroupList,queryTopicConsumerInfo,TopicServiceImplTest
+3,84916374,removePosition,(List<ByteBuffer> partitions),void,testRemovePosition,PositionManagementServiceImplTest
+4,84916374,getTopic,(T tuple),String,getTopic,DefaultTopicSelectorTest
+5,84916374,verifyAndSetConfig,(KeyValue config),String,verifyAndSetConfigTest,JdbcSourceConnectorTest
+6,84916374,invoke,"(IN input, Context context)",void,testSink,RocketMQSinkTest
+7,84916374,homePageInfo,(),"Map<String, Object>",homePageInfo,OpsServiceImplTest
+8,84916374,getConfig,(),Config,getConfig,RabbitmqSourceTaskTest
+9,84916374,removeConnectorConfig,(String connectorName),void,testRemoveConnectorConfig,ConfigManagementServiceImplTest
+10,84916374,queryConsumeStatsList,"(final String topic, String groupName)",List<TopicConsumerInfo>,queryConsumeStatsList,ConsumerServiceImplTest
+11,84916374,queryConsumerMonitorConfigByGroupName,(String consumeGroupName),ConsumerMonitorConfig,queryConsumerMonitorConfigByGroupName,MonitorServiceImplTest
+12,84916374,connectionFactory,(),ConnectionFactory,connectionFactory,RabbitMQPatternProcessorTest
+13,84916374,serialize,(String obj),byte[],testSerializeAndDeserialize,RocketMQStringSerializerTest
+14,84916374,consumeMessageDirectly,"(String topic, String msgId, String consumerGroup,
+        String clientId)",ConsumeMessageDirectlyResult,consumeMessageDirectly,MessageServiceImplTest
+15,84916374,getObject,(),Serializable,testGetObject,JmsObjectMessageTest
+16,84916374,serialize,(GenericRecord obj),byte[],testSerializeAndDeserialize,RocketMQAvroSerializerTest
+17,84916374,stats,(String topic),TopicStatsTable,stats,TopicServiceImplTest
+18,84916374,startConnectors,"(Map<String, ConnectKeyValue> connectorConfigs,
+                                             ConnectController connectController)",void,testStartConnectors,WorkerTest
+19,84916374,getData,(),byte[],testGetData,JmsBytesMessageTest
+20,84916374,jsonDataFile2map,(File file),"Map<String, List<String>>",jsonDataFile2map,DashboardCollectServiceImplTest
+21,84916374,allocate,"(List<String> allWorker, String curWorker,
+        Map<String, ConnectKeyValue> connectorConfigs,
+        Map<String, List<ConnectKeyValue>> taskConfigs)",ConnAndTaskConfigs,testAllocate,DefaultAllocateConnAndTaskStrategyTest
+22,84916374,serialize,(T obj),byte[],testSerializeAndDeserialize,RocketMQAvroSpecifiedSerializerTest
+23,84916374,queryMessageByTopic,"(String topic, final long begin, final long end)",List<MessageView>,queryMessageByTopic,MessageServiceImplTest
+24,84916374,examineTopicConfig,"(String topic, String brokerName)",TopicConfig,examineTopicConfig,TopicServiceImplTest
+25,84916374,taskClass,(),Class<? extends Task>,taskClassTest,KafkaSourceConnectorTest
+26,84916374,close,(),void,close,RocketMQSourceTest
+27,84916374,getTaskConfigs,(),"Map<String, List<ConnectKeyValue>>",testGetTaskConfigs,ConfigManagementServiceImplTest
+28,84916374,putConnectorConfig,"(String connectorName, ConnectKeyValue configs)",String,testPutConnectorConfig,ConfigManagementServiceImplTest
+29,84916374,getRequiredConfig,(),Set<String>,getRequiredConfig,RabbitmqSourceConnectorTest
+30,84916374,resetOffset,(ResetOffsetRequest resetOffsetRequest),"Map<String, ConsumerGroupRollBackStat>",resetOffset,ConsumerServiceImplTest
+31,84916374,deleteConsumerMonitor,(String consumeGroupName),boolean,deleteConsumerMonitor,MonitorServiceImplTest
+32,84916374,properties2Object,"(final Properties p, final Object object)",void,testProperties2Object,FileAndPropertyUtilTest
+33,84916374,generateTargetTopic,(String topic),String,testGenerateTopic,RmqSourceReplicatorTest
+34,84916374,examineSubscriptionGroupConfig,(String group),List<ConsumerConfigInfo>,examineSubscriptionGroupConfig,ConsumerServiceImplTest
+35,84916374,createOrUpdate,(TopicConfigInfo topicCreateOrUpdateRequest),void,createOrUpdate,TopicServiceImplTest
+36,84916374,reconfigure,(ConnectKeyValue keyValue),void,testReconfigure,WorkerConnectorTest
+37,84916374,queryConsumeStatsListByTopicName,(String topic),"Map<String /*groupName*/, TopicConsumerInfo>",queryConsumeStatsListByTopicName,ConsumerServiceImplTest
+38,84916374,getBrokerConfig,(String brokerAddr),Properties,getBrokerConfig,ClusterServiceImplTest
+39,84916374,taskConfigs,(),List<KeyValue>,taskConfigsTest,JdbcSourceConnectorTest
+40,84916374,readBytes,(byte[] value),int,testReadBytes1,JmsBytesMessageTest
+41,84916374,route,(String topic),TopicRouteData,route,TopicServiceImplTest
+42,84916374,stop,(),void,stop,ReplicatorTest
+43,84916374,close,(),void,close,RocketMQSinkTest
+44,84916374,getConnectorConfigs,(),"Map<String, ConnectKeyValue>",testGetConnectorConfigs,ConfigManagementServiceImplTest
+45,84916374,getBrokerCache,(String date),"Map<String, List<String>>",getBrokerCache,DashboardCollectServiceImplTest
+46,84916374,getProducerConnection,"(String producerGroup, String topic)",ProducerConnection,getProducerConnection,ProducerServiceImplTest
+47,84916374,getConsumerConnection,(String consumerGroup),ConsumerConnection,getConsumerConnection,ConsumerServiceImplTest
+48,84916374,serialize,(T obj),byte[],testSerializeAndDeserialize,RocketMQJsonSerializerTest
+49,84916374,taskConfigs,(),List<KeyValue>,taskConfigsTest,KafkaSourceConnectorTest
+50,84916374,getNameSvrList,(),String,getNameSvrList,OpsServiceImplTest
+51,84916374,taskConfigs,(),List<KeyValue>,taskConfigsTest,BaseJmsSourceConnectorTest
+52,84916374,open,(),void,open,RocketMQRedisReplicatorTest
+54,84916374,createOrUpdateConsumerMonitor,"(String name, ConsumerMonitorConfig config)",boolean,createOrUpdateConsumerMonitor,MonitorServiceImplTest
+55,84916374,writeBytes,(byte[] value),void,testWriteBytes,JmsBytesMessageTest
+56,84916374,queryTopicData,(String date),"Map<String, List<String>>",queryTopicData,DashboardServiceImplTest
+57,84916374,poll,(),Collection<SourceDataEntry>,pollTest,ActivemqSourceTaskTest
+58,84916374,sendTopicMessageRequest,(SendTopicMessageRequest sendTopicMessageRequest),SendResult,sendTopicMessageRequest,TopicServiceImplTest
+60,84916374,getBrokerMap,(),"LoadingCache<String, List<String>>",getBrokerMap,DashboardCollectServiceImplTest
+61,84916374,poll,(),Collection<SourceDataEntry>,pollTest,KafkaSourceTaskTest
+62,84916374,fetchBrokerNameSetBySubscriptionGroup,(String group),Set<String>,fetchBrokerNameSetBySubscriptionGroup,ConsumerServiceImplTest
+63,84916374,deleteTopic,"(String topic, String clusterName)",boolean,deleteTopic,TopicServiceImplTest
+64,84916374,verifyAndSetConfig,(KeyValue config),String,verifyAndSetConfigTest,BaseJmsSourceConnectorTest
+65,84916374,putPosition,"(Map<ByteBuffer, ByteBuffer> positions)",void,testPutPosition,PositionManagementServiceImplTest
+66,84916374,run,(SourceContext context),void,testSource,RocketMQSourceTest
+67,84916374,queryGroup,(String consumerGroup),GroupConsumeInfo,queryGroup,ConsumerServiceImplTest
+68,84916374,updateNameSvrAddr,(@RequestParam String nameSvrAddrList),Object,updateNameSvrAddr,OpsControllerTest
+69,84916374,getObject,(),Serializable,testGetBody,JmsObjectMessageTest
+70,84916374,viewMessage,"(String subject, final String msgId)","Pair<MessageView, List<MessageTrack>>",viewMessage,MessageServiceImplTest
+71,84916374,queryBrokerData,(String date),"Map<String, List<String>>",queryBrokerData,DashboardServiceImplTest
+72,84916374,taskClass,(),Class<? extends Task>,taskClass,RabbitmqSourceConnectorTest
+74,84916374,queryConsumerMonitorConfig,(),"Map<String, ConsumerMonitorConfig>",queryConsumerMonitorConfig,MonitorServiceImplTest
+75,84916374,rocketMqStatusCheck,(),"Map<CheckerType, Object>",rocketMqStatusCheck,OpsServiceImplTest
+76,84916374,examineTopicConfig,"(String topic, String brokerName)",TopicConfig,examineTopicConfigList,TopicServiceImplTest
+77,84916374,getTopicCache,(String date),"Map<String, List<String>>",getTopicCache,DashboardCollectServiceImplTest
+78,84916374,clusterStatus,(),Object,clusterStatus,OpsControllerTest
+79,84916374,startTasks,"(Map<String, List<ConnectKeyValue>> taskConfigs)",void,testStartTasks,WorkerTest
+80,84916374,string2FileNotSafe,"(final String str, final String fileName)",void,testString2FileNotSafe,FileAndPropertyUtilTest
+81,84916374,queryGroupList,(),List<GroupConsumeInfo>,queryGroupList,ConsumerServiceImplTest
+82,84916374,queryMessageByTopicAndKey,"(String topic, String key)",List<MessageView>,queryMessageByTopicAndKey,MessageServiceImplTest
+83,84916374,getTopicMap,(),"LoadingCache<String, List<String>>",getTopicMap,DashboardCollectServiceImplTest
+84,84916374,fetchAllTopicList,(boolean skipSysProcess),TopicList,fetchAllTopicList,TopicServiceImplTest
+85,84916374,verifyAndSetConfig,(KeyValue config),String,verifyAndSetConfigTest,KafkaSourceConnectorTest
+86,84916374,userEventTriggered,"(ChannelHandlerContext ctx, Object evt)",void,testHandleIdleStateEvent,MqttConnectionHandlerTest
+87,84916374,start,(),void,startTest,ReplicatorTest
+88,84916374,userEventTriggered,"(ChannelHandlerContext ctx, Object evt)",void,testHandleDisconnectChannelEvent,MqttConnectionHandlerTest
+89,84916374,deleteSubGroup,(DeleteSubGroupRequest deleteSubGroupRequest),boolean,deleteSubGroup,ConsumerServiceImplTest
+90,84916374,queryTopicCurrentData,(),List<String>,queryTopicCurrentData,DashboardServiceImplTest
+92,84916374,createAndUpdateSubscriptionGroupConfig,(ConsumerConfigInfo consumerConfigInfo),boolean,createAndUpdateSubscriptionGroupConfig,ConsumerServiceImplTest
+93,84916374,taskClass,(),Class<? extends Task>,taskClassTest,BaseJmsSourceConnectorTest
+94,84916374,queryConsumeStatsListByGroupName,(String groupName),List<TopicConsumerInfo>,queryConsumeStatsListByGroupName,ConsumerServiceImplTest
+95,84916374,parseURI,(String uri),"Map<String, String>",parseURI_AbnormalTest,URISpecParserTest
+96,84916374,allocate,"(List<String> allWorker, String curWorker,
+        Map<String, ConnectKeyValue> connectorConfigs, Map<String, List<ConnectKeyValue>> taskConfigs)",ConnAndTaskConfigs,testAllocate,AllocateConnAndTaskStrategyByConsistentHashTest
+97,84916374,readBytes,(byte[] value),int,testReadBytes,JmsBytesMessageTest
+98,84916374,taskClass,(),Class<? extends Task>,taskClassTest,JdbcSourceConnectorTest
+99,84916374,getBodyLength,(),long,testGetBodyLength,JmsBytesMessageTest
+100,84916374,list,(),"Map<String, Object>",list,ClusterServiceImplTest
+101,84916374,stop,(),void,testStop,BrokerBasedLogTest
+102,84916374,updateNameSvrAddrList,(String nameSvrAddrList),void,updateNameSvrAddrList,OpsServiceImplTest
+103,84916374,getTopic,(Map tuple),String,getTopic,SimpleTopicSelectorTest
+104,84916374,deleteTopicInBroker,"(String brokerName, String topic)",boolean,deleteTopicInBroker,TopicServiceImplTest
+105,84916374,getPositionTable,(),"Map<ByteBuffer, ByteBuffer>",testGetPositionTable,PositionManagementServiceImplTest
+106,84916374,start,(),void,testStart,BrokerBasedLogTest
+107,84916374,send,"(K key, V value)",void,testSend,BrokerBasedLogTest
+108,84916374,homePage,(),Object,homePage,OpsControllerTest
+109,84916374,getConfig,(),Config,getConfigTest,ReplicatorTest

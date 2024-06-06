@@ -1,0 +1,228 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,181845258,putMessage,(MessageExtBrokerInner messageInner),boolean,testPutMessage,TransactionalMessageBridgeTest
+1,181845258,checkPerm,"(PlainAccessResource needCheckedAccess, PlainAccessResource ownedAccess)",void,checkPermAdmin,PlainPermissionLoaderTest
+2,181845258,parse,"(RemotingCommand request, String remoteAddr)",AccessResource,validateForAdminCommandWithOutAclRPCHook,PlainAccessValidatorTest
+3,181845258,getHalfMessage,"(int queueId, long offset, int nums)",PullResult,testGetHalfMessage,TransactionalMessageBridgeTest
+4,181845258,getYamlDataObject,"(String path, Class<T> clazz)",T,getYamlDataObjectTest,AclUtilsTest
+5,181845258,send,"(
+        Message msg)",SendResult,testSendMessageSync_WithBodyCompressed,DefaultMQProducerTest
+6,181845258,buildPlainAccessResource,(PlainAccessConfig plainAccessConfig),PlainAccessResource,accountNullTest,PlainPermissionLoaderTest
+7,181845258,execute,"(final CommandLine commandLine, final Options options,
+        RPCHook rpcHook)",void,testExecute,UpdateTopicSubCommandTest
+8,181845258,putUserProperty,"(final String name, final String value)",void,putUserProperty,MessageTest
+9,181845258,processRequest,"(ChannelHandlerContext ctx,
+        RemotingCommand request)",RemotingCommand,testProcessRequest_GetKVConfigReturnNull,DefaultRequestProcessorTest
+10,181845258,setCallbackExecutor,(final ExecutorService callbackExecutor),void,testSetCallbackExecutor,DefaultMQProducerTest
+11,181845258,buildPlainAccessResource,(PlainAccessConfig plainAccessConfig),PlainAccessResource,passWordThanTest,PlainPermissionLoaderTest
+12,181845258,isScope,"(String num, int index)",boolean,isScopeArray,AclUtilsTest
+13,181845258,getOffsetStore,(),OffsetStore,testStart_OffsetShouldNotNUllAfterStart,DefaultMQPullConsumerTest
+14,181845258,putOpMessage,"(MessageExt messageExt, String opType)",boolean,testPutOpMessage,TransactionalMessageBridgeTest
+15,181845258,getOpMessage,"(int queueId, long offset, int nums)",PullResult,testGetOpMessage,TransactionalMessageBridgeTest
+16,181845258,getNameServerAddressList,(),List<String>,testGetNameServerAddressList,DefaultMQAdminExtTest
+17,181845258,isScope,"(String num, int index)",boolean,isScopeStringArray,AclUtilsTest
+18,181845258,updateBrokerConfig,"(String brokerAddr,
+        Properties properties)",void,testUpdateBrokerConfig,DefaultMQAdminExtTest
+19,181845258,putUserProperty,"(final String name, final String value)",void,putUserPropertyWithRuntimeException,MessageTest
+20,181845258,sendMessage,"(
+        final String addr,
+        final String brokerName,
+        final Message msg,
+        final SendMessageRequestHeader requestHeader,
+        final long timeoutMillis,
+        final CommunicationMode communicationMode,
+        final SendMessageContext context,
+        final DefaultMQProducerImpl producer
+    )",SendResult,testSendMessageSync_Success,MQClientAPIImplTest
+21,181845258,registerAdminExt,"(final String group, final MQAdminExtInner admin)",boolean,testRegisterAdminExt,MQClientInstanceTest
+22,181845258,putMessageReturnResult,(MessageExtBrokerInner messageInner),PutMessageResult,testPutMessageReturnResult,TransactionalMessageBridgeTest
+23,181845258,renewImmunityHalfMessageInner,(MessageExt msgExt),MessageExtBrokerInner,testRenewImmunityHalfMessageInner,TransactionalMessageBridgeTest
+24,181845258,putHalfMessage,(MessageExtBrokerInner messageInner),PutMessageResult,testPutHalfMessage,TransactionalMessageBridgeTest
+25,181845258,parse,"(RemotingCommand request, String remoteAddr)",AccessResource,contentTest,PlainAccessValidatorTest
+26,181845258,isBlank,(String str),boolean,testIsBlank,UtilAllTest
+27,181845258,commitMessage,(EndTransactionRequestHeader requestHeader),OperationResult,testCommitMessage,TransactionalMessageServiceImplTest
+28,181845258,fetchAllTopicList,(),TopicList,testFetchAllTopicList,DefaultMQAdminExtTest
+29,181845258,doChannelCloseEvent,"(final String remoteAddr, final Channel channel)",void,doChannelCloseEvent,ProducerManagerTest
+30,181845258,send,"(
+        Message msg)",SendResult,testSendMessage_NoRoute,DefaultMQProducerTest
+31,181845258,processRequest,"(ChannelHandlerContext ctx,
+        RemotingCommand request)",RemotingCommand,testProcessRequest_RegisterBrokerWithFilterServer,DefaultRequestProcessorTest
+32,181845258,getAddreeStrArray,"(String netaddress, String four)",String[],getAddreeStrArray,AclUtilsTest
+33,181845258,watch,(),void,testWatch,PlainPermissionLoaderTest
+34,181845258,getDefaultMQPushConsumerImpl,(),DefaultMQPushConsumerImpl,testPullMessage_Success,DefaultMQPushConsumerTest
+35,181845258,validate,(AccessResource accessResource),void,validateTest,PlainAccessValidatorTest
+36,181845258,sendMessage,"(
+        final String addr,
+        final String brokerName,
+        final Message msg,
+        final SendMessageRequestHeader requestHeader,
+        final long timeoutMillis,
+        final CommunicationMode communicationMode,
+        final SendMessageContext context,
+        final DefaultMQProducerImpl producer
+    )",SendResult,testSendMessageAsync_Success,MQClientAPIImplTest
+37,181845258,processRequest,"(ChannelHandlerContext ctx, RemotingCommand request)",RemotingCommand,testProcessRequest_NotType,EndTransactionProcessorTest
+38,181845258,rollbackMessage,(EndTransactionRequestHeader requestHeader),OperationResult,testRollbackMessage,TransactionalMessageServiceImplTest
+39,181845258,getLocalhostByNetworkInterface,(),String,testGetLocalhostByNetworkInterface,MixAllTest
+40,181845258,string2File,"(final String str, final String fileName)",void,testString2File,MixAllTest
+41,181845258,renewHalfMessageInner,(MessageExt msgExt),MessageExtBrokerInner,testRenewHalfMessageInner,TransactionalMessageBridgeTest
+42,181845258,lookMessageByOffset,(final long commitLogOffset),MessageExt,testLookMessageByOffset,TransactionalMessageBridgeTest
+43,181845258,cleanExpiredConsumerQueueByAddr,"(
+        String addr)",boolean,testCleanExpiredConsumerQueueByAddr,DefaultMQAdminExtTest
+44,181845258,file2String,(final String fileName),String,testFile2String,MixAllTest
+45,181845258,file2String,(final String fileName),String,testFile2String_WithChinese,MixAllTest
+46,181845258,getTopicClusterList,"(
+        final String topic)",Set<String>,testGetTopicClusterList,DefaultMQAdminExtTest
+47,181845258,prepareMessage,(MessageExtBrokerInner messageInner),PutMessageResult,testPrepareMessage,TransactionalMessageServiceImplTest
+48,181845258,putUserProperty,"(final String name, final String value)",void,putUserNullNamePropertyWithException,MessageTest
+49,181845258,getOffsetStore,(),OffsetStore,testStart_OffsetShouldNotNUllAfterStart,DefaultMQPushConsumerTest
+50,181845258,getDiskPartitionSpaceUsedPercent,(final String path),double,testGetDiskPartitionSpaceUsedPercent,UtilAllTest
+51,181845258,queryConsumeTimeSpan,"(final String topic,
+        final String group)",List<QueueTimeSpan>,testQueryConsumeTimeSpan,DefaultMQAdminExtTest
+52,181845258,getConsumeStatus,"(String topic, String group,
+        String clientAddr)","Map<String, Map<MessageQueue, Long>>",testGetConsumeStatus,DefaultMQAdminExtTest
+53,181845258,sendMessage,"(
+        final String addr,
+        final String brokerName,
+        final Message msg,
+        final SendMessageRequestHeader requestHeader,
+        final long timeoutMillis,
+        final CommunicationMode communicationMode,
+        final SendMessageContext context,
+        final DefaultMQProducerImpl producer
+    )",SendResult,testSendMessageSync_WithException,MQClientAPIImplTest
+54,181845258,getConsumerFallbehindThreshold,(),long,testConsumerFallBehindThresholdOverflow,BrokerConfigTest
+55,181845258,buildPlainAccessResource,(PlainAccessConfig plainAccessConfig),PlainAccessResource,passWordtNullTest,PlainPermissionLoaderTest
+56,181845258,send,"(
+        Message msg)",SendResult,testSendMessageSync_Success,DefaultMQProducerTest
+57,181845258,examineBrokerClusterInfo,(),ClusterInfo,testExamineBrokerClusterInfo,DefaultMQAdminExtTest
+58,181845258,isScope,"(String num, int index)",boolean,isScopeStringTest,AclUtilsTest
+59,181845258,examineConsumeStats,"(
+        String consumerGroup)",ConsumeStats,testExamineConsumeStats,DefaultMQAdminExtTest
+60,181845258,processRequest,"(ChannelHandlerContext ctx,
+        RemotingCommand request)",RemotingCommand,testProcessRequest_RegisterBroker,DefaultRequestProcessorTest
+61,181845258,isMinus,(String minus),boolean,isMinusTest,AclUtilsTest
+62,181845258,checkTopic,(String topic),void,testCheckTopic_Success,ValidatorsTest
+63,181845258,putUserProperty,"(final String name, final String value)",void,putUserEmptyValuePropertyWithException,MessageTest
+64,181845258,processRequest,"(ChannelHandlerContext ctx,
+                                          RemotingCommand request)",RemotingCommand,testProcessRequest,SendMessageProcessorTest
+65,181845258,checkTopic,(String topic),void,testCheckTopic_HasIllegalCharacters,ValidatorsTest
+66,181845258,pull,"(MessageQueue mq, String subExpression, long offset, int maxNums)",PullResult,testPullMessageAsync_Success,DefaultMQPullConsumerTest
+67,181845258,putUserProperty,"(final String name, final String value)",void,putUserEmptyNamePropertyWithException,MessageTest
+68,181845258,send,"(
+        Message msg)",SendResult,testSendMessageAsync_BodyCompressed,DefaultMQProducerTest
+69,181845258,sendMessage,"(
+        final String addr,
+        final String brokerName,
+        final Message msg,
+        final SendMessageRequestHeader requestHeader,
+        final long timeoutMillis,
+        final CommunicationMode communicationMode,
+        final SendMessageContext context,
+        final DefaultMQProducerImpl producer
+    )",SendResult,testSendMessageOneWay_Success,MQClientAPIImplTest
+70,181845258,registerProducer,"(final String group, final ClientChannelInfo clientChannelInfo)",void,testRegisterProducer,ProducerManagerTest
+71,181845258,cleanExpiredConsumerQueue,"(
+        String cluster)",boolean,testCleanExpiredConsumerQueue,DefaultMQAdminExtTest
+72,181845258,isWatchStart,(),boolean,isWatchStartTest,PlainPermissionLoaderTest
+73,181845258,queryTopicConsumeByWho,"(
+        String topic)",GroupList,testQueryTopicConsumeByWho,DefaultMQAdminExtTest
+74,181845258,currentStackTrace,(),String,testCurrentStackTrace,UtilAllTest
+75,181845258,getYamlDataObject,"(String path, Class<T> clazz)",T,getYamlDataObjectExceptionTest,AclUtilsTest
+76,181845258,check,"(long transactionTimeout, int transactionCheckMax,
+        AbstractTransactionalMessageCheckListener listener)",void,testCheck_withCheck,TransactionalMessageServiceImplTest
+77,181845258,putKVConfig,"(String namespace, String key, String value)",void,testPutKVConfig,DefaultMQAdminExtTest
+78,181845258,processRequest,"(ChannelHandlerContext ctx, RemotingCommand request)",RemotingCommand,testProcessRequest_RollBack,EndTransactionProcessorTest
+79,181845258,processRequest,"(ChannelHandlerContext ctx,
+        RemotingCommand request)",RemotingCommand,testProcessRequest_UnregisterBroker,DefaultRequestProcessorTest
+80,181845258,send,"(
+        Message msg)",SendResult,testSendMessage_NoNameSrv,DefaultMQProducerTest
+81,181845258,decodeProperties,(java.nio.ByteBuffer byteBuffer),"Map<String, String>",testDecodeProperties,MessageDecoderTest
+82,181845258,brokerVIPChannel,"(final boolean isChange, final String brokerAddr)",String,testBrokerVIPChannel,MixAllTest
+83,181845258,compareAndIncreaseOnly,"(final AtomicLong target, final long value)",boolean,testCompareAndIncreaseOnly,MixAllTest
+84,181845258,check,"(long transactionTimeout, int transactionCheckMax,
+        AbstractTransactionalMessageCheckListener listener)",void,testCheck_withDiscard,TransactionalMessageServiceImplTest
+85,181845258,registerConsumer,"(final String group, final MQConsumerInner consumer)",boolean,testRegisterConsumer,MQClientInstanceTest
+86,181845258,checkTopic,(String topic),void,testCheckTopic_UseDefaultTopic,ValidatorsTest
+87,181845258,open,(),boolean,testOpen,TransactionalMessageServiceImplTest
+88,181845258,examineConsumerConnectionInfo,"(
+        String consumerGroup)",ConsumerConnection,testExamineConsumerConnectionInfo,DefaultMQAdminExtTest
+89,181845258,examineTopicRouteInfo,"(
+        String topic)",TopicRouteData,testExamineTopicRouteInfo,DefaultMQAdminExtTest
+90,181845258,processRequest,"(ChannelHandlerContext ctx,
+                                          RemotingCommand request)",RemotingCommand,testProcessRequest_WithMsgBack,SendMessageProcessorTest
+91,181845258,wipeWritePermOfBroker,"(final String namesrvAddr, String brokerName)",int,testWipeWritePermOfBroker,DefaultMQAdminExtTest
+92,181845258,examineProducerConnectionInfo,"(String producerGroup,
+        final String topic)",ProducerConnection,testExamineProducerConnectionInfo,DefaultMQAdminExtTest
+93,181845258,sendMessage,"(
+        final String addr,
+        final String brokerName,
+        final Message msg,
+        final SendMessageRequestHeader requestHeader,
+        final long timeoutMillis,
+        final CommunicationMode communicationMode,
+        final SendMessageContext context,
+        final DefaultMQProducerImpl producer
+    )",SendResult,testSendMessageAsync_WithException,MQClientAPIImplTest
+94,181845258,registerProducer,"(final String group, final DefaultMQProducerImpl producer)",boolean,testRegisterProducer,MQClientInstanceTest
+95,181845258,getAllSubscriptionGroup,"(final String brokerAddr,
+        long timeoutMillis)",SubscriptionGroupWrapper,testGetAllSubscriptionGroup,DefaultMQAdminExtTest
+96,181845258,load,(),void,testPlainAclPlugEngineInit,PlainPermissionLoaderTest
+97,181845258,recover,(final boolean lastExitOK),void,testRecover,DefaultMessageStoreTest
+98,181845258,send,"(
+        Message msg)",SendResult,testSendMessageAsync,DefaultMQProducerTest
+99,181845258,pull,"(MessageQueue mq, String subExpression, long offset, int maxNums)",PullResult,testPullMessage_Success,DefaultMQPullConsumerTest
+100,181845258,scanNotActiveChannel,(),void,scanNotActiveChannel,ProducerManagerTest
+101,181845258,deletePrepareMessage,(MessageExt msgExt),boolean,testDeletePrepareMessage,TransactionalMessageServiceImplTest
+102,181845258,isAsterisk,(String asterisk),boolean,isAsteriskTest,AclUtilsTest
+103,181845258,cleanUnusedTopic,(String cluster),boolean,testCleanUnusedTopic,DefaultMQAdminExtTest
+104,181845258,putUserProperty,"(final String name, final String value)",void,putUserNullValuePropertyWithException,MessageTest
+105,181845258,buildPlainAccessResource,(PlainAccessConfig plainAccessConfig),PlainAccessResource,accountThanTest,PlainPermissionLoaderTest
+106,181845258,isColon,(String colon),boolean,isColonTest,AclUtilsTest
+107,181845258,updateConsumeOffset,"(MessageQueue mq, long offset)",void,updateConsumeOffset,TransactionalMessageBridgeTest
+108,181845258,fetchBrokerRuntimeStats,"(
+        final String brokerAddr)",KVTable,testFetchBrokerRuntimeStats,DefaultMQAdminExtTest
+109,181845258,getPid,(),int,testGetPid,UtilAllTest
+110,181845258,buildPlainAccessResource,(PlainAccessConfig plainAccessConfig),PlainAccessResource,buildPlainAccessResourceTest,PlainPermissionLoaderTest
+111,181845258,getStoreTime,(SelectMappedBufferResult result),long,should_return_negative_one_when_invoke_getStoreTime_if_phyOffset_is_less_than_commitLog_s_minOffset,DefaultMessageStoreTest
+112,181845258,fetchConsumeOffset,(MessageQueue mq),long,testFetchConsumeOffset,TransactionalMessageBridgeTest
+113,181845258,sendMessage,"(
+        final String addr,
+        final String brokerName,
+        final Message msg,
+        final SendMessageRequestHeader requestHeader,
+        final long timeoutMillis,
+        final CommunicationMode communicationMode,
+        final SendMessageContext context,
+        final DefaultMQProducerImpl producer
+    )",SendResult,testSendMessageOneWay_WithException,MQClientAPIImplTest
+114,181845258,checkPerm,"(PlainAccessResource needCheckedAccess, PlainAccessResource ownedAccess)",void,checkPerm,PlainPermissionLoaderTest
+115,181845258,processRequest,"(ChannelHandlerContext ctx,
+                                          RemotingCommand request)",RemotingCommand,testProcessRequest_Transaction,SendMessageProcessorTest
+116,181845258,fetchMessageQueues,(String topic),Set<MessageQueue>,testFetchMessageQueues,TransactionalMessageBridgeTest
+117,181845258,processRequest,"(ChannelHandlerContext ctx, RemotingCommand request)",RemotingCommand,testProcessRequest,EndTransactionProcessorTest
+118,181845258,processRequest,"(ChannelHandlerContext ctx, RemotingCommand request)",RemotingCommand,testProcessRequest_CheckMessage,EndTransactionProcessorTest
+119,181845258,getStoreTime,(SelectMappedBufferResult result),long,should_return_negative_one_when_invoke_getStoreTime_if_incomming_param_is_null,DefaultMessageStoreTest
+120,181845258,send,"(
+        Message msg)",SendResult,testSendMessage_ZeroMessage,DefaultMQProducerTest
+121,181845258,messageTrackDetail,"(
+        MessageExt msg)",List<MessageTrack>,testMessageTrackDetail,DefaultMQAdminExtTest
+122,181845258,unregisterProducer,"(final String group, final ClientChannelInfo clientChannelInfo)",void,unregisterProducer,ProducerManagerTest
+123,181845258,checkTopic,(String topic),void,testCheckTopic_TooLongTopic,ValidatorsTest
+124,181845258,pull,"(MessageQueue mq, String subExpression, long offset, int maxNums)",PullResult,testPullMessage_NotFound,DefaultMQPullConsumerTest
+125,181845258,recover,(long maxPhyOffsetOfConsumeQueue),void,testRecover,DLedgerCommitlogTest
+126,181845258,checkPerm,"(PlainAccessResource needCheckedAccess, PlainAccessResource ownedAccess)",void,checkErrorPermDefaultValueNotMatch,PlainPermissionLoaderTest
+127,181845258,send,"(
+        Message msg)",SendResult,testSendMessageAsync_Success,DefaultMQProducerTest
+128,181845258,checkTopic,(String topic),void,testCheckTopic_BlankTopic,ValidatorsTest
+129,181845258,checkConfig,(),void,checkConfigTest,DefaultMQPushConsumerImplTest
+130,181845258,getLocalInetAddress,(),List<String>,testGetLocalInetAddress,MixAllTest
+131,181845258,getConsumerRunningInfo,"(String consumerGroup, String clientId,
+        boolean jstack)",ConsumerRunningInfo,testGetConsumerRunningInfo,DefaultMQAdminExtTest
+132,181845258,getClusterList,(String topic),Set<String>,testGetClusterList,DefaultMQAdminExtTest
+133,181845258,clearPermissionInfo,(),void,cleanAuthenticationInfoTest,PlainPermissionLoaderTest
+134,181845258,isScope,"(String num, int index)",boolean,isScopeTest,AclUtilsTest
+135,181845258,getConsumerStatsManager,(),ConsumerStatsManager,testPullMessage_ConsumeSuccess,ConsumeMessageConcurrentlyServiceTest
+136,181845258,topicRouteData2TopicPublishInfo,"(final String topic, final TopicRouteData route)",TopicPublishInfo,testTopicRouteData2TopicPublishInfo,MQClientInstanceTest
+137,181845258,resolveDiscardMsg,(MessageExt msgExt),void,sendCheckMessage,DefaultTransactionalMessageCheckListenerTest
+138,181845258,fetchConsumeStatsInBroker,"(final String brokerAddr, boolean isOrder,
+        long timeoutMillis)",ConsumeStatsList,testFetchConsumeStatsInBroker,DefaultMQAdminExtTest

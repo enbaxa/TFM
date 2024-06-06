@@ -1,0 +1,249 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,20473418,filterKeyValue,(Cell ignored),ReturnCode,testOnlyAllowsOlderTimestamps,TestNewerTimestampFilter
+1,20473418,getSqlQueryAllInvalidRows,"(Connection conn,
+            SourceTargetColumnNames columnNames, long scrutinyTimeMillis)",String,testGetSqlQueryAllInvalidRows,IndexScrutinyTableOutputTest
+2,20473418,getProperties,(),Properties,testInvalidLogPerNRowsArgument,PherfTest
+3,20473418,getSqlQueryMissingTargetRows,"(Connection conn,
+            SourceTargetColumnNames columnNames, long scrutinyTimeMillis)",String,testGetSqlQueryMissingTargetRows,IndexScrutinyTableOutputTest
+4,20473418,hashCode,(),int,testHashCode,InListExpressionTest
+5,20473418,conditionallyAddTagsToPutCells,"(Put somePut, byte[] family, byte[] qualifier,
+            ExtendedCellBuilder cellBuilder, byte[] valueArray, byte[] tagArray)",void,testTaggingAPutWrongQualifier,MetaDataUtilTest
+6,20473418,addCustomAnnotations,"(@Nullable String logLine, @Nullable PhoenixConnection con)",String,testAddCustomAnnotations,LogUtilTest
+7,20473418,fromSqlTypeName,(String sqlTypeName),PDataType,testFromSqlTypeName,PDataTypeTest
+8,20473418,checkIfLimitReached,"(long currentValue, long minValue, long maxValue,
+            long incrementBy, long cacheSize, long numToAllocate)",boolean,testAscendingNextValueGreaterThanMaxValue,SequenceUtilTest
+9,20473418,size,(),int,shouldAlwaysKeepOneEntryIfMaxSizeIsZero,PMetaDataImplTest
+10,20473418,checkIfLimitReached,"(long currentValue, long minValue, long maxValue,
+            long incrementBy, long cacheSize, long numToAllocate)",boolean,testBulkAllocationAscendingOverflow,SequenceUtilTest
+11,20473418,getDataValue,(),DataValue,testGetDataValue,SequentialIntegerDataGeneratorTest
+12,20473418,size,(),int,shouldNotEvictMoreEntriesThanNecessary,PMetaDataImplTest
+13,20473418,loadAndGetGuidePostsCacheFactory,(String classString),GuidePostsCacheFactory,getSingletonSimpleTest,GuidePostsCacheProviderTest
+14,20473418,getSampleValue,"(Integer maxLength, Integer arrayLength)",Object,testGetSampleValue,PDataTypeTest
+15,20473418,getInstance,(ByteBuffer timezoneId),DateTimeZone,testGetInstanceStringUnknown,JodaTimezoneCacheTest
+16,20473418,size,(),int,shouldAlwaysKeepAtLeastOneEntryEvenIfTooLarge,PMetaDataImplTest
+17,20473418,parseDate,(String dateValue),Date,testParseDate_PureDate,DateUtilTest
+18,20473418,constructUpsertStatement,"(String tableName, List<ColumnInfo> columnInfos)",String,testConstructUpsertStatement_ColumnInfos,QueryUtilTest
+19,20473418,getRMWebAddress,(Configuration config),String,testGetRMHostName,PhoenixMRJobUtilTest
+20,20473418,addServerCache,"(
+            ScanRanges keyRanges, final ImmutableBytesWritable cachePtr, final byte[] txState,
+            final ServerCacheFactory cacheFactory, final PTable cacheUsingTable)",ServerCache,testAddServerCache,ServerCacheClientTest
+21,20473418,constructMetadataParamQuery,(List<String> metadataSelectCols),String,testConstructMetadataParamQuery,IndexScrutinyTableOutputTest
+22,20473418,getSortedRowValueConstructorExpressionList,"(
+            List<InListColumnKeyValuePair> inListColumnKeyValuePairList, boolean isStateless, int numberOfRows)",List<Expression>,testGetSortedRowValueConstructorExpressionList,InListExpressionTest
+23,20473418,toArray,(String input),Array,testToArray_MultipleElements,StringToArrayConverterTest
+24,20473418,buildListOfRowKeyColumnExpressions,"(
+            Expression whereExpression, boolean isIndex)",RowKeyColumnExpressionOutput,buildListOfRowKeyColumnExpressionsTest,RVCOffsetCompilerTest
+25,20473418,parseTimestamp,(String timestampValue),Timestamp,testParseTimestamp_WithNanos,DateUtilTest
+26,20473418,loadAndGetGuidePostsCacheFactory,(String classString),GuidePostsCacheFactory,loadAndGetGuidePostsCacheFactoryNullStringFailure,GuidePostsCacheProviderTest
+27,20473418,combineProperties,"(Properties props, final Configuration conf)",Properties,testCopyFromConfiguration,PropertiesUtilTest
+28,20473418,constructOutputTableUpsert,"(List<String> sourceDynamicCols,
+            List<String> targetDynamicCols, Connection connection)",String,testGetOutputTableUpsert,IndexScrutinyTableOutputTest
+29,20473418,buildColumnInfoList,(Configuration conf),List<ColumnInfo>,testBuildColumnInfoList,FormatToBytesWritableMapperTest
+30,20473418,parseTime,(String timeValue),Time,testParseTime,DateUtilTest
+31,20473418,compareTo,"(byte[] b1, int s1, int l1, byte[] b2, int s2, int l2)",int,testShorterSubstringIsBigger,DescVarLengthFastByteComparisonsTest
+32,20473418,getSqlQueryBadCoveredColVal,"(Connection conn,
+            SourceTargetColumnNames columnNames, long scrutinyTimeMillis)",String,testGetSqlQueryBadCoveredColVal,IndexScrutinyTableOutputTest
+33,20473418,encodeVersion,"(String hbaseVersionStr, Configuration config)",long,testEncode,MetaDataUtilTest
+34,20473418,executeQuery,(),ResultSet,testMutationUsingExecuteQueryShouldFail,PhoenixPreparedStatementTest
+35,20473418,loadAndGetGuidePostsCacheFactory,(String classString),GuidePostsCacheFactory,loadAndGetGuidePostsCacheFactoryNonImplementingClassFailure,GuidePostsCacheProviderTest
+36,20473418,getAutoCommit,"(String url, Properties info, boolean defaultValue)",boolean,testGetAutoCommit_NotSpecified_DefaultTrue,JDBCUtilTest
+37,20473418,getTimestamp,"(long millis, int nanos)",Timestamp,testDemonstrateSetNanosOnTimestampLosingMillis,DateUtilTest
+38,20473418,checkIfLimitReached,"(long currentValue, long minValue, long maxValue,
+            long incrementBy, long cacheSize, long numToAllocate)",boolean,testBulkAllocationAscendingNextValueWithinLimit,SequenceUtilTest
+39,20473418,getResultSetSqlType,(),int,testGetResultSetSqlType,PDataTypeTest
+40,20473418,reset,(),void,testReset,OverAllQueryMetricsTest
+41,20473418,getSqlQueryBeyondMaxLookback,"(Connection conn,
+    SourceTargetColumnNames columnNames, long scrutinyTimeMillis)",String,testGetSqlQueryBeyondMaxLookback,IndexScrutinyTableOutputTest
+42,20473418,constructSelectStatement,"(String fullTableName, List<ColumnInfo> columnInfos,final String conditions)",String,testConstructSelectStatementWithCaseSensitiveTable,QueryUtilTest
+43,20473418,constructUpsertStatement,"(String tableName, List<ColumnInfo> columnInfos)",String,testConstructUpsertStatement_ColumnInfos_NoColumns,QueryUtilTest
+44,20473418,get,(int nBit),boolean,testMinNullableIndex,ValueBitSetTest
+45,20473418,getCharacter,"(Configuration conf, String confKey)",Character,testGetChar_NotPresent,CsvBulkImportUtilTest
+46,20473418,getProperties,(),Properties,testDefaultLogPerNRowsArgument,PherfTest
+47,20473418,initCsvImportJob,"(Configuration conf, char fieldDelimiter, char quoteChar,
+            char escapeChar, String arrayDelimiter, String binaryEncoding)",void,testInitCsvImportJob,CsvBulkImportUtilTest
+48,20473418,checkIfLimitReached,"(long currentValue, long minValue, long maxValue,
+            long incrementBy, long cacheSize, long numToAllocate)",boolean,testDescendingNextValueLessThanMinValue,SequenceUtilTest
+49,20473418,constructSelectStatement,"(String fullTableName, List<ColumnInfo> columnInfos,final String conditions)",String,testConstructSelectWithHint,QueryUtilTest
+50,20473418,calculateUTF8Offset,"(byte[] bytes, int offset, int length,
+            SortOrder sortOrder, int offsetInStr)",int,testCalculateUTF8Offset,StringUtilTest
+51,20473418,getInstance,(ByteBuffer timezoneId),DateTimeZone,testGetInstanceString,JodaTimezoneCacheTest
+52,20473418,getIndexUpdate,"(Mutation mutation, IndexMetaData indexMetaData, LocalHBaseState localHBaseState)","Collection<Pair<Mutation, byte[]>>",testManyVersions,NonTxIndexBuilderTest
+53,20473418,parseTimestamp,(String timestampValue),Timestamp,testParseTimestamp_tooLargeNanos,DateUtilTest
+54,20473418,parseTimestamp,(String timestampValue),Timestamp,testParseTimestamp_InvalidTimestamp,DateUtilTest
+55,20473418,constructParameterizedInClause,"(int numWhereCols, int numBatches)",String,testConstructParameterizedInClause,QueryUtilTest
+56,20473418,buildListOfRowKeyColumnExpressions,"(
+            Expression whereExpression, boolean isIndex)",RowKeyColumnExpressionOutput,buildListOfRowKeyColumnExpressionsIsNullTest,RVCOffsetCompilerTest
+57,20473418,conditionallyAddTagsToPutCells,"(Put somePut, byte[] family, byte[] qualifier,
+            ExtendedCellBuilder cellBuilder, byte[] valueArray, byte[] tagArray)",void,testConditionallyAddTagsToPutCells,MetaDataUtilTest
+58,20473418,parseTimestamp,(String timestampValue),Timestamp,testParseTimestamp_missingNanos,DateUtilTest
+59,20473418,parseTimestamp,(String timestampValue),Timestamp,testParseTimestamp_negativeNanos,DateUtilTest
+60,20473418,combineProperties,"(Properties props, final Configuration conf)",Properties,testPropertyOverrideRespected,PropertiesUtilTest
+61,20473418,parseDate,(String dateValue),Date,testParseDate,DateUtilTest
+62,20473418,intersectRegion,"(byte[] regionStartKey, byte[] regionEndKey, boolean isLocalIndex)",boolean,test,ScanRangesTest
+63,20473418,getSqlType,(),int,testOptionalDescriptionType,ColumnInfoTest
+64,20473418,getIndexUpdate,"(Mutation mutation, IndexMetaData indexMetaData, LocalHBaseState localHBaseState)","Collection<Pair<Mutation, byte[]>>",testGetMutableIndexUpdate,NonTxIndexBuilderTest
+65,20473418,checkIfLimitReached,"(long currentValue, long minValue, long maxValue,
+            long incrementBy, long cacheSize, long numToAllocate)",boolean,testBulkAllocationAscendingNextValueReachLimit,SequenceUtilTest
+66,20473418,toArray,(String input),Array,testToArray_IntegerValues,StringToArrayConverterTest
+67,20473418,acceptsURL,(String url),boolean,testNotAccept,PhoenixEmbeddedDriverTest
+68,20473418,constructSelectStatement,"(String fullTableName, List<ColumnInfo> columnInfos,final String conditions)",String,testConstructSelectStatementWithSchema,QueryUtilTest
+69,20473418,getConsistencyLevel,"(String url, Properties info, String defaultValue)",Consistency,testGetConsistency_TIMELINE_InProperties,JDBCUtilTest
+70,20473418,toSQL,"(ColumnResolver resolver, StringBuilder buf)",void,testToSQL_ArrayType,CastParseNodeTest
+71,20473418,mutatePutValue,"(Put somePut, byte[] family, byte[] qualifier, byte[] newValue)",void,testMutatingAPut,MetaDataUtilTest
+72,20473418,checkIfLimitReached,"(long currentValue, long minValue, long maxValue,
+            long incrementBy, long cacheSize, long numToAllocate)",boolean,testDescendingOverflowCycle,SequenceUtilTest
+73,20473418,ensureMutableIndexingCorrectlyConfigured,(Configuration conf),void,testUncompressedWal,TestIndexManagementUtil
+74,20473418,parseTimestamp,(String timestampValue),Timestamp,testParseTimestamp,DateUtilTest
+75,20473418,toBytes,(byte[][] byteArrays),byte[],testSplitBytes,ByteUtilTest
+76,20473418,getConnectionUrl,"(Properties props, Configuration conf)",String,testCreateConnectionFromConfiguration,QueryUtilTest
+77,20473418,connect,"(String url, Properties info)",Connection,testFirstConnectionWhenUrlHasTenantId,PhoenixDriverTest
+78,20473418,getAutoCommit,"(String url, Properties info, boolean defaultValue)",boolean,testGetAutoCommit_FalseInProperties,JDBCUtilTest
+79,20473418,checkIfLimitReached,"(long currentValue, long minValue, long maxValue,
+            long incrementBy, long cacheSize, long numToAllocate)",boolean,testAscendingOverflow,SequenceUtilTest
+80,20473418,getResults,"(ResultSet rs, String queryIteration, boolean isSelectCountStatement, Long queryStartTime)","Pair<Long, Long>",testExpectedRowsMismatch,MultiThreadedRunnerTest
+81,20473418,getIndexUpdate,"(Mutation mutation, IndexMetaData indexMetaData, LocalHBaseState localHBaseState)","Collection<Pair<Mutation, byte[]>>",testRebuildMultipleVersionRow,NonTxIndexBuilderTest
+82,20473418,computeBuckets,(),List<Bucket>,testComputeBuckets,EquiDepthStreamHistogramTest
+83,20473418,connect,"(String url, Properties info)",Connection,testFirstConnectionWhenPropsHasTenantId,PhoenixDriverTest
+84,20473418,addCustomAnnotations,"(@Nullable String logLine, @Nullable PhoenixConnection con)",String,testAddCustomAnnotationsWithNullConnection,LogUtilTest
+85,20473418,toArray,(String input),Array,testToArray_EmptyString,StringToArrayConverterTest
+86,20473418,compareTo,"(byte[] b1, int s1, int l1, byte[] b2, int s2, int l2)",int,testNullIsSmallest,DescVarLengthFastByteComparisonsTest
+87,20473418,fromString,(String stringRepresentation),ColumnInfo,testFromString_InvalidString,ColumnInfoTest
+88,20473418,combine,(OverAllQueryMetrics metric),OverAllQueryMetrics,testCombine,OverAllQueryMetricsTest
+89,20473418,toObject,(String value),Object,testDateConversions,PDataTypeTest
+90,20473418,getConsistencyLevel,"(String url, Properties info, String defaultValue)",Consistency,testGetConsistency_TIMELINE_InUrl,JDBCUtilTest
+91,20473418,handleCreateTableMutationCode,"(MetaDataMutationResult result, MutationCode code,
+                 CreateTableStatement statement, String schemaName, String tableName,
+                 PTable parent)",boolean,testHandleCreateTableMutationCodeWithNewCode,MetaDataClientTest
+92,20473418,loadAndGetGuidePostsCacheFactory,(String classString),GuidePostsCacheFactory,loadAndGetGuidePostsCacheFactoryBadStringFailure,GuidePostsCacheProviderTest
+93,20473418,getInstance,(ByteBuffer timezoneId),DateTimeZone,testGetInstanceByteBufferUTC,JodaTimezoneCacheTest
+94,20473418,toSQL,"(ColumnResolver resolver, StringBuilder buf)",void,testToSQL,CastParseNodeTest
+95,20473418,compareTo,"(byte[] lhs, int lhsOffset, int lhsLength, SortOrder lhsSortOrder, byte[] rhs,
+            int rhsOffset, int rhsLength, SortOrder rhsSortOrder, PDataType rhsType)",int,testSeparatorBytes,PDataTypeTest
+96,20473418,checkIfLimitReached,"(long currentValue, long minValue, long maxValue,
+            long incrementBy, long cacheSize, long numToAllocate)",boolean,testDescendingNextValueWithinLimit,SequenceUtilTest
+97,20473418,getMutationBatchList,"(long batchSize, long batchSizeBytes, List<Mutation> allMutationList)",List<List<Mutation>>,testGetMutationBatchList,MutationStateTest
+98,20473418,filterKeyValue,(Cell next),ReturnCode,testCoveringPointDelete,TestApplyAndFilterDeletesFilter
+99,20473418,splitBar,(Bar origBar),void,testSplitBar,EquiDepthStreamHistogramTest
+100,20473418,close,(),void,testCheckRegionServerStoppingOnClose,StatisticsScannerTest
+101,20473418,constructSelectStatement,"(String fullTableName, List<ColumnInfo> columnInfos,final String conditions)",String,testConstructSelectStatement,QueryUtilTest
+102,20473418,publish,(),"Map<MetricType, Long>",testNoOpRequestMetricsIfRequestMetricsDisabled,OverAllQueryMetricsTest
+103,20473418,evaluate,"(Tuple tuple, ImmutableBytesWritable ptr)",boolean,testEvaluate,ExternalSqlTypeIdFunctionTest
+104,20473418,addIndexUpdate,"(byte[] tableName, Mutation m)",void,testCancelingUpdates,TestIndexUpdateManager
+105,20473418,buildListOfColumnParseNodes,"(
+            RowValueConstructorParseNode rvcColumnsParseNode, boolean isIndex)",List<ColumnParseNode>,buildListOfColumnParseNodesTest,RVCOffsetCompilerTest
+106,20473418,checkIfLimitReached,"(long currentValue, long minValue, long maxValue,
+            long incrementBy, long cacheSize, long numToAllocate)",boolean,testBulkAllocationDescendingOverflowCycle,SequenceUtilTest
+107,20473418,getAnnotations,"(@NonNull String url, @NonNull Properties info)","Map<String, String>",testGetCustomTracingAnnotationsWithNone,JDBCUtilTest
+108,20473418,getSequenceKey,(),SequenceKey,testSortingSequenceAllocation,SequenceAllocationTest
+109,20473418,evaluate,"(Tuple tuple, ImmutableBytesWritable ptr)",boolean,testLeadingNulls,ArrayConstructorExpressionTest
+110,20473418,getCommitter,(RegionCoprocessorEnvironment env),IndexCommitter,getDefaultWriter,TestIndexWriter
+111,20473418,ensureMutableIndexingCorrectlyConfigured,(Configuration conf),void,testCompressedWALWithCodec,TestIndexManagementUtil
+112,20473418,constructGenericUpsertStatement,"(String tableName, int numColumns)",String,testConstructGenericUpsertStatement_NoColumns,QueryUtilTest
+113,20473418,nextKey,(byte[] key),byte[],testNextKey,ByteUtilTest
+114,20473418,checkIfLimitReached,"(long currentValue, long minValue, long maxValue,
+            long incrementBy, long cacheSize, long numToAllocate)",boolean,testAscendingNextValueWithinLimit,SequenceUtilTest
+115,20473418,constructGenericUpsertStatement,"(String tableName, int numColumns)",String,testConstructGenericUpsertStatement,QueryUtilTest
+116,20473418,invalidateAll,(),void,invalidateAllPTableNull,GuidePostsCacheWrapperTest
+117,20473418,parseDate,(String dateValue),Date,testParseTime_InvalidTime,DateUtilTest
+118,20473418,getMutateBatchSizeBytes,"(String url, Properties info, ReadOnlyProps props)",long,testGetMaxMutateBytes,JDBCUtilTest
+119,20473418,ensureMutableIndexingCorrectlyConfigured,(Configuration conf),void,testCompressedWALWithHLogReader,TestIndexManagementUtil
+120,20473418,filterKeyValue,(Cell next),ReturnCode,testDeleteColumnCorrectlyCoversColumns,TestApplyAndFilterDeletesFilter
+121,20473418,getResults,"(ResultSet rs, String queryIteration, boolean isSelectCountStatement, Long queryStartTime)","Pair<Long, Long>",testFinishWithoutTimeout,MultiThreadedRunnerTest
+122,20473418,getAutoCommit,"(String url, Properties info, boolean defaultValue)",boolean,testGetAutoCommit_FalseInUrl,JDBCUtilTest
+124,20473418,getResourcesFromJarFile,"(
+            final File file,
+            final Pattern pattern)",Collection<String>,testMissingJarFileReturnsGracefully,ResourceListTest
+125,20473418,checkIfLimitReached,"(long currentValue, long minValue, long maxValue,
+            long incrementBy, long cacheSize, long numToAllocate)",boolean,testBulkAllocationDescendingNextValueWithinLimit,SequenceUtilTest
+126,20473418,constructSelectStatement,"(String fullTableName, List<ColumnInfo> columnInfos,final String conditions)",String,testConstructSelectStatementWithCaseSensitiveSchema,QueryUtilTest
+127,20473418,addCustomAnnotations,"(@Nullable String logLine, @Nullable PhoenixConnection con)",String,testAddCustomAnnotationsWithNullAnnotations,LogUtilTest
+128,20473418,checkIfLimitReached,"(long currentValue, long minValue, long maxValue,
+            long incrementBy, long cacheSize, long numToAllocate)",boolean,testBulkAllocationDescendingNextValueReachLimit,SequenceUtilTest
+129,20473418,getProperties,(),Properties,testCustomizedLogPerNRowsArgument,PherfTest
+130,20473418,checkIfLimitReached,"(long currentValue, long minValue, long maxValue,
+            long incrementBy, long cacheSize, long numToAllocate)",boolean,testAscendingNextValueReachLimit,SequenceUtilTest
+131,20473418,getAutoCommit,"(String url, Properties info, boolean defaultValue)",boolean,testGetAutoCommit_NotSpecified_DefaultFalse,JDBCUtilTest
+132,20473418,toString,(),String,testToString,SingleKeyValueTupleTest
+133,20473418,joinSortedIntArrays,"(int[] a, int[] b)",int[],testJoinIntArrays,MutationStateTest
+134,20473418,getTenantIdExpression,"(Connection conn, String fullTableName)",Expression,testGetTenantIdExpression,PhoenixRuntimeTest
+135,20473418,conditionallyAddTagsToPutCells,"(Put somePut, byte[] family, byte[] qualifier,
+            ExtendedCellBuilder cellBuilder, byte[] valueArray, byte[] tagArray)",void,testTaggingAPutDueToDifferentCellValue,MetaDataUtilTest
+136,20473418,getMetricsStopWatch,"(boolean isRequestMetricsEnabled,
+                                                       LogLevel connectionLogLevel,
+                                                       MetricType type)",MetricsStopWatch,testGetMetricsStopWatchWithMetricsTrue,MetricUtilTest
+137,20473418,loadAndGetGuidePostsCacheFactory,(String classString),GuidePostsCacheFactory,loadAndGetGuidePostsCacheFactoryTestFactory,GuidePostsCacheProviderTest
+138,20473418,conditionallyAddTagsToPutCells,"(Put somePut, byte[] family, byte[] qualifier,
+            ExtendedCellBuilder cellBuilder, byte[] valueArray, byte[] tagArray)",void,testSkipTaggingAPutDueToSameCellValue,MetaDataUtilTest
+139,20473418,getMutationValue,"(Mutation headerRow, byte[] key,
+      KeyValueBuilder builder, ImmutableBytesWritable ptr)",boolean,testGetMutationKeyValue,MetaDataUtilTest
+140,20473418,toBytes,"(BigDecimal v, byte[] result, final int offset, int length)",int,testIllegalUnsignedDateTime,PDataTypeTest
+141,20473418,getInstance,(ByteBuffer timezoneId),DateTimeZone,testGetInstanceImmutableBytesWritable,JodaTimezoneCacheTest
+142,20473418,checkIfLimitReached,"(long currentValue, long minValue, long maxValue,
+            long incrementBy, long cacheSize, long numToAllocate)",boolean,testDescendingNextValueReachLimit,SequenceUtilTest
+143,20473418,getFailurePolicy,(RegionCoprocessorEnvironment env),IndexFailurePolicy,getDefaultFailurePolicy,TestIndexWriter
+144,20473418,checkIfSysMutexExistsAndModifyTTLIfRequired,(Admin admin),boolean,testSysMutexCheckReturnsFalseWhenTableAbsent,ConnectionQueryServicesImplTest
+145,20473418,toSQL,"(ColumnResolver resolver, StringBuilder buf)",void,testToSQL_WithLengthAndScale,CastParseNodeTest
+146,20473418,getSaltingByte,"(byte[] value, int offset, int length, int bucketNum)",byte,testGetSaltingByte,SaltingUtilTest
+147,20473418,getAnnotations,"(@NonNull String url, @NonNull Properties info)","Map<String, String>",testGetCustomTracingAnnotationInBothPropertiesAndURL,JDBCUtilTest
+148,20473418,rewriteAllChildrenAsc,"(
+            RowValueConstructorExpression rvcExpression)",RowValueConstructorExpression,testRewriteAllChildrenAsc,RowValueConstructorExpressionRewriterTest
+149,20473418,mergeBars,(),boolean,testMergeBars,EquiDepthStreamHistogramTest
+150,20473418,vintToBytes,"(byte[] result, int offset, final long vint)",int,testVIntToBytes,ByteUtilTest
+151,20473418,getAutoCommit,"(String url, Properties info, boolean defaultValue)",boolean,testGetAutoCommit_TrueInProperties,JDBCUtilTest
+152,20473418,main,(String[] args),void,testUnknownOption,PherfTest
+153,20473418,clipLeft,"(int pkPos, KeyRange keyRange, int spansToClip, ImmutableBytesWritable ptr)",KeyRange,testClipLeft,RowKeySchemaTest
+154,20473418,handleCreateTableMutationCode,"(MetaDataMutationResult result, MutationCode code,
+                 CreateTableStatement statement, String schemaName, String tableName,
+                 PTable parent)",boolean,testHandleCreateTableMutationCode,MetaDataClientTest
+155,20473418,encodeVersion,"(String hbaseVersionStr, Configuration config)",long,testDecode,MetaDataUtilTest
+156,20473418,buildListOfColumnParseNodes,"(
+            RowValueConstructorParseNode rvcColumnsParseNode, boolean isIndex)",List<ColumnParseNode>,buildListOfColumnParseNodesTestIndex,RVCOffsetCompilerTest
+157,20473418,invalidateAll,(),void,invalidateAllTableDescriptorNull,GuidePostsCacheWrapperTest
+158,20473418,isCoercibleTo,(PDataType targetType),boolean,testValueCoersion,PDataTypeTest
+159,20473418,main,(String[] args),void,testListArgument,PherfTest
+160,20473418,getMetricsStopWatch,"(boolean isRequestMetricsEnabled,
+                                                       LogLevel connectionLogLevel,
+                                                       MetricType type)",MetricsStopWatch,testGetMetricsStopWatchWithMetricsFalse,MetricUtilTest
+161,20473418,parseTimestamp,(String timestampValue),Timestamp,testParseTimestamp_WithMillis,DateUtilTest
+162,20473418,addValue,(byte[] value),void,testAddValues,EquiDepthStreamHistogramTest
+163,20473418,close,(),void,testCheckRegionServerStoppedOnClose,StatisticsScannerTest
+164,20473418,isCycleAllowed,(long numToAllocate),boolean,testIsCycleAllowedForStandardAllocation,SequenceUtilTest
+165,20473418,getBar,(byte[] value),Bar,testGetBar,EquiDepthStreamHistogramTest
+166,20473418,buildListOfRowKeyColumnExpressions,"(
+            Expression whereExpression, boolean isIndex)",RowKeyColumnExpressionOutput,buildListOfRowKeyColumnExpressionsSingleNodeIsNullTest,RVCOffsetCompilerTest
+167,20473418,buildListOfRowKeyColumnExpressions,"(
+            Expression whereExpression, boolean isIndex)",RowKeyColumnExpressionOutput,buildListOfRowKeyColumnExpressionsIndexTest,RVCOffsetCompilerTest
+168,20473418,getColumns,"(PTable table, List<Pair<String, String>> columns)",List<PColumn>,testParseArguments_MinimalCase,PhoenixRuntimeTest
+169,20473418,parseDate,(String dateValue),Date,testParseDate_InvalidDate,DateUtilTest
+170,20473418,getPropertyPolicy,(),PropertyPolicy,testPropertyPolicyProvider,PropertyPolicyProviderTest
+171,20473418,isCycleAllowed,(long numToAllocate),boolean,testIsCycleAllowedForBulkAllocation,SequenceUtilTest
+172,20473418,call,(Callable<T> target),T,testCall,PhoenixContextExecutorTest
+173,20473418,getColumns,"(PTable table, List<Pair<String, String>> columns)",List<PColumn>,testParseArguments_FullOption,PhoenixRuntimeTest
+174,20473418,close,(),void,testNullIteratorOnClose,OrderedResultIteratorTest
+175,20473418,toArray,(String input),Array,testToArray_SingleElement,StringToArrayConverterTest
+176,20473418,removeProperty,"(String url, String propName)",String,testRemoveProperty,JDBCUtilTest
+177,20473418,getGuidePostsCache,"(String classStr, ConnectionQueryServices queryServices,
+            Configuration config)",GuidePostsCacheWrapper,getGuidePostsCacheWrapper,GuidePostsCacheProviderTest
+178,20473418,buildListOfRowKeyColumnExpressions,"(
+            Expression whereExpression, boolean isIndex)",RowKeyColumnExpressionOutput,buildListOfRowKeyColumnExpressionsSingleNodeComparisonTest,RVCOffsetCompilerTest
+179,20473418,readFromResultFile,(File resultsFile),List<Result>,testDTDInResults,XMLResultHandlerTest
+180,20473418,toString,(long num),String,testPowersBase62,Base62EncoderTest
+181,20473418,conditionallyAddTagsToPutCells,"(Put somePut, byte[] family, byte[] qualifier,
+            ExtendedCellBuilder cellBuilder, byte[] valueArray, byte[] tagArray)",void,testTaggingAPutUnconditionally,MetaDataUtilTest
+182,20473418,publish,(),"Map<MetricType, Long>",testPublish,OverAllQueryMetricsTest
+183,20473418,configurePreUpsertProcessor,"(Configuration conf,
+            Class<? extends ImportPreUpsertKeyValueProcessor> processorClass)",void,testConfigurePreUpsertProcessor,CsvBulkImportUtilTest
+184,20473418,getAutoCommit,"(String url, Properties info, boolean defaultValue)",boolean,testGetAutoCommit_TrueInUrl,JDBCUtilTest
+185,20473418,checkIfLimitReached,"(long currentValue, long minValue, long maxValue,
+            long incrementBy, long cacheSize, long numToAllocate)",boolean,testBulkAllocationDescendingNextValueLessThanMax,SequenceUtilTest
+186,20473418,compile,(final PTable indexTable),MutationPlan,testCompile,PostIndexDDLCompilerTest
+187,20473418,getSaltingByte,"(byte[] value, int offset, int length, int bucketNum)",byte,testGetSaltingByte_EdgeCaseHashCode,SaltingUtilTest
+188,20473418,getResults,"(ResultSet rs, String queryIteration, boolean isSelectCountStatement, Long queryStartTime)","Pair<Long, Long>",testTimeout,MultiThreadedRunnerTest
+189,20473418,fromString,(String stringRepresentation),ColumnInfo,testFromString_InvalidDataType,ColumnInfoTest
+190,20473418,compareTo,"(byte[] lhs, int lhsOffset, int lhsLength, SortOrder lhsSortOrder, byte[] rhs,
+            int rhsOffset, int rhsLength, SortOrder rhsSortOrder, PDataType rhsType)",int,testIntVersusLong,PDataTypeTest
+191,20473418,getWallClockTimeFromCellTimeStamp,(long tsOfCell),long,testGetWallClockTimeFromCellTimeStamp,PhoenixRuntimeTest
+192,20473418,getSchema,"(String url, Properties info, String defaultValue)",String,testSchema,JDBCUtilTest
+193,20473418,executeUpdate,(),int,testQueriesUsingExecuteUpdateShouldFail,PhoenixPreparedStatementTest
+194,20473418,checkIfLimitReached,"(long currentValue, long minValue, long maxValue,
+            long incrementBy, long cacheSize, long numToAllocate)",boolean,testBulkAllocationAscendingNextValueGreaterThanMax,SequenceUtilTest

@@ -1,0 +1,183 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,206478,text,( String text ),void,testText,XhtmlBaseSinkTest
+1,206478,figureGraphics,( String name ),void,testFigureGraphics,XhtmlBaseSinkTest
+2,206478,figureGraphics,( String name ),void,testFigureGraphics,FoAggregateSinkTest
+3,206478,getAttributeNames,(),Enumeration<String>,testGetAttributeNames,SinkEventAttributeSetTest
+4,206478,section3,(),void,testSection3,XhtmlBaseSinkTest
+5,206478,section1,(),void,testSection1,SinkAdapterTest
+6,206478,monospaced,(),void,testMonospaced,SinkAdapterTest
+7,206478,list,(),void,testList,SinkAdapterTest
+8,206478,isEqual,( AttributeSet attr ),boolean,testIsEqual,SinkEventAttributeSetTest
+9,206478,table,(),void,testTable,SinkAdapterTest
+10,206478,inline,(),void,testInline,Xhtml5BaseSinkTest
+11,206478,inline,(),void,testInline,SinkAdapterTest
+12,206478,figure,(),void,testFigure,SinkAdapterTest
+13,206478,tableCell,(),void,testTableCell,SinkAdapterTest
+14,206478,anchor,( String name ),void,testAnchor,Xhtml5BaseSinkTest
+15,206478,title,(),void,testTitle,SinkAdapterTest
+16,206478,link,( String name ),void,testLink,FoAggregateSinkTest
+17,206478,blockquote,(),void,testBlockquote,Xhtml5BaseSinkTest
+18,206478,figure,(),void,testFigure,Xhtml5BaseSinkTest
+19,206478,link,( String name ),void,testLink,SinkAdapterTest
+20,206478,tableRow,(),void,testTableRow,SinkAdapterTest
+21,206478,section5,(),void,testSection5,Xhtml5BaseSinkTest
+22,206478,unknown,"( String name, Object[] requiredParams, SinkEventAttributes attributes )",void,testUnknown,XhtmlBaseSinkTest
+23,206478,tableCell,(),void,testTableCell,XhtmlBaseSinkTest
+24,206478,filterAttributes,"( AttributeSet attributes, String[] valids )",MutableAttributeSet,testFilterAttributes,SinkUtilsTest
+25,206478,unifyEOLs,( String text ),String,testUnifiedEOL,TestAbstractSink
+26,206478,link,( String name ),void,testLink,XhtmlBaseSinkTest
+27,206478,sidebar,(),void,testSidebar,Xhtml5BaseSinkTest
+28,206478,verbatim,( boolean boxed ),void,testVerbatim,Xhtml5BaseSinkTest
+29,206478,paragraph,(),void,testParagraph,Xhtml5BaseSinkTest
+30,206478,execute,"( Sink sink, MacroRequest request )",void,testExecute,EchoMacroTest
+31,206478,tableCaption,(),void,testTableCaption,Xhtml5BaseSinkTest
+32,206478,section4,(),void,testSection4,Xhtml5BaseSinkTest
+33,206478,execute,"( Sink sink, MacroRequest request )",void,testOthersThenStringParameters,SwfMacroTest
+34,206478,isPageSizeSupported,( String aPageSize ),boolean,testIsPageSupported,ITextUtilTest
+35,206478,containsAttributes,( AttributeSet attributes ),boolean,testContainsAttributes,SinkEventAttributeSetTest
+36,206478,isExternalLink,( String link ),boolean,testIsExternalLink,AptUtilsTest
+37,206478,figureGraphics,( String name ),void,testFigureGraphics,Xhtml5BaseSinkTest
+38,206478,isEmpty,(),boolean,testIsEmpty,SinkEventAttributeSetTest
+39,206478,tableHeaderCell,(),void,testTableHeaderCell,XhtmlBaseSinkTest
+40,206478,table,(),void,testTable,Xhtml5BaseSinkTest
+41,206478,horizontalRule,(),void,testHorizontalRule,Xhtml5BaseSinkTest
+42,206478,unknown,"( String name, Object[] requiredParams, SinkEventAttributes attributes )",void,testUnknown,SinkAdapterTest
+43,206478,figure,(),void,testFigure,XhtmlBaseSinkTest
+44,206478,body,(),void,testBody,SinkAdapterTest
+45,206478,tableCell,(),void,testTableCell,Xhtml5BaseSinkTest
+46,206478,article,(),void,testArticle,SinkAdapterTest
+47,206478,division,(),void,testDivision,Xhtml5BaseSinkTest
+48,206478,definitionListItem,(),void,testDefinitionListItem,SinkAdapterTest
+49,206478,encodeAnchor,( String id ),String,testEncodeAnchor,AptUtilsTest
+50,206478,division,(),void,testDivision,SinkAdapterTest
+51,206478,content,(),void,testContent,Xhtml5BaseSinkTest
+52,206478,link,( String name ),void,testLink,Xhtml5BaseSinkTest
+53,206478,trademarkFromClass,( final String trade ),char,testTrademarkFromClass,DocbookUtilsTest
+54,206478,isDefined,( Object attrName ),boolean,testIsDefined,SinkEventAttributeSetTest
+55,206478,anchor,( String name ),void,testAnchor,SinkAdapterTest
+56,206478,sectionTitle,(),void,testSectionTitle,SinkAdapterTest
+57,206478,doxiaListNumbering,( final String style ),int,testDoxiaListNumbering,DocbookUtilsTest
+58,206478,docbookListNumbering,( final int numbering ),String,testDocbookListNumbering,DocbookUtilsTest
+59,206478,writeStartTag,( Tag t ),void,testWriteStartTag,AbstractXmlSinkTest
+60,206478,equals,( Object obj ),boolean,testEquals,SinkEventAttributeSetTest
+61,206478,numberedList,( int numbering ),void,testNumberedList,SinkAdapterTest
+62,206478,comment,( String comment ),void,testComment,SinkAdapterTest
+63,206478,clone,(),Object,testClone,SinkEventAttributeSetTest
+64,206478,isInternalLink,( String link ),boolean,testIsInternalLink,AptUtilsTest
+65,206478,article,(),void,testArticle,Xhtml5BaseSinkTest
+66,206478,execute,"( Sink sink, MacroRequest request )",void,testExecute,SwfMacroTest
+67,206478,lineBreak,(),void,testLineBreak,XhtmlBaseSinkTest
+68,206478,section5,(),void,testSection5,XhtmlBaseSinkTest
+69,206478,execute,"( Sink sink, MacroRequest request )",void,testExecute,TocMacroTest
+70,206478,unknown,"( String name, Object[] requiredParams, SinkEventAttributes attributes )",void,testUnknown,Xhtml5BaseSinkTest
+71,206478,section4,(),void,testSection4,SinkAdapterTest
+72,206478,table,(),void,testTable,XhtmlBaseSinkTest
+73,206478,numberedList,( int numbering ),void,testNumberedList,Xhtml5BaseSinkTest
+74,206478,italic,(),void,testItalic,XhtmlBaseSinkTest
+75,206478,getAttributeString,( String attributeId ),String,testGetAttributeString,FoConfigurationTest
+76,206478,getAttributeString,( AttributeSet att ),String,testGetAttributeString,SinkUtilsTest
+77,206478,tableCaption,(),void,testTableCaption,XhtmlBaseSinkTest
+78,206478,copyAttributes,(),AttributeSet,testCopyAttributes,SinkEventAttributeSetTest
+79,206478,getResolveParent,(),AttributeSet,testGetResolveParent,SinkEventAttributeSetTest
+80,206478,section,"( int level, SinkEventAttributes attributes )",void,testSection,XhtmlBaseSinkTest
+81,206478,getAttributeSet,( String attributeId ),MutableAttributeSet,testGetAttributeSet,FoConfigurationTest
+82,206478,numberedList,( int numbering ),void,testNumberedList,XhtmlBaseSinkTest
+83,206478,section4,(),void,testSection4,XhtmlBaseSinkTest
+84,206478,date,(),void,testDate,SinkAdapterTest
+85,206478,execute,"( Sink sink, MacroRequest request )",void,testTocStyle,TocMacroTest
+86,206478,writeEOL,(),void,testWriteEOL,AbstractXmlSinkTest
+87,206478,horizontalRule,(),void,testHorizontalRule,SinkAdapterTest
+88,206478,section1,(),void,testSection1,Xhtml5BaseSinkTest
+89,206478,sectionTitle5,(),void,testSectionTitle5,SinkAdapterTest
+90,206478,tableHeaderCell,(),void,testTableHeaderCell,Xhtml5BaseSinkTest
+91,206478,definitionList,(),void,testDefinitionList,XhtmlBaseSinkTest
+92,206478,definedTerm,(),void,testDefinedTerm,SinkAdapterTest
+93,206478,header,(),void,testHeader,SinkAdapterTest
+94,206478,data,( String value ),void,testData,SinkAdapterTest
+95,206478,sectionTitle4,(),void,testSectionTitle4,SinkAdapterTest
+96,206478,encodeFragment,( String text ),String,testEncodeFragment,AptUtilsTest
+97,206478,rawText,( String text ),void,testRawText,SinkAdapterTest
+98,206478,anchor,( String name ),void,testAnchor,XhtmlBaseSinkTest
+99,206478,setDocumentName,( String name ),void,testSetDocumentName,FoAggregateSinkTest
+100,206478,section3,(),void,testSection3,SinkAdapterTest
+101,206478,sectionTitle2,(),void,testSectionTitle2,SinkAdapterTest
+102,206478,listItem,(),void,testListItem,SinkAdapterTest
+103,206478,tableCaption,(),void,testTableCaption,SinkAdapterTest
+104,206478,close,(),void,testClose,SinkAdapterTest
+105,206478,addAttribute,"( Object name, Object value )",void,testAddAttribute,SinkEventAttributeSetTest
+106,206478,section2,(),void,testSection2,Xhtml5BaseSinkTest
+107,206478,nonBreakingSpace,(),void,testNonBreakingSpace,SinkAdapterTest
+108,206478,text,( String text ),void,testText,SinkAdapterTest
+109,206478,lineBreak,(),void,testLineBreak,Xhtml5BaseSinkTest
+110,206478,data,( String value ),void,testData,Xhtml5BaseSinkTest
+111,206478,doxiaTableFrameAttribute,( final String frame ),String,testDoxiaTableFrameAttribute,DocbookUtilsTest
+112,206478,rawText,( String text ),void,testRawText,Xhtml5BaseSinkTest
+113,206478,numberedListItem,(),void,testNumberedListItem,SinkAdapterTest
+114,206478,section2,(),void,testSection2,XhtmlBaseSinkTest
+115,206478,tableHeaderCell,(),void,testTableHeaderCell,SinkAdapterTest
+116,206478,tableRows,"( int[] justification, boolean grid )",void,testTableRows,Xhtml5BaseSinkTest
+117,206478,section,"( int level, SinkEventAttributes attributes )",void,testSection,Xhtml5BaseSinkTest
+118,206478,getPageSize,( Rectangle rect ),String,testGetPageSize,ITextUtilTest
+119,206478,definition,(),void,testDefinition,SinkAdapterTest
+120,206478,definitionList,(),void,testDefinitionList,Xhtml5BaseSinkTest
+121,206478,writeSimpleTag,( Tag t ),void,testWriteSimpleTag,AbstractXmlSinkTest
+122,206478,navigation,(),void,testNavigation,Xhtml5BaseSinkTest
+123,206478,author,(),void,testAuthor,SinkAdapterTest
+124,206478,comment,( String comment ),void,testComment,Xhtml5BaseSinkTest
+125,206478,containsAttribute,"( Object name, Object value )",boolean,testContainsAttribute,SinkEventAttributeSetTest
+126,206478,hashCode,(),int,testHashCode,SinkEventAttributeSetTest
+127,206478,section1,(),void,testSection1,XhtmlBaseSinkTest
+128,206478,getAttributeCount,(),int,testGetAttributeCount,SinkEventAttributeSetTest
+129,206478,text,( String text ),void,testText,Xhtml5BaseSinkTest
+130,206478,rawText,( String text ),void,testRawText,XhtmlBaseSinkTest
+131,206478,execute,"( Sink sink, MacroRequest request )",void,testExecute,SsiMacroTest
+132,206478,sidebar,(),void,testSidebar,SinkAdapterTest
+133,206478,tableRows,"( int[] justification, boolean grid )",void,testTableRows,XhtmlBaseSinkTest
+134,206478,comment,( String comment ),void,testComment,XhtmlBaseSinkTest
+135,206478,definitionList,(),void,testDefinitionList,SinkAdapterTest
+136,206478,figureGraphics,( String name ),void,testFigureGraphics,SinkAdapterTest
+137,206478,tableRows,"( int[] justification, boolean grid )",void,testTableRows,SinkAdapterTest
+138,206478,toString,(),String,testToString,SinkEventAttributeSetTest
+139,206478,horizontalRule,(),void,testHorizontalRule,XhtmlBaseSinkTest
+140,206478,footer,(),void,testFooter,Xhtml5BaseSinkTest
+141,206478,section5,(),void,testSection5,SinkAdapterTest
+142,206478,isDemarcator,"( String snippetId, String what, String line )",boolean,testIsDemarcator,SnippetReaderTest
+143,206478,section3,(),void,testSection3,Xhtml5BaseSinkTest
+144,206478,content,(),void,testContent,SinkAdapterTest
+145,206478,tableRow,(),void,testTableRow,XhtmlBaseSinkTest
+146,206478,footer,(),void,testFooter,SinkAdapterTest
+147,206478,address,(),void,testAddress,SinkAdapterTest
+148,206478,flush,(),void,testFlush,SinkAdapterTest
+149,206478,list,(),void,testList,XhtmlBaseSinkTest
+150,206478,list,(),void,testList,Xhtml5BaseSinkTest
+151,206478,getDefaultPageSize,(),Rectangle,testGetDefaultPageSize,ITextUtilTest
+152,206478,paragraph,(),void,testParagraph,SinkAdapterTest
+153,206478,lineBreakOpportunity,(),void,testLineBreakOpportunities,SinkAdapterTest
+154,206478,sectionTitle3,(),void,testSectionTitle3,SinkAdapterTest
+155,206478,address,(),void,testAddress,Xhtml5BaseSinkTest
+156,206478,time,( String datetime ),void,testTime,SinkAdapterTest
+157,206478,section,"( int level, SinkEventAttributes attributes )",void,testSection,SinkAdapterTest
+158,206478,verbatim,( boolean boxed ),void,testVerbatim,XhtmlBaseSinkTest
+160,206478,anchor,( String name ),void,testAnchor,FoAggregateSinkTest
+161,206478,header,(),void,testHeader,Xhtml5BaseSinkTest
+162,206478,getAttribute,( Object key  ),Object,testGetAttribute,SinkEventAttributeSetTest
+163,206478,section2,(),void,testSection2,SinkAdapterTest
+164,206478,bold,(),void,testBold,SinkAdapterTest
+165,206478,sectionTitle1,(),void,testSectionTitle1,SinkAdapterTest
+166,206478,resolveLink,"( Node node, LinkResolverContext context, ResolvedLink link )",ResolvedLink,testResolveLink,FlexmarkDoxiaLinkResolverTest
+167,206478,tableRow,(),void,testTableRow,Xhtml5BaseSinkTest
+168,206478,head,(),void,testHead,SinkAdapterTest
+169,206478,addAttributes,( AttributeSet attributes  ),void,testAddAttributes,SinkEventAttributeSetTest
+170,206478,isLocalLink,( String link ),boolean,testIsLocalLink,AptUtilsTest
+171,206478,figureCaption,(),void,testFigureCaption,SinkAdapterTest
+172,206478,paragraph,(),void,testParagraph,XhtmlBaseSinkTest
+173,206478,linkToKey,( String text ),String,testLinkToKey,AptUtilsTest
+174,206478,lineBreak,(),void,testLineBreaks,SinkAdapterTest
+175,206478,italic,(),void,testItalic,Xhtml5BaseSinkTest
+176,206478,navigation,(),void,testNavigation,SinkAdapterTest
+177,206478,verbatim,( boolean boxed ),void,testVerbatim,SinkAdapterTest
+178,206478,italic,(),void,testItalic,SinkAdapterTest
+179,206478,pageBreak,(),void,testPageBreak,SinkAdapterTest
+180,206478,blockquote,(),void,testBlockquote,SinkAdapterTest
+181,206478,body,(),void,testBody,FoAggregateSinkTest
+182,206478,time,( String datetime ),void,testTime,Xhtml5BaseSinkTest

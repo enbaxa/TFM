@@ -1,0 +1,337 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,59326989,validate,(Config config),ValidationResult,testMoreThanOneExists,TestExactlyOnePathExistsValidation
+1,59326989,allStepsSubmitted,(Set<Step> steps),boolean,testNotAllStepsFinished,TestStepUtils
+2,59326989,refactor,(Set<Step> steps),Set<Step>,testLoopWithinLoop,TestLoopStep
+3,59326989,convertToQuery,(Row row),Query,testConvertToGetRowKeyAndColumnFilters,TestDefaultHBaseSerde
+4,59326989,validate,(Config config),ValidationResult,testPathDoesntExist,TestIfPathExistsValidation
+5,59326989,validate,(Config config),ValidationResult,testPathDoesntExist,TestAllowedValuesValidation
+6,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaFloatNotNullable,TestAvroUtils
+7,59326989,stepNamesAsString,(Set<? extends Step> steps),String,testStepNamesAsString,TestStepUtils
+8,59326989,mergeLoadedSteps,"(Set<Step> baseSteps, Step parentStep, Config baseConfig)",Set<Step>,testMergeLoadedSteps,TestStepUtils
+9,59326989,different,"(Row first, Row second, List<String> valueFieldNames)",boolean,testDifferent,TestRowUtils
+10,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaBooleanNullable,TestAvroUtils
+11,59326989,configure,(Config config),void,configMultipleNoDesignation,TestProtobufSchema
+12,59326989,copyPrecedingTime,"(Row fromRow, TimeModel fromTimeModel, Row into, TimeModel intoTimeModel)",Row,testCopyPrecedingTime,TestPlannerUtils
+13,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaTimestampNotNullable,TestAvroUtils
+14,59326989,buildDescriptor,"(String filePath, String messageName)",Descriptors.Descriptor,buildDescriptorSingleNoDefinedName,TestProtobufUtils
+15,59326989,rowKeySeparatorFor,(Config config),byte[],testRowKeySeparatorFor,TestHBaseUtils
+16,59326989,validate,(Config config),ValidationResult,testNull,TestNonEmptyValueValidation
+17,59326989,schemaFor,(StructType structType),Schema,toSchemaMapsNested,TestAvroUtils
+18,59326989,validate,(Config config),ValidationResult,testWrongType,TestExactlyOnePathExistsValidation
+19,59326989,validate,(Config config),ValidationResult,testZeroExists,TestAtMostOnePathExistsValidation
+20,59326989,validate,(Config config),ValidationResult,testOneExistsWithType,TestAtMostOnePathExistsValidation
+21,59326989,convertToRow,"(StructType schema, Record record)",Row,convertToRowInvalidTypeNotNullable,TestMorphlineUtils
+22,59326989,exclusiveStopRow,(byte[] startRow),byte[],testExclusiveStopRowForFinalHighByteStartRow,TestHBaseUtils
+23,59326989,validate,(Config config),ValidationResult,testPathExistsWithWrongType,TestOptionalPathValidation
+24,59326989,run,"(Map<String, Dataset<Row>> dependencies)",void,testCustomTask,TestTaskStep
+25,59326989,refactor,(Set<Step> steps),Set<Step>,testGraphOneLoopMany,TestLoopStep
+26,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueInteger,TestRowUtils
+27,59326989,subsetSchema,"(StructType schema, final List<String> fieldNames)",StructType,testSubsetSchemaSomeFields,TestSchemaUtils
+28,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueDouble,TestRowUtils
+29,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueShort,TestRowUtils
+30,59326989,getOrElse,"(Config config, String path, T orElse)",T,getOrElseExists,TestConfigUtils
+31,59326989,validate,(Config config),ValidationResult,testInvalidWhenPathHasValue,TestIfPathHasValueValidation
+32,59326989,configure,(Config config),void,testRepeatStepModified,TestFlagFileRepetition
+33,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeUnion,TestAvroUtils
+34,59326989,convertToPuts,(List<Row> rows),List<Put>,testConvertToPuts,TestDefaultHBaseSerde
+35,59326989,convertToDeletes,(List<Row> rows),List<Delete>,testConvertToDeletes,TestDefaultHBaseSerde
+36,59326989,executePipeline,"(Pipeline pipeline, Record inputRecord)",List<Record>,executePipelineNoRecordsNoError,TestMorphlineUtils
+37,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeMap,TestAvroUtils
+38,59326989,getAllSecureComponents,(InstantiatedComponent component),Set<InstantiatedComponent>,testGetAllSecureComponents,TestSecurityUtils
+39,59326989,appendFields,(Row row),Row,testAppendFields,TestStringDatetimeTimeModel
+40,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeDate,TestAvroUtils
+41,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeArray,TestAvroUtils
+42,59326989,appendFields,(Row row),Row,testAppendFields,TestTimestampTimeModel
+43,59326989,validate,(Config config),ValidationResult,testInvalid,TestRegexValueValidation
+44,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeDecimal,TestAvroUtils
+45,59326989,validate,(Config config),ValidationResult,testPathExistsWithCorrectType,TestOptionalPathValidation
+46,59326989,refactor,(Set<Step> steps),Set<Step>,testWithParameter,TestLoopStep
+47,59326989,getKnownPaths,(),Set<String>,testKnownPaths,TestExactlyOnePathExistsValidation
+48,59326989,single,(),ValidationBuilder,testValidationBuilder,TestValidations
+49,59326989,buildDescriptor,"(String filePath, String messageName)",Descriptors.Descriptor,buildDescriptorMultipleDefinedName,TestProtobufUtils
+50,59326989,refactor,(Set<Step> steps),Set<Step>,testGraphMultipleLoopOnce,TestLoopStep
+51,59326989,valuesFor,(Row row),Object[],testValuesFor,TestRowUtils
+52,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeRecordNullable,TestAvroUtils
+53,59326989,getSchema,(),StructType,testSchema,TestNanosWithSeqNumTimeModel
+54,59326989,refactor,(Set<Step> steps),Set<Step>,testListIntegerValues,TestLoopStep
+55,59326989,getKnownPaths,(),Set<String>,testKnownPaths,TestMandatoryPathValidation
+56,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeMapNested,TestAvroUtils
+57,59326989,appendFields,(Row row),Row,testAppendFields,TestNanosWithSeqNumTimeModel
+58,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueBoolean,TestRowUtils
+59,59326989,applyBulkMutations,"(List<Tuple2<MutationType, Dataset<Row>>> planned)",void,testApplyBulkMutations,TestHBaseOutput
+60,59326989,setFarFutureTime,(Row row),Row,testFarFuture,TestStringDateTimeModel
+61,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeTimestamp,TestAvroUtils
+62,59326989,validate,(Config config),ValidationResult,testWrongType,TestAtMostOnePathExistsValidation
+63,59326989,subsetSchema,"(StructType schema, final List<String> fieldNames)",StructType,testSubsetSchemaAllFields,TestSchemaUtils
+64,59326989,getOrNull,"(Config config, String path)",T,getOrNullExists,TestConfigUtils
+65,59326989,refactor,(Set<Step> steps),Set<Step>,testGraphOneLoopOnce,TestLoopStep
+66,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaLongNotNullable,TestAvroUtils
+67,59326989,getStreamingSteps,(Set<Step> steps),Set<StreamingStep>,testGetStreamingSteps,TestStepUtils
+68,59326989,negotiate,"(Object parent, Object child)",void,testChildUsesProvided,TestSchemaNegotiator
+69,59326989,getKerberosRealm,(Config config),String,testGetKerberosRealm,TestKerberosUtils
+70,59326989,validate,(Config config),ValidationResult,testPathDoesNotExist,TestIfPathHasValueValidation
+71,59326989,validate,(Config config),ValidationResult,testOneExists,TestExactlyOnePathExistsValidation
+72,59326989,hasMutationTypeField,(Row row),boolean,testHasMutationTypeField,TestPlannerUtils
+73,59326989,getImmediateDependentSteps,"(Step step, Set<Step> steps)",Set<Step>,testGetImmediateDependentSteps,TestStepUtils
+74,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueLong,TestRowUtils
+75,59326989,getCallingClassName,(),String,testCallingClassName,TestEventUtils
+76,59326989,prefixValidationResultMessages,"(List<ValidationResult> results, String prefix)",void,testPrefixValidationResultMessages,TestValidationUtils
+77,59326989,convertToQuery,(Row row),Query,testConvertToScanPrefixKey,TestDefaultHBaseSerde
+78,59326989,remove,"(Row row, String fieldName)",Row,testRemoveOneField,TestRowUtils
+79,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeIgnoredLogicalType,TestAvroUtils
+80,59326989,batchSizeFor,(Config config),int,testBatchSizeFor,TestHBaseUtils
+81,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaMapNonStringKey,TestAvroUtils
+82,59326989,configFromPath,(String path),Config,testConfigFromPath,TestConfigUtils
+83,59326989,validate,(Config config),ValidationResult,testConfigPathDoesntExist,TestFilesystemPathAccessibleValidation
+84,59326989,getAlias,(),String,testDeriveAsStruct,TestParseJSONDeriver
+85,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaDoubleNotNullable,TestAvroUtils
+86,59326989,refactor,(Set<Step> steps),Set<Step>,testListStringValues,TestLoopStep
+87,59326989,main,(String[] args),void,testMainBadConfig,TestEnvelopeMain
+88,59326989,getSparkDataType,(String typeString),DataType,testGetSparkDataTypeInvalid,TestConfigurationDataTypes
+89,59326989,schemaFor,(StructType structType),Schema,toSchemaStructTypesNested,TestAvroUtils
+90,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaTimestampNullable,TestAvroUtils
+91,59326989,validate,(Config config),ValidationResult,testPathExistsWithoutSpecifiedType,TestOptionalPathValidation
+92,59326989,validate,(Config config),ValidationResult,testExistsWithCorrectType,TestMandatoryPathValidation
+93,59326989,hasStreamingStep,(Set<Step> steps),boolean,testHasNoStreamingStep,TestStepUtils
+94,59326989,create,"(Config config, JavaPairRDD<Row, Row> rdd)",Partitioner,testCustom,TestPartitionerFactory
+95,59326989,getAlias,(),String,testDeriveWithOptions,TestParseJSONDeriver
+96,59326989,convertToRow,"(StructType schema, Record record)",Row,convertToRowValidValue,TestMorphlineUtils
+97,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaDateNotNullable,TestAvroUtils
+98,59326989,validate,(Config config),ValidationResult,testExistsWithoutSpecifiedType,TestMandatoryPathValidation
+99,59326989,getOrNull,"(Config config, String path)",T,getOrNullNotExists,TestConfigUtils
+100,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueMapRowNested,TestRowUtils
+101,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeArrayNested,TestAvroUtils
+102,59326989,derive,"(Map<String, Dataset<Row>> dependencies)",Dataset<Row>,derive,TestDistinctDeriver
+103,59326989,refactor,(Set<Step> steps),Set<Step>,testSerialMode,TestLoopStep
+104,59326989,morphlineMapper,"(final String morphlineFile, final String morphlineId,
+                                                          final StructType outputSchema, final boolean errorOnEmpty)","FlatMapFunction<Row, Row>",morphlineMapper,TestMorphlineUtils
+105,59326989,run,(Config config),void,testExceptionEvent,TestRunner
+106,59326989,setFarFutureTime,(Row row),Row,testFarFuture,TestStringDatetimeTimeModel
+107,59326989,getKnownPaths,(),Set<String>,testKnownPaths,TestAllowedValuesValidation
+108,59326989,getExistingForFilters,(Iterable<Row> filters),Iterable<Row>,testGetExistingForFilters,TestHBaseOutput
+109,59326989,validate,(Config config),ValidationResult,testPathDoesntExist,TestOptionalPathValidation
+110,59326989,mergeLoadedConfiguration,(Config config),Config,testMergeLoadedConfiguration,TestConfigUtils
+111,59326989,remove,"(Row row, String fieldName)",Row,testRemoveMultipleFields,TestRowUtils
+112,59326989,getLongAccumulators,(),"Map<String, LongAccumulator>",testRequestOne,TestAccumulators
+113,59326989,resetSteps,(Set<Step> steps),void,testResetSteps,TestStepUtils
+114,59326989,builder,(),ValidationsBuilder,testAllowEmpty,TestValidations
+115,59326989,getIndependentNonStreamingSteps,(Set<Step> steps),Set<Step>,testGetIndependentNonStreamingSteps,TestStepUtils
+116,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaStructTypeNotNullable,TestAvroUtils
+117,59326989,buildSchema,"(Map<String, HBaseSerde.ColumnDef> columnDefinitions)",StructType,testBuildSchema,TestHBaseUtils
+118,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeInt,TestAvroUtils
+119,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueDate,TestRowUtils
+120,59326989,executePipeline,"(Pipeline pipeline, Record inputRecord)",List<Record>,executePipeline,TestMorphlineUtils
+121,59326989,validate,(Config config),ValidationResult,testInvalid,TestSupportedFieldTypesValidation
+122,59326989,setPipeline,"(String morphlineFile, String morphlineId, Collector collector, boolean isProduction)",Pipeline,setPipeline,TestMorphlineUtils
+123,59326989,getDataSteps,(Set<Step> steps),Set<DataStep>,testGetDataSteps,TestStepUtils
+124,59326989,getSchema,(),StructType,testSchema,TestStringDatetimeTimeModel
+125,59326989,addCustomParams,"(Map<String, Object> params, Config config)",void,testCustomParams,TestKafkaCommon
+126,59326989,schemaFor,(StructType structType),Schema,toSchemaArraysNested,TestAvroUtils
+127,59326989,validate,(Config config),ValidationResult,testOneExists,TestAtMostOnePathExistsValidation
+128,59326989,buildDescriptor,"(String filePath, String messageName)",Descriptors.Descriptor,buildDescriptorSingleDefinedName,TestProtobufUtils
+129,59326989,exclusiveStopRow,(byte[] startRow),byte[],testExclusiveStopRowForTypicalStartRow,TestHBaseUtils
+130,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueArray,TestRowUtils
+131,59326989,applyBulkMutations,"(List<Tuple2<MutationType, Dataset<Row>>> planned)",void,applyBulkMutations,TestHiveOutput
+132,59326989,create,"(Config config, JavaPairRDD<Row, Row> rdd)",Partitioner,testRange,TestPartitionerFactory
+133,59326989,configFromPath,(String path),Config,testConfigFromPathButJarFile,TestConfigUtils
+134,59326989,parseLifetime,(String lifetime),int,testParseLifetime,TestKerberosUtils
+135,59326989,validate,(Config config),ValidationResult,testMoreThanOneExists,TestAtMostOnePathExistsValidation
+136,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaDateNullable,TestAvroUtils
+137,59326989,getSchema,(),StructType,getSchema,TestMorphlineDeriver
+138,59326989,configure,(Config config),void,configureOtherOptions,TestHiveOutput
+139,59326989,schemaFor,(StructType structType),Schema,toSchemaNullable,TestAvroUtils
+140,59326989,subtractSchema,"(StructType schema, List<String> subtractFieldNames)",StructType,testSubtractSchemaSomeFields,TestSchemaUtils
+141,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaNullNotNullable,TestAvroUtils
+142,59326989,equals,(Object other),boolean,testEquality,TestAccumulatorRequest
+143,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaStructTypeFieldNullable,TestAvroUtils
+144,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaDecimalNullable,TestAvroUtils
+145,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaStringNullable,TestAvroUtils
+146,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaMapContainsNull,TestAvroUtils
+147,59326989,convertToRow,"(StructType schema, Record record)",Row,convertToRowInvalidTypeNullable,TestMorphlineUtils
+148,59326989,main,(String[] args),void,testMainNoConfig,TestEnvelopeMain
+149,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeFixed,TestAvroUtils
+150,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaNullNullable,TestAvroUtils
+151,59326989,configure,(Config config),void,testConfigure,TestStreamingStep
+152,59326989,refactor,(Set<Step> steps),Set<Step>,testStepValues,TestLoopStep
+153,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueStruct,TestRowUtils
+154,59326989,validate,(Config config),ValidationResult,testDoesntExist,TestMandatoryPathValidation
+155,59326989,derive,"(Map<String, Dataset<Row>> dependencies)",Dataset<Row>,testPassthrough,TestPassthroughDeriver
+156,59326989,hashCode,(),int,testHashCode,TestAccumulatorRequest
+157,59326989,validate,(Config config),ValidationResult,testValid,TestSupportedFieldTypesValidation
+158,59326989,getKnownPaths,(),Set<String>,testKnownPaths,TestNonEmptyValueValidation
+159,59326989,convertToPut,(Row row),Put,testConvertToPut,TestDefaultHBaseSerde
+160,59326989,allStepsSubmitted,(Set<Step> steps),boolean,testAllStepsSubmitted,TestStepUtils
+161,59326989,validate,(Config config),ValidationResult,testValid,TestAllowedValuesValidation
+162,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaMapNotNullable,TestAvroUtils
+163,59326989,getKnownPaths,(),Set<String>,testKnownPaths,TestOptionalPathValidation
+164,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaTypeDoubleNullable,TestAvroUtils
+165,59326989,refactor,(Set<Step> steps),Set<Step>,testRangeValues,TestLoopStep
+166,59326989,appendFields,(Row row),Row,testAppendFields,TestStringDateTimeModel
+167,59326989,setFarFutureTime,(Row row),Row,testFarFuture,TestTimestampTimeModel
+168,59326989,appendMutationTypeField,(Row row),Row,testAppendMutationTypeField,TestPlannerUtils
+169,59326989,validate,(Config config),ValidationResult,testNotEmptyString,TestNonEmptyValueValidation
+170,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeRecordOptional,TestAvroUtils
+171,59326989,columnsFor,(Config config),"Map<String, HBaseSerde.ColumnDef>",testColumnsFor,TestHBaseUtils
+172,59326989,buildDescriptor,"(String filePath, String messageName)",Descriptors.Descriptor,buildDescriptorMultipleInvalidName,TestProtobufUtils
+173,59326989,getAlias,(),String,testDeriveAsFields,TestParseJSONDeriver
+174,59326989,getKnownPaths,(),Set<String>,testKnownPaths,TestFilesystemPathAccessibleValidation
+175,59326989,readInputFormat,(String path),Dataset<Row>,readInputFormat,TestFileSystemInput
+176,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueCalendarInterval,TestRowUtils
+177,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaLongNullable,TestAvroUtils
+178,59326989,subsetSchema,"(StructType schema, final List<String> fieldNames)",StructType,testSubsetSchemaNoFields,TestSchemaUtils
+179,59326989,executePipeline,"(Pipeline pipeline, Record inputRecord)",List<Record>,executePipelineProcessError,TestMorphlineUtils
+180,59326989,refactor,(Set<Step> steps),Set<Step>,testWithoutParameter,TestLoopStep
+181,59326989,buildSchema,(Descriptors.Descriptor descriptor),StructType,buildSchemaSingle,TestProtobufUtils
+182,59326989,getSchema,(),StructType,getSchema,TestProtobufSchema
+183,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaArrayNullable,TestAvroUtils
+184,59326989,configure,(Config config),void,configure,TestHiveOutput
+185,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeRecordNested,TestAvroUtils
+186,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaIntNotNullable,TestAvroUtils
+187,59326989,findReplaceStringValues,"(Config config, String findRegex, Object replace)",Config,testFindReplaceStringValues,TestConfigUtils
+188,59326989,copySteps,(Set<Step> steps),Set<Step>,testCopySteps,TestStepUtils
+189,59326989,removeMutationTypeField,(Row row),Row,testRemoveMutationTypeField,TestPlannerUtils
+190,59326989,prettifyNs,(long ns),String,testPrettifyNs,TestEventUtils
+191,59326989,refactor,(Set<Step> steps),Set<Step>,testParallelMode,TestLoopStep
+192,59326989,convertFromResult,(Result result),Row,testConvertFromResult,TestDefaultHBaseSerde
+193,59326989,getKrb5config,(),KrbConfig,testGetKrb5Config,TestKerberosUtils
+194,59326989,getZooKeeper,(),ZooKeeper,testGoodConnection,TestZooKeeperConnection
+195,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueDecimal,TestRowUtils
+196,59326989,mergeRangeScans,(List<Scan> rangeScans),Scan,testMergePrefixScans,TestHBaseUtils
+197,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeFloat,TestAvroUtils
+198,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaArrayContainsNull,TestAvroUtils
+199,59326989,getValidations,(),Validations,testConfigIsValid,TestSecurityUtils
+200,59326989,getMutationType,(Row row),MutationType,testGetMutationType,TestPlannerUtils
+201,59326989,numPartitions,(),int,testNumPartitions,TestUUIDPartitioner
+202,59326989,convertToRow,"(StructType schema, Record record)",Row,convertToRowMissingColumnNotNullable,TestMorphlineUtils
+203,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueMapRow,TestRowUtils
+204,59326989,applySubstitutions,(Config config),Config,testApplySubstitutionsNoArguments,TestConfigUtils
+206,59326989,refactor,(Set<Step> steps),Set<Step>,testGraphMultipleLoopMany,TestLoopStep
+207,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeRecord,TestAvroUtils
+208,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeEnum,TestAvroUtils
+209,59326989,carryForwardWhenNull,"(Row into, Row from)",Row,testCarryForwardWhenNull,TestBitemporalHistoryPlanner
+210,59326989,allowsUnrecognizedPaths,(),boolean,testAllowsUnrecognizedPaths,TestValidations
+211,59326989,buildRowValues,"(Descriptors.Descriptor dsc, Message msg, StructType schema)",List<Object>,buildRowValues,TestProtobufUtils
+212,59326989,configure,(Config config),void,testRepeatStepPresent,TestFlagFileRepetition
+213,59326989,appendFields,"(StructType from, List<StructField> fields)",StructType,testAppendFields,TestSchemaUtils
+214,59326989,derive,"(Map<String, Dataset<Row>> dependencies)",Dataset<Row>,testDifferentSchemas,TestPassthroughDeriver
+215,59326989,convertToRow,"(StructType schema, Record record)",Row,convertToRowMissingColumnNullable,TestMorphlineUtils
+216,59326989,refactor,(Set<Step> steps),Set<Step>,testStepSuffix,TestLoopStep
+217,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeString,TestAvroUtils
+218,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaDecimalNotNullable,TestAvroUtils
+219,59326989,buildRowValues,"(Descriptors.Descriptor dsc, Message msg, StructType schema)",List<Object>,buildRowValuesSparse,TestProtobufUtils
+220,59326989,configure,(Config config),void,testRepeatStep,TestScheduledRepetition
+221,59326989,negotiate,"(Object parent, Object child)",void,testParentUsesExpected,TestSchemaNegotiator
+222,59326989,validate,(Config config),ValidationResult,testEmptyString,TestNonEmptyValueValidation
+223,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeMapContainsNull,TestAvroUtils
+224,59326989,append,"(Row row, Object value)",Row,testAppendWithSchema,TestRowUtils
+225,59326989,getOrElse,"(Config config, String path, T orElse)",T,getOrElseNotExists,TestConfigUtils
+226,59326989,set,"(Row row, String fieldName, Object replacement)",Row,testSet,TestRowUtils
+227,59326989,validate,(Config config),ValidationResult,testValidWhenPathExists,TestIfPathExistsValidation
+228,59326989,subsetRow,"(Row row, StructType subsetSchema)",Row,testSubsetRowAllFields,TestRowUtils
+229,59326989,hasValidationFailures,(List<ValidationResult> results),boolean,testHasValidationFailures,TestValidationUtils
+230,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeArrayContainsNull,TestAvroUtils
+231,59326989,buildRowValues,"(Descriptors.Descriptor dsc, Message msg, StructType schema)",List<Object>,buildRowValuesIndexed,TestProtobufUtils
+232,59326989,getAlias,(),String,getAlias,TestProtobufTranslator
+233,59326989,validate,(Config config),ValidationResult,testInvalid,TestAllowedValuesValidation
+234,59326989,negotiate,"(Object parent, Object child)",void,testNeitherImplement,TestSchemaNegotiator
+235,59326989,validate,(Config config),ValidationResult,testOneExistsWithType,TestExactlyOnePathExistsValidation
+236,59326989,hasValidationFailures,(List<ValidationResult> results),boolean,testHasNoValidationFailures,TestValidationUtils
+237,59326989,exclusiveStopRow,(byte[] startRow),byte[],testExclusiveStopRowForLowestStartRow,TestHBaseUtils
+238,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueStructNested,TestRowUtils
+239,59326989,buildDescriptor,"(String filePath, String messageName)",Descriptors.Descriptor,buildDescriptorMultipleNoDefinedName,TestProtobufUtils
+240,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaStructTypeNullable,TestAvroUtils
+241,59326989,setPipeline,"(String morphlineFile, String morphlineId, Collector collector, boolean isProduction)",Pipeline,setPipelineFileNotFound,TestMorphlineUtils
+242,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaBinaryNotNullable,TestAvroUtils
+243,59326989,subtractSchema,"(StructType schema, List<String> subtractFieldNames)",StructType,testSubtractSchemaAllFields,TestSchemaUtils
+244,59326989,exclusiveStopRow,(byte[] startRow),byte[],testExclusiveStopRowForHighestStartRow,TestHBaseUtils
+245,59326989,getKnownPaths,(),Set<String>,testKnownPaths,TestAtMostOnePathExistsValidation
+246,59326989,applySubstitutions,(Config config),Config,testApplySubstitutionsWithArguments,TestConfigUtils
+247,59326989,configure,(Config config),void,testMultipleTopicsConfigure,TestKafkaInput
+248,59326989,validate,(Config config),ValidationResult,testNotEmptyList,TestNonEmptyValueValidation
+249,59326989,getFieldValue,"(Descriptors.FieldDescriptor field, Object value, DataType dataType)",Object,getFieldValueNull,TestProtobufUtils
+250,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaStringNotNullable,TestAvroUtils
+251,59326989,getConfigurationDataType,(DataType type),String,testGetConfigurationDataTypeValid,TestConfigurationDataTypes
+252,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueMapNested,TestRowUtils
+253,59326989,convertToDelete,(Row row),Delete,testConvertToDelete,TestDefaultHBaseSerde
+254,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeBoolean,TestAvroUtils
+255,59326989,initializeUDFs,(Config config),void,testValidUDFs,TestRunner
+256,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueBinary,TestRowUtils
+257,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaFloatNullable,TestAvroUtils
+258,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeBytes,TestAvroUtils
+259,59326989,getAllDependentSteps,"(Step rootStep, Set<Step> steps)",Set<Step>,testGetAllDependentSteps,TestStepUtils
+260,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueMap,TestRowUtils
+261,59326989,validate,(Config config),ValidationResult,testExistsWithWrongType,TestMandatoryPathValidation
+262,59326989,tableInfoFor,(Config config),TableName,testTableInfoFor,TestHBaseUtils
+263,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaBooleanNotNullable,TestAvroUtils
+264,59326989,configure,(Config config),void,configureLocation,TestHiveOutput
+265,59326989,getTokenStoreFilePath,"(Config config, boolean onDriver)",String,testGetCredentialsFilePath,TestSecurityUtils
+266,59326989,getKnownPaths,(),Set<String>,testKnownPaths,TestIfPathHasValueValidation
+267,59326989,validate,(Config config),ValidationResult,testValid,TestRegexValueValidation
+268,59326989,setFarFutureTime,(Row row),Row,testFarFuture,TestNanosWithSeqNumTimeModel
+269,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeLong,TestAvroUtils
+270,59326989,convertToQuery,(Row row),Query,testConvertToGetRowKeyColumns,TestDefaultHBaseSerde
+271,59326989,getHBaseConfiguration,(Config config),Configuration,testPassthroughHBaseOptions,TestHBaseUtils
+272,59326989,setFarFutureTime,(Row row),Row,testFarFuture,TestLongMillisTimeModel
+273,59326989,canBeCoerced,"(Config config, String path, ConfigValueType type)",boolean,testCanBeCoerced,TestConfigUtils
+274,59326989,create,"(Config config, JavaPairRDD<Row, Row> rdd)",Partitioner,testHash,TestPartitionerFactory
+275,59326989,configure,(Config config),void,getSchemaInvalidDataType,TestMorphlineTranslator
+276,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaBinaryNullable,TestAvroUtils
+277,59326989,configure,(Config config),void,configureIllegalFilepath,TestProtobufSchema
+278,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaIntNullable,TestAvroUtils
+279,59326989,refactor,(Set<Step> steps),Set<Step>,testAfterLoop,TestLoopStep
+280,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueTimestamp,TestRowUtils
+281,59326989,different,"(Row first, Row second, List<String> valueFieldNames)",boolean,testDifferentForDifferentSchemas,TestRowUtils
+282,59326989,getSchema,(),StructType,testSchema,TestStringDateTimeModel
+283,59326989,getKnownPaths,(),Set<String>,testKnownPaths,TestIfPathExistsValidation
+284,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeUnionIncludingNull,TestAvroUtils
+285,59326989,validate,(Config config),ValidationResult,testZeroExists,TestExactlyOnePathExistsValidation
+286,59326989,subsetRow,"(Row row, StructType subsetSchema)",Row,testSubsetRowNoFields,TestRowUtils
+287,59326989,validate,(Config config),ValidationResult,testValidWhenPathHasValue,TestIfPathHasValueValidation
+288,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueFloat,TestRowUtils
+289,59326989,getPipeline,"(String morphlineFile, String morphlineId)",Pipeline,getPipeline,TestMorphlineUtils
+290,59326989,append,"(Row row, Object value)",Row,testAppendRow,TestRowUtils
+291,59326989,executePipeline,"(Pipeline pipeline, Record inputRecord)",List<Record>,executePipelineNoRecords,TestMorphlineUtils
+292,59326989,validate,(Config config),ValidationResult,testInaccessible,TestFilesystemPathAccessibleValidation
+293,59326989,validate,(Config config),ValidationResult,testAccessible,TestFilesystemPathAccessibleValidation
+294,59326989,allStepsFinished,(Set<Step> steps),boolean,testAllStepsFinished,TestStepUtils
+295,59326989,setMutationType,"(Row row, MutationType mutationType)",Row,testSetMutationType,TestPlannerUtils
+296,59326989,validate,(Config config),ValidationResult,testPathDoesntExist,TestNonEmptyValueValidation
+297,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueByte,TestRowUtils
+298,59326989,convertToRow,"(StructType schema, Record record)",Row,convertToRowInvalidNullValue,TestMorphlineUtils
+299,59326989,allStepsSubmitted,(Set<Step> steps),boolean,testNotAllStepsSubmitted,TestStepUtils
+300,59326989,getSchema,(),StructType,testSchema,TestTimestampTimeModel
+301,59326989,validate,(Config config),ValidationResult,testPathDoesNotHaveValue,TestIfPathHasValueValidation
+302,59326989,getSupportedBulkMutationTypes,(),Set<MutationType>,getSupportedBulkMutationTypes,TestHiveOutput
+303,59326989,copyTime,"(Row fromRow, TimeModel fromTimeModel, Row into, TimeModel intoTimeModel)",Row,testCopyTime,TestPlannerUtils
+304,59326989,carryForwardWhenNull,"(Row into, Row from)",Row,testCarryForwardWhenNull,TestEventTimeHistoryPlanner
+305,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaArrayNotNullable,TestAvroUtils
+306,59326989,getStepForName,"(String name, Set<Step> steps)",Optional<Step>,testGetStepForName,TestStepUtils
+307,59326989,planMutationsForSet,(Dataset<Row> arriving),"List<Tuple2<MutationType, Dataset<Row>>>",testPlanner,TestOverwritePlanner
+308,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueNull,TestRowUtils
+309,59326989,getDependencies,"(Step step, Set<Step> steps)",Set<Step>,testGetDependencies,TestStepUtils
+310,59326989,typeFor,(DataType dataType),Schema,toTypeSchemaMapsNullable,TestAvroUtils
+311,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeDouble,TestAvroUtils
+312,59326989,hasStreamingStep,(Set<Step> steps),boolean,testHasStreamingStep,TestStepUtils
+313,59326989,getSchema,(),StructType,testSchema,TestLongMillisTimeModel
+314,59326989,initializeUDFs,(Config config),void,testNoUDFs,TestRunner
+315,59326989,validate,(Config config),ValidationResult,testInvalidWhenPathExists,TestIfPathExistsValidation
+316,59326989,run,(Config config),void,testExpectedCoreEvents,TestRunner
+317,59326989,rowKeyFor,(Config config),List<String>,testRowKeyFor,TestHBaseUtils
+318,59326989,getRenewInterval,(Config config),int,testGetRenewInterval,TestKerberosUtils
+319,59326989,append,"(Row row, Object value)",Row,testAppendWithoutSchema,TestRowUtils
+320,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueArrayNested,TestRowUtils
+321,59326989,convertToRow,"(StructType schema, Record record)",Row,convertToRowValidNullValue,TestMorphlineUtils
+322,59326989,convertFromResults,(Iterable<Result> results),List<Row>,testConvertFromResults,TestDefaultHBaseSerde
+323,59326989,derive,"(Map<String, Dataset<Row>> dependencies)",Dataset<Row>,derive,TestExcludeDeriver
+324,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeUnionAsSimpleOptional,TestAvroUtils
+325,59326989,canBeCoerced,"(Config config, String path, ConfigValueType type)",boolean,testCanNotBeCoerced,TestConfigUtils
+326,59326989,validate,(Config config),ValidationResult,testEmptyList,TestNonEmptyValueValidation
+327,59326989,subsetRow,"(Row row, StructType subsetSchema)",Row,testSubsetRowSomeFields,TestRowUtils
+328,59326989,dataTypeFor,(Schema schemaType),DataType,toDataTypeNull,TestAvroUtils
+329,59326989,alignColumns,(Dataset<Row> input),Dataset<Row>,alignColumns,TestHiveOutput
+330,59326989,appendFields,(Row row),Row,testAppendFields,TestLongMillisTimeModel
+331,59326989,getConfigurationDataType,(DataType type),String,testGetConfigurationDataTypeInvalid,TestConfigurationDataTypes
+332,59326989,subtractSchema,"(StructType schema, List<String> subtractFieldNames)",StructType,testSubtractSchemaNoFields,TestSchemaUtils
+333,59326989,main,(String[] args),void,testMainGoodConfig,TestEnvelopeMain
+334,59326989,toRowValue,"(Object item, DataType type, Map<RowUtils.RowValueMetadata, Object> metadata)",Object,testToRowValueString,TestRowUtils
+335,59326989,getSparkDataType,(String typeString),DataType,testGetSparkDataTypeValid,TestConfigurationDataTypes

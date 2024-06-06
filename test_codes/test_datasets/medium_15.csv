@@ -1,0 +1,246 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,81002077,union,(ExpectingUnion<RT> next),ExpectingUnion<RT>,union,ExpectingUnionTest
+1,81002077,projection,(),Projection,projection,SelectStatementTest
+2,81002077,forField,"(TypeToken<T> targetClass, Class<V> argType, Field field)","BiConsumer<T, Optional<V>>",forFieldOptionalAndWithPrefixSetter,SetterTest
+3,81002077,tableExists,"(DatabaseMetaData metaData, String catalog, String schema, String tableName)",boolean,tableExists,DatabaseMetaDataUtilTest
+4,81002077,forField,"(Class<T> targetClass, Class<V> argType, Field field)","Function<T,Optional<V>>",forFieldWithNoGetter,GetterTest
+5,81002077,coalesce,"(T item1, T item2)",T,coalesce4,ObjectUtilTest
+6,81002077,args,(Scope scope),Stream<Object>,args,OlapFunctionTest
+7,81002077,from,"(Database database, Alias<R> alias)",ExpectingJoin1<R>,optionalAsyncWithoutArgsThrowsIfNoDefault,SelectTest
+8,81002077,hex,(byte... bytes),String,hex,StringUtilTest
+9,81002077,from,"(Database database, Alias<R> alias)",ExpectingJoin1<R>,listAsyncWithoutArgsThrowsIfNoDefault,SelectTest
+10,81002077,forField,"(TypeToken<T> targetClass, Class<V> argType, Field field)","BiConsumer<T, Optional<V>>",forFieldNonOptionalAndSetPrefixSetter,SetterTest
+11,81002077,hasAnnotation,"(Class<? extends Annotation> annotationClass, Field field)",boolean,hasAnnotationPresent,FieldUtilTest
+12,81002077,forField,"(Class<T> targetClass, Class<V> argType, Field field)","Function<T,Optional<V>>",forFieldWithNoGetterGivenWrongType,GetterTest
+13,81002077,newArray,"(Class<T> elementType, int size)",T[],newArrayTypeToken,ArrayUtilTest
+14,81002077,rowMapper,"(Scope scope, Optional<String> label)",RowMapper<T>,rowMapper,SequenceExpressionTest
+15,81002077,sql,(),String,sql,SequenceTest
+16,81002077,tryGet,(),Try<T>,tryGetSuccess,LazyTest
+17,81002077,newInstance,"(Constructor<T> ctor, Object... args)",T,newInstanceRethrowsIfConstructorThrows,ConstructorUtilTest
+18,81002077,execute,"(Connection connection, String sql)",boolean,execute,ConnectionUtilTest
+19,81002077,of,"(Class<R> declaringClass, Field field)","FieldInfo<R,?>",ofWrongTypeThrowsException,FieldInfoTest
+20,81002077,forField,"(Class<T> targetClass, Class<V> argType, Field field)","Function<T,Optional<V>>",forFieldUsingSupertype,GetterTest
+21,81002077,camelToUpper,(String camelName),String,camelToUpper,StringUtilTest
+22,81002077,connection,(DataSource dataSource),Connection,connectionThatThrows,DataSourceUtilTest
+23,81002077,forObject,(T value),Class<T>,forObject,ClassUtilTest
+24,81002077,superclasses,(Class<?> aClass),Stream<Class<?>>,superclassesOfDerivedInterface,ClassUtilTest
+25,81002077,forClass,(Class<T> aClass),Supplier<T>,forClassOnClassWithDefaultConstructor,FactoryTest
+26,81002077,genericTypeArgument,"(Field field, int index)",Optional<Class<?>>,genericTypeArgumentNotGeneric,FieldUtilTest
+27,81002077,query,"(String sql, Object[] args, RowMapper<T> rowMapper)",List<T>,query,JdbcSqlExecutorTest
+28,81002077,rollback,(Connection connection),void,rollbackThatThrows,ConnectionUtilTest
+29,81002077,setWhereClause,(BooleanExpression e),InWhereExpectingAnd<RT>,setWhereClause,SelectStatementTest
+30,81002077,setObject,"(PreparedStatement preparedStatement, int i, Object arg)",void,setObject,PreparedStatementUtilTest
+31,81002077,executeUpdate,(PreparedStatement preparedStatement),int,executeUpdateThatThrows,PreparedStatementUtilTest
+32,81002077,ofBlankable,(T s),Optional<T>,ofBlankable,OptionalUtilTest
+33,81002077,update,(Alias<U> alias),InSetExpectingWhere<U>,update,DatabaseTest
+34,81002077,forArrayOf,(Class<?> componentClass),Optional<Class<?>>,forArrayOfGeneric,ClassUtilTest
+35,81002077,rawClass,(),Class<?>,rawClass,TypeInfoTest
+36,81002077,constructor,"(Class<T> aClass, Class<?>... parameterTypes)",Optional<Constructor<T>>,defaultConstructorPresent,ClassUtilTest
+37,81002077,newArray,"(Class<T> elementType, int size)",T[],newArrayClass,ArrayUtilTest
+38,81002077,precedence,(),Precedence,precedence,OlapFunctionTest
+39,81002077,stream,(boolean[] booleans),Stream<Boolean>,streamChar,ArrayUtilTest
+40,81002077,label,(Scope scope),String,label,OlapFunctionTest
+41,81002077,fromReference,"(Function1<T,V> methodReference)",Method,fromReferenceToBaseOptionalMethodGivenDerivedClass,MethodUtilTest
+42,81002077,precedence,(),Precedence,precedence,SequenceExpressionTest
+43,81002077,precedence,(),Precedence,precedence,CastExpressionTest
+44,81002077,forField,"(Class<T> targetClass, Class<V> argType, Field field)","Function<T,Optional<V>>",forOptionalFieldWithUnprefixedGetter,GetterTest
+45,81002077,isIn,(T... values),N,isInWithNoValuesShouldThrow,ExpressionBuilderTest
+46,81002077,getDeclaredMethod,"(Class<?> aClass, String name, Class<?>... parameterTypes)",Method,getDeclaredMethodForMethodThatExistsIsTheMethod,ClassUtilTest
+47,81002077,fetchFirst,(long i),void,fetchFirst,SelectStatementTest
+48,81002077,prepare,"(Connection connection, String sql)",PreparedStatement,prepareThatThrows,ConnectionUtilTest
+49,81002077,rowMapper,"(Scope scope, Optional<String> label)",RowMapper<T>,rowMapper,CoalesceFunctionTest
+50,81002077,label,(Scope scope),String,label,ExpressionBuilderTest
+51,81002077,forField,"(TypeToken<T> targetClass, Class<V> argType, Field field)","BiConsumer<T, Optional<V>>",forFieldNonOptionalWithNoSetter,SetterTest
+52,81002077,args,(Scope scope),Stream<Object>,args,CoalesceFunctionTest
+53,81002077,execute,"(Connection connection, String sql)",boolean,executeThatThrowsInStatementExecute,ConnectionUtilTest
+54,81002077,rowMapper,"(Scope scope, Optional<String> label)",RowMapper<T>,rowMapper,CastExpressionTest
+55,81002077,label,(Scope scope),String,label,SequenceExpressionTest
+56,81002077,annotation,"(Class<T> aClass, Class<A> annotationClass)",Optional<A>,annotationThatIsNotPresent,ClassUtilTest
+57,81002077,uppercaseFirst,(String s),String,uppercaseFirst,StringUtilTest
+58,81002077,close,(ResultSet rs),void,close,ResultSetUtilTest
+59,81002077,orWhere,(BooleanExpression e),void,orWhere,SelectStatementTest
+60,81002077,label,(Scope outerScope),String,label,SelectStatementTest
+61,81002077,tryGet,(),Try<T>,tryGetFailure,LazyTest
+62,81002077,orGet,"(Optional<T> optional, Supplier<? extends Optional<? extends T>> supplier)",Optional<T>,orGet,OptionalUtilTest
+63,81002077,type,(),TypeToken<T>,type,CastExpressionTest
+64,81002077,generator,(Class<? super T> elementClass),IntFunction<T[]>,generator,ArrayUtilTest
+65,81002077,coalesce,"(T item1, T item2)",T,coalesce3,ObjectUtilTest
+66,81002077,update,"(String sql, Object[] args)",int,update,JdbcSqlExecutorTest
+67,81002077,setObject,"(PreparedStatement preparedStatement, int i, Object arg)",void,setObjectThatThrows,PreparedStatementUtilTest
+68,81002077,inSelectClauseSql,(String columnName),String,inSelectClauseSql,AliasTest
+69,81002077,declaredMethod,"(Class<?> aClass, String name, Class<?>... parameterTypes)",Optional<Method>,declaredMethodForMethodWithWrongParametersIsEmpty,ClassUtilTest
+70,81002077,tryAdvance,(Consumer<? super T> action),boolean,tryAdvanceWhenResultSetExhausted,ResultSetSpliteratorTest
+72,81002077,close,(),void,close,JdbcTransactionTest
+73,81002077,genericTypeArgument,"(Field field, int index)",Optional<Class<?>>,genericTypeArgumentInvalidIndex,FieldUtilTest
+74,81002077,forName,(String className),Optional<Class<?>>,forNameOfClassThatExists,ClassUtilTest
+75,81002077,fromReference,"(Function1<T,V> methodReference)",Method,fromReferenceToBaseOptionalMethodWithoutClass,MethodUtilTest
+76,81002077,map,"(ThrowingFunction<? super T, ? extends U, E> function)",Lazy<U>,mapFailure,LazyTest
+77,81002077,rowMapper,(String label),RowMapper<T>,rowMapper,SequenceTest
+78,81002077,executeUpdate,(PreparedStatement preparedStatement),int,executeUpdate,PreparedStatementUtilTest
+79,81002077,as,"(Class<U> targetClass, Optional<T> source)",Optional<U>,asTypeToken,OptionalUtilTest
+80,81002077,rowType,(),TypeToken<RT>,rowType,SelectStatementTest
+81,81002077,stream,(boolean[] booleans),Stream<Boolean>,streamFloat,ArrayUtilTest
+82,81002077,findField,"(Class<?> aClass, String fieldName)",Optional<Field>,findFieldInBaseFound,ClassUtilTest
+83,81002077,andWhere,(BooleanExpression e),void,andWhere,SelectStatementTest
+84,81002077,annotation,"(Class<T> aClass, Class<A> annotationClass)",Optional<A>,annotationThatIsPresent,ClassUtilTest
+85,81002077,single,(),T,single,SequenceExpressionTest
+86,81002077,annotation,"(Class<A> annotationClass, Field field)",Optional<A>,annotationPresent,FieldUtilTest
+87,81002077,forClass,(Class<T> aClass),Supplier<T>,forClassOnClassWithNoDefaultConstructor,FactoryTest
+88,81002077,type,(),TypeToken<T>,type,SequenceExpressionTest
+89,81002077,toString,(),String,toStringTest,TypeInfoTest
+90,81002077,newInstance,"(Constructor<T> ctor, Object... args)",T,newInstanceRethrowsIfNotInstantiated,ConstructorUtilTest
+92,81002077,type,(),TypeToken<T>,type,SequenceTest
+93,81002077,getMetaData,(Connection connection),DatabaseMetaData,getMetaDataThatThrows,ConnectionUtilTest
+94,81002077,sql,(Scope scope),String,sql,OlapFunctionTest
+95,81002077,precedence,(),Precedence,precedence,CoalesceFunctionTest
+96,81002077,newInstance,"(Constructor<T> ctor, Object... args)",T,newInstanceWithNoArgs,ConstructorUtilTest
+97,81002077,getDeclaredField,"(Class<?> aClass, String fieldName)",Field,getDeclaredFieldNotPresentThrows,ClassUtilTest
+98,81002077,forField,"(Class<T> targetClass, Class<V> argType, Field field)","Function<T,Optional<V>>",forOptionalFieldWithNoGetterAndNullValue,GetterTest
+99,81002077,ofGetter,"(MethodInfo<C,F> getter)","Optional<FieldInfo<C,F>>",ofGetter,FieldInfoTest
+100,81002077,octal,(byte... bytes),String,octal,StringUtilTest
+101,81002077,from,"(Database database, Alias<R> alias)",ExpectingJoin1<R>,singleAsyncWithoutArgsThrowsIfNoDefault,SelectTest
+102,81002077,superclasses,(Class<?> aClass),Stream<Class<?>>,superclassesOfObject,ClassUtilTest
+103,81002077,get,"(Field field, Object target)",Object,getFromObjectSuccess,FieldUtilTest
+104,81002077,forField,"(Class<T> targetClass, Class<V> argType, Field field)","Function<T,Optional<V>>",forOptionalFieldWithUnprefixedGetterThatIsNull,GetterTest
+105,81002077,getDeclaredField,"(Class<?> aClass, String fieldName)",Field,getDeclaredFieldPresentIsReturned,ClassUtilTest
+106,81002077,args,(Scope scope),Stream<Object>,args,ExpressionBuilderTest
+107,81002077,forField,"(Class<T> targetClass, Class<V> argType, Field field)","Function<T,Optional<V>>",forFieldWithGetPrefixedGetter,GetterTest
+108,81002077,getString,"(ResultSet rs, String columnLabel)",String,getString,ResultSetUtilTest
+109,81002077,orHaving,(BooleanExpression e),void,orHaving,SelectStatementTest
+110,81002077,superclasses,(Class<?> aClass),Stream<Class<?>>,superclasses,ClassUtilTest
+111,81002077,setHavingClause,(BooleanExpression e),InHavingExpectingAnd<RT>,setHavingClause,SelectStatementTest
+112,81002077,prepare,"(Connection connection, String sql)",PreparedStatement,prepare,ConnectionUtilTest
+113,81002077,from,"(Database database, Alias<R> alias)",ExpectingJoin1<R>,singleWithoutArgsThrowsIfNoDefault,SelectTest
+114,81002077,inSelectClauseLabel,(String columnName),String,inSelectClauseLabel,AliasTest
+115,81002077,with,(Optional<T> optional),OptionalWrapper<T>,withValue,OptionalUtilTest
+116,81002077,constructor,"(Class<T> aClass, Class<?>... parameterTypes)",Optional<Constructor<T>>,defaultConstructorNotPresent,ClassUtilTest
+117,81002077,get,"(Field field, Object target)",Object,get,FieldUtilTest
+118,81002077,mapWithIndex,"(Stream<T> input, BiFunction<? super T, Long, ? extends R> mapping)",Stream<R>,mapWithIndex,StreamUtilTest
+119,81002077,get,(),T,getOnlyOnceIfFailed,LazyTest
+120,81002077,label,(Scope scope),String,label,CoalesceFunctionTest
+121,81002077,scope,(),Scope,scope,SelectStatementTest
+122,81002077,ofOnly,(Iterable<T> iterable),Optional<T>,ofOnlyWithMultipleThrows,OptionalUtilTest
+123,81002077,stream,"(String sql, Object[] args, RowMapper<T> rowMapper)",Stream<T>,stream,JdbcTransactionTest
+124,81002077,sql,(Scope outerScope),String,sql,SelectStatementTest
+125,81002077,parseString,(String stringRepresentation),ForeignKeyName,parseString,ForeignKeyNameTest
+126,81002077,from,(),From,from,SelectStatementTest
+127,81002077,get,"(Field field, Object target)",Object,getFromObjectError,FieldUtilTest
+128,81002077,fromReference,"(Function1<T,V> methodReference)",Method,fromReference,MethodUtilTest
+129,81002077,forField,"(Class<T> targetClass, Class<V> argType, Field field)","Function<T,Optional<V>>",forOptionalFieldWithGetPrefixedGetter,GetterTest
+130,81002077,forField,"(TypeToken<T> targetClass, Class<V> argType, Field field)","BiConsumer<T, Optional<V>>",forFieldOptionalWithNoSetter,SetterTest
+131,81002077,of,(Optional<T> opt),Stream<T>,ofEmpty,StreamUtilTest
+132,81002077,actualTypeArgument,(int index),TypeInfo,actualTypeArgument,TypeInfoTest
+133,81002077,precedence,(),Precedence,precedence,CaseExpressionTest
+134,81002077,declaredField,"(Class<?> aClass, String fieldName)",Optional<Field>,declaredFieldPresentIsReturned,ClassUtilTest
+135,81002077,toString,(),String,toStringFunction,CastExpressionTest
+136,81002077,zipWithIndex,(Stream<? extends T> stream),"Stream<Tuple2<T, Long>>",zipWithIndex,StreamUtilTest
+137,81002077,declaredField,"(Class<?> aClass, String fieldName)",Optional<Field>,declaredFieldNotPresentIsEmpty,ClassUtilTest
+138,81002077,args,(Scope outerScope),Stream<Object>,args,SelectStatementTest
+139,81002077,forField,"(TypeToken<T> targetClass, Class<V> argType, Field field)","BiConsumer<T, Optional<V>>",forFieldOfWrongTypeFieldThrows,SetterTest
+140,81002077,isGetter,"(Method method, Field forField)",boolean,isGetter,GetterTest
+141,81002077,tableNames,"(DatabaseMetaData metaData, String catalog, String schema)",Stream<QualifiedName>,tableNames,DatabaseMetaDataUtilTest
+142,81002077,stream,(boolean[] booleans),Stream<Boolean>,streamBoolean,ArrayUtilTest
+143,81002077,label,(Scope scope),String,label,CastExpressionTest
+144,81002077,label,(Scope scope),String,label,CaseExpressionTest
+145,81002077,precedence,(),Precedence,precedence,ExpressionBuilderTest
+146,81002077,trySupply,"(ThrowingSupplier<? extends T,E> supplier)",Try<T>,trySupplyWithNullSupplier,TryTest
+147,81002077,with,(Optional<T> optional),OptionalWrapper<T>,withEmpty,OptionalUtilTest
+148,81002077,get,(),T,getSuccess,LazyTest
+149,81002077,superclass,(Class<?> aClass),Optional<Class<?>>,superclassOfNonObjectIsPresent,ClassUtilTest
+150,81002077,invoke,"(Method method, Object target, Object... args)",Object,invokeNoArgsWithResult,MethodUtilTest
+151,81002077,forField,"(Class<T> targetClass, Class<V> argType, Field field)","Function<T,Optional<V>>",forFieldWithUnprefixedGetter,GetterTest
+152,81002077,query,"(String sql, Object[] args, RowMapper<T> rowMapper)",List<T>,query,JdbcTransactionTest
+153,81002077,as,"(Class<U> targetClass, Optional<T> source)",Optional<U>,asTypeTokenWithValue,OptionalUtilTest
+154,81002077,label,(Scope scope),String,label,TupleBuilderTest
+155,81002077,findField,"(Class<?> aClass, String fieldName)",Optional<Field>,findFieldNotFound,ClassUtilTest
+156,81002077,addUnion,"(SelectStatement<RT> next, UnionType unionType)",void,addUnion,SelectStatementTest
+157,81002077,stream,(boolean[] booleans),Stream<Boolean>,streamShort,ArrayUtilTest
+158,81002077,get,(),T,getOnceIfSuccessful,LazyTest
+159,81002077,args,(Scope scope),Stream<Object>,args,CastExpressionTest
+160,81002077,as,"(Class<U> targetClass, Optional<T> source)",Optional<U>,asClass,OptionalUtilTest
+161,81002077,prepend,(String arg),"Function<T,String>",prepend,StringUtilTest
+162,81002077,of,(Optional<T> opt),Stream<T>,ofValue,StreamUtilTest
+163,81002077,from,"(Database database, Alias<R> alias)",ExpectingJoin1<R>,listWithoutArgsThrowsIfNoDefault,SelectTest
+164,81002077,coalesce,"(T item1, T item2)",T,coalesce2,ObjectUtilTest
+165,81002077,nextVal,(),SequenceExpression<T>,nextVal,SequenceTest
+166,81002077,hasAnnotation,"(Class<?> aClass, Class<A> annotationClass)",boolean,hasAnnotationThatIsPresent,ClassUtilTest
+167,81002077,getDeclaredMethod,"(Class<?> aClass, String name, Class<?>... parameterTypes)",Method,getDeclaredMethodForMethodWithWrongParametersThrows,ClassUtilTest
+168,81002077,forField,"(TypeToken<T> targetClass, Class<V> argType, Field field)","BiConsumer<T, Optional<V>>",forFieldOptionalAndSetPrefixSetter,SetterTest
+169,81002077,stream,(boolean[] booleans),Stream<Boolean>,streamByte,ArrayUtilTest
+170,81002077,hasAnnotation,"(Class<? extends Annotation> annotationClass, Field field)",boolean,hasAnnotationNotPresent,FieldUtilTest
+171,81002077,delete,(Alias<D> alias),ExpectingWhere,delete,DatabaseTest
+172,81002077,foreignKeyNames,"(DatabaseMetaData metaData, String catalog, String schema)",Stream<ForeignKeyName>,foreignKeyNames,DatabaseMetaDataUtilTest
+173,81002077,args,(Scope scope),Stream<Object>,args,SequenceExpressionTest
+174,81002077,sql,(Scope scope),String,sql,CaseExpressionTest
+175,81002077,forField,"(Class<T> targetClass, Class<V> argType, Field field)","Function<T,Optional<V>>",forOptionalFieldWithGetPrefixedGetterGivenWrongType,GetterTest
+176,81002077,hasAnnotation,"(Class<?> aClass, Class<A> annotationClass)",boolean,hasAnnotationThatIsNotPresent,ClassUtilTest
+177,81002077,inWhereClause,(),String,inWhereClause,AliasTest
+178,81002077,update,"(String sql, Object[] args)",int,update,JdbcTransactionTest
+179,81002077,forField,"(Class<T> targetClass, Class<V> argType, Field field)","Function<T,Optional<V>>",forFieldWithIsPrefixedGetter,GetterTest
+180,81002077,sql,(Scope scope),String,sql,SequenceExpressionTest
+181,81002077,forField,"(TypeToken<T> targetClass, Class<V> argType, Field field)","BiConsumer<T, Optional<V>>",forFieldOfWrongTypeMethodThrows,SetterTest
+182,81002077,forField,"(TypeToken<T> targetClass, Class<V> argType, Field field)","BiConsumer<T, Optional<V>>",forFieldOptionalAndSetUnprefixedSetter,SetterTest
+183,81002077,commonTableExpressions,(),Stream<CommonTableExpression<?>>,commonTableExpressions,SelectStatementTest
+184,81002077,keepLocks,(LockLevel level),void,keepLocks,SelectStatementTest
+185,81002077,isNotIn,(T... values),N,isNotInWithNoValuesShouldThrow,ExpressionBuilderTest
+186,81002077,ofParameter,"(Method method, int parameter)",TypeInfo,arrayComponentTypeThrowsIfNotArray,TypeInfoTest
+187,81002077,or,"(Optional<T> optional, Optional<T> other)",Optional<T>,or,OptionalUtilTest
+188,81002077,superclass,(Class<?> aClass),Optional<Class<?>>,superclassOfObjectIsEmpty,ClassUtilTest
+189,81002077,newInstance,"(Constructor<T> ctor, Object... args)",T,newInstanceWithArg,ConstructorUtilTest
+190,81002077,annotation,"(Class<A> annotationClass, Field field)",Optional<A>,annotationNotPresent,FieldUtilTest
+191,81002077,superclass,(Class<?> aClass),Optional<Class<?>>,superclassOfInterfaceIsEmpty,ClassUtilTest
+192,81002077,getMetaData,(Connection connection),DatabaseMetaData,getMetaData,ConnectionUtilTest
+193,81002077,lowercaseFirst,(String s),String,lowercaseFirst,StringUtilTest
+194,81002077,commit,(Connection connection),void,commitThatThrows,ConnectionUtilTest
+195,81002077,type,(),TypeToken<T>,type,OlapFunctionTest
+196,81002077,append,(String arg),"Function<T,String>",append,StringUtilTest
+197,81002077,tryAdvance,(Consumer<? super T> action),boolean,tryAdvanceWhenNextThrows,ResultSetSpliteratorTest
+198,81002077,forClass,(Class<T> aClass),Supplier<T>,cannotInstantiate,FactoryTest
+199,81002077,tryAdvance,(Consumer<? super T> action),boolean,tryAdvanceWhenHaveNext,ResultSetSpliteratorTest
+200,81002077,rollback,(Connection connection),void,rollback,ConnectionUtilTest
+201,81002077,invoke,"(Method method, Object target, Object... args)",Object,invokeThrowsException,MethodUtilTest
+202,81002077,withIsolation,(IsolationLevel level),void,withIsolation,SelectStatementTest
+203,81002077,rowMapper,"(Scope scope, Optional<String> label)",RowMapper<T>,rowMapper,CaseExpressionTest
+204,81002077,declaredMethod,"(Class<?> aClass, String name, Class<?>... parameterTypes)",Optional<Method>,declaredMethodForMethodThatExistsIsTheMethod,ClassUtilTest
+205,81002077,forName,(String className),Optional<Class<?>>,forNameOfNonClassIsEmpty,ClassUtilTest
+206,81002077,andHaving,(BooleanExpression e),void,andHaving,SelectStatementTest
+207,81002077,sql,(Scope scope),String,sql,ExpressionBuilderTest
+208,81002077,args,(Scope scope),Stream<Object>,args,CaseExpressionTest
+209,81002077,metadata,(CompositeAutoCloseable autoCloseable),DatabaseMetaData,metadata,JdbcSqlExecutorTest
+210,81002077,fromReference,"(Function1<T,V> methodReference)",Method,fromReferenceToOptionalMethodWithoutClass,MethodUtilTest
+211,81002077,forField,"(TypeToken<T> targetClass, Class<V> argType, Field field)","BiConsumer<T, Optional<V>>",forFieldNonOptionalAndUnprefixedSetter,SetterTest
+212,81002077,constructor,"(Class<T> aClass, Class<?>... parameterTypes)",Optional<Constructor<T>>,constructorWithArgsPresent,ClassUtilTest
+213,81002077,as,"(Class<U> targetClass, Optional<T> source)",Optional<U>,asClassWithValue,OptionalUtilTest
+214,81002077,cteArgs,(Scope actualScope),Stream<Object>,cteArgs,SelectStatementTest
+215,81002077,ofParameter,"(Method method, int parameter)",TypeInfo,ofParameter,TypeInfoTest
+216,81002077,stream,"(String sql, Object[] args, RowMapper<T> rowMapper)",Stream<T>,stream,JdbcSqlExecutorTest
+217,81002077,forField,"(Class<T> targetClass, Class<V> argType, Field field)","Function<T,Optional<V>>",forOptionalFieldWithNoGetter,GetterTest
+218,81002077,from,"(Database database, Alias<R> alias)",ExpectingJoin1<R>,streamWithoutArgsThrowsIfNoDefault,SelectTest
+219,81002077,ofOnly,(Iterable<T> iterable),Optional<T>,ofOnly,OptionalUtilTest
+220,81002077,findField,"(Class<?> aClass, String fieldName)",Optional<Field>,findFieldInTargetFound,ClassUtilTest
+221,81002077,coalesce,"(T item1, T item2)",T,coalesceN,ObjectUtilTest
+222,81002077,substr,"(String str, int start)",TypedExpression<String>,substrSql,StringFunctionsTest
+223,81002077,set,"(Field field, Object target, Object value)",void,set,FieldUtilTest
+224,81002077,rowMapper,"(Scope scope, String label)",RowMapper<T>,rowMapper,OlapFunctionTest
+225,81002077,execute,"(Connection connection, String sql)",boolean,executeThatThrowsInCreateStatement,ConnectionUtilTest
+226,81002077,commit,(Connection connection),void,commit,ConnectionUtilTest
+227,81002077,rowMapper,(),RowMapper<RT>,rowMapper,SelectStatementTest
+228,81002077,sql,(Scope scope),String,sql,CoalesceFunctionTest
+229,81002077,superclasses,(Class<?> aClass),Stream<Class<?>>,superclassesOfInterface,ClassUtilTest
+230,81002077,rollback,(),void,rollback,JdbcTransactionTest
+231,81002077,rowMapper,"(Scope scope, Optional<String> label)",RowMapper<T>,rowMapper,ExpressionBuilderTest
+232,81002077,connection,(DataSource dataSource),Connection,connection,DataSourceUtilTest
+233,81002077,tryAdvance,(Consumer<? super T> action),boolean,tryAdvanceWhenNoNext,ResultSetSpliteratorTest
+234,81002077,map,"(ThrowingFunction<? super T, ? extends U, E> function)",Lazy<U>,mapSuccessFailure,LazyTest
+235,81002077,single,(),T,single,SequenceTest
+236,81002077,from,"(Database database, Alias<R> alias)",ExpectingJoin1<R>,optionalWithoutArgsThrowsIfNoDefault,SelectTest
+237,81002077,stream,"(ResultSet rs, RowMapper<T> rowMapper)",Stream<T>,stream,ResultSetUtilTest
+238,81002077,invoke,"(Method method, Object target, Object... args)",Object,invokeNoArgsVoid,MethodUtilTest
+239,81002077,genericTypeArgument,"(Field field, int index)",Optional<Class<?>>,genericTypeArgumentSuccess,FieldUtilTest
+240,81002077,forArrayOf,(Class<?> componentClass),Optional<Class<?>>,forArrayOfPrimitive,ClassUtilTest
+241,81002077,primitiveComponentType,(Type primitiveArrayType),Class<?>,primitiveComponentOfNonPrimitiveThrows,TypeUtilTest
+242,81002077,forField,"(TypeToken<T> targetClass, Class<V> argType, Field field)","BiConsumer<T, Optional<V>>",forFieldNonOptionalAndWithPrefixSetter,SetterTest
+243,81002077,generate,"(Database database, SchemaDefinition schemaDefinition)",void,generate,SchemaGeneratorTest
+244,81002077,commit,(),void,commit,JdbcTransactionTest
+245,81002077,forField,"(Class<T> targetClass, Class<V> argType, Field field)","Function<T,Optional<V>>",forOptionalFieldWithIsPrefixedGetter,GetterTest
+246,81002077,connection,(),Connection,connection,JdbcTransactionTest

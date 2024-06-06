@@ -1,0 +1,131 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,4614129,getObjectIdentifier,(),String,testKeyTerminal,PublicKeyTest
+1,4614129,verfiy,"(CHAT firstCHAT, CHAT secondCHAT)",void,testVerfiy,CHATVerifierTest
+2,4614129,copy,"(byte[] input, int offset, int length)",byte[],testCut,ByteUtilsTest
+3,4614129,cardApplicationEndSession,(CardApplicationEndSession request),CardApplicationEndSessionResponse,testCardApplicationEndSession,TinySALTest
+4,4614129,evaluate,"(@Nonnull Map<String, Object> context)",CardCommandAPDU,testSymbolExp,CardCommandTemplateTest
+5,4614129,getTrailer,(),byte[],testGetTrailer,CardResponseAPDUTest
+6,4614129,parse,(@Nonnull String data),List<TCToken>,testParseMalformed,TCTokenParserTest
+7,4614129,getSW,(),short,testGetSW,CardResponseAPDUTest
+8,4614129,cardApplicationServiceDelete,(CardApplicationServiceDelete request),CardApplicationServiceDeleteResponse,testCardApplicationServiceDelete,TinySALTest
+9,4614129,toByteArray,(long value),byte[],testToByteArray,LongUtilsTest
+10,4614129,generatePSK,(),String,testGeneratePSK,ValueGeneratorsTest
+11,4614129,encodeQueryParam,(@Nullable String content),String,testQueryParamEncodeNullValue,UrlEncoderTest
+12,4614129,verifyServerAddress,(),void,testVerifyServerAddress,TCTokenVerifierTest
+13,4614129,dsiCreate,(DSICreate request),DSICreateResponse,testDsiCreate,TinySALTest
+14,4614129,verifyRefreshAddress,(),void,testVerifyRefreshAddress,TCTokenVerifierTest
+15,4614129,terminate,(Terminate request),TerminateResponse,testTerminate,TinySALTest
+16,4614129,checkSameOriginPolicy,"(URL url1, URL url2)",boolean,testSameOriginPolicy,TR03112UtilsTest
+17,4614129,createImage,"(Class<? extends Icon> clazz, int imageWidth, int imageHeight)",Image,testCreateImage_3args,GraphicsUtilTest
+18,4614129,clone,(@Nullable byte[] input),byte[],testClone,ByteUtilsTest
+19,4614129,isRedirectStatusCode,(int statusCode),boolean,testIsRedirectStatusCode,TR03112UtilsTest
+20,4614129,getSW1,(),byte,testGetSW1,CardResponseAPDUTest
+21,4614129,cutLeadingNullByte,(byte[] input),byte[],testCutLeadingNullByte,ByteUtilsTest
+22,4614129,toByteArray,(@Nonnull String hex),byte[],testToByteArray,StringUtilsTest
+23,4614129,getBody,(byte[] commandAPDU),byte[],testGetBody,CardCommandAPDUTest
+24,4614129,cutLeadingNullBytes,(byte[] input),byte[],testcutLeadingNullBytes,ByteUtilsTest
+25,4614129,getObjectIdentifier,(),String,testKeyDV,PublicKeyTest
+26,4614129,toString,(byte[] oid),String,testToString2,ObjectIdentifierUtilsTest
+27,4614129,hashCode,(),int,testHashCode,ByteArrayWrapperTest
+28,4614129,aclModify,(ACLModify request),ACLModifyResponse,testAclModify,TinySALTest
+29,4614129,toHexString,(@Nullable byte[] bytes),String,testtohexString,ByteUtilsTest
+30,4614129,accept,(File pathname),boolean,test,JARFileFilterTest
+31,4614129,toByteArray,(String oid),byte[],testToByteArray,ObjectIdentifierUtilsTest
+32,4614129,dataSetList,(DataSetList request),DataSetListResponse,testDataSetList,TinySALTest
+33,4614129,getInstance,(Object obj),CertificateDescription,testGetInstance,CertificateDescriptionTest
+34,4614129,getData,(byte[] responseAPDU),byte[],testGetData,CardResponseAPDUTest
+35,4614129,cardApplicationDelete,(CardApplicationDelete request),CardApplicationDeleteResponse,testCardApplicationDelete,TinySALTest
+36,4614129,parse,(@Nonnull String data),List<TCToken>,testParse,TCTokenParserTest
+37,4614129,aclList,(ACLList request),ACLListResponse,testAclList,TinySALTest
+38,4614129,verifyPathSecurity,(),void,testVerifyPathSecurityProtocol,TCTokenVerifierTest
+39,4614129,verifySessionIdentifier,(),void,testVerifySessionIdentifier,TCTokenVerifierTest
+40,4614129,toByteArray,(short value),byte[],testToByteArray,ShortUtilsTest
+41,4614129,verifyPathSecurity,(),void,testVerifyPathSecurityParameters2,TCTokenVerifierTest
+42,4614129,verifyBinding,(),void,testVerifyBinding,TCTokenVerifierTest
+43,4614129,evaluate,"(@Nonnull Map<String, Object> context)",CardCommandAPDU,testSymbolFun,CardCommandTemplateTest
+44,4614129,toInteger,(byte[] bytes),int,testToInteger,ByteUtilsTest
+45,4614129,getRandom,(GetRandom request),GetRandomResponse,testGetRandom,TinySALTest
+46,4614129,getInfo,(),CkInfo,testGetInfo,TestMwModule
+47,4614129,dsiRead,(DSIRead request),DSIReadResponse,testDsiRead,TinySALTest
+48,4614129,getHeader,(),byte[],testGetHeader2,CardCommandAPDUTest
+49,4614129,didUpdate,(DIDUpdate request),DIDUpdateResponse,testDidUpdate,TinySALTest
+50,4614129,cardApplicationConnect,(CardApplicationConnect request),CardApplicationConnectResponse,testCardApplicationConnect,TinySALTest
+51,4614129,select,(Set<AddonSpecification> addons),AddonSpecification,testSemanticVersioningWithAdditionalLabel,HighestVersionSelectorTest
+52,4614129,getHeader,(),byte[],testGetHeader,CardCommandAPDUTest
+53,4614129,verifyPathSecurity,(),void,testVerifyPathSecurityParameters,TCTokenVerifierTest
+54,4614129,verifyCertificate,(VerifyCertificate request),VerifyCertificateResponse,testVerifyCertificate,TinySALTest
+55,4614129,createImage,"(Class<? extends Icon> clazz, int imageWidth, int imageHeight)",Image,testCreateImage_7args,GraphicsUtilTest
+57,4614129,generateRandomHex,(int nibbleLength),String,testGenerateRandomHex,ValueGeneratorsTest
+58,4614129,encodeQueryParam,(@Nullable String content),String,testQueryParamEncode,UrlEncoderTest
+59,4614129,copy,"(byte[] input, int offset, int length)",byte[],testCopy,ByteUtilsTest
+60,4614129,cardApplicationDisconnect,(CardApplicationDisconnect request),CardApplicationDisconnectResponse,testCardApplicationDisconnect,TinySALTest
+61,4614129,getVersion,(),SemanticVersion,compareVersions,AppVersionTest
+62,4614129,addIFDProtocol,"(AddonSpecification spec, String uri, IFDProtocol protocol)",void,addIFDProtocol,CacheTest
+63,4614129,sign,(Sign request),SignResponse,testSign,TinySALTest
+64,4614129,cardApplicationCreate,(CardApplicationCreate request),CardApplicationCreateResponse,testCardApplicationCreate,TinySALTest
+65,4614129,encodeQueryParam,(@Nullable String content),String,testQueryParamEncodeEmptyValue,UrlEncoderTest
+66,4614129,getSW2,(),byte,testGetSW2,CardResponseAPDUTest
+67,4614129,select,(Set<AddonSpecification> addons),AddonSpecification,testLexicalVersioning,HighestVersionSelectorTest
+68,4614129,select,(Set<AddonSpecification> addons),AddonSpecification,testSemanticVersioning,HighestVersionSelectorTest
+69,4614129,cutLeadingNullBytes,(byte[] input),byte[],testCutLeadingNullBytes,ByteUtilsTest
+70,4614129,verifyUrlToken,(),void,testVerify,TCTokenVerifierTest
+71,4614129,select,(Set<AddonSpecification> addons),AddonSpecification,testLexicalAndSemanticVersioning,HighestVersionSelectorTest
+72,4614129,toByteArray,(),byte[],SMparsing,CardCommandAPDUTest
+74,4614129,didList,(DIDList request),DIDListResponse,testDidList,TinySALTest
+75,4614129,initializeFramework,(InitializeFramework arg0),InitializeFrameworkResponse,testInitializeFramework,TinyManagementTest
+76,4614129,generateUUID,(),String,testGenerateUUID,ValueGeneratorsTest
+77,4614129,cardApplicationServiceCreate,(CardApplicationServiceCreate request),CardApplicationServiceCreateResponse,testCardApplicationServiceCreate,TinySALTest
+78,4614129,transformRaw,(String queryStr),"Map<String, String>",transformRawTestKeyNoValue,HttpRequestLineUtilsTest
+79,4614129,encrypt,(byte[] apdu),byte[],testEncryption,SecureMessagingTest
+80,4614129,concatenate,"(byte[] x, byte[] y)",byte[],testConcatenate,ByteUtilsTest
+81,4614129,toString,(),String,testtoString,CHATTest
+82,4614129,toString,(byte[] oid),String,testToString,ObjectIdentifierUtilsTest
+83,4614129,dataSetSelect,(DataSetSelect request),DataSetSelectResponse,testDataSetSelect,TinySALTest
+84,4614129,transformRaw,(String queryStr),"Map<String, String>",transformRawTestKeyEmptyValue,HttpRequestLineUtilsTest
+85,4614129,addPathSegment,(@Nonnull String segment),UrlBuilder,addPathSegment,UrlBuilderTest
+86,4614129,toByteArray,(),byte[],testEncoding,CHATTest
+87,4614129,isBitSet,"(int position, byte[] array)",boolean,testIsBitSet,ByteUtilsTest
+88,4614129,hash,(Hash request),HashResponse,testHash,TinySALTest
+89,4614129,didDelete,(DIDDelete request),DIDDeleteResponse,testDidDelete,TinySALTest
+90,4614129,cardApplicationServiceLoad,(CardApplicationServiceLoad request),CardApplicationServiceLoadResponse,testCardApplicationServiceLoad,TinySALTest
+91,4614129,evaluate,"(@Nonnull Map<String, Object> context)",CardCommandAPDU,testNoExp,CardCommandTemplateTest
+92,4614129,transformRaw,(String queryStr),"Map<String, String>",transformRawTestKeyWithValue,HttpRequestLineUtilsTest
+93,4614129,isInCommCertificates,"(TlsServerCertificate serverCertificate, List<byte[]> commCertificates,
+	    @Nullable String serverDesc)",boolean,testInCommCertificates,TR03112UtilsTest
+94,4614129,cardApplicationServiceDescribe,(CardApplicationServiceDescribe request),CardApplicationServiceDescribeResponse,testCardApplicationServiceDescribe,TinySALTest
+95,4614129,dsiWrite,(DSIWrite request),DSIWriteResponse,testDsiWrite,TinySALTest
+96,4614129,verifySignature,(VerifySignature request),VerifySignatureResponse,testVerifySignature,TinySALTest
+97,4614129,dataSetCreate,(DataSetCreate request),DataSetCreateResponse,testDataSetCreate,TinySALTest
+98,4614129,createFrom,(UserConsentDescription uc),UserConsentNavigator,testGivenCorrectValuesThenCreateFromShouldCreateCorrectInstance,EacNavigatorFactoryTest
+99,4614129,genBase64Session,(),String,testGenBase64Session,ValueGeneratorsTest
+100,4614129,toLong,(byte[] bytes),long,testToLong,ByteUtilsTest
+101,4614129,checkWildcardHostName,"(@Nonnull String referenceHost, @Nonnull String actualHost)",boolean,compareWildcardDomains,DomainUtilsTest
+102,4614129,cardApplicationStartSession,(CardApplicationStartSession request),CardApplicationStartSessionResponse,testCardApplicationStartSession,TinySALTest
+103,4614129,decipher,(Decipher request),DecipherResponse,testDecipher,TinySALTest
+104,4614129,compare,"(byte[] x, byte[] y)",boolean,testCompare,ByteUtilsTest
+105,4614129,executeAction,(ExecuteAction request),ExecuteActionResponse,testExecuteAction,TinySALTest
+106,4614129,addAppPluginAction,"(AddonSpecification spec, String resourceId, AppPluginAction action)",void,addAppPluginAction,CacheTest
+107,4614129,createFrom,(UserConsentDescription uc),UserConsentNavigator,testGivenCorrectValuesThenCreateFromShouldBeCorrect,EacNavigatorFactoryTest
+108,4614129,didGet,(DIDGet request),DIDGetResponse,testDidGet,TinySALTest
+109,4614129,encipher,(Encipher request),EncipherResponse,testEncipher,TinySALTest
+110,4614129,didAuthenticate,(DIDAuthenticate request),DIDAuthenticateResponse,testDidAuthenticate,TinySALTest
+111,4614129,dataSetDelete,(DataSetDelete request),DataSetDeleteResponse,testDataSetDelete,TinySALTest
+112,4614129,setBit,"(int position, byte[] array)",void,testSetBit,ByteUtilsTest
+113,4614129,didCreate,(DIDCreate request),DIDCreateResponse,testDidCreate,TinySALTest
+114,4614129,compare,"(byte[] o1, byte[] o2)",int,testCompare,ByteComparatorTest
+115,4614129,dsiDelete,(DSIDelete request),DSIDeleteResponse,testDsiDelete,TinySALTest
+116,4614129,transformRaw,(String queryStr),"Map<String, String>",transformRawTestKeyWithValueContainingEqualsSign,HttpRequestLineUtilsTest
+117,4614129,cardApplicationPath,(CardApplicationPath request),CardApplicationPathResponse,testCardApplicationPath,TinySALTest
+118,4614129,toByteArray,(int value),byte[],testToByteArray,IntegerUtilsTest
+119,4614129,addSALProtocol,"(AddonSpecification spec, String uri, SALProtocol protocol)",void,addSALProtocol,CacheTest
+120,4614129,cardApplicationServiceList,(CardApplicationServiceList request),CardApplicationServiceListResponse,testCardApplicationServiceList,TinySALTest
+121,4614129,dsiList,(DSIList request),DSIListResponse,testDsiList,TinySALTest
+122,4614129,verfiy,"(CHAT firstCHAT, CHAT secondCHAT)",void,testVerfiy2,CHATVerifierTest
+123,4614129,cardApplicationList,(CardApplicationList request),CardApplicationListResponse,testCardApplicationList,TinySALTest
+124,4614129,getObjectIdentifier,(),String,testKeyCVCA,PublicKeyTest
+125,4614129,genHexSession,(),String,testGenHexSession,ValueGeneratorsTest
+126,4614129,getValue,(String oid),byte[],testGetValue,ObjectIdentifierUtilsTest
+127,4614129,matchPath,"(Throwable ex, C returnClass,
+	    Class<?>... cs)",T,testMatchPath,ExceptionUtilsTest
+128,4614129,initialize,(Initialize request),InitializeResponse,testInitialize,TinySALTest
+129,4614129,toShort,(byte[] bytes),short,testToShort,ByteUtilsTest

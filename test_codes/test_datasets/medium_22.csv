@@ -1,0 +1,364 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,1516026,updateCache,"(final DataDefinition customTranslationDD, final Entity customTranslation)",void,shouldUpdateCustomTranslationWhenUpdateCacheIfPluginIsntEnabledAndContainsKey,CustomTranslationModelHooksTest
+1,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromSuperadminToSuperadminAsValidWhenPerformedByNonSuperadmin,UserRoleValidationServiceTest
+2,1516026,processForgotPasswordFormView,(@RequestParam final String login),String,shouldReturnErrorWhenUnexpectedErrorOccured,PasswordResetControllerTest
+3,1516026,sendEmail,"(final String recipient, final String subject, final String body)",void,shouldSendPlainTextEmail,MailServiceImplTest
+4,1516026,parseDate,(final Object value),Date,shouldParseDateFromNullAsNull,DateUtilsTest
+5,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromNonSuperadminToSuperadminAsValidWhenPerformedByShop,UserRoleValidationServiceTest
+6,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayHourMinuteSecondDown,DateUtilsTest
+7,1516026,getFieldDefinition,"(DataDefinition dataDefinition, final String field)",FieldDefinition,shouldReturnFieldDefinitionForTwoLevelsDeepPath,GridComponentFilterUtilsTest
+8,1516026,processForgotPasswordFormView,(@RequestParam final String login),String,shouldReturnLoginIsBlank,PasswordResetControllerTest
+9,1516026,parseDate,(final Object value),Date,shouldParseDateFromBlankStringAsNull,DateUtilsTest
+10,1516026,createItem,(final MenuItemDefinition itemDefinition),void,shouldUpdateItemIfExists,MenuServiceImplTest
+11,1516026,toDateString,(final Date date),String,shouldFormatDate,DateUtilsTest
+12,1516026,durationToString,(final Integer duration),String,shouldConvertDurationToString,TimeConverterServiceTest
+13,1516026,parseDate,(final Object value),Date,shouldParseDateFromEmptyStringAsNull,DateUtilsTest
+14,1516026,setDefaultNames,"(final DataDefinition userDD, final Entity user)",void,shouldReplaceBothNullFirstAndLastNameWithUserName,UserModelHooksTest
+15,1516026,validateGenericEntity,"(final InternalDataDefinition dataDefinition, final Entity genericEntity,
+            final Entity existingGenericEntity)",void,shouldCallCreateAndSaveHooks,ValidationServiceImplTest
+16,1516026,createCategory,(final MenuCategoryDefinition menuCategoryDefinition),void,shouldCreateCategory,MenuServiceImplTest
+17,1516026,copy,(final Date date),Date,shouldCopyReturnNewInstanceOfDate,DateUtilsTest
+18,1516026,sendEmail,"(final String recipient, final String subject, final String body)",void,shouldThrowExceptionIfDefaultSenderIsNull,MailServiceImplTest
+19,1516026,getField,"(final Object databaseEntity, final FieldDefinition fieldDefinition)",Object,shouldReturnNullWhileGettingEmptyField,EntityServiceImplTest
+20,1516026,proxyBelongsToFields,(final Entity entity),void,shouldSetProxyEntityToNull,AwesomeDynamicListModelUtilsImplTest
+21,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnNullForUnsupportedExpression5,GridComponentFilterUtilsTest
+22,1516026,extractFullName,(final Entity user),String,shouldReturnNullIfGivenEntityIsNull,UserServiceImplTest
+23,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayHourMinuteOneDigitSecondUp,DateUtilsTest
+24,1516026,isChecked,(),boolean,shouldIsCheckedReturnFalseIfFieldValueIsEmptyString,CheckBoxComponentStateTest
+25,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearOneDigitMonthUp,DateUtilsTest
+26,1516026,createItem,(final MenuItemDefinition itemDefinition),void,shouldCreateDeactivatedItem,MenuServiceImplTest
+27,1516026,isCustomTranslationActive,"(final String key, final String locale)",boolean,shouldReturnFalseWhenIsCustomTranslationActiveIfContainsKeyAndContainsLocaleAndCustomTranslationIsNull,CustomTranslationCacheServiceImplTest
+28,1516026,get,(final int index),Entity,shouldReturnTreeItem,DetachedEntityTreeImplTest
+29,1516026,getPossibleConversions,(final String unit),PossibleUnitConversions,shouldReturnNonEmptyConversionsSetUsingSimpleBiDirectionalTraverse,UnitConversionServiceImplTest
+30,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromNullToRegularAdminAsValid,UserRoleValidationServiceTest
+31,1516026,processForgotPasswordFormView,(@RequestParam final String login),String,shouldReturnLoginIsBlankWhenLoginIsNull,PasswordResetControllerTest
+32,1516026,toString,"(final Object value, final Locale locale)",String,shouldFormatDecimalTrimTrailingZeroes,DecimalTypeTest
+33,1516026,sendHtmlTextEmail,"(final String sender, final String recipient, final String subject, final String body)",void,shouldThrowExceptionIfSenderIsNull,MailServiceImplTest
+34,1516026,shouldOverrideTranslation,"(final String key, final Locale locale)",boolean,shouldReturnTrueWhenShouldOverrideTranslation,TranslationServiceOverrideUtilTest
+35,1516026,createItem,(final MenuItemDefinition itemDefinition),void,shouldDoNothingIfItemExistsAndHasTheSameView,MenuServiceImplTest
+36,1516026,getFullyQualifiedClassName,"(final String pluginIdentifier, final String modelName)",String,shouldReturnCorrectClassName,ClassNameUtilsTest
+37,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromNullToSuperadminAsValidWhenPerformedByShopDuringCreation,UserRoleValidationServiceTest
+38,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromBlankToSuperadminAsInvalidWhenPerformedByNonSuperadmin,UserRoleValidationServiceTest
+39,1516026,sendHtmlTextEmail,"(final String sender, final String recipient, final String subject, final String body)",void,shouldThrowExceptionIfSenderIsEmpty,MailServiceImplTest
+40,1516026,getId,(final Object databaseEntity),Long,shouldReturnProxyIdWithoutHittingDatabase,EntityServiceImplTest
+41,1516026,setField,"(final Object databaseEntity, final FieldDefinition fieldDefinition, final Object value)",void,shouldSetNotEmptyField,EntityServiceImplTest
+42,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthUp,DateUtilsTest
+43,1516026,setLocaleToDefault,(final ViewDefinitionState view),void,shouldSetLocaleToDefaultIfLocaleIsNull,CustomTranslationsListViewHooksTest
+44,1516026,parseDate,(final Object value),Date,shouldParseDateFromDate,DateUtilsTest
+45,1516026,isCustomTranslationAdded,(final String key),boolean,shouldReturnFalseWhenIsCustomTranslationAddedIfNotContainsKey,CustomTranslationCacheServiceImplTest
+46,1516026,setDefaultNames,"(final DataDefinition userDD, final Entity user)",void,shouldReplaceBlankLastNameWithUserName,UserModelHooksTest
+47,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingFieldNameAttribute,GridComponentFilterUtilsTest
+48,1516026,updateCustomTranslationData,"(final DataDefinition customTranslationDD, final Entity customTranslation)",void,shouldUpdateCustomTranslationDataWhenDataIsNull,CustomTranslationModelHooksCTMTest
+49,1516026,renderContent,(),JSONObject,shouldLoadValuesFromOptionAlsoIfOptionValueHasWhiteChars,SelectComponentStateTest
+50,1516026,generatePassword,(),String,shouldReturnValidPasswordWithSpecifiedLenght,PasswordGeneratorServiceImplTest
+51,1516026,sendEmail,"(final String recipient, final String subject, final String body)",void,shouldThrowExceptionIfBodyIsBlank,MailServiceImplTest
+52,1516026,getFieldDefinition,"(DataDefinition dataDefinition, final String field)",FieldDefinition,shouldReturnFieldDefinitionForThreeLevelsDeepPath,GridComponentFilterUtilsTest
+53,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearSeparatorDown,DateUtilsTest
+54,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromSuperadminToSuperadminAsValidWhenPerformedBySuperadmin,UserRoleValidationServiceTest
+55,1516026,getCustomTranslation,"(final String key, final String locale)",String,shouldReturnCustomTranslationWhenGetCustomTranslationIfContainsKeyAndContainsLocale,CustomTranslationCacheServiceImplTest
+56,1516026,convertNullToZero,(final Object value),BigDecimal,shouldConvertNullToZero,BigDecimalUtilsTest
+57,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearDown,DateUtilsTest
+58,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingExpressionWithSaveNavOperator4,GridComponentFilterUtilsTest
+59,1516026,setField,"(final Object databaseEntity, final FieldDefinition fieldDefinition, final Object value)",void,shouldSetEmptyField,EntityServiceImplTest
+60,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingSimpleExpressionWithSquareBracket,GridComponentFilterUtilsTest
+61,1516026,validateGenericEntity,"(final InternalDataDefinition dataDefinition, final Entity genericEntity,
+            final Entity existingGenericEntity)",void,shouldCallFieldCustomValidatorWithNullOldValueOnCreate,ValidationServiceImplTest
+62,1516026,ilike,"(final String field, final String value)",SearchCriterion,shouldIlikeWithMatchModeReturnIsNullCriteriaIfGivenValueIsNull,SearchRestrictionsTest
+63,1516026,updateCustomTranslation,"(final String key, final String locale, final String customTranslation)",void,shouldUpdateWhenUpdateCustomTranslationIfContainsKey,CustomTranslationCacheServiceImplTest
+64,1516026,shouldOverride,(),boolean,shouldReturnTrueWhenShouldOverride,TranslationModuleOverrideUtilTest
+65,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingSimpleExpressionWithOneGetStringField,GridComponentFilterUtilsTest
+66,1516026,create,"(final U firstElement, final Function<U, U> inductionStep)",LazyStream<U>,shouldBeIterable,LazyStreamTest
+67,1516026,generatePassword,(),String,shouldReturnValidPassword,PasswordGeneratorServiceImplTest
+68,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromSuperadminToAnyAsInvalid,UserRoleValidationServiceTest
+69,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthSeparatorDown,DateUtilsTest
+70,1516026,updateCustomTranslation,"(final String key, final String locale, final String customTranslation)",void,shouldntUpdateWhenUpdateCustomTranslationIfNotContainsKey,CustomTranslationCacheServiceImplTest
+71,1516026,sendEmail,"(final String recipient, final String subject, final String body)",void,shouldThrowExceptionIfDefaultSenderIsNotValid,MailServiceImplTest
+72,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingExpressionWithSquareBracketAndOneGet,GridComponentFilterUtilsTest
+73,1516026,checkUserAddingRoleSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldAlloveRemovingRoleSuperadminWhenPerformedByShop,GroupRolesValidationServiceTest
+74,1516026,sendEmail,"(final String recipient, final String subject, final String body)",void,shouldThrowExceptionIfSubjectIsNull,MailServiceImplTest
+75,1516026,sendEmail,"(final String recipient, final String subject, final String body)",void,shouldThrowExceptionIfRecipientIsEmpty,MailServiceImplTest
+76,1516026,updateCache,"(final DataDefinition customTranslationDD, final Entity customTranslation)",void,shouldAddCustomTranslationWhenUpdateCacheIfPluginIsEnabledAndNotContainsKey,CustomTranslationModelHooksTest
+77,1516026,isCustomTranslationActive,"(final String key, final String locale)",boolean,shouldReturnTrueWhenIsCustomTranslationActiveIfContainsKeyAndContainsLocaleAndCustomTranslationIsntNull,CustomTranslationCacheServiceImplTest
+78,1516026,createItem,(final MenuItemDefinition itemDefinition),void,shouldCreateItem,MenuServiceImplTest
+79,1516026,isEnabled,(final String pluginIdentifier),boolean,shouldIsEnabledReturnFalse,DefaultPluginStateResolverTest
+80,1516026,checkIfCustomTranslationIsUnique,"(final DataDefinition customTranslationDD, final Entity customTranslation)",boolean,shouldReturnFalseWhenCheckIfCustomTranslationIsUniqueIfEntityIsSaved,CustomTranslationModelHooksTest
+81,1516026,addView,(final MenuItemDefinition itemDefinition),void,shouldCreateViewForUrlItem,MenuServiceImplTest
+82,1516026,compressToZipFile,"(List<File> documents, boolean removeCompressed)",File,shouldThrowIllegalArgumentException,FileServiceImplTest
+83,1516026,checkEmail,"(final DataDefinition dataDefinition, final FieldDefinition fieldDefinition, final Entity entity,
+            final Object oldValue, final Object newValue)",boolean,shouldPassNullEmail,EmailValidationServiceTest
+84,1516026,preventSelfDeletion,"(final DataDefinition userDD, final Entity user)",boolean,shouldAllowToDeleteUserIfCurrentUserIdIsOtherThanInDeletingOne,UserModelHooksTest
+85,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromSuperadminToSuperadminAsValidWhenPerformedByShop,UserRoleValidationServiceTest
+86,1516026,validateGenericEntity,"(final InternalDataDefinition dataDefinition, final Entity genericEntity,
+            final Entity existingGenericEntity)",void,shouldDelegateCallUpdateHooksAlsoIfEntityIsNotValid,ValidationServiceImplTest
+87,1516026,setField,"(final Object databaseEntity, final FieldDefinition fieldDefinition, final Object value)",void,shouldSetNullIfBelongsToFieldIsEmpty,EntityServiceImplTest
+88,1516026,generateAndSendNewPassword,(final String userName),void,shouldThrowExceptionIfUserNameIsNull,PasswordReminderServiceImplTest
+89,1516026,validateGenericEntity,"(final InternalDataDefinition dataDefinition, final Entity genericEntity,
+            final Entity existingGenericEntity)",void,shouldCallFieldCustomValidatorWithNonNullOldValueOnCopy,ValidationServiceImplTest
+90,1516026,isChecked,(),boolean,shouldIsCheckedReturnFalseIfFieldValueIsNull,CheckBoxComponentStateTest
+91,1516026,shouldOverride,(),boolean,shouldReturnFalseWhenShouldOverride,TranslationModuleOverrideUtilTest
+92,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingExpressionWithThreeGet,GridComponentFilterUtilsTest
+93,1516026,sendEmail,"(final String recipient, final String subject, final String body)",void,shouldThrowExceptionIfSubjectIsEmpty,MailServiceImplTest
+94,1516026,addAliases,"(final SearchCriteriaBuilder criteria, final String field, final JoinType joinType)",String,shouldNotCreateAliasForSimplePath,GridComponentFilterUtilsTest
+95,1516026,sendEmail,"(final String recipient, final String subject, final String body)",void,shouldThrowExceptionIfSubjectIsBlank,MailServiceImplTest
+96,1516026,parseDate,(final Object value),Date,shouldParseDateFromLongTimestamp,DateUtilsTest
+97,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayHourSeparatorDown,DateUtilsTest
+98,1516026,toString,"(final Object value, final Locale locale)",String,shouldFormatDecimalTrimTrailingZeroes2,DecimalTypeTest
+99,1516026,flatEquals,(final Entity otherEntity),boolean,shouldFlatEqualsReturnsFalseForNullArgument,DefaultEntityTest
+100,1516026,addAliases,"(final SearchCriteriaBuilder criteria, final String field, final JoinType joinType)",String,shouldCreateAliasForOneLevelDeepPath,GridComponentFilterUtilsTest
+101,1516026,addDiscriminatorRestrictionToGrid,"(final ViewDefinitionState view, final ComponentState state, final String[] args)",void,shouldSetCustomRestrictionsToNullWhenAddDiscriminatorRestrictionToGridListenerIfLocaleIsEmpty,CustomTranslationsListViewHooksTest
+102,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingSimpleExpressionWithOneGetManyToManyField,GridComponentFilterUtilsTest
+103,1516026,getMenu,(final Locale locale),MenuDefinition,shouldReturnEmptyMenu,MenuServiceImplTest
+104,1516026,checkUserAddingRoleSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkRemovingRoleSuperadminAsInvalidWhenPerformedByNonSuperadmin,GroupRolesValidationServiceTest
+105,1516026,addConversion,(final UnitConversion unitConversion),void,shouldThrowExceptionWhenTryToInsertWrongConversion,PossibleUnitConversionsImplTest
+106,1516026,parseDate,(final Object value),Date,shouldParseDateFromDateTimeString,DateUtilsTest
+107,1516026,getField,"(final Object databaseEntity, final FieldDefinition fieldDefinition)",Object,shouldNotThrownAnExceptionWhileGettingFieldWithInvalidType,EntityServiceImplTest
+108,1516026,changeActiveState,"(final DataDefinition customTranslationDD, final Entity customTranslation)",void,shouldChangeActiveStateIfPluginIsEnabledAndCustomTranslationIsNull,CustomTranslationModelHooksTest
+109,1516026,parseDate,(final Object value),Date,shouldParseDateFromDateString,DateUtilsTest
+110,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayHourOneDigitMinuteSeparatorDown,DateUtilsTest
+111,1516026,convertTo,"(final BigDecimal quantityFrom, final String unitTo)",BigDecimal,shouldThrowExceptionIfConversionDoesNotExists,PossibleUnitConversionsImplTest
+112,1516026,durationToString,(final Integer duration),String,shouldReturnErrorStringValueIfDurationIsNull,TimeConverterServiceTest
+113,1516026,like,"(final String field, final String value)",SearchCriterion,shouldLikeReturnIsNullCriteriaIfGivenValueIsNull,SearchRestrictionsTest
+114,1516026,getFieldDefinition,"(DataDefinition dataDefinition, final String field)",FieldDefinition,shouldReturnFieldDefinitionForOneLevelDeepPath,GridComponentFilterUtilsTest
+115,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnNullForUnsupportedExpression2,GridComponentFilterUtilsTest
+116,1516026,tryParse,"(final String maybeStringWithDecimal, final Locale locale)","Either<Exception, Optional<BigDecimal>>",shouldParseNotEmptyEnDecimalString,BigDecimalUtilsTest
+117,1516026,setDefaultNames,"(final DataDefinition userDD, final Entity user)",void,shouldReplaceBothBlankFirstAndLastNameWithUserName,UserModelHooksTest
+118,1516026,renderContent,(),JSONObject,shouldLoadValuesFromOption,SelectComponentStateTest
+119,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearSeparatorUp,DateUtilsTest
+120,1516026,put,"(String key, Integer value)",void,shouldClearContentsWithoutException,FilterValueHolderImplTest
+121,1516026,updateRibbonState,(final ViewDefinitionState view),void,shouldntUpdateRibbonStateIfCustomTranslationIsntSelected,CustomTranslationsListViewHooksTest
+122,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayOneDigitHourSeparatorUp,DateUtilsTest
+123,1516026,isCustomTranslationAdded,(final String key),boolean,shouldReturnTrueWhenIsCustomTranslationAddedIfContainsKey,CustomTranslationCacheServiceImplTest
+124,1516026,shouldOverrideTranslation,"(final String key, final Locale locale)",boolean,shouldReturnFalseWhenShouldOverrideTranslation,TranslationServiceOverrideUtilTest
+125,1516026,getMenu,(final Locale locale),MenuDefinition,shouldReturnMenu,MenuServiceImplTest
+126,1516026,checkUserAddingRoleSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldAlloveAddingRoleSuperadminWhenPerformedBySuperadmin,GroupRolesValidationServiceTest
+127,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromNonSuperadminToNonSuperadminAsValid,UserRoleValidationServiceTest
+128,1516026,sendEmail,"(final String recipient, final String subject, final String body)",void,shouldThrowExceptionIfDefaultSenderIsBlank,MailServiceImplTest
+129,1516026,addView,(final MenuItemDefinition itemDefinition),void,shouldCreateViewForViewItem,MenuServiceImplTest
+130,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingExpressionWithSaveNavOperator3,GridComponentFilterUtilsTest
+131,1516026,call,"(final Entity entity, final Object oldValue, final Object newValue)",boolean,shouldNotAddDefaultMessageIfValidationSuccessAndThereIsAlreadyMessageAssignedToOtherField,CustomValidatorTest
+132,1516026,generateAndSendNewPassword,(final String userName),void,shouldThrowExceptionIfUserNameIsEmpty,PasswordReminderServiceImplTest
+133,1516026,getDetachedEntityTree,(final List<Entity> entities),EntityTree,shouldReturnDetachedEntityTree,EntityTreeUtilsServiceTest
+134,1516026,renderContent,(),JSONObject,shouldAddDeactivatedValueInTheMiddle,SelectComponentStateTest
+135,1516026,call,"(final Entity entity, final Object oldValue, final Object newValue)",boolean,shouldNotAddDefaultMessageIfValidationSuccessAndThereIsAlreadyMessageAssignedToField,CustomValidatorTest
+136,1516026,checkIfCustomTranslationIsUnique,"(final DataDefinition customTranslationDD, final Entity customTranslation)",boolean,shouldReturnTrueWhenCheckIfCustomTranslationIsUniqueIfEntityIsSaved,CustomTranslationModelHooksTest
+137,1516026,cleanCustomTranslations,"(final ViewDefinitionState view, final ComponentState state, final String[] args)",void,shouldntCleanCustomTranslationsWhenCustomTranslationIsntSelected,CustomTranslationsListListenersTest
+138,1516026,valueEquals,"(final BigDecimal d1, final BigDecimal d2)",boolean,shouldValuesEqualsReturnCorrectValue,BigDecimalUtilsTest
+139,1516026,getEntityPriorityComparator,(),Comparator<Entity>,shouldThrowExceptionIfEntityDoNotHavePriorityFields,PriorityServiceImplTest
+140,1516026,checkUserAddingRoleSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldAlloveAddingRoleSuperadminWhenPerformedByShop,GroupRolesValidationServiceTest
+141,1516026,createCategory,(final MenuCategoryDefinition menuCategoryDefinition),void,shouldDoNothingIfCategoryAlreadyExists,MenuServiceImplTest
+142,1516026,addDiscriminatorRestrictionToGrid,"(final ViewDefinitionState view, final ComponentState state, final String[] args)",void,shouldSetCustomRestrictionsWhenAddDiscriminatorRestrictionToGridListenerIfLocaleIsntEmpty,CustomTranslationsListViewHooksTest
+143,1516026,removeTranslationKeysForPlugin,(final String pluginIdentifier),void,shouldRemoveTranslationKeysForPlugin,TranslationModuleOverrideUtilTest
+144,1516026,toString,"(final Object value, final Locale locale)",String,shouldFormatNullAsEmptyString,DecimalTypeTest
+145,1516026,updateCustomTranslationData,"(final DataDefinition customTranslationDD, final Entity customTranslation)",void,shouldUpdateCustomTranslationDataWhenDataIsntNull,CustomTranslationModelHooksCTMTest
+146,1516026,changeActiveState,"(final DataDefinition customTranslationDD, final Entity customTranslation)",void,shouldChangeActiveStateIfPluginIsEnabledAndCustomTranslationIsntNull,CustomTranslationModelHooksTest
+147,1516026,updateCache,"(final DataDefinition customTranslationDD, final Entity customTranslation)",void,shouldAddCustomTranslationWhenUpdateCacheIfPluginIsntEnabledAndNotContainsKey,CustomTranslationModelHooksTest
+148,1516026,proxyBelongsToFields,(final Entity entity),void,shouldSetProxyEntityInPlaceOfString,AwesomeDynamicListModelUtilsImplTest
+149,1516026,call,"(final Entity entity, final Object oldValue, final Object newValue)",boolean,shouldAddDefaultMessageIfValidationFailAndThereIsNoMessageAssignedToField,CustomValidatorTest
+150,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromUserToSuperadminAsInvalid,UserRoleValidationServiceTest
+151,1516026,ilike,"(final String field, final String value)",SearchCriterion,shouldIlikeReturnIsNullCriteriaIfGivenValueIsNull,SearchRestrictionsTest
+152,1516026,tryParse,"(final String maybeStringWithDecimal, final Locale locale)","Either<Exception, Optional<BigDecimal>>",shouldParseEmptyDecimalString,BigDecimalUtilsTest
+153,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayUp,DateUtilsTest
+154,1516026,parseDate,(final Object value),Date,shouldThrowExceptionIfInputStringHasIncorrectFormat,DateUtilsTest
+155,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayHourMinuteDown,DateUtilsTest
+156,1516026,tryParse,"(final String maybeStringWithDecimal, final Locale locale)","Either<Exception, Optional<BigDecimal>>",shouldReturnExceptionIfParseFail,BigDecimalUtilsTest
+157,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayHourMinuteOneDigitSecondDown,DateUtilsTest
+158,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingSimpleExpressionWithOneGetDecimalField,GridComponentFilterUtilsTest
+159,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayOneDigitHourSeparatorDown,DateUtilsTest
+160,1516026,convertNullToOne,(final Object value),BigDecimal,shouldConvertNullToOne,BigDecimalUtilsTest
+161,1516026,getFieldDefinition,"(DataDefinition dataDefinition, final String field)",FieldDefinition,shouldReturnFieldDefinitionForSimplePath,GridComponentFilterUtilsTest
+162,1516026,setChecked,(boolean value),void,shouldSetCheckedChangeFieldValueToTrue,CheckBoxComponentStateTest
+163,1516026,proxyBelongsToFields,(final Entity entity),void,shouldSetProxyEntityInPlaceOfInteger,AwesomeDynamicListModelUtilsImplTest
+164,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayHourMinuteSeparatorUp,DateUtilsTest
+165,1516026,updateCache,"(final DataDefinition customTranslationDD, final Entity customTranslation)",void,shouldUpdateCustomTranslationWhenUpdateCacheIfPluginIsEnabledAndContainsKey,CustomTranslationModelHooksTest
+166,1516026,find,(),SearchCriteriaBuilder,shouldReturnCriteriaBuilder,EntityTreeImplTest
+167,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDown,DateUtilsTest
+168,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromNullToSuperadminAsValidWhenPerformedByShop,UserRoleValidationServiceTest
+169,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingSimpleExpressionWithOneGetBooleanField,GridComponentFilterUtilsTest
+170,1516026,getCustomTranslation,"(final String key, final Locale locale, final String[] args)",String,shouldReturnCustomTranslationWhenGetCustomTranslation,TranslationServiceOverrideUtilTest
+171,1516026,getCustomTranslation,"(final String key, final String locale)",String,shouldReturnNullWhenGetCustomTranslationIfNotContainsKey,CustomTranslationCacheServiceImplTest
+172,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromNullToSuperadminAsInvalidWhenPerformedByNonSuperadmin,UserRoleValidationServiceTest
+173,1516026,setLocaleToDefault,(final ViewDefinitionState view),void,shouldntSetLocaleToDefaultIfLocaleIsntNull,CustomTranslationsListViewHooksTest
+174,1516026,addTranslationKeysForPlugin,"(final String pluginIdentifier, final Set<String> basenames)",void,shouldAddTranslationKeysForPlugin,TranslationModuleOverrideUtilTest
+175,1516026,call,"(final Entity entity, final Object oldValue, final Object newValue)",boolean,shouldNotAddDefaultMessageIfValidationSuccess,CustomValidatorTest
+176,1516026,callCreateHook,(final Entity entity),boolean,shouldCallCreateHook,DataDefinitionImplTest
+177,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromAdminToSuperadminAsInvalid,UserRoleValidationServiceTest
+178,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingSimpleExpressionWithOneGetHasManyField,GridComponentFilterUtilsTest
+179,1516026,processForgotPasswordFormView,(@RequestParam final String login),String,shouldReturnInvalidMailAddressWhenMailConfigurationErrorOccured,PasswordResetControllerTest
+180,1516026,callCopyHook,(final Entity entity),boolean,shouldCallCopyHook,DataDefinitionImplTest
+181,1516026,getCustomTranslations,(),"Map<String, Map<String, String>>",shouldGetCustomTranslations,CustomTranslationCacheServiceImplTest
+182,1516026,renderContent,(),JSONObject,shouldAddDeactivatedValueAtTheBeginning,SelectComponentStateTest
+183,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayHourUp,DateUtilsTest
+184,1516026,replaceNamespace,"(final Element element, final Namespace namespace)",Element,shouldRenameNamespace,JdomUtilsTest
+185,1516026,isEnabled,(final String pluginIdentifier),boolean,shouldIsEnabledReturnFalseIfPluginDoesNotExist,DefaultPluginStateResolverTest
+186,1516026,addTranslationKeysForPlugin,"(final String pluginIdentifier, final Set<String> basenames)",void,shouldntAddTranslationKeysForPluginIfLocalesAreEmpty,TranslationModuleOverrideUtilTest
+187,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseShortestExpressionDown,DateUtilsTest
+188,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayOneDigitHourUp,DateUtilsTest
+189,1516026,cleanCustomTranslations,"(final ViewDefinitionState view, final ComponentState state, final String[] args)",void,shouldCleanCustomTranslationsWhenCustomTranslationIsSelected,CustomTranslationsListListenersTest
+190,1516026,proxyBelongsToFields,(final Entity entity),void,shouldSetProxyEntityInPlaceOfEntity,AwesomeDynamicListModelUtilsImplTest
+191,1516026,getSortedEntities,(final EntityTree tree),List<Entity>,shouldReturnEmptyListIfTreeIsEmpty,EntityTreeUtilsServiceTest
+192,1516026,setDefaultNames,"(final DataDefinition userDD, final Entity user)",void,shouldReplaceNullLastNameWithUserName,UserModelHooksTest
+193,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnNullForUnsupportedExpression3,GridComponentFilterUtilsTest
+194,1516026,updateRibbonState,(final ViewDefinitionState view),void,shouldUpdateRibbonStateIfCustomTranslationIsSelected,CustomTranslationsListViewHooksTest
+195,1516026,compressToZipFile,"(List<File> documents, boolean removeCompressed)",File,shouldThrowNullPointerException,FileServiceImplTest
+196,1516026,getBelongsToField,(final String fieldName),Entity,shouldGetBelongsToFieldReturnNullIfFieldIsEmpty,DefaultEntityTest
+197,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearUp,DateUtilsTest
+198,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingSimpleExpressionWithOneGetDateField,GridComponentFilterUtilsTest
+199,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnNullForUnsupportedExpression4,GridComponentFilterUtilsTest
+200,1516026,find,(),SearchCriteriaBuilder,shouldThrowExceptionWhenTryingToGetSearchCriteria,DetachedEntityTreeImplTest
+201,1516026,sendHtmlTextEmail,"(final String sender, final String recipient, final String subject, final String body)",void,shouldThrowExceptionIfSenderIsBlank,MailServiceImplTest
+202,1516026,sendEmail,"(final String recipient, final String subject, final String body)",void,shouldThrowExceptionIfRecipientIsNotValid,MailServiceImplTest
+203,1516026,removeCategory,(final MenuCategoryDefinition menuCategoryDefinition),void,shouldNotRemoveCategoryIfHasAnyItems,MenuServiceImplTest
+204,1516026,validateGenericEntity,"(final InternalDataDefinition dataDefinition, final Entity genericEntity,
+            final Entity existingGenericEntity)",void,shouldDelegateCallCreateHooksAlsoIfEntityIsNotValid,ValidationServiceImplTest
+205,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromBlankToSuperadminAsValidWhenPerformedByShop,UserRoleValidationServiceTest
+206,1516026,isCustomTranslationActive,"(final String key, final Locale locale)",boolean,shouldReturnTrueWhenIsCustomTranlationActive,CustomTranslationResolverImplTest
+207,1516026,getCustomTranslation,"(final String key, final String locale)",String,shouldReturnNullWhenGetCustomTranslationIfContainsKeyAndNotContainsLocale,CustomTranslationCacheServiceImplTest
+208,1516026,call,"(final Entity entity, final Object oldValue, final Object newValue)",boolean,shouldNotAddDefaultMessageIfValidationFailAndThereIsAlreadyMessageAssignedToField,CustomValidatorTest
+209,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingSimpleExpressionWithOneGetIntegerField,GridComponentFilterUtilsTest
+210,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromNonSuperadminToSuperadminAsInvalid,UserRoleValidationServiceTest
+211,1516026,generateAndSendNewPassword,(final String userName),void,shouldThrowExceptionIfUserDoesNotExists,PasswordReminderServiceImplTest
+212,1516026,getPossibleConversions,(final String unit),PossibleUnitConversions,shouldReturnNonEmptyConversionsSetUsingSimpleOneDirectionalTraverseWithCycle,UnitConversionServiceImplTest
+213,1516026,addDiscriminatorRestrictionToGrid,"(final ViewDefinitionState view, final ComponentState state, final String[] args)",void,shouldSetCustomRestrictionsToNullWhenAddDiscriminatorRestrictionToGridIfLocaleIsEmpty,CustomTranslationsListViewHooksTest
+214,1516026,getEntityPriorityComparator,(),Comparator<Entity>,shouldComparatorFindPriorityFieldAndCompareEntities,PriorityServiceImplTest
+215,1516026,call,"(final Entity entity, final Object oldValue, final Object newValue)",boolean,shouldAddDefaultMessageIfValidationFailAndThereIsAlreadyMessageAssignedToOtherField,CustomValidatorTest
+216,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayHourMinuteSeparatorDown,DateUtilsTest
+217,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthOneDigitDaySeparatorDown,DateUtilsTest
+218,1516026,tryParse,"(final String maybeStringWithDecimal, final Locale locale)","Either<Exception, Optional<BigDecimal>>",shouldParseNotEmptyPlDecimalString,BigDecimalUtilsTest
+219,1516026,addAliases,"(final SearchCriteriaBuilder criteria, final String field, final JoinType joinType)",String,shouldCreateAliasForThreeLevelDeepPath,GridComponentFilterUtilsTest
+220,1516026,getField,"(final Object databaseEntity, final FieldDefinition fieldDefinition)",Object,shouldLazyLoadEntitiesUsingProxy,EntityServiceImplTest
+221,1516026,processForgotPasswordFormView,(@RequestParam final String login),String,shouldReturnSuccess,PasswordResetControllerTest
+222,1516026,toDateTimeString,(final Date date),String,shouldFormatDateTimeReturnEmptyStringForNull,DateUtilsTest
+223,1516026,changeActiveState,"(final DataDefinition customTranslationDD, final Entity customTranslation)",void,shouldntChangeActiveStateIfPluginIsntEnabled,CustomTranslationModelHooksTest
+224,1516026,replaceCustomTranslations,"(final ViewDefinitionState view, final ComponentState state, final String[] args)",void,shouldReplaceCustomTranslations,CustomTranslationsListListenersTest
+225,1516026,sendEmail,"(final String recipient, final String subject, final String body)",void,shouldThrowExceptionIfDefaultSenderIsEmpty,MailServiceImplTest
+226,1516026,getCustomTranslation,"(final String pluginIdentifier, final String locale, final String key)",Entity,shouldReturnCustomTranslationWhenGetCustomTranslationIfCustomTranslationIsntNull,CustomTranslationManagementServiceImplTest
+227,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayHourMinuteSecondUp,DateUtilsTest
+228,1516026,updateReportFileName,"(final Entity entity, final String dateFieldName, final String name)",Entity,shouldStackThatNewReportFilenameToTheCurrentFilenamesAndSeparateThemWithCommas,FileServiceImplTest
+229,1516026,setDefaultNames,"(final DataDefinition userDD, final Entity user)",void,shouldNotReplaceAnyNameWithUserName,UserModelHooksTest
+230,1516026,processForgotPasswordFormView,(@RequestParam final String login),String,shouldReturnLoginIsBlankWhenLoginIsEmpty,PasswordResetControllerTest
+231,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayHourDown,DateUtilsTest
+232,1516026,getPossibleConversions,(final String unit),PossibleUnitConversions,shouldReturnNonEmptyConversionsSetUsingSimpleBiDirectionalTraverseWithCycle,UnitConversionServiceImplTest
+233,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthSeparatorUp,DateUtilsTest
+234,1516026,toString,"(final Object value, final Locale locale)",String,shouldFormatDecimalWithoutOfficiousTrimmingFractionalValue2,DecimalTypeTest
+235,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDaySeparatorDown,DateUtilsTest
+236,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingExpressionWithSaveNavOperator5,GridComponentFilterUtilsTest
+237,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthOneDigitDayUp,DateUtilsTest
+238,1516026,sendEmail,"(final String recipient, final String subject, final String body)",void,shouldThrowExceptionIfBodyIsNull,MailServiceImplTest
+239,1516026,isChecked,(),boolean,shouldIsCheckedReturnFalseIfFieldValueIsAnyStringOtherThan1,CheckBoxComponentStateTest
+240,1516026,addAliases,"(final SearchCriteriaBuilder criteria, final String field, final JoinType joinType)",String,shouldCreateAliasForTwoLevelDeepPath,GridComponentFilterUtilsTest
+241,1516026,checkUserAddingRoleSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldAlloveRemovingRoleSuperadminWhenPerformedBySuperadmin,GroupRolesValidationServiceTest
+242,1516026,setField,"(final Object databaseEntity, final FieldDefinition fieldDefinition, final Object value)",void,shouldThrownAnExceptionWhileSettingNotExistingField,EntityServiceImplTest
+243,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseShortestExpressionUp,DateUtilsTest
+244,1516026,setDefaultNames,"(final DataDefinition userDD, final Entity user)",void,shouldReplaceBlankFirstNameWithUserName,UserModelHooksTest
+245,1516026,toDateString,(final Date date),String,shouldFormatDateReturnEmptyStringForNull,DateUtilsTest
+246,1516026,getAuthorizationRole,(final Node node),SecurityRole,shouldSetViewDefinitionAttributes,ViewDefinitionParserImplTest
+247,1516026,proxyBelongsToFields,(final Entity entity),void,shouldSetProxyEntityInPlaceOfLong,AwesomeDynamicListModelUtilsImplTest
+248,1516026,checkEmail,"(final DataDefinition dataDefinition, final FieldDefinition fieldDefinition, final Entity entity,
+            final Object oldValue, final Object newValue)",boolean,shouldPassValidEmail,EmailValidationServiceTest
+249,1516026,isCustomTranslationActive,"(final String key, final String locale)",boolean,shouldReturnFalseWhenIsCustomTranslationActiveIfContainsKeyAndNotContainsLocale,CustomTranslationCacheServiceImplTest
+250,1516026,getId,(final Object databaseEntity),Long,shouldReturnProperId,EntityServiceImplTest
+251,1516026,copy,(final Date date),Date,shouldCopyReturnNullForNullArgument,DateUtilsTest
+252,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingSimpleExpressionWithOneGetTreeField,GridComponentFilterUtilsTest
+253,1516026,sendEmail,"(final String recipient, final String subject, final String body)",void,shouldThrowExceptionIfRecipientIsBlank,MailServiceImplTest
+254,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDaySeparatorUp,DateUtilsTest
+255,1516026,updateReportFileName,"(final Entity entity, final String dateFieldName, final String name)",Entity,shouldAddANewReportFilenameIfThereAreNoneYet,FileServiceImplTest
+256,1516026,addView,(final MenuItemDefinition itemDefinition),void,shouldAddViewThrowsAnExceptionIfViewDoesNotExistAndUrlIsNull,MenuServiceImplTest
+257,1516026,getAlign,(),Alignment,shouldAlignToLeftByDefault,GridComponentColumnTest
+258,1516026,renderContent,(),JSONObject,shouldNotLoadValuesFromOption,SelectComponentStateTest
+259,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingExpressionWithSaveNavOperator1,GridComponentFilterUtilsTest
+260,1516026,replaceCustomTranslations,"(final ViewDefinitionState view, final ComponentState state, final String[] args)",void,shouldntReplaceWhenReplaceCustomTranslationsIfCustomTranslationsAreNull,ReplaceCustomTranslationsListenersTest
+261,1516026,renderContent,(),JSONObject,shouldNotAddAnotherValue,SelectComponentStateTest
+262,1516026,callUpdateHook,(final Entity entity),boolean,shouldCallUpdateHook,DataDefinitionImplTest
+263,1516026,isCustomTranslationActive,"(final String key, final String locale)",boolean,shouldReturnFalseWhenIsCustomTranslationActiveIfNotContainsKey,CustomTranslationCacheServiceImplTest
+264,1516026,getDataDefinition,(),DataDefinition,shouldGetDataDefinitionReturnDataDefinition,DefaultEntityTest
+265,1516026,checkEmail,"(final DataDefinition dataDefinition, final FieldDefinition fieldDefinition, final Entity entity,
+            final Object oldValue, final Object newValue)",boolean,shouldNotPassLocalEmail,EmailValidationServiceTest
+266,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingExpressionWithSquareBracketAndTwoGet,GridComponentFilterUtilsTest
+267,1516026,parseDate,(final Object value),Date,shouldParseDateFromBigIntegerTimestamp,DateUtilsTest
+268,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayHourMinuteUp,DateUtilsTest
+269,1516026,checkEmail,"(final DataDefinition dataDefinition, final FieldDefinition fieldDefinition, final Entity entity,
+            final Object oldValue, final Object newValue)",boolean,shouldPassEmptyEmail,EmailValidationServiceTest
+270,1516026,setChecked,(boolean value),void,shouldSetCheckedChangeFieldValueToNull,CheckBoxComponentStateTest
+271,1516026,isEmpty,(),boolean,shouldBeEmptyIfParentIdIsNull,EntityListImplTest
+272,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingExpressionWithSaveNavOperator2,GridComponentFilterUtilsTest
+273,1516026,addAliases,"(final SearchCriteriaBuilder criteria, final String field, final JoinType joinType)",String,shouldCreateAliasForFourLevelDeepPath,GridComponentFilterUtilsTest
+274,1516026,getPossibleConversions,(final String unit),PossibleUnitConversions,shouldReturnNonEmptyConversionsSetUsingSimpleOneDirectionalTraverse,UnitConversionServiceImplTest
+275,1516026,isCustomTranslationActive,"(final String key, final Locale locale)",boolean,shouldReturFalseWhenIsCustomTranslationActive,CustomTranslationResolverImplTest
+276,1516026,create,"(final U firstElement, final Function<U, U> inductionStep)",LazyStream<U>,shouldGenerateAlternateElementsDueToGivenFunction,LazyStreamTest
+277,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearOneDigitMonthSeparatorUp,DateUtilsTest
+278,1516026,getPossibleConversions,(final String unit),PossibleUnitConversions,shouldReturnEmptyConversionsSet,UnitConversionServiceImplTest
+279,1516026,processForgotPasswordFormView,(@RequestParam final String login),String,shouldReturnUserNotFound,PasswordResetControllerTest
+280,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromBlankToSuperadminAsValidWhenPerformedBySuperadmin,UserRoleValidationServiceTest
+281,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromBlankToRegularAdminAsValid,UserRoleValidationServiceTest
+282,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnNullForUnsupportedExpression1,GridComponentFilterUtilsTest
+283,1516026,toDateTimeString,(final Date date),String,shouldFormatDateTime,DateUtilsTest
+284,1516026,preventSelfDeletion,"(final DataDefinition userDD, final Entity user)",boolean,shouldAllowToDeleteUserIfCurrentUserIdIsNull,UserModelHooksTest
+285,1516026,sendEmail,"(final String recipient, final String subject, final String body)",void,shouldThrowExceptionIfBodyIsEmpty,MailServiceImplTest
+286,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromNonSuperadminToSuperadminAsValidWhenPerformedBySuperAdmin,UserRoleValidationServiceTest
+287,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingExpressionWithTwoGet,GridComponentFilterUtilsTest
+288,1516026,getCustomTranslation,"(final String key, final Locale locale, final String[] args)",String,shouldRetrunNullWhenGetCustomTranslationIfCustomTranslationIsNull,CustomTranslationResolverImplTest
+289,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayOneDigitHourDown,DateUtilsTest
+290,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearOneDigitMonthSeparatorDown,DateUtilsTest
+291,1516026,processForgotPasswordFormView,(@RequestParam final String login),String,shouldReturnInvalidMailConfigWhenMailConfigurationErrorOccured,PasswordResetControllerTest
+292,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayHourOneDigitMinuteSeparatorUp,DateUtilsTest
+293,1516026,getFieldDefinition,"(DataDefinition dataDefinition, final String field)",FieldDefinition,shouldReturnFieldDefinitionForFourLevelsDeepPath,GridComponentFilterUtilsTest
+294,1516026,getField,"(final Object databaseEntity, final FieldDefinition fieldDefinition)",Object,shouldThrownAnExceptionWhileGettingNotExistingField,EntityServiceImplTest
+295,1516026,parseDate,(final Object value),Date,shouldThrowExceptionIfInputTypeIsUnsupported,DateUtilsTest
+296,1516026,getCustomTranslationDD,(),DataDefinition,shouldReturnCustomTranslationDD,CustomTranslationManagementServiceImplTest
+297,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayHourSeparatorUp,DateUtilsTest
+298,1516026,preventSelfDeletion,"(final DataDefinition userDD, final Entity user)",boolean,shouldDenyUserDeletionIfCurrentUserIdIsTheSameAsIdInDeletingOne,UserModelHooksTest
+299,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayDown,DateUtilsTest
+300,1516026,replaceCustomTranslations,"(final ViewDefinitionState view, final ComponentState state, final String[] args)",void,shouldntReplaceWhenReplaceCustomTranslationsIfCustomTranslationsArentNullAndNotFound,ReplaceCustomTranslationsListenersTest
+301,1516026,getField,"(final Object databaseEntity, final FieldDefinition fieldDefinition)",Object,shouldReturnProperValueOfTheField,EntityServiceImplTest
+302,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingSimpleExpressionWithOneGetBelongsToField,GridComponentFilterUtilsTest
+303,1516026,replaceCustomTranslations,"(final ViewDefinitionState view, final ComponentState state, final String[] args)",void,shouldReplaceWhenReplaceCustomTranslationsIfCustomTranslationsArentNull,ReplaceCustomTranslationsListenersTest
+304,1516026,checkUserAddingRoleSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkAddingRoleSuperadminAsInvalidWhenPerformedByNonSuperadmin,GroupRolesValidationServiceTest
+305,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromNullToSuperadminAsValidWhenPerformedBySuperadmin,UserRoleValidationServiceTest
+306,1516026,getSortedEntities,(final EntityTree tree),List<Entity>,shouldReturnListOfNodesInTheSameOrderAsTheyAppearOnTheTree,EntityTreeUtilsServiceTest
+307,1516026,getCustomTranslation,"(final String key, final Locale locale, final String[] args)",String,shouldRetrunTranslationWhenGetCustomTranslationIfCustomTranslationIsntNullAndArgsAreNull,CustomTranslationResolverImplTest
+308,1516026,getCustomTranslation,"(final String key, final Locale locale, final String[] args)",String,shouldReturnNullWhenGetCustomTranslationIfCustomTranslationIsNull,TranslationServiceOverrideUtilTest
+309,1516026,sendHtmlTextEmail,"(final String sender, final String recipient, final String subject, final String body)",void,shouldThrowExceptionIfSenderIsNotValid,MailServiceImplTest
+310,1516026,find,(),SearchCriteriaBuilder,shouldThrowExceptionWhenCallingFindMethod,DetachedEntityListImplTest
+311,1516026,validateGenericEntity,"(final InternalDataDefinition dataDefinition, final Entity genericEntity,
+            final Entity existingGenericEntity)",void,shouldCallFieldCustomValidatorWithNonNullOldValueOnUpdate,ValidationServiceImplTest
+312,1516026,sendEmail,"(final String recipient, final String subject, final String body)",void,shouldThrowExceptionIfRecipientIsNull,MailServiceImplTest
+313,1516026,renderContent,(),JSONObject,shouldAddDeactivatedValueToTheEnd,SelectComponentStateTest
+314,1516026,equals,(final Object obj),boolean,shouldEqualsReturnsFalseForNullArgument,DefaultEntityTest
+315,1516026,isEnabled,(final String pluginIdentifier),boolean,shouldIsEnabledReturnTrue,DefaultPluginStateResolverTest
+316,1516026,callUpdateHook,(final Entity entity),boolean,shouldNotCallUpdateHookIfEntityIsInvalid,DataDefinitionImplTest
+317,1516026,callSaveHook,(final Entity entity),boolean,shouldNotCallSaveHookIfEntityIsInvalid,DataDefinitionImplTest
+318,1516026,setDefaultNames,"(final DataDefinition userDD, final Entity user)",void,shouldReplaceNullFirstNameWithUserName,UserModelHooksTest
+319,1516026,setField,"(final Object databaseEntity, final FieldDefinition fieldDefinition, final Object value)",void,shouldSetBelongsToField,EntityServiceImplTest
+320,1516026,getAuthorizationRole,(final Node node),SecurityRole,shouldSetCustomAuthorizationRole,ViewDefinitionParserImplTest
+321,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromNullToSuperadminAsValidWhenPerformedBySuperadminDuringCreation,UserRoleValidationServiceTest
+322,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayHourOneDigitMinuteUp,DateUtilsTest
+323,1516026,callSaveHook,(final Entity entity),boolean,shouldCallSaveHook,DataDefinitionImplTest
+324,1516026,getCustomTranslation,"(final String pluginIdentifier, final String locale, final String key)",Entity,shouldReturnNullWhenGetCustomTranslationIfCustomTranslationIsNull,CustomTranslationManagementServiceImplTest
+325,1516026,checkEmail,"(final DataDefinition dataDefinition, final FieldDefinition fieldDefinition, final Entity entity,
+            final Object oldValue, final Object newValue)",boolean,shouldNotPassBlankEmail,EmailValidationServiceTest
+326,1516026,checkIfCustomTranslationIsUnique,"(final DataDefinition customTranslationDD, final Entity customTranslation)",boolean,shouldReturnFalseWhenCheckIfCustomTranslationIsUniqueIfEntityIsntSaved,CustomTranslationModelHooksTest
+327,1516026,addCustomTranslation,"(final String key, final String locale, final String customTranslation)",void,shouldAddCustomTranslation,CustomTranslationCacheServiceImplTest
+328,1516026,checkIfCustomTranslationIsUnique,"(final DataDefinition customTranslationDD, final Entity customTranslation)",boolean,shouldReturnTrueWhenCheckIfCustomTranslationIsUniqueIfEntityIsntSaved,CustomTranslationModelHooksTest
+329,1516026,validateGenericEntity,"(final InternalDataDefinition dataDefinition, final Entity genericEntity,
+            final Entity existingGenericEntity)",void,shouldCallUpdateAndSaveHooks,ValidationServiceImplTest
+330,1516026,toString,"(final Object value, final Locale locale)",String,shouldFormatDecimalWithoutOfficiousTrimmingFractionalValue,DecimalTypeTest
+331,1516026,checkEmail,"(final DataDefinition dataDefinition, final FieldDefinition fieldDefinition, final Entity entity,
+            final Object oldValue, final Object newValue)",boolean,shouldNotPassInvalidEmail,EmailValidationServiceTest
+332,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthOneDigitDaySeparatorUp,DateUtilsTest
+333,1516026,getCustomTranslation,"(final String key, final Locale locale, final String[] args)",String,shouldRetrunTranslationWhenGetCustomTranslationIfCustomTranslationIsntNullArgsArentNull,CustomTranslationResolverImplTest
+334,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearOneDigitMonthDown,DateUtilsTest
+335,1516026,addDiscriminatorRestrictionToGrid,"(final ViewDefinitionState view, final ComponentState state, final String[] args)",void,shouldSetCustomRestrictionsWhenAddDiscriminatorRestrictionToGridIfLocaleIsntEmpty,CustomTranslationsListViewHooksTest
+336,1516026,callCreateHook,(final Entity entity),boolean,shouldCallCreateHookIfEntityIsInvalid,DataDefinitionImplTest
+337,1516026,removeCustomTranslations,(final String pluginIdentifier),void,shouldRemoveWhenRemoveCustomTranslationIfCustomTranslationIsntNull,CustomTranslationManagementServiceImplTest
+338,1516026,replaceCustomTranslations,"(final ViewDefinitionState view, final ComponentState state, final String[] args)",void,shouldntReplaceWhenReplaceCustomTranslationsIfLocaleIsNullAndReplaceFromIsNull,ReplaceCustomTranslationsListenersTest
+339,1516026,checkUserCreatingSuperadmin,"(final DataDefinition dataDefinition, final Entity entity)",boolean,shouldMarkTransitionFromNullToSuperadminAsInvalidWhenPerformedByNonSuperadminDuringCreation,UserRoleValidationServiceTest
+340,1516026,getFieldNameByColumnName,"(final Map<String, GridComponentColumn> columns, final String columnName)",String,shouldReturnFieldNameUsingSimpleExpressionWithOneGet,GridComponentFilterUtilsTest
+341,1516026,toString,(),String,shouldConvertToString,DetachedEntityTreeImplTest
+342,1516026,callCopyHook,(final Entity entity),boolean,shouldCallCopyHookIfEntityIsInvalid,DataDefinitionImplTest
+343,1516026,removeCategory,(final MenuCategoryDefinition menuCategoryDefinition),void,shouldRemoveCategory,MenuServiceImplTest
+344,1516026,isChecked,(),boolean,shouldIsCheckedReturnTrueIfFieldValueIs1,CheckBoxComponentStateTest
+345,1516026,find,(),SearchCriteriaBuilder,shouldReturnCriteriaBuilder,EntityListImplTest
+346,1516026,extractFullName,(final Entity user),String,shouldReturnFullName,UserServiceImplTest
+347,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthOneDigitDayDown,DateUtilsTest
+348,1516026,parseAndComplete,"(final String dateExpression, final boolean upComplete)",Date,shouldParseYearMonthDayHourOneDigitMinuteDown,DateUtilsTest
+349,1516026,like,"(final String field, final String value)",SearchCriterion,shouldLikeWithMatchModeReturnIsNullCriteriaIfGivenValueIsNull,SearchRestrictionsTest

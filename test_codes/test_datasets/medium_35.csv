@@ -1,0 +1,198 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,18394987,replacePlaceHolder,"(String message, PlaceholderMap placeholderStringMap)",String,testReplacePlaceHolder,AbstractOutputBuilderTest
+1,18394987,containsException,(TestSuite testSuite),boolean,testContainsExceptionsCase,SakuliExceptionHandlerTest
+2,18394987,addPerformanceDataRow,"(String performanceData, String name, String value, String warning, String critical)",String,testAddPerformanceDataRow,AbstractPerformanceDataBuilderTest
+3,18394987,encrypt,(String strToEncrypt),"Map.Entry<String, String>",testEncryptInterface,CipherDelegatorTest
+4,18394987,takeScreenshotWithTimestamp,"(final String filenamePostfix, final String optFolderPath, final String optFormat, Rectangle optRectangle)",Path,testCreatePictureFromBufferedImageTimestamp,ScreenshotActionsTest
+5,18394987,getTestRunner,(),TestRunner,testGetTestRunner,SahiConnectorTest
+6,18394987,runCommand,(String command),CommandLineResult,testRunCmdException,EnvironmentTest
+7,18394987,buildUnexpectedErrorException,"(Exception e, String host, int port)",SakuliForwarderRuntimeException,testBuildUnexpectedErrorException,NagiosExceptionBuilderTest
+8,18394987,getConfiguredProfiles,(),String[],testCipherInterface,SpringProfilesInitializerTest
+9,18394987,createOutput,(),String,testCreateOutput,GsonOutputBuilderTest
+10,18394987,getConfiguredProfiles,(),String[],testCipherEnv,SpringProfilesInitializerTest
+11,18394987,modifySahiProperties,(Properties props),void,testModifySahiProperties,SakuliPropertyPlaceholderConfigurerTest
+12,18394987,initTestSuite,(),void,testInitTestSuiteInDatabase,DatabaseInitializingServiceImplTest
+13,18394987,resolveTakeScreenshotPath,(String filename),Path,testResolveTakeScreenshotFolder,ScreenshotActionsTest
+14,18394987,isLinux,(),boolean,testIsLinux,EnvironmentTest
+15,18394987,doScreenBasedActionLog,"(JoinPoint joinPoint, LogToResult logToResult)",void,testdoScreenBasedActionLog,RhinoAspectTest
+16,18394987,saveException,(Exception e),void,testSaveExceptionsInStep,SakuliExceptionHandlerTest
+17,18394987,teardownTestSuite,(@NonNull TestSuite testSuite),void,testSaveResultsInDatabase,DatabaseResultServiceImplTest
+18,18394987,get,(Object key),String,testGet,PlaceholderMapTest
+19,18394987,build,(),String,testBuildOk,Icinga2OutputBuilderTest
+20,18394987,addPropertiesFromFile,"(Properties props, String filePath, boolean active)",void,testAddPropertiesFromFile,SakuliPropertyPlaceholderConfigurerTest
+21,18394987,decryptString,"(String encryptedStringBase64, SecretKey aesKey)",String,testKeyNullDecrypt,AesCbcCipherTest
+22,18394987,resolveTakeScreenshotPath,(String filename),Path,testResolveTakeScreenshotFolderAbsolutPath,ScreenshotActionsTest
+23,18394987,writeCachedStepDefinitions,(TestSuite testSuite),void,testWriteCachedStepDefinitions,CacheHandlingServiceImplTest
+24,18394987,creatJob,(NagiosCheckResult checkResult),GearmanJob,testCreateJobEncryptionEnabled,GearmanResultServiceImplTest
+25,18394987,injectCustomJavaScriptFiles,(),void,testInjectCustomJavaScriptFilesOverridingNewer,SahiProxyTest
+26,18394987,checkFolders,(Path... folders),void,testCheckFoldersException,AbstractPropertiesTest
+27,18394987,loadBean,(Class<T> classDef),T,testLoadBean,BeanLoaderTest
+28,18394987,loadEnvironmentVariables,(),void,testEnvBasedKeyLoading,CipherDelegatorTest
+29,18394987,afterPropertiesSet,(),void,testAfterPropertiesSet,SpringProfilesInitializerTest
+30,18394987,takeScreenshotWithTimestamp,"(final String filenamePostfix, final String optFolderPath, final String optFormat, Rectangle optRectangle)",Path,testCreatePictureFromBufferedImageTimestampTooLong,ScreenshotActionsTest
+31,18394987,catchSahiCommandExcecutionErrors,"(JoinPoint joinPoint, Exception error)",void,testCatchSahiCommandExcecutionErrors,SahiCommandExecutionAspectTest
+32,18394987,execute,(List<Object> arguments),Object,getOutputState,GetOutputStateFunctionTest
+33,18394987,isValidInputImageFileEnding,(String name),boolean,testIsValidInputImage,ImageLibObjectTest
+34,18394987,removeSpaces,(String input),String,removeSpaces,LeadingWhitespaceRemoverTest
+35,18394987,convert,(Exception e),ScreenshotDiv,testBuild,ScreenshotDivConverterTest
+36,18394987,getIncludeFolderJsPath,(),String,testGetIncludFolderJsPath,SahiConnectorTest
+37,18394987,shouldSkipClass,(Class<?> c),boolean,shouldSkipClass,GsonExclusionStrategyTest
+38,18394987,build,(),String,testBuildCritical,Icinga2OutputBuilderTest
+39,18394987,takeScreenshotWithTimestamp,"(final String filenamePostfix, final String optFolderPath, final String optFormat, Rectangle optRectangle)",Path,testCreatePictureFromBufferedImageTimestampJPG,ScreenshotActionsTest
+40,18394987,extractScreenshotFormat,(Exception exception),String,testExtractScreenshotName,ScreenshotDivConverterTest
+41,18394987,logSahiCommandExection,(JoinPoint joinPoint),void,testLogSahiCommandExection,SahiCommandExecutionAspectTest
+42,18394987,getCodeOfFirstElement,(),Optional<Integer>,testGetCodeOfFirstElement,Icinga2ResultTest
+43,18394987,decryptString,"(String encryptedStringBase64, SecretKey aesKey)",String,testFixedKeyAndSecret,AesCbcCipherTest
+44,18394987,checkAndAssignEncryptionOptions,"(String masterkey, String ethInterface)",void,testCheckInterface,SakuliStarterTest
+45,18394987,teardownTestSuite,(@NonNull TestSuite testSuite),void,testSaveAllResults,Icinga2ResultServiceImplTest
+46,18394987,handleException,(Exception e),void,testSakuliValidationException,SakuliExceptionHandlerTest
+47,18394987,createOutput,(),String,testCreateOutputArrays,GsonOutputBuilderTest
+48,18394987,determineDelay,"(JoinPoint joinPoint, BaseActionLoader loader)",Integer,testDetermineDelay,ModifySahiTimerAspectTest
+49,18394987,checkSahiProxyHomeAndSetContextVariables,"(String sahiProxyHomePath, String tempLogCache)",String,testCheckSahiProxyHomeAndSetContextVariablesFolderMissing,SakuliFolderHelperTest
+50,18394987,invokeTeardownServices,(AbstractTestDataEntity abstractTestDataEntity),void,testInvokeAllTeardwonServices,TeardownServiceHelperTest
+51,18394987,getTypeDelayMs,(),int,testGetTypeDelayMs,ActionPropertiesTest
+52,18394987,getConfigFile,(),String,testGetConfigFileFromIncludeFolder,LoggerInitializerTest
+53,18394987,teardownTestSuite,(@NonNull TestSuite testSuite),void,testSaveAllResultsWrongStatus,Icinga2ResultServiceImplTest
+54,18394987,handleException,(Exception e),void,testHandleActionException,SakuliExceptionHandlerTest
+55,18394987,build,(),List<String>,testBuild,Icinga2PerformanceDataBuilderTest
+56,18394987,build,(),String,testBuildWarningInSuite,Icinga2OutputBuilderTest
+57,18394987,generateStepInformation,(SortedSet<TestCaseStep> steps),String,testGenerateTestCaseStepInformation,AbstractOutputBuilderTest
+58,18394987,build,(),String,testBuildWarningInCase,Icinga2OutputBuilderTest
+59,18394987,execute,(List<Object> arguments),Object,testExecute,ExtractScreenshotFunctionTest
+60,18394987,formatTestSuiteSummaryStateMessage,"(TestSuite testSuite, String templateSuiteSummary)",String,testFormatTestSuiteStateMessageException,AbstractOutputBuilderTest
+61,18394987,addTestCaseStepPerformanceData,"(String data, SortedSet<TestCaseStep> testCaseSteps, int countOfTestCase)",String,testStepPerformanceDataUnknownDataOnError,AbstractPerformanceDataBuilderTest
+62,18394987,getCommandTokens,"(ProceedingJoinPoint joinPoint, String commandString)",String[],testGetCommandTokenNotModifySH,SahiCommandExecutionAspectTest
+63,18394987,checkTestSuiteFolderAndSetContextVariables,"(String testSuiteFolderPath, String tempLogCache)",String,testCheckTestSuiteFolderAndSetContextVariablesSuiteFileMissing,SakuliFolderHelperTest
+64,18394987,runCommand,(String command),CommandLineResult,testRunCmdNoError,EnvironmentTest
+65,18394987,resolveDashedProperties,(Properties properties),Properties,testResolveDashedPropertiesEmpty,EnvironmentPropertyConfigurerTest
+66,18394987,getTargetCheckResult,(),WebTarget,testGetTargetCheckResult,Icinga2RestCientTest
+67,18394987,build,(),Icinga2Request,testBuild,Icinga2CheckResultBuilderTest
+68,18394987,checkSakuliHomeFolderAndSetContextVariables,"(String sakuliMainFolderPath, String tempLogCache)",String,testCheckHomeFolderNotValid,SakuliFolderHelperTest
+69,18394987,checkTestSuiteFolderAndSetContextVariables,"(String testSuiteFolderPath, String tempLogCache)",String,testCheckTestSuiteFolderAndSetContextVariablesSuitePropertyMissing,SakuliFolderHelperTest
+70,18394987,loadProperties,(Properties props),void,testEncryptionEnvironment,SakuliPropertyPlaceholderConfigurerTest
+71,18394987,build,(),String,testBuildErrorInCaseMaxLength,Icinga2OutputBuilderTest
+72,18394987,isSuccess,(),boolean,testIsSuccess,Icinga2ResultTest
+73,18394987,encrypt,(String strToEncrypt),"Map.Entry<String, String>",testEncryptKey,CipherDelegatorTest
+74,18394987,creatJob,(NagiosCheckResult checkResult),GearmanJob,testCreateJobEncryptionDisabled,GearmanResultServiceImplTest
+75,18394987,getAllExceptions,(TestSuite testSuite),List<Exception>,testGetAllExceptions,SakuliExceptionHandlerTest
+76,18394987,loadProperties,(Properties props),void,testEncryptionInterfaceAuto,SakuliPropertyPlaceholderConfigurerTest
+77,18394987,checkTestSuiteFolderAndSetContextVariables,"(String testSuiteFolderPath, String tempLogCache)",String,testCheckTestSuiteFolderAndSetContextVariables,SakuliFolderHelperTest
+78,18394987,buildTransferException,"(String host, int port, GearmanJobResult result)",SakuliForwarderRuntimeException,testBuildTransferException,NagiosExceptionBuilderTest
+79,18394987,getTextPlaceholder,(TestSuite testSuite),PlaceholderMap,testGetTextPlaceHolderTestSuite,AbstractOutputBuilderTest
+80,18394987,modifySahiTimer,"(JoinPoint joinPoint, boolean beforeMethod)",void,testModifySahiTimer,ModifySahiTimerAspectTest
+81,18394987,addPropertiesFromFile,"(Properties props, String filePath, boolean active)",void,testAddPropertiesFromFileRuntimeException,SakuliPropertyPlaceholderConfigurerTest
+82,18394987,isSahiScriptTimout,(Throwable exception),boolean,testIsSahiTimoutException,SahiConnectorTest
+83,18394987,initTestSuite,(),void,testInit,CommonInitializingServiceImplTest
+84,18394987,decryptString,"(String encryptedStringBase64, SecretKey aesKey)",String,testSecretEmptyDecrypt,AesCbcCipherTest
+85,18394987,serialize,"(final Throwable src, final Type typeOfSrc, final JsonSerializationContext context)",JsonElement,serialize,ThrowableSerializerTest
+86,18394987,replacePlaceHolder,"(String message, PlaceholderMap placeholderStringMap)",String,testPlaceholderNull,AbstractOutputBuilderTest
+87,18394987,isWindows,(),boolean,testIsWindows,EnvironmentTest
+88,18394987,build,(),String,testBuildCriticalInCase,Icinga2OutputBuilderTest
+89,18394987,loadBean,(Class<T> classDef),T,testLoadBeanException,BeanLoaderTest
+90,18394987,addPerformanceDataRow4Threshold,"(String performanceData, String name, int warningTime, int criticalTime)",String,testAddThresholdPerformanceData,AbstractPerformanceDataBuilderTest
+91,18394987,getTestSuitePerformanceData,(TestSuite testSuite),String,testSuitePerformanceDataUnknownData,AbstractPerformanceDataBuilderTest
+92,18394987,containsException,(TestSuite testSuite),boolean,testContainsExceptionsStep,SakuliExceptionHandlerTest
+93,18394987,getRhinoScriptRunner,(JoinPoint joinPoint),void,testGetRhinoScriptRunner,RhinoAspectTest
+94,18394987,createLoggingString,"(JoinPoint joinPoint, LogToResult logToResult)",StringBuilder,testCreateLoggingString,RhinoAspectTest
+95,18394987,createJsonFilePath,(String dataId),Path,createJsonFilePath,JsonResultServiceImplTest
+96,18394987,getProperty,(String key),String,testGetProperty,EnvironmentTest
+97,18394987,getConfigFileFromClasspath,(),String,testGetConfigFileFromClasspath,LoggerInitializerTest
+98,18394987,formatTestSuiteSummaryStateMessage,"(TestSuite testSuite, String templateSuiteSummary)",String,testFormatTestSuiteStateMessageUnknown,AbstractOutputBuilderTest
+99,18394987,getTestSuitePerformanceData,(TestSuite testSuite),String,testGetPerformanceData,AbstractPerformanceDataBuilderTest
+100,18394987,teardownTestSuite,(@NonNull TestSuite testSuite),void,testSaveResultsInDatabaseHandleException,DatabaseResultServiceImplTest
+101,18394987,execute,(List<Object> arguments),Object,testExecuteNoExeception,ExtractScreenshotFunctionTest
+102,18394987,injectCustomJavaScriptFiles,(),void,testInjectCustomJavaScriptFiles,SahiProxyTest
+103,18394987,cutTo,"(String string, int summaryMaxLength)",String,testCutTo,AbstractOutputBuilderTest
+104,18394987,validatePropertyValues,(),void,testValidatePropertyValues,CipherPropertiesTest
+105,18394987,build,(),String,testBuildErrorInSuite,Icinga2OutputBuilderTest
+106,18394987,loadProperties,(Properties props),void,testLoadPropertiesSahiHomeNotset,SakuliPropertyPlaceholderConfigurerTest
+107,18394987,takeScreenshotWithTimestamp,"(final String filenamePostfix, final String optFolderPath, final String optFormat, Rectangle optRectangle)",Path,testTakeScreenshotWithTimestampEmptyDestinationSuite,ScreenshotActionsTest
+108,18394987,modifySahiTimer,"(JoinPoint joinPoint, boolean beforeMethod)",void,testDisabledModifySahiTimer,ModifySahiTimerAspectTest
+109,18394987,initIcingaClient,(),void,testInitIcingaClient,Icinga2RestCientTest
+110,18394987,checkSahiProxyHomeAndSetContextVariables,"(String sahiProxyHomePath, String tempLogCache)",String,testCheckSahiProxyHomeAndSetContextVariables,SakuliFolderHelperTest
+111,18394987,generateCaseInformation,(SortedSet<TestCase> cases),String,testGenerateTestCaseInformation,AbstractOutputBuilderTest
+112,18394987,addTestRef,"(@NonNull Exception e, @NonNull AbstractTestDataEntity testDataRef)",Exception,testAddTestRefNoSakuliException,AbstractTeardownServiceTest
+113,18394987,saveException,(Exception e),void,testSaveExceptionToAsyncRef,SakuliExceptionHandlerTest
+114,18394987,build,(),String,testBuildErrorInStep,Icinga2OutputBuilderTest
+115,18394987,encryptString,"(String secret, SecretKey aesKey)",String,testSecretNull,AesCbcCipherTest
+116,18394987,loadBaseActionLoader,(),BaseActionLoader,testLoadBaseActionLoader,BeanLoaderTest
+117,18394987,getClasspathResource,"(Class<?> classDef, String classPathResource, String exceptionMessage)",Path,testGetClasspathResource,ResourceHelperTest
+118,18394987,createSpoolFilePath,(String dataId),Path,createSpoolFilePath,CheckMKResultServiceImplTest
+119,18394987,addUnknownPerformanceDataRow,"(String data, String stepName)",String,testAddUnknonwPerformanceData,AbstractPerformanceDataBuilderTest
+120,18394987,doEnvironmentLog,"(JoinPoint joinPoint, LogToResult logToResult)",void,testDoEnvironmentLog,RhinoAspectTest
+121,18394987,loadProperties,(Properties props),void,testTestSuiteBrowser,SakuliPropertyPlaceholderConfigurerTest
+122,18394987,checkFolders,(Path... folders),void,testCheckFolders,AbstractPropertiesTest
+123,18394987,runCommand,(String command),CommandLineResult,testRunCmd,EnvironmentTest
+124,18394987,execute,(List<Object> arguments),Object,convertToUnixTimestamp,UnixTimestampConverterFunctionTest
+125,18394987,handleException,(Exception e),void,testHandleSakuliProxyExceptionForTestCases,SakuliExceptionHandlerTest
+126,18394987,resolveTakeScreenshotPath,(String filename),Path,testResolveTakeScreenshotFolderFallback,ScreenshotActionsTest
+127,18394987,getTextPlaceholder,(TestSuite testSuite),PlaceholderMap,testGetTextPlaceHolderTestCase,AbstractOutputBuilderTest
+128,18394987,getPayloadString,(),String,testGetPayloadString,ScreenshotDivTest
+129,18394987,resolveDashedProperties,(Properties properties),Properties,testResolveDashedProperties,EnvironmentPropertyConfigurerTest
+130,18394987,getTemplatePath,(),Path,getTemplatePath,AbstractTemplateOutputBuilderTest
+131,18394987,encryptString,"(String secret, SecretKey aesKey)",String,testKeyNull,AesCbcCipherTest
+132,18394987,checkConfiguration,(TestSuite testSuite),void,testCheckTestSuiteException,CommonInitializingServiceImplTest
+133,18394987,getTestSuitePerformanceData,(TestSuite testSuite),String,testGetPerformanceDataWithPreParsedSteps,AbstractPerformanceDataBuilderTest
+134,18394987,takeScreenshotWithTimestamp,"(final String filenamePostfix, final String optFolderPath, final String optFormat, Rectangle optRectangle)",Path,testTakeScreenshotWithTimestamp,ScreenshotActionsTest
+135,18394987,verifyFunctionArguments,"(FunctionRequest request, int expectedNumberOfArguments, List<Class> expectedArgumentTypes)",void,testVerifyFunctionArguments,AbstractFunctionTest
+136,18394987,build,(),String,testBuildErrorInCase,Icinga2OutputBuilderTest
+137,18394987,build,(),String,testBuildWarningInStep,Icinga2OutputBuilderTest
+138,18394987,getStatusOfFirstElement,(),Optional<String>,testGetStatusOfFirstElement,Icinga2ResultTest
+139,18394987,createPictureFromBufferedImage,"(String message, Path folderPath, String screenShotFormat, BufferedImage bufferedImage)",Path,testCreatePictureFromBufferedImage,ScreenshotActionsTest
+140,18394987,serialize,"(final Path src, final Type typeOfSrc, final JsonSerializationContext context)",JsonElement,serialize,PathSerializerTest
+141,18394987,checkTestSuiteFolderAndSetContextVariables,"(String testSuiteFolderPath, String tempLogCache)",String,testCheckTestSuiteFolderAndSetContextVariablesFolderMissing,SakuliFolderHelperTest
+142,18394987,takeScreenshot,(Path picturePath),Path,testCreatePictureFromBufferedImageWithFormat,ScreenshotActionsTest
+143,18394987,initTestSuite,(),void,testInitExceptionForTestCase,CommonInitializingServiceImplTest
+144,18394987,removeBase64ImageDataString,(String string),String,testRemoveBase64Data,ScreenshotDivConverterTest
+145,18394987,transformException,(Exception e),SakuliException,testTransformExceptionSakuliRuntimeException,SakuliExceptionHandlerTest
+146,18394987,teardownTestSuite,(@NonNull TestSuite testSuite),void,testSaveAllResultsWrongCode,Icinga2ResultServiceImplTest
+147,18394987,checkSakuliHomeFolderAndSetContextVariables,"(String sakuliMainFolderPath, String tempLogCache)",String,testCheckHomeFolderNotDefined,SakuliFolderHelperTest
+148,18394987,execute,(List<Object> arguments),Object,getOutputDuration,GetOutputDurationFunctionTest
+149,18394987,initTestSuite,(),void,testInitWithOutTestCases,CommonInitializingServiceImplTest
+150,18394987,convert,(Exception e),ScreenshotDiv,testThrowException,ScreenshotDivConverterTest
+151,18394987,createRandomBase64Key,(),String,testCreateRandomBase64Key,AesKeyHelperTest
+152,18394987,saveException,(Exception e),void,testSaveExceptionsInCase,SakuliExceptionHandlerTest
+153,18394987,serialize,"(final Date src, final Type typeOfSrc, final JsonSerializationContext context)",JsonElement,serialize,DateSerializerTest
+154,18394987,printHelp,(Options options),void,testPrint,CmdPrintHelperTest
+155,18394987,createModel,(AbstractTestDataEntity abstractTestDataEntity),JtwigModel,createModel,AbstractTemplateOutputBuilderTest
+156,18394987,invokeInitializingServcies,(),void,testInvokeAllResultServices,InitializingServiceHelperTest
+157,18394987,getPayload,(),String,testGetPayload,NagiosCheckResultTest
+158,18394987,checkAndAssignEncryptionOptions,"(String masterkey, String ethInterface)",void,testDoubledEncryptionMode,SakuliStarterTest
+159,18394987,getEnv,(String key),String,testGetEnv,EnvironmentTest
+160,18394987,doLoggingLog,"(JoinPoint joinPoint, LogToResult logToResult)",void,testDoLoggingLog,RhinoAspectTest
+161,18394987,execute,(List<Object> arguments),Object,isBlank,IsBlankFunctionTest
+162,18394987,handleException,(Exception e),void,testHandleException,SakuliExceptionHandlerTest
+163,18394987,checkConfiguration,(TestSuite testSuite),void,testCheckTestSuiteOk,CommonInitializingServiceImplTest
+164,18394987,getClasspathResource,"(Class<?> classDef, String classPathResource, String exceptionMessage)",Path,testGetClasspathResourceException,ResourceHelperTest
+165,18394987,teardownTestSuite,(@NonNull TestSuite testSuite),void,testSaveResultsInDatabaseWithTestcases,DatabaseResultServiceImplTest
+166,18394987,decryptString,"(String encryptedStringBase64, SecretKey aesKey)",String,testSecretNullDecrypt,AesCbcCipherTest
+167,18394987,doHandleRhinoException,(JoinPoint joinPoint),void,testDoHandleRhinoException,RhinoAspectTest
+168,18394987,encryptString,"(String secret, SecretKey aesKey)",String,testSecretEmpty,AesCbcCipherTest
+169,18394987,takeScreenshotWithTimestamp,"(final String filenamePostfix, final String optFolderPath, final String optFormat, Rectangle optRectangle)",Path,testCreatePictureFromBufferedImageTimestampNoSpecialChars,ScreenshotActionsTest
+170,18394987,initTestSuite,(),void,testSaveResultsInDatabaseHandleException,DatabaseInitializingServiceImplTest
+171,18394987,getScreenshotFile,(Exception e),Path,testGetScreenshotFile,SakuliExceptionHandlerTest
+172,18394987,execute,(List<Object> arguments),Object,abbreviate,AbbreviateFunctionTest
+173,18394987,checkAndAssignEncryptionOptions,"(String masterkey, String ethInterface)",void,testCheckMasterkey,SakuliStarterTest
+174,18394987,addTestRef,"(@NonNull Exception e, @NonNull AbstractTestDataEntity testDataRef)",Exception,testHandleTeardownExceptionAsync,AbstractTeardownServiceTest
+175,18394987,getConfiguredProfiles,(),String[],testGetConfiguredProfiles,SpringProfilesInitializerTest
+176,18394987,getCommandTokens,"(ProceedingJoinPoint joinPoint, String commandString)",String[],testGetCommandTokens,SahiCommandExecutionAspectTest
+177,18394987,catchCipherError,"(String mode, Exception e)",void,testJCEmessage,AesTest
+178,18394987,checkSakuliHomeFolderAndSetContextVariables,"(String sakuliMainFolderPath, String tempLogCache)",String,testCheckHomeFolder,SakuliFolderHelperTest
+179,18394987,addTestCaseStepPerformanceData,"(String data, SortedSet<TestCaseStep> testCaseSteps, int countOfTestCase)",String,testStepPerformanceDataUnknownData,AbstractPerformanceDataBuilderTest
+180,18394987,compare,"(S o1, S o2)",int,testCompare,PrioritizedServiceComparatorTest
+181,18394987,normalizePath,(String path),Path,testWindowsPaths,SakuliFolderHelperTest
+182,18394987,removeSpaces,(String input),String,testMultiline,LeadingWhitespaceRemoverTest
+183,18394987,saveException,(Exception e),void,testSaveExceptionsInSuite,SakuliExceptionHandlerTest
+184,18394987,convert,(Exception e),ScreenshotDiv,testWithException,ScreenshotDivConverterTest
+185,18394987,formatTestSuiteSummaryStateMessage,"(TestSuite testSuite, String templateSuiteSummary)",String,testFormatTestSuiteStateMessageOK,AbstractOutputBuilderTest
+186,18394987,addTestCasePerformanceData,"(String data, SortedSet<TestCase> testCases)",String,testCasePerformanceDataUnknownData,AbstractPerformanceDataBuilderTest
+187,18394987,containsException,(TestSuite testSuite),boolean,testContainsExceptionsSuite,SakuliExceptionHandlerTest
+188,18394987,addTestRef,"(@NonNull Exception e, @NonNull AbstractTestDataEntity testDataRef)",Exception,testHandleTeardownExceptionSequential,AbstractTeardownServiceTest
+189,18394987,serialize,"(final DateTime src, final Type typeOfSrc, final JsonSerializationContext context)",JsonElement,serialize,DateTimeSerializerTest
+190,18394987,checkTestSuiteFile,(),void,testUnvalidTestSuiteFile,SahiConnectorTest
+191,18394987,addTestRef,"(@NonNull Exception e, @NonNull AbstractTestDataEntity testDataRef)",Exception,testAddTestRefSakuliException,AbstractTeardownServiceTest
+192,18394987,addActionLog,"(JoinPoint joinPoint, LogToResult logToResult)",void,testAddActionLog,RhinoAspectTest
+193,18394987,transformException,(Exception e),SakuliException,testTransformExceptionSakuliCheckedException,SakuliExceptionHandlerTest
+194,18394987,loadProperties,(Properties props),void,testEncryptionInterface,SakuliPropertyPlaceholderConfigurerTest
+195,18394987,addImagesFromFolder,(Path... paths),void,testAddImagesFromFolder,ImageLibTest
+196,18394987,convertToJSON,(Entity<?> entity),String,testPrintJson,Icinga2ResultServiceImplTest

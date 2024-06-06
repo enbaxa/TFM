@@ -1,0 +1,192 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,22475760,hasMultipleFiles,(),boolean,testHasMultipleFiles,WorkspaceItemTest
+1,22475760,update,(),void,testUpdateAdmin,BitstreamTest
+2,22475760,getAdminObject,(int action),DSpaceObject,testGetAdminObject,ItemTest
+3,22475760,createSingleBitstream,"(InputStream is, String name)",Bitstream,testCreateSingleBitstream_InputStreamAuth,ItemTest
+4,22475760,canEditBoolean,(),boolean,testCanEditBooleanAuth6_boolean,CollectionTest
+5,22475760,canEditBoolean,(),boolean,testCanEditBooleanNoAuth,CollectionTest
+6,22475760,update,(),void,testUpdateAuth2,CollectionTest
+7,22475760,getParentObject,(),DSpaceObject,testGetParentObject,BitstreamTest
+8,22475760,findAll,(Context context),WorkspaceItem[],testFindAll,WorkspaceItemTest
+9,22475760,createSingleBitstream,"(InputStream is, String name)",Bitstream,testCreateSingleBitstream_InputStream_StringAuth,ItemTest
+10,22475760,canEditBoolean,(),boolean,testCanEditBooleanAuth,CollectionTest
+11,22475760,getLogo,(),Bitstream,testGetLogo,CollectionTest
+12,22475760,findByMetadataField,"(Context context,
+            String schema, String element, String qualifier, String value)",ItemIterator,testFindByMetadataField,ItemTest
+13,22475760,canEditBoolean,(),boolean,testCanEditBooleanAuth_boolean,CollectionTest
+14,22475760,canEdit,(),void,testCanEditAuth_0args,CollectionTest
+15,22475760,createTemplateItem,(),void,testCreateTemplateItemNoAuth,CollectionTest
+16,22475760,retrieve,(),InputStream,testRetrieveNoRead,BitstreamTest
+17,22475760,getCollectionsNotLinked,(),Collection[],testGetCollectionsNotLinked,ItemTest
+18,22475760,getBundles,(),Bundle[],testGetBundles_String,ItemTest
+19,22475760,isPublishedBefore,(),boolean,testIsPublishedBefore,WorkspaceItemTest
+20,22475760,getMetadata,(String field),String,testGetMetadata,CollectionTest
+21,22475760,getDescription,(),String,testGetDescription,BitstreamTest
+22,22475760,getItems,(),ItemIterator,testGetItems,CollectionTest
+23,22475760,getChecksumAlgorithm,(),String,testGetChecksumAlgorithm,BitstreamTest
+24,22475760,canEdit,(),void,testCanEditAuth2_boolean,CollectionTest
+25,22475760,createBundle,(String name),Bundle,testCreateBundleNoAuth,ItemTest
+26,22475760,countItems,(),int,testCountItems,CollectionTest
+27,22475760,setOwningCollection,(Collection c),void,testSetOwningCollection,ItemTest
+28,22475760,createSubmitters,(),Group,testCreateSubmittersAuth,CollectionTest
+29,22475760,canEdit,(),void,testCanEditAuth7_boolean,CollectionTest
+30,22475760,computeStatistics,"(Date startDate, Date endDate)",PIDLogStatistics,testComputeStatistics,PIDLogMinerTest
+31,22475760,canEdit,(),void,testCanEditNoAuth_boolean,CollectionTest
+32,22475760,canEdit,(),void,testCanEditAuth3_0args,CollectionTest
+33,22475760,getParentObject,(),DSpaceObject,testGetParentObject,CollectionTest
+34,22475760,canEdit,(),void,testCanEditAuth3_boolean,CollectionTest
+35,22475760,createSingleBitstream,"(InputStream is, String name)",Bitstream,testCreateSingleBitstream_InputStream_StringNoAuth,ItemTest
+36,22475760,getSubmitters,(),Group,testGetSubmitters,CollectionTest
+37,22475760,canEditBoolean,(),boolean,testCanEditBooleanAuth2,CollectionTest
+38,22475760,setStageReached,(int v),void,testSetStageReached,WorkspaceItemTest
+39,22475760,getCollections,(),Collection[],testGetCollections,ItemTest
+40,22475760,canEditBoolean,(),boolean,testCanEditBooleanAuth3_boolean,CollectionTest
+41,22475760,isWithdrawn,(),boolean,testIsWithdrawn,ItemTest
+42,22475760,getCollection,(),Collection,testGetCollection,WorkspaceItemTest
+43,22475760,isDeleted,(),boolean,testIsDeleted,BitstreamTest
+44,22475760,getID,(),int,testGetID,BitstreamTest
+45,22475760,getBundles,(),Bundle[],testGetBundles_0args,ItemTest
+46,22475760,getID,(),int,testGetID,WorkspaceItemTest
+47,22475760,getCommunities,(),Community[],testGetCommunities,CollectionTest
+48,22475760,main,(String[] args),void,testReportHandleResolutionStatistics,ReportTest
+49,22475760,canEdit,(),boolean,testCanEditBooleanAuth,ItemTest
+50,22475760,getSize,(),long,testGetSize,BitstreamTest
+51,22475760,create,(Context context),Item,testCreate,ItemTest
+52,22475760,canEdit,(),void,testCanEditAuth_boolean,CollectionTest
+53,22475760,setLogo,(InputStream is),Bitstream,testSetLogoNoAuth,CollectionTest
+54,22475760,createSingleBitstream,"(InputStream is, String name)",Bitstream,testCreateSingleBitstream_InputStreamNoAuth,ItemTest
+55,22475760,getID,(),int,testGetID,ItemTest
+56,22475760,setSource,(String n),void,testSetSource,BitstreamTest
+57,22475760,delete,(),void,testDeleteNoAuth,ItemTest
+58,22475760,getLicense,(),String,testGetLicense,CollectionTest
+59,22475760,canEdit,(),void,testCanEditAuth4_boolean,CollectionTest
+60,22475760,canEdit,(),void,testCanEditNoAuth_0args,CollectionTest
+61,22475760,setFormat,(BitstreamFormat f),void,testSetFormat,BitstreamTest
+62,22475760,replaceAllBitstreamPolicies,(List<ResourcePolicy> newpolicies),void,testReplaceAllBitstreamPolicies,ItemTest
+63,22475760,getItem,(),Item,testGetItem,WorkspaceItemTest
+64,22475760,getLicenseCollection,(),String,testGetLicenseCollection,CollectionTest
+65,22475760,canEdit,(),void,testCanEditAuth8_boolean,CollectionTest
+66,22475760,getAdministrators,(),Group,testGetAdministrators,CollectionTest
+67,22475760,restoreItem,"(Context c, InProgressSubmission is,
+            String suppliedHandle)",Item,testRestoreItem,InstallItemTest
+68,22475760,canEdit,(),void,testCanEditAuth5_boolean,CollectionTest
+69,22475760,setUserFormatDescription,(String desc),void,testSetUserFormatDescription,BitstreamTest
+70,22475760,hasUploadedFiles,(),boolean,testHasUploadedFiles,ItemTest
+71,22475760,getSource,(),String,testGetSource,BitstreamTest
+72,22475760,getName,(),String,testGetName,CollectionTest
+73,22475760,retrieve,(),InputStream,testRetrieveCanRead,BitstreamTest
+74,22475760,setMultipleFiles,(boolean b),void,testSetMultipleFiles,WorkspaceItemTest
+75,22475760,clearDC,"(String element, String qualifier, String lang)",void,testClearDC,ItemTest
+76,22475760,isOwningCollection,(Collection c),boolean,testIsOwningCollection,ItemTest
+77,22475760,getMetadata,"(String schema, String element, String qualifier,
+            String lang)",DCValue[],testGetMetadata_String,ItemTest
+78,22475760,getPageReached,(),int,testGetPageReached,WorkspaceItemTest
+79,22475760,setPageReached,(int v),void,testSetPageReached,WorkspaceItemTest
+80,22475760,getType,(),int,testGetType,CollectionTest
+81,22475760,getSiteHandle,(),String,testGetSiteHandle,SiteTest
+82,22475760,getHandle,(),String,testGetHandle,CollectionTest
+83,22475760,canEdit,(),boolean,testCanEditBooleanAuth2,ItemTest
+84,22475760,find,"(Context context, int id)",WorkspaceItem,testFind,WorkspaceItemTest
+85,22475760,canEditBoolean,(),boolean,testCanEditBooleanNoAuth_boolean,CollectionTest
+86,22475760,parse,(InputStream st),Metadata,testParse,XOAIParserTest
+87,22475760,findAll,(Context context),ItemIterator,testFindAll,ItemTest
+88,22475760,createAdministrators,(),Group,testCreateAdministratorsNoAuth,CollectionTest
+89,22475760,update,(),void,testUpdateAuth,ItemTest
+90,22475760,canEditBoolean,(),boolean,testCanEditBooleanNoAuth2_boolean,CollectionTest
+91,22475760,createAdministrators,(),Group,testCreateAdministratorsAuth,CollectionTest
+92,22475760,getAllItems,(),ItemIterator,testGetAllItems,CollectionTest
+93,22475760,canEditBoolean,(),boolean,testCanEditBooleanAuth4_boolean,CollectionTest
+94,22475760,update,(),void,testUpdateNotAdmin,BitstreamTest
+95,22475760,getName,(),String,testGetName,ItemTest
+96,22475760,create,"(Context c, Collection coll,
+            boolean template)",WorkspaceItem,testCreateNoAuth,WorkspaceItemTest
+97,22475760,getSubmitter,(),EPerson,testGetSubmitter,WorkspaceItemTest
+98,22475760,setPublishedBefore,(boolean b),void,testSetPublishedBefore,WorkspaceItemTest
+99,22475760,register,"(Context context, 
+    		int assetstore, String bitstreamPath)",Bitstream,testRegister,BitstreamTest
+100,22475760,canEdit,(),void,testCanEditAuth6_boolean,CollectionTest
+101,22475760,getMetadata,"(String schema, String element, String qualifier,
+            String lang)",DCValue[],testGetMetadata_4args,ItemTest
+102,22475760,hasCustomLicense,(),boolean,testHasCustomLicense,CollectionTest
+103,22475760,findByEPerson,"(Context context, EPerson ep)",WorkspaceItem[],testFindByEPerson,WorkspaceItemTest
+104,22475760,removeAdministrators,(),void,testRemoveAdministratorsNoAuth,CollectionTest
+105,22475760,setLicense,(String license),void,testSetLicense,CollectionTest
+106,22475760,removeTemplateItem,(),void,testRemoveTemplateItemNoAuth,CollectionTest
+107,22475760,equals,(Object other),boolean,testEquals,CollectionTest
+108,22475760,getHandle,(),String,testGetHandle,SiteTest
+109,22475760,getDC,"(String element, String qualifier, String lang)",DCValue[],testGetDC,ItemTest
+110,22475760,findAuthorized,"(Context context, Community comm,
+            int actionID)",Collection[],testFindAuthorized,CollectionTest
+111,22475760,setSubmitter,(EPerson sub),void,testSetSubmitter,ItemTest
+112,22475760,isArchived,(),boolean,testIsArchived,ItemTest
+113,22475760,getTemplateItem,(),Item,testGetTemplateItem,CollectionTest
+114,22475760,update,(),void,testUpdateAuth3,CollectionTest
+115,22475760,getBundles,(),Bundle[],testGetBundles,BitstreamTest
+116,22475760,getHandle,(),String,testGetHandle,ItemTest
+117,22475760,getFormatDescription,(),String,testGetFormatDescription,BitstreamTest
+118,22475760,setMultipleTitles,(boolean b),void,testSetMultipleTitles,WorkspaceItemTest
+119,22475760,update,(),void,testUpdateAuth,CollectionTest
+120,22475760,findAll,(Context context),Bitstream[],testFindAll,BitstreamTest
+121,22475760,createWorkflowGroup,(int step),Group,testCreateWorkflowGroupAuth,CollectionTest
+122,22475760,getUserFormatDescription,(),String,testGetUserFormatDescription,BitstreamTest
+123,22475760,getStoreNumber,(),int,testGetStoreNumber,BitstreamTest
+124,22475760,setWorkflowGroup,"(int step, Group g)",void,testSetWorkflowGroup,CollectionTest
+125,22475760,update,(),void,testUpdate,WorkspaceItemTest
+126,22475760,removeSubmitters,(),void,testRemoveSubmittersNoAuth,CollectionTest
+127,22475760,getAdminObject,(int action),DSpaceObject,testGetAdminObject,CollectionTest
+128,22475760,canEditBoolean,(),boolean,testCanEditBooleanAuth3,CollectionTest
+129,22475760,replaceAllItemPolicies,(List<ResourcePolicy> newpolicies),void,testReplaceAllItemPolicies,ItemTest
+130,22475760,canEditBoolean,(),boolean,testCanEditBooleanAuth5_boolean,CollectionTest
+131,22475760,canEdit,(),void,testCanEditAuth2_0args,CollectionTest
+132,22475760,setArchived,(boolean isArchived),void,testSetArchived,ItemTest
+133,22475760,getParentObject,(),DSpaceObject,testGetParentObject,ItemTest
+134,22475760,hasMultipleTitles,(),boolean,testHasMultipleTitles,WorkspaceItemTest
+135,22475760,setMetadata,"(String field, String value)",void,testSetMetadata,CollectionTest
+136,22475760,createWorkflowGroup,(int step),Group,testCreateWorkflowGroupNoAuth,CollectionTest
+137,22475760,setSequenceID,(int sid),void,testSetSequenceID,BitstreamTest
+138,22475760,getStageReached,(),int,testGetStageReached,WorkspaceItemTest
+139,22475760,findByCollection,"(Context context, Collection c)",WorkspaceItem[],testFindByCollection,WorkspaceItemTest
+140,22475760,getID,(),int,testGetID,CollectionTest
+141,22475760,getFormat,(),BitstreamFormat,testGetFormat,BitstreamTest
+142,22475760,findAll,(Context context),Collection[],testFindAll,CollectionTest
+143,22475760,createBundle,(String name),Bundle,testCreateBundleNoName2,ItemTest
+144,22475760,getWorkflowGroup,(int step),Group,testGetWorkflowGroup,CollectionTest
+145,22475760,findBySubmitter,"(Context context, EPerson eperson)",ItemIterator,testFindBySubmitter,ItemTest
+146,22475760,canEdit,(),void,testCanEditAuth4_0args,CollectionTest
+147,22475760,decache,(),void,testDecache,ItemTest
+148,22475760,canEditBoolean,(),boolean,testCanEditBooleanAuth8_boolean,CollectionTest
+149,22475760,delete,(),void,testDelete,BitstreamTest
+150,22475760,create,"(Context context, InputStream is)",Bitstream,testCreate,BitstreamTest
+151,22475760,deleteWrapper,(),void,testDeleteWrapperNoAuth,WorkspaceItemTest
+152,22475760,canEditBoolean,(),boolean,testCanEditBooleanAuth2_boolean,CollectionTest
+153,22475760,createBundle,(String name),Bundle,testCreateBundleNoName,ItemTest
+154,22475760,inheritCollectionDefaultPolicies,(Collection c),void,testInheritCollectionDefaultPolicies,ItemTest
+155,22475760,getLastModified,(),Date,testGetLastModified,ItemTest
+156,22475760,move,"(Collection from, Collection to)",void,testMove,ItemTest
+157,22475760,isRegisteredBitstream,(),boolean,testIsRegisteredBitstream,BitstreamTest
+158,22475760,create,(Context context),Collection,testCreate,CollectionTest
+159,22475760,update,(),void,testUpdateNoAuth,CollectionTest
+160,22475760,withdraw,(),void,testWithdrawNoAuth,ItemTest
+161,22475760,getType,(),int,testGetType,ItemTest
+162,22475760,canEdit,(),void,testCanEditNoAuth2_boolean,CollectionTest
+163,22475760,createSubmitters,(),Group,testCreateSubmittersNoAuth,CollectionTest
+164,22475760,canEditBoolean,(),boolean,testCanEditBooleanAuth7_boolean,CollectionTest
+165,22475760,equals,(Object obj),boolean,testEquals,ItemTest
+166,22475760,getChecksum,(),String,testGetChecksum,BitstreamTest
+167,22475760,getCommunities,(),Community[],testGetCommunities,ItemTest
+168,22475760,canEditBoolean,(),boolean,testCanEditBooleanAuth4,CollectionTest
+169,22475760,clearMetadata,"(String schema, String element, String qualifier,
+            String lang)",void,testClearMetadata,ItemTest
+170,22475760,setName,(String n),void,testSetName,BitstreamTest
+171,22475760,getHandle,(),String,testGetHandle,BitstreamTest
+172,22475760,getSequenceID,(),int,testGetSequenceID,BitstreamTest
+173,22475760,getName,(),String,testGetName,BitstreamTest
+174,22475760,getType,(),int,testGetType,BitstreamTest
+175,22475760,update,(),void,testUpdateAuth4,CollectionTest
+176,22475760,getOwningCollection,(),Collection,testGetOwningCollection,ItemTest
+177,22475760,findByAuthorityValue,"(Context context,
+            String schema, String element, String qualifier, String value)",ItemIterator,testFindByAuthorityValue,ItemTest
+178,22475760,removeGroupPolicies,(Group g),void,testRemoveGroupPolicies,ItemTest
+179,22475760,getNonInternalBitstreams,(),Bitstream[],testGetNonInternalBitstreams,ItemTest
+180,22475760,setDescription,(String n),void,testSetDescription,BitstreamTest
+181,22475760,getSubmitter,(),EPerson,testGetSubmitter,ItemTest

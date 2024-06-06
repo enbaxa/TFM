@@ -1,0 +1,195 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,11344750,getVariantsByPos,"(final String seqName, final int startPos)",Iterable<GeneticVariant>,testGeneticVariantAnnotations,VcfGenotypeDataTest
+1,11344750,iterator,(),Iterator<GeneticVariant>,testIterator,TriTyperGenotypeDataTest
+2,11344750,getHwePvalue,(),double,getHwePvalueTest,AbstractGeneticVariantTest
+3,11344750,getModifiableSequenceGeneticVariants,(String seqName),Iterable<ModifiableGeneticVariant>,getModifiableSequenceGeneticVariants,ModifiableGenotypeDataInMemoryTest
+4,11344750,getSequences,(),List<Sequence>,testGetSequences,VcfGenotypeDataTest
+5,11344750,getAlleleAsString,(),String,getStringAllele,AlleleTest
+6,11344750,getSamplePhasing,(GeneticVariant variant),List<Boolean>,testGetSamplePhasing,PedMapGenotypeDataTest
+7,11344750,getSampleVariants,(GeneticVariant variant),List<Alleles>,testGetSnpVariantByPos2,GenGenotypeDataTest
+9,11344750,calculateRsquare,"(GeneticVariant variant1, GeneticVariant variant2)",double,calculateLd6,LdCalculatorTest
+10,11344750,equals,(Object obj),boolean,equals,AbstractGeneticVariantTest
+11,11344750,zToP,(double z),double,testZToP,ZScoresTest
+12,11344750,createSnp,"(GeneticVariantMeta variantMeta, String snpId, int pos, String sequenceName,
+			SampleVariantsProvider sampleVariantsProvider, char allele1, char allele2)",GeneticVariant,isAtOrGcSnp,ReadOnlyGeneticVariantTest
+13,11344750,convertProbabilitiesToComplexProbabilities,(float[][] probabilities),double[][],testProbabilitiesToComplexProbabilities,ProbabilitiesConvertorTest
+14,11344750,getSamples,(),List<Sample>,testGetSamples,GenGenotypeDataTest
+15,11344750,main,(String... args),void,testMain2,GenotypeHarmonizerTest
+16,11344750,correlateMeanCenteredData,"(double[] x, double[] y, double varX, double varY)",double,testCorrelateMeanCenteredData_3args,CorrelationTest
+17,11344750,getRecordIds,(),Iterable<String>,getRecordIds,VcfGeneticVariantMetaTest
+18,11344750,getSnpVariantByPos,"(String seqName, int startPos)",GeneticVariant,testGetSnpVariantByPos,TriTyperGenotypeDataTest
+19,11344750,write,(String basePath),void,write,BgenGenotypeWriterTest
+20,11344750,correlateColumnsOf2ColumnNormalizedDatasets,"(DoubleMatrixDataset<String, String> d1, DoubleMatrixDataset<String, String> d2)","DoubleMatrixDataset<String, String>",correlateColumnsOf2ColumnNormalizedDatasets,DoubleMatrixDatasetTest
+21,11344750,write,(String path),void,testWrite_String,BedBimFamGenotypeWriterTest
+22,11344750,calculateLd,"(GeneticVariant variant1, GeneticVariant variant2)",Ld,calculateLd2,LdCalculatorTest
+23,11344750,getRefAllele,(),Allele,getRefAllele,ReadOnlyGeneticVariantTest
+24,11344750,getSamplePhasing,(GeneticVariant variant),List<Boolean>,testGetSamplePhasing,GenGenotypeDataTest
+25,11344750,getAlleleAverageQuality,(Allele allele),double,testGetAlleleAverageQuality,PileupEntryTest
+26,11344750,isOnlyContaingSaveProbabilityGenotypes,(),boolean,testIsOnlyContaingSaveProbabilityGenotypes,GenGenotypeDataTest
+27,11344750,getAllIds,(),List<String>,getAllIds,ReadOnlyGeneticVariantTest
+28,11344750,getMinorAlleleFrequency,(),double,getMinorAlleleFrequency,ReadOnlyGeneticVariantTest
+29,11344750,getSamples,(),List<Sample>,testGetSamples,TriTyperGenotypeDataTest
+30,11344750,getSamples,(),List<Sample>,testGetSamples,PedMapGenotypeDataTest
+31,11344750,getPos,(),int,testGetPos,PileupEntryTest
+32,11344750,convertProbabilitiesToDosage,"(float[][] probs, double minProbability)",float[],testConvertProbabilitiesToDosage,ProbabilitiesConvertorTest
+33,11344750,getAlleles,(),List<Allele>,getAlleles,AllelesTest
+34,11344750,getSamples,(),List<Sample>,getSamples,HapsGenotypeDataTest
+35,11344750,createRowForceNormalDuplicate,(),"DoubleMatrixDataset<R, C>",testCreateRowForceNormalDuplicate,DoubleMatrixDatasetTest
+36,11344750,iterator,(),Iterator<GeneticVariant>,iterator,HapsGenotypeDataTest
+37,11344750,getSampleAnnotationsMap,(),"Map<String, SampleAnnotation>",testGetSampleAnnotationsMap,GenGenotypeDataTest
+38,11344750,getSampleAnnotationsMap,(),"Map<String, SampleAnnotation>",testGetSampleAnnotationsMap,MultiPartGenotypeDataTest
+39,11344750,convertDosageToProbabilityHeuristic,(float[] sampleDosages),float[][],testConvertDosageToProbabilityHeuristic2,ProbabilitiesConvertorTest
+40,11344750,weightedZscore,"(double[] zscores, int[] samples)",double,testweightedZscore2,BinaryInteractionMetaAnalysisTest
+41,11344750,convertCalledAllelesToProbability,"(List<Alleles> sampleAlleles, Alleles alleles)",float[][],testConvertCalledAllelesToProbability1,ProbabilitiesConvertorTest
+42,11344750,setPreferredGenotypeField,(String preferredGenotypeField),void,complexVcfGenotypeDataTest,VcfGenotypeDataTest
+43,11344750,convertCalledAllelesToComplexProbabilities,"(
+    		List<Alleles> allelesPerSample, Alleles variantAlleles)",double[][],testCalledAllelesToComplexProbabilities,ProbabilitiesConvertorTest
+44,11344750,convertCalledAllelesToComplexProbabilities,"(
+    		List<Alleles> allelesPerSample, Alleles variantAlleles)",double[][],testCalledAllelesToComplexProbabilities2,ProbabilitiesConvertorTest
+45,11344750,write,(String basePath),void,write,GenGenotypeWriterTest
+46,11344750,getStop,(),int,testGetStop,GenomicBoundaryTest
+47,11344750,executeQuery,"(String sequence, int startPos, int stopPos)",VariantQueryResult,querySeq1,TabixQueryTest
+48,11344750,convertProbabilitiesToAlleles,"(float[][] probs, Alleles variantAlleles, double minProbability)",List<Alleles>,testConvertProbabilitiesToAlleles,ProbabilitiesConvertorTest
+49,11344750,write,(String path),void,testWrite_String4,BedBimFamGenotypeWriterTest
+50,11344750,convertCalledAllelesToComplexProbabilities,"(
+    		List<Alleles> allelesPerSample, Alleles variantAlleles)",double[][],testCalledAllelesToComplexProbabilities3,ProbabilitiesConvertorTest
+51,11344750,getModifiableGeneticVariants,(),Iterable<ModifiableGeneticVariant>,getModifiableGeneticVariants,ModifiableGenotypeDataInMemoryTest
+53,11344750,getAlleleCount,(),int,getAlleleCount,ReadOnlyGeneticVariantTest
+54,11344750,convertCalledAllelesToComplexProbabilities,"(
+    		List<Alleles> allelesPerSample, Alleles variantAlleles)",double[][],testCalledAllelesToComplexProbabilities5,ProbabilitiesConvertorTest
+55,11344750,getVariantsByPos,"(final String seqName, final int startPos)",Iterable<GeneticVariant>,testStopPos,VcfGenotypeDataTest
+56,11344750,getGenotypeRecordData,(String recordId),Object,getGenotypeRecordData,VcfGenotypeRecordTest
+57,11344750,main,(String... args),void,testMain4,GenotypeHarmonizerTest
+58,11344750,iterator,(),Iterator<GenomicBoundary<V>>,testIterator,GenomicBoundariesTest
+59,11344750,getSnpVariantByPos,"(String seqName, int startPos)",GeneticVariant,testSnpVariants,VcfGenotypeDataTest
+60,11344750,calculateLd,"(GeneticVariant variant1, GeneticVariant variant2)",Ld,calculateLd4,LdCalculatorTest
+61,11344750,getChromosome,(),String,testGetChromosome,GenomicBoundaryTest
+62,11344750,getSequenceGeneticVariants,(String seqName),Iterable<GeneticVariant>,getSequenceGeneticVariants,HapsGenotypeDataTest
+63,11344750,write,(String basePath),void,largeBgenGenotypeWriterTest,BgenGenotypeWriterTest
+64,11344750,getSamplePhasing,(GeneticVariant variant),List<Boolean>,testGetSamplePhasing,TriTyperGenotypeDataTest
+65,11344750,write,(String path),void,writeTriTyper,TriTyperGenotypeWriterTest
+66,11344750,convertCalledAllelesToComplexProbabilities,"(
+    		List<Alleles> allelesPerSample, Alleles variantAlleles)",double[][],testCalledAllelesToComplexProbabilities4,ProbabilitiesConvertorTest
+67,11344750,getAlleleCounts,(),TObjectIntHashMap<Allele>,testGetAlleleCounts,PileupEntryTest
+68,11344750,calculateSpearmanTwoTailedPvalue,"(double spearmanCorrelation, int sampleSize)",double,calculateSpearmanTwoTailedPvalueNaNTest,StatisticsTest
+69,11344750,mergeOverlappingBoundaries,(),void,testMergeOverlappingBoundaries,GenomicBoundariesTest
+70,11344750,getPrimaryVariantId,(),String,getPrimaryVatiantId,ReadOnlyGeneticVariantTest
+71,11344750,convertCalledAllelesToProbability,"(List<Alleles> sampleAlleles, Alleles alleles)",float[][],testConvertCalledAllelesToProbability3,ProbabilitiesConvertorTest
+72,11344750,main,(String... args),void,testMain5,GenotypeHarmonizerTest
+73,11344750,createModifiableGeneticVariantIterable,"(
+			Iterator<GeneticVariant> originalIterator, ModifiableGenotypeData modifiableGenotypeData,
+			HashSet<ModifiableGeneticVariant> excludeList)",Iterable<ModifiableGeneticVariant>,createModifiableGeneticVariantIterable,ModifiableGeneticVariantIteratorTest
+74,11344750,getVariantAnnotationsMap,(),"Map<String, Annotation>",getVariantAnnotationsMap,VcfGenotypeDataTest
+75,11344750,getNrOfElements,(),long,MAP_construct,MapFileDriverTest
+76,11344750,getSequences,(),Iterable<Sequence>,testGetSequences,TriTyperGenotypeDataTest
+77,11344750,updateRefAllele,"(ModifiableGeneticVariant geneticVariant, Allele newRefAllele)",void,updateRefAllele,ModifiableGenotypeDataInMemoryTest
+78,11344750,createSnp,"(GeneticVariantMeta variantMeta, String snpId, int pos, String sequenceName,
+			SampleVariantsProvider sampleVariantsProvider, char allele1, char allele2)",GeneticVariant,checkRefIsPartOfAlleles,ReadOnlyGeneticVariantTest
+79,11344750,getSampleVariants,(GeneticVariant variant),List<Alleles>,testGetSnpVariantByPos,GenGenotypeDataTest
+80,11344750,getReadDepth,(),int,testGetReadDepth,PileupEntryTest
+81,11344750,getElementsOverlappingQuery,(final int query),ArrayList<E>,testGetElementsOverlappingQuery,IntervalTreeTest
+82,11344750,calculateCorrelationMatrix,(),"DoubleMatrixDataset<C, C>",testCalculateCorrelationMatrix,DoubleMatrixDatasetTest
+83,11344750,getSeqNames,(),List<String>,getSeqNames,HapsGenotypeDataTest
+84,11344750,getSequenceByName,(String name),Sequence,getSequenceByName,ModifiableGenotypeDataInMemoryTest
+85,11344750,calculateLd,"(GeneticVariant variant1, GeneticVariant variant2)",Ld,calculateLd,LdCalculatorTest
+86,11344750,addBoundary,"(String chromosome, Integer beginPoint, int endPoint)",void,testIteratorNew,GenomicBoundariesTest
+87,11344750,isInBoundarie,(int position),boolean,testIsInBoundarie_int_int,GenomicBoundaryTest
+88,11344750,getModifiableSnpVariantByPos,"(String seqName, int startPos)",ModifiableGeneticVariant,getModifiableSnpVariantByPos,ModifiableGenotypeDataInMemoryTest
+89,11344750,getSnpVariantByPos,"(String seqName, int startPos)",GeneticVariant,getSnpVariantByPos,ModifiableGenotypeDataInMemoryTest
+90,11344750,executeQuery,"(String sequence, int startPos, int stopPos)",VariantQueryResult,queryPos,TabixQueryTest
+91,11344750,convertCalledAllelesToProbability,"(List<Alleles> sampleAlleles, Alleles alleles)",float[][],testConvertCalledAllelesToProbability5,ProbabilitiesConvertorTest
+92,11344750,countGenotypes,(GeneticVariant variant),ArrayList<GenotypeCount>,testCountGenotypes2,GenotypeCountCalculatorTest
+94,11344750,getSamplePhasing,(GeneticVariant variant),List<Boolean>,testGetSamplePhasing,VcfGenotypeDataTest
+95,11344750,write,(String path),void,testWrite_String2,BedBimFamGenotypeWriterTest
+96,11344750,calculateCovarianceMatrix,(),"DoubleMatrixDataset<C, C>",testCalculateCovarianceMatrix,DoubleMatrixDatasetTest
+97,11344750,readInputData,(),void,readInputDataWrongNamesTest,DeconvolutionTest
+98,11344750,calculateSpearmanTwoTailedPvalue,"(double spearmanCorrelation, int sampleSize)",double,calculateSpearmanTwoTailedPvalueTest,StatisticsTest
+99,11344750,getSeqNames,(),List<String>,testGetSeqNames,GenGenotypeDataTest
+100,11344750,main,(String... args),void,testMain9,GenotypeHarmonizerTest
+101,11344750,getSeqNames,(),List<String>,getSeqNames,ModifiableGenotypeDataInMemoryTest
+102,11344750,readInputData,(),void,readInputDataTest,DeconvolutionTest
+103,11344750,getAlternativeAlleles,(),Alleles,getAlternativeAlleles,ReadOnlyGeneticVariantTest
+104,11344750,main,(String... args),void,testMain,GenotypeHarmonizerTest
+105,11344750,calculateLd,"(GeneticVariant variant1, GeneticVariant variant2)",Ld,calculateLd3,LdCalculatorTest
+106,11344750,getRefAllele,(),Allele,testGetRefAllele,PileupEntryTest
+107,11344750,getAlleleAsSnp,(),char,getSnpAllele,AlleleTest
+108,11344750,normalizeColumns,(),void,testNormalizeColumns,DoubleMatrixDatasetTest
+109,11344750,getComplement,(),Allele,getComplement,AlleleTest
+110,11344750,getSampleAlleles,(),Alleles,getSampleAlleles,VcfGenotypeRecordTest
+111,11344750,executeQuery,"(String sequence, int startPos, int stopPos)",VariantQueryResult,queryStartPos,TabixQueryTest
+112,11344750,addBoundary,"(String chromosome, Integer beginPoint, int endPoint)",void,testAddBoundary,GenomicBoundariesTest
+113,11344750,countGenotypes,(GeneticVariant variant),ArrayList<GenotypeCount>,testCountGenotypes,GenotypeCountCalculatorTest
+114,11344750,haplotypeDosagesToHaplotypeProbabilities,(double[][] haplotypeDosages),double[][][],testHaplotypeDosagesToHaplotypeProbabilities,ProbabilitiesConvertorTest
+115,11344750,getStart,(),Integer,testGetStart,GenomicBoundaryTest
+116,11344750,getModifiableVariantsByPos,"(String seqName, int startPos)",Iterable<ModifiableGeneticVariant>,getModifiableVariantsByPos,ModifiableGenotypeDataInMemoryTest
+117,11344750,weightedCorrelationColumnsOf2Datasets,"(DoubleMatrixDataset<String, String> d1, DoubleMatrixDataset<String, String> d2, DoubleMatrixDataset<String, String> rowWeigths)","DoubleMatrixDataset<String, String>",testWeightedCorrelationColumnsOf2Datasets,WeightedCorrelationsTest
+118,11344750,getSampleVariants,(GeneticVariant variant),List<Alleles>,testGetSnpVariantByPos,PedMapGenotypeDataTest
+119,11344750,isOverlaping,(GenomicBoundary other),boolean,isOverlaping,GenomicBoundaryTest
+120,11344750,main,(String... args),void,testMain7,GenotypeHarmonizerTest
+121,11344750,isPartOfBoundary,(GenomicBoundary other),boolean,testIsPartOfBoundary,GenomicBoundaryTest
+122,11344750,isSnpAllele,(),boolean,isSnpAllele,AlleleTest
+123,11344750,isInBoundarie,(int position),boolean,testIsInBoundarie_int,GenomicBoundaryTest
+124,11344750,getChr,(),String,testGetChr,PileupEntryTest
+125,11344750,main,(String... args),void,testMain8,GenotypeHarmonizerTest
+126,11344750,getCallRate,(),double,getCallRateTest,AbstractGeneticVariantTest
+127,11344750,anova,"(double sumOfSquaresModelA, double sumOfSquaresModelB, int degreesOfFreedomA,
+			int degreesOfFreedomB, Boolean no_intercept)",double,anovaErrorTest,StatisticsTest
+128,11344750,getSequences,(),Iterable<Sequence>,getSequences,ModifiableGenotypeDataInMemoryTest
+129,11344750,calculateMaf,"(Alleles alleles, Allele reference, List<Alleles> samplesAlleles)",MafResult,calculateMaf,MafCalculatorTest
+130,11344750,getSequenceGeneticVariants,(String seqName),Iterable<GeneticVariant>,testgetSequenceGeneticVariants,VcfGenotypeDataTest
+131,11344750,convertCalledAllelesToProbability,"(List<Alleles> sampleAlleles, Alleles alleles)",float[][],testConvertCalledAllelesToProbability2,ProbabilitiesConvertorTest
+132,11344750,iteratorToList,(Iterator<T> iterator),List<T>,iteratorToList,UtilsTest
+133,11344750,convertCalledAllelesToProbability,"(List<Alleles> sampleAlleles, Alleles alleles)",float[][],testConvertCalledAllelesToProbability4,ProbabilitiesConvertorTest
+134,11344750,getMinorAllele,(),Allele,getMinorAllele,ReadOnlyGeneticVariantTest
+135,11344750,getSequences,(),List<Sequence>,testGetSequences,GenGenotypeDataTest
+136,11344750,sort,(C[] m),void,testSort,SmoothSortTest
+137,11344750,convertBiallelicComplexProbabilitiesToProbabilities,(double[][] complexProbabilities),float[][],testBiallelicComplexProbabilitiesToProbabilities,ProbabilitiesConvertorTest
+138,11344750,getSampleVariants,(GeneticVariant variant),List<Alleles>,testGetSnpVariantByPos3,GenGenotypeDataTest
+139,11344750,pToZTwoTailed,(double p),double,pToZTwoTailed,ZScoresTest
+140,11344750,compare,"(String arg0, String arg1)",int,compare,ChromosomeComparatorTest
+141,11344750,getRecordType,(String recordId),Type,getRecordType,VcfGeneticVariantMetaTest
+142,11344750,write,(String basePath),void,writeComplex,BgenGenotypeWriterTest
+143,11344750,weightedZscore,"(double[] zscores, int[] samples)",double,testweightedZscore3,BinaryInteractionMetaAnalysisTest
+144,11344750,write,(String path),void,writeTriTyperDosage,TriTyperGenotypeWriterTest
+145,11344750,main,(String... args),void,TestMain11,GenotypeHarmonizerTest
+146,11344750,getStartPos,(),int,getStartPos,ReadOnlyGeneticVariantTest
+147,11344750,calculateCorrelationMatrixOnNormalizedColumns,(),"DoubleMatrixDataset<C, C>",testCalculateCorrelationMatrixOnNormalizedColumns,DoubleMatrixDatasetTest
+148,11344750,getSampleCalledDosages,(),byte[],getCalledDosages,ReadOnlyGeneticVariantTest
+149,11344750,weightedZscore,"(double[] zscores, int[] samples)",double,testweightedZscore4,BinaryInteractionMetaAnalysisTest
+150,11344750,main,(String... args),void,testMain6,GenotypeHarmonizerTest
+151,11344750,main,(String... args),void,testGenotypeHarmonizerBgenProbabilityPrecisionOption,GenotypeHarmonizerTest
+152,11344750,weightedZscore,"(double[] zscores, int[] samples)",double,testweightedZscore1,BinaryInteractionMetaAnalysisTest
+153,11344750,write,(String path),void,testWrite_String3,BedBimFamGenotypeWriterTest
+154,11344750,convertCalledAllelesToPhasedProbabilities,"(List<Alleles> sampleAlleles, Alleles alleles)",double[][][],testCalledAllelesToPhasedProbabilities,ProbabilitiesConvertorTest
+155,11344750,getVariantsByPos,"(String seqName, int startPos)",Iterable<GeneticVariant>,getVariantsByPos,ModifiableGenotypeDataInMemoryTest
+156,11344750,getSeqNames,(),List<String>,getSeqNames,TabixIndexTest
+157,11344750,getSeqNames,(),List<String>,getSeqNames,PedMapGenotypeDataTest
+158,11344750,getVariantAnnotationsMap,(),"Map<String, Annotation>",testGetVariantAnnotationsMap,MultiPartGenotypeDataTest
+159,11344750,executeQuery,"(String sequence, int startPos, int stopPos)",VariantQueryResult,querySeq2,TabixQueryTest
+160,11344750,getSequenceName,(),String,getSequenceName,ReadOnlyGeneticVariantTest
+161,11344750,compareTo,(GeneticVariant other),int,compareTo,AbstractGeneticVariantTest
+162,11344750,normalizeRows,(),void,testNormalizeRows,DoubleMatrixDatasetTest
+163,11344750,calculateLd,"(GeneticVariant variant1, GeneticVariant variant2)",Ld,calculateLd5,LdCalculatorTest
+164,11344750,getSamples,(),List<Sample>,getSamples,ModifiableGenotypeDataInMemoryTest
+165,11344750,sameAlleles,(Alleles other),boolean,sameAlleles,AllelesTest
+166,11344750,main,(String... args),void,testMain10,GenotypeHarmonizerTest
+167,11344750,lnbico,"(final int n, final int k)",double,testLnBico,AseMleTest
+168,11344750,getNrOfElements,(),long,PED_construct,PedFileDriverTest
+169,11344750,getSeqNames,(),List<String>,getSeqNames,VcfGenotypeDataTest
+170,11344750,write,(String basePath),void,write,HapsGenotypeWriterTest
+171,11344750,main,(String... args),void,testMain3,GenotypeHarmonizerTest
+172,11344750,removeSubBoundaries,(),void,testRemoveSubBoundaries,GenomicBoundariesTest
+173,11344750,same,"(GenotypeData gd1, GenotypeData gd2)",boolean,testPedMap,GenotypeDataCompareToolTest
+174,11344750,convertDosageToProbabilityHeuristic,(float[] sampleDosages),float[][],testConvertDosageToProbabilityHeuristic1,ProbabilitiesConvertorTest
+175,11344750,anova,"(double sumOfSquaresModelA, double sumOfSquaresModelB, int degreesOfFreedomA,
+			int degreesOfFreedomB, Boolean no_intercept)",double,anovaTest,StatisticsTest
+176,11344750,getSequenceGeneticVariants,(String seqName),Iterable<GeneticVariant>,getSequenceGeneticVariants,ModifiableGenotypeDataInMemoryTest
+177,11344750,write,(String path),void,writeTriTyperDosage2,TriTyperGenotypeWriterTest
+178,11344750,getSeqNames,(),List<String>,getSeqNames,TriTyperGenotypeDataTest
+179,11344750,getSequences,(),List<Sequence>,testGetSequences,PedMapGenotypeDataTest
+180,11344750,createIntervalTree,(),PerChrIntervalTree<BedGraphEntry>,testCreateIntervalTree,BedGraphFileTest
+181,11344750,getAlternativeVariantIds,(),List<String>,getAlternativeVariantIds,ReadOnlyGeneticVariantTest
+182,11344750,haplotypeDosagesToHaplotypeProbabilities,(double[][] haplotypeDosages),double[][][],testHaplotypeDosagesToHaplotypeProbabilities2,ProbabilitiesConvertorTest
+183,11344750,getSampleGenotypeRecords,(GeneticVariant variant),FixedSizeIterable<GenotypeRecord>,getSampleGenotypeRecords,CachedSampleVariantProviderTest
+184,11344750,isAtOrGcSnp,(),boolean,isAtOrGcSnp,AllelesTest
+185,11344750,contains,(Allele queryAllele),boolean,contains,AllelesTest
