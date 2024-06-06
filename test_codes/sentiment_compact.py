@@ -249,8 +249,7 @@ def main(neurons: int, layers: int):
     config.max_hidden_neurons = neurons
     config.hidden_layers = layers
     config.model_uses_output_embedding = False  # This is a classification task
-    config.lr_decay_targets = {"f1": 0.75}
-    config.nlp_model_name = "distilbert-base-uncased"
+    config.nlp_model_name = "distilbert-base-uncased"  # Generic NLP model
 
     printer.info(f"Running test with {neurons} neurons and {layers} layers")
     printer.info(config)

@@ -72,9 +72,9 @@ class CategoricNeuralNetwork(nn.Module):
         self._output_size: int = 0
 
         # Initialize the input size
-        self.configure_input()
+        self._configure_input()
         # Initialize the output size
-        self.configure_output()
+        self._configure_output()
 
         if self._train_nlp_embedding and self._nlp_embedding_model is not None:
             printer.warning(
@@ -118,6 +118,17 @@ class CategoricNeuralNetwork(nn.Module):
     def build_neural_network(self, neurons, number_layers):
         """
         Builds the neural network.
+
+        The neural network is built with a number of hidden layers
+        and a number of neurons per layer that decreases gradually
+        from the input size to the output size.
+
+        Args:
+            neurons (int): The number of neurons in the hidden layers.
+            number_layers (int): The number of hidden layers.
+
+        Returns:
+            None
         """
         neurons_per_layer = list()
         # decrease the number of neurons per layer gradually into the output size
@@ -152,6 +163,10 @@ class CategoricNeuralNetwork(nn.Module):
         """
         Adds a layer to the model.
 
+        The layer can be a linear layer, and can have normalization,
+        activation, and dropout layers after it. The layer is added
+        to the linear_relu_stack attribute of the model.
+
         Args:
             layer (nn.Module): The layer to be added.
             neurons (int): The number of neurons in the layer.
@@ -171,10 +186,9 @@ class CategoricNeuralNetwork(nn.Module):
         if add_drop:
             self.linear_relu_stack.add_module(name+"_3", nn.Dropout(0.1))
 
-    def configure_input(self):
+    def _configure_input(self):
         """
         Initializes the input size.
-        It also initializes the tokenizer and embedding model if needed.
 
         Returns:
             None
@@ -185,7 +199,7 @@ class CategoricNeuralNetwork(nn.Module):
         else:
             self._input_size: int = sum([len(self.category_mappings[col]) for col in self.input_categories.values()])
 
-    def configure_output(self):
+    def _configure_output(self):
         """
         Initializes the output size.
         It also initializes the output embedding model if needed.
@@ -226,13 +240,13 @@ class CategoricNeuralNetwork(nn.Module):
             torch.Tensor: The output of the network (logits).
         """
         if self._use_input_embedding:
-            pre_processed_inputs: torch.Tensor = self.process_batch_to_embedding(
+            pre_processed_inputs: torch.Tensor = self._process_batch_to_embedding(
                 batch=inputs
                 )
         else:
             # No embeddings
             try:
-                pre_processed_inputs: torch.Tensor = self.process_batch_to_one_hot(
+                pre_processed_inputs: torch.Tensor = self._process_batch_to_one_hot(
                     batch=inputs,
                     fields_type="inputs"
                     )
@@ -248,7 +262,7 @@ class CategoricNeuralNetwork(nn.Module):
         logits: torch.Tensor = self.linear_relu_stack(pre_processed_inputs)
         return logits
 
-    def process_batch_to_embedding(
+    def _process_batch_to_embedding(
             self,
             batch: torch.Tensor,
             ) -> torch.Tensor:
@@ -284,7 +298,7 @@ class CategoricNeuralNetwork(nn.Module):
         stacked_embeddings: torch.Tensor = torch.stack(embeddings).to(self.device)
         return stacked_embeddings
 
-    def process_batch_to_one_hot(
+    def _process_batch_to_one_hot(
             self,
             batch: list,
             fields_type: str
@@ -323,7 +337,7 @@ class CategoricNeuralNetwork(nn.Module):
                 # Check if the field value is a string representation of list
                 if field_value.startswith("[") and field_value.endswith("]"):
                     # field_value is a string representation of a list
-                    one_hot: torch.Tensor = self.get_multi_one_hot(category, field_value)
+                    one_hot: torch.Tensor = self._get_multi_one_hot(category, field_value)
                 else:
                     # simple string. Just get the index from mapping
                     # and put it in a tensor
@@ -347,7 +361,7 @@ class CategoricNeuralNetwork(nn.Module):
         # Convert the processed inputs to float
         return processed.float()
 
-    def get_multi_one_hot(self, category: str, field_value: str):
+    def _get_multi_one_hot(self, category: str, field_value: str):
         """
         Preprocesses the field value to a multi-hot vector.
 
@@ -373,7 +387,7 @@ class CategoricNeuralNetwork(nn.Module):
         # Append the one-hot vector to the list
         return one_hot
 
-    def get_batch_loss(
+    def _get_batch_loss(
             self,
             loss_fn: nn.Module,
             batch_logits: torch.Tensor,
@@ -401,7 +415,7 @@ class CategoricNeuralNetwork(nn.Module):
                 )
             # if the output embeddings are NLP embeddings
             # we need to convert the output strings to embeddings
-            y_embeddings: torch.Tensor = self.process_batch_to_embedding(
+            y_embeddings: torch.Tensor = self._process_batch_to_embedding(
                 batch=y
                 )
             # normalize the output embeddings to avoid exploding gradients
@@ -414,12 +428,12 @@ class CategoricNeuralNetwork(nn.Module):
             loss: torch.Tensor = loss_fn(batch_logits, y_embeddings_normalized, target)
             if return_y_one_hot:
                 # if y is to be returned as one hot, we have to do it now
-                yp: torch.Tensor = self.process_batch_to_one_hot(y, fields_type="outputs")
+                yp: torch.Tensor = self._process_batch_to_one_hot(y, fields_type="outputs")
                 return loss, yp
             else:
                 return loss
         else:
-            yp: torch.Tensor = self.process_batch_to_one_hot(y, fields_type="outputs")
+            yp: torch.Tensor = self._process_batch_to_one_hot(y, fields_type="outputs")
             loss = loss_fn(batch_logits, yp)
         if return_y_one_hot:
             return loss, yp
@@ -454,7 +468,7 @@ class CategoricNeuralNetwork(nn.Module):
         for batch, (x, y) in enumerate(dataloader):
             # Compute prediction and loss
             batch_logits: torch.Tensor = self(x)
-            loss: torch.Tensor = self.get_batch_loss(loss_fn, batch_logits, y)
+            loss: torch.Tensor = self._get_batch_loss(loss_fn, batch_logits, y)
             # Backpropagation - ORDER MATTERS!
             optimizer.zero_grad()
             loss.backward()
@@ -502,7 +516,7 @@ class CategoricNeuralNetwork(nn.Module):
                 for x, y in dataloader:
                     # Compute prediction and loss
                     batch_logits: torch.Tensor = self(x)
-                    batch_loss, y_one_hot = self.get_batch_loss(loss_fn, batch_logits, y, return_y_one_hot=True)
+                    batch_loss, y_one_hot = self._get_batch_loss(loss_fn, batch_logits, y, return_y_one_hot=True)
                     test_loss += batch_loss.item()
                     # Calculate the relevance (or priority) of each option
                     # Has to be done for each batch element separately
@@ -513,7 +527,7 @@ class CategoricNeuralNetwork(nn.Module):
                         # Calculate the estimated correct classification
                         # Get indices where relevance > 0.5 (default threshold)
                         correct_choices, incorrect_choices, real_positives = (
-                            self.get_performance(
+                            self._get_performance(
                                 y_one_hot[idx],
                                 probabilities))
                         # The count of values correctly reurned as positive
@@ -523,7 +537,7 @@ class CategoricNeuralNetwork(nn.Module):
                         # Count of total values that should return as positive
                         total_positives += real_positives
                 # Compute the precision, recall, and F1 score for the batch
-                precision, recall, f1_score = self.compute_total_metrics(
+                precision, recall, f1_score = self._compute_total_metrics(
                     correct_positives,
                     false_positives,
                     total_positives
@@ -545,7 +559,7 @@ class CategoricNeuralNetwork(nn.Module):
                     # Compute prediction and loss
                     batch_logits: torch.Tensor = self(x)
                     # Compute the loss for the batch
-                    batch_loss, y_one_hot = self.get_batch_loss(loss_fn, batch_logits, y, return_y_one_hot=True)
+                    batch_loss, y_one_hot = self._get_batch_loss(loss_fn, batch_logits, y, return_y_one_hot=True)
                     # Accumulate the loss for the batch
                     test_loss += batch_loss.item()
                     # Calculate the relevance (or priority) of each option
@@ -571,7 +585,7 @@ class CategoricNeuralNetwork(nn.Module):
                                     }
                             # Initialize the metrics for the threshold
                             correct_choices, incorrect_choices, real_positives = (
-                                self.get_performance(
+                                self._get_performance(
                                     y_one_hot[idx],
                                     probabilities,
                                     threshold=threshold)
@@ -585,7 +599,7 @@ class CategoricNeuralNetwork(nn.Module):
                 printer.debug("starting threshold assessment")
                 for threshold in threshold_candidates:
                     precision, recall, f1_score = (
-                        self.compute_total_metrics(
+                        self._compute_total_metrics(
                             thresholds_metrics[threshold]["correct_positives"],
                             thresholds_metrics[threshold]["false_positives"],
                             thresholds_metrics[threshold]["total_positives"]
@@ -633,7 +647,7 @@ class CategoricNeuralNetwork(nn.Module):
             printer.debug("Best threshold is chosen by trying and see which one gives the best F1 score.")
         return f1_score, precision, recall
 
-    def compute_total_metrics(
+    def _compute_total_metrics(
             self,
             correct_positives: int,
             false_positives: int,
@@ -667,7 +681,7 @@ class CategoricNeuralNetwork(nn.Module):
             f1_score: float = 0
         return precision, recall, f1_score
 
-    def get_performance(
+    def _get_performance(
             self,
             y_one_hot: torch.Tensor,
             probabilities: torch.Tensor,
@@ -713,7 +727,11 @@ class CategoricNeuralNetwork(nn.Module):
         Evaluates the model on a single input.
 
         Args:
-            input (dict): The input data.
+            input (list): The input data.
+                          It is a list, each element of which is a list of strings.
+                          each element of the list corresponds to a different input category.
+                          each element of the inner list corresponds to a different batch element.
+
             mode (str): The mode of evaluation.
                         Can be either 'monolabel' or 'multilabel' or 'priority'.
         Returns:
@@ -822,14 +840,14 @@ class CategoricNeuralNetwork(nn.Module):
         else:
             # if we are training the embeddings or they are not computed
             # we have to compute them also if it is the first time
-            if self._train_nlp_embedding:
-                printer.debug("this should only happen once")
+            if not self._train_nlp_embedding:
+                printer.debug("This should only happen once.")
             all_outputs_texts = [
                 [field for field in self.category_mappings[category]]
                 for category in self.output_categories.values()
                 ]
             self._output_category_embeddings_nlp = functional.normalize(
-                self.process_batch_to_embedding(batch=all_outputs_texts),
+                self._process_batch_to_embedding(batch=all_outputs_texts),
                 p=2,
                 dim=1
                 )

@@ -85,7 +85,7 @@ class ConfigRun:
     scheduler_plateau_mode: ClassVar[str] = "max"
     lr_decay_patience: ClassVar[int] = 4
     lr_decay_targets: ClassVar[dict] = {
-        "f1": 0.7
+        "f1": 0.75
     }
     # Scheduler: relevant only if reduce on step
     lr_decay_step: ClassVar[int] = 10
@@ -286,8 +286,8 @@ def get_optimizer(
 
 def get_scheduler(
         optimizer: torch.optim.Optimizer,
-        mode: str = None,
         factor: float = 0.1,
+        mode: str = None,
         patience: int = None,
         steps: int = None,
         scheduler_type: str = None
@@ -297,9 +297,13 @@ def get_scheduler(
 
     Args:
         optimizer (torch.optim.Optimizer): The optimizer to be used.
-        mode (str): The mode for the scheduler.
         factor (float): The factor for the scheduler.
+        mode (str): The mode for the scheduler.
+                        Relevant only if the scheduler is ReduceLROnPlateau.
         patience (int): The patience for the scheduler.
+                        Relevant only if the scheduler is ReduceLROnPlateau.
+        steps (int): The steps for the scheduler.
+                        Relevant only if the scheduler is StepLR.
         scheduler_type (str): The type of scheduler to be used.
                                 If None, it will use the configuration in ConfigRun.
                                 Must be one of "StepLR" or "ReduceLROnPlateau".

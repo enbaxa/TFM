@@ -55,29 +55,15 @@ def main(dataset_name):
     config.epochs = 30
     config.hidden_layers = 2
     config.model_uses_output_embedding = True
+    config.nlp_model_name = "huggingface/CodeBERTa-small-v1"
+    config.train_size = 1.0
     config.lr_decay_targets = {"f1": 0.75, "recall": 0.75}
-    # Create an instance of the model - this will be a neural network
-    # Arguments can be used to override the configuration values
-    model = model_api.create_model(
-        dataset=dataset,
-        train_nlp_embedding=False,
-        nlp_model_name="huggingface/CodeBERTa-small-v1",
-        )
-    # Define the loss function.
-    # Could define like these:
-    # loss_fn = torch.nn.CosineEmbeddingLoss()
-    # loss_fn = torch.nn.BCEWithLogitsLoss()
+    # Define the model and training setup
+    model = model_api.create_model(dataset=dataset)
     loss_fn = model_api.get_loss_fn()
-    # Define the optimizer. Could do it like this:
-    # optimizer = torch.optim.AdamW(model.parameters(), lr=config.learning_rate)
     optimizer = model_api.get_optimizer(model)
-    # Define the scheduler (optional). Could do it like these:
-    # scheduler = StepLR(optimizer, step_size=10, gamma=0.1)
-    # scheduler = ReduceLROnPlateau(optimizer, mode='max', factor=0.1, patience=4, verbose=True)
     scheduler = model_api.get_scheduler(optimizer)
-    # Get the train and test dataloaders
-    train_dataloader, test_dataloader = model_api.get_dataloaders(dataset, train_size=1.0)
-    # targets
+    train_dataloader, test_dataloader = model_api.get_dataloaders(dataset)
     start = time.time()
     model_api.train(model=model,
                     train_dataloader=train_dataloader,
