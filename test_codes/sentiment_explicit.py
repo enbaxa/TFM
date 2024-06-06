@@ -10,7 +10,9 @@ import re
 from pathlib import Path
 
 import pandas as pd
+import torch
 from set_logger import DetailedScreenHandler, DetailedFileHandler
+from torch.optim.lr_scheduler import ReduceLROnPlateau
 import model_api
 
 logger = logging.getLogger()
@@ -234,6 +236,7 @@ def get_data():
 def main(neurons: int, layers: int):
     """
     Trains a model to classify sentiment and evaluates it with some sentences.
+    This is exactly equivalent to sentiment.py, but with explicit calls to the model API functions.
 
     Args:
         neurons (int): The number of neurons in the hidden layers.
@@ -244,40 +247,56 @@ def main(neurons: int, layers: int):
         model (model_api.Model): The trained model.
     """
     df: pd.DataFrame = get_data()
-    # Create an instance of the ConfigRun class
-    config = model_api.ConfigRun
-    config.model_uses_input_embedding = True
-    config.model_uses_output_embedding = False
-    config.batch_size = 32
-    config.max_hidden_neurons = neurons
-    config.hidden_layers = layers
-    config.lr_decay_targets = {"f1": 0.75}
-    config.nlp_model_name = "distilbert-base-uncased"
 
     printer.info(f"Running test with {neurons} neurons and {layers} layers")
-    printer.info(config)
     # Define the input and output columns
     input_columns = ["text"]
     output_columns = ["label"]
     # Configure the dataset using the input and output columns
     dataset = model_api.configure_dataset(df, input_columns=input_columns, output_columns=output_columns)
     # Create an instance of the model
-    model = model_api.create_model(dataset=dataset)
-    # Get loss function, optimizer, and scheduler
-    loss_fn = model_api.get_loss_fn()
-    optimizer = model_api.get_optimizer(model)
-    scheduler = model_api.get_scheduler(optimizer)
+    model = model_api.create_model(
+        dataset=dataset,
+        use_input_embedding=True,
+        use_output_embedding=False,
+        max_hidden_neurons=neurons,
+        hidden_layers=layers,
+        nlp_model_name="distilbert-base-uncased"
+        )
+    # Define the loss function.
+    loss_fn = torch.nn.BCEWithLogitsLoss()
+    # Define the optimizer.
+    optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3)
+    # Define the scheduler
+    scheduler = ReduceLROnPlateau(
+        optimizer,
+        mode='max',
+        factor=0.1,
+        patience=5
+        )
     # Get the train and test dataloaders
-    train_dataloader, test_dataloader = model_api.get_dataloaders(dataset)
-    # Train the model
+
+    train_dataloader, test_dataloader = model_api.get_dataloaders(
+        dataset,
+        train_size=0.8,
+        batch_size=32,
+        aggregate_outputs=True
+        )
+
+    if test_dataloader is None:
+        test_dataloader = train_dataloader
+
     model_api.train(
         model=model,
         train_dataloader=train_dataloader,
         test_dataloader=test_dataloader,
+        epochs=10,
         loss_fn=loss_fn,
         optimizer=optimizer,
         scheduler=scheduler,
+        lr_decay_targets={"f1": 0.75},
         )
+
     # the model is now trained, let's evaluate it with some sentences
     # These are not in the training or testing dataset, they are completely new
     model.eval()

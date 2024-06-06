@@ -64,21 +64,31 @@ class ConfigRun:
         None
 
     """
-    learning_rate: ClassVar[float] = 1e-3
-    batch_size: ClassVar[int] = 64
-    epochs: ClassVar[int] = 50
-    f1_target: ClassVar[float] = 0.7
-    precision_target: ClassVar[float] = 0.7
-    recall_target: ClassVar[float] = 0.7
+    # Model parameters
     max_hidden_neurons: ClassVar[int] = 2058
     hidden_layers: ClassVar[int] = 2
-    monitor_f1: ClassVar[bool] = True
-    monitor_precision: ClassVar[bool] = False
-    monitor_recall: ClassVar[bool] = False
     model_uses_input_embedding: ClassVar[bool] = True
     model_uses_output_embedding: ClassVar[bool] = False
     model_trains_nlp_embedding: ClassVar[bool] = False
-    nlp_model_name: ClassVar[str] = "distilbert-base-uncased"
+    # Training parameters
+    learning_rate: ClassVar[float] = 1e-3
+    batch_size: ClassVar[int] = 32
+    epochs: ClassVar[int] = 15
+    train_size: ClassVar[float] = 0.8
+    # Optimizer
+    optimizer_name: ClassVar[str] = "AdamW"
+    nlp_model_name: ClassVar[str] = "huggingface/CodeBERTa-small-v1"
+    # Scheduler: Learning rate multiplicative factor
+    lr_decay_factor: ClassVar[float] = 0.1
+    scheduler_type: ClassVar[str] = None
+    # Scheduler: relevant only if Reduce on Plateau
+    scheduler_plateau_mode: ClassVar[str] = "max"
+    lr_decay_patience: ClassVar[int] = 4
+    lr_decay_targets: ClassVar[dict] = {
+        "f1": 0.7
+    }
+    # Scheduler: relevant only if reduce on step
+    lr_decay_step: ClassVar[int] = 10
 
 
 def configure_dataset(
@@ -124,7 +134,7 @@ def configure_dataset(
 
 def get_dataloaders(
         dataset: CategoricDataset,
-        train_size: float = 0.8,
+        train_size: float = None,
         batch_size: int = None,
         aggregate_outputs: bool = True
         ) -> tuple:
@@ -134,7 +144,10 @@ def get_dataloaders(
     Args:
         dataset (CategoricDataset): The dataset to be used.
         train_size (float): The proportion of the dataset to be used for training.
+                            If None, it will use the configuration in ConfigRun.
         batch_size (int): The batch size to be used.
+                          If None, it will use the configuration in ConfigRun.
+
         aggregate_outputs (bool): Whether to aggregate the outputs.
                                   This is useful if some input appears multiple times
                                     with different outputs.
@@ -145,6 +158,8 @@ def get_dataloaders(
     """
     if batch_size is None:
         batch_size = ConfigRun.batch_size
+    if train_size is None:
+        train_size = ConfigRun.train_size
 
     train_dataset, test_dataset = dataset.train_test_split(train_size=train_size)
     train_dataloader: DataLoader = DataLoader(
@@ -207,16 +222,18 @@ def create_model(
     if hidden_layers is None:
         hidden_layers = ConfigRun.hidden_layers
 
-    printer.debug(
-        f"\nDetails on the model:"
-        f"\nDataset: {dataset.data.columns}"
-        f"\nuse_input_embedding = {use_input_embedding}"
-        f"\nuse_output_embedding = {use_output_embedding}"
-        f"\nmax_hidden_neurons = {max_hidden_neurons}"
-        f"\nhidden_layers = {hidden_layers}"
-        f"\ntrain_nlp_embedding = {train_nlp_embedding}"
-        f"\nnlp_model_name = {nlp_model_name}"
-        )
+    info_message = []
+    info_message.append("Details on the model:")
+    info_message.append(f"Dataset: Trying to relate{dataset.input_columns} to {dataset.output_columns}")
+    info_message.append(f"use_input_embedding = {use_input_embedding}")
+    info_message.append(f"use_output_embedding = {use_output_embedding}")
+    info_message.append(f"max_hidden_neurons = {max_hidden_neurons}")
+    info_message.append(f"hidden_layers = {hidden_layers}")
+    info_message.append(f"train_nlp_embedding = {train_nlp_embedding}")
+    info_message.append(f"nlp_model_name = {nlp_model_name}")
+
+    printer.debug("\n".join(info_message))
+
     model: CategoricNeuralNetwork = CategoricNeuralNetwork(
         category_mappings=dataset.category_mappings,
         use_input_embedding=use_input_embedding,
@@ -230,6 +247,145 @@ def create_model(
     return model
 
 
+def get_optimizer(
+        model: CategoricNeuralNetwork,
+        learning_rate: float = None,
+        optimizer_name: str = "AdamW"
+        ) -> torch.optim.Optimizer:
+    """
+    Get the optimizer for the model.
+
+    Args:
+        model (CategoricNeuralNetwork): The model to be used.
+        learning_rate (float): The learning rate for the optimizer.
+                                If None, it will use the configuration in ConfigRun.
+        optimizer_name (str): The name of the optimizer to be used.
+                                If None, it will use the configuration in ConfigRun.
+                                Must be one of "AdamW", "SGD", or "Adam".
+
+    Returns:
+        optimizer (torch.optim.Optimizer): The optimizer to be used.
+    """
+    # check the input
+    if learning_rate is None:
+        learning_rate = ConfigRun.learning_rate
+    if optimizer_name is None:
+        optimizer_name = ConfigRun.optimizer_name
+
+    # create the optimizer
+    if optimizer_name == "AdamW":
+        optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
+    elif optimizer_name == "SGD":
+        optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
+    elif optimizer_name == "Adam":
+        optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+    else:
+        raise ValueError("optimizer_name must be one of 'AdamW', 'SGD', or 'Adam'.")
+    return optimizer
+
+
+def get_scheduler(
+        optimizer: torch.optim.Optimizer,
+        mode: str = None,
+        factor: float = 0.1,
+        patience: int = None,
+        steps: int = None,
+        scheduler_type: str = None
+        ) -> torch.optim.lr_scheduler._LRScheduler:
+    """
+    Get the scheduler for the optimizer.
+
+    Args:
+        optimizer (torch.optim.Optimizer): The optimizer to be used.
+        mode (str): The mode for the scheduler.
+        factor (float): The factor for the scheduler.
+        patience (int): The patience for the scheduler.
+        scheduler_type (str): The type of scheduler to be used.
+                                If None, it will use the configuration in ConfigRun.
+                                Must be one of "StepLR" or "ReduceLROnPlateau".
+
+    Returns:
+        scheduler (torch.optim.lr_scheduler._LRScheduler): The scheduler to be used.
+    """
+    # check the input
+    if scheduler_type is None:
+        if ConfigRun.scheduler_type is not None:
+            scheduler_type = ConfigRun.scheduler_type
+        else:
+            scheduler_type = "ReduceLROnPlateau"
+            logger.debug("scheduler_type was not set. Using ReduceLROnPlateau.")
+    if factor is None:
+        factor = ConfigRun.lr_decay_factor
+    # create the scheduler
+    if scheduler_type == "ReduceLROnPlateau":
+        if patience is None:
+            patience = ConfigRun.lr_decay_patience
+        if mode is None:
+            mode = ConfigRun.scheduler_plateau_mode
+        # if the scheduler is ReduceLROnPlateau, the steps will be ignored
+        if steps is not None:
+            logger.warning(
+                "Steps is not used in ReduceLROnPlateau scheduler."
+                " However it was set in the function call."
+                " It will be ignored."
+                )
+        scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+            optimizer=optimizer,
+            mode=mode,
+            factor=factor,
+            patience=patience
+            )
+    elif scheduler_type == "StepLR":
+        if steps is None:
+            steps = ConfigRun.lr_decay_step
+        # if the scheduler is StepLR, the patience will be ignored
+        if patience is not None:
+            logger.warning(
+                "Patience is not used in StepLR scheduler."
+                " However it was set in the function call."
+                " It will be ignored."
+                )
+        # if the scheduler is StepLR, the mode will be ignored
+        if mode is not None:
+            logger.warning(
+                "Mode is not used in StepLR scheduler."
+                " However it was set in the function call."
+                " It will be ignored."
+                )
+        scheduler = torch.optim.lr_scheduler.StepLR(
+            optimizer=optimizer,
+            step_size=steps,
+            gamma=factor
+            )
+    else:
+        raise ValueError("scheduler_type must be one of 'StepLR' or 'ReduceLROnPlateau'.")
+    return scheduler
+
+
+def get_loss_fn(
+        use_output_embedding: bool = None
+        ) -> torch.nn.Module:
+    """
+    Get the loss function for the model.
+
+    Args:
+        use_output_embedding (bool): Whether to use an embedding layer for the output.
+                                     If None, it will use the configuration in ConfigRun.
+                                     This decides the loss function to be used.
+
+    Returns:
+        loss_fn (torch.nn.Module): The loss function to be used.
+    """
+    if use_output_embedding is None:
+        use_output_embedding = ConfigRun.model_uses_output_embedding
+
+    if use_output_embedding:
+        loss_fn = torch.nn.CosineEmbeddingLoss()
+    else:
+        loss_fn = torch.nn.BCEWithLogitsLoss()
+    return loss_fn
+
+
 def train(
         model: CategoricNeuralNetwork,
         train_dataloader: DataLoader,
@@ -237,13 +393,8 @@ def train(
         loss_fn: torch.nn.Module,
         optimizer: torch.optim.Optimizer,
         scheduler: torch.optim.lr_scheduler._LRScheduler | None = None,
-        f1_target: float = None,
-        precision_target: float = None,
-        recall_target: float = None,
         epochs: int = None,
-        monitor_f1: bool = None,
-        monitor_precision: bool = None,
-        monitor_recall: bool = None
+        lr_decay_targets: dict = None
           ) -> None:
     """
     Train the model on the dataset.
@@ -256,52 +407,54 @@ def train(
         optimizer (torch.optim.Optimizer): The optimizer to be used.
         scheduler (torch.optim.lr_scheduler._LRScheduler): The scheduler to be used.
         The following will default to the values in ConfigRun:
-        f1_target (float): The target F1 score to stop the training.
-        precision_target (float): The target precision to stop the training.
-        recall_target (float): The target recall to stop the training.
         epochs (int): The number of epochs to train the model.
-        monitor_f1 (bool): Whether to monitor the F1 score.
-        monitor_precision (bool): Whether to monitor the precision.
-        monitor_recall (bool): Whether to monitor the recall.
 
     Returns:
         None
     """
 
-    if f1_target is None:
-        f1_target = ConfigRun.f1_target
-    if precision_target is None:
-        precision_target = ConfigRun.precision_target
-    if recall_target is None:
-        recall_target = ConfigRun.recall_target
     if epochs is None:
         epochs = ConfigRun.epochs
-    if monitor_f1 is None:
-        monitor_f1 = ConfigRun.monitor_f1
-    if monitor_precision is None:
-        monitor_precision = ConfigRun.monitor_precision
-    if monitor_recall is None:
-        monitor_recall = ConfigRun.monitor_recall
 
-    printer.debug("".join((
-        "\nDetails on the training:",
-        f"\nModel: {model}",
-        f"\nLoss Function: {loss_fn}",
-        f"\nOptimizer: {optimizer}",
-        f"\nScheduler: {scheduler}",
-        f"\nEpochs: {epochs}",
-        f"\nf1_target = {f1_target}" if monitor_f1 else "",
-        f"\nprecision_target = {precision_target}" if monitor_precision else "",
-        f"\nrecall_target = {recall_target}" if monitor_recall else "",
-        )
-        ))
+    if isinstance(scheduler, torch.optim.lr_scheduler.ReduceLROnPlateau):
+        if lr_decay_targets is None:
+            lr_decay_targets = ConfigRun.lr_decay_targets
+
+    f1_target = lr_decay_targets.get("f1", None)
+    precision_target = lr_decay_targets.get("precision", None)
+    recall_target = lr_decay_targets.get("recall", None)
+
+    monitor_f1: bool = f1_target is not None
+    monitor_precision: bool = precision_target is not None
+    monitor_recall: bool = recall_target is not None
+
+    info_message = []
+    info_message.append("Details on the training:")
+    info_message.append(f"Model: {model}")
+    info_message.append(f"Loss Function: {loss_fn}")
+    info_message.append(f"Optimizer: {optimizer}")
+    info_message.append(f"Scheduler: {scheduler}")
+    info_message.append(f"Epochs: {epochs}")
+    if monitor_f1:
+        info_message.append(f"f1_target = {f1_target}")
+    if monitor_precision:
+        info_message.append(f"precision_target = {precision_target}")
+    if monitor_recall:
+        info_message.append(f"recall_target = {recall_target}")
+
+    printer.debug("\n".join(info_message))
     try:
         for t in range(epochs):
             printer.info(f"\nEpoch {t+1}\n-------------------------------")
             model.train_loop(train_dataloader, loss_fn, optimizer)
             f1_score, precision, recall = model.test_loop(test_dataloader, loss_fn)
             if scheduler is not None:
-                scheduler.step(f1_score)
+                if isinstance(scheduler, torch.optim.lr_scheduler.ReduceLROnPlateau):
+                    scheduler.step(f1_score)
+                elif isinstance(scheduler, torch.optim.lr_scheduler.StepLR):
+                    scheduler.step()
+                else:
+                    raise ValueError("scheduler must be ReduceLROnPlateau or StepLR.")
             if all([
                 f1_score > f1_target if monitor_f1 else True,
                 precision > precision_target if monitor_precision else True,

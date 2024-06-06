@@ -9,6 +9,7 @@ defining the loss function and optimizer, training the model, and evaluating the
 It can be used as an example of how to train a model using the model API.
 """
 import logging
+import time
 from pathlib import Path
 
 import pandas as pd
@@ -16,9 +17,10 @@ import torch
 from set_logger import DetailedScreenHandler, DetailedFileHandler
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 import model_api
-import time
+
 logger = logging.getLogger()
 printer = logging.getLogger("printer")
+
 
 def get_data(dataset_name):
     """
@@ -56,6 +58,7 @@ def main(dataset_name):
     config.max_hidden_neurons = 768 * 3
     config.hidden_layers = 2
     config.model_uses_output_embedding = True
+    config.lr_decay_targets = {"f1": 0.7, "recall": 0.7}
     # Create an instance of the model - this will be a neural network
     # Arguments can be used to override the configuration values
     model = model_api.create_model(
@@ -64,28 +67,27 @@ def main(dataset_name):
         nlp_model_name="huggingface/CodeBERTa-small-v1",
         )
     # Define the loss function.
-    # BCEwithLogitsLoss if not using embedded output.
-    # CosineEmbeddingLoss if using embedded output
-    loss_fn = torch.nn.CosineEmbeddingLoss()
+    # Could define like these:
+    # loss_fn = torch.nn.CosineEmbeddingLoss()
     # loss_fn = torch.nn.BCEWithLogitsLoss()
-    # Define the optimizer. Adam is a good choice for most cases. SGD is also a good choice.
-    optimizer = torch.optim.AdamW(model.parameters(), lr=config.learning_rate)
-    # Define the scheduler (optional)
+    loss_fn = model_api.get_loss_fn()
+    # Define the optimizer. Could do it like this:
+    # optimizer = torch.optim.AdamW(model.parameters(), lr=config.learning_rate)
+    optimizer = model_api.get_optimizer(model)
+    # Define the scheduler (optional). Could do it like these:
     # scheduler = StepLR(optimizer, step_size=10, gamma=0.1)
-    scheduler = ReduceLROnPlateau(optimizer, mode='max', factor=0.1, patience=4, verbose=True)
+    # scheduler = ReduceLROnPlateau(optimizer, mode='max', factor=0.1, patience=4, verbose=True)
+    scheduler = model_api.get_scheduler(optimizer)
     # Get the train and test dataloaders
     train_dataloader, test_dataloader = model_api.get_dataloaders(dataset, train_size=1.0)
+    # targets
     start = time.time()
     model_api.train(model=model,
                     train_dataloader=train_dataloader,
                     test_dataloader=test_dataloader,
                     loss_fn=loss_fn,
                     optimizer=optimizer,
-                    scheduler=scheduler,
-                    monitor_f1=True,
-                    f1_target=0.75,
-                    monitor_recall=True,
-                    recall_target=0.75
+                    scheduler=scheduler
                     )
     printer.debug("Training finished.")
     printer.debug(f"Time taken: {(time.time() - start) / 60} minutes.")
@@ -131,4 +133,4 @@ if __name__ == '__main__':
     logger.setLevel(logging.INFO)
     printer.addHandler(DetailedFileHandler("execution.log", mode="w"))
     printer.setLevel(logging.DEBUG)
-    main(dataset_name=f"medium_36.csv")  # 36 is hard to learn
+    main(dataset_name="medium_36.csv")  # 36 is hard to learn
