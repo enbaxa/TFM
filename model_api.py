@@ -37,6 +37,8 @@ from dataclasses import dataclass
 from typing import ClassVar
 
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 import torch
 from dataset_define import CategoricDataset
 from learning_model import CategoricNeuralNetwork, StopTraining
@@ -398,7 +400,8 @@ def train(
         optimizer: torch.optim.Optimizer,
         scheduler: torch.optim.lr_scheduler._LRScheduler | None = None,
         epochs: int = None,
-        lr_decay_targets: dict = None
+        lr_decay_targets: dict = None,
+        do_report: bool = False
           ) -> None:
     """
     Train the model on the dataset.
@@ -450,6 +453,8 @@ def train(
 
     printer.debug("\n".join(info_message))
     try:
+        if do_report:
+            df = pd.DataFrame(columns=["Epoch", "F1", "Precision", "Recall"])
         for t in range(epochs):
             printer.info(f"\nEpoch {t+1}\n-------------------------------")
             model.train_loop(train_dataloader, loss_fn, optimizer)
@@ -461,6 +466,21 @@ def train(
                     scheduler.step()
                 else:
                     raise ValueError("scheduler must be ReduceLROnPlateau or StepLR.")
+            if do_report:
+                print(type(df))
+                new_row = pd.DataFrame({
+                    "Epoch": [t+1],
+                    "F1": [f1_score],
+                    "Precision": [precision],
+                    "Recall": [recall]}
+                    )
+                df = pd.concat([df, new_row], ignore_index=True)
+                # Real-time plotting with Seaborn
+                plt.clf()  # Clear the current figure
+                sns.lineplot(x='Epoch', y='F1', data=df, label='F1 Score')
+                plt.legend()
+                plt.pause(0.01)  # Pause to update the plot
+
             if all([
                 f1_score > f1_target if monitor_f1 else True,
                 precision > precision_target if monitor_precision else True,
