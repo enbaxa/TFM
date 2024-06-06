@@ -840,7 +840,7 @@ class CategoricNeuralNetwork(nn.Module):
                 self._raise_value_error_for_multiple_input_categories()
             else:
                 single_element_batch = [data]
-                return self.evaluate(single_element_batch, mode=mode)
+                return self.evaluate([single_element_batch], mode=mode)
         elif isinstance(data, list):
             if all(isinstance(element, str) for element in data):
                 if len(self.input_categories) != 1:

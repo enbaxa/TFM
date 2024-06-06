@@ -40,10 +40,11 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import torch
+from torch.utils.data import DataLoader
 from dataset_define import CategoricDataset
 from learning_model import CategoricNeuralNetwork, StopTraining
-from torch.utils.data import DataLoader
-
+import matplotlib
+matplotlib.use('Agg')
 
 logger: logging.Logger = logging.getLogger("TFM")
 printer: logging.Logger = logging.getLogger("printer")
@@ -401,7 +402,7 @@ def train(
         scheduler: torch.optim.lr_scheduler._LRScheduler | None = None,
         epochs: int = None,
         lr_decay_targets: dict = None,
-        do_report: bool = False
+        do_report: bool = True
           ) -> None:
     """
     Train the model on the dataset.
@@ -467,7 +468,6 @@ def train(
                 else:
                     raise ValueError("scheduler must be ReduceLROnPlateau or StepLR.")
             if do_report:
-                print(type(df))
                 new_row = pd.DataFrame({
                     "Epoch": [t+1],
                     "F1": [f1_score],
@@ -476,10 +476,10 @@ def train(
                     )
                 df = pd.concat([df, new_row], ignore_index=True)
                 # Real-time plotting with Seaborn
-                plt.clf()  # Clear the current figure
-                sns.lineplot(x='Epoch', y='F1', data=df, label='F1 Score')
-                plt.legend()
-                plt.pause(0.01)  # Pause to update the plot
+                #plt.clf()  # Clear the current figure
+                #sns.lineplot(x='Epoch', y='F1', data=df, label='F1 Score')
+                #plt.legend()
+                #plt.pause(0.01)  # Pause to update the plot
 
             if all([
                 f1_score > f1_target if monitor_f1 else True,
@@ -489,10 +489,40 @@ def train(
                 raise StopTraining("Target reached.")
     except StopTraining as e:
         printer.info(e)
-
     except KeyboardInterrupt:
         logger.info("Training interrupted by user.")
+    if do_report:
+        write_report(df, "report.png")
 
+
+def write_report(df: pd.DataFrame, filename: str) -> None:
+    """
+    Write a report to a file.
+
+    Args:
+        df (pd.DataFrame): The DataFrame to be written.
+        filename (str): The name of the file to be written.
+
+    Returns:
+        None
+    """
+    Report = []
+    Report.append("Report on the training")
+    Report.append("-------------------------------")
+    Report.append(df.to_string())
+    Report.append(f"Ran for {df.shape[0]} epochs.")
+    Report.append("Final values:")
+    Report.append(f"F1: {df['F1'].iloc[-1]}")
+    Report.append(f"Precision: {df['Precision'].iloc[-1]}")
+    Report.append(f"Recall: {df['Recall'].iloc[-1]}")
+    printer.info("\n".join(Report))
+    # save a plot of the report
+    fig, ax = plt.subplots()
+    sns.lineplot(x='Epoch', y='F1', data=df, label='F1 Score', ax=ax)
+    sns.lineplot(x='Epoch', y='Recall', data=df, label='Recall', ax=ax)
+    sns.lineplot(x='Epoch', y='Precision', data=df, label='Precision', ax=ax)
+    # save the
+    fig.savefig(filename)
 
 def build_and_train_model(
         df: pd.DataFrame,
