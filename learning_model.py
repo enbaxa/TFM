@@ -6,6 +6,7 @@ import ast
 from typing import Union
 import torch
 from torch import nn
+from torch.nn import functional
 from nlp_embedding import NlpEmbedding
 
 
@@ -327,7 +328,7 @@ class CategoricNeuralNetwork(nn.Module):
                     # simple string. Just get the index from mapping
                     # and put it in a tensor
                     field_ids: torch.Tensor = torch.tensor(self.category_mappings[category][field_value])
-                    one_hot: torch.Tensor = nn.functional.one_hot(
+                    one_hot: torch.Tensor = functional.one_hot(
                         field_ids,
                         num_classes=len(self.category_mappings[category])
                         )
@@ -363,7 +364,7 @@ class CategoricNeuralNetwork(nn.Module):
             [self.category_mappings[category][value]
                 for value in ast.literal_eval(field_value)]
                 )
-        one_hot: torch.Tensor = nn.functional.one_hot(
+        one_hot: torch.Tensor = functional.one_hot(
             field_ids,
             num_classes=len(self.category_mappings[category])
             )
@@ -395,7 +396,7 @@ class CategoricNeuralNetwork(nn.Module):
         if self._use_output_embedding:
             assert isinstance(loss_fn, torch.nn.CosineEmbeddingLoss), "Output embeddings require CosineEmbeddingLoss."
             # normalize the logits to avoid exploding gradients
-            batch_logits: torch.Tensor = nn.functional.normalize(
+            batch_logits: torch.Tensor = functional.normalize(
                 batch_logits, p=2, dim=1
                 )
             # if the output embeddings are NLP embeddings
@@ -404,7 +405,7 @@ class CategoricNeuralNetwork(nn.Module):
                 batch=y
                 )
             # normalize the output embeddings to avoid exploding gradients
-            y_embeddings_normalized: torch.Tensor = nn.functional.normalize(
+            y_embeddings_normalized: torch.Tensor = functional.normalize(
                 y_embeddings, p=2, dim=1
                 )
             # in both cases, y_embeddings is a tensor of size (batch_size, embedding_size)
@@ -551,7 +552,7 @@ class CategoricNeuralNetwork(nn.Module):
                     # Has to be done for each batch element separately
                     for idx, logits in enumerate(batch_logits):
                         # Normalize the logits to focus on the cosine similarity
-                        logits: torch.Tensor = nn.functional.normalize(logits, p=2, dim=0)
+                        logits: torch.Tensor = functional.normalize(logits, p=2, dim=0)
                         # Calculate the cosine similarity between the logits and the category embeddings
                         cos_sim: torch.Tensor = self.cos(logits.unsqueeze(0), category_embedding_normalized)
                         # Calculate the probabilities of the model
@@ -741,7 +742,7 @@ class CategoricNeuralNetwork(nn.Module):
             # Normalize the logits to focus on the cosine similarity
             # because here logits have shape [1, n] where 1 is the batch size here
             # we need to normalize the logits along the 1st dimension (rows)
-            logits: torch.Tensor = nn.functional.normalize(logits, p=2, dim=1)
+            logits: torch.Tensor = functional.normalize(logits, p=2, dim=1)
             # Calculate the cosine similarity between the logits and the category embeddings
             cos_sim: torch.Tensor = self.cos(logits, category_embedding_normalized)
             # Calculate the probabilities of the model
@@ -750,7 +751,7 @@ class CategoricNeuralNetwork(nn.Module):
             # as the probabilities. This is not strictly correct
             # but it is a good approximation
             probabilities: torch.Tensor = cos_sim
-            # nn.functional.cosinesimilarity automatically squeezes the tensor
+            # functional.cosinesimilarity automatically squeezes the tensor
             # if it is a 1D tensor. We need to unsqueeze it to make it a 2D tensor
             # to be consistent with the code below.
             if probabilities.dim() == 1:
@@ -827,7 +828,7 @@ class CategoricNeuralNetwork(nn.Module):
                 [field for field in self.category_mappings[category]]
                 for category in self.output_categories.values()
                 ]
-            self._output_category_embeddings_nlp = nn.functional.normalize(
+            self._output_category_embeddings_nlp = functional.normalize(
                 self.process_batch_to_embedding(batch=all_outputs_texts),
                 p=2,
                 dim=1

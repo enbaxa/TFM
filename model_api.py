@@ -126,7 +126,7 @@ def get_dataloaders(
         dataset: CategoricDataset,
         train_size: float = 0.8,
         batch_size: int = None,
-        aggregate_outputs: bool = False
+        aggregate_outputs: bool = True
         ) -> tuple:
     """
     Get the dataloaders for the training and testing of the model.
@@ -160,7 +160,7 @@ def get_dataloaders(
         dataset=test_dataset,
         batch_size=batch_size,
         shuffle=True,
-        drop_last=True
+        drop_last=False
         )
     return train_dataloader, test_dataloader
 
@@ -209,7 +209,7 @@ def create_model(
 
     printer.debug(
         f"\nDetails on the model:"
-        f"\nDataset: {dataset}"
+        f"\nDataset: {dataset.data.columns}"
         f"\nuse_input_embedding = {use_input_embedding}"
         f"\nuse_output_embedding = {use_output_embedding}"
         f"\nmax_hidden_neurons = {max_hidden_neurons}"
