@@ -86,29 +86,8 @@ def main(dataset_name):
         out = f"Real: {expected_output}"
         outp.append(inp)
         outp.append(out)
+        outp.append("\n")
     printer.info("\n".join(outp))
-
-    # torch.save(model.state_dict(), "model.pth")
-    # logger.info("Model saved to model.pth.")
-    # Test the model
-    # model = CategoricNeuralNetwork(input_size=len(input_columns), output_size=dataset.number_output_categories)
-    # model.load_state_dict(torch.load("model.pth"))
-    # model.eval()
-    # model.to("cuda")
-    # print("Model loaded and ready for testing.")
-    # for _ in range(5):
-    #    test_model(dataset, model, i=randint(0, len(dataset.data)))
-
-#   CHECK WHY NUMBERS SO DIFFERENT WITH DIFFERENT MODELS EMBEDDINGS
-#   Entrenar amb tot el dataset
-#   Prova amb coses noves que no estan al dataset.
-#   Enfocar a proves de regressio
-#   Fiabilitat d'aplicacions
-#   Re-entrenar amb cada nova aplicacio
-#   no pot millorar a mes de 30% de f1
-#   podem considerar que 30% es un bon valor per estimar la prioritat de les proves
-#   i.e. top 30% de les proves son les mes importants (justificat per tenir mes d'un 90% de recall)
-
 
 if __name__ == '__main__':
     logger.addHandler(DetailedScreenHandler())

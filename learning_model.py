@@ -747,7 +747,7 @@ class CategoricNeuralNetwork(nn.Module):
             "monolabel", "multilabel", "priority"
             ], \
             "Mode must be either 'monolabel' or 'multilabel' or 'priority'."
-
+        print(inp)
         logits = self(inp)
         output_possibilites: dict[int, str] = {
             i: x for x, i in self.category_mappings[
@@ -839,7 +839,6 @@ class CategoricNeuralNetwork(nn.Module):
             if len(self.input_categories) != 1:
                 self._raise_value_error_for_multiple_input_categories()
             else:
-                data = [data]
                 single_element_batch = [data]
                 return self.evaluate(single_element_batch, mode=mode)
         elif isinstance(data, list):
@@ -853,9 +852,24 @@ class CategoricNeuralNetwork(nn.Module):
                 assert len(data) == len(self.input_categories), \
                                      "The number of input categories does not match the input data."
                 logger.debug(f"Make sure that the order of the input categories is correct: {self.input_order}")
-                batch = [zip(*data)]
-                for single_element_batch in batch:
-                    return self.evaluate(single_element_batch, mode=mode)
+                # make a list of lists of eacn n-th element of each list in data
+                batch_length = len(data[0])  # all lists should have the same length
+                assert all(len(element) == batch_length for element in data), \
+                    "The number of elements in each input category does not match."
+                # if the input data is correctly formatted
+                # we can evaluate it one by one
+                # and return the results
+                outputs = []
+                # if the batch length is 1 we can return the result directly
+                if batch_length == 1:
+                    return self.evaluate(data, mode=mode)
+                # if the batch length is greater than 1
+                # we have to evaluate each element separately
+                else:
+                    for idx in range(batch_length):
+                        single_element_batch = [[element[idx]] for element in data]
+                        outputs.append(self.execute(single_element_batch, mode=mode))
+                    return outputs
             else:
                 raise ValueError("The input data is not correctly formatted.")
             return self.evaluate(single_element_batch, mode=mode)
