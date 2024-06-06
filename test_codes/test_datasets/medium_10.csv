@@ -1,0 +1,237 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,4741958,get,(),double,testGet,CDFitnessTest
+1,4741958,validate,(HmmModel model),void,testValidatorLegal,HMMUtilsTest
+2,4741958,getRecommendableItemIDs,(long userID),FastIDSet,testUnRecommendableID,MemoryDiffStorageTest
+3,4741958,getNumberOfClusters,"(Path clusterOutputPath, Configuration conf)",int,testGetNumberOfClusters,ClusterCountReaderTest
+4,4741958,main,(String[] args),void,testMain,MahoutDriverTest
+5,4741958,parseMboxLineByLine,(File mboxFile),long,testStripQuoted,MailProcessorTest
+6,4741958,map,"(Text labelText, VectorWritable instance, Context ctx)",void,skip,IndexInstancesMapperTest
+7,4741958,getTopUserUserSimilarities,"(
+    int howMany, Iterator<GenericUserSimilarity.UserUserSimilarity> allSimilarities)",List<GenericUserSimilarity.UserUserSimilarity>,testTopUserUser,TopItemsTest
+8,4741958,viewPart,"(int offset, int length)",Vector,testViewPartUnder,AbstractTestVector
+9,4741958,classify,(Vector instance),Vector,testMSCanopyClassification,TestClusterClassifier
+10,4741958,viewPart,"(int[] offset, int[] size)",Matrix,testViewPartIndexOver,TestMatrixView
+11,4741958,mainToOutput,"(String[] args, PrintWriter output)",void,example13_2,TrainLogisticTest
+12,4741958,accept,(Path path),boolean,testAccept_finalPath,ClustersFilterTest
+13,4741958,remove,(long key),boolean,testRemove,FastIDSetTest
+14,4741958,getPreferencesForItem,(long itemID),PreferenceArray,testPreferencesForItem,FileDataModelTest
+15,4741958,reduce,"(Gram ngram, Iterable<Gram> values, Context context)",void,testReduce,LLRReducerTest
+16,4741958,extractAttributes,(Text value),List<String>,testExtractAttributes,ToolMapperTest
+17,4741958,solve,"(LanczosState state,
+                    int desiredRank)",void,testEigenvalueCheck,TestLanczosSolver
+18,4741958,createMiIi,"(Iterable<Vector> featureVectors, int numFeatures)",Matrix,createMiIi,AlternatingLeastSquaresSolverTest
+19,4741958,map,"(LongWritable key, Text value, Context context)",void,testMap,CDMapperTest
+20,4741958,iterator,(),Iterator<Vector>,testDate,ARFFVectorIterableTest
+21,4741958,murmurhash3_x86_32,"(byte[] data, int offset, int len, int seed)",int,testCorrectValues,MurmurHash3Test
+22,4741958,entropy,(),Matrix,testEntropy,AucTest
+23,4741958,viewPart,"(int offset, int length)",Vector,testViewPart,AbstractTestVector
+24,4741958,storePopulation,"(FileSystem fs, Path f, Iterable<?> population)",void,testStoreLoadPopulation,MahoutEvaluatorTest
+26,4741958,validate,(HmmModel model),void,testValidatorIllegelMatrixError,HMMUtilsTest
+27,4741958,getRandom,(),Random,testSetSeed,RandomUtilsTest
+28,4741958,getNumUsersWithPreferenceFor,(long itemID),int,testNumUsersPreferring,FileDataModelTest
+29,4741958,processOutput,"(JobContext job,
+                                      Path outputPath,
+                                      TreeID[] keys,
+                                      Node[] trees)",void,testProcessOutput,PartialBuilderTest
+30,4741958,run,(String[] args),int,testMaxSimilaritiesPerItem,ItemSimilarityJobTest
+31,4741958,refresh,(Collection<Refreshable> alreadyRefreshed),void,testFile,FileDataModelTest
+32,4741958,getTopItems,"(int howMany,
+                                                  LongPrimitiveIterator possibleItemIDs,
+                                                  IDRescorer rescorer,
+                                                  Estimator<Long> estimator)",List<RecommendedItem>,testTopItemsRandom,TopItemsTest
+33,4741958,set,(Vector vector),void,testRandomAccessSparseVectorWritable,VectorWritableTest
+34,4741958,getModels,(),List<Cluster>,testSeqFileClusterIteratorKMeans,TestClusterClassifier
+35,4741958,mate,"(CDRule parent1, CDRule parent2, int numberOfCrossoverPoints, Random rng)",List<CDRule>,testMate1,CDCrossoverTest
+36,4741958,reduce,"(VarLongWritable userID,
+                        Iterable<VarLongWritable> itemPrefs,
+                        Context context)",void,testToUsersReducerMinPreferencesUserPasses,ToUserVectorsReducerTest
+37,4741958,normalize,(),Vector,testNormalize,AbstractTestVector
+38,4741958,extractNominalValues,"(CharSequence description, Collection<String> target)",void,testExtractNominalValues,DescriptionUtilsTest
+39,4741958,run,(String[] args),int,adjacencyMatrix,AdjacencyMatrixJobTest
+40,4741958,update,"(double label, Vector dataPoint, LinearModel model)",void,testUpdate,PerceptronTrainerTest
+41,4741958,stepSize,"(int recordNumber, double multiplier)",int,stepSize,AdaptiveLogisticRegressionTest
+42,4741958,viewPart,"(int offset, int length)",Vector,testViewPartCardinality,TestVectorView
+43,4741958,classify,(Vector instance),Vector,testGaussianClusterClassification,TestClusterClassifier
+44,4741958,parseMboxLineByLine,(File mboxFile),long,testLabel,MailProcessorTest
+45,4741958,viewPart,"(int offset, int length)",Vector,testViewPartUnder,TestVectorView
+46,4741958,vectorToJson,"(Vector vector, String[] dictionary, int maxEntries, boolean sort)",String,testJsonFormatting,VectorHelperTest
+47,4741958,getQuick,(int index),double,testAssignVector,TestVectorView
+48,4741958,transpose,(),DistributedRowMatrix,testTranspose,TestDistributedRowMatrix
+49,4741958,like,(),VectorView,testLike,TestVectorView
+50,4741958,run,(String[] args),int,toyIntegrationWithThreshold,RowSimilarityJobTest
+51,4741958,set,(Matrix matrix),void,testDenseMatrixWritable,MatrixWritableTest
+52,4741958,values,(int attr),double[],testValues,DataTest
+53,4741958,escapeXML,(String input),String,testEscape,StringUtilsTest
+54,4741958,set,(Vector vector),void,testSequentialAccessSparseVectorWritable,VectorWritableTest
+55,4741958,setConf,(Configuration conf),void,testSolver,TestDistributedConjugateGradientSolver
+57,4741958,set,"(int index, double value)",void,testSet,AbstractTestVector
+58,4741958,assign,(double value),Vector,testAssignUnaryFunction,AbstractTestVector
+59,4741958,set,(CharSequence dlstr),void,testSet,DataLineTest
+60,4741958,createNumericalDescription,"(double min, double max)",String,testCreateNumericalDescription,DescriptionUtilsTest
+61,4741958,run,(String[] args),int,toyIntegrationMaxSimilaritiesPerRow,RowSimilarityJobTest
+62,4741958,iterator,(),Iterator<Element>,testIterator,TestVectorView
+63,4741958,set,(Matrix matrix),void,testSparseMatrixWritable,MatrixWritableTest
+64,4741958,minus,(Vector that),Vector,testMinus,AbstractTestVector
+65,4741958,calculateEntropy,(),void,testLetters,EntropyTest
+66,4741958,compareFrequencies,"(Multiset<T> a,
+                                                           Multiset<T> b,
+                                                           int maxReturn,
+                                                           double threshold)",List<ScoredItem<T>>,testFrequencyComparison,LogLikelihoodTest
+67,4741958,run,(String[] args),int,testRunInverted,TestVectorDistanceSimilarityJob
+68,4741958,viewPart,"(int offset, int length)",Vector,testViewPart,TestVectorView
+69,4741958,generateDataset,"(CharSequence descriptor,
+                                        boolean regression,
+                                        FileSystem fs,
+                                        Path path)",Dataset,testGenerateDataset,DataLoaderTest
+70,4741958,run,(String[] args),int,testCompleteJob,RecommenderJobTest
+71,4741958,run,(String[] args),int,completeJobImplicitToyExample,ParallelALSFactorizationJobTest
+72,4741958,viewPart,"(int offset, int length)",Vector,testViewPartOver,TestVectorView
+73,4741958,viewPart,"(int offset, int length)",Vector,testViewPartCardinality,AbstractTestVector
+74,4741958,createTermFrequencyVectors,"(Path input,
+                                                Path output,
+                                                String tfVectorsFolderName,
+                                                Configuration baseConf,
+                                                int minSupport,
+                                                int maxNGramSize,
+                                                float minLLRValue,
+                                                float normPower,
+                                                boolean logNormalize,
+                                                int numReducers,
+                                                int chunkSizeInMegabytes,
+                                                boolean sequentialAccess,
+                                                boolean namedVectors)",void,testCreateTermFrequencyVectors,DictionaryVectorizerTest
+75,4741958,getPartition,"(GramKey key, Gram value, int numPartitions)",int,testPartition,GramKeyPartitionerTest
+76,4741958,run,(String[] args),int,testCompleteJob,ItemSimilarityJobTest
+77,4741958,run,(String[] args),int,testConditionalEntropy,ConditionalEntropyTest
+78,4741958,clone,(),Vector,testCopy,TestVectorView
+79,4741958,viewPart,"(int offset, int length)",Vector,testViewPartOver,AbstractTestVector
+80,4741958,createRiIiMaybeTransposed,(Vector ratingVector),Matrix,createRiIiMaybeTransposedExceptionOnNonSequentialVector,AlternatingLeastSquaresSolverTest
+81,4741958,updateItemPref,"(long itemID, float prefDelta)",void,testUpdateWeighted,MemoryDiffStorageTest
+82,4741958,getNumUsers,(),int,testGetNumUsers,FileDataModelTest
+84,4741958,tokenizeDocuments,"(Path input,
+                                       Class<? extends Analyzer> analyzerClass,
+                                       Path output,
+                                       Configuration baseConf)",void,testTokenizeDocuments,DocumentProcessorTest
+85,4741958,toString,(),String,testToString,FileDataModelTest
+86,4741958,getItemIDs,(),LongPrimitiveIterator,testGetItems,FileDataModelTest
+87,4741958,getQuick,(int index),double,testAssignBinaryFunction2,TestVectorView
+88,4741958,getRecommendableItemIDs,(long userID),FastIDSet,testRecommendableIDsVariedWeighted,MemoryDiffStorageTest
+89,4741958,modelLikelihood,"(HmmModel model, int[] outputSequence,
+                                       boolean scaled)",double,testModelLikelihood,HMMEvaluatorTest
+90,4741958,extractNumericalRange,(CharSequence description),double[],testExtractNumericalRange,DescriptionUtilsTest
+91,4741958,gatherInfos,"(Descriptors descriptors, Path inpath, Path output, Collection<String> descriptions)",void,testGatherInfos,CDInfosToolTest
+92,4741958,run,(String[] args),int,symmetricAdjacencyMatrix,AdjacencyMatrixJobTest
+93,4741958,rootLogLikelihoodRatio,"(long k11, long k12, long k21, long k22)",double,testRootLogLikelihood,LogLikelihoodTest
+94,4741958,getModel,(),ARFFModel,testMultipleNoms,ARFFVectorIterableTest
+95,4741958,write,(DataOutput out),void,testWritable,DatasetTest
+96,4741958,viewPart,"(int[] offset, int[] size)",Matrix,testViewPartCardinality,TestMatrixView
+97,4741958,viewPart,"(int[] offset, int[] size)",Matrix,testViewPart,TestMatrixView
+98,4741958,contains,(long key),boolean,testContains,FastIDSetTest
+99,4741958,get,(int index),double,testGetUnder,AbstractTestVector
+100,4741958,clear,(),void,testClear,FastByIDMapTest
+101,4741958,splitFile,(Path inputFile),void,testSplitFile,SplitInputTest
+102,4741958,reduce,"(VarLongWritable userID,
+                        Iterable<VarLongWritable> itemPrefs,
+                        Context context)",void,testToUsersReducerMinPreferencesUserIgnored,ToUserVectorsReducerTest
+103,4741958,size,(),int,testSize,AbstractTestVector
+104,4741958,recommend,"(long userID, int howMany, IDRescorer rescorer)",List<RecommendedItem>,testBestRating,TreeClusteringRecommenderTest
+105,4741958,validate,(),void,testRandomModelGeneration,NaiveBayesModelTest
+106,4741958,remove,(long key),V,testRemove,FastByIDMapTest
+107,4741958,classify,(Vector instance),Vector,testSoftClusterClassification,TestClusterClassifier
+108,4741958,getDiff,"(long itemID1, long itemID2)",RunningAverage,testGetDiff,MemoryDiffStorageTest
+109,4741958,set,(int index),void,testBounds1,BitSetTest
+110,4741958,getDistanceSquared,(Vector v),double,testGetDistanceSquared,AbstractTestVector
+111,4741958,setState,(double lambda),void,consistency,ExponentialTest
+112,4741958,run,(String[] args),int,testRun,TestVectorDistanceSimilarityJob
+113,4741958,hasNext,(),boolean,testEmpty,SamplingLongPrimitiveIteratorTest
+114,4741958,reduce,"(GramKey key, Iterable<Gram> values, Context context)",void,testReduce,CollocReducerTest
+115,4741958,getQuick,(int index),double,testAssignBinaryFunction3,TestVectorView
+116,4741958,size,(),int,testLike,AbstractTestVector
+117,4741958,put,"(K key, V value)",V,testNull2,FastMapTest
+118,4741958,mate,"(CDRule parent1, CDRule parent2, int numberOfCrossoverPoints, Random rng)",List<CDRule>,testMate2,CDCrossoverTest
+119,4741958,size,(),int,testCardinality,AbstractTestVector
+120,4741958,get,(int index),double,testGet,AbstractTestVector
+121,4741958,set,(int index),void,testBounds2,BitSetTest
+122,4741958,set,(Vector vector),void,testNamedVectorWritable,VectorWritableTest
+123,4741958,accept,(Path path),boolean,testAccept_notFinal,ClustersFilterTest
+124,4741958,rootLogLikelihoodRatio,"(long k11, long k12, long k21, long k22)",double,testRootNegativeLLR,LogLikelihoodTest
+125,4741958,map,"(Text labelText, VectorWritable instance, Context ctx)",void,index,IndexInstancesMapperTest
+126,4741958,getQuick,(int index),double,testAssignDoubleArray,TestVectorView
+127,4741958,iterator,(),Iterator<Vector>,testIterable_someNoiseTermVectors,LuceneIterableTest
+128,4741958,train,"(int actual, Vector instance)",void,testTrain,AdaptiveLogisticRegressionTest
+129,4741958,evaluate,"(FitnessEvaluator<?> evaluator,
+                              Iterable<?> population,
+                              Collection<Double> evaluations,
+                              Path input,
+                              Path output)",void,testEvaluate,MahoutEvaluatorTest
+130,4741958,splitDirectory,(),void,testSplitDirectory,SplitInputTest
+131,4741958,save,"(Writable key,
+                          Vector vector,
+                          Path output,
+                          Configuration conf,
+                          boolean overwritePath,
+                          boolean deleteOnExit)",void,testSave,TestVectorCache
+132,4741958,getTopItemItemSimilarities,"(
+    int howMany, Iterator<GenericItemSimilarity.ItemItemSimilarity> allSimilarities)",List<GenericItemSimilarity.ItemItemSimilarity>,testTopItemItem,TopItemsTest
+133,4741958,run,(String[] args),int,toyIntegration,RowSimilarityJobTest
+134,4741958,createRiIiMaybeTransposed,(Vector ratingVector),Matrix,createRiIiMaybeTransposed,AlternatingLeastSquaresSolverTest
+135,4741958,mutate,"(CDRule rule, Random rng)",CDRule,testMutate,CDMutationTest
+136,4741958,recommend,"(long userID, int howMany, IDRescorer rescorer)",List<RecommendedItem>,testRescorer,TreeClusteringRecommenderTest
+137,4741958,set,(Vector vector),void,testDenseVectorWritable,VectorWritableTest
+138,4741958,zSum,(),double,testZSum,AbstractTestVector
+139,4741958,assign,(double value),Vector,testAssignDouble,AbstractTestVector
+140,4741958,generateDataset,"(CharSequence descriptor,
+                                        boolean regression,
+                                        FileSystem fs,
+                                        Path path)",Dataset,testGenerateDatasetFromFile,DataLoaderTest
+141,4741958,main,(String[] args),void,testSequenceFileFromDirectoryBasic,TestSequenceFilesFromDirectory
+142,4741958,main,(String[] args),void,testMain,SequenceFilesFromMailArchivesTest
+143,4741958,load,(Configuration conf),Vector,testLoad,TestVectorCache
+144,4741958,getMatrix,(),Matrix,testGetMatrix,ConfusionMatrixTest
+145,4741958,calculateEntropy,(),void,testYN,EntropyTest
+146,4741958,classify,(Vector instance),Vector,testDMClusterClassification,TestClusterClassifier
+147,4741958,stdDev,"(Path input, Path output,
+                              Configuration baseConf)",double,testStdDev2,BasicStatsTest
+148,4741958,rehash,(),void,testRehash,FastByIDMapTest
+149,4741958,createNominalDescription,(Collection<String> values),String,testCreateNominalDescription,DescriptionUtilsTest
+150,4741958,convert,(CharSequence string),Instance,testConvert,DataConverterTest
+151,4741958,mostSimilarUserIDs,"(long userID, int howMany)",long[],testMostSimilar,GenericUserBasedRecommenderTest
+152,4741958,getTopUserUserSimilarities,"(
+    int howMany, Iterator<GenericUserSimilarity.UserUserSimilarity> allSimilarities)",List<GenericUserSimilarity.UserUserSimilarity>,testTopUserUserAlt,TopItemsTest
+153,4741958,refresh,(Collection<Refreshable> alreadyRefreshed),void,testRefresh,FileDataModelTest
+154,4741958,run,(String[] args),int,completeJobToyExample,ParallelALSFactorizationJobTest
+155,4741958,getRecommendableItemIDs,(long userID),FastIDSet,testRecommendableIDsPockedUnweighted,MemoryDiffStorageTest
+156,4741958,getNumNondefaultElements,(),int,testSize,TestVectorView
+157,4741958,setState,"(double mean, double standardDeviation)",void,consistency,NormalTest
+158,4741958,getQuick,(int index),double,testAssignDouble,TestVectorView
+159,4741958,swap,"(int i, int j)",void,testSwap,PivotedMatrixTest
+160,4741958,update,"(double label, Vector dataPoint, LinearModel model)",void,testUpdate,WinnowTrainerTest
+161,4741958,getModels,(),List<Cluster>,testClusterIteratorKMeans,TestClusterClassifier
+162,4741958,classify,(Vector instance),Vector,testCanopyClassification,TestClusterClassifier
+163,4741958,evaluate,"(List<? extends Rule> rules,
+                              int target,
+                              Path inpath,
+                              Path output,
+                              Collection<CDFitness> evaluations,
+                              DatasetSplit split)",void,testEvaluate,CDMahoutEvaluatorTest
+164,4741958,validate,(HmmModel model),void,testValidatorDimensionError,HMMUtilsTest
+165,4741958,getModels,(),List<Cluster>,testClusterIteratorDirichlet,TestClusterClassifier
+166,4741958,getQuick,(int index),double,testCrossProduct,TestVectorView
+167,4741958,validate,(),void,testValidate,SplitInputTest
+168,4741958,extract,"(CharSequence line, Pattern pattern, Collection<Integer> groupsToKeep,
+                               String separator, RegexTransformer transformer)",String,testExtract,RegexUtilsTest
+169,4741958,getQuick,(int index),double,testAssignUnaryFunction,TestVectorView
+171,4741958,run,(String[] args),int,testCompleteJobBoolean,RecommenderJobTest
+172,4741958,recommend,"(long userID, int howMany, IDRescorer rescorer)",List<RecommendedItem>,testRescorer,GenericItemBasedRecommenderTest
+173,4741958,getQuick,(int index),double,testAssignBinaryFunction,TestVectorView
+174,4741958,dot,(Vector x),double,testDot,AbstractTestVector
+175,4741958,getTopItemItemSimilarities,"(
+    int howMany, Iterator<GenericItemSimilarity.ItemItemSimilarity> allSimilarities)",List<GenericItemSimilarity.ItemItemSimilarity>,testTopItemItemAlt,TopItemsTest
+176,4741958,run,(String[] args),int,testCompleteJobWithFiltering,RecommenderJobTest
+177,4741958,classify,(Vector instance),Vector,testClusterClassification,TestClusterClassifier
+179,4741958,startParallelFPGrowth,"(Parameters params, Configuration conf)",void,testStartParallelFPGrowth,PFPGrowthTest
+180,4741958,addLambdaTimesNuiTimesE,"(Matrix matrix, double lambda, int nui)",Matrix,addLambdaTimesNuiTimesE,AlternatingLeastSquaresSolverTest
+181,4741958,modelLikelihood,"(HmmModel model, int[] outputSequence,
+                                       boolean scaled)",double,testScaledModelLikelihood,HMMEvaluatorTest
+182,4741958,computeSplit,"(Data data, int attr)",Split,testComputeSplit,OptIgSplitTest
+183,4741958,viewPart,"(int[] offset, int[] size)",Matrix,testViewPartIndexUnder,TestMatrixView

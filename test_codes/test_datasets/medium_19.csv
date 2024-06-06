@@ -1,0 +1,185 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,2349183,hasAvailableDiskSpace,(),boolean,testCheckThatNameNodeResourceMonitorIsRunning,TestNameNodeResourceChecker
+1,2349183,copyBytes,"(InputStream in, OutputStream out, int buffSize, boolean close)",void,testCopyBytesShouldNotCloseStreamsWhenCloseIsFalse,TestIOUtils
+2,2349183,tag,"(MetricsInfo info, String value)",MetricsTag,testTag,TestInterns
+3,2349183,writeResponse,"(Configuration conf, Writer out, String format)",void,testWriteJson,TestConfServlet
+4,2349183,toJobID,(String jid),JobId,testToJobID,TestMRApps
+5,2349183,copyFromOffset,"(FSInputStream in, OutputStream out, long offset,
+      long count)",void,testWriteTo,TestStreamFile
+6,2349183,list,(File dir),String[],testListAPI,TestFileUtil
+7,2349183,fstat,(FileDescriptor fd),Stat,testFstat,TestNativeIO
+8,2349183,makeSource,(Object source),MetricsSource,testClasses,TestMetricsAnnotations
+9,2349183,makeSource,(Object source),MetricsSource,testBadMethodReturnType,TestMetricsAnnotations
+10,2349183,writeResponse,"(Configuration conf, Writer out, String format)",void,testWriteXml,TestConfServlet
+11,2349183,openForRead,"(File f, String expectedOwner, 
+      String expectedGroup)",FileInputStream,testReadUnrestricted,TestSecureIOUtils
+12,2349183,mark,(int readlimit),void,testMark,TestExactSizeInputStream
+13,2349183,openForRead,"(File f, String expectedOwner, 
+      String expectedGroup)",FileInputStream,testReadCorrectlyRestrictedWithSecurity,TestSecureIOUtils
+15,2349183,toTaskID,(String tid),TaskId,testTaskIDBadType,TestMRApps
+16,2349183,listFiles,(File dir),File[],testListFiles,TestFileUtil
+17,2349183,getUsernameFromConf,(Configuration conf),String,testConfiguration,TestStaticUserWebFilter
+18,2349183,getDelegationToken,"(final NamenodeProtocols nn,
+      HttpServletRequest request, Configuration conf,
+      final UserGroupInformation ugi)",String,testDelegationToken,TestNameNodeJspHelper
+19,2349183,getUGI,"(HttpServletRequest request,
+      Configuration conf)",UserGroupInformation,testGetUgi,TestJspHelper
+20,2349183,root,"(String name, EnumSet<EOpt> opts)",Generic<T>,testGeneric,TestHamletImpl
+21,2349183,newDataChecksum,"( int type, int bytesPerChecksum )",DataChecksum,testBulkOps,TestDataChecksum
+22,2349183,getClientName,(final String id),String,testClientName,TestLeaseRenewer
+23,2349183,getFileClient,"(String nnHostPort,
+      String queryString, List<File> localPaths,
+      NNStorage dstStorage, boolean getChecksum)",MD5Hash,testClientSideExceptionOnJustOneDir,TestTransferFsImage
+24,2349183,info,"(String name, String description)",MetricsInfo,testInfo,TestInterns
+25,2349183,forceSecureOpenForRead,"(File f, String expectedOwner,
+      String expectedGroup)",FileInputStream,testReadIncorrectlyRestrictedWithSecurity,TestSecureIOUtils
+26,2349183,hasAvailableDiskSpace,(),boolean,testCheckAvailabilityNeg,TestNameNodeResourceChecker
+27,2349183,makeSource,(Object source),MetricsSource,testBadFields,TestMetricsAnnotations
+28,2349183,toString,(JobId jid),String,testTaskIDtoString,TestMRApps
+29,2349183,stop,(),void,testDefaultRoutes,TestWebApp
+30,2349183,add,"(String bpid, ReplicaInfo replicaInfo)",ReplicaInfo,testAdd,TestReplicasMap
+31,2349183,addGroup,(String group),void,testNetgroups,TestAccessControlList
+32,2349183,locatedBlocks2Locations,(LocatedBlocks blocks),BlockLocation[],testLocatedBlocks2Locations,TestDFSUtil
+33,2349183,chooseVolume,"(List<FSVolume> volumes, long blockSize)",FSVolume,testRRPolicyExceptionMessage,TestRoundRobinVolumesPolicy
+34,2349183,getUri,(),URI,testURI,TestChRootedFileSystem
+35,2349183,stop,(),void,testCreate,TestWebApp
+36,2349183,update,"(MetricsRecord mr, boolean includingTags)",Record,testNullTag,TestMetricsCache
+37,2349183,getSecurityModeText,(),String,tesSecurityModeText,TestNameNodeJspHelper
+38,2349183,escapeString,(String str),String,testEscapeString,TestStringUtils
+39,2349183,read,(),int,testReadArrayNotEnough,TestExactSizeInputStream
+40,2349183,getLen,(),long,testFileStatusSerialziation,TestViewfsFileStatus
+41,2349183,makeSource,(Object source),MetricsSource,testBadHybrid,TestMetricsAnnotations
+42,2349183,login,"(final Configuration conf,
+      final String keytabFileKey, final String userNameKey)",void,testStartsWithIncorrectSettings,TestSecurityUtil
+43,2349183,close,(),void,testOverwriteFile,TestAtomicFileOutputStream
+44,2349183,computeMd5ForFile,(File dataFile),MD5Hash,testComputeMd5ForFile,TestMD5FileUtils
+45,2349183,doGet,"(HttpServletRequest request, HttpServletResponse response)",void,testDoGetShouldCloseTheDFSInputStreamIfResponseGetOutPutStreamThrowsAnyException,TestStreamFile
+46,2349183,get,(),boolean,testCompareUnequalWritables,TestBooleanWritable
+47,2349183,toJobID,(String jid),JobId,testJobIDShort,TestMRApps
+48,2349183,mkdir,"(final Path dir, final FsPermission permission,
+      final boolean createParent)",void,testRenameAcrossFs,TestChRootedFs
+49,2349183,getDelegationTokenUrlParam,(String tokenString),String,testDelegationTokenUrlParam,TestJspHelper
+50,2349183,delete,"(final Path f, final boolean recursive)",boolean,testCreateDelete,TestChRootedFs
+51,2349183,get,"(String name, Collection<MetricsTag> tags)",Record,testGet,TestMetricsCache
+52,2349183,start,"(Keys key, String value, StringBuilder b)",void,testRMAuditLoggerWithIP,TestRMAuditLogger
+53,2349183,toString,(JobId jid),String,testTaskAttemptIDtoString,TestMRApps
+54,2349183,copyBytes,"(InputStream in, OutputStream out, int buffSize, boolean close)",void,testCopyBytesWithCountShouldThrowOutTheStreamClosureExceptions,TestIOUtils
+55,2349183,register,"(String name, String desc, T source)",T,testRegisterDupError,TestMetricsSystemImpl
+56,2349183,unEscapeString,(String str),String,testUnescapeString,TestStringUtils
+57,2349183,close,(),void,testWriteNewFile,TestAtomicFileOutputStream
+58,2349183,fullyDeleteContents,(File dir),boolean,testFullyDeleteContents,TestFileUtil
+59,2349183,open,"(String path, int flags, int mode)",FileDescriptor,testOpenMissingWithoutCreate,TestNativeIO
+60,2349183,create,(String prefix),MetricsConfig,testCommon,TestMetricsConfig
+61,2349183,setScriptSrc,"(E e, String src)",E,testSetScriptSrc,TestHamletImpl
+62,2349183,makeSource,(Object source),MetricsSource,testFields,TestMetricsAnnotations
+63,2349183,getInstance,"(final String authority,
+      final UserGroupInformation ugi, final DFSClient dfsc)",LeaseRenewer,testInstanceSharing,TestLeaseRenewer
+64,2349183,toTaskAttemptID,(String taid),TaskAttemptId,testTaskAttemptIDShort,TestMRApps
+65,2349183,fstat,(FileDescriptor fd),Stat,testMultiThreadedFstat,TestNativeIO
+66,2349183,toString,(JobId jid),String,testJobIDtoString,TestMRApps
+67,2349183,quoteHtmlChars,"(OutputStream output, byte[] buffer,
+                                    int off, int len)",void,testQuoting,TestHtmlQuoting
+68,2349183,toString,(),String,testAclString,TestAccessControlList
+69,2349183,checkPidPgrpidForMatch,(),boolean,testDestroyProcessTree,TestProcfsBasedProcessTree
+70,2349183,fstat,(FileDescriptor fd),Stat,testFstatClosedFd,TestNativeIO
+71,2349183,makeSource,(Object source),MetricsSource,testEmptyMetrics,TestMetricsAnnotations
+72,2349183,delete,"(final Path f, final boolean recursive)",boolean,testCreateDelete,TestChRootedFileSystem
+73,2349183,createForWrite,"(File f, int permissions)",FileOutputStream,testCreateForWrite,TestSecureIOUtils
+74,2349183,getInfoServer,"(
+      InetSocketAddress namenode, Configuration conf, boolean httpsAddress)",String,testGetServerInfo,TestDFSUtil
+75,2349183,copyBytes,"(InputStream in, OutputStream out, int buffSize, boolean close)",void,testCopyBytesWithCountShouldCloseStreamsWhenCloseIsTrue,TestIOUtils
+76,2349183,clearCache,(),void,testCache,TestReflectionUtils
+77,2349183,unJar,"(File jarFile, File toDir)",void,testUnJar,TestRunJar
+79,2349183,open,"(String path, int flags, int mode)",FileDescriptor,testFDDoesntLeak,TestNativeIO
+80,2349183,clear,(),void,testClear,TestSinkQueue
+81,2349183,copyBytes,"(InputStream in, OutputStream out, int buffSize, boolean close)",void,testCopyBytesWithCountShouldNotCloseStreamsWhenCloseIsFalse,TestIOUtils
+82,2349183,get,"(String bpid, Block block)",ReplicaInfo,testGet,TestReplicasMap
+84,2349183,fullyDelete,(File dir),boolean,testFullyDelete,TestFileUtil
+85,2349183,mkdir,"(final Path dir, final FsPermission permission,
+      final boolean createParent)",void,testRename,TestChRootedFs
+86,2349183,getJobFile,"(Configuration conf, String user, 
+      org.apache.hadoop.mapreduce.JobID jobId)",String,testGetJobFileWithUser,TestMRApps
+87,2349183,join,"(CharSequence separator, Iterable<?> strings)",String,testJoin,TestStringUtils
+88,2349183,makeSource,(Object source),MetricsSource,testBadMethodWithArgs,TestMetricsAnnotations
+89,2349183,equals,(Object o),boolean,testEquals,TestUserGroupInformation
+90,2349183,close,(),void,testFailToFlush,TestAtomicFileOutputStream
+91,2349183,verifySavedMD5,"(File dataFile, MD5Hash expectedMD5)",void,testVerifyMD5FileMissing,TestMD5FileUtils
+92,2349183,getVolumesLowOnSpace,(),Collection<String>,testCheckingExtraVolumes,TestNameNodeResourceChecker
+93,2349183,createHardLinkMult,"(File parentDir, String[] fileBaseNames, 
+      File linkDir)",void,testCreateHardLinkMult,TestHardLink
+94,2349183,open,"(String path, int flags, int mode)",FileDescriptor,testOpenWithCreate,TestNativeIO
+95,2349183,loadFirst,"(String prefix, String... fileNames)",MetricsConfig,testLoadFirst,TestMetricsConfig
+96,2349183,supports,"(final Feature f, final int lv)",boolean,testRelease203,TestLayoutVersion
+97,2349183,getBytes,(),byte[],testCompare,TestBytesWritable
+98,2349183,fullyDeleteContents,(File dir),boolean,testFailFullyDeleteContents,TestFileUtil
+99,2349183,table,(),TABLE<TD<T>>,testTable,TestHamlet
+100,2349183,makeSource,(Object source),MetricsSource,testMethods,TestMetricsAnnotations
+101,2349183,isDefaultNamenodeAddress,"(Configuration conf,
+      InetSocketAddress address, String... keys)",boolean,testSingleNamenode,TestDFSUtil
+102,2349183,getLocalInetAddress,(String host),InetAddress,testGetLocalInetAddress,TestNetUtils
+103,2349183,fullyDelete,(File dir),boolean,testFailFullyDelete,TestFileUtil
+104,2349183,create,(String prefix),MetricsConfig,testMissingFiles,TestMetricsConfig
+105,2349183,update,"(MetricsRecord mr, boolean includingTags)",Record,testUpdate,TestMetricsCache
+106,2349183,getTrimmedStrings,(String str),String[],testGetTrimmedStrings,TestStringUtils
+107,2349183,update,"(byte[] b, int off, int len)",void,testCorrectness,TestPureJavaCrc32
+108,2349183,fromYarn,(JobId id),org.apache.hadoop.mapred.JobID,testFromYarn,TestTypeConverter
+109,2349183,getUsernameFromConf,(Configuration conf),String,testOldStyleConfiguration,TestStaticUserWebFilter
+110,2349183,supports,"(final Feature f, final int lv)",boolean,testRelease204,TestLayoutVersion
+111,2349183,toString,(),String,testWithStringAndConfForBuggyPath,TestPathData
+112,2349183,start,"(Keys key, String value, StringBuilder b)",void,testNMAuditLoggerWithIP,TestNMAuditLogger
+113,2349183,writeResponse,"(Configuration conf, Writer out, String format)",void,testBadFormat,TestConfServlet
+114,2349183,info,"(String name, String description)",MetricsInfo,testInfoOverflow,TestInterns
+115,2349183,getFileClient,"(String nnHostPort,
+      String queryString, List<File> localPaths,
+      NNStorage dstStorage, boolean getChecksum)",MD5Hash,testClientSideException,TestTransferFsImage
+116,2349183,consumeAll,(Consumer<T> consumer),void,testConsumeAll,TestSinkQueue
+117,2349183,checkJobCompleteSuccess,(JobImpl job),JobState,testCheckJobCompleteSuccess,TestJobImpl
+118,2349183,getHostFromPrincipal,(String principalName),String,testGetHostFromPrincipal,TestSecurityUtil
+119,2349183,toTaskID,(String tid),TaskId,testToTaskID,TestMRApps
+120,2349183,doGet,"(HttpServletRequest request, HttpServletResponse response)",void,testDoGetShouldWriteTheFileContentIntoServletOutputStream,TestStreamFile
+122,2349183,createHardLink,"(File file, File linkName)",void,testCreateHardLink,TestHardLink
+123,2349183,skip,(final long n),long,testSkipNotEnough,TestExactSizeInputStream
+124,2349183,getNNServiceRpcAddresses,"(
+      Configuration conf)",List<InetSocketAddress>,testDefaultNamenode,TestDFSUtil
+125,2349183,camelize,(String s),String,testCamelize,TestStringUtils
+126,2349183,getServerPrincipal,"(String principalConfig,
+      String hostname)",String,testGetServerPrincipal,TestSecurityUtil
+127,2349183,setLinkHref,"(E e, String href)",E,testSetLinkHref,TestHamletImpl
+128,2349183,toString,(),String,testToString,TestBytesWritable
+129,2349183,chmod,"(String path, int mode)",void,testChmod,TestNativeIO
+130,2349183,getVolumesLowOnSpace,(),Collection<String>,testChecking2NameDirsOnOneVolume,TestNameNodeResourceChecker
+131,2349183,setSelector,"(E e, String selector)",E,testSetSelector,TestHamletImpl
+132,2349183,copyBytes,"(InputStream in, OutputStream out, int buffSize, boolean close)",void,testCopyBytesShouldCloseStreamsWhenCloseIsTrue,TestIOUtils
+133,2349183,isAllAllowed,(),boolean,testWildCardAccessControlList,TestAccessControlList
+134,2349183,getMetrics,"(MetricsCollector collector, boolean all)",void,testPresence,TestJvmMetrics
+135,2349183,toTaskID,(String tid),TaskId,testTaskIDShort,TestMRApps
+136,2349183,rename,"(final Path src, final Path dst)",boolean,testRename,TestChRootedFileSystem
+137,2349183,isTGSPrincipal,(KerberosPrincipal principal),boolean,isOriginalTGTReturnsCorrectValues,TestSecurityUtil
+138,2349183,sendPartialData,"(FSInputStream in,
+                              OutputStream out,
+                              HttpServletResponse response,
+                              long contentLength,
+                              List<InclusiveByteRange> ranges)",void,testSendPartialData,TestStreamFile
+139,2349183,split,(String str),String[],testSimpleSplit,TestStringUtils
+140,2349183,getRealm,(),String,testRules,TestKerberosName
+141,2349183,tag,"(MetricsInfo info, String value)",MetricsTag,testTagOverflow,TestInterns
+142,2349183,remove,"(String bpid, Block block)",ReplicaInfo,testRemove,TestReplicasMap
+145,2349183,hasAvailableDiskSpace,(),boolean,testCheckAvailability,TestNameNodeResourceChecker
+146,2349183,copyBytes,"(InputStream in, OutputStream out, int buffSize, boolean close)",void,testCopyBytesShouldCloseInputSteamWhenOutputStreamCloseThrowsException,TestIOUtils
+147,2349183,prependOptions,"(T[] oldOpts, T... newOpts)",T[],testAppend,TestOptions
+148,2349183,chooseVolume,"(List<FSVolume> volumes, long blockSize)",FSVolume,testRR,TestRoundRobinVolumesPolicy
+149,2349183,verifyHostnames,(String[] names),void,testVerifyHostnamesNoException,TestNetUtils
+150,2349183,toTaskAttemptID,(String taid),TaskAttemptId,testToTaskAttemptID,TestMRApps
+151,2349183,copyMerge,"(FileSystem srcFS, Path srcDir, 
+                                  FileSystem dstFS, Path dstFile, 
+                                  boolean deleteSource,
+                                  Configuration conf, String addString)",boolean,testCopyMergeSingleDirectory,TestFileUtil
+152,2349183,getOption,"(Class<T> cls, base [] opts
+                                                   )",T,testFind,TestOptions
+153,2349183,makeSource,(Object source),MetricsSource,testHybrid,TestMetricsAnnotations
+154,2349183,needsQuoting,"(byte[] data, int off, int len)",boolean,testNeedsQuoting,TestHtmlQuoting
+155,2349183,verifyHostnames,(String[] names),void,testVerifyHostnamesException,TestNetUtils
+156,2349183,getLinkCount,(File fileName),int,testGetLinkCount,TestHardLink
+157,2349183,fromYarn,(JobId id),org.apache.hadoop.mapred.JobID,testFromYarnApplicationReport,TestTypeConverter
+158,2349183,split,(String str),String[],testSplit,TestStringUtils
+159,2349183,isUserAllowed,(UserGroupInformation ugi),boolean,testIsUserAllowed,TestAccessControlList

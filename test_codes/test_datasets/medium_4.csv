@@ -1,0 +1,193 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,60578004,shardingIfNecessary,(),void,assertShardingNecessaryWhenMonitorExecutionEnabled,ShardingServiceTest
+1,60578004,isCompleted,(final int item),boolean,assertIsCompleted,ExecutionServiceTest
+2,60578004,getJobShardingStrategyClass,(),String,assertGetJobShardingStrategyClass,ConfigurationServiceTest
+3,60578004,getServerNodePath,(),String,assertGetServerNodePathForServerIp,JobNodePathTest
+4,60578004,getHostNameNode,(final String ip),String,assertGetHostNameNode,ServerNodeTest
+5,60578004,remove,"(final Optional<String> jobName, final Optional<String> serverIp)",Collection<String>,assertRemoveWithJobNameAndServerIpWhenIsLastInstance,JobOperateAPIImplTest
+6,60578004,sharding,"(final List<String> serversList, final JobShardingStrategyOption option)","Map<String, List<Integer>>",assertSharding3,RotateServerByNameJobShardingStrategyTest
+7,60578004,toItemList,(final String itemsString),List<Integer>,assertToItemList,ItemUtilsTest
+8,60578004,removeServerStatus,(),void,assertRemoveServerStatus,ServerServiceTest
+9,60578004,sharding,"(final List<String> serversList, final JobShardingStrategyOption option)","Map<String, List<Integer>>",assertSharding1,RotateServerByNameJobShardingStrategyTest
+10,60578004,cleanPreviousExecutionInfo,(),void,assertCleanPreviousExecutionInfoWhenIsNotLeader,ExecutionServiceTest
+11,60578004,hasRunningItems,(final List<Integer> items),boolean,assertNotHaveRunningItemsWhenJNotMonitorExecutionForAll,ExecutionServiceTest
+12,60578004,sharding,"(final List<String> serversList, final JobShardingStrategyOption option)","Map<String, List<Integer>>",assertShardingByAsc,OdevitySortByNameJobShardingStrategyTest
+13,60578004,isLocalhostServerReady,(),boolean,assertIsLocalhostServerReadyWhenServerShutdown,ServerServiceTest
+14,60578004,start,(),void,assertStart,JobOperationListenerManagerTest
+15,60578004,getMonitorPort,(),int,assertGetMonitorPort,ConfigurationServiceTest
+16,60578004,isLocalhostServerReady,(),boolean,assertIsLocalhostServerReadyWhenServerCrashed,ServerServiceTest
+17,60578004,getProcessSuccessCountNode,(final String ip),String,assertProcessSuccessCountNode,ServerNodeTest
+18,60578004,isMonitorExecution,(),boolean,assertIsMonitorExecution,ConfigurationServiceTest
+19,60578004,getAllServersBriefInfo,(),Collection<ServerBriefInfo>,assertGetAllServersBriefInfo,ServerStatisticsAPIImplTest
+20,60578004,processServerShutdown,(),void,assertProcessServerShutdown,ServerServiceTest
+21,60578004,getStrategy,(final String jobShardingStrategyClassName),JobShardingStrategy,assertGetDefaultStrategy,JobShardingStrategyFactoryTest
+22,60578004,getShardingItemParameters,(),"Map<Integer, String>",assertGetShardingItemParametersWhenItemIsNotNumber,ConfigurationServiceTest
+23,60578004,misfireIfNecessary,(final List<Integer> items),boolean,assertMisfireIfNotNecessary,ExecutionServiceTest
+24,60578004,getJobName,(),String,assertGetJobName,ConfigurationServiceTest
+25,60578004,getShardingContext,(),JobExecutionMultipleShardingContext,testGetShardingContextWhenIsFailoverEnableAndFailover,JobFacadeTest
+26,60578004,getCron,(),String,assertGetCron,ConfigurationServiceTest
+27,60578004,isLeader,(),Boolean,assertIsNotLeader,LeaderElectionServiceTest
+28,60578004,hasRunningItems,(final List<Integer> items),boolean,assertNotHaveRunningItemsWhenJNotMonitorExecution,ExecutionServiceTest
+29,60578004,getJobName,(),String,testGetJobName,JobFacadeTest
+30,60578004,filterSensitiveIps,(final List<String> result),List<String>,assertFilterContentWithoutIp,SensitiveInfoUtilsTest
+31,60578004,clearMisfire,(final List<Integer> shardingItems),void,testClearMisfire,JobFacadeTest
+32,60578004,failoverIfNecessary,(),void,testFailoverIfNecessary,JobFacadeTest
+33,60578004,getExecutionInfo,(final String jobName),Collection<ExecutionInfo>,assertGetExecutionInfoWithMonitorExecution,JobStatisticsAPIImplTest
+34,60578004,cleanPreviousExecutionInfo,(),void,assertCleanPreviousExecutionInfoWhenNeedFixExecutionInfoForNewValuesLess,ExecutionServiceTest
+35,60578004,getStrategy,(final String jobShardingStrategyClassName),JobShardingStrategy,assertGetStrategyFailureWhenNotStrategyClass,JobShardingStrategyFactoryTest
+36,60578004,isShardingTotalCountPath,(final String path),boolean,assertIsShardingTotalCountPath,ConfigurationNodeTest
+37,60578004,isNeedSharding,(),boolean,testIsNeedSharding,JobFacadeTest
+38,60578004,hasRunningItems,(final List<Integer> items),boolean,assertNotHaveRunningItemsForAll,ExecutionServiceTest
+39,60578004,registerJobBegin,(final JobExecutionMultipleShardingContext jobExecutionShardingContext),void,assertRegisterJobBeginWhenNotMonitorExecution,ExecutionServiceTest
+40,60578004,getServerNodePath,(),String,assertGetServerNodePath,JobNodePathTest
+41,60578004,disable,"(final Optional<String> jobName, final Optional<String> serverIp)",void,assertDisableWithJobName,JobOperateAPIImplTest
+42,60578004,createJobExecutionSingleShardingContext,(final int item),JobExecutionSingleShardingContext,assertCreateJobExecutionSingleShardingContext,JobExecutionMultipleShardingContextTest
+43,60578004,toString,(),String,assertToString,JobExecutionMultipleShardingContextTest
+44,60578004,isServerShutdownPath,(final String path),boolean,assertIsServerShutdownPath,ServerNodeTest
+45,60578004,createJobNodeIfNeeded,(final String node),void,assertCreateJobNodeIfNeeded,JobNodeStorageTest
+46,60578004,getJobExecutionShardingContext,(final List<Integer> shardingItems),JobExecutionMultipleShardingContext,assertGetJobExecutionShardingContextWhenHasRunningItems,ExecutionContextServiceTest
+47,60578004,registerJobBegin,(final JobExecutionMultipleShardingContext jobExecutionShardingContext),void,assertRegisterJobBeginWithNextFireTime,ExecutionServiceTest
+48,60578004,setMisfire,(final List<Integer> items),void,assertSetMisfire,ExecutionServiceTest
+49,60578004,sharding,"(final List<String> serversList, final JobShardingStrategyOption option)","Map<String, List<Integer>>",assertShardingByDesc,OdevitySortByNameJobShardingStrategyTest
+50,60578004,createCoordinatorRegistryCenter,"(final String connectString, final String namespace, final Optional<String> digest)",CoordinatorRegistryCenter,assertCreateCoordinatorRegistryCenterWithoutDigest,RegistryCenterFactoryTest
+51,60578004,registerJobBegin,(final JobExecutionMultipleShardingContext jobExecutionShardingContext),void,assertRegisterJobBeginWhenNotAssignAnyItem,ExecutionServiceTest
+52,60578004,getResolvePlaceholderText,(final String text),String,assertExistedPlaceHolder,PlaceholderResolvedTest
+53,60578004,getAllServers,(),List<String>,assertGetAllServers,ServerServiceTest
+54,60578004,getJobs,(final String serverIp),Collection<ServerInfo>,assertGetJobs,ServerStatisticsAPIImplTest
+55,60578004,filterSensitiveIps,(final List<String> result),List<String>,assertFilterContentWithSensitiveIp,SensitiveInfoUtilsTest
+56,60578004,updateJobSettings,(final JobSettings jobSettings),void,assertUpdateJobSettings,JobSettingsAPIImplTest
+57,60578004,shutdown,"(final Optional<String> jobName, final Optional<String> serverIp)",void,assertShutdownWithJobName,JobOperateAPIImplTest
+58,60578004,isAllCompleted,(),boolean,testIsNotAllCompleted,GuaranteeServiceTest
+59,60578004,checkMaxTimeDiffSecondsTolerable,(),void,assertIsMaxTimeDiffSecondsTolerableWithDefaultValue,ConfigurationServiceTest
+60,60578004,toItemList,(final String itemsString),List<Integer>,assertTtoItemListWhenNull,ItemUtilsTest
+61,60578004,sharding,"(final List<String> serversList, final JobShardingStrategyOption option)","Map<String, List<Integer>>",shardingForServersLessThanShardingCountAliquot,AverageAllocationJobShardingStrategyTest
+62,60578004,getJobSettings,(final String jobName),JobSettings,assertGetJobSettingsWithMonitorPort,JobSettingsAPIImplTest
+63,60578004,isLocalJobShutdownPath,(final String path),boolean,assertIsLocalJobShutdownPath,ServerNodeTest
+64,60578004,checkMaxTimeDiffSecondsTolerable,(),void,testCheckMaxTimeDiffSecondsTolerable,JobFacadeTest
+65,60578004,getShardingItemParameters,(),"Map<Integer, String>",assertGetShardingItemParametersWhenIsEmpty,ConfigurationServiceTest
+66,60578004,getJobExecutionShardingContext,(final List<Integer> shardingItems),JobExecutionMultipleShardingContext,assertGetJobExecutionShardingContextWhenAssignShardingItems,ExecutionContextServiceTest
+67,60578004,setNeedFixExecutionInfoFlag,(),void,assertSetNeedFixExecutionInfoFlag,ExecutionServiceTest
+68,60578004,getProcessCountIntervalSeconds,(),int,assertGetProcessCountIntervalSeconds,ConfigurationServiceTest
+69,60578004,getShardingItemParameters,(),"Map<Integer, String>",assertGetShardingItemParameters,ConfigurationServiceTest
+70,60578004,pause,"(final Optional<String> jobName, final Optional<String> serverIp)",void,assertPauseWithJobName,JobOperateAPIImplTest
+71,60578004,isLocalServerDisabledPath,(final String path),boolean,assertIsLocalServerDisabledPath,ServerNodeTest
+72,60578004,sharding,"(final List<String> serversList, final JobShardingStrategyOption option)","Map<String, List<Integer>>",shardingForOneServer,AverageAllocationJobShardingStrategyTest
+73,60578004,isServerDisabledPath,(final String path),boolean,assertIsServerDisabledPath,ServerNodeTest
+74,60578004,remove,"(final Optional<String> jobName, final Optional<String> serverIp)",Collection<String>,assertRemoveWithJobNameAndServerIpWhenIsNotLastInstance,JobOperateAPIImplTest
+75,60578004,isLocalJobPausedPath,(final String path),boolean,assertIsLocalJobPausedPath,ServerNodeTest
+76,60578004,createJobNodeIfNeeded,(final String node),void,assertCreateJobNodeIfRootJobNodeIsNotExist,JobNodeStorageTest
+77,60578004,isFailover,(),boolean,assertIsNotFailoverWhenNotMonitorExecution,ConfigurationServiceTest
+78,60578004,registerJobCompleted,"(final JobExecutionMultipleShardingContext shardingContext, boolean completeFlag)",void,testRegisterJobCompletedWhenFailoverEnabled,JobFacadeTest
+79,60578004,clearJobPausedStatus,(),void,assertClearJobPausedStatus,ServerServiceTest
+80,60578004,getServerNodePath,(),String,assertGetServerNodePathForServerIpAndNameNode,JobNodePathTest
+81,60578004,removeExecutionInfo,(),void,assertRemoveExecutionInfo,ExecutionServiceTest
+82,60578004,hasRunningItems,(final List<Integer> items),boolean,assertHasRunningItemsForAll,ExecutionServiceTest
+83,60578004,getStrategy,(final String jobShardingStrategyClassName),JobShardingStrategy,assertGetStrategySuccess,JobShardingStrategyFactoryTest
+84,60578004,getAllJobsBriefInfo,(),Collection<JobBriefInfo>,assertGetAllJobsBriefInfo,JobStatisticsAPIImplTest
+85,60578004,isFailover,(),boolean,assertIsNotFailoverWhenMonitorExecution,ConfigurationServiceTest
+86,60578004,updateOffset,"(final int item, final String offset)",void,testUpdateOffset,JobFacadeTest
+87,60578004,hasRunningItems,(final List<Integer> items),boolean,assertHasRunningItems,ExecutionServiceTest
+88,60578004,getAvailableServers,(),List<String>,assertGetAvailableServers,ServerServiceTest
+89,60578004,isLeader,(),Boolean,assertIsLeader,LeaderElectionServiceTest
+90,60578004,startAllListeners,(),void,assertStartAllListeners,ListenerManagerTest
+91,60578004,pause,"(final Optional<String> jobName, final Optional<String> serverIp)",void,assertPauseWithJobNameAndServerIp,JobOperateAPIImplTest
+92,60578004,remove,"(final Optional<String> jobName, final Optional<String> serverIp)",Collection<String>,assertRemoveWithServerIp,JobOperateAPIImplTest
+93,60578004,pause,"(final Optional<String> jobName, final Optional<String> serverIp)",void,assertPauseWithServerIp,JobOperateAPIImplTest
+94,60578004,getConcurrentDataProcessThreadCount,(),int,assertGetConcurrentDataProcessThreadCount,ConfigurationServiceTest
+95,60578004,isLocalhostServerReady,(),boolean,assertIsLocalhostServerReadyWhenServerPaused,ServerServiceTest
+96,60578004,cleanPreviousExecutionInfo,(),void,assertCleanPreviousExecutionInfoWhenNeedFixExecutionInfoForNewValuesEqual,ExecutionServiceTest
+97,60578004,init,(),void,assertInitIfIsNotMisfire,JobSchedulerTest
+98,60578004,cleanPreviousExecutionInfo,(),void,testCleanPreviousExecutionInfo,JobFacadeTest
+99,60578004,hasRunningItems,(final List<Integer> items),boolean,assertNotHaveRunningItems,ExecutionServiceTest
+100,60578004,createJobNodeIfNeeded,(final String node),void,assertCreateJobNodeIfNotNeeded,JobNodeStorageTest
+101,60578004,sharding,"(final List<String> serversList, final JobShardingStrategyOption option)","Map<String, List<Integer>>",shardingForServersLessThanShardingCountAliquantFor10ShardingCountAnd3Servers,AverageAllocationJobShardingStrategyTest
+102,60578004,shutdown,"(final Optional<String> jobName, final Optional<String> serverIp)",void,assertShutdownWithJobNameAndServerIp,JobOperateAPIImplTest
+103,60578004,getOffsets,(final List<Integer> items),"Map<Integer, String>",assertGetOffsets,OffsetServiceTest
+104,60578004,createCoordinatorRegistryCenter,"(final String connectString, final String namespace, final Optional<String> digest)",CoordinatorRegistryCenter,assertCreateCoordinatorRegistryCenterWithDigest,RegistryCenterFactoryTest
+105,60578004,shardingIfNecessary,(),void,assertShardingNecessaryWhenMonitorExecutionDisabled,ShardingServiceTest
+106,60578004,clearPreviousServerStatus,(),void,assertClearPreviousServerStatus,ServerServiceTest
+107,60578004,misfireIfNecessary,(final List<Integer> items),boolean,assertMisfireIfNecessary,ExecutionServiceTest
+108,60578004,setMisfire,(final List<Integer> items),void,assertSetMisfireWhenMonitorExecutionDisabled,ExecutionServiceTest
+109,60578004,getFullPath,(final String node),String,assertGetFullPath,JobNodePathTest
+110,60578004,persistServerOnline,(),void,assertPersistServerOnlineWhenOverwriteDisabled,ServerServiceTest
+111,60578004,misfireIfNecessary,(final List<Integer> shardingItems),boolean,testMisfireIfNecessary,JobFacadeTest
+112,60578004,isFailover,(),boolean,assertIsFailover,ConfigurationServiceTest
+113,60578004,sharding,"(final List<String> serversList, final JobShardingStrategyOption option)","Map<String, List<Integer>>",assertSharding2,RotateServerByNameJobShardingStrategyTest
+114,60578004,sharding,"(final List<String> serversList, final JobShardingStrategyOption option)","Map<String, List<Integer>>",shardingForServersMoreThanShardingCount,AverageAllocationJobShardingStrategyTest
+115,60578004,isMonitorExecutionPath,(final String path),boolean,assertIsNotMonitorExecutionPath,ConfigurationNodeTest
+116,60578004,isFailoverPath,(final String path),boolean,assertIsNotFailoverPath,ConfigurationNodeTest
+117,60578004,disable,"(final Optional<String> jobName, final Optional<String> serverIp)",void,assertDisableWithJobNameAndServerIp,JobOperateAPIImplTest
+118,60578004,getShardingTotalCount,(),int,assertGetShardingTotalCountWhenNodeIsNotExisted,ConfigurationServiceTest
+119,60578004,getLocalHostFailoverItems,(),List<Integer>,assertGetLocalHostFailoverItems,FailoverServiceTest
+120,60578004,getStrategy,(final String jobShardingStrategyClassName),JobShardingStrategy,assertGetStrategyFailureWhenStrategyClassInvalid,JobShardingStrategyFactoryTest
+121,60578004,getResolvePlaceholderText,(final String text),String,assertNotExistedPlaceHolder,PlaceholderResolvedTest
+122,60578004,clearRunningInfo,(final List<Integer> items),void,assertClearRunningInfo,ExecutionServiceTest
+123,60578004,isAllCompleted,(),boolean,testIsAllCompleted,GuaranteeServiceTest
+124,60578004,isMonitorExecutionPath,(final String path),boolean,assertIsMonitorExecutionPath,ConfigurationNodeTest
+125,60578004,isAllCompleted,(),boolean,testIsNotAllCompletedWhenRootNodeIsNotExisted,GuaranteeServiceTest
+126,60578004,updateServerStatus,(final ServerStatus status),void,assertUpdateServerStatus,ServerServiceTest
+127,60578004,getJobParameter,(),String,assertGetJobParameter,ConfigurationServiceTest
+128,60578004,getProcessFailureCountNode,(final String ip),String,assertProcessFailureCountNode,ServerNodeTest
+129,60578004,isLocalhostServerReady,(),boolean,assertIsLocalhostServerReadyWhenServerReady,ServerServiceTest
+130,60578004,toItemList,(final String itemsString),List<Integer>,assertToItemListForDuplicated,ItemUtilsTest
+131,60578004,createCoordinatorRegistryCenter,"(final String connectString, final String namespace, final Optional<String> digest)",CoordinatorRegistryCenter,assertCreateCoordinatorRegistryCenterFromCache,RegistryCenterFactoryTest
+132,60578004,remove,"(final Optional<String> jobName, final Optional<String> serverIp)",Collection<String>,assertRemoveWithJobName,JobOperateAPIImplTest
+133,60578004,clearMisfire,(final List<Integer> items),void,assertClearMisfire,ExecutionServiceTest
+134,60578004,beforeJobExecuted,(final JobExecutionMultipleShardingContext shardingContext),void,testBeforeJobExecuted,JobFacadeTest
+135,60578004,sharding,"(final List<String> serversList, final JobShardingStrategyOption option)","Map<String, List<Integer>>",shardingForServersLessThanShardingCountAliquantFor8ShardingCountAnd3Servers,AverageAllocationJobShardingStrategyTest
+136,60578004,persistServerOnline,(),void,assertPersistServerOnlineForDisabledServerWithLeaderElecting,ServerServiceTest
+137,60578004,getShardingContext,(),JobExecutionMultipleShardingContext,testGetShardingContextWhenIsFailoverDisable,JobFacadeTest
+138,60578004,persistProcessSuccessCount,(final int processSuccessCount),void,assertPersistProcessSuccessCount,ServerServiceTest
+139,60578004,failoverIfNecessary,(),void,testFailoverIfNecessaryButIsPaused,JobFacadeTest
+140,60578004,failoverIfNecessary,(),void,testFailoverIfUnnecessary,JobFacadeTest
+141,60578004,getFetchDataCount,(),int,assertGetFetchDataCount,ConfigurationServiceTest
+142,60578004,getStatusNode,(final String ip),String,assertGetStatusNode,ServerNodeTest
+143,60578004,remove,"(final Optional<String> jobName, final Optional<String> serverIp)",Collection<String>,assertRemoveWithJobNameAndServerIpWhenJobStillAlive,JobOperateAPIImplTest
+144,60578004,disable,"(final Optional<String> jobName, final Optional<String> serverIp)",void,assertDisableWithServerIp,JobOperateAPIImplTest
+145,60578004,createJobSettingsAPI,"(final String connectString, final String namespace, final Optional<String> digest)",JobSettingsAPI,assertCreateJobSettingsAPI,JobAPIFactoryTest
+146,60578004,registerJobCompleted,"(final JobExecutionMultipleShardingContext jobExecutionShardingContext, boolean completeFlag)",void,assertRegisterJobCompletedWhenNotMonitorExecution,ExecutionServiceTest
+147,60578004,isLocalhostServerReady,(),boolean,assertIsLocalhostServerReadyWhenServerDisabled,ServerServiceTest
+148,60578004,registerJobBegin,(final JobExecutionMultipleShardingContext jobExecutionShardingContext),void,assertRegisterJobBeginWithoutNextFireTime,ExecutionServiceTest
+149,60578004,createJobStatisticsAPI,"(final String connectString, final String namespace, final Optional<String> digest)",JobStatisticsAPI,assertCreateJobStatisticsAPI,JobAPIFactoryTest
+150,60578004,getJobSettings,(final String jobName),JobSettings,assertGetJobSettingsWithoutMonitorPort,JobSettingsAPIImplTest
+151,60578004,getDisabledNode,(final String ip),String,assertGetDisabledNode,ServerNodeTest
+152,60578004,filterSensitiveIps,(final List<String> result),List<String>,assertFilterContentWithSensitiveIp2,SensitiveInfoUtilsTest
+153,60578004,isJobPausedManually,(),boolean,assertIsJobPausedManually,ServerServiceTest
+154,60578004,getShardingContext,(),JobExecutionMultipleShardingContext,testGetShardingContextWhenIsFailoverEnableAndNotFailover,JobFacadeTest
+155,60578004,persistProcessFailureCount,(final int processFailureCount),void,assertPersistProcessFailureCount,ServerServiceTest
+156,60578004,registerJobCompleted,"(final JobExecutionMultipleShardingContext jobExecutionShardingContext, boolean completeFlag)",void,assertRegisterJobCompleted,ExecutionServiceTest
+157,60578004,createJobOperateAPI,"(final String connectString, final String namespace, final Optional<String> digest)",JobOperateAPI,assertCreateJobOperateAPI,JobAPIFactoryTest
+158,60578004,afterJobExecuted,(final JobExecutionMultipleShardingContext shardingContext),void,testAfterJobExecuted,JobFacadeTest
+159,60578004,isLocalhostServerReady,(),boolean,assertIsLocalhostServerReadyWhenServerRunning,ServerServiceTest
+160,60578004,registerJobCompleted,"(final JobExecutionMultipleShardingContext shardingContext, boolean completeFlag)",void,testRegisterJobCompletedWhenFailoverDisabled,JobFacadeTest
+161,60578004,isCronPath,(final String path),boolean,assertIsCronPath,ConfigurationNodeTest
+162,60578004,getShardingItemParameters,(),"Map<Integer, String>",assertGetShardingItemParametersWhenPairFormatInvalid,ConfigurationServiceTest
+163,60578004,run,(),void,assertRun,ProcessCountJobTest
+164,60578004,createServerStatisticsAPI,"(final String connectString, final String namespace, final Optional<String> digest)",ServerStatisticsAPI,assertCreateServerStatisticsAPI,JobAPIFactoryTest
+165,60578004,getExecutionInfo,(final String jobName),Collection<ExecutionInfo>,assertGetExecutionInfoWithoutMonitorExecution,JobStatisticsAPIImplTest
+166,60578004,checkMaxTimeDiffSecondsTolerable,(),void,assertIsNotMaxTimeDiffSecondsTolerable,ConfigurationServiceTest
+167,60578004,getMisfiredJobItems,(final List<Integer> items),List<Integer>,assertGetMisfiredJobItems,ExecutionServiceTest
+168,60578004,toItemList,(final String itemsString),List<Integer>,assertToItemListWhenEmpty,ItemUtilsTest
+169,60578004,persistJobConfiguration,(),void,assertPersistJobConfigurationForJobConflict,ConfigurationServiceTest
+170,60578004,shardingIfNecessary,(),void,assertShardingWhenIsNotLeaderAndIsShardingProcessing,ShardingServiceTest
+171,60578004,cleanPreviousExecutionInfo,(),void,assertCleanPreviousExecutionInfoWhenNeedFixExecutionInfoForNewValuesGreater,ExecutionServiceTest
+172,60578004,getServers,(final String jobName),Collection<ServerInfo>,assertGetServers,JobStatisticsAPIImplTest
+173,60578004,isMisfire,(),boolean,assertIsMisfire,ConfigurationServiceTest
+174,60578004,isServerStatusPath,(final String path),boolean,assertIsServerStatusPath,ServerNodeTest
+175,60578004,misfireIfNecessary,(final List<Integer> items),boolean,assertMisfireIfNotNecessaryWhenNotMonitorExecution,ExecutionServiceTest
+176,60578004,checkMaxTimeDiffSecondsTolerable,(),void,assertIsMaxTimeDiffSecondsTolerable,ConfigurationServiceTest
+177,60578004,getLocalHostTakeOffItems,(),List<Integer>,assertGetLocalHostTakeOffItems,FailoverServiceTest
+178,60578004,getResolvePlaceholderText,(final String text),String,assertNoPlaceHolder,PlaceholderResolvedTest
+179,60578004,init,(),void,assertInitIfIsMisfire,JobSchedulerTest
+180,60578004,shutdown,"(final Optional<String> jobName, final Optional<String> serverIp)",void,assertShutdownWithServerIp,JobOperateAPIImplTest
+181,60578004,isFailoverPath,(final String path),boolean,assertIsFailoverPath,ConfigurationNodeTest
+182,60578004,getPausedNode,(final String ip),String,assertPausedNode,ServerNodeTest
+183,60578004,getShutdownNode,(final String ip),String,assertShutdownNode,ServerNodeTest
+184,60578004,persistServerOnline,(),void,assertPersistServerOnlineForEnabledServer,ServerServiceTest
+185,60578004,cleanPreviousExecutionInfo,(),void,assertCleanPreviousExecutionInfoWhenIsLeaderButNotNeedFixExecutionInfo,ExecutionServiceTest
+186,60578004,isCronPath,(final String path),boolean,assertIsNotCronPath,ConfigurationNodeTest
+187,60578004,registerJobBegin,(final JobExecutionMultipleShardingContext shardingContext),void,testRegisterJobBegin,JobFacadeTest
+188,60578004,isShardingTotalCountPath,(final String path),boolean,assertIsNotShardingTotalCountPath,ConfigurationNodeTest
+189,60578004,shardingIfNecessary,(),void,assertShardingWhenUnnecessary,ShardingServiceTest
+190,60578004,getShardingTotalCount,(),int,assertGetShardingTotalCount,ConfigurationServiceTest
+191,60578004,cleanPreviousExecutionInfo,(),void,assertCleanPreviousExecutionInfoWhenNotMonitorExecution,ExecutionServiceTest

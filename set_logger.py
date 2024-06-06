@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 # Author: Enric Basso
 """
-This module, `set_logger.py`, is responsible for setting up the logging configuration for the application.
+This module, `set_logger.py`, is responsible for setting up the logging
+configuration for the application.
 
-It provides functions to initialize a logger with a specific name, set the logging level, and specify the format of the log messages.
+It provides functions to initialize a logger with a specific name,
+set the logging level, and specify the format of the log messages.
 
-This allows for consistent logging practices across the application, making it easier to debug issues and track application flow.
+This allows for consistent logging practices across the application,
+making it easier to debug issues and track application flow.
 """
 import logging
 from color import Color

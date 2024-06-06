@@ -1,0 +1,165 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,86331365,findString,"(String searchExpr, String exprIn)",int,testFindString_3args,StringsTest
+1,86331365,decryptAES,"(byte[] encrypted, String key)",String,testDecryptAES,CipherUtilTest
+2,86331365,getEntityManagerProp,(String persistUnit),"Map<String, Object>",test29GetEntityManagerProp,AbstractDataServiceTest
+3,86331365,base64ToBytes,(String encrypted64),byte[],testBase64ToBytes,FnTest
+4,86331365,isFieldExist,"(Class<T> classType, String fieldname)",boolean,test04IsFieldExist,DataInfoTest
+5,86331365,queryParams,(Object... params),"Map<String, Object>",testQueryParams,FnTest
+6,86331365,findByUk,"(String sessionId, T ejb)",T,test11FindByUk,AbstractDataServiceTest
+7,86331365,getIdFieldName,(Class<T> classType),String,test09GetIdFieldName,DataInfoTest
+8,86331365,sha256,(String msg),String,testSha256,DigestUtilTest
+9,86331365,getFieldValue,"(Object ejb, String fieldname)",Object,test18GetFieldValue,DataInfoTest
+10,86331365,getLazyMembers,(Class<T> classType),List<Field>,test06GetLazyMembers,DataInfoTest
+11,86331365,find,"(Class<T> entityClass, String sessionId)",List<T>,test04Find,AbstractDAOTest
+12,86331365,isFileExist,(String filePath),boolean,testIsFileExist,IOUtilTest
+13,86331365,createQueryUkCommand,(IDataRow ejb),String,test08CreateQueryUkCommand,DataInfoTest
+14,86331365,occurs,"(String searchExpr, String exprIn)",int,testOccurs,StringsTest
+15,86331365,inString,"(String comodinBegin, String search, String comodinEnd, String expression)",boolean,testInString,StringsTest
+16,86331365,bytesToHex,(byte[] bytes),String,testBytesToHex,FnTest
+17,86331365,bytesToBase64,(byte[] text),String,testBytesToBase64,FnTest
+18,86331365,digestHmacToBase64Url,"(String algorithm, String msg, byte[] privateKey)",String,testJWT_HMACSha256,DigestUtilTest
+19,86331365,getIdcompany,(),Long,test21GetIdcompany,AbstractDataObjectTest
+20,86331365,digestToHex,"(String algorithm, String msg)",String,testDigestToHex,DigestUtilTest
+21,86331365,right,"(String str, int len)",String,testRight,StringsTest
+22,86331365,getUserSession,(String sessionId),IUserSession,test32GetDBLinkInfo,AbstractDataServiceTest
+23,86331365,findListByQuery,"(String sessionId, String queryString, Map<String, Object> parameters)",List<T>,test14FindListByQuery,AbstractDataServiceTest
+24,86331365,decode64,(String messageEncode),String,testDecode64,StringsTest
+25,86331365,getAuthConsumerClass,(),Class<IAppAuthConsumer>,test00InstanceClass,OAuthConsumerTest
+26,86331365,findListByNamedQuery,"(String namedQuery, Map<String, Object> parameters)",List<T>,test06FindByNamedQuery,AbstractDataLinkTest
+27,86331365,hexToByte,(String hexText),byte[],testHexToByte,FnTest
+28,86331365,checkMD5,(ClientAuth clientAuth),boolean,testCheckMD5,DigestAuthTest
+29,86331365,findById,"(Class<T> entityClass, String sessionId, Object id)",T,test10FindById,AbstractDataServiceTest
+30,86331365,substr,"(String str, int start)",String,testSubstr_String_int,StringsTest
+31,86331365,left,"(String str, int len)",String,testLeft,StringsTest
+32,86331365,findInMatrix,"(Object[] matrix, Object search)",Integer,testFindInMatrix_ObjectArr_Object,FnTest
+33,86331365,isForeignKey,"(Class<T> classType, String fieldname)",boolean,test03IsForeignKey,DataInfoTest
+34,86331365,findInMatrix,"(Object[] matrix, Object search)",Integer,testFindInMatrix_3args,FnTest
+35,86331365,getFieldType,(String fieldname),Class,testGetFieldType,DataRowTest
+36,86331365,getUserSession,(),IUserSession,test25GetUserSession,AbstractDataLinkTest
+37,86331365,getDataRows,"(String sessionId, Class<T> type,
+            String order, String filter, Map<String, Object> params, int firstRow, int maxRows)",List<T>,test20GetDataRows,AbstractDataServiceTest
+38,86331365,getSecureRandomKey,"(String algoritm, int keyBitSize)",SecretKey,testGetSecureRandomKey_String,CipherUtilTest
+39,86331365,getPath,(String file),String,testGetPath,IOUtilTest
+40,86331365,getEntityManagerProp,(String persistUnit),"Map<String, Object>",test16GetEntityManagerProp,AbstractDAOTest
+41,86331365,getCount,"(String sessionId, String queryString, Map<String, Object> parameters)",Long,test18GetCount,AbstractDataServiceTest
+42,86331365,check,(ClientAuth requestAuth),boolean,testCheck,DigestAuthTest
+43,86331365,isNullorEmpty,(String string),Boolean,testIsNullorEmpty,StringsTest
+44,86331365,convertToList,"(String expr, String separator)",List<String>,testConvertToList,StringsTest
+45,86331365,findByQuery,"(String sessionId,
+            String queryString, Map<String, Object> parameters)",T,test05FindByQuery,AbstractDAOTest
+46,86331365,isPrimaryKey,"(Class<T> classType, String fieldname)",boolean,test01IsPrimaryKey,DataInfoTest
+47,86331365,isFolderExist,(String folder),boolean,testIsFolderExist,IOUtilTest
+48,86331365,create,(List<T> data),JsonArray,testCreate,JsonUtilTest
+49,86331365,stringToList,(String expr),List<String>,testStringToList,StringsTest
+50,86331365,getPropertiesFrom,(String filePath),Properties,testGetPropertiesFrom_File,IOUtilTest
+51,86331365,substring,"(String str, int start)",String,testSubstring_3args,StringsTest
+52,86331365,hashCode,(),int,testHashcode,DataRowTest
+53,86331365,nvl,"(T value, T alternateValue)",T,testNvl,FnTest
+54,86331365,md5,(String msg),String,testDigestAuth_MD5_auth,DigestUtilTest
+55,86331365,md5,(String msg),String,testMd5,DigestUtilTest
+56,86331365,getFullPath,(String file),String,testGetFullPath,IOUtilTest
+57,86331365,findByQuery,"(String sessionId, String queryString, Map<String, Object> parameters)",T,test13FindByQuery,AbstractDataServiceTest
+58,86331365,findByQuery,"(String queryString,
+            Map<String, Object> parameters)",T,test04FindByQuery,AbstractDataLinkTest
+59,86331365,encryptAES_ToHex,"(String clearText, String key)",String,testEncryptAES_ToHex,CipherUtilTest
+60,86331365,setValue,"(String fieldname, Object value)",void,testSetValue,DataRowTest
+61,86331365,getCount2,"(String queryString, Map<String, Object> parameters)",Long,test22GetCount2,AbstractDataLinkTest
+62,86331365,persist,(T ejb),IDataResult,test10Persist3,AbstractDataLinkTest
+63,86331365,getPropertiesFrom,(String filePath),Properties,testGetPropertiesFrom_String,IOUtilTest
+64,86331365,toLogical,(Object value),Boolean,testToLogical,FnTest
+65,86331365,getSchema,(String persistentUnit),String,test19GetSchema,AbstractDAOTest
+66,86331365,varReplace,"(String var, String limit)",String,testVarReplace_3args,StringsTest
+67,86331365,setDefaultValue,"(T ejb, String fieldname)",void,test15SetDefaultValue,DataInfoTest
+68,86331365,getPropertiesFromResource,"(Class clazz, String filePath)",Properties,testGetPropertiesFromResource,IOUtilTest
+69,86331365,inList,"(String obj, String... list)",boolean,testInList_String_StringArr,FnTest
+70,86331365,findById,"(Class<T> entityClass, Object id)",T,test02Find,AbstractDataLinkTest
+71,86331365,digestHmacToBase64Url,"(String algorithm, String msg, byte[] privateKey)",String,testJWT_HMACSha384,DigestUtilTest
+72,86331365,getPersistUnit,(),String,test01GetPersistUnit,AbstractDataLinkTest
+73,86331365,getXmlFileCharSet,(String text),String,testGetXmlFileCharSet_File,StringsTest
+74,86331365,getUserSession,(String sessionId),IUserSession,test31GetUserSession,AbstractDataServiceTest
+75,86331365,getUserSession,(String sessionId),IUserSession,test20GetUserSession,AbstractDAOTest
+76,86331365,encryptBlowfishToBase64,"(String clearText, String key)",String,testEncryptBlowfishToBase64,CipherUtilTest
+77,86331365,hmacSHA256,"(String msg, String key)",String,testHmacSha256,DigestUtilTest
+78,86331365,inList,"(String obj, String... list)",boolean,testInList_Integer_intArr,FnTest
+79,86331365,findById,"(Class<T> entityClass,
+            String sessionId,
+            Object id)",T,test02FindById,AbstractDAOTest
+80,86331365,isForeingKey,(String fieldname),boolean,test57IsForeingKey,AbstractDataObjectTest
+81,86331365,replicate,"(String character, int times)",String,testReplicate,StringsTest
+82,86331365,textMerge,"(String text, Map<String, String> params)",String,testTextMerge_String_Map,StringsTest
+83,86331365,getIdvalue,(IDataRow ejb),Object,test11GetIdvalue,DataInfoTest
+84,86331365,find,"(Class<T> entityClass, String sessionId)",List<T>,test12Find,AbstractDataServiceTest
+85,86331365,getTableName,(Class<T> classType),String,test07GetTableName,DataInfoTest
+86,86331365,iif,"(Boolean condition, T value1, T value2)",T,testIif,FnTest
+87,86331365,getDefaultValue,"(T ejb, String fieldname)",Object,test13GetDefaultValue,DataInfoTest
+88,86331365,getFileExtension,(String file),String,testGetFileExtension,IOUtilTest
+89,86331365,getFullPathNoEndSeparator,(String file),String,testGetFullPathNoEndSeparator,IOUtilTest
+90,86331365,getSecureRandomKey,"(String algoritm, int keyBitSize)",SecretKey,testGetSecureRandomKey_String_int,CipherUtilTest
+91,86331365,getResponseHeader,(ServerAuth responseAuth),String,testGetResponseHeader,DigestAuthTest
+92,86331365,findListByNamedQuery,"(String sessionId,
+            String namedQuery,
+            Map<String, Object> parameters)",List<T>,test07FindByNamedQuery,AbstractDAOTest
+93,86331365,encode64,(String message),String,testEncode64,StringsTest
+94,86331365,textMerge,"(String text, Map<String, String> params)",String,testTextMerge_3args,StringsTest
+95,86331365,findListByNamedQuery,"(String sessionId, String namedQuery, Map<String, Object> parameters)",List<T>,test15FindByNamedQuery,AbstractDataServiceTest
+96,86331365,persist,(T ejb),IDataResult,test09Persist2,AbstractDataLinkTest
+97,86331365,decryptAES_FromHex,"(String encryptedHex, String key)",String,testDecryptAES_FromHex,CipherUtilTest
+98,86331365,decryptBlowfishFromHex,"(String encrypted, String key)",String,testDecryptBlowfishFromHex,CipherUtilTest
+99,86331365,findString,"(String searchExpr, String exprIn)",int,testFindString_String_String,StringsTest
+100,86331365,getDataEngine,(String persistentUnit),String,test33GetDataEngine,AbstractDataServiceTest
+101,86331365,getCount2,"(String sessionId, String queryString, Map<String, Object> parameters)",Long,test15GetCount2,AbstractDAOTest
+102,86331365,getPersistUnitProp,(),"Map<String, Object>",test24GetPersistUnitProp,AbstractDataLinkTest
+103,86331365,md5,(String msg),String,testDigestAuth_MD5_sess_auth_int,DigestUtilTest
+104,86331365,md5,(String msg),String,testDigestAuth_MD5,DigestUtilTest
+105,86331365,getCount2,"(String sessionId, String queryString, Map<String, Object> parameters)",Long,test19GetCount2,AbstractDataServiceTest
+106,86331365,open,(),boolean,test27AfterOpen,AbstractDataObjectTest
+107,86331365,encryptAES,"(String clearText, String key)",byte[],testEncryptAES,CipherUtilTest
+108,86331365,hmacSHA512,"(String msg, String key)",String,testHmacSha512,DigestUtilTest
+109,86331365,sha512,(String msg),String,testSha512,DigestUtilTest
+110,86331365,getCount,"(String queryString, Map<String, Object> parameters)",Long,test21GetCount,AbstractDataLinkTest
+111,86331365,hmacMD5,"(String msg, String key)",String,testHmacMD5,DigestUtilTest
+112,86331365,isUniqueKey,"(Class<T> classType, String fieldname)",boolean,test02IsUniqueKey,DataInfoTest
+113,86331365,getFileBaseName,(String file),String,testGetFileBaseName,IOUtilTest
+114,86331365,addbs,(String pathFolder),String,testAddbs,IOUtilTest
+115,86331365,findAll,"(Class<T> entityClass,
+            String sessionId)",List<T>,test01FindAll,AbstractDAOTest
+116,86331365,getResourceAsStream,"(Class clazz, String filePath)",InputStream,testGetResourceAsStream,IOUtilTest
+117,86331365,encryptBlowfishToHex,"(String clearText, String key)",String,testEncryptBlowfishToHex,CipherUtilTest
+118,86331365,getCount,"(String sessionId, String queryString, Map<String, Object> parameters)",Long,test14GetCount,AbstractDAOTest
+119,86331365,open,(),boolean,test24BeforeOpen,AbstractDataObjectTest
+120,86331365,findByNativeQuery,"(String queryString, Map<String, Object> parameters)",List<Object>,test07FindByNativeQuery,AbstractDataLinkTest
+121,86331365,convertToMatrix,"(String expr, String separator)",String[],testConvertToMatrix,StringsTest
+122,86331365,getDataEngine,(String persistentUnit),String,test18GetDataEngine,AbstractDAOTest
+123,86331365,getPersistUnitProp,(String persistUnit),"Map<String, Object>",test17GetPersistUnitProp,AbstractDAOTest
+124,86331365,findByNativeQuery,"(String sessionId, String queryString, Map<String, Object> parameters)",List<Object>,test16FindByNativeQuery,AbstractDataServiceTest
+125,86331365,findByUk,"(String sessionId, T ejb)",T,test03FindByUk,AbstractDAOTest
+126,86331365,isLazyFetch,"(Class<T> classType, String fieldname)",boolean,test05IsLazyFetch,DataInfoTest
+127,86331365,getPersistUnitProp,(String persistUnit),"Map<String, Object>",test30GetPersistUnitProp,AbstractDataServiceTest
+128,86331365,varReplace,"(String var, String limit)",String,testVarReplace_String_String,StringsTest
+129,86331365,findLimit,"(String limit, String expr)",int,testFindLimit_String_String,StringsTest
+130,86331365,textMerge,"(String text, Map<String, String> params)",String,testTextMerge_String_ObjectArr,StringsTest
+131,86331365,decryptBlowfishFromBase64,"(String encrypted, String key)",String,testDecryptBlowfishFromBase64,CipherUtilTest
+132,86331365,getEntityManagerProp,(),"Map<String, Object>",test23GetEntityManagerProp,AbstractDataLinkTest
+133,86331365,encryptAES_ToBase64,"(String clearText, String key)",String,testEncryptAES_ToBase64,CipherUtilTest
+134,86331365,dateToString,(Date date),String,testDateToString,StringsTest
+135,86331365,findListByQuery,"(String sessionId,
+            String queryString,
+            Map<String, Object> parameters)",List<T>,test06FindListByQuery,AbstractDAOTest
+136,86331365,getValue,(String fieldname),Object,testGetValue,DataRowTest
+137,86331365,getFieldType,"(Class classType, String fieldname)",Class,test16GetFieldType,DataInfoTest
+138,86331365,md5,(String msg),String,testDigestAuth_MD5_sess_auth,DigestUtilTest
+139,86331365,getUserSession,(String sessionId),IUserSession,test21GetDBLinkInfo,AbstractDAOTest
+140,86331365,digestHmacToBase64Url,"(String algorithm, String msg, byte[] privateKey)",String,testJWT_HMACSha512,DigestUtilTest
+141,86331365,findLimit,"(String limit, String expr)",int,testFindLimit_3args,StringsTest
+142,86331365,getFileName,(String file),String,testGetFileName,IOUtilTest
+143,86331365,getSchema,(String persistentUnit),String,test34GetSchema,AbstractDataServiceTest
+144,86331365,substr,"(String str, int start)",String,testSubstr_3args,StringsTest
+145,86331365,getUniqueFields,(Class<T> classType),String[],test10GetUniqueFields,DataInfoTest
+146,86331365,purgeResponseAuth,(),void,purgeResponseAuth,DigestAuthTest
+147,86331365,substring,"(String str, int start)",String,testSubstring_String_int,StringsTest
+148,86331365,findListByQuery,"(String queryString, Map<String, Object> parameters)",List<T>,test05FindListByQuery,AbstractDataLinkTest
+149,86331365,findByUk,(T ejb),T,test03FindByUk,AbstractDataLinkTest
+150,86331365,capitalize,(String text),String,testCapitalize,StringsTest
+151,86331365,open,(),boolean,test28BeforeDataFill,AbstractDataObjectTest
+152,86331365,hmacSHA1,"(String msg, String key)",String,testHmacSha1,DigestUtilTest
+153,86331365,isFieldExist,(String fieldname),boolean,test56IsFieldExist,AbstractDataObjectTest

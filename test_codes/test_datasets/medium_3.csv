@@ -1,0 +1,215 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,2316191,assumeColumnDetails,"( ColumnInfo profile, List<String> samples )",void,ColumnOfIntegerType_HasCorrectLength,CsvUtilsTest
+1,2316191,listDatasourceNames,(),List<String>,testListDatasourceNames,DSWDatasourceServiceImplTest
+2,2316191,validateAccess,(),void,shouldNotAllowAccessForNonAdminWithoutPublishPermission,DatasourceServiceTest
+3,2316191,getConnectionPassword,"( String connectionName, String password )",String,testGetConnectionPassword_nullConnection,ConnectionServiceHelperTest
+4,2316191,isContainsModel,( String tempFileName ),boolean,testIsContainsModel,MetadataServiceTest
+5,2316191,deleteFile,( String aFileName ),Boolean,testDeleteFile,FileUtilsTest
+6,2316191,addOrUpdate,"( @PathParam( ""connectionId"" ) String connectionName, DatabaseConnection connection )",Response,testAddOrUpdateNoPublishPermission,JDBCDatasourceResourceTest
+7,2316191,deSerializeModelState,( String dtoStr ),DatasourceDTO,testDeSerializeModelStateInvalidString,DSWDatasourceServiceImplTest
+8,2316191,getDataSourceConnection,( String connectionName ),java.sql.Connection,testGetDataSourceConnection_emptyDriverClass,DatasourceInMemoryServiceHelperTest
+9,2316191,marshal,"( Object source, HierarchicalStreamWriter writer, MarshallingContext context )",void,testMarshal,LegacyDatasourceConverterTest
+10,2316191,getMetadataDatasourceIds,(),JaxbList<String>,testGetMetadataDatasourceIds,MetadataResourceTest
+11,2316191,stageFile,"( String fileName, String delimiter, String enclosure, boolean isFirstRowHeader,
+                              String encoding )",ModelInfo,stageFile_CsvFile,CsvDatasourceServiceImplTest
+12,2316191,validateAccess,(),void,shouldAllowAccessForAdminWithAllPermissions,DatasourceServiceTest
+13,2316191,getConnectionPassword,"( String connectionName, String password )",String,testGetConnectionPassword_emptyPassword,ConnectionServiceHelperTest
+14,2316191,generateTableName,(),String,testGenerateTablename_nullDatasourceName,DatasourceModelTest
+15,2316191,doGetAnalysisFilesAsDownload,( String analysisId ),"Map<String, InputStream>",testDoGetAnalysisFilesAsDownloadError,AnalysisServiceTest
+16,2316191,validateAccess,(),void,shouldAllowAccessForNonAdminWithPublishPermission,DatasourceServiceTest
+17,2316191,stageFile,"( String fileName, String delimiter, String enclosure, boolean isFirstRowHeader,
+                              String encoding )",ModelInfo,stageFile_InvalidPath_Tmp_ThrowsException,CsvDatasourceServiceImplTest
+18,2316191,downloadMetadata,"( @PathParam( ""domainId"" ) String domainId )",Response,testdownloadMetadata,MetadataResourceTest
+19,2316191,getConnection,( String connectionName ),SQLConnection,testGetConnection_Exception,DatasourceInMemoryServiceHelperTest
+20,2316191,getSerializeableResultSet,"( String connectionName, String query, int rowLimit,
+                                                               IPentahoSession session )",SerializedResultSet,testGetSerializeableResultSet_NullResultSet,DatasourceInMemoryServiceHelperTest
+21,2316191,getDSWAcl,( String dswId ),RepositoryFileAclDto,testGetDSWAcl,DataSourceWizardServiceTest
+22,2316191,doGetAnalysisFilesAsDownload,( String analysisId ),"Map<String, InputStream>",testDoGetAnalysisFilesAsDownload,AnalysisServiceTest
+23,2316191,sanitizeConnectionParameters,( IDatabaseConnection connection ),void,testSanitizeConnectionParameters,UtilHtmlSanitizerTest
+24,2316191,createModelerService,(),ModelerService,testCreateModelerService,DSWDatasourceServiceImplTest
+25,2316191,generateFields,"( String project, String filename, int rowLimit, String delimiter, String enclosure,
+                                   int headerRows, boolean doData, boolean doColumns, String encoding )",ModelInfo,generateFields_EscapesColumnsNames,CsvUtilsTest
+26,2316191,publishDsw,"(
+      @FormDataParam( ""domainId"" ) final String domainId,
+      @FormDataParam( ""metadataFile"" ) InputStream metadataFile,
+      @FormDataParam( ""overwrite"" ) @DefaultValue( ""false"" ) boolean overwrite,
+      @FormDataParam( ""checkConnection"" ) @DefaultValue( ""false"" ) boolean checkConnection,
+      @FormDataParam( DATASOURCE_ACL ) RepositoryFileAclDto acl )",Response,testPublishDsw,DataSourceWizardResourceTest
+27,2316191,doGetMetadataAcl,"( @PathParam( ""domainId"" ) String domainId )",RepositoryFileAclDto,doGetMetadataAcl,MetadataResourceTest
+28,2316191,deleteConnection,"( @PathParam( ""name"" ) String name )",Response,testDeleteConnection,JDBCDatasourceResourceTest
+29,2316191,addOrUpdate,"( @PathParam( ""connectionId"" ) String connectionName, DatabaseConnection connection )",Response,testAddServerError,JDBCDatasourceResourceTest
+30,2316191,getConnectionByName,( String name ),IDatabaseConnection,testGetConnectionByName,ConnectionServiceImplTest
+31,2316191,updateConnection,( IDatabaseConnection connection ),boolean,testUpdateConnection,InMemoryConnectionServiceImplTest
+32,2316191,isContainsModel,"( @QueryParam ( ""tempFileName"" ) String tempFileName )",Response,isContainsModel,MetadataResourceTest
+33,2316191,getAnalysisDatasourceIds,(),List<String>,testGetAnalysisDatasourceIds,AnalysisServiceTest
+34,2316191,createModelerWorkspace,(),ModelerWorkspace,testCreateModelerWorkspace,DSWDatasourceServiceImplTest
+35,2316191,updateConnection,( DatabaseConnection connection ),boolean,testUpdateConnection,ConnectionServiceConcreteTest
+36,2316191,hasPermission,(),boolean,testHasPermission_nullSession,DSWDatasourceServiceImplTest
+37,2316191,addConnection,( IDatabaseConnection connection ),boolean,testAddConnection,ConnectionServiceImplTest
+38,2316191,assumeColumnDetails,"( ColumnInfo profile, List<String> samples )",void,testAssumeColumnDetails_Numeric,CsvUtilsTest
+39,2316191,deleteConnection,"( @PathParam( ""name"" ) String name )",Response,testDeleteConnectionServerError,JDBCDatasourceResourceTest
+40,2316191,getDSWDatasourceIds,(),List<String>,testGetDSWDatasourceIdsNullInput,DataSourceWizardServiceTest
+41,2316191,doRemoveMetadata,"( @PathParam( ""domainId"" ) String domainId )",Response,testDoRemoveMetadata,MetadataResourceTest
+42,2316191,isMetadataDatasource,( String id ),boolean,isMetadataDomainTest,DatasourceServiceTest
+43,2316191,getAnalysisDatasourceAcl,( String analysisId ),RepositoryFileAclDto,testGetAnalysisDatasourceAcl,AnalysisServiceTest
+44,2316191,loadModelJson,"( String domainId, String modelId )",String,testLoadModelJson,MetadataServiceTest
+45,2316191,getDataSourceConnection,( String connectionName ),java.sql.Connection,testGetDataSourceConnection_Exception,DatasourceInMemoryServiceHelperTest
+46,2316191,getConnections,(),List<IDatabaseConnection>,testGetConnections,ConnectionServiceImplTest
+47,2316191,removeMetadata,( String metadataId ),void,testRemoveMetadata,MetadataServiceTest
+48,2316191,determineFileFormat,( String line ),int,testDetermineFileFormat,CsvInspectorTest
+49,2316191,deleteConnection,"( @PathParam( ""name"" ) String name )",Response,testDeleteConnectionNotModified,JDBCDatasourceResourceTest
+50,2316191,getName,(),String,testGetName,DatasourceInfoTest
+51,2316191,handleParam,"( StringBuilder name, StringBuilder value )",boolean,testHandleParam,AnalysisImportDialogControllerTest
+52,2316191,unescapeQuotes,( final String text ),String,testUnescapeQuotes,DataSourceInfoUtilTest
+53,2316191,escapeQuotes,( final String text ),String,testEscapeQuotes,DataSourceInfoUtilTest
+54,2316191,getCsvDataSample,"( String fileLocation, boolean headerPresent, String delimiter,
+                                                     String enclosure, int rowLimit )",List<List<String>>,testGetCsvDataSample_FileNotFound,DatasourceInMemoryServiceHelperTest
+55,2316191,deleteSchema,( @PathParam( CATALOG_ID ) String catalog ),Response,testdeleteSchema,AnalysisResourceTest
+56,2316191,guessDelimiter,( String line ),String,testGuessDelimiter,CsvInspectorTest
+57,2316191,uploadMetadataFilesToTempDir,"(
+      @FormDataParam( ""metadataFile"" ) InputStream metadataFile,
+      @FormDataParam( ""localeFiles"" ) List<FormDataBodyPart> localeFiles )",String,uploadMetadataFilesToTempDir,MetadataResourceTest
+58,2316191,getMetadataAcl,( String domainId ),RepositoryFileAclDto,testGetMetadataDatasourceAcl,MetadataServiceTest
+59,2316191,generateFields,"( String project, String filename, int rowLimit, String delimiter, String enclosure,
+                                   int headerRows, boolean doData, boolean doColumns, String encoding )",ModelInfo,generateFields_OneHeaderLine_OneDataLine,CsvUtilsTest
+60,2316191,getDatasourceSolutionStorage,(),String,testGetDatasourceSolutionStorage,AgileHelperTest
+61,2316191,createNewByteArrayInputStream,( byte[] buf ),ByteArrayInputStream,createNewByteArrayInputStream,MetadataServiceTest
+62,2316191,stageFile,"( String fileName, String delimiter, String enclosure, boolean isFirstRowHeader,
+                              String encoding )",ModelInfo,stageFile_InvalidPath_SlashAtEnd_ThrowsException,CsvDatasourceServiceImplTest
+63,2316191,publishDsw,"( String domainId, InputStream metadataFile, boolean overwrite, boolean checkConnection,
+      RepositoryFileAclDto acl )",String,testPublishDsw,DataSourceWizardServiceTest
+64,2316191,getDSWDatasourceIds,(),JaxbList<String>,testGetDSWDatasourceIds,DataSourceWizardResourceTest
+65,2316191,getCsvSampleRowSize,(),int,testGetCsvSampleRowSize,AgileHelperTest
+66,2316191,getDataSourceConnection,( String connectionName ),java.sql.Connection,testGetDataSourceConnection_ValidGeneric,DatasourceInMemoryServiceHelperTest
+67,2316191,getConnectionIDs,(),JaxbList<String>,testGetConnectionIDs,JDBCDatasourceResourceTest
+68,2316191,addOrUpdate,"( @PathParam( ""connectionId"" ) String connectionName, DatabaseConnection connection )",Response,testUpdateServerError,JDBCDatasourceResourceTest
+69,2316191,generateQueryDomain,"( String name, String query, DatabaseConnection connection,
+                                                     DatasourceDTO datasourceDTO )",QueryDatasourceSummary,testGenerateQueryDomain,DSWDatasourceServiceImplTest
+70,2316191,importMetadataFromTemp,"( @FormParam( ""domainId"" ) String domainId,
+                                        @FormParam ( ""jsonFileList"" ) String fileList,
+                                        @FormParam( OVERWRITE_IN_REPOS ) boolean overwrite,
+                                        @FormParam( DATASOURCE_ACL ) RepositoryFileAclDto acl )",Response,importMetadataFromTemp,MetadataResourceTest
+71,2316191,getDataSourceConnection,( String connectionName ),java.sql.Connection,testGetDataSourceConnection_nonExistClass,DatasourceInMemoryServiceHelperTest
+72,2316191,importMetadataDatasource,"( @FormDataParam( ""domainId"" ) String domainId,
+                                            @FormDataParam( ""metadataFile"" ) InputStream metadataFile,
+                                            @FormDataParam( ""metadataFile"" ) FormDataContentDisposition metadataFileInfo,
+                                            @FormDataParam( OVERWRITE_IN_REPOS ) String overwrite,
+                                            @FormDataParam( ""localeFiles"" ) List<FormDataBodyPart> localeFiles,
+                                            @FormDataParam( ""localeFiles"" )
+                                            List<FormDataContentDisposition> localeFilesInfo,
+                                            @FormDataParam( DATASOURCE_ACL )
+                                            RepositoryFileAclDto acl )",Response,testImportMetadataDatasource,MetadataResourceTest
+73,2316191,getDataSourceConnection,( String connectionName ),java.sql.Connection,testGetDataSourceConnection_noDriverClass,DatasourceInMemoryServiceHelperTest
+74,2316191,getAnalysisDatasourceAcl,( String analysisId ),RepositoryFileAclDto,testGetAnalysisDatasourceAclNoAcl,AnalysisServiceTest
+75,2316191,encodePassword,( String password ),String,testEncodePassword,ConnectionServiceHelperTest
+76,2316191,parseSampleContents,(),List<List<String>>,testParseSampleContents,CsvFileInfoTest
+77,2316191,unsanitizeConnectionParameters,( IDatabaseConnection connection ),void,testUnsanitizeConnectionParameters,UtilHtmlSanitizerTest
+78,2316191,getConnectionIDs,(),JaxbList<String>,testGetConnectionIDsError,JDBCDatasourceResourceTest
+79,2316191,getMetadataAcl,( String domainId ),RepositoryFileAclDto,testGetMetadataDatasourceAclNoDS,MetadataServiceTest
+80,2316191,doQuery,"( Query query, Integer rowLimit )",MarshallableResultSet,testDoQuery,MetadataServiceTest
+81,2316191,generateTableName,( String filename ),String,testGenerateTableName,AgileHelperTest
+82,2316191,getDatasourcePermissions,(),String,testGetDatasourcePermissions,MetadataServiceTest
+83,2316191,checkSqlQueriesSupported,( String connName ),void,testSqlQueries_Supported_PostgresDb,DSWDatasourceServiceImplTest
+84,2316191,getConnections,(),List<IDatabaseConnection>,testGetConnections,InMemoryConnectionServiceImplTest
+85,2316191,listFiles,(),FileInfo[],testListFiles,FileUtilsTest
+86,2316191,getSerializeableResultSet,"( String connectionName, String query, int rowLimit,
+                                                               IPentahoSession session )",SerializedResultSet,testGetSerializeableResultSet,DatasourceInMemoryServiceHelperTest
+87,2316191,setAnalysisDatasourceAcl,"( String analysisId, RepositoryFileAclDto aclDto )",void,testSetAnalysisDatasourceAcl,AnalysisServiceTest
+88,2316191,validateAccess,(),void,shouldNotAllowAccessForAdminWithoutPublishPermission,DatasourceServiceTest
+89,2316191,datasourceParam,( String datasourceName ),String,testDatasourceParamGetsQuoted,AnalysisImportDialogControllerTest
+90,2316191,publishDswFromTemp,"( @FormParam( ""domainId"" ) String domainId,
+                                        @FormParam ( ""jsonFileList"" ) String fileList,
+                                        @FormParam( ""overwrite"" ) @DefaultValue( ""false"" ) boolean overwrite,
+                                        @FormParam( ""checkConnection"" ) @DefaultValue( ""false"" ) boolean checkConnection,
+                                        @FormParam( DATASOURCE_ACL ) RepositoryFileAclDto acl )",Response,publishDswFromTemp,DataSourceWizardResourceTest
+91,2316191,getFolderPath,( String project ),String,testGetFolderPath,AgileHelperTest
+92,2316191,publishDswFromTemp,"( String domainId,
+      MetadataTempFilesListDto fileList,
+      boolean overwrite,
+      boolean checkConnection,
+      RepositoryFileAclDto acl )",String,testPublishDswFromTemp,DataSourceWizardServiceTest
+93,2316191,getDataSourceConnection,( String connectionName ),java.sql.Connection,testGetDataSourceConnection_Invalid,DatasourceInMemoryServiceHelperTest
+94,2316191,getDSWDatasourceIds,(),List<String>,testGetDSWDatasourceIdsError,DataSourceWizardServiceTest
+95,2316191,generateLogicalModel,"( String modelName, String connectionName, String dbType, String query,
+                                            String previewLimit )",BusinessData,testGenerateLogicalModel,DSWDatasourceServiceImplTest
+96,2316191,getLocalizedMessage,(),String,test,CsvTransformGeneratorExceptionTest
+97,2316191,getConnection,"( @PathParam( ""name"" ) String name )",Response,testGetConnectionError,JDBCDatasourceResourceTest
+98,2316191,getAnalysisDatasourceIds,(),JaxbList<String>,testGetAnalysisDatasourceIds,AnalysisResourceTest
+99,2316191,getMetadataDatasourceIds,(),List<String>,testGetMetadataDatasourceIds,MetadataServiceTest
+100,2316191,doXmlQueryToCdaJson,"( String xml, int rowLimit )",String,testDoXmlQueryToCdaJson,MetadataServiceTest
+101,2316191,doGetDSWAcl,"( @PathParam( ""dswId"" ) String dswId )",RepositoryFileAclDto,doGetAnalysisAcl,DataSourceWizardResourceTest
+102,2316191,convertToXml,( IDatabaseConnection dbConn ),String,testConvertToXml,DatabaseConnectionConverterTest
+103,2316191,updateConnection,( IDatabaseConnection connection ),boolean,testUpdateConnection,ConnectionServiceImplTest
+104,2316191,getDSWDatasourceIds,(),List<String>,testGetDSWDatasourceIds,DataSourceWizardServiceTest
+105,2316191,setMetadataAcl,"( String domainId, RepositoryFileAclDto aclDto )",void,testSetMetadataDatasourceAclNoAcl,MetadataServiceTest
+106,2316191,getSchemaName,(),String,testGetSchemaName,AgileHelperTest
+107,2316191,doXmlQuery,"( String xml, Integer rowLimit )",MarshallableResultSet,testDoXmlQuery,MetadataServiceTest
+108,2316191,checkSqlQueriesSupported,( String connName ),void,testSqlQueries_AreNotSupported_PentahoDataServices,DSWDatasourceServiceImplTest
+109,2316191,getConnection,( String jndiName ),Connection,testGetConnection,AgileHelperTest
+110,2316191,getErrorMessage,"( Throwable throwable, String defaultErrorMessage )",String,testGetErrorMessage,ExceptionParserTest
+111,2316191,setMetadataAcl,"( String domainId, RepositoryFileAclDto aclDto )",void,testSetMetadataDatasourceAclNoDS,MetadataServiceTest
+112,2316191,formatSampleContents,(),String,testFormatSampleContentsText,CsvFileInfoTest
+113,2316191,getConnectionPassword,"( String connectionName, String password )",String,testGetConnectionPassword_replacePassword,ConnectionServiceHelperTest
+114,2316191,getConnection,( String connectionName ),SQLConnection,testGetConnection_Invalid,DatasourceInMemoryServiceHelperTest
+115,2316191,addOrUpdate,"( @PathParam( ""connectionId"" ) String connectionName, DatabaseConnection connection )",Response,testUpdate,JDBCDatasourceResourceTest
+116,2316191,stageFile,"( String fileName, String delimiter, String enclosure, boolean isFirstRowHeader,
+                              String encoding )",ModelInfo,stageFile_InvalidPath_Csv_ThrowsException,CsvDatasourceServiceImplTest
+117,2316191,doSetMetadataAcl,"( @PathParam( ""domainId"" ) String domainId, RepositoryFileAclDto acl )",Response,doSetMetadataAcl,MetadataResourceTest
+118,2316191,assumeColumnDetails,"( ColumnInfo profile, List<String> samples )",void,testAssumeColumnDetails_NumericWithPrecisionAndLength,CsvUtilsTest
+119,2316191,unmarshal,"( HierarchicalStreamReader reader, UnmarshallingContext context )",Object,testUnmarshal,LegacyDatasourceConverterTest
+120,2316191,addOrUpdate,"( @PathParam( ""connectionId"" ) String connectionName, DatabaseConnection connection )",Response,testAdd,JDBCDatasourceResourceTest
+121,2316191,getColumnData,"( int columnNumber, String[][] data )",List<String>,testGetColumnData,CsvInspectorTest
+122,2316191,getConnectionPassword,"( String connectionName, String password )",String,testGetConnectionPassword_nullConnectionNullPass,ConnectionServiceHelperTest
+123,2316191,getConnectionByName,( String name ),IDatabaseConnection,testGetConnectionByName,InMemoryConnectionServiceImplTest
+124,2316191,getTmpFolderPath,( String project ),String,testGetTmpFolderPath,AgileHelperTest
+125,2316191,getConnectionById,( String id ),IDatabaseConnection,testGetConnectionById,ConnectionServiceImplTest
+126,2316191,stageFile,"( String fileName, String delimiter, String enclosure, boolean isFirstRowHeader,
+                              String encoding )",ModelInfo,stageFile_InvalidPath_DoesNotRevealInternalDetails,CsvDatasourceServiceImplTest
+127,2316191,getLines,"( String fileLocation, int rows, String encoding )",String,testGetLines,CsvUtilsTest
+128,2316191,listBusinessModelsJson,( String domainName ),String,testListBusinessModelsJson,MetadataServiceTest
+129,2316191,importMetadataDatasource,"( String domainId, InputStream metadataFile,
+                                        FormDataContentDisposition metadataFileInfo, boolean overwrite,
+                                        List<FormDataBodyPart> localeFiles,
+                                        List<FormDataContentDisposition> localeFilesInfo, RepositoryFileAclDto acl )",void,testImportMetadataDatasourceDomainEmpty,MetadataServiceTest
+130,2316191,doGetDSWFilesAsDownload,( String dswId ),"Map<String, InputStream>",testDoGetDSWFilesAsDownloadError,DataSourceWizardServiceTest
+131,2316191,setMetadataAcl,"( String domainId, RepositoryFileAclDto aclDto )",void,testSetMetadataDatasourceAcl,MetadataServiceTest
+132,2316191,parseDataSourceInfo,( final String text ),"Map<String, String>",testParseDataSourceInfo,DataSourceInfoUtilTest
+133,2316191,listBusinessModels,( String domainName ),ModelInfo[],testListBusinessModels,MetadataServiceTest
+134,2316191,doSetDSWAcl,"( @PathParam( ""dswId"" ) String dswId, RepositoryFileAclDto acl )",Response,doSetMetadataAcl,DataSourceWizardResourceTest
+135,2316191,getConnectionPassword,"( String connectionName, String password )",String,testGetConnectionPassword,ConnectionServiceHelperTest
+136,2316191,setAnalysisDatasourceAcl,"( String analysisId, RepositoryFileAclDto aclDto )",void,testSetAnalysisDatasourceAclNoAcl,AnalysisServiceTest
+137,2316191,addOrUpdate,"( @PathParam( ""connectionId"" ) String connectionName, DatabaseConnection connection )",Response,testAddNotModified,JDBCDatasourceResourceTest
+138,2316191,getConnectionPassword,"( String connectionName, String password )",String,testGetConnectionPassword_nullPassword,ConnectionServiceHelperTest
+139,2316191,doGetAnalysisFilesAsDownload,"( @PathParam( ""catalog"" ) String catalog )",Response,testDoGetAnalysisFilesAsDownload,AnalysisResourceTest
+140,2316191,getErrorHeader,"( Throwable throwable, String defaultErrorHeader )",String,testGetErrorHeader,ExceptionParserTest
+141,2316191,prepareDataSourceInfo,( String dataSourceInfo ),String,testPrepareDataSourceInfo_OnlyQuotesEscaped,DatasourceResourceTest
+142,2316191,stageFile,"( String fileName, String delimiter, String enclosure, boolean isFirstRowHeader,
+                              String encoding )",ModelInfo,stageFile_InvalidPath_WindowsStyle_ThrowsException,CsvDatasourceServiceImplTest
+143,2316191,getConnection,( String connectionName ),SQLConnection,testGetConnection_ValidGeneric,DatasourceInMemoryServiceHelperTest
+144,2316191,createAttachment,"( Map<String, InputStream> fileData, String domainId )",Response,testCreateAttachment,ResourceUtilTest
+145,2316191,deleteSchema,( @PathParam( CATALOG_ID ) String catalog ),Response,testdeleteSchemaError,AnalysisResourceTest
+146,2316191,importMetadataFromTemp,"( String domainId, MetadataTempFilesListDto fileList,
+      boolean overwrite, RepositoryFileAclDto acl )",void,testImportMetadataFromTemp,MetadataServiceTest
+147,2316191,getSchemaName,"( String encoding, InputStream inputStream )",String,testGetSchemaName,AnalysisServiceTest
+148,2316191,getMetadataAcl,( String domainId ),RepositoryFileAclDto,testGetMetadataDatasourceAclNoAcl,MetadataServiceTest
+149,2316191,doPreview,"( String connectionName, String query, String previewLimit )",SerializedResultSet,testDoPreview,DSWDatasourceServiceImplTest
+150,2316191,doGetDSWFilesAsDownload,( String dswId ),"Map<String, InputStream>",testDoGetDSWFilesAsDownload,DataSourceWizardServiceTest
+151,2316191,loadBusinessData,"( String domainId, String modelId )",BusinessData,testLoadBusinessData,DSWDatasourceServiceImplTest
+152,2316191,loadModel,"( String domainId, String modelId )",Model,testLoadModel,MetadataServiceTest
+153,2316191,remove,"( @PathParam( ""dswId"" ) String dswId )",Response,testRemove,DataSourceWizardResourceTest
+154,2316191,getDataSourceConnection,( String connectionName ),java.sql.Connection,testGetDataSourceConnection_privateDriver,DatasourceInMemoryServiceHelperTest
+155,2316191,saveLogicalModel,"( Domain domain, boolean overwrite )",boolean,testSaveLogicalModel,DSWDatasourceServiceImplTest
+156,2316191,connectionBeanToImpl,( IDatabaseConnection connectionBean ),IDatabaseConnection,testConnectionBeanToImpl,AutobeanUtilitiesTest
+157,2316191,importMetadataDatasource,"( String domainId, InputStream metadataFile,
+                                        FormDataContentDisposition metadataFileInfo, boolean overwrite,
+                                        List<FormDataBodyPart> localeFiles,
+                                        List<FormDataContentDisposition> localeFilesInfo, RepositoryFileAclDto acl )",void,testImportMetadataDatasource,MetadataServiceTest
+158,2316191,safeEscapeHtml,( String html ),String,testSafeEscapeHtml,UtilHtmlSanitizerTest
+159,2316191,assumeColumnDetails,"( ColumnInfo profile, List<String> samples )",void,testAssumeColumnDetails_Currency,CsvUtilsTest
+160,2316191,uploadMetadataFilesToTempDir,"( InputStream metadataFile,
+      List<InputStream> localeFileStreams, List<String> localeFileNames )",MetadataTempFilesListDto,testUploadMetadataFilesToTempDir,MetadataServiceTest
+161,2316191,canConvert,( Class type ),boolean,testCanConvert,LegacyDatasourceConverterTest
+162,2316191,addOrUpdate,"( @PathParam( ""connectionId"" ) String connectionName, DatabaseConnection connection )",Response,testUpdateNotModified,JDBCDatasourceResourceTest
+163,2316191,dbTypeBeanToImpl,( IDatabaseType databaseTypeBean ),IDatabaseType,testDbTypeBeanToImpl,AutobeanUtilitiesTest
+164,2316191,getConnection,"( @PathParam( ""name"" ) String name )",Response,testGetConnection,JDBCDatasourceResourceTest
+165,2316191,getConnectionPassword,"( String connectionName, String password )",String,testGetConnectionPassword_getErrorFromService,ConnectionServiceHelperTest

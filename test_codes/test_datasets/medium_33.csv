@@ -1,0 +1,290 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,76684377,unregisterDataSetObserver,(@NonNull final DataSetObserver observer),void,testUnregisterDataSetObserver,AdapterWrapperTest
+1,76684377,getWrappedAdapter,(),ListAdapter,testGetWrappedAdapter,AdapterWrapperTest
+2,76684377,areAllItemsEnabled,(),boolean,testAreAllItemsEnabledWithTrue,AdapterWrapperTest
+3,76684377,isHeaderAt,(final int position),boolean,testIsHeaderAt,HeadersModuleTest
+4,76684377,getSuperState,(),Parcelable,testInstantiationFromParcelWithoutSuperState,AdapterSavedStateTest
+5,76684377,unregisterOnDataSetSwapListener,(@NonNull OnDataSetSwapListener<List<I>> listener),void,testUnregisterOnDataSetSwapListenerNotRegistered,SimpleSpinnerAdapterTest
+6,76684377,onBindDropDownViewHolder,"(@NonNull final DVH viewHolder, final int position)",void,testOnBindDropDownViewHolderWithoutDropDownHolderBinder,BaseSpinnerAdapterTest
+7,76684377,restoreInstanceState,(@NonNull Parcelable savedState),void,testRestoreInstanceState,BaseRecyclerAdapterTest
+8,76684377,getHeader,(final int position),H,testGetHeader,HeadersModuleTest
+9,76684377,resource,(@LayoutRes final int resource),AdapterHolder.Factory<ViewHolder>,testResourceCreateHolder,ViewHolderFactoriesTest
+10,76684377,insertItem,(@NonNull final I item),void,testInsertItemAtPositionOutOfRangeUnder,SimpleAdapterDataSetTest
+11,76684377,hasItemAt,(final int position),boolean,testHasItemAt,SimpleRecyclerAdapterTest
+12,76684377,getItemId,(final int position),long,testGetItemId,AdapterWrapperTest
+13,76684377,insertItems,(@NonNull final List<I> items),void,testInsertItemsAtPosition,SimpleListAdapterTest
+14,76684377,notifyAdapter,(),void,testNotifyAdapter,AdapterModuleTest
+15,76684377,countHeadersBeforePosition,(final int position),int,testCountHeadersBeforePositionOnEmptyHeaders,HeadersModuleTest
+16,76684377,hasItemAt,(final int position),boolean,testHasItemAt,BaseListAdapterTest
+17,76684377,insertItem,(@NonNull final I item),void,testInsertItem,SimpleSpinnerAdapterTest
+18,76684377,notifyDataSetChanged,(),void,testNotifyDataSetChangedWithoutRegisteredListeners,DataSetListenersTest
+19,76684377,notifyDataSetInvalidated,(),void,testNotifyDataSetInvalidatedWithoutRegisteredListeners,BaseListAdapterTest
+20,76684377,swapItem,"(final int position, @NonNull final I item)",I,testSwapItem,SimpleSpinnerAdapterTest
+21,76684377,w,"(@NonNull final String tag, @NonNull final String message)",void,testW,AdaptersLoggingTest
+22,76684377,unregisterOnDataSetSwapListener,(@NonNull final OnDataSetSwapListener<D> listener),void,testUnregisterOnDataSetSwapListener,SwappableDataSetAdapterListenersTest
+23,76684377,registerOnDataSetSwapListener,(@NonNull final OnDataSetSwapListener<D> listener),void,testRegisterOnDataSetSwapListener,SwappableDataSetAdapterListenersTest
+24,76684377,isEnabled,(final int position),boolean,testIsEnabledOnEmptyWrapper,AdapterWrapperTest
+25,76684377,onSwapItems,(@Nullable final List<I> items),List<I>,testOnSwapItems,SimpleSpinnerAdapterTest
+26,76684377,onBindDropDownViewHolder,"(@NonNull final DVH viewHolder, final int position)",void,testOnBindDropDownViewHolderWithHolderBinder,BaseSpinnerAdapterTest
+27,76684377,changeItems,(@Nullable final List<I> items),void,testChangeItems,SimpleListAdapterTest
+28,76684377,unregisterOnDataSetListener,(@NonNull final OnDataSetListener listener),void,testUnregisterOnDataSetListener,DataSetListenersTest
+29,76684377,onCreateDropDownViewHolder,"(@NonNull final ViewGroup parent, final int viewType)",DVH,testOnCreateDropDownViewHolderWithHolderFactory,BaseSpinnerAdapterTest
+30,76684377,binding,(),"AdapterHolder.Binder<A, VH>",testBinding,ViewHolderBindersTest
+31,76684377,notifyDataSetInvalidated,(),void,testNotifyDataSetInvalidated,DataSetListenersTest
+32,76684377,getHeaders,(),SparseArray<H>,testGetHeaders,HeadersModuleTest
+33,76684377,notifyItemsSwapStarted,(@Nullable final List<I> items),void,testNotifyItemsSwapStarted,SimpleListAdapterTest
+34,76684377,unregisterOnDataSetSwapListener,(@NonNull OnDataSetSwapListener<List<I>> listener),void,testUnregisterOnDataSetSwapListener,SimpleListAdapterTest
+35,76684377,deselect,(final long id),void,testDeselect,SelectionModuleTest
+36,76684377,getItemCount,(),int,testGetItemCount,SimpleAdapterDataSetTest
+37,76684377,onCreateDropDownViewHolder,"(@NonNull final ViewGroup parent, final int viewType)",DVH,testOnCreateDropDownViewHolderWithoutDropDownHolderFactory,BaseSpinnerAdapterTest
+38,76684377,notifyItemsSwapStarted,(@Nullable List<I> items),void,testNotifyItemsSwapStartedWithoutRegisteredListeners,SimpleSpinnerAdapterTest
+39,76684377,inflateView,"(@LayoutRes final int resource, @Nullable final ViewGroup parent)",View,testInflateViewWithInvalidResource,BaseRecyclerAdapterTest
+40,76684377,removeItem,(final int position),I,testRemoveItemAtPosition,SimpleListAdapterTest
+41,76684377,getItems,(),List<I>,testInstantiationWithInitialItemsFromArray,SimpleSpinnerAdapterTest
+42,76684377,moveItem,"(final int fromPosition, final int toPosition)",void,testMoveItemFromPositionOutOfRange,SimpleAdapterDataSetTest
+43,76684377,hasItemAt,(final int position),boolean,testHasItemAt,BaseRecyclerAdapterTest
+44,76684377,getWrappedAdapter,(),ListAdapter,testGetWrappedAdapterOnEmptyWrapper,AdapterWrapperTest
+45,76684377,hasItemAt,(final int position),boolean,testHasItemAt,SimpleListAdapterTest
+46,76684377,getSuperState,(),Parcelable,testCreatorCreateFromParcel,AdapterSavedStateTest
+47,76684377,unregisterOnDataSetListener,(@NonNull final OnDataSetListener listener),void,testUnregisterOnDataSetListenerNotRegistered,BaseListAdapterTest
+48,76684377,getViewTypeCount,(),int,testGetViewTypeCountOnEmptyWrapper,AdapterWrapperTest
+49,76684377,hasStableIds,(),boolean,testHasStableIdsWithFalse,AdapterWrapperTest
+50,76684377,getItemId,(final int position),long,testGetItemIdOnEmptyWrapper,AdapterWrapperTest
+51,76684377,onBindViewHolder,"(@NonNull final VH viewHolder, final int position, @NonNull final List<Object> payloads)",void,testOnBindViewHolderWithPayloadsButWithoutBinder,BaseRecyclerAdapterTest
+52,76684377,notifyDataSetSwapFinished,(@Nullable final D dataSet),void,testNotifyDataSetSwapFinishedWithoutRegisteredListeners,SwappableDataSetAdapterListenersTest
+53,76684377,unregisterOnDataSetActionListener,(@NonNull final OnDataSetActionListener listener),void,testUnregisterOnDataSetActionListener,BaseListAdapterTest
+54,76684377,e,"(@NonNull final String tag, @NonNull final String message)",void,testE,AdaptersLoggingTest
+55,76684377,registerOnDataSetActionListener,(@NonNull final OnDataSetActionListener listener),void,testRegisterOnDataSetActionListener,BaseListAdapterTest
+56,76684377,getItemId,(final int position),long,testGetItemId,SimpleAdapterDataSetTest
+57,76684377,inflateView,"(@LayoutRes final int resource, @Nullable final ViewGroup parent)",View,testInflateViewWithInvalidResource,BaseListAdapterTest
+58,76684377,isEnabled,(final int position),boolean,testIsEnabled,BaseRecyclerAdapterTest
+59,76684377,hasStableIds,(),boolean,testHasStableIdsOnEmptyWrapper,AdapterWrapperTest
+60,76684377,binding,(),"AdapterHolder.Binder<A, VH>",testBindingBindHolder,ViewHolderBindersTest
+61,76684377,swapItemById,"(final long itemId, @NonNull final I item)",I,testSwapItemById,SimpleListAdapterTest
+62,76684377,clearSelection,(),void,testClearSelection,SelectionModuleTest
+63,76684377,inflateView,"(@LayoutRes final int resource, @Nullable final ViewGroup parent)",View,testInflateView,BaseRecyclerAdapterTest
+64,76684377,getItemCount,(),int,testGetItemCount,SimpleSpinnerAdapterTest
+65,76684377,inflateView,"(@LayoutRes final int resource, @Nullable final ViewGroup parent)",View,testInflateView,BaseListAdapterTest
+66,76684377,insertItems,(@NonNull final List<I> items),void,testInsertItems,SimpleRecyclerAdapterTest
+67,76684377,swapItem,"(final int position, @NonNull final I item)",I,testSwapItem,SimpleAdapterDataSetTest
+68,76684377,moveItem,"(final int fromPosition, final int toPosition)",void,testMoveItem,SimpleListAdapterTest
+69,76684377,setAdapterNotificationEnabled,(final boolean enabled),void,testSetAdapterNotificationEnabled,AdapterModuleTest
+70,76684377,notifyDataSetInvalidated,(),void,testNotifyDataSetInvalidatedWithoutRegisteredListeners,DataSetListenersTest
+71,76684377,removeItem,(@NonNull final I item),int,testRemoveItem,SimpleAdapterDataSetTest
+72,76684377,unregisterOnDataSetListener,(@NonNull final OnDataSetListener listener),void,testUnregisterOnDataSetListenerNotRegistered,BaseRecyclerAdapterTest
+73,76684377,isEmpty,(),boolean,testIsEmpty,BaseRecyclerAdapterTest
+74,76684377,notifyItemsSwapFinished,(@Nullable final List<I> items),void,testNotifyItemsSwapFinishedWithoutRegisteredListeners,SimpleListAdapterTest
+75,76684377,removeHeader,(final int position),H,testRemoveHeader,HeadersModuleTest
+76,76684377,unregisterOnDataSetActionListener,(@NonNull final OnDataSetActionListener listener),void,testUnregisterOnDataSetActionListenerWithoutRegisteredListeners,DataSetListenersTest
+77,76684377,areAllItemsEnabled,(),boolean,testAreAllItemsEnabledOnEmptyWrapper,AdapterWrapperTest
+78,76684377,onSwapItems,(@Nullable final List<I> items),List<I>,testOnSwapItems,SimpleRecyclerAdapterTest
+79,76684377,notifyItemsSwapStarted,(@Nullable final List<I> items),void,testNotifyItemsSwapStarted,SimpleRecyclerAdapterTest
+80,76684377,registerOnDataSetSwapListener,(@NonNull final OnDataSetSwapListener<List<I>> listener),void,testRegisterOnDataSetSwapListener,SimpleListAdapterTest
+81,76684377,changeItems,(@Nullable final List<I> items),void,testChangeItems,SimpleRecyclerAdapterTest
+82,76684377,notifyDataSetActionSelected,"(final int action, final int position, @Nullable final Object payload)",boolean,testNotifyDataSetActionSelected,BaseRecyclerAdapterTest
+83,76684377,resolveItemPosition,(final long itemId),int,testResolveItemPosition,DataSetItemPositionResolverTest
+84,76684377,getSuperState,(),Parcelable,testInstantiationWithEmptySuperState,AdapterSavedStateTest
+85,76684377,correctPosition,(final int position),int,testCorrectPosition,HeadersModuleTest
+86,76684377,getItems,(),List<I>,testGetItems,SimpleAdapterDataSetTest
+87,76684377,registerOnDataSetSwapListener,(@NonNull final OnDataSetSwapListener<List<I>> listener),void,testRegisterOnDataSetSwapListener,SimpleRecyclerAdapterTest
+88,76684377,getItems,(),List<I>,testGetItems,SimpleSpinnerAdapterTest
+89,76684377,inflateView,"(@LayoutRes final int resource, @Nullable final ViewGroup parent)",View,testInflateViewWithNullParent,BaseListAdapterTest
+90,76684377,registerOnDataSetActionListener,(@NonNull final OnDataSetActionListener listener),void,testRegisterOnDataSetActionListener,BaseRecyclerAdapterTest
+91,76684377,deselect,(final long id),void,testDeselectOnEmptySelection,SelectionModuleTest
+92,76684377,i,"(@NonNull final String tag, @NonNull final String message)",void,testI,AdaptersLoggingTest
+93,76684377,hasItemAt,(final int position),boolean,testHasItemAt,SimpleSpinnerAdapterTest
+94,76684377,saveInstanceState,(),Parcelable,testSaveInstanceState,BaseListAdapterTest
+95,76684377,wtf,"(@NonNull final String tag, @NonNull final String message)",void,testWTF,AdaptersLoggingTest
+96,76684377,getItem,(final int position),Object,testGetItem,AdapterWrapperTest
+97,76684377,resolveItemPosition,(final long itemId),int,testResolvePositionForItemNotInDataSet,DataSetItemPositionResolverTest
+98,76684377,unregisterOnDataSetActionListener,(@NonNull final OnDataSetActionListener listener),void,testUnregisterOnDataSetActionListenerNotRegistered,BaseListAdapterTest
+99,76684377,onBindViewHolder,"(@NonNull final VH viewHolder, final int position)",void,testOnBindViewHolderWithoutBinder,BaseListAdapterTest
+100,76684377,getItem,(int position),I,testGetItemOnEmptyDataSet,SimpleAdapterDataSetTest
+101,76684377,getItemViewType,(final int position),int,testGetItemViewType,AdapterWrapperTest
+102,76684377,areAllItemsEnabled,(),boolean,testAreAllItemsEnabledWithFalse,AdapterWrapperTest
+103,76684377,requiresStateSaving,(),boolean,testRequiresStateSaving,SelectionModuleTest
+104,76684377,select,(final long id),void,testSelect,SelectionModuleTest
+105,76684377,getItemId,(final int position),long,testGetItemId,BaseRecyclerAdapterTest
+106,76684377,unregisterOnDataSetActionListener,(@NonNull final OnDataSetActionListener listener),void,testUnregisterOnDataSetActionListener,BaseRecyclerAdapterTest
+107,76684377,restoreInstanceState,(@NonNull Parcelable savedState),void,testRestoreInstanceState,AdapterModuleTest
+108,76684377,describeContents,(),int,testDescribeContents,AdapterSavedStateTest
+109,76684377,getItems,(),List<I>,testInstantiationWithInitialItems,SimpleRecyclerAdapterTest
+110,76684377,notifyItemsSwapFinished,(@Nullable List<I> items),void,testNotifyItemsSwapFinished,SimpleSpinnerAdapterTest
+111,76684377,swapItemById,"(final long itemId, @NonNull final I item)",I,testSwapItemById,SimpleAdapterDataSetTest
+112,76684377,onBindViewHolder,"(@NonNull final VH viewHolder, final int position, @NonNull final List<Object> payloads)",void,testOnBindViewHolderWithoutBinder,BaseRecyclerAdapterTest
+113,76684377,notifyDataSetActionSelected,"(final int action, final int position, @Nullable final Object payload)",boolean,testNotifyDataSetActionSelectedWithoutRegisteredListeners,BaseListAdapterTest
+114,76684377,removeItems,"(final int positionStart, final int itemCount)",List<I>,testRemoveItems,SimpleAdapterDataSetTest
+115,76684377,getItems,(),List<I>,testInstantiationWithoutInitialItems,SimpleListAdapterTest
+116,76684377,notifyDataSetActionSelected,"(final int action, final int position, @Nullable final Object payload)",boolean,testNotifyDataSetActionSelectedWithoutRegisteredListeners,BaseRecyclerAdapterTest
+117,76684377,notifyDataSetActionSelected,"(final int action, final int position, final Object payload)",boolean,testNotifyDataSetActionSelected,DataSetListenersTest
+118,76684377,getItems,(),List<I>,testInstantiationWithoutInitialItems,SimpleRecyclerAdapterTest
+119,76684377,getItems,(),List<I>,testGetItems,SimpleRecyclerAdapterTest
+120,76684377,setSelection,(@Nullable final List<Long> selection),void,testSetSelection,SelectionModuleTest
+121,76684377,insertItem,(@NonNull final I item),void,testInsertItemAtPosition,SimpleSpinnerAdapterTest
+122,76684377,registerOnDataSetActionListener,(@NonNull final OnDataSetActionListener listener),void,testRegisterOnDataSetActionListener,DataSetListenersTest
+123,76684377,notifyItemsSwapStarted,(@Nullable List<I> items),void,testNotifyItemsSwapStarted,SimpleSpinnerAdapterTest
+124,76684377,unregisterOnDataSetActionListener,(@NonNull final OnDataSetActionListener listener),void,testUnregisterOnDataSetActionListener,DataSetListenersTest
+125,76684377,simple,(),"AdapterHolder.Binder<A, VH>",testSimpleBindHolder,ViewHolderBindersTest
+126,76684377,getSuperState,(),Parcelable,testInstantiationWithSuperState,AdapterSavedStateTest
+127,76684377,hasItemAt,(final int position),boolean,testHasItemAtOutOfRange,BaseListAdapterTest
+128,76684377,removeItems,"(final int positionStart, final int itemCount)",List<I>,testRemoveItems,SimpleRecyclerAdapterTest
+129,76684377,getSelectedItem,(),I,testGetSelectedItemDefault,BaseSpinnerAdapterTest
+130,76684377,removeItemById,(final long itemId),I,testRemoveItemById,SimpleSpinnerAdapterTest
+131,76684377,getViewTypeCount,(),int,testGetViewTypeCount,AdapterWrapperTest
+132,76684377,swapItems,(@Nullable final List<I> items),List<I>,testSwapItems,SimpleRecyclerAdapterTest
+133,76684377,resolveItemPosition,(final long itemId),int,testResolvePositionForEmptyDataSet,DataSetItemPositionResolverTest
+134,76684377,insertItems,(@NonNull final List<I> items),void,testInsertItems,SimpleAdapterDataSetTest
+135,76684377,simple,(),"AdapterHolder.Binder<A, VH>",testSimpleBindHolderWithItemViewNotTextView,ViewHolderBindersTest
+136,76684377,hasItemAt,(final int position),boolean,testHasItemAtOnEmptyDataSet,SimpleAdapterDataSetTest
+137,76684377,notifyDataSetChanged,(),void,testNotifyDataSetChangedWithoutRegisteredListeners,BaseListAdapterTest
+138,76684377,simple,(),AdapterHolder.Factory<ViewHolder>,testSimple,ViewHolderFactoriesTest
+139,76684377,getItemCount,(),int,testGetItemCount,SimpleListAdapterTest
+140,76684377,swapItem,"(final int position, @NonNull final I item)",I,testSwapItem,SimpleRecyclerAdapterTest
+141,76684377,swapItemById,"(final long itemId, @NonNull final I item)",I,testSwapItemById,SimpleSpinnerAdapterTest
+142,76684377,isEnabled,(final int position),boolean,testIsEnabled,SimpleAdapterDataSetTest
+143,76684377,getCount,(),int,testGetCount,AdapterWrapperTest
+144,76684377,removeItem,(final int position),I,testRemoveItemAtPosition,SimpleSpinnerAdapterTest
+145,76684377,getItems,(),List<I>,testInstantiationWithInitialItemsFromArray,SimpleListAdapterTest
+146,76684377,insertItems,(@NonNull final List<I> items),void,testInsertItemsAtPosition,SimpleRecyclerAdapterTest
+147,76684377,removeItem,(final int position),I,testRemoveItemAtPosition,SimpleRecyclerAdapterTest
+148,76684377,getItemCount,(),int,testGetItemCount,SimpleRecyclerAdapterTest
+149,76684377,onCreateViewHolder,"(@NonNull final ViewGroup parent, final int viewType)",VH,testOnCreateViewHolderWithoutFactory,BaseRecyclerAdapterTest
+150,76684377,notifyItemsSwapFinished,(@Nullable final List<I> items),void,testNotifyItemsSwapFinished,SimpleListAdapterTest
+151,76684377,getLogger,(),Logger,testDefaultLogger,AdaptersLoggingTest
+152,76684377,notifyDataSetActionSelected,"(final int action, final int position, final Object payload)",boolean,testNotifyDataSetActionSelectedWithoutRegisteredListeners,DataSetListenersTest
+153,76684377,insertItem,(@NonNull final I item),void,testInsertItemAtPosition,SimpleListAdapterTest
+154,76684377,removeItemById,(final long itemId),I,testByIdWithoutPositionResolverAttached,SimpleAdapterDataSetTest
+155,76684377,swapItems,(@Nullable final List<I> items),List<I>,testSwapItems,SimpleSpinnerAdapterTest
+156,76684377,isEmpty,(),boolean,testInstantiation,DataSetListenersTest
+157,76684377,notifyDataSetActionSelected,"(final int action, final int position, @Nullable final Object payload)",boolean,testNotifyDataSetActionSelected,BaseListAdapterTest
+158,76684377,notifyDataSetChanged,(),void,testNotifyDataSetChanged,DataSetListenersTest
+159,76684377,getView,"(final int position, @Nullable final View convertView, @NonNull final ViewGroup parent)",View,testGetView,AdapterWrapperTest
+160,76684377,getItems,(),List<I>,testInstantiationWithoutInitialItems,SimpleSpinnerAdapterTest
+161,76684377,getView,"(final int position, @Nullable final View convertView, @NonNull final ViewGroup parent)",View,testGetViewOnEmptyWrapper,AdapterWrapperTest
+162,76684377,isEmpty,(),boolean,testIsEmpty,DataSetListenersTest
+163,76684377,saveInstanceState,(),Parcelable,testSaveInstanceState,BaseRecyclerAdapterTest
+164,76684377,getSelectedPosition,(),int,testGetSelectedPosition,BaseSpinnerAdapterTest
+165,76684377,removeItem,(final int position),I,testRemoveItem,SimpleListAdapterTest
+166,76684377,simple,(),AdapterHolder.Factory<ViewHolder>,testSimpleCreateHolder,ViewHolderFactoriesTest
+167,76684377,getItem,(final int position),I,testGetItem,SimpleSpinnerAdapterTest
+168,76684377,clearHeaders,(),void,testClearHeaders,AlphabeticHeadersTest
+169,76684377,swapItems,(@Nullable final List<I> items),List<I>,testSwapItems,SimpleListAdapterTest
+170,76684377,fromAlphabeticCollection,(@NonNull final Collection<Item> collection),void,testFromAlphabeticCollection,AlphabeticHeadersTest
+171,76684377,registerOnDataSetSwapListener,(@NonNull OnDataSetSwapListener<List<I>> listener),void,testRegisterOnDataSetSwapListener,SimpleSpinnerAdapterTest
+172,76684377,isEmpty,(),boolean,testInstantiation,SwappableDataSetAdapterListenersTest
+173,76684377,fromAlphabeticCursor,(@NonNull final C cursor),void,testFromAlphabeticCursorWithoutData,AlphabeticHeadersTest
+174,76684377,insertItems,(@NonNull final List<I> items),void,testInsertItems,SimpleSpinnerAdapterTest
+175,76684377,correctPosition,(final int position),int,testCorrectPositionOnEmptyHeaders,HeadersModuleTest
+176,76684377,notifyDataSetChanged,(),void,testNotifyDataSetChanged,BaseListAdapterTest
+177,76684377,registerOnDataSetListener,(@NonNull final OnDataSetListener listener),void,testRegisterOnDataSetListener,DataSetListenersTest
+178,76684377,changeItems,(@Nullable final List<I> items),void,testChangeItems,SimpleSpinnerAdapterTest
+179,76684377,getHeader,(final int position),H,testGetHeaderOnEmptyHeaders,HeadersModuleTest
+180,76684377,unregisterOnDataSetSwapListener,(@NonNull final OnDataSetSwapListener<D> listener),void,testUnregisterOnDataSetSwapListenerWithoutRegisteredListeners,SwappableDataSetAdapterListenersTest
+181,76684377,insertItem,(@NonNull final I item),void,testInsertItem,SimpleListAdapterTest
+182,76684377,registerDataSetObserver,(@NonNull final DataSetObserver observer),void,testRegisterDataSetObserverOnEmptyWrapper,AdapterWrapperTest
+183,76684377,size,(),int,testSize,HeadersModuleTest
+184,76684377,unregisterOnDataSetSwapListener,(@NonNull OnDataSetSwapListener<List<I>> listener),void,testUnregisterOnDataSetSwapListener,SimpleSpinnerAdapterTest
+185,76684377,registerOnDataSetListener,(@NonNull final OnDataSetListener listener),void,testRegisterOnDataSetListener,BaseListAdapterTest
+186,76684377,restoreInstanceState,(@NonNull final Parcelable savedState),void,testRestoreInstanceState,SelectionModuleTest
+187,76684377,getSelectedItem,(),I,testGetSelectedItem,BaseSpinnerAdapterTest
+188,76684377,isEmpty,(),boolean,testIsEmptyIfTrue,AdapterWrapperTest
+189,76684377,clearSelectionInRange,"(final int startPosition, final int count)",void,testClearSelectionInRange,SelectionModuleTest
+190,76684377,insertItems,(@NonNull final List<I> items),void,testInsertItems,SimpleListAdapterTest
+191,76684377,updateAdapterPosition,(final int position),void,testUpdateAdapterPosition,ViewHolderTest
+192,76684377,insertItem,(@NonNull final I item),void,testInsertItemWithoutAttachedCallback,SimpleAdapterDataSetTest
+193,76684377,isEmpty,(),boolean,testIsEmptyIfFalse,AdapterWrapperTest
+194,76684377,notifyItemsSwapFinished,(@Nullable List<I> items),void,testNotifyItemsSwapFinishedWithoutRegisteredListeners,SimpleSpinnerAdapterTest
+195,76684377,insertItem,(@NonNull final I item),void,testDataSetItemsCallbackOnItemsChanged,SimpleRecyclerAdapterTest
+196,76684377,v,"(@NonNull final String tag, @NonNull final String message)",void,testV,AdaptersLoggingTest
+197,76684377,noHolderBinderAttached,(@NonNull final Object adapter),RuntimeException,testNoHolderBinderAttached,AdapterExceptionsTest
+198,76684377,getItemViewType,(final int position),int,testGetItemViewTypeOnEmptyWrapper,AdapterWrapperTest
+199,76684377,unregisterOnDataSetListener,(@NonNull final OnDataSetListener listener),void,testUnregisterOnDataSetListenerWithoutRegisteredListeners,DataSetListenersTest
+200,76684377,inflateView,"(@LayoutRes final int resource, @Nullable final ViewGroup parent)",View,testInflateViewWithNullParent,BaseRecyclerAdapterTest
+201,76684377,getCount,(),int,testGetCount,BaseListAdapterTest
+202,76684377,fromAlphabeticCursor,(@NonNull final C cursor),void,testFromAlphabeticCursor,AlphabeticHeadersTest
+203,76684377,swapItems,(final List<I> items),List<I>,testSwapItems,SimpleAdapterDataSetTest
+204,76684377,hasItemAt,(final int position),boolean,testHasItemAtOutOfRange,BaseRecyclerAdapterTest
+205,76684377,getItemId,(final int position),long,testGetItemId,BaseListAdapterTest
+206,76684377,unregisterDataSetObserver,(@NonNull final DataSetObserver observer),void,testUnregisterDataSetObserverOnEmptyWrapper,AdapterWrapperTest
+207,76684377,getItemId,(final int position),long,testGetItemIdOutOfRange,BaseRecyclerAdapterTest
+208,76684377,unregisterOnDataSetSwapListener,(@NonNull final OnDataSetSwapListener<List<I>> listener),void,testUnregisterOnDataSetSwapListenerNotRegistered,SimpleRecyclerAdapterTest
+209,76684377,getItems,(),List<I>,testInstantiationWithInitialItemsFromArray,SimpleRecyclerAdapterTest
+210,76684377,notifyDataSetSwapFinished,(@Nullable final D dataSet),void,testNotifyDataSetSwapFinished,SwappableDataSetAdapterListenersTest
+211,76684377,fromAlphabeticCursor,(@NonNull final C cursor),void,testFromAlphabeticCursorWithPreviousHeaders,AlphabeticHeadersTest
+212,76684377,onSwapItems,(@Nullable final List<I> items),List<I>,testOnSwapItems,SimpleListAdapterTest
+213,76684377,fromAlphabeticCollection,(@NonNull final Collection<Item> collection),void,testFromAlphabeticCollectionWithPreviousHeaders,AlphabeticHeadersTest
+214,76684377,removeItemById,(final long itemId),I,testRemoveItemById,SimpleListAdapterTest
+215,76684377,restoreInstanceState,(@NonNull Parcelable savedState),void,testRestoreInstanceState,BaseListAdapterTest
+216,76684377,putHeader,"(final int position, @NonNull final H header)",void,testPutHeader,HeadersModuleTest
+217,76684377,isEmpty,(),boolean,testIsEmpty,SimpleAdapterDataSetTest
+218,76684377,onCreateViewHolder,"(@NonNull final ViewGroup parent, final int viewType)",VH,testOnCreateViewHolderWithoutFactory,BaseListAdapterTest
+219,76684377,removeItems,"(final int positionStart, final int itemCount)",List<I>,testRemoveItems,SimpleListAdapterTest
+220,76684377,unregisterOnDataSetListener,(@NonNull final OnDataSetListener listener),void,testUnregisterOnDataSetListener,BaseRecyclerAdapterTest
+221,76684377,removeItem,(@NonNull final I item),int,testRemoveItemNotInDataSet,SimpleAdapterDataSetTest
+222,76684377,countHeadersBeforePosition,(final int position),int,testCountHeadersBeforePosition,HeadersModuleTest
+223,76684377,getSuperState,(),Parcelable,testInstantiationFromParcelWithSuperState,AdapterSavedStateTest
+224,76684377,clearHeaders,(),void,testClearHeaders,HeadersModuleTest
+225,76684377,isEmpty,(),boolean,testIsEmpty,HeadersModuleTest
+226,76684377,removeItemById,(final long itemId),I,testRemoveItemById,SimpleAdapterDataSetTest
+227,76684377,getCount,(),int,testGetCountOnEmptyWrapper,AdapterWrapperTest
+228,76684377,notifyItemsSwapFinished,(@Nullable final List<I> items),void,testNotifyItemsSwapFinishedWithoutRegisteredListeners,SimpleRecyclerAdapterTest
+229,76684377,getItems,(),List<I>,testGetItemsOnEmptyDataSet,SimpleAdapterDataSetTest
+230,76684377,insertItems,(@NonNull final List<I> items),void,testInsertItemsAtPosition,SimpleSpinnerAdapterTest
+231,76684377,notifyItemsSwapFinished,(@Nullable final List<I> items),void,testNotifyItemsSwapFinished,SimpleRecyclerAdapterTest
+232,76684377,getItems,(),List<I>,testGetItems,SimpleListAdapterTest
+233,76684377,getItemId,(final int position),long,testGetItemIdOutOfRange,BaseListAdapterTest
+234,76684377,insertItem,(@NonNull final I item),void,testInsertItemAtPositionOutOfRangeOver,SimpleAdapterDataSetTest
+235,76684377,createSimpleHeaderHolder,(@NonNull ViewGroup parent),SimpleHeaderHolder,testCreateSimpleHeaderHolder,HeadersModuleTest
+236,76684377,unregisterOnDataSetSwapListener,(@NonNull OnDataSetSwapListener<List<I>> listener),void,testUnregisterOnDataSetSwapListenerNotRegistered,SimpleListAdapterTest
+237,76684377,d,"(@NonNull final String tag, @NonNull final String message)",void,testD,AdaptersLoggingTest
+238,76684377,getItems,(),List<I>,testInstantiationWithInitialItems,SimpleSpinnerAdapterTest
+239,76684377,removeItem,(final int position),I,testRemoveItem,SimpleSpinnerAdapterTest
+240,76684377,notifyDataSetSwapStarted,(@Nullable final D dataSet),void,testNotifyDataSetSwapStartedWithoutRegisteredListeners,SwappableDataSetAdapterListenersTest
+241,76684377,getItemId,(final int position),long,testGetItemIdOnEmptyDataSet,SimpleAdapterDataSetTest
+242,76684377,unregisterOnDataSetSwapListener,(@NonNull final OnDataSetSwapListener<List<I>> listener),void,testUnregisterOnDataSetSwapListener,SimpleRecyclerAdapterTest
+243,76684377,selectRange,"(final int startPosition, final int count)",void,testSelectRangeInSingleMode,SelectionModuleTest
+244,76684377,unregisterOnDataSetActionListener,(@NonNull final OnDataSetActionListener listener),void,testUnregisterOnDataSetActionListenerNotRegistered,BaseRecyclerAdapterTest
+245,76684377,fromAlphabeticCollection,(@NonNull final Collection<Item> collection),void,testFromAlphabeticCollectionWithoutData,AlphabeticHeadersTest
+246,76684377,hasStableIds,(),boolean,testHasStableIdsWithTrue,AdapterWrapperTest
+247,76684377,unregisterOnDataSetListener,(@NonNull final OnDataSetListener listener),void,testUnregisterOnDataSetListener,BaseListAdapterTest
+248,76684377,notifyDataSetInvalidated,(),void,testNotifyDataSetInvalidated,BaseListAdapterTest
+249,76684377,insertItem,(@NonNull final I item),void,testInsertItem,SimpleAdapterDataSetTest
+250,76684377,getItem,(int position),I,testGetItem,SimpleAdapterDataSetTest
+251,76684377,moveItem,"(final int fromPosition, final int toPosition)",void,testMoveItem,SimpleSpinnerAdapterTest
+252,76684377,attachToAdapter,(@NonNull final ModuleAdapter adapter),void,testAttachToAdapter,AdapterModuleTest
+253,76684377,notifyDataSetSwapStarted,(@Nullable final D dataSet),void,testNotifyDataSetSwapStarted,SwappableDataSetAdapterListenersTest
+254,76684377,registerDataSetObserver,(@NonNull final DataSetObserver observer),void,testRegisterDataSetObserver,AdapterWrapperTest
+255,76684377,removeItem,(final int position),I,testRemoveItem,SimpleRecyclerAdapterTest
+256,76684377,getItem,(final int position),Object,testGetItemOnEmptyWrapper,AdapterWrapperTest
+257,76684377,isEmpty,(),boolean,testIsEmpty,SwappableDataSetAdapterListenersTest
+258,76684377,insertItem,(@NonNull final I item),void,testInsertItem,SimpleRecyclerAdapterTest
+259,76684377,isHeaderAt,(final int position),boolean,testIsHeaderAtOnEmptyHeaders,HeadersModuleTest
+260,76684377,swapItem,"(final int position, @NonNull final I item)",I,testSwapItem,SimpleListAdapterTest
+261,76684377,getItem,(final int position),I,testGetItem,SimpleListAdapterTest
+262,76684377,removeItemById,(final long itemId),I,testRemoveItemById,SimpleRecyclerAdapterTest
+263,76684377,notifyItemsSwapStarted,(@Nullable final List<I> items),void,testNotifyItemsSwapStartedWithoutRegisteredListeners,SimpleListAdapterTest
+264,76684377,noHolderFactoryAttached,(@NonNull final Object adapter),RuntimeException,testNoHolderFactoryAttached,AdapterExceptionsTest
+265,76684377,selectRange,"(final int startPosition, final int count)",void,testSelectRange,SelectionModuleTest
+266,76684377,fromAlphabeticCursor,(@NonNull final C cursor),void,testFromAlphabeticCursorThatCannotBeMovedToFirstPosition,AlphabeticHeadersTest
+267,76684377,onProcessItem,"(final int position, @NonNull final AlphabeticItem item)",void,testOnProcessItem,AlphabeticHeadersTest
+268,76684377,writeToParcel,"(@NonNull final Parcel dest, final int flags)",void,testWriteToParcel,AdapterSavedStateTest
+269,76684377,notifyItemsSwapStarted,(@Nullable final List<I> items),void,testNotifyItemsSwapStartedWithoutRegisteredListeners,SimpleRecyclerAdapterTest
+270,76684377,isEnabled,(final int position),boolean,testIsEnabled,AdapterWrapperTest
+271,76684377,simple,(),"AdapterHolder.Binder<A, VH>",testSimple,ViewHolderBindersTest
+272,76684377,insertItem,(@NonNull final I item),void,testDataSetItemsCallbackOnItemsChanged,SimpleSpinnerAdapterTest
+273,76684377,onProcessItem,"(final int position, @NonNull final AlphabeticItem item)",void,testOnProcessItemWithEmptyText,AlphabeticHeadersTest
+274,76684377,getSelectedPosition,(),int,testGetSelectedPositionDefault,BaseSpinnerAdapterTest
+275,76684377,isEmpty,(),boolean,testIsEmptyOnEmptyWrapper,AdapterWrapperTest
+276,76684377,removeItems,"(final int positionStart, final int itemCount)",List<I>,testRemoveItems,SimpleSpinnerAdapterTest
+277,76684377,swapItemById,"(final long itemId, @NonNull final I item)",I,testSwapItemById,SimpleRecyclerAdapterTest
+278,76684377,registerOnDataSetListener,(@NonNull final OnDataSetListener listener),void,testNotifyDataSetChanged,BaseRecyclerAdapterTest
+279,76684377,insertItem,(@NonNull final I item),void,testInsertItemAtPosition,SimpleRecyclerAdapterTest
+280,76684377,clearSelectionInRange,"(final int startPosition, final int count)",void,testClearSelectionInRangeInSingleMode,SelectionModuleTest
+281,76684377,removeHeader,(final int position),H,testRemoveHeaderOnEmptyHeaders,HeadersModuleTest
+282,76684377,insertItem,(@NonNull final I item),void,testDataSetItemsCallbackOnItemsChanged,SimpleListAdapterTest
+283,76684377,moveItem,"(final int fromPosition, final int toPosition)",void,testMoveItem,SimpleRecyclerAdapterTest
+284,76684377,resource,(@LayoutRes final int resource),AdapterHolder.Factory<ViewHolder>,testResource,ViewHolderFactoriesTest
+285,76684377,getItem,(final int position),I,testGetItem,SimpleRecyclerAdapterTest
+286,76684377,registerOnDataSetListener,(@NonNull final OnDataSetListener listener),void,testRegisterOnDataSetListener,BaseRecyclerAdapterTest
+287,76684377,getItems,(),List<I>,testInstantiationWithInitialItems,SimpleListAdapterTest
+288,76684377,hasItemAt,(final int position),boolean,testHasItemAt,SimpleAdapterDataSetTest

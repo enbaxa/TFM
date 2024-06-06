@@ -1,0 +1,251 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,88544701,cancel,"(final ClientCall<MSG_SubscriptionRequest, MSG_Notification> call)",void,testCancelNotRetryableExceptionOnUnavailableStatus,GrpcFactStoreTest
+1,88544701,toProto,(@NonNull UUID id),MSG_UUID,testToProtoStateForRequest,ProtoConverterTest
+2,88544701,meta,(String key),String,testMeta,IdOnlyFactTest
+3,88544701,serialOf,(@NonNull UUID id),OptionalLong,testSerialOfNull,DefaultFactCastTest
+4,88544701,run,(boolean useIndex),void,testRunWithIndex,PgSynchronizedQueryTest
+5,88544701,subscribe,"(MSG_SubscriptionRequest request,
+            StreamObserver<MSG_Notification> responseObserver)",void,testSubscribeIds,FactStoreGrpcServiceTest
+6,88544701,copy,(@NonNull T toCopy),T,testCopyNull,FactCastJsonTest
+7,88544701,onNext,(Fact element),void,testOnNext,GrpcObserverAdapterTest
+8,88544701,fromProto,(@NonNull MSG_SubscriptionRequest request),SubscriptionRequestTO,testFromProtoMSG_Facts,ProtoConverterTest
+9,88544701,cancel,"(final ClientCall<MSG_SubscriptionRequest, MSG_Notification> call)",void,testCancelIsNotRetryable,GrpcFactStoreTest
+10,88544701,forFacts,(SubscriptionRequest request),SubscriptionRequestTO,testDebugInfo,SubscriptionRequestTOTest
+11,88544701,of,"(@NonNull String jsonHeader, @NonNull String jsonPayload)",Fact,testNoId,DefaultFactTest
+12,88544701,fromProto,(@NonNull MSG_SubscriptionRequest request),SubscriptionRequestTO,testFromProtoMSG_ServerProtocolVersion,ProtoConverterTest
+13,88544701,mapRow,"(@NonNull ResultSet rs, int rowNum)",Fact,testMapRow,PgIdFactExtractorTest
+14,88544701,stateFor,"(MSG_StateForRequest request, StreamObserver<MSG_UUID> responseObserver)",void,testStateFor,FactStoreGrpcServiceTest
+15,88544701,onNext,(MSG_Notification f),void,testOnComplete,ClientStreamObserverTest
+16,88544701,subscribeEphemeral,"(@NonNull SubscriptionRequest req,
+            @NonNull FactObserver observer)",Subscription,testSubscribeFacts2ndArgNull,DefaultFactCastTest
+17,88544701,retrieveImplementationVersion,"(HashMap<String, String> properties)",void,testRetrieveImplementationVersion,FactStoreGrpcServiceTest
+18,88544701,postProcessBeforeInitialization,"(@NonNull Object bean, @NonNull String beanName)",Object,shouldReplaceJdbcCP,RdsDataSourceFactoryBeanPostProcessorTest
+19,88544701,currentTime,(),long,testCurrentTime,GrpcFactStoreTest
+20,88544701,buildPgConnectionProperties,(org.apache.tomcat.jdbc.pool.DataSource ds),Properties,test_noRelevantPropertySet,PgConnectionSupplierTest
+21,88544701,from,(ResultSet resultSet),Fact,testFrom,PgFactTest
+22,88544701,ns,(),String,testNs,IdOnlyFactTest
+23,88544701,matches,(@NonNull FactSpec spec),Predicate<Fact>,testMatchesNull,FactSpecMatcherTest
+24,88544701,serialOf,"(MSG_UUID request, StreamObserver<MSG_OptionalSerial> responseObserver)",void,testSerialOfThrows,FactStoreGrpcServiceTest
+25,88544701,on,"(@NonNull UUID aggId, UUID... otherAggIds)",OnBuilderStep,testAttemptNullContracts,LockedOperationBuilderTest
+26,88544701,aggIdMatch,(Fact t),boolean,testAggIdMatch,FactSpecMatcherTest
+27,88544701,subscribe,"(@NonNull SubscriptionRequestTO req,
+            @NonNull FactObserver observer)",Subscription,testSubscribe,GrpcFactStoreTest
+28,88544701,enumerateTypes,(@NonNull String ns),Set<String>,testEnumerateTypesNullContract,DefaultFactCastTest
+29,88544701,getMessageEncoding,(),String,getMessageEncoding,SnappyGrpcClientCodecTest
+30,88544701,serialOf,(@NonNull UUID l),OptionalLong,testSerialOf,GrpcFactStoreTest
+31,88544701,wrapRetryable,(StatusRuntimeException e),RuntimeException,testWrapRetryable,GrpcFactStoreTest
+32,88544701,awaitCatchup,(),Subscription,testAwaitCatchup,SubscriptionImplTest
+33,88544701,of,"(@NonNull String jsonHeader, @NonNull String jsonPayload)",Fact,testNullPayload,DefaultFactTest
+34,88544701,fromProto,(@NonNull MSG_SubscriptionRequest request),SubscriptionRequestTO,testFromProtoMSG_StateForRequest_nsNotSet,ProtoConverterTest
+35,88544701,ns,(String ns),FactSpec,testFactSpecAggId,FactSpecTest
+36,88544701,writeValueAsPrettyString,(Object o),String,testWriteValueAsPrettyFromObject,FactCastJsonTest
+37,88544701,buildPgConnectionProperties,(org.apache.tomcat.jdbc.pool.DataSource ds),Properties,test_invalidConnectionProperties,PgConnectionSupplierTest
+38,88544701,publish,(@NonNull List<? extends Fact> factsToPublish),void,testPublishPropagatesException,GrpcFactStoreTest
+39,88544701,of,"(@NonNull String jsonHeader, @NonNull String jsonPayload)",Fact,testOfEmptyNs,DefaultFactTest
+40,88544701,serialOf,(@NonNull UUID l),OptionalLong,testSerialOfNullParameters,GrpcFactStoreTest
+41,88544701,initialize,(),void,testInitializationExecutesOnlyOnce,GrpcFactStoreTest
+42,88544701,interceptCall,"(ServerCall<ReqT, RespT> call,
+            Metadata headers, ServerCallHandler<ReqT, RespT> next)",Listener<ReqT>,interceptCallGZip,GrpcCompressionInterceptorTest
+43,88544701,type,(),String,testType,IdOnlyFactTest
+44,88544701,subscribe,"(@NonNull SubscriptionRequestTO req,
+            @NonNull FactObserver observer)",Subscription,testSubscribeNull,GrpcFactStoreTest
+45,88544701,serialOf,"(MSG_UUID request, StreamObserver<MSG_OptionalSerial> responseObserver)",void,testSerialOf,FactStoreGrpcServiceTest
+46,88544701,onNext,(MSG_Notification f),void,testFailOnUnknownType,ClientStreamObserverTest
+47,88544701,onNext,(MSG_Notification f),void,testOnNextFailsOnUnknownMessage,ClientStreamObserverTest
+48,88544701,fromProto,(@NonNull MSG_SubscriptionRequest request),SubscriptionRequestTO,testFromProtoOptionalNull,ProtoConverterTest
+49,88544701,publish,(@NonNull List<? extends Fact> factsToPublish),void,testPublishWithAggregatedException,DefaultFactCastTest
+50,88544701,publish,(@NonNull List<? extends Fact> factsToPublish),void,testPublishManyNull,DefaultFactCastTest
+51,88544701,invalidate,(@NonNull StateToken token),void,testInvalidate,GrpcFactStoreTest
+52,88544701,getFetchSize,(),int,testGetFetchSize,PgConfigurationPropertiesTest
+53,88544701,destroy,(),void,testStopWithoutStarting,PgListenerTest
+54,88544701,toString,(),String,testToString,SubscriptionRequestTOTest
+55,88544701,fromProto,(@NonNull MSG_SubscriptionRequest request),SubscriptionRequestTO,testFromProtoMSG_OptionalSerial,ProtoConverterTest
+56,88544701,initialize,(),void,testInitializePropagatesRetryableExceptionOnUnavailableStatus,GrpcFactStoreTest
+57,88544701,of,"(@NonNull String jsonHeader, @NonNull String jsonPayload)",Fact,testNullHeader,DefaultFactTest
+58,88544701,configureCompression,(String codecListFromServer),void,configureCompressionSkipCompression,GrpcFactStoreTest
+59,88544701,fromProto,(@NonNull MSG_SubscriptionRequest request),SubscriptionRequestTO,testFromProtoMSG_CurrentDatabaseTimeNull,ProtoConverterTest
+60,88544701,metaMatch,(Fact t),boolean,testMetaMatch,FactSpecMatcherTest
+61,88544701,enumerateNamespaces,(),Set<String>,testEnumerateNamespacesPropagatesRetryableExceptionOnUnavailableStatus,GrpcFactStoreTest
+62,88544701,of,"(@NonNull String jsonHeader, @NonNull String jsonPayload)",Fact,testUnparsableHeader,DefaultFactTest
+63,88544701,wrapRetryable,(StatusRuntimeException e),RuntimeException,testWrapRetryable_nonRetryable,GrpcFactStoreTest
+64,88544701,of,"(@NonNull String jsonHeader, @NonNull String jsonPayload)",Fact,testEqualityBasedOnId,DefaultFactTest
+65,88544701,trigger,(),void,testDelayedExecution,CondensedQueryExecutorTest
+66,88544701,empty,(),MSG_Empty,testEmpty,ProtoConverterTest
+67,88544701,stateFor,"(@NonNull Collection<UUID> forAggIds, @NonNull Optional<String> ns)",StateToken,testStateFor,GrpcFactStoreTest
+68,88544701,onError,(Throwable t),void,testOnError,ClientStreamObserverTest
+69,88544701,toProto,(@NonNull UUID id),MSG_UUID,testToProtoUUIDNull,ProtoConverterTest
+70,88544701,connect,(@NonNull SubscriptionRequestTO request),void,testConnectNullParameter,PgFactStreamTest
+72,88544701,andThen,(),Optional<Runnable>,testAndThen,IntermediatePublishResultTest
+73,88544701,getFetchSizeForIds,(),int,testGetFetchSizeForIds,PgConfigurationPropertiesTest
+74,88544701,fetchById,(UUID id),Optional<Fact>,testFetchByIdFound,GrpcFactStoreTest
+75,88544701,configureCompression,(String codecListFromServer),void,configureCompressionChooseGzipIfAvail,GrpcFactStoreTest
+76,88544701,toProto,(@NonNull UUID id),MSG_UUID,testToProtoConditionalPublishRequest,ProtoConverterTest
+77,88544701,toProto,(@NonNull UUID id),MSG_UUID,testToProtoFacts_nullArg,ProtoConverterTest
+78,88544701,cancel,"(final ClientCall<MSG_SubscriptionRequest, MSG_Notification> call)",void,testCancelIsPropagated,GrpcFactStoreTest
+79,88544701,fromProto,(@NonNull MSG_SubscriptionRequest request),SubscriptionRequestTO,testFromProtoMSG_StateForRequest_emptyAggIds,ProtoConverterTest
+80,88544701,trigger,(),void,testDelayedCondensedExecution,CondensedQueryExecutorTest
+81,88544701,of,"(@NonNull String jsonHeader, @NonNull String jsonPayload)",Fact,testEqualityMustBeBasedOnIDOnly,DefaultFactTest
+82,88544701,onComplete,(),void,testOnCompleteWithException,GrpcObserverAdapterTest
+83,88544701,onError,(Throwable t),void,testOnError,BlockingStreamObserverTest
+84,88544701,toUUIDArray,(String aggIdArrayAsString),Set<UUID>,testToUUIDArrayMutli,PgFactTest
+85,88544701,toUUIDArray,(String aggIdArrayAsString),Set<UUID>,testToUUIDArraySingle,PgFactTest
+86,88544701,onNext,(MSG_Notification f),void,testOnNextId,ClientStreamObserverTest
+87,88544701,notifyElement,(@NonNull T e),void,testNotifyElementNull,SubscriptionImplTest
+88,88544701,onComplete,(),void,testOnComplete,GrpcObserverAdapterTest
+89,88544701,typeMatch,(Fact t),boolean,testTypeMatch,FactSpecMatcherTest
+90,88544701,on,"(@NonNull UUID aggId, UUID... otherAggIds)",OnBuilderStep,testAttemptAbortsOnNull,LockedOperationBuilderTest
+91,88544701,render,(Fact f),String,testRender,FactRendererTest
+92,88544701,enumerateNamespaces,"(MSG_Empty request,
+            StreamObserver<MSG_StringSet> responseObserver)",void,testEnumerateNamespacesThrows,FactStoreGrpcServiceTest
+93,88544701,toProto,(@NonNull UUID id),MSG_UUID,testToProtoBoolean,ProtoConverterTest
+94,88544701,run,(boolean useIndex),void,testRunWithoutIndex,PgSynchronizedQueryTest
+95,88544701,ns,(String ns),FactSpec,testFactSpecNs,FactSpecTest
+96,88544701,toProto,(@NonNull UUID id),MSG_UUID,testToProtoFacts_empty,ProtoConverterTest
+97,88544701,serialOf,(@NonNull UUID id),OptionalLong,testSerialOf,DefaultFactCastTest
+98,88544701,subscribe,"(@NonNull SubscriptionRequest request,
+            @NonNull FactObserver observer)",Subscription,testSubscribeNullContracts,DefaultFactCastTest
+99,88544701,toString,(),String,testToString,InMemFactTest
+100,88544701,subscribe,"(MSG_SubscriptionRequest request,
+            StreamObserver<MSG_Notification> responseObserver)",void,testSubscribeFacts,FactStoreGrpcServiceTest
+101,88544701,toString,(),String,testToString,ProtocolVersionTest
+102,88544701,filterScript,(),FilterScript,testJsFilterScriptDeserDownwardCompatibility,FactSpecTest
+103,88544701,onCatchup,(),void,testOnCatchup,GrpcObserverAdapterTest
+104,88544701,aggIds,(),Set<UUID>,testAggIds,IdOnlyFactTest
+105,88544701,getQueueSizeForIds,(),int,testGetQueueSizeForIds,PgConfigurationPropertiesTest
+106,88544701,on,"(@NonNull UUID aggId, UUID... otherAggIds)",OnBuilderStep,testOn,LockedOperationBuilderTest
+107,88544701,enumerateTypes,(String ns),Set<String>,testEnumerateTypes,GrpcFactStoreTest
+108,88544701,on,(@NonNull GenericObserver<T> o),SubscriptionImpl<T>,testOnNull,SubscriptionImplTest
+109,88544701,ns,(String ns),FactSpec,testFactSpecEquality,FactSpecTest
+110,88544701,trigger,(),void,testDelayedMultipleExecution,CondensedQueryExecutorTest
+111,88544701,publish,(@NonNull List<? extends Fact> factsToPublish),void,testPublishPropagatesRetryableExceptionOnUnavailableStatus,GrpcFactStoreTest
+112,88544701,onNext,(MSG_Notification f),void,testOnCatchup,ClientStreamObserverTest
+113,88544701,ns,(String ns),FactSpec,testFactSpecType,FactSpecTest
+114,88544701,buildPgConnectionProperties,(org.apache.tomcat.jdbc.pool.DataSource ds),Properties,test_nullProperties,PgConnectionSupplierTest
+116,88544701,fetchById,(UUID id),Optional<Fact>,testFetchByIdPropagatesRetryableExceptionOnUnavailableStatus,GrpcFactStoreTest
+117,88544701,toProto,(@NonNull UUID id),MSG_UUID,testToProtoSubscriptionRequestNull,ProtoConverterTest
+118,88544701,matchesAnyOf,(@NonNull List<FactSpec> spec),Predicate<Fact>,testMatchesAnyOfNull,FactSpecMatcherTest
+119,88544701,invalidate,"(MSG_UUID request, StreamObserver<MSG_Empty> responseObserver)",void,testInvalidate,FactStoreGrpcServiceTest
+120,88544701,matchesAnyOf,(@NonNull List<FactSpec> spec),Predicate<Fact>,testMatchesAnyOf,FactSpecMatcherTest
+121,88544701,render,(Fact f),String,testRenderPretty,FactRendererTest
+122,88544701,getMessageEncoding,(),String,getMessageEncoding,Lz4GrpcServerCodecTest
+123,88544701,writeValueAsString,(@NonNull T value),String,testWriteValueNull,FactCastJsonTest
+124,88544701,of,"(@NonNull String jsonHeader, @NonNull String jsonPayload)",Fact,testExternalization,DefaultFactTest
+125,88544701,interceptCall,"(ServerCall<ReqT, RespT> call,
+            Metadata headers, ServerCallHandler<ReqT, RespT> next)",Listener<ReqT>,interceptCallWithoutCompression,GrpcCompressionInterceptorTest
+126,88544701,onNext,(T value),void,testOnNextWhenReady,BlockingStreamObserverTest
+127,88544701,onError,(Throwable e),void,testOnError,GrpcObserverAdapterTest
+128,88544701,createNotificationFor,(@NonNull Fact t),MSG_Notification,testCreateNotificationForFactNull,ProtoConverterTest
+129,88544701,close,(),void,testClose,SubscriptionImplTest
+130,88544701,publish,"(@NonNull MSG_Facts request,
+            StreamObserver<MSG_Empty> responseObserver)",void,testPublishNone,FactStoreGrpcServiceTest
+132,88544701,of,"(@NonNull String jsonHeader, @NonNull String jsonPayload)",Fact,testNullContracts,DefaultFactTest
+133,88544701,awaitComplete,(),Subscription,testAwaitComplete,ReconnectingFactSubscriptionWrapperTest
+134,88544701,postProcessBeforeInitialization,"(@NonNull Object bean, @NonNull String beanName)",Object,shouldReturnFromBeforeSameBeanAsPassed,RdsDataSourceFactoryBeanPostProcessorTest
+135,88544701,listen,(),void,testListen,PgListenerTest
+136,88544701,enumerateNamespaces,"(MSG_Empty request,
+            StreamObserver<MSG_StringSet> responseObserver)",void,testEnumerateNamespaces,FactStoreGrpcServiceTest
+137,88544701,get,(),ScriptEngine,testGet,JavaScriptEngineSupplierTest
+138,88544701,getMessageEncoding,(),String,getMessageEncoding,Lz4GrpcClientCodecTest
+139,88544701,publish,"(@NonNull MSG_Facts request,
+            StreamObserver<MSG_Empty> responseObserver)",void,testPublishSome,FactStoreGrpcServiceTest
+140,88544701,publishIfUnchanged,"(@NonNull List<? extends Fact> factsToPublish,
+            @NonNull Optional<StateToken> token)",boolean,testPublishIfUnchanged,GrpcFactStoreTest
+141,88544701,lock,(@NonNull String ns),LockedOperationBuilder,testLockNamespaceMustNotBeEmpty,DefaultFactCastTest
+142,88544701,mapRow,"(@NonNull ResultSet rs, int rowNum)",Fact,testMapRowNullContracts,PgIdFactExtractorTest
+143,88544701,publish,(@NonNull List<? extends Fact> factsToPublish),void,testPublish,GrpcFactStoreTest
+144,88544701,enumerateNamespaces,(),Set<String>,testEnumerateNamespaces,GrpcFactStoreTest
+145,88544701,scriptMatch,(Fact t),boolean,testScriptMatch,FactSpecMatcherTest
+146,88544701,attempt,(@NonNull Attempt operation),PublishingResult,attemptReturnsNullShouldBeAnAbort,WithOptimisticLockTest
+147,88544701,assertSubscriptionStateNotClosed,(),void,testAssertSubscriptionStateNotClosed,ReconnectingFactSubscriptionWrapperTest
+148,88544701,getPageSizeForIds,(),int,testGetPageSizeForIds,PgConfigurationPropertiesTest
+149,88544701,of,"(@NonNull String jsonHeader, @NonNull String jsonPayload)",Fact,testValidFact,DefaultFactTest
+150,88544701,getMessageEncoding,(),String,getMessageEncoding,SnappyGrpcServerCodecTest
+151,88544701,of,"(@NonNull String jsonHeader, @NonNull String jsonPayload)",Fact,testJsonHeader,DefaultFactTest
+152,88544701,runWith,"(FactCast fc, Options opt)",void,testCatchup,CatchupTest
+153,88544701,initialize,(),void,testCompatibleProtocolVersion,GrpcFactStoreTest
+154,88544701,andThen,(),Optional<Runnable>,testNullContracts,IntermediatePublishResultTest
+155,88544701,publishConditional,"(MSG_ConditionalPublishRequest request,
+            StreamObserver<MSG_ConditionalPublishResult> responseObserver)",void,testPublishConditional,FactStoreGrpcServiceTest
+156,88544701,toObjectNode,(String json),ObjectNode,testToObjectNode,FactCastJsonTest
+157,88544701,fetchById,"(MSG_UUID request,
+            StreamObserver<MSG_OptionalFact> responseObserver)",void,testFetchByIdThrows,FactStoreGrpcServiceTest
+158,88544701,toUUIDArray,(String aggIdArrayAsString),Set<UUID>,testToUUIDArrayNull,PgFactTest
+159,88544701,publish,"(@NonNull MSG_Facts request,
+            StreamObserver<MSG_Empty> responseObserver)",void,testPublishNull,FactStoreGrpcServiceTest
+160,88544701,readValue,"(@NonNull Class<T> class1, String json)",T,testReadValueFromInputStream,FactCastJsonTest
+161,88544701,subscribeEphemeral,"(@NonNull SubscriptionRequest req,
+            @NonNull FactObserver observer)",Subscription,testSubscribeEphemeral,DefaultFactCastTest
+162,88544701,enumerateNamespaces,(),Set<String>,testCurrentTimePropagatesRetryableExceptionOnUnavailableStatus,GrpcFactStoreTest
+163,88544701,fromProto,(@NonNull MSG_SubscriptionRequest request),SubscriptionRequestTO,testFromProtoMSG_ServerProperties,ProtoConverterTest
+164,88544701,subscribe,"(@NonNull SubscriptionRequestTO req,
+            @NonNull FactObserver observer)",Subscription,testSubscribeNullParameters,GrpcFactStoreTest
+165,88544701,buildPgConnectionProperties,(org.apache.tomcat.jdbc.pool.DataSource ds),Properties,test_propertySyntaxBroken,PgConnectionSupplierTest
+166,88544701,subscribe,"(@NonNull SubscriptionRequest request,
+            @NonNull FactObserver observer)",Subscription,testSubscribeClosesDelegate,DefaultFactCastTest
+167,88544701,serialOf,(@NonNull UUID l),OptionalLong,testSerialOfPropagatesRetryableExceptionOnUnavailableStatus,GrpcFactStoreTest
+168,88544701,newObjectNode,(),ObjectNode,testNewObjectNode,FactCastJsonTest
+169,88544701,onCompleted,(),void,testOnCompleted,BlockingStreamObserverTest
+170,88544701,awaitComplete,(),Subscription,testAwaitCompleteLong,ReconnectingFactSubscriptionWrapperTest
+171,88544701,mapRow,"(@NonNull ResultSet rs, int rowNum)",Fact,testMapRow,PgFactExtractorTest
+172,88544701,createNotificationFor,(@NonNull Fact t),MSG_Notification,testCreateNotificationForIdNull,ProtoConverterTest
+173,88544701,awaitCatchup,(),Subscription,testAwaitCatchup,ReconnectingFactSubscriptionWrapperTest
+174,88544701,copy,(@NonNull T toCopy),T,testCopy,FactCastJsonTest
+175,88544701,addSpecs,(@NonNull List<FactSpec> factSpecs),void,testAddSpecs,SubscriptionRequestTOTest
+176,88544701,of,"(@NonNull String jsonHeader, @NonNull String jsonPayload)",Fact,testOfNoId,DefaultFactTest
+177,88544701,onClose,(Runnable e),SubscriptionImpl<T>,testOnClose,SubscriptionImplTest
+178,88544701,fetchById,"(MSG_UUID request,
+            StreamObserver<MSG_OptionalFact> responseObserver)",void,testFetchById,FactStoreGrpcServiceTest
+179,88544701,enumerateNamespaces,(),Set<String>,testEnumerateNamespaces,DefaultFactCastTest
+180,88544701,publish,(@NonNull List<? extends Fact> factsToPublish),void,testNoNamespace,DefaultFactCastTest
+181,88544701,of,"(@NonNull String jsonHeader, @NonNull String jsonPayload)",Fact,testOfNoNs,DefaultFactTest
+182,88544701,awaitCatchup,(),Subscription,testAwaitCatchupLong,ReconnectingFactSubscriptionWrapperTest
+183,88544701,jsonHeader,(),String,testJsonHeader,IdOnlyFactTest
+184,88544701,toProto,(@NonNull UUID id),MSG_UUID,testToProtoOptionalLongPresent,ProtoConverterTest
+185,88544701,notifyError,(Throwable e),void,testNotifyErrorNull,SubscriptionImplTest
+186,88544701,nsMatch,(Fact t),boolean,testNsMatch,FactSpecMatcherTest
+187,88544701,onCompleted,(),void,testOnTransportComplete,ClientStreamObserverTest
+188,88544701,writeValueAsPrettyString,(Object o),String,testWriteValueAsPrettyString,FactCastJsonTest
+189,88544701,forFacts,(SubscriptionRequest request),SubscriptionRequestTO,testMaxDelay,SubscriptionRequestTOTest
+190,88544701,on,(@NonNull GenericObserver<T> o),SubscriptionImpl<T>,testOn,SubscriptionImplTest
+191,88544701,toString,(),String,testToString,FluentSubscriptionRequestTest
+192,88544701,publish,(@NonNull List<? extends Fact> factsToPublish),void,testPublishOneNull,DefaultFactCastTest
+193,88544701,enumerateTypes,(@NonNull String ns),Set<String>,testEnumerateTypes,DefaultFactCastTest
+194,88544701,fromProto,(@NonNull MSG_SubscriptionRequest request),SubscriptionRequestTO,testFromProtoMSG_StateForRequest_nsSet,ProtoConverterTest
+195,88544701,publish,(@NonNull List<? extends Fact> factsToPublish),void,testPublishNullParameter,GrpcFactStoreTest
+196,88544701,handshake,"(MSG_Empty request,
+            StreamObserver<MSG_ServerConfig> responseObserver)",void,testHandshake,FactStoreGrpcServiceTest
+197,88544701,initialize,(),void,testIncompatibleProtocolVersion,GrpcFactStoreTest
+198,88544701,readValue,"(@NonNull Class<T> class1, String json)",T,testReadValueNull,FactCastJsonTest
+199,88544701,jsonPayload,(),String,testJsonPayload,IdOnlyFactTest
+200,88544701,toUUIDArray,(String aggIdArrayAsString),Set<UUID>,testToUUIDArrayEmpty,PgFactTest
+201,88544701,onNext,(MSG_Notification f),void,testOnNext,ClientStreamObserverTest
+202,88544701,fetchById,(UUID id),Optional<Fact>,testFetchByIdNotFound,GrpcFactStoreTest
+203,88544701,lock,(@NonNull String ns),LockedOperationBuilder,testLockNullContract,DefaultFactCastTest
+204,88544701,on,"(@NonNull UUID aggId, UUID... otherAggIds)",OnBuilderStep,testAttemptWithoutPublishing,LockedOperationBuilderTest
+205,88544701,isCompatibleTo,(ProtocolVersion other),boolean,testIsCompatibleTo,ProtocolVersionTest
+206,88544701,publish,(@NonNull List<? extends Fact> factsToPublish),void,testNoId,DefaultFactCastTest
+207,88544701,on,"(@NonNull UUID aggId, UUID... otherAggIds)",OnBuilderStep,testOptimistic,LockedOperationBuilderTest
+208,88544701,publish,"(@NonNull MSG_Facts request,
+            StreamObserver<MSG_Empty> responseObserver)",void,testPublishThrows,FactStoreGrpcServiceTest
+209,88544701,enumerateTypes,"(MSG_String request,
+            StreamObserver<MSG_StringSet> responseObserver)",void,testEnumerateTypesThrows,FactStoreGrpcServiceTest
+210,88544701,enumerateTypes,"(MSG_String request,
+            StreamObserver<MSG_StringSet> responseObserver)",void,testEnumerateTypes,FactStoreGrpcServiceTest
+211,88544701,publish,(@NonNull List<? extends Fact> factsToPublish),void,testPublish,DefaultFactCastTest
+212,88544701,subscribe,"(@NonNull SubscriptionRequest request,
+            @NonNull FactObserver observer)",Subscription,testSubscribeReconnectsOnError,DefaultFactCastTest
+213,88544701,postProcessAfterInitialization,"(@NonNull Object bean, @NonNull String beanName)",Object,shouldReturnFromAfterInitSameBeanAsPassed,RdsDataSourceFactoryBeanPostProcessorTest
+214,88544701,toObjectNode,(String json),ObjectNode,testToObjectNodeNonJson,FactCastJsonTest
+215,88544701,awaitComplete,(),Subscription,testAwaitComplete,SubscriptionImplTest
+216,88544701,createCatchupNotification,(),MSG_Notification,testCreateCatchupNotification,ProtoConverterTest
+217,88544701,createCompleteNotification,(),MSG_Notification,testCreateCompleteNotification,ProtoConverterTest
+218,88544701,subscribeEphemeral,"(@NonNull SubscriptionRequest req,
+            @NonNull FactObserver observer)",Subscription,testSubscribeFactsNull,DefaultFactCastTest
+219,88544701,of,"(@NonNull String jsonHeader, @NonNull String jsonPayload)",Fact,testIdNotUUID,DefaultFactTest
+220,88544701,fromProto,(@NonNull MSG_SubscriptionRequest request),SubscriptionRequestTO,testFromProtoMSG_SubscriptionRequestNull,ProtoConverterTest
+221,88544701,hasAnyScriptFilters,(),boolean,testHasAnyScriptFilters,SubscriptionRequestTOTest
+222,88544701,enumerateTypes,(String ns),Set<String>,testEnumerateTypesPropagatesRetryableExceptionOnUnavailableStatus,GrpcFactStoreTest
+223,88544701,subscribeEphemeral,"(@NonNull SubscriptionRequest req,
+            @NonNull FactObserver observer)",Subscription,testSubscribeFacts1stArgNull,DefaultFactCastTest
+224,88544701,mapRow,"(@NonNull ResultSet rs, int rowNum)",Fact,testMapRowNullContracts,PgFactExtractorTest
+225,88544701,toProto,(@NonNull UUID id),MSG_UUID,testToProtoFactNull,ProtoConverterTest

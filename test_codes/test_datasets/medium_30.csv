@@ -1,0 +1,245 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,92375988,sha512,(),HashFunction,testSha512,HashingTest
+1,92375988,toString,(),String,testToString,HashCodeTest
+2,92375988,fromBytes,(byte[] rawDbKey),DbKey,throwsIfBranchKeySliceHasBitsAfterSignificantPart0Bits,DbKeyTest
+3,92375988,next,(),Optional<E>,nextFailsIfHandleClosed,ConfigurableRustIterTest
+4,92375988,fromBytes,(byte[] serializedValue),T,fromBytes,CheckingSerializerDecoratorTest
+5,92375988,checkRange,"(long from, long to)",void,checkRangeFrom0MinValid,StoragePreconditionsTest
+6,92375988,verify,(),CheckedListProof<byte[]>,twoElementListValidProofAt0,FlatListProofTest
+7,92375988,estimateSize,(),long,spliteratorIsLateBindingUsesProperSize,ListSpliteratorTest
+8,92375988,fromLong,(long hash),HashCode,testFromLong,HashCodeTest
+9,92375988,writeBytesTo,"(byte[] dest, int offset, int maxLength)",int,testWriteBytesToUndersizedArrayLongMaxLength,HashCodeTest
+10,92375988,writeBytesTo,"(byte[] dest, int offset, int maxLength)",int,testWriteBytesTo,HashCodeTest
+11,92375988,parseGetBlocksResponse,(String json),BlocksResponse,parseGetBlocksResponse,ExplorerApiHelperTest
+12,92375988,fromBytes,(byte[] rawDbKey),DbKey,throwsIfBranchKeySliceHasBitsAfterSignificantPart1Bit,DbKeyTest
+13,92375988,check,(),CheckedMapProof,mapProofWithSingleLeafProofEntryShouldBeCorrect,UncheckedFlatMapProofTest
+14,92375988,close,(),void,closeShallCallDispose,AbstractCloseableNativeProxyTest
+15,92375988,checkPositionIndex,"(long index, long size)",long,checkPositionIndexSize0_NotValidNegative,StoragePreconditionsTest
+16,92375988,writeBytesTo,"(byte[] dest, int offset, int maxLength)",int,testWriteBytesToUndersizedArrayShortMaxLength,HashCodeTest
+17,92375988,checkIdInGroup,(byte[] indexId),byte[],checkIdInGroupNull,StoragePreconditionsTest
+18,92375988,json,(),Gson,publicKeySerializesAsHexValue,JsonSerializerTest
+19,92375988,trySplit,(),Spliterator<ElementT>,trySplit_OneElement,ListSpliteratorTest
+20,92375988,getWallet,(RoutingContext rc),void,getWallet,ApiControllerTest
+21,92375988,check,(),CheckedMapProof,mapProofWithInvalidOrderShouldBeIncorrect,UncheckedFlatMapProofTest
+22,92375988,parseGetTxResponse,(String json),TransactionResponse,parseGetTxResponseInPool,ExplorerApiHelperTest
+23,92375988,checkElementIndex,"(long index, long size)",long,checkElementIndexEqualToSize,StoragePreconditionsTest
+24,92375988,verify,(),CheckedListProof<byte[]>,singletonListValidProof,FlatListProofTest
+25,92375988,byteArrayFunnel,(),Funnel<byte[]>,testForBytes,FunnelsTest
+26,92375988,checkElementIndex,"(long index, long size)",long,checkElementIndex2MaxValid,StoragePreconditionsTest
+27,92375988,checkRange,"(long from, long to)",void,checkRangeFrom2MaxValid,StoragePreconditionsTest
+28,92375988,putInt,(int i),Hasher,testInt,AbstractByteHasherTest
+29,92375988,checkNoCopiesOfAppClasses,(ClassLoader pluginClassloader),void,checkNoCopiesOfAppClasses,ClassLoadingScopeCheckerTest
+30,92375988,writeBytesTo,"(byte[] dest, int offset, int maxLength)",int,testWriteBytesToOversizedArray,HashCodeTest
+31,92375988,submitIncrementCounter,(RoutingContext rc),void,submitIncrementCounter,ApiControllerTest
+32,92375988,checkProofKey,(byte[] key),byte[],checkProofKeyDoesNotAcceptBiggerKeys,StoragePreconditionsTest
+33,92375988,checkNoCopiesOfAppClasses,(ClassLoader pluginClassloader),void,checkNoCopiesOfAppClassesDetectsAllCopies,ClassLoadingScopeCheckerTest
+34,92375988,checkProofKey,(byte[] key),byte[],checkProofKeyDoesNotAcceptNull,StoragePreconditionsTest
+35,92375988,getConsensusConfiguration,(RoutingContext rc),void,getConsensusConfiguration,ApiControllerTest
+36,92375988,checkIndexName,(String name),String,checkIndexNameDoesNotAcceptNull,StoragePreconditionsTest
+37,92375988,checkNoCopiesOfAppClasses,(ClassLoader pluginClassloader),void,checkNoCopiesOfAppClassesClassloaderFailsToDelegate,ClassLoadingScopeCheckerTest
+38,92375988,parseServicesResponse,(String json),List<ServiceInstanceInfo>,parseServicesResponse,ExplorerApiHelperTest
+39,92375988,itemsFrequency,"(Collection<? extends ElementT> items,
+                            Function<? super ElementT, KeyT> keyExtractor)",String,itemsFrequencySeveralElementsSameFrequency,FrequencyStatsFormatterTest
+40,92375988,createService,"(LoadedServiceDefinition definition,
+      ServiceInstanceSpec instanceSpec, Node node)",ServiceWrapper,createService,GuiceServicesFactoryTest
+41,92375988,getValidatorsTimes,(RoutingContext rc),void,getValidatorsTimes,ApiControllerTest
+42,92375988,defaultHashFunction,(),HashFunction,testGetHashOfEmptyByteBuffer,HashingTest
+43,92375988,getAsProperties,(),Properties,getAsProperties,ServiceConfigurationTest
+44,92375988,fromProto,(ArtifactId artifactId),ServiceArtifactId,fromProto,ServiceArtifactIdTest
+45,92375988,initialize,"(ExecutionContext context, Configuration configuration)",void,initialize,QaServiceImplTest
+46,92375988,putBytes,(byte[] bytes),Hasher,testString,AbstractByteHasherTest
+47,92375988,newHasher,(),Hasher,testExhaustive,AbstractNonStreamingHashFunctionTest
+48,92375988,start,(),void,start,RuntimeTransportTest
+49,92375988,checkRange,"(long from, long to)",void,checkRangeFromEqualToTo,StoragePreconditionsTest
+50,92375988,extractTransactionMethods,(Class<?> serviceClass),"Map<Integer, TransactionMethod>",missingTransactionMethodArgumentsServiceMethodExtraction,TransactionExtractorTest
+51,92375988,itemsFrequency,"(Collection<? extends ElementT> items,
+                            Function<? super ElementT, KeyT> keyExtractor)",String,itemsFrequencyOneItem,FrequencyStatsFormatterTest
+52,92375988,checkStorageKey,(byte[] key),byte[],checkStorageKeyAcceptsEmpty,StoragePreconditionsTest
+53,92375988,getId,(),int,getId,AbstractServiceTest
+54,92375988,checkIdInGroup,(byte[] indexId),byte[],checkIdInGroupEmpty,StoragePreconditionsTest
+55,92375988,checkRange,"(long from, long to)",void,checkRangeFromMaxLong,StoragePreconditionsTest
+56,92375988,findTransactionMethods,(Class<?> serviceClass),"Map<Integer, Method>",findMethodsValidServiceInterfaceImplementation,TransactionExtractorTest
+57,92375988,checkElementIndex,"(long index, long size)",long,checkElementIndexNegative,StoragePreconditionsTest
+58,92375988,checkStorageKey,(byte[] key),byte[],checkStorageKeyAcceptsNonEmpty,StoragePreconditionsTest
+59,92375988,getAsMessage,(Class<MessageT> parametersType),MessageT,getAsMessageNotMessage,ServiceConfigurationTest
+60,92375988,toString,(),String,toStringTest,ServiceArtifactIdTest
+61,92375988,toBytes,(MessageT value),byte[],toBytes,ProtobufReflectiveSerializerTest
+62,92375988,checkIdInGroup,(byte[] indexId),byte[],checkIdInGroup,StoragePreconditionsTest
+63,92375988,checkStorageKey,(byte[] key),byte[],checkStorageKeyDoesNotAcceptNull,StoragePreconditionsTest
+64,92375988,checkStorageValue,(byte[] value),byte[],checkStorageValueAcceptsNonEmpty,StoragePreconditionsTest
+65,92375988,unencodedCharsFunnel,(),Funnel<CharSequence>,testForStrings,FunnelsTest
+66,92375988,putShort,(short s),Hasher,testShort,AbstractByteHasherTest
+67,92375988,json,(),Gson,transactionMessageSerializesAsValue,JsonSerializerTest
+68,92375988,itemsFrequency,"(Collection<? extends ElementT> items,
+                            Function<? super ElementT, KeyT> keyExtractor)",String,itemsFrequencySeveralItemsSameCategory,FrequencyStatsFormatterTest
+69,92375988,integerFunnel,(),Funnel<Integer>,testForInts,FunnelsTest
+70,92375988,configure,(),void,configure,FakeServiceModuleTest
+71,92375988,toString,(),String,testToString,MessageDigestHashFunctionTest
+72,92375988,checkPositionIndex,"(long index, long size)",long,checkPositionIndex_NegativeSize,StoragePreconditionsTest
+73,92375988,extractTransactionMethods,(Class<?> serviceClass),"Map<Integer, TransactionMethod>",duplicateTransactionIdsServiceMethodExtraction,TransactionExtractorTest
+74,92375988,byteArrayToHex,(byte[] bytes),String,byteArrayToHex,CryptoUtilsTest
+75,92375988,newInstance,"(long nativeHandle, Cleaner cleaner)",Snapshot,cannotModify,SnapshotTest
+76,92375988,asOutputStream,(PrimitiveSink sink),OutputStream,testAsOutputStream,FunnelsTest
+77,92375988,check,(),CheckedMapProof,mapProofWithIncludedBranchPrefixesShouldBeInvalid,UncheckedFlatMapProofTest
+78,92375988,next,(),Optional<E>,accessModificationResultsInTerminalState,ConfigurableRustIterTest
+79,92375988,putBytes,"(byte[] bytes, int off, int len)",Hasher,testCorrectExceptions,AbstractStreamingHasherTest
+80,92375988,verify,(),CheckedListProof<byte[]>,emptyListValidProof,FlatListProofTest
+81,92375988,getAsMessage,(Class<MessageT> parametersType),MessageT,getAsMessage,ServiceConfigurationTest
+82,92375988,check,(),CheckedMapProof,mapProofWithEqualEntriesOrderShouldBeInvalid,UncheckedFlatMapProofTest
+83,92375988,parseGetBlockResponse,(String json),BlockResponse,parseGetBlockResponse,ExplorerApiHelperTest
+84,92375988,getWalletHistory,(RoutingContext rc),void,getWalletHistoryNonexistentWallet,ApiControllerTest
+85,92375988,findIndex,(Long id),Optional<StorageIndex>,findUnknownIndex,OpenIndexRegistryTest
+86,92375988,next,(),E,nextThrowsIfNoNextItem1,RustIterAdapterTest
+87,92375988,extractTransactionMethods,(Class<?> serviceClass),"Map<Integer, TransactionMethod>",duplicateTransactionMethodArgumentServiceMethodExtraction,TransactionExtractorTest
+88,92375988,stringFunnel,(Charset charset),Funnel<CharSequence>,testForStringsCharset,FunnelsTest
+89,92375988,fromBytes,(byte[] rawDbKey),DbKey,throwsIfLeafHasInvalidSize,DbKeyTest
+90,92375988,fromBytes,(byte[] rawDbKey),DbKey,throwsIfBranchKeySliceHasBitsAfterSignificantPart12Bit,DbKeyTest
+91,92375988,checkElementIndex,"(long index, long size)",long,checkElementIndex1,StoragePreconditionsTest
+92,92375988,afterCommit,(BlockCommittedEvent event),void,afterCommit,QaServiceImplTest
+93,92375988,hexToByteArray,(String hex),byte[],hexToByteArray,CryptoUtilsTest
+94,92375988,unencodedCharsFunnel,(),Funnel<CharSequence>,testForStrings_null,FunnelsTest
+95,92375988,get,(),ServiceModule,getPropagatesExceptions,ReflectiveModuleSupplierTest
+96,92375988,itemsFrequency,"(Collection<? extends ElementT> items,
+                            Function<? super ElementT, KeyT> keyExtractor)",String,itemsFrequencyMoreTrue,FrequencyStatsFormatterTest
+97,92375988,invokeTransaction,"(int transactionId, byte[] arguments, ExecutionContext context)",void,invokeThrowingRuntimeException,TransactionInvokerTest
+98,92375988,itemsFrequency,"(Collection<? extends ElementT> items,
+                            Function<? super ElementT, KeyT> keyExtractor)",String,itemsFrequencyMoreFalse,FrequencyStatsFormatterTest
+99,92375988,fromString,(String string),HashCode,testFromStringFailsWithShortInputs,HashCodeTest
+100,92375988,newRegistered,"(Cleaner cleaner,
+                                              NativeHandle nativeHandle,
+                                              Class<?> proxyClass,
+                                              LongConsumer destructorFunction)",ProxyDestructor,newRegistered,ProxyDestructorTest
+101,92375988,checkElementIndex,"(long index, long size)",long,checkElementIndexGreaterThanSize,StoragePreconditionsTest
+102,92375988,parseFrom,(byte[] messageBytes),SignedMessage,parseFromWrongMessage,SignedMessageTest
+103,92375988,hash,(),HashCode,testDouble,AbstractStreamingHasherTest
+104,92375988,verify,(),CheckedListProof<byte[]>,fiveElementListValidProofAt4,FlatListProofTest
+105,92375988,check,(),CheckedMapProof,mapProofWithIncludedPrefixesShouldBeInvalid,UncheckedFlatMapProofTest
+106,92375988,sha256,(),HashFunction,testSha256,HashingTest
+107,92375988,trySplit,(),Spliterator<ElementT>,spliteratorRemainsBoundToTheSourceAfterSplit,ListSpliteratorTest
+108,92375988,checkElementIndex,"(long index, long size)",long,checkElementIndexMaxLong,StoragePreconditionsTest
+109,92375988,sequentialFunnel,(Funnel<E> elementFunnel),Funnel<Iterable<? extends E>>,testSequential,FunnelsTest
+110,92375988,close,(),void,close,RuntimeTransportTest
+111,92375988,estimateSize,(),long,estimateSizeIsZeroAfterSpliteratorIsConsumed,ListSpliteratorTest
+112,92375988,getName,(),String,getName,AbstractServiceTest
+113,92375988,close,(),void,closeShallNotDisposeNotOwningHandle,AbstractCloseableNativeProxyTest
+114,92375988,toString,(),String,toStringIncludesContextInformation,CleanerTest
+115,92375988,checkPositionIndex,"(long index, long size)",long,checkPositionIndexSize3_AllValid,StoragePreconditionsTest
+116,92375988,disconnectServiceApi,(ServiceWrapper service),void,disconnectServiceApi,RuntimeTransportTest
+117,92375988,getCounter,(RoutingContext rc),void,getCounter,ApiControllerTest
+118,92375988,get,(),ServiceModule,getProducesFreshInstances,ReflectiveModuleSupplierTest
+119,92375988,findTransactionMethods,(Class<?> serviceClass),"Map<Integer, Method>",findTransactionMethodsValidServiceProtobufArguments,TransactionExtractorTest
+120,92375988,findTransactionMethods,(Class<?> serviceClass),"Map<Integer, Method>",findTransactionMethodsValidService,TransactionExtractorTest
+121,92375988,longFunnel,(),Funnel<Long>,testForLongs,FunnelsTest
+122,92375988,verify,(),CheckedListProof<byte[]>,twoElementListValidProofE0,FlatListProofTest
+123,92375988,putChar,(char c),Hasher,testChar,AbstractByteHasherTest
+124,92375988,itemsFrequency,"(Collection<? extends ElementT> items,
+                            Function<? super ElementT, KeyT> keyExtractor)",String,itemsFrequency,FrequencyStatsFormatterTest
+125,92375988,check,(),CheckedMapProof,mapProofWithSeveralLeafsShouldBeCorrect,UncheckedFlatMapProofTest
+126,92375988,afterTransactions,(ExecutionContext context),void,afterTransactions,QaServiceImplTest
+127,92375988,check,(),CheckedMapProof,mapProofWithSingleBranchProofEntryShouldBeInvalid,UncheckedFlatMapProofTest
+128,92375988,writeBytesTo,"(byte[] dest, int offset, int maxLength)",int,testWriteBytesToOversizedArrayLongMaxLength,HashCodeTest
+129,92375988,invokeTransaction,"(int transactionId, byte[] arguments, ExecutionContext context)",void,invokeProtobufArgumentsService,TransactionInvokerTest
+130,92375988,check,(),CheckedMapProof,mapProofShouldBeCorrect,UncheckedFlatMapProofTest
+131,92375988,integerFunnel,(),Funnel<Integer>,testForInts_null,FunnelsTest
+132,92375988,next,(),E,nextThrowsIfNoNextItem0,RustIterAdapterTest
+133,92375988,checkNoForbiddenChars,(String artifactId),void,checkArtifactWithForbiddenCharacters,JavaArtifactUtilsTest
+134,92375988,close,(),void,closeShallThrowIfReferencedObjectInvalid,AbstractCloseableNativeProxyTest
+135,92375988,fromBytes,(byte[] rawDbKey),DbKey,throwsIfNull,DbKeyTest
+136,92375988,fromBytes,(byte[] bytes),HashCode,testFromBytes,HashCodeTest
+137,92375988,getNativeHandle,(),long,getNativeHandle,AbstractCloseableNativeProxyTest
+138,92375988,padToLong,(),long,testPadToLong,HashCodeTest
+139,92375988,clean,(),void,cleanIdempotent,ProxyDestructorTest
+140,92375988,fromBytes,(byte[] rawDbKey),DbKey,throwsIfBranchKeySliceHasBitsAfterSignificantPart16Bit,DbKeyTest
+141,92375988,newInstance,"(long nativeHandle, Cleaner cleaner)",Fork,canModify,ForkTest
+142,92375988,writeBytesTo,"(byte[] dest, int offset, int maxLength)",int,testWriteBytesToUndersizedArray,HashCodeTest
+143,92375988,extractTransactionMethods,(Class<?> serviceClass),"Map<Integer, TransactionMethod>",invalidTransactionMethodArgumentServiceMethodExtraction,TransactionExtractorTest
+144,92375988,resume,"(ExecutionContext context, byte[] arguments)",void,resume,QaServiceImplTest
+145,92375988,checkRange,"(long from, long to)",void,checkRangeFrom1,StoragePreconditionsTest
+146,92375988,invokeTransaction,"(int transactionId, byte[] arguments, ExecutionContext context)",void,invokeValidServiceTransaction,TransactionInvokerTest
+147,92375988,get,(),ServiceModule,get,ReflectiveModuleSupplierTest
+148,92375988,toBytes,(T value),byte[],toBytes_NullValue,CheckingSerializerDecoratorTest
+149,92375988,checkSha256Hash,(HashCode hash),void,checkValidSha256Hash,ProofHashesTest
+150,92375988,checkStorageKey,(byte[] key),byte[],checkStorageValueDoesNotAcceptNull,StoragePreconditionsTest
+151,92375988,fromBytes,(byte[] rawDbKey),DbKey,throwsIfBranchKeySliceHasBitsAfterSignificantPart7Bit,DbKeyTest
+152,92375988,indexOf,"(Iterable<T> list, Predicate<? super T> p)",OptionalInt,indexOfNoMatches,ExonumIterablesTest
+153,92375988,checkRange,"(long from, long to)",void,checkRangeFromNegative,StoragePreconditionsTest
+154,92375988,next,(),Optional<E>,nextFailsIfModifiedBeforeFirstNext,ConfigurableRustIterTest
+155,92375988,checkIndexName,(String name),String,checkIndexNameAcceptsNonEmpty,StoragePreconditionsTest
+156,92375988,check,(),CheckedMapProof,mapProofWithAbsentKeyShouldBeCorrect,UncheckedFlatMapProofTest
+157,92375988,from,(Serializer<T> serializer),CheckingSerializerDecorator<T>,fromSelf,CheckingSerializerDecoratorTest
+158,92375988,invokeTransaction,"(int transactionId, byte[] arguments, ExecutionContext context)",void,invokeThrowingExecutionException,TransactionInvokerTest
+159,92375988,putLong,(long l),Hasher,testLong,AbstractByteHasherTest
+160,92375988,toString,(),String,toStringWithDescriptionIncludesContextInformation,CleanerTest
+161,92375988,invokeTransaction,"(int transactionId, byte[] arguments, ExecutionContext context)",void,invokeThrowingException,TransactionInvokerTest
+162,92375988,close,(),void,close,NativeHandleTest
+163,92375988,checkNoNulls,(Collection<E> collection),void,checkNoNulls,StoragePreconditionsTest
+164,92375988,fromBytes,(byte[] rawDbKey),DbKey,throwsIfInvalidNodeTypeCode,DbKeyTest
+165,92375988,indexOf,"(Iterable<T> list, Predicate<? super T> p)",OptionalInt,indexOfFindsTheFirst,ExonumIterablesTest
+166,92375988,valueOf,"(int runtimeId, String name, String version)",ServiceArtifactId,valueOf,ServiceArtifactIdTest
+167,92375988,fromInt,(int hash),HashCode,testFromInt,HashCodeTest
+168,92375988,getWalletHistory,(RoutingContext rc),void,getWalletHistory,ApiControllerTest
+169,92375988,newJavaId,"(String name, String version)",ServiceArtifactId,newJavaId,ServiceArtifactIdTest
+170,92375988,connectServiceApi,(ServiceWrapper service),void,connectServiceApi,RuntimeTransportTest
+171,92375988,json,(),Gson,longSerializesAsText,JsonSerializerTest
+172,92375988,toBytes,(T value),byte[],toBytes,CheckingSerializerDecoratorTest
+173,92375988,checkPositionIndex,"(long index, long size)",long,checkPositionIndexSize0_NotValid,StoragePreconditionsTest
+174,92375988,checkElementIndex,"(long index, long size)",long,checkElementIndex0MinValid,StoragePreconditionsTest
+175,92375988,isEmpty,(),boolean,isEmpty,BlockTest
+176,92375988,writeBytesTo,"(byte[] dest, int offset, int maxLength)",int,testWriteBytesToOversizedArrayShortMaxLength,HashCodeTest
+177,92375988,toBytes,(MessageT value),byte[],toBytesIsDeterministic,ProtobufReflectiveSerializerTest
+178,92375988,putBytes,(byte[] bytes),Hasher,testCorrectExceptions,AbstractByteHasherTest
+179,92375988,parseFrom,(byte[] messageBytes),SignedMessage,parseFromPayloadNotExonumMessage,SignedMessageTest
+180,92375988,itemsFrequency,"(Collection<? extends ElementT> items,
+                            Function<? super ElementT, KeyT> keyExtractor)",String,itemsFrequencyNoItems,FrequencyStatsFormatterTest
+181,92375988,close,(),void,closeReportsOtherFailures,RuntimeTransportTest
+182,92375988,sha384,(),HashFunction,testSha384,HashingTest
+183,92375988,trySplit,(),Spliterator<ElementT>,trySplit_Empty,ListSpliteratorTest
+184,92375988,submitUnknownTx,(RoutingContext rc),void,submitUnknown,ApiControllerTest
+185,92375988,hash,(),HashCode,testFloat,AbstractStreamingHasherTest
+186,92375988,fromBytes,(byte[] serializedValue),MessageT,fromBytesNull,ProtobufReflectiveSerializerTest
+187,92375988,fromString,(String string),HashCode,testFromStringFailsWithInvalidHexChar,HashCodeTest
+188,92375988,verify,(),CheckedListProof<byte[]>,twoElementListValidProofE1,FlatListProofTest
+189,92375988,fromBytes,(byte[] rawDbKey),DbKey,throwsIfBranchKeySliceHasBitsAfterSignificantPart8Bit,DbKeyTest
+190,92375988,close,(),void,shallNotBeValidOnceClosed,AbstractCloseableNativeProxyTest
+191,92375988,checkProofKey,(byte[] key),byte[],checkProofKeyAccepts32ByteNonZeroKey,StoragePreconditionsTest
+192,92375988,resourceType,(),Optional<Class<?>>,getResourceType,ProxyDestructorTest
+193,92375988,longFunnel,(),Funnel<Long>,testForLongs_null,FunnelsTest
+194,92375988,checkPositionIndex,"(long index, long size)",long,checkPositionIndexSize0_Valid,StoragePreconditionsTest
+195,92375988,next,(),Optional<E>,nextFailsIfModifiedAfterFirstNext,ConfigurableRustIterTest
+196,92375988,notifyModified,(),void,notifyModifiedThrowsIfSnapshotPassed,AbstractIndexProxyTest
+197,92375988,beforeTransactions,(ExecutionContext context),void,beforeTransactions,QaServiceImplTest
+198,92375988,toBytes,(T value),byte[],toBytes_NullFromDelegate,CheckingSerializerDecoratorTest
+199,92375988,invokeTransaction,"(int transactionId, byte[] arguments, ExecutionContext context)",void,invokeInvalidTransactionId,TransactionInvokerTest
+200,92375988,checkProofKey,(byte[] key),byte[],checkProofKeyAccepts32ByteZeroKey,StoragePreconditionsTest
+201,92375988,verify,(),CheckedListProof<byte[]>,threeElementListValidProofE2,FlatListProofTest
+202,92375988,checkProofKey,(byte[] key),byte[],checkProofKeyDoesNotAcceptSmallerKeys,StoragePreconditionsTest
+203,92375988,verify,(),CheckedListProof<byte[]>,twoElementListValidProofFullProof,FlatListProofTest
+204,92375988,getNativeHandle,(),long,getNativeHandle_DirectMultiReferencedAll,AbstractCloseableNativeProxyTest
+205,92375988,stringFunnel,(Charset charset),Funnel<CharSequence>,testForStringsCharset_null,FunnelsTest
+206,92375988,defaultHashFunction,(),HashFunction,testGetHashOfEmptyArray,HashingTest
+207,92375988,clean,(),void,clean,ProxyDestructorTest
+208,92375988,close,(),void,notOwningShallNotBeValidOnceClosed,AbstractCloseableNativeProxyTest
+209,92375988,checkIndexName,(String name),String,checkIndexNameDoesNotAcceptEmpty,StoragePreconditionsTest
+210,92375988,byteArrayFunnel,(),Funnel<byte[]>,testForBytes_null,FunnelsTest
+211,92375988,fromBytes,(byte[] serializedValue),MessageT,fromBytesInvalidInput,ProtobufReflectiveSerializerTest
+212,92375988,getAsJson,(Class<T> configType),T,getAsJson,ServiceConfigurationTest
+213,92375988,fromBytes,(byte[] serializedValue),T,fromBytes_NullFromDelegate,CheckingSerializerDecoratorTest
+214,92375988,checkNoForbiddenChars,(String artifactId),void,checkArtifactWithNoForbiddenCharacters,JavaArtifactUtilsTest
+215,92375988,createService,"(LoadedServiceDefinition definition,
+      ServiceInstanceSpec instanceSpec, Node node)",ServiceWrapper,createServiceFailsIfNoServiceBindingsInModule,GuiceServicesFactoryTest
+216,92375988,fromString,(String string),HashCode,testFromStringFailsWithOddLengthInput,HashCodeTest
+217,92375988,resume,"(ExecutionContext context, byte[] arguments)",void,resumeShouldThrowException,QaServiceImplTest
+218,92375988,toBytes,(MessageT value),byte[],toBytesNullMessage,ProtobufReflectiveSerializerTest
+219,92375988,checkStorageValue,(byte[] value),byte[],checkStorageValueAcceptsEmpty,StoragePreconditionsTest
+220,92375988,equals,(Object o),boolean,testEquals,ParsedTransactionMessageTest
+221,92375988,toBytes,(T value),byte[],fromBytes_NullValue,CheckingSerializerDecoratorTest
+222,92375988,checkNoCopiesOfAppClasses,(ClassLoader pluginClassloader),void,checkNoCopiesOfAppClassesDetectsCopies,ClassLoadingScopeCheckerTest
+223,92375988,getWallet,(RoutingContext rc),void,getNonexistentWallet,ApiControllerTest
+224,92375988,checkPositionIndex,"(long index, long size)",long,checkPositionIndexSize3_NotValid,StoragePreconditionsTest
+225,92375988,json,(),Gson,hashCodeSerializesAsValue,JsonSerializerTest
+226,92375988,parseSubmitTxResponse,(String json),HashCode,parseSubmitTxResponse,ExplorerApiHelperTest
+227,92375988,getTime,(RoutingContext rc),void,getTime,ApiControllerTest
+228,92375988,close,(),void,closeShallCallDisposeOnce,AbstractCloseableNativeProxyTest
+229,92375988,toString,(),String,toStringHexRepresentation,NativeHandleTest
+230,92375988,checkRange,"(long from, long to)",void,checkRangeFromGreaterThanTo,StoragePreconditionsTest
+231,92375988,hasLength,"(byte[] data, int size)",boolean,hasLength,CryptoUtilsTest

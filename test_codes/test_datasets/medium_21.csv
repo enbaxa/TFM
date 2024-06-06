@@ -1,0 +1,303 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,22981257,getSignedValue,"(int from, int to, boolean[] bitSet)",long,testGetSignedValueFirstBitNotSet,SixBitTest
+1,22981257,extractTrueHeading,(AisExtractor extractor),Integer,testExtractTrueHeadingNotAvailiable,AisPositionBExtendedTest
+2,22981257,getCandidates,"(Observable<HasFix> o, Options options)",Observable<DriftCandidate>,testRule3FourDriftersBigTimeGapBetweenTwoAndThree,DriftDetectorTest
+3,22981257,checkLatLong,"(double lat, double lon)",void,testCheckLatLonLatAtLimit,UtilTest
+4,22981257,isClassAPositionReport,(int messageId),boolean,testIsClassAPositionReport,UtilTest
+5,22981257,ascii8To6bitBin,(byte[] toDecBytes),byte[],testAscii8To6BitBinaryIllegalCharacterHighThrowsException,UtilTest
+6,22981257,forTestCoverageOnly,(),void,testInstantiation,NmeaUtilTest
+7,22981257,minTimeStep,"(long duration, TimeUnit unit)",Downsample<T>,testDownSampleOfTwoWithSmallGapReturnsFirst,DownsampleTest
+8,22981257,getDistanceToPathKm,(List<Position> positions),double,testGetDistanceToPathKm7,PositionTest
+9,22981257,isWithin,(List<Position> positions),boolean,testIsWithin,PositionTest
+10,22981257,convertToNetcdf,"(File input, File output, Pattern pattern)",Observable<Integer>,testNetcdfConverter,NetcdfFixesWriterTest
+11,22981257,extractCourseOverGround,(AisExtractor extractor),Double,testExtractCourseOverGround,AisPositionBExtendedTest
+12,22981257,getSignedValue,"(int from, int to, boolean[] bitSet)",long,testGetSignedValueFirstBitSet,SixBitTest
+13,22981257,isCandidate,(Options options),"Func1<Fix, Boolean>",testDriftedFalseIfNoSpeed,DriftDetectorTest
+14,22981257,checkMessageId,"(int messageId, AisMessageType... messageTypes)",void,testCheckMessageId,UtilTest
+15,22981257,from,"(final String host, final int port, long quietTimeoutMs,
+            long reconnectDelayMs, Charset charset, Scheduler scheduler)",Observable<String>,testLinesFromARegularlyEmittingSource,StringSocketsTest
+16,22981257,createPolygon,"(List<Coordinate> coords, File output)",void,testCreatePolygonShapefile,ShapefileTest
+17,22981257,leftEdgeLongitude,(Cell cell),double,testLeftEdgeLongitude,GridTest
+18,22981257,isPghp,(String line),boolean,testIsPghpLineIsTrueWhenHasNoTagBlock,NmeaMessageExactEarthTimestampTest
+19,22981257,getStartLon,(Options options),BigDecimal,testStartLonGivenOriginLonRightOfTopLeftLonOfBoundsReturnsOriginLonMinusEnoughToGetLeftOfBounds,GridTest
+20,22981257,main,(String[] args),void,test,DownsampleMainTest
+21,22981257,getCandidates,"(Observable<HasFix> o, Options options)",Observable<DriftCandidate>,testStartingWithNonDriftersDoesNothing,DriftDetectorTest
+22,22981257,writeFixes,"(List<HasFix> fixes, File file)",void,testWriting,NetcdfFixesWriterTest
+23,22981257,getReceivedStations,"(AisExtractor extractor, int slotTimeout,
+			int startIndex)",Integer,testGetReceivedStationsTimeoutOther,CommunicationsTest
+24,22981257,parse,(String line),NmeaMessage,testParseOnly2ItemsInMessage,NmeaMessageParserTest
+25,22981257,getPositionAlongPath,"(Position position,
+			double proportion)",Position,testGetPositionAlongPathExceptionsNull,PositionTest
+26,22981257,forTestCoverageOnly,(),void,testPrivateInstantiation,UtilTest
+27,22981257,getStartLat,(Options options),BigDecimal,testStartLatGivenOriginLatEqualsTopLeftLatOfBoundsReturnsOriginLat,GridTest
+28,22981257,isCandidate,(Options options),"Func1<Fix, Boolean>",testDrifted,DriftDetectorTest
+29,22981257,getValue,"(int from, int to)",int,testArrayIndexOutOfBoundsThrowsAisParseException,AisExtractorTest
+30,22981257,isExactEarthTimestamp,(String line),boolean,testNmeaMessageWhenTagBlockNotClosedProperly,NmeaMessageExactEarthTimestampTest
+31,22981257,supplementWithTime,"(String line, long arrivalTime)",String,testSupplementWithTimeAddsArrivalTimeIfMissing,NmeaUtilTest
+32,22981257,extractDimensionB,(AisExtractor extractor),Optional<Integer>,testDimensionB,AisBStaticDataReportPartBTest
+33,22981257,checkLatLong,"(double lat, double lon)",void,testCheckLatLonLonTooLow,UtilTest
+34,22981257,supplementWithTime,"(String line, long arrivalTime)",String,testSupplementWithTime,NmeaUtilTest
+35,22981257,nextPoint,"(Position a, Position b)",Position,testGridNextPointOnRightEdgeStartingLeftEdge,GridTraversorTest
+36,22981257,isOutside,"(List<Position> path, double minDistanceKm)",boolean,testIsOutside4,PositionTest
+37,22981257,leastPowerOf2GreaterThanOrEqualTo,(int n),int,testLeastPowerOf2Given2,UtilTest
+38,22981257,getDistanceToPathKm,(List<Position> positions),double,testGetDistanceToPathKm4,PositionTest
+39,22981257,getCandidates,"(Observable<HasFix> o, Options options)",Observable<DriftCandidate>,testRule2TwoDrifters,DriftDetectorTest
+40,22981257,detectDrift,(),DriftDetectorTransformer,testBackpressure,DriftDetectorTest
+41,22981257,getShipType,(BigInteger ts),String,testBigIntegerNull,ShipTypeDecoderTest
+42,22981257,parse,"(String message, int padBits)",AisMessage,testStaticDataReportPartB,AisMessageParserTest
+43,22981257,bottomEdgeLatitude,(Options options),double,testBottomEdgeLatitude,CellTest
+44,22981257,minTimeStep,"(long duration, TimeUnit unit)",Downsample<T>,testDownSampleOfNonZeroGapWithItemsWithSameTimeReturnsFirst,DownsampleTest
+45,22981257,isValidCharacterSymbol,(char ch),boolean,testValidCharacterSymbol,NmeaUtilTest
+46,22981257,nextPoint,"(Position a, Position b)",Position,testGridNextPointOnRightEdgeStartingTopEdge,GridTraversorTest
+47,22981257,line,(String line),void,testFullMessageGroupWithTimestampOnFirstLineIsReturnedAggregated,NmeaStreamProcessorTest
+48,22981257,parse,"(String message, int padBits)",AisMessage,testBExtended,AisMessageParserTest
+49,22981257,socketDisposer,(),Action1<Socket>,testSocketDisposerOnException,StringSocketsTest
+50,22981257,extractLatitude,(AisExtractor extractor),Double,testExtractLatitudeBadPos,AisPositionATest
+51,22981257,extractShipType,(AisExtractor extractor),int,testTypeOfShipAndCargoTypeNotAvailable,AisBStaticDataReportPartBTest
+52,22981257,extractVendorUnitSerialNumber,(AisExtractor extractor),int,testVendorUnitSerialNumber,AisBStaticDataReportPartBTest
+53,22981257,socketObservableFactory,(final Charset charset),"Func1<Socket, Observable<String>>",testSocketObservableFactoryOnException,StringSocketsTest
+54,22981257,extractLatitude,(AisExtractor extractor),Double,testExtractLatitude,AisPositionBTest
+55,22981257,write,"(Writer writer, int classification, double... values)",void,testLibSvmOnlyZeroValues,LibSvmTest
+56,22981257,nextPoint,"(Position a, Position b)",Position,testGridNextPointOnTopEdgeStartingRightEdge,GridTraversorTest
+57,22981257,insertKeyValueInTagBlock,"(String line, String name, String value)",String,testInsertNewTag,NmeaUtilTest
+58,22981257,getCandidates,"(Observable<HasFix> o, Options options)",Observable<DriftCandidate>,testRule5TwoDriftersThenTwoNonDrifters,DriftDetectorTest
+59,22981257,nextPoint,"(Position a, Position b)",Position,testGridNextPoint6,GridTraversorTest
+60,22981257,line,(String line),void,testLineWithTimestampThatIsBuffered,NmeaStreamProcessorTest
+61,22981257,nextPoint,"(Position a, Position b)",Position,testGridNextPointOnSameLatCanFindNextPointWithoutThrowingException,GridTraversorTest
+62,22981257,getStartLat,(Options options),BigDecimal,testStartLatGivenOriginLatBelowTopLeftLatOfBoundsReturnsOriginLatMinusEnoughToGetAboveBounds,GridTest
+63,22981257,checkMessageId,"(int messageId, AisMessageType... messageTypes)",void,testCheckMessageIdInMultiple,UtilTest
+64,22981257,checkMessageId,"(int messageId, AisMessageType... messageTypes)",void,testCheckMessageIdNotInMultiple,UtilTest
+65,22981257,isValid,(String sentence),boolean,testIsValid,NmeaUtilTest
+66,22981257,start,(),void,testNewGroupingHasTimeEndsInCarriageReturn,NmeaSaverTest
+67,22981257,isExactEarthTimestamp,(String line),boolean,testExactEarthTimestampWhenNotEnoughColumns,NmeaMessageExactEarthTimestampTest
+68,22981257,cellAt,"(double lat, double lon)",Optional<Cell>,testCellAtIfLatBelowBoundsThrowsException,GridTest
+69,22981257,getSignedValue,"(int from, int to, boolean[] bitSet)",long,testGetSignedValueMax,SixBitTest
+70,22981257,extractName,(AisExtractor extractor),Optional<String>,testName,AisBStaticDataReportPartATest
+71,22981257,parse,(String line),NmeaMessage,testBadSentenceInfoDoesNotThrowException,NmeaMessageParserTest
+72,22981257,getPositionAlongPath,"(Position position,
+			double proportion)",Position,testGetPositionAlongPath,PositionTest
+73,22981257,getPositionAlongPath,"(Position position,
+			double proportion)",Position,testGetPositionAlongPathExceptionsLess,PositionTest
+74,22981257,getMessageId,(),int,testIncorrectMessageId,AisPositionBTest
+75,22981257,cellAt,"(double lat, double lon)",Optional<Cell>,testCellAtIfLonRightOfBoundsThrowsException,GridTest
+76,22981257,getValue,"(int from, int to, boolean[] bitSet)",long,testGetValueMax,SixBitTest
+77,22981257,nextPoint,"(Position a, Position b)",Position,testGridNextPoint4,GridTraversorTest
+78,22981257,getCellDistances,"(HasPosition a, HasPosition b,
+            Options options)",Observable<CellAndDistance>,manualTestCase,DistanceTravelledCalculatorTest
+79,22981257,extractTrueHeading,(AisExtractor extractor),Integer,testExtractTrueHeadingOk,AisPositionBTest
+80,22981257,start,(),void,testSaving,NmeaSaverTest
+81,22981257,getAtonType,(BigInteger ts),String,testNull,AtonTypeDecoderTest
+82,22981257,getDistanceToPathKm,(List<Position> positions),double,testGetDistanceToPathKm6,PositionTest
+83,22981257,getDestination,(),String,testDestination,AisShipStaticATest
+84,22981257,extractVendorManufacturerId,(AisExtractor extractor),String,testVendorManufacturerId,AisBStaticDataReportPartBTest
+85,22981257,forTestCoverageOnly,(),void,testInstantiation,ShipTypeDecoderTest
+86,22981257,parse,(String line),NmeaMessage,testTalkerPartTooShortDoesNotThrowException,NmeaMessageParserTest
+87,22981257,forTestCoverageOnly,(),void,testInstantiation,InternationalizationTest
+88,22981257,getChecksum,(String sentence),String,testChecksumLeadingExclamation,NmeaUtilTest
+89,22981257,line,(String line),void,testStreamHasNoTimestampsAtStart,NmeaStreamProcessorTest
+90,22981257,nextPoint,"(Position a, Position b)",Position,testGridNextPoint5,GridTraversorTest
+91,22981257,extractVendorUnitModelCode,(AisExtractor extractor),int,testVendorUnitModelCode,AisBStaticDataReportPartBTest
+92,22981257,calculateDistanceByCellFromFiles,(Observable<File> files),Observable<CellAndDistance>,testWithFiles,DistanceTravelledCalculatorTest
+93,22981257,getCommunications,(),Communications,testNullCommunicationsTime,AisPositionATest
+94,22981257,extractSpeedOverGround,(AisExtractor extractor),Double,testExtractSpeedOverGround,AisPositionBTest
+95,22981257,diff,"(double a, double b)",double,testDiff5,DriftDetectorTest
+96,22981257,write,"(Writer writer, int classification, double... values)",void,testLibSvmSomeZeros,LibSvmTest
+97,22981257,checkLatLong,"(double lat, double lon)",void,testCheckLatLonLatTooHigh,UtilTest
+98,22981257,minTimeStep,"(long duration, TimeUnit unit)",Downsample<T>,testDownSampleOfOneReturnsOne,DownsampleTest
+99,22981257,extractCallSign,(AisExtractor extractor),Optional<String>,testCallSignNotAvailable,AisBStaticDataReportPartBTest
+100,22981257,iterable,(File file),Iterable<Fix>,testIterable,BinaryFixesTest
+101,22981257,nmeaFrom,(final File file),Observable<String>,testNmeaFromFile,StreamsTest
+102,22981257,getChecksum,(String sentence),String,testChecksumTwoLineMessage,NmeaUtilTest
+103,22981257,getSignedValue,"(int from, int to, boolean[] bitSet)",long,testGetSignedValueZero,SixBitTest
+104,22981257,parse,"(String message, int padBits)",AisMessage,test,AisMessageParserTest
+105,22981257,diff,"(double a, double b)",double,testDiff3,DriftDetectorTest
+106,22981257,getSlotNumber,"(AisExtractor extractor, int slotTimeout,
+			int startIndex)",Integer,testGetSlotNumberTimeoutOther,CommunicationsTest
+107,22981257,nextPoint,"(Position a, Position b)",Position,testGridNextPoint2,GridTraversorTest
+108,22981257,leastPowerOf2GreaterThanOrEqualTo,(int n),int,testLeastPowerOf2Given3,UtilTest
+109,22981257,extractShipType,(AisExtractor extractor),int,testTypeOfShipAndCargoType,AisBStaticDataReportPartBTest
+110,22981257,extractTrueHeading,(AisExtractor extractor),Integer,testExtractTrueHeading,AisPositionATest
+111,22981257,getTalker,(String s),Talker,testGetTalkerGivenNullString,NmeaUtilTest
+112,22981257,parse,(String line),NmeaMessage,testTagBlockThatIncludesAValueWithAColonIsParsedCorrectly,NmeaMessageParserTest
+113,22981257,isCandidate,(Options options),"Func1<Fix, Boolean>",testNotDriftedBecauseSpeedTooHigh,DriftDetectorTest
+114,22981257,getTalker,(String s),Talker,testGetTalkerDescription,NmeaUtilTest
+115,22981257,line,(String line),void,testLogLineGetsCalled,NmeaStreamProcessorTest
+116,22981257,getStartLat,(Options options),BigDecimal,testStartLatGivenOriginLatAboveTopLeftLatOfBoundsReturnsOriginLat,GridTest
+117,22981257,getSource,(),String,testAisMessageOtherReturnsSource,AisMessageOtherTest
+118,22981257,isPghp,(String line),boolean,testIsPghpLineIsFalseGivenNonBlankString,NmeaMessageExactEarthTimestampTest
+119,22981257,longitudeDiff,"(double a, double b)",double,testLongitudeDiff,PositionTest
+120,22981257,extractLongitude,(AisExtractor extractor),Double,testExtractLongitude,AisPositionBExtendedTest
+121,22981257,extract,"(
+            Observable<String> rawAisNmea)",Observable<TimestampedAndLine<AisMessage>>,testExtract,StreamsTest
+122,22981257,checkMessageId,"(int messageId, AisMessageType... messageTypes)",void,testCheckMessageIdThrowsAisParseExceptionWhenMessageIdsNotEqual,UtilTest
+123,22981257,getExpectedTimeOfArrival,"(int month, int day, int hour, int minute)",long,testExpectedTimeOfArrival,AisShipStaticATest
+124,22981257,extract,"(
+            Observable<String> rawAisNmea)",Observable<TimestampedAndLine<AisMessage>>,testExtractShipStaticA,StreamsTest
+125,22981257,extractRateOfTurn,(AisExtractor extractor),Integer,testExtractRateOfTurn,AisPositionATest
+126,22981257,parse,"(String message, int padBits)",AisMessage,testAisPositionA,AisMessageParserTest
+127,22981257,parse,(String line),NmeaMessage,testNmeaWithBadFormat,NmeaMessageParserTest
+128,22981257,supplementWithTime,"(String line, long arrivalTime)",String,testSupplementWithTimeDoesNothingToMultilineMessagesAfterFirst,NmeaUtilTest
+129,22981257,nextPoint,"(Position a, Position b)",Position,testGridNextPointIsStraightNorth,GridTraversorTest
+130,22981257,getCandidates,"(Observable<HasFix> o, Options options)",Observable<DriftCandidate>,testOutOfOrderFixes,DriftDetectorTest
+131,22981257,isCandidate,(Options options),"Func1<Fix, Boolean>",testNotDriftedBecauseCogHeadingDiffTooLow,DriftDetectorTest
+132,22981257,getTime,(),Long,testGetTimeObtainsTimeFromTagBlock,AisNmeaMessageTest
+133,22981257,getString,"(int from, int to)",String,testStringNotLongEnoughThrowsAisParseExceptionUsingGetString,AisExtractorTest
+134,22981257,getSource,(),String,testConstructorWithMessageAndSource,AisPositionATest
+135,22981257,extractTags,(String s),"LinkedHashMap<String, String>",testExtractTagsReturnsEmptyMapWhenDoesNotHaveChecksumDelimiter,NmeaMessageParserTest
+136,22981257,from,(File file),Observable<Fix>,testWriteAndReadBinaryFixes,BinaryFixesTest
+137,22981257,isCandidate,(Options options),"Func1<Fix, Boolean>",testNotDriftedBecauseSpeedTooLow,DriftDetectorTest
+138,22981257,createNmeaLine,"(LinkedHashMap<String, String> tags, List<String> items)",String,testCreationOfNmeaLineFromTagsAndMessage,NmeaUtilTest
+139,22981257,parseNmea,(String line),NmeaMessage,testRoundTripOnNmeaMessageOnLineWithTagBlock,NmeaUtilTest
+140,22981257,ascii8To6bitBin,(byte[] toDecBytes),byte[],testAscii8To6BitBinaryIllegalCharacterMediumThrowsException,UtilTest
+141,22981257,extractCallSign,(AisExtractor extractor),Optional<String>,testCallSign,AisBStaticDataReportPartBTest
+142,22981257,extractLongitude,(AisExtractor extractor),Double,testExtractLongitudeBadPos,AisPositionATest
+143,22981257,predict,"(double distanceKm, double courseDegrees)",Position,testPredict,PositionTest
+144,22981257,extractDimensionD,(AisExtractor extractor),Optional<Integer>,testDimensionD,AisBStaticDataReportPartBTest
+145,22981257,areEqual,"(int i, int j)",boolean,areEqualTestEquality,UtilTest
+146,22981257,line,(String line),void,testInvalidPghpLineCannotBeParsedAsAisNmea,NmeaStreamProcessorTest
+147,22981257,getBearingDifferenceDegrees,"(double bearing1,
+			double bearing2)",double,testBearingDifference,PositionTest
+148,22981257,start,(),void,testNewGroupingHasTime,NmeaSaverTest
+149,22981257,getDistanceToPathKm,(List<Position> positions),double,testGetDistanceToPathKm2,PositionTest
+150,22981257,getCandidates,"(Observable<HasFix> o, Options options)",Observable<DriftCandidate>,testTwoDriftersButDifferentMmsi,DriftDetectorTest
+151,22981257,getChecksum,(String sentence),String,testChecksumLeadingDollar,NmeaUtilTest
+152,22981257,getChecksum,(String sentence),String,testChecksumNoLeadingDollar,NmeaUtilTest
+153,22981257,parse,"(String message, int padBits)",AisMessage,testParseAtonMessage,AisMessageParserTest
+154,22981257,execute,(InputStream is),void,testExcecutionOfRCode,RenjinTest
+155,22981257,write,"(Writer writer, int classification, double... values)",void,testLibSvm,LibSvmTest
+156,22981257,extractLongitude,(AisExtractor extractor),Double,testExtractLongitude,AisPositionATest
+157,22981257,nextPoint,"(Position a, Position b)",Position,testGridNextPointCloseToBottomEdge,GridTraversorTest
+158,22981257,extractName,(AisExtractor extractor),Optional<String>,testNameNotAvailable,AisBStaticDataReportPartATest
+159,22981257,getMessageId,(),int,testExtractorGetsMessageId,AisExtractorTest
+160,22981257,getStartLon,(Options options),BigDecimal,testStartLonGivenOriginLonLeftOfTopLeftLonOfBoundsReturnsOriginLon,GridTest
+161,22981257,nextPoint,"(Position a, Position b)",Position,testGridNextPoint7,GridTraversorTest
+162,22981257,extractTrueHeading,(AisExtractor extractor),Integer,testExtractTrueHeadingNotAvailiable,AisPositionBTest
+163,22981257,parse,"(String message, int padBits)",AisMessage,testAisShipStaticA,AisMessageParserTest
+164,22981257,diff,"(double a, double b)",double,testDiff2,DriftDetectorTest
+165,22981257,start,(),void,testNewGroupingSecondaryLineWithoutTimeIsGivenTime,NmeaSaverTest
+166,22981257,parse,"(String message, int padBits)",AisMessage,testStaticDataReportPartA,AisMessageParserTest
+167,22981257,parse,(String line),NmeaMessage,testNmeaWithBackSlashCorruptionInTagBlock,NmeaMessageParserTest
+168,22981257,from,(File file),Observable<Fix>,testWriteAndReadBinaryFixesWithMmsi,BinaryFixesTest
+169,22981257,nextPoint,"(Position a, Position b)",Position,testGridNextPointIsDestinationStartingLeftEdge,GridTraversorTest
+170,22981257,extractLatitude,(AisExtractor extractor),Double,testExtractLatitude,AisPositionATest
+171,22981257,getValue,"(int from, int to, boolean[] bitSet)",long,testGetValueFirstBitNotSet,SixBitTest
+172,22981257,isValid,(String sentence),boolean,testIsValidNmeaWhenSentenceHasUnclosedTagBlock,NmeaUtilTest
+173,22981257,getCommunications,(),Communications,testCommicationsWithTime,AisPositionATest
+174,22981257,areEqual,"(int i, int j)",boolean,areEqualTestInequality,UtilTest
+175,22981257,ensureContinuous,(Position lastPosition),Position,testEnsureContinuous,PositionTest
+176,22981257,extractCourseOverGround,(AisExtractor extractor),Double,testExtractCourseOverGround,AisPositionBTest
+177,22981257,isValidFieldCharacter,(char ch),boolean,testIsValidFieldCharacter,NmeaUtilTest
+178,22981257,rightEdgeLongitude,(Options options),double,testRightEdgeLongitude,CellTest
+179,22981257,extractLongitude,(AisExtractor extractor),Double,testExtractLongitudeBadNeg,AisPositionATest
+180,22981257,line,(String line),void,testNotEnoughPartsInGTagErrorInSecondLineOfMultilineMessageDoesNotThrowException,NmeaStreamProcessorTest
+181,22981257,extractSpeedOverGround,(AisExtractor extractor),Double,testExtractSpeedOverGround,AisPositionATest
+182,22981257,checkLatLong,"(double lat, double lon)",void,testCheckLatLonLonTooHigh,UtilTest
+183,22981257,leastPowerOf2GreaterThanOrEqualTo,(int n),int,testLeastPowerOf2Given1Returns1,UtilTest
+184,22981257,toString,(),String,testToString,AisMessageOtherTest
+185,22981257,getShipType,(BigInteger ts),String,testAll,ShipTypeDecoderTest
+186,22981257,isPghp,(String line),boolean,testIsPghpLineIsFalseGivenBlank,NmeaMessageExactEarthTimestampTest
+187,22981257,getStartLon,(Options options),BigDecimal,testStartLonGivenOriginLonEqualsTopLeftLonOfBoundsReturnsOriginLon,GridTest
+188,22981257,getName,(),Optional<String>,testParser,AisBStaticDataReportPartATest
+189,22981257,topEdgeLatitude,(Options options),double,testTopEdgeLatitude,CellTest
+190,22981257,leftEdgeLongitude,(Options options),double,testLeftEdgeLongitude,CellTest
+191,22981257,checkLatLong,"(double lat, double lon)",void,testCheckLatLonPositive,UtilTest
+192,22981257,parse,(String line),NmeaMessage,testMultiSentenceOnLineWithTagBlock,NmeaMessageParserTest
+193,22981257,containing,"(double lat, double lon)",Stream<String>,testPointInSrrAndCoralSeaAtba,ShapesTest
+194,22981257,isCandidate,(Options options),"Func1<Fix, Boolean>",testDriftedFalseIfNoHeading,DriftDetectorTest
+195,22981257,extractTrueHeading,(AisExtractor extractor),Integer,testExtractTrueHeadingOk,AisPositionBExtendedTest
+196,22981257,extractSpeedOverGround,(AisExtractor extractor),Double,testExtractSpeedOverGround,AisPositionBExtendedTest
+197,22981257,from,(File file),Observable<Fix>,testReadPerformance,BinaryFixesTest
+198,22981257,extractDimensionC,(AisExtractor extractor),Optional<Integer>,testDimensionC,AisBStaticDataReportPartBTest
+199,22981257,isPghp,(String line),boolean,testIsPghpLineIsFalseGivenNull,NmeaMessageExactEarthTimestampTest
+200,22981257,isOutside,"(List<Position> path, double minDistanceKm)",boolean,testIsOutside2,PositionTest
+201,22981257,nextPoint,"(Position a, Position b)",Position,testGridNextPoint3,GridTraversorTest
+202,22981257,getCandidates,"(Observable<HasFix> o, Options options)",Observable<DriftCandidate>,testEmpty,DriftDetectorTest
+203,22981257,line,(String line),void,testLineWithTimestamp,NmeaStreamProcessorTest
+204,22981257,from,"(InputStream is, String parentElementName)","Observable<Map<String, String>>",testReaderFromInputStream,IhsReaderTest
+205,22981257,containing,"(double lat, double lon)",Stream<String>,testPointInNeitherSrrNorInCoralSeaAtba,ShapesTest
+206,22981257,mbr,(),Rect,testMbr,ShapefileTest
+207,22981257,makeConstantDifference,(List<Double> list),List<Double>,testConstantDifference,DistanceTravelledCalculatorTest
+208,22981257,parse,(String line),NmeaMessage,testMultiSentenceOnLineWithoutTagBlock,NmeaMessageParserTest
+210,22981257,parse,(String line),NmeaMessage,testBadSententenceThrowsNmeaMessageParseException,NmeaMessageParserTest
+211,22981257,diff,"(double a, double b)",double,testDiff,DriftDetectorTest
+212,22981257,forTestCoverageOnly,(),void,testInstantiation,AtonTypeDecoderTest
+213,22981257,getMap,(),"Map<CraftPropertyName, TreeMap<Long, String>>",testIsEmpty,CraftPropertiesTest
+214,22981257,minTimeStep,"(long duration, TimeUnit unit)",Downsample<T>,testDownSampleOfEmptyReturnsEmpty,DownsampleTest
+215,22981257,getValue,"(int from, int to, boolean[] bitSet)",long,testGetValueZero,SixBitTest
+216,22981257,extractLongitude,(AisExtractor extractor),Double,testExtractLongitude,AisPositionBTest
+217,22981257,getSignedValue,"(int from, int to)",int,testStringNotLongEnoughtThrowsAisParseExceptionUsingGetValue,AisExtractorTest
+218,22981257,convert6BitCharToStandardAscii,(byte byteToConvert),byte,testConvert6BitToAscii,UtilTest
+219,22981257,extractDimensionA,(AisExtractor extractor),Optional<Integer>,testDimensionA,AisBStaticDataReportPartBTest
+220,22981257,checkLatLong,"(double lat, double lon)",void,testCheckLatLonNegative,UtilTest
+221,22981257,getAtonType,(BigInteger ts),String,testAll,AtonTypeDecoderTest
+222,22981257,from,(String line),AisNmeaMessage,testParseNothingAfterTagBlock,AisNmeaMessageTest
+223,22981257,leastPowerOf2GreaterThanOrEqualTo,(int n),int,testLeastPowerOf2Given0Returns1,UtilTest
+224,22981257,isValid,(String sentence),boolean,testChecksumCalculationIgnoresTagBlock,NmeaUtilTest
+225,22981257,createNmeaLine,"(LinkedHashMap<String, String> tags, List<String> items)",String,testCanCreateNmeaLine,NmeaUtilTest
+226,22981257,line,(String line),void,testMultiSequenceMessageWithoutTagBlock,NmeaStreamProcessorTest
+227,22981257,isPghp,(String line),boolean,testIsPghpLineIsTrueWhenHasPghpNotAtBeginning,NmeaMessageExactEarthTimestampTest
+228,22981257,predict,"(double lat, double lon, double speedKnots, double courseMinusHeading,
+            double preEffectiveSpeedKnots, double preError, double postEffectiveSpeedKnots,
+            double postError)",Status,testLoad,AnchoredPredictorTest
+229,22981257,parseStaticDataReport,"(int partNumber, int id, String message, String source, int padBits)",AisMessage,testParseStaticDataReportWithInvalidPartNumberException,AisMessageParserTest
+230,22981257,getTalker,(String s),Talker,testGetTalkerGivenUnknownTalker,NmeaUtilTest
+231,22981257,cellAt,"(double lat, double lon)",Optional<Cell>,testCellAtIfLatAboveBoundsThrowsException,GridTest
+232,22981257,nextPoint,"(Position a, Position b)",Position,testGridNextPoint,GridTraversorTest
+233,22981257,nextPoint,"(Position a, Position b)",Position,testGridNextPointOnLeftEdgeStartingRightEdge,GridTraversorTest
+234,22981257,from,(File file),Observable<Fix>,testConcurrencyDemo,BinaryFixesTest
+235,22981257,checkLatLong,"(double lat, double lon)",void,testCheckLatLon,UtilTest
+236,22981257,parse,"(String message, int padBits)",AisMessage,testAisBaseStation,AisMessageParserTest
+237,22981257,checkLatLong,"(double lat, double lon)",void,testCheckLatLonLatTooLow,UtilTest
+238,22981257,getDistanceToPathKm,(List<Position> positions),double,testGetDistanceToPathKm5,PositionTest
+239,22981257,leastPowerOf2GreaterThanOrEqualTo,(int n),int,testLeastPowerOf2Given127,UtilTest
+240,22981257,getShipType,(BigInteger ts),String,testNull,ShipTypeDecoderTest
+241,22981257,cellAt,"(double lat, double lon)",Optional<Cell>,testCellAtIfLonLeftOfBoundsReturnsAbsent,GridTest
+242,22981257,nextPoint,"(Position a, Position b)",Position,testGridNextPointOnBottomEdgeStartingInsideCell,GridTraversorTest
+243,22981257,ascii8To6bitBin,(byte[] toDecBytes),byte[],testAscii8To6BitBinaryIllegalCharacterLowThrowsException,UtilTest
+244,22981257,getAtonType,(BigInteger ts),String,testBigIntegerNonNull,AtonTypeDecoderTest
+245,22981257,getCandidates,"(Observable<HasFix> o, Options options)",Observable<DriftCandidate>,testRule6DrifterNonDrifterDrifter,DriftDetectorTest
+246,22981257,extractCourseOverGround,(AisExtractor extractor),Double,testExtractCourseOverGround,AisPositionATest
+247,22981257,getDistanceToSegmentKm,"(Position p1, Position p2)",double,testGetDistanceToSegmentKm4,PositionTest
+248,22981257,to180,(double d),double,testTo180,PositionTest
+249,22981257,fromAndClose,(Reader reader),Observable<Info>,testParse,ShipStaticDataTest
+250,22981257,getDistanceToKm,(Position position),double,testDistance,PositionTest
+251,22981257,parse,(String line),NmeaMessage,testSatelliteMessageFromEv05,NmeaMessageParserTest
+252,22981257,minTimeStep,"(long duration, TimeUnit unit)",Downsample<T>,testDownSampleOf0ForItemsWithSameTimeReturnsAll,DownsampleTest
+253,22981257,getAtonType,(BigInteger ts),String,testBigIntegerNull,AtonTypeDecoderTest
+254,22981257,minTimeStep,"(long duration, TimeUnit unit)",Downsample<T>,testDownSampleOfTwoWithBigGapReturnsTwo,DownsampleTest
+255,22981257,getMessageId,(),int,testIncorrectMessageId,AisBaseStationTest
+256,22981257,nextPoint,"(Position a, Position b)",Position,testGridNextPointOnDestinationStartingBottomEdge,GridTraversorTest
+257,22981257,isOutside,"(List<Position> path, double minDistanceKm)",boolean,testIsOutside1,PositionTest
+258,22981257,getCellDistances,"(HasPosition a, HasPosition b,
+            Options options)",Observable<CellAndDistance>,testGetCellDistances,DistanceTravelledCalculatorTest
+259,22981257,minTimeStep,"(long duration, TimeUnit unit)",Downsample<T>,testDownSampleOfThreeWithSmallGapThenBigGapReturnsOuterTwo,DownsampleTest
+260,22981257,getCandidates,"(Observable<HasFix> o, Options options)",Observable<DriftCandidate>,testRule3ThreeDrifters,DriftDetectorTest
+261,22981257,getCandidates,"(Observable<HasFix> o, Options options)",Observable<DriftCandidate>,testRule4DrifterThenTwoNonDrifters,DriftDetectorTest
+262,22981257,getValue,"(int from, int to, boolean[] bitSet)",long,testGetValueFirstBitSet,SixBitTest
+263,22981257,socketCreator,"(final String host, final int port, long quietTimeoutMs)",Func0<Socket>,testSocketCreatorThrowsException,StringSocketsTest
+264,22981257,containing,"(double lat, double lon)",Stream<String>,testPointInSrrAndNotInCoralSeaAtba,ShapesTest
+265,22981257,createTagBlock,"(LinkedHashMap<String, String> tags)",String,testCreationOfTagBlock,NmeaUtilTest
+266,22981257,checkLatLong,"(double lat, double lon)",void,testCheckLatLonLonAtLimit,UtilTest
+267,22981257,isPghp,(String line),boolean,testIsPghpLineIsTrueWhenHasTagBlock,NmeaMessageExactEarthTimestampTest
+268,22981257,parse,"(String message, int padBits)",AisMessage,testAisPositionB,AisMessageParserTest
+269,22981257,diff,"(double a, double b)",double,testDiff4,DriftDetectorTest
+270,22981257,getCellDistances,"(HasPosition a, HasPosition b,
+            Options options)",Observable<CellAndDistance>,testGetCellDistancesEqualSingleLegGreatCircleDistanceAlmost,DistanceTravelledCalculatorTest
+271,22981257,getCandidates,"(Observable<HasFix> o, Options options)",Observable<DriftCandidate>,testRule2TwoDriftersBigTimeGap,DriftDetectorTest
+272,22981257,extractLatitude,(AisExtractor extractor),Double,testExtractLatitude,AisPositionBExtendedTest
+273,22981257,getShipType,(BigInteger ts),String,testBigIntegerNonNull,ShipTypeDecoderTest
+274,22981257,line,(String line),void,testNullPointerExceptionDoesNotOccur,NmeaStreamProcessorTest
+275,22981257,isCandidate,(Options options),"Func1<Fix, Boolean>",testDriftedFalseIfNoCog,DriftDetectorTest
+276,22981257,checkMessageId,"(int messageId, AisMessageType... messageTypes)",void,testCheckMessageIdInMultipleChangedOrder,UtilTest
+277,22981257,from,(String line),AisNmeaMessage,testShipStaticDataFail,AisNmeaMessageTest
+278,22981257,rebase,"(File file, File existingParent, File newParent)",File,testRebase,FormatsTest
+279,22981257,getPositionAlongPath,"(Position position,
+			double proportion)",Position,testGetPositionAlongPathExceptionsGreater,PositionTest
+280,22981257,extractLatitude,(AisExtractor extractor),Double,testExtractLatitudeBadNeg,AisPositionATest
+281,22981257,nextPoint,"(Position a, Position b)",Position,testGridNextPointOnLeftEdgeStartingInside,GridTraversorTest
+282,22981257,getCandidates,"(Observable<HasFix> o, Options options)",Observable<DriftCandidate>,testRule6DrifterNonDrifterDrifterOverNonDriftingThreshold,DriftDetectorTest
+283,22981257,checkMessageId,"(int messageId, AisMessageType... messageTypes)",void,testCheckMessageIdShouldThrowExceptionIfListEmpty,UtilTest
+284,22981257,getTalker,(String s),Talker,testGetTalkerGivenRealTalker,NmeaUtilTest
+285,22981257,readValues,(final InputStream is),Observable<?>,testSavingCellValuesToBinaryFileAndReadingBackAgain,BinaryCellValuesObservableTest
+286,22981257,loadSchema,(),Schema,testLoadSchema,ParquetTest
+287,22981257,isOutside,"(List<Position> path, double minDistanceKm)",boolean,testIsOutside3,PositionTest

@@ -1,0 +1,224 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,2791813,clone,(),Item,testClone,ShieldTest
+1,2791813,getMinMana,(),int,testGetMinMana,ManaPotionTest
+2,2791813,handle,"(DataBuffer buffer, Connection connection)",boolean,successfulCharacterCreation,LoginNewCharacterPacketTest
+3,2791813,clone,(),Item,testClone,MusicalInstrumentTest
+4,2791813,getDamageBonus,(),int,testGetDamageBonus,BoatTest
+5,2791813,appliesTo,"(Character caster, Character target)",boolean,testAppliesToCharacterWorldObject,RecoverMobilityEffectTest
+6,2791813,apply,"(Character caster, Character target)",void,testApplyCharacterWorldObject,DumbEffectTest
+7,2791813,apply,"(Character caster, Character target)",void,testApplyCharacterCharacter,ParalysisEffectTest
+8,2791813,retrieve,(String username),Account,testRetrieve,UserDAOIniTest
+9,2791813,getCode,(),int,testGetMinHit,KeyTest
+10,2791813,getMaxHit,(),int,testGetMaxHit,WeaponTest
+11,2791813,getMagicWords,(),String,testGetMagicWords,SpellTest
+12,2791813,handle,"(DataBuffer buffer, Connection connection)",boolean,nameTakenTest,LoginNewCharacterPacketTest
+13,2791813,use,(Character character),void,testUseWithoutCleanup,FilledBottleTest
+14,2791813,addAmount,(final int amount),int,testAddAmount,AbstractItemTest
+15,2791813,getBourgeois,(),int,testGetBourgeois,ReputationImplTest
+16,2791813,clone,(),Item,testClone,WeaponTest
+17,2791813,apply,"(Character caster, Character target)",void,testApplyCharacterWorldObject,InvisibilityEffectTest
+18,2791813,apply,"(Character caster, Character target)",void,testApplyCharacterWorldObject,ImmobilizationEffectTest
+19,2791813,use,(Character character),void,testUseWithCleanup,HPPotionTest
+20,2791813,getGraphic,(),int,testGetGraphic,AbstractWorldObjectTest
+21,2791813,appliesTo,"(Character caster, Character target)",boolean,testAppliesToCharacterCharacter,ImmobilizationEffectTest
+22,2791813,getMail,(),String,testGetMail,AccountImplTest
+23,2791813,apply,"(Character caster, Character target)",void,testApplyCharacterWorldObject,ParalysisEffectTest
+24,2791813,getMinModifier,(),int,testGetMinModifier,StrengthPotionTest
+25,2791813,getMaxDef,(),int,testGetMaxDef,AbstractDefensiveItemTest
+26,2791813,appliesTo,"(Character caster, Character target)",boolean,testAppliesToCharacterWorldObject,SpellTest
+27,2791813,appliesTo,"(Character caster, Character target)",boolean,testAppliesToCharacterCharacter,HitPointsEffectTest
+28,2791813,isNegative,(),boolean,testIsNegative,SpellTest
+29,2791813,handle,"(DataBuffer buffer, Connection connection)",boolean,testHandleIncorrectPassword,LoginExistingCharacterPacketTest
+30,2791813,getMap,(final int id),WorldMap,testGetMap,MapServiceImplTest
+31,2791813,getTile,"(int x, int y)",Tile,testGetTile,WorldMapTest
+32,2791813,apply,"(Character caster, Character target)",void,testApplyCharacterWorldObject,RecoverMobilityEffectTest
+33,2791813,addEvent,"(Character chara, TimedEvent event, long delay, long interval, long repeatFor)",void,testAddEventCharacterTimedEventLong,TimedEventsServiceImplTest
+34,2791813,appliesTo,"(Character caster, Character target)",boolean,testAppliesToCharacterCharacter,InvisibilityEffectTest
+35,2791813,loadMaps,(),void,testLoadMaps,MapServiceImplTest
+36,2791813,clone,(),Item,testClone,AmmunitionTest
+37,2791813,appliesTo,"(Character caster, Character target)",boolean,testAppliesToCharacterCharacter,ParalysisEffectTest
+38,2791813,getId,(),int,testGetId,WorldMapTest
+39,2791813,appliesTo,"(Character caster, Character target)",boolean,testAppliesToCharacterCharacter,DumbEffectTest
+40,2791813,use,(Character character),void,testUse,HelmetTest
+41,2791813,getEquippedGraphic,(),int,testGetEquippedGraphic,AbstractEquipableItemTest
+42,2791813,getDescription,(),String,testGetDescription,SpellTest
+43,2791813,addToBandit,(int points),void,testAddToBandit,ReputationImplTest
+44,2791813,getPiercingDamage,(),int,testGetPiercingDamage,WeaponTest
+45,2791813,getOpen,(),boolean,testGetOpen,DoorTest
+46,2791813,inVisionRange,(Position pos),boolean,testInVisionRange,PositionTest
+47,2791813,use,(Character character),void,testUse,AccessoryTest
+48,2791813,appliesTo,"(Character caster, Character target)",boolean,testAppliesToCharacterCharacter,PoisonEffectTest
+49,2791813,use,(Character character),void,testUseWithCleanup,ParchmentTest
+50,2791813,addToAssassin,(int points),void,testAddToAssassin,ReputationImplTest
+51,2791813,equals,(Object obj),boolean,testEquals,WorldMapTest
+52,2791813,appliesTo,"(Character caster, Character target)",boolean,testAppliesToCharacterWorldObject,DumbEffectTest
+53,2791813,hasCharacter,(String name),boolean,testHasCharacter,AccountImplTest
+54,2791813,addToX,(int positions),void,testAddToX,PositionTest
+55,2791813,getId,(),int,testGetId,AbstractWorldObjectTest
+56,2791813,use,(Character character),void,testUseWithoutCleanup,ParchmentTest
+57,2791813,getWoodType,(),WoodType,testGetWoodType,WoodTest
+58,2791813,getLocked,(),boolean,testGetLocked,DoorTest
+59,2791813,getMinMagicDef,(),int,testGetMinMagicDef,AbstractDefensiveItemTest
+60,2791813,getDamageBonus,(),int,testGetDamageBonus,StaffTest
+61,2791813,handle,"(DataBuffer buffer, Connection connection)",boolean,invalidHeadTest,LoginNewCharacterPacketTest
+62,2791813,use,(Character character),void,testUse,EmptyBottleTest
+63,2791813,handle,"(DataBuffer buffer, Connection connection)",boolean,testHandleBannedCharacter,LoginExistingCharacterPacketTest
+64,2791813,use,(Character character),void,testUse,GoldTest
+65,2791813,apply,"(Character caster, Character target)",void,testApplyCharacterWorldObject,SpellTest
+66,2791813,handle,"(DataBuffer buffer, Connection connection)",boolean,testHandleRestrictedToAdminsTest,LoginExistingCharacterPacketTest
+67,2791813,move,(Position pos),Heading,testMove,QuietMovementStrategyTest
+68,2791813,clone,(),Item,testClone,MineralTest
+69,2791813,addToBourgeois,(int points),void,testAddToBourgeois,ReputationImplTest
+70,2791813,getNeedsAmmunition,(),boolean,testGetNeedsAmmunition,RangedWeaponTest
+71,2791813,authenticate,(String password),boolean,testAuthenticate,AccountImplTest
+72,2791813,use,(Character character),void,testUse,BoatTest
+73,2791813,belongsToFaction,(),boolean,testBelongsToFaction,ReputationImplTest
+74,2791813,use,(Character character),void,testUseWithCleanup,DeathPotionTest
+75,2791813,getMagicPower,(),int,testGetMagicPower,StaffTest
+76,2791813,use,(Character character),void,testUseWithoutCleanup,DexterityPotionTest
+77,2791813,clone,(),Item,testClone,ArmorTest
+78,2791813,use,(Character character),void,testUseWithCleanup,FilledBottleTest
+79,2791813,addItem,(final Item item),int,testAddItem,InventoryImplTest
+80,2791813,handle,"(DataBuffer buffer, Connection connection)",boolean,invalidNameTest,LoginNewCharacterPacketTest
+81,2791813,apply,"(Character caster, Character target)",void,testApplyCharacterWorldObject,PoisonEffectTest
+82,2791813,use,(Character character),void,testUseWithCleanup,DrinkTest
+83,2791813,use,(Character character),void,testUse,RangedWeaponTest
+84,2791813,getThirst,(),int,testGetThirst,FilledBottleTest
+85,2791813,getAlignment,(),Alignment,testGetAlignment,ReputationImplTest
+86,2791813,getValue,(),int,testGetValue,AbstractItemTest
+87,2791813,getUsageDifficulty,(),int,testGetUsageDifficulty,BoatTest
+88,2791813,apply,"(Character caster, Character target)",void,testApplyCharacterCharacter,DumbEffectTest
+89,2791813,getMinHit,(),int,testGetMinHit,AmmunitionTest
+90,2791813,setCapacity,(int capacity),void,testSetCapacity,InventoryImplTest
+91,2791813,clone,(),Item,testClone,DrinkTest
+92,2791813,use,(Character character),void,testUseWithCleanup,FoodTest
+93,2791813,appliesTo,"(Character caster, Character target)",boolean,testAppliesToCharacterWorldObject,HitPointsEffectTest
+94,2791813,getMaxHP,(),int,testGetMaxHP,HPPotionTest
+95,2791813,addCharacter,(String name),void,testAddCharacter,AccountImplTest
+96,2791813,getMaxHit,(),int,testGetMaxHit,BoatTest
+97,2791813,getDamage,(),int,testGetDamage,RangedWeaponTest
+98,2791813,apply,"(Character caster, Character target)",void,testApplyCharacterCharacter,InvisibilityEffectTest
+99,2791813,getSoundToPlay,(),int,testGetSounds,MusicalInstrumentTest
+100,2791813,use,(Character character),void,testUseWithoutCleanup,StrengthPotionTest
+101,2791813,use,(Character character),void,testUseWithoutCleanup,DrinkTest
+102,2791813,addToY,(int positions),void,testAddToY,PositionTest
+103,2791813,use,(Character character),void,testUseWithCleanup,DexterityPotionTest
+104,2791813,getMaxHun,(),int,testGetMaxHun,FoodTest
+105,2791813,cleanup,(),void,testCleanup,InventoryImplTest
+106,2791813,apply,"(Character caster, Character target)",void,testApplyCharacterCharacter,ImmobilizationEffectTest
+107,2791813,handle,"(DataBuffer buffer, Connection connection)",boolean,invalidGenderTest,LoginNewCharacterPacketTest
+108,2791813,isNoLog,(),boolean,testIsNoLog,AbstractItemTest
+109,2791813,getMinHP,(),int,testGetMinHP,HPPotionTest
+110,2791813,use,(Character character),void,testUse,WoodTest
+111,2791813,getName,(),String,testGetName,AccountImplTest
+112,2791813,handle,"(DataBuffer buffer, Connection connection)",boolean,characterCreationDisabledTest,LoginNewCharacterPacketTest
+113,2791813,clone,(),Item,testClone,GrabablePropTest
+114,2791813,use,(Character character),void,testUse,GrabablePropTest
+115,2791813,getFX,(),int,testGetFX,SpellTest
+116,2791813,getAssassin,(),int,testGetAssassin,ReputationImplTest
+117,2791813,use,(Character character),void,testUseWithoutCleanup,FoodTest
+118,2791813,use,(Character character),void,testUseWithCleanup,StrengthPotionTest
+119,2791813,clone,(),Item,testClone,DexterityPotionTest
+120,2791813,clone,(),Item,testClone,EmptyBottleTest
+121,2791813,getName,(),String,testGetName,SpellTest
+122,2791813,getMinModifier,(),int,testGetMinModifier,DexterityPotionTest
+123,2791813,clone,(),Item,testClone,AccessoryTest
+124,2791813,getRequiredSkill,(),int,testGetRequiredSkill,SpellTest
+125,2791813,getSpell,(),Spell,testGetSpell,ParchmentTest
+126,2791813,getEffectDuration,(),int,testGetEffectDuration,StrengthPotionTest
+127,2791813,clone,(),Item,testClone,RangedWeaponTest
+128,2791813,clone,(),Item,testClone,HPPotionTest
+129,2791813,handle,"(DataBuffer buffer, Connection connection)",boolean,clientOutOfDateTest,LoginNewCharacterPacketTest
+130,2791813,handle,"(DataBuffer buffer, Connection connection)",boolean,invalidRaceTest,LoginNewCharacterPacketTest
+131,2791813,getMaxThirst,(),int,testGetMaxThirst,DrinkTest
+132,2791813,getResourceWorldObjctId,(),int,testResourceWorldObjctId,AbstractResourceSourceTest
+133,2791813,getMaxModifier,(),int,testGetMaxModifier,DexterityPotionTest
+134,2791813,getThief,(),int,testGetThief,ReputationImplTest
+135,2791813,handle,"(DataBuffer buffer, Connection connection)",boolean,testHandleCharacterNotFound,LoginExistingCharacterPacketTest
+136,2791813,getDamage,(),int,testGetDamage,WeaponTest
+137,2791813,getMaxMagicDef,(),int,testGetMaxMagicDef,AbstractDefensiveItemTest
+138,2791813,use,(Character character),void,testUse,ArmorTest
+139,2791813,isNewbie,(),boolean,testIsNewbie,AbstractItemTest
+140,2791813,handle,"(DataBuffer buffer, Connection connection)",boolean,testHandleOutOfDateClient,LoginExistingCharacterPacketTest
+141,2791813,use,(Character character),void,testUseWithoutCleanup,PoisonPotionTest
+142,2791813,clone,(),Item,testClone,KeyTest
+143,2791813,getStabs,(),boolean,testGetStabs,WeaponTest
+144,2791813,getNoble,(),int,testGetNoble,ReputationImplTest
+145,2791813,use,(Character character),void,testUseWithCleanup,ManaPotionTest
+146,2791813,handle,"(DataBuffer buffer, Connection connection)",boolean,invalidArchetypeTest,LoginNewCharacterPacketTest
+147,2791813,hasItem,(Item item),int,testHasItem,InventoryImplTest
+148,2791813,getEffectDuration,(),int,testGetEffectDuration,DexterityPotionTest
+149,2791813,getMinDef,(),int,testGetMinDef,AbstractDefensiveItemTest
+150,2791813,move,(Position pos),Heading,testMove,GreedyMovementStrategyTest
+151,2791813,isEquipped,(),boolean,testIsEquipped,AbstractEquipableItemTest
+152,2791813,appliesTo,"(Character caster, Character target)",boolean,testAppliesToCharacterCharacter,SpellTest
+153,2791813,handle,"(DataBuffer buffer, Connection connection)",boolean,invalidEmailTest,LoginNewCharacterPacketTest
+154,2791813,use,(Character character),void,testUseWithASpellAlreadyLearnt,ParchmentTest
+155,2791813,use,(Character character),void,testUse,MineralTest
+156,2791813,clone,(),Item,testClone,ParchmentTest
+157,2791813,getMaxMana,(),int,testGetMaxMana,ManaPotionTest
+158,2791813,clone,(),Item,testClone,ManaPotionTest
+159,2791813,use,(Character character),void,testUseWithoutCleanup,ManaPotionTest
+160,2791813,getDistance,(Position pos),int,testGetDistance,PositionTest
+161,2791813,canBeStolen,(),boolean,testCanBeStolen,BoatTest
+162,2791813,clone,(),Item,testClone,FoodTest
+163,2791813,delete,(String name),void,testDelete,UserDAOIniTest
+164,2791813,removeCharacterEvents,(Character chara),void,testRemoveCharacterEvents,TimedEventsServiceImplTest
+165,2791813,requiresStaff,(),boolean,testRequiresStaff,SpellTest
+166,2791813,hasFreeSlots,(),boolean,testHasFreeSlots,InventoryImplTest
+167,2791813,appliesTo,"(Character caster, Character target)",boolean,testAppliesToCharacterWorldObject,PoisonEffectTest
+168,2791813,getItemAmount,(Item item),int,testGetItemAmount,InventoryImplTest
+169,2791813,appliesTo,"(Character caster, Character target)",boolean,testAppliesToCharacterWorldObject,ParalysisEffectTest
+170,2791813,appliesTo,"(Character caster, Character target)",boolean,testAppliesToCharacterCharacter,RecoverMobilityEffectTest
+171,2791813,getCode,(),int,testGetCode,DoorTest
+172,2791813,getMinHun,(),int,testGetMinHun,FoodTest
+173,2791813,apply,"(Character caster, Character target)",void,testApplyCharacterCharacter,SpellTest
+174,2791813,canBeStolen,(),boolean,testCanBeStolen,AbstractItemTest
+175,2791813,clone,(),Item,testClone,PoisonPotionTest
+176,2791813,getBandit,(),int,testGetBandit,ReputationImplTest
+177,2791813,apply,"(Character caster, Character target)",void,testApplyCharacterCharacter,RecoverMobilityEffectTest
+178,2791813,getCharacters,(),Set<String>,testGetCharacters,AccountImplTest
+179,2791813,use,(Character character),void,testUse,WeaponTest
+180,2791813,getMaxHit,(),int,testGetMaxHit,AmmunitionTest
+181,2791813,getCharactersNearby,"(int x, int y)",List<Character>,testGetCharactersNearby,WorldMapTest
+182,2791813,setBelongsToFaction,(boolean belongs),void,testSetBelongsToFaction,ReputationImplTest
+183,2791813,setEquipped,(boolean equipped),void,testSetEquipped,AbstractEquipableItemTest
+184,2791813,removeEvent,(TimedEvent event),void,testRemoveEvent,TimedEventsServiceImplTest
+185,2791813,isBanned,(),boolean,testIsBanned,AccountImplTest
+186,2791813,clone,(),Item,testClone,BoatTest
+187,2791813,use,(Character character),void,testUse,MusicalInstrumentTest
+188,2791813,clone,(),Item,testClone,HelmetTest
+189,2791813,retrieveAll,(),WorldMap[],testLoadMaps,WorldMapDAOImplTest
+190,2791813,addToThief,(int points),void,testAddToThief,ReputationImplTest
+191,2791813,clone,(),Item,testClone,DeathPotionTest
+192,2791813,getSound,(),int,testGetSound,SpellTest
+193,2791813,getMaxModifier,(),int,testGetMaxModifier,StrengthPotionTest
+194,2791813,getMinHit,(),int,testGetMinHit,WeaponTest
+195,2791813,clone,(),Item,testClone,WoodTest
+196,2791813,apply,"(Character caster, Character target)",void,testApplyCharacterCharacter,PoisonEffectTest
+197,2791813,getRequiredMana,(),int,testGetRequiredMana,SpellTest
+198,2791813,use,(Character character),void,testUse,AmmunitionTest
+199,2791813,use,(Character character),void,testUseWithCleanup,PoisonPotionTest
+200,2791813,getMinThirst,(),int,testGetMinThirst,DrinkTest
+201,2791813,appliesTo,"(Character caster, Character target)",boolean,testAppliesToCharacterWorldObject,ImmobilizationEffectTest
+202,2791813,appliesTo,"(Character caster, Character target)",boolean,testAppliesToCharacterWorldObject,InvisibilityEffectTest
+203,2791813,clone,(),Item,testClone,FilledBottleTest
+204,2791813,retrieveAll,(),NPCProperties[],testRetrieveAll,NPCPropertiesDAOIniTest
+205,2791813,clone,(),Item,testClone,GoldTest
+206,2791813,use,(Character character),void,testUse,ShieldTest
+207,2791813,isRespawnable,(),boolean,testIsRespawneable,AbstractItemTest
+208,2791813,use,(Character character),void,testUseWithoutCleanup,DeathPotionTest
+209,2791813,getItem,(int slot),Item,testGetItem,InventoryImplTest
+210,2791813,getName,(),String,testGetName,AbstractWorldObjectTest
+211,2791813,getRadius,(),int,testGetRadius,TeleportTest
+212,2791813,addEvent,"(Character chara, TimedEvent event, long delay, long interval, long repeatFor)",void,testAddEventCharacterTimedEventLongLongLong,TimedEventsServiceImplTest
+213,2791813,handle,"(DataBuffer buffer, Connection connection)",boolean,dicesThrewTest,LoginNewCharacterPacketTest
+214,2791813,getRequiredStaffPower,(),int,testGetRequiredStaffPower,SpellTest
+215,2791813,getDamage,(),int,testGetDamage,AmmunitionTest
+216,2791813,apply,"(Character caster, Character target)",void,testApplyCharacterWorldObject,HitPointsEffectTest
+217,2791813,getName,(),String,testGetName,WorldMapTest
+218,2791813,getMinHit,(),int,testGetMinHit,BoatTest
+219,2791813,handle,"(DataBuffer buffer, Connection connection)",boolean,restrictedToAdminsTest,LoginNewCharacterPacketTest
+220,2791813,retrieveAll,(),City[],testRetrieveAll,CityDAOIniTest
+221,2791813,use,(Character character),void,testUseWithoutCleanup,HPPotionTest
+222,2791813,clone,(),Item,testClone,StrengthPotionTest

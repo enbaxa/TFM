@@ -1,0 +1,153 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,200980523,checkTargetAndSend,"(PlayerProfile targetProfile, PrivateMessage privateMessage, String targetProxy)",MessageSendResponse,whenTargetIsIgnoring,CheckTargetTest
+1,200980523,findAndSend,(PrivateMessage message),MessageSendResponse,whenPlayerNotOnlineThenNotSent,FindOnlinePlayerTest
+2,200980523,invite,"(String owner, String player, int expiration)",InviteResult,invite,SelfCheckingPartyRepositoryTest
+3,200980523,onDropOut,(PlayerDropOutEvent event),void,onDropOut,TeamDropOutListenerTest
+4,200980523,newOutputStreamProvider,(String target),OutputStreamProvider,whenOutputStreamToClasspath,FileStreamProviderFactoryTest
+5,200980523,isIgnoring,"(UUID who, String target)",boolean,isIgnoring,IgnoreServiceTest
+6,200980523,decrement,(ServerGroup group),void,decrement,RedisGlobalOnlineRepositoryTest
+7,200980523,inventoryClicked,(InventoryClickEvent e),void,inventoryClicked,MultiPageListenerTest
+8,200980523,deserialize,"(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)",World,deserialize,WorldDeserializerTest
+9,200980523,checkCooldown,(UUID player),Optional<Integer>,whenNewThenNotInCooldown,ChatCooldownsTest
+10,200980523,findAndSend,(PrivateMessage message),MessageSendResponse,whenPlayerOnlineThenSent,FindOnlinePlayerTest
+11,200980523,assignRemaining,(),void,assignTeams,TeamAssignerTest
+12,200980523,update,(PlayerPurchases purchases),void,update,PurchaseRepositoryTest
+13,200980523,isEmpty,(),boolean,isEmpty,ListArgumentSetTest
+14,200980523,proceed,(LoginDetails loginDetails),void,whenBannedThenDisallowed,PunishmentLinkTest
+15,200980523,update,(PunishmentData punishmentData),void,update,PunishmentDataRepositoryTest
+16,200980523,proceed,(LoginDetails loginDetails),void,whenProfileDoesNotExists,PlayerProfileLoaderTest
+17,200980523,teleportPlayer,(UUID playerId),void,whenTeleportSinglePlayer,SoloGameMapTest
+18,200980523,addItem,(InventoryItem item),void,addItem,MultiPageGuiTest
+19,200980523,send,(PrivateMessage message),MessageSendResponse,whenNotMutedThenSent,SendPrivateMessageTest
+20,200980523,get,(int index),String,whenNegativeIndex,ValidatingArgumentSetTest
+21,200980523,partyChat,"(String member, String text)",boolean,chat,PartyServiceTest
+22,200980523,isAvailableTo,(KitChallenger challenger),boolean,isAvailableTo,AnyoneKitPermissionsTest
+23,200980523,removeItem,"(int slot, int page)",void,removeItem,MultiPageGuiTest
+24,200980523,get,(int index),String,get,ValidatingArgumentSetTest
+25,200980523,set,"(String serverName, ServerFieldType type, T value)",void,set,RedisServerRepositoryTest
+26,200980523,gameStateChanged,(GameState newState),void,whenOnlyOneState,ListenerRegistrationServiceTest
+27,200980523,onPlayerDeath,(UUID uuid),void,onPlayerDeath,RespawnDeathHandlerTest
+28,200980523,getMessageData,(byte[] payload),MessageData,getMessageData,MessageDataExtractorTest
+29,200980523,addButton,"(InventoryItem inventoryItem, Executable executable)",void,addButton,MultiPageGuiTest
+30,200980523,run,(SchedulerTask owner),void,run,CountdownTest
+31,200980523,isAvailableTo,(KitChallenger challenger),boolean,whenHasRankThenAllowed,RankBasedPermissionsTest
+32,200980523,getGroupsOnline,(),"Map<String, Integer>",getGroupsOnline,RedisGlobalOnlineRepositoryTest
+33,200980523,inventoryClosed,(InventoryCloseEvent e),void,inventoryClosed,MultiPageListenerTest
+34,200980523,accept,"(String owner, String player)",AcceptResult,accept,SelfCheckingPartyRepositoryTest
+35,200980523,execute,(CommandExecution execution),void,executeInexistent,NestedCommandTest
+36,200980523,newInputStreamProvider,(String target),InputStreamProvider,whenClassPathResource,FileStreamProviderFactoryTest
+37,200980523,checkPunishment,"(UUID uuid, ActivePunishmentType activePunishmentType)",Optional<ActivePunishmentRecord>,whenPunishmentExpired,PunishmentCheckerTest
+38,200980523,getAll,(),List<String>,getAll,ValidatingArgumentSetTest
+39,200980523,newInputStreamProvider,(String target),InputStreamProvider,whenExternalResource,FileStreamProviderFactoryTest
+40,200980523,execute,(CommandExecution commandExecution),void,whenReset,StatefulCommandTest
+41,200980523,getPunishmentsFor,(UUID uuid),PunishmentData,whenDataDoesNotExistThenCreatedNew,PunishmentDataProviderTest
+42,200980523,isAvailableTo,(KitChallenger kitChallenger),boolean,testAvailability,BalanceKitPermissionsTest
+43,200980523,validate,"(CommandOptions options, String[] arguments, Sender sender)",Optional<Message>,whenInvalidArgumentLength,CommandOptionsValidatorTest
+44,200980523,apply,(String value),String,apply,RemoveExtensionTest
+45,200980523,length,(),int,length,ListArgumentSetTest
+46,200980523,onPlayerDeath,(UUID playerId),void,onPlayerDeath,LivesDeathHandlerTest
+47,200980523,addHandler,(MessageHandler<?> handler),void,addHandler,MessageDispatcherTest
+48,200980523,switchPage,"(UUID uuid, IntUnaryOperator function)",void,switchPage,PageSwitcherTest
+49,200980523,getHistory,"(UUID me, String companion, int page, int count)",List<PrivateMessageProjection>,getHistory,PrivateMessageRepositoryTest
+50,200980523,onPlayerDeath,(UUID playerId),void,onPlayerDeath,DropOutDeathHandlerTest
+51,200980523,save,(Rank rank),void,save,RankRepositoryTest
+52,200980523,getPlaces,(),List<Place>,getPlaces,OrderedResultCalculationTest
+53,200980523,hasPermission,(String permission),boolean,whenOpHasPermission,RankTest
+54,200980523,start,(),void,start,DelayedStartingGameTest
+55,200980523,serialize,"(World world, Type type, JsonSerializationContext jsonSerializationContext)",JsonElement,serialize,WorldSerializerTest
+56,200980523,rebuildSwitchersAfterRemoval,(int removedPageIndex),void,rebuildSwitchersAfterRemoval,PageBuilderTest
+57,200980523,addNewPage,(),void,whenAddOnePage,InventoryPagesTest
+58,200980523,displayTo,(Player player),void,displayTo,MultiPageGuiTest
+59,200980523,getAll,(),List<String>,getAll,ListArgumentSetTest
+60,200980523,rebuildPageByIndex,(int index),void,rebuildPageByIndex,PageBuilderTest
+61,200980523,has,(String argument),boolean,has,ListArgumentSetTest
+62,200980523,save,(PrivateMessageRecord privateMessageRecord),void,save,PrivateMessageRepositoryTest
+63,200980523,put,"(UUID uuid, PunishmentData punishmentData)",void,put,PunishmentDataRepositoryTest
+64,200980523,execute,"(CommandRegistration commandContainer, Sender sender, String[] arguments)",void,execute,CommandExecutorTest
+65,200980523,findBy,(Specification specification),Optional<PlayerPreferences>,whenFindByParentProfile,PreferencesRepositoryTest
+66,200980523,decrementOnline,(String serverName),void,decrementOnline,RedisServerRepositoryTest
+67,200980523,punish,"(PunishmentParameters punishmentParameters, ActivePunishmentType activePunishmentType)",PunishResult,punish,ActivePunishmentServiceTest
+68,200980523,execute,(CommandExecution commandExecution),void,whenStepNotPassed,StatefulCommandTest
+69,200980523,getChatMessage,"(UUID uuid, String message)",String,getChatMessage,ChatFormatterTest
+70,200980523,loadTeams,(),void,loadTeams,TeamLoaderTest
+71,200980523,findProfileAndProceed,"(PrivateMessage message, String targetProxy)",MessageSendResponse,whenProfileFound,FindPlayerProfileTest
+72,200980523,addCommand,(CommandRegistration commandRegistration),void,whenOverwriteThenExceptionFired,VirtualCommandRepositoryTest
+73,200980523,kick,"(String target, String reason)",boolean,kick,ProxyKickTest
+74,200980523,incrementOnline,(String serverName),void,incrementOnline,RedisServerRepositoryTest
+75,200980523,get,(int index),String,get,ListArgumentSetTest
+76,200980523,isIgnoring,"(UUID profile, String name)",boolean,isIgnoring,IgnoreRepositoryTest
+77,200980523,send,(PrivateMessage message),MessageSendResponse,whenMutedThenNotSent,SendPrivateMessageTest
+78,200980523,setState,(GameState newState),void,whenStateChangedToTheSameThenEventNotDispatched,AbstractGameTest
+79,200980523,savePunishment,(PunishmentRecord punishmentRecord),void,savePunishment,PunishmentRepositoryTest
+80,200980523,playerConnect,(ServerConnectEvent event),void,playerConnect,LobbyBalancerTest
+81,200980523,getName,(),String,whenNotPart,ConvertingServerGroupTest
+82,200980523,execute,(CommandExecution commandExecution),void,whenAllExecuted,StatefulCommandTest
+83,200980523,setPlayerProxy,"(String player, String playerName)",void,setPlayerProxy,RedisPlayerRepositoryTest
+84,200980523,disband,(String playerName),DisbandResult,disband,PartyServiceTest
+85,200980523,getPage,(int page),Inventory,getPage,InventoryPagesTest
+86,200980523,addNewPage,(),void,whenAddMultiplePages,InventoryPagesTest
+87,200980523,getAllPlayers,(),Collection<P>,whenGetAllPlayersThenReturnedAllPlayers,VirtualGamePlayerStorageTest
+88,200980523,onQuit,(PlayerQuitEvent event),void,onQuit,WaitingQuitListenerTest
+89,200980523,markForRespawn,(GamePlayer gamePlayer),void,markForRespawn,RespawnTest
+90,200980523,getAlivePlayerCount,(),long,whenGetAlivePlayers,VirtualGamePlayerStorageTest
+91,200980523,isEmpty,(),boolean,isEmpty,ValidatingArgumentSetTest
+92,200980523,teleportPlayers,(),void,whenTeleportAllPlayersThenTeleported,TeamGameMapTest
+93,200980523,checkTargetAndSend,"(PlayerProfile targetProfile, PrivateMessage privateMessage, String targetProxy)",MessageSendResponse,whenTargetHasDisabled,CheckTargetTest
+94,200980523,has,(String argument),boolean,has,ValidatingArgumentSetTest
+95,200980523,removePlayer,(UUID player),void,removePlayer,ChatCooldownsTest
+96,200980523,clearAll,(),void,clearAll,InventoryPagesTest
+97,200980523,deserialize,"(Map<String, String> data)",Server,deserialize,StandardServerMapperTest
+98,200980523,deletePlayerData,(String player),void,deletePlayerData,RedisPlayerRepositoryTest
+99,200980523,gameStateChanged,(GameState newState),void,whenMultipleStates,ListenerRegistrationServiceTest
+100,200980523,addTeam,(Team team),void,whenAttemptToOverwriteExistingTeamThenFailed,InMemoryTeamsTest
+101,200980523,punish,"(PunishmentParameters punishmentParameters, PunishmentType punishmentType)",PunishResult,punish,PunishmentServiceTest
+102,200980523,validate,"(CommandOptions options, String[] arguments, Sender sender)",Optional<Message>,whenConsoleSendsPlayer,CommandOptionsValidatorTest
+103,200980523,validate,"(CommandOptions options, String[] arguments, Sender sender)",Optional<Message>,whenDoesNotHavePermission,CommandOptionsValidatorTest
+104,200980523,addServer,"(T server, ServerMapper<T> mapper)",void,addServer,RedisServerRepositoryTest
+105,200980523,getPunishmentsFor,(UUID uuid),PunishmentData,whenDataExistsThenReturnedExisting,PunishmentDataProviderTest
+106,200980523,getDefaultRank,(),Rank,getDefaultRank,RanksTest
+107,200980523,getGlobalOnline,(),int,getGlobalOnline,GlobalOnlineTest
+108,200980523,onPlayerMove,(PlayerMoveEvent playerMoveEvent),void,onPlayerMove,WaitingMoveListenerTest
+109,200980523,vote,(String mapName),MapVotingResult,whenVoteForInexistentMapThenNotAccepted,GameMapVotingTest
+110,200980523,removeIgnore,"(UUID profile, String name)",boolean,removeIgnore,IgnoreRepositoryTest
+111,200980523,sendFinalStage,"(PlayerProfile targetProfile, PrivateMessage privateMessage, String targetProxy)",MessageSendResponse,sendFinalStage,FinalStageTest
+112,200980523,punish,(PunishmentParameters punishmentParameters),PunishResult,punish,BanTest
+113,200980523,unavailabilityMessage,(KitChallenger challenger),Message,unavailabilityMessage,AnyoneKitPermissionsTest
+114,200980523,removeServerData,"(ServerGroup serverGroup, String serverName)",void,removeServerData,RedisOnlineIndexingRepositoryTest
+115,200980523,invite,"(String owner, String player)",InviteResult,invite,PartyServiceTest
+116,200980523,ignore,"(UUID who, String target)",IgnoreResult,ignore,IgnoreServiceTest
+117,200980523,execute,(CommandExecution execution),void,executeExisting,NestedCommandTest
+118,200980523,has,(String argument),boolean,whenNullArgumentThanHasThrowsError,ValidatingArgumentSetTest
+119,200980523,getName,(),String,whenPartOfGroup,ConvertingServerGroupTest
+120,200980523,deserialize,"(Map<String, String> data)",GameServer,deserialize,GameServerMapperTest
+121,200980523,punish,(PunishmentParameters punishmentParameters),PunishResult,punish,WarnTest
+122,200980523,gameStateChanged,(GameState newState),void,whenNextStateContainsAlreadyRegistered,ListenerRegistrationServiceTest
+123,200980523,start,(),void,start,StartStateChangingGameTest
+124,200980523,clear,(),void,clear,MultiPageGuiTest
+125,200980523,isExpired,(),boolean,whenDateIsManyYearsAheadThenNotExpired,ActivePunishmentRecordTest
+126,200980523,connect,(ServerConnectEvent event),void,whenConnectThenAllJoined,PartyListenerTest
+127,200980523,getTotalPages,(),int,getTotalPages,InventoryPagesTest
+128,200980523,removeIgnore,"(UUID who, String target)",IgnoreRemoveResult,removeIgnore,IgnoreServiceTest
+129,200980523,hasPermission,(String permission),boolean,whenHierarchyHasPermission,RankTest
+130,200980523,getPlayer,(UUID player),P,whenPlayerDoesNotExistThenNullReturned,VirtualGamePlayerStorageTest
+131,200980523,findPunishmentData,(UUID uuid),Optional<PunishmentData>,findPunishmentData,PunishmentDataRepositoryTest
+132,200980523,getPlayersProxies,(Collection<String> playerNames),"Map<String, String>",getPlayersProxies,RedisPlayerRepositoryTest
+133,200980523,addSwitchItems,"(int i, Inventory page)",void,addSwitchItems,PageBuilderTest
+134,200980523,checkPunishment,"(UUID uuid, ActivePunishmentType activePunishmentType)",Optional<ActivePunishmentRecord>,whenPunishmentDoesNotExist,PunishmentCheckerTest
+135,200980523,onDropOut,(PlayerDropOutEvent event),void,whenDropOutAndOnePlayerLeftThenEnd,SoloDropOutListenerTest
+136,200980523,length,(),int,length,ValidatingArgumentSetTest
+137,200980523,setPlayerServer,"(String server, String playerName)",void,setPlayerServer,RedisPlayerRepositoryTest
+138,200980523,ignore,"(UUID profile, PlayerProfile target)",boolean,ignore,IgnoreRepositoryTest
+139,200980523,serialize,(Message message),byte[],serialize,MessageSerializerTest
+140,200980523,disconnect,(PlayerDisconnectEvent playerDisconnectEvent),void,disconnect,PartyListenerTest
+141,200980523,getCommand,(String body),Optional<CommandRegistration>,getCommand,VirtualCommandRepositoryTest
+142,200980523,teleportPlayer,(UUID playerId),void,whenTeleportSinglePlayerThenTeleported,TeamGameMapTest
+143,200980523,findKitsByGameName,(String gameName),List<Kit>,findKitsByGameName,KitRepositoryTest
+144,200980523,shiftAfterPageRemoval,(int removedPage),void,shiftAfterRemoval,SlotActionsTest
+145,200980523,purchase,"(UUID purchaser, Purchasable purchasable)",void,purchase,PlayerPurchaseServiceTest
+146,200980523,checkPunishment,"(UUID uuid, ActivePunishmentType activePunishmentType)",Optional<ActivePunishmentRecord>,whenPunishmentExists,PunishmentCheckerTest
+147,200980523,getMessage,"(Localizable localizable, Message message)",String,whenMessageDoesNotExist,InternalizationServiceTest
+148,200980523,convert,(),long,convert,SecondsToTicksTest
+149,200980523,getMostFreeServer,(ServerGroup group),String,getMostFreeServer,RedisOnlineIndexingRepositoryTest
+150,200980523,getPlayer,(UUID player),P,whenPlayerExistThenReturnedByGet,VirtualGamePlayerStorageTest
+151,200980523,execute,(CommandExecution execution),void,execute,RespondingCommandTest

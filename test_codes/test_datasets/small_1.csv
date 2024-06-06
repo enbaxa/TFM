@@ -1,0 +1,112 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,18516668,getCamelCaseBig,(final String sapName),String,getCamelCaseBig,BapiFormatHelperTest
+1,18516668,stripDate,(final Date date),Date,testStripDate,DateUtilTest
+2,18516668,mapToMappedRecord,"(final RecordFactory recordFactory, final Record record, final Map<String, Object> map)",void,mapToMappedRecord,JCAMapperTest
+3,18516668,getArrayType,(),Class<?>,getsArrayType,BapiFieldTest
+4,18516668,activateBeanValidation,"(final Set<BapiInterceptor> bapiInterceptors,
+                                       final SessionManagerConfig sessionManagerConfig)",void,addsBeanValidationInterceptorWithDefaultValidationMode,TypeSafeActivatorTest
+5,18516668,getConnectionSpecClass,(final String connectionSpecClass),Class<? extends ConnectionSpec>,getConnectionSpecClassReturnsCorrectClass,AbstractConnectionSpecFactoryTest
+6,18516668,newConnectionSpecInstance,"(final Class<?> connectionSpecClass,
+                                                       final Class<?>[] constructorParameterTypes,
+                                                       final Object[] constructorArguments)",ConnectionSpec,newConnectionSpecInstanceCalledWithOneArgumentConstructor,AbstractConnectionSpecFactoryTest
+7,18516668,getDestinationType,(),Class<?>,destinationTypeIsSameAsFieldTypeWhenFieldTypeIsConcreteCollection,TableMappingTest
+8,18516668,create,(final SessionManagerConfig config),Context,initializesContextClass,ContextFactoryTest
+9,18516668,setFieldValue,"(final Object bean, final String fieldName, final Object value)",void,setFieldValueCanChangeIntValue,ReflectionHelperTest
+10,18516668,mapBapi,(final Class<?> clazz),BapiMapping,mapsBapiStructureWithInheritedField,AnnotationBapiMapperTest
+11,18516668,getDestinationType,(),Class<?>,destinationTypeIsArrayListByDefaultWhenFieldTypeIsCollection,TableMappingTest
+12,18516668,convertToJava,(final String sapValue),Boolean,testConvertToJava,BooleanConverterTest
+13,18516668,getClassForName,(final String className),Class<?>,getClassForNameThrowsExceptionWhenClassNotFound,ReflectionHelperTest
+14,18516668,getDeclaredField,"(final Object bean, final String fieldName)",Field,getDeclaredFieldThrowsExceptionWhenFieldDoesNotExist,ReflectionHelperTest
+15,18516668,getHibersapSessionFields,(final Object target),Set<Field>,getSessionFieldReturnsEmptySetWhenObjectDoesNotContainAnyFieldWithHibersapSessionAnnotation,ReflectionUtilTest
+16,18516668,injectSessionsIntoEjb,(final InvocationContext ctx),Object,removesTheCreatedSessionFromInvocationContextAndKeepsTheOtherOne,HibersapSessionInterceptorTest
+17,18516668,injectSessionsIntoEjb,(final InvocationContext ctx),Object,injectsTwoSessionsIntoBeanInstanceWhereOneIsAlreadyInInjectionContextAndTheOtherGetsCreated,HibersapSessionInterceptorTest
+18,18516668,getClassForName,(final String className),Class<?>,getClassForNameReturnsObject,ReflectionHelperTest
+19,18516668,getAssociatedType,(),Class<?>,getsActualType,BapiFieldTest
+20,18516668,begin,(),void,testMustNotBeginAlreadyStartedTransaction,JCoTransactionTest
+21,18516668,getExecutionInterceptors,(),Set<ExecutionInterceptor>,hasSameExecutionInterceptorsAfterDeserialization,SessionManagerImplTest
+22,18516668,newConnectionSpecInstance,"(final Class<?> connectionSpecClass,
+                                                       final Class<?>[] constructorParameterTypes,
+                                                       final Object[] constructorArguments)",ConnectionSpec,newConnectionSpecInstanceCalledWithTwoArgumentConstructor,AbstractConnectionSpecFactoryTest
+23,18516668,activateBeanValidation,"(final Set<BapiInterceptor> bapiInterceptors,
+                                              final SessionManagerConfig sessionManagerConfig)",void,addsBeanValidationInterceptorWhenValidationTypeAutoIsConfigured,BeanValidationActivatorTest
+24,18516668,newArrayFromCollection,"(final Collection<?> collection, final Class<T> elementType)",T[],newArrayFromCollectionReturnsNullWhenCollectionIsNull,ReflectionHelperTest
+25,18516668,setFieldValue,"(final Object bean, final String fieldName, final Object value)",void,setFieldValueOnDirectMember,ReflectionHelperTest
+26,18516668,activateBeanValidation,"(final Set<BapiInterceptor> bapiInterceptors,
+                                              final SessionManagerConfig sessionManagerConfig)",void,doesNotAddInterceptorWhenValidationModeNoneIsConfigured,BeanValidationActivatorTest
+27,18516668,injectSessionIntoTarget,"(final Object target, final Field field, final Session session)",void,injectSessionIntoTargetThrowsExceptionWhenFieldIsNotOfTypeHibersapSession,ReflectionUtilTest
+28,18516668,getBapiDescriptions,(),Set<BapiDescription>,findsFlightBapis,BapiFinderTest
+29,18516668,newDate,"(final int year, final int month, final int date)",Date,testNewDate,DateUtilTest
+30,18516668,createConnectionSpec,(Credentials credentials),ConnectionSpec,createConnectionSpec,CuckooJcaAdapterConnectionSpecFactoryTest
+31,18516668,setFieldValue,"(final Object bean, final String fieldName, final Object value)",void,setFieldValueWhenFieldIsInheritedFromSuperclass,ReflectionHelperTest
+32,18516668,getUnconvertedValueToJava,"(final Object value, final ConverterCache converterCache)",Object,getUnconvertedValueToJavaReturnsIdenticalValue,FieldMappingTest
+33,18516668,setFieldValue,"(final Object bean, final String fieldName, final Object value)",void,setFieldValueThrowsExceptionWhenSettingNullValueOnPrimitiveType,ReflectionHelperTest
+34,18516668,getSessionManagerJndiName,(final Field sessionField),String,getSessionManagerJndiNameThrowsExceptionWhenAnnotationNotPresent,ReflectionUtilTest
+35,18516668,getDeclaredFieldsWithAnnotationRecursively,"(final Class<?> clazz,
+                                                                        final Class<? extends Annotation> annotationClass)",Set<Field>,getsDeclaredFieldsRecursivelyWithInheritance,ReflectionHelperTest
+36,18516668,getUnconvertedValueToSap,"(final Object bapiStructure, final ConverterCache converterCache)",Object,getUnconvertedValueToSapMapsFields,StructureMappingTest
+37,18516668,getBapiInterceptors,(),Set<BapiInterceptor>,hasSameBapiInterceptorsAfterDeserialization,SessionManagerImplTest
+38,18516668,setFieldValue,"(final Object bean, final String fieldName, final Object value)",void,setFieldValueThrowsHibersapExceptionWithMessageContainingClassAndFieldNameWhenFieldDoesNotExist,ReflectionHelperTest
+39,18516668,getConfig,(),SessionManagerConfig,hasSameConfigurationAfterDeserialization,SessionManagerImplTest
+40,18516668,getFieldValue,"(final Object bean, final String fieldName)",Object,getFieldValueReturnsCorrectValueForInheritedField,ReflectionHelperTest
+41,18516668,commit,(),void,testCommit,JCoTransactionTest
+42,18516668,convertToSap,(final Boolean javaValue),String,testConvertToSap,BooleanConverterTest
+43,18516668,registerDestination,"(final String destinationName, final Properties jcoProperties)",void,destinationIsAddedToJCoWhenDestinationGetsRegistered,JCoEnvironmentTest
+44,18516668,getUnconvertedValueToJava,"(final Object fieldMapCollection, final ConverterCache converterCache)",Object,getUnconvertedValueReturnsListOfStructureBeansWithCorrectValues,TableMappingTest
+45,18516668,getConnectionSpecClass,(final String connectionSpecClass),Class<? extends ConnectionSpec>,getConnectionSpecClassThrowsIllegalArgumentWhenGivenClassIsNotAConnectionSpec,AbstractConnectionSpecFactoryTest
+46,18516668,unbindSessionManager,(final String jndiName),void,unbindSessionManagerActuallyUnbindsItFromJndi,JndiUtilTest
+47,18516668,mapRecordToFunctionMap,"(final Map<String, Object> functionMap,
+                                       final Map<String, Object> resultRecordMap,
+                                       final BapiMapping bapiMapping)",void,mapToFunctionMap,JCAMapperTest
+48,18516668,getUnconvertedValueToSap,"(final Object value, final ConverterCache converterCache)",Object,getUnconvertedValueToSapReturnsIdenticalValue,FieldMappingTest
+49,18516668,joinDateAndTime,"(final Date date, final Date time)",Date,testJoinDateAndTime,DateUtilTest
+50,18516668,convertToJava,(String sapValue),Character,testConvertToJava,CharConverterTest
+51,18516668,createConnectionSpec,(Credentials credentials),ConnectionSpec,createConnectionSpecWithNullValues,CuckooJcaAdapterConnectionSpecFactoryTest
+52,18516668,newCollectionInstance,(final Class<T> clazz),T,newCollectionInstanceThrowsExceptionForInterface,ReflectionHelperTest
+53,18516668,getArrayType,(final Class<?> type),Class<?>,getArrayTypeReturnsCorrectTypeForObjectArray,ReflectionHelperTest
+54,18516668,rebindSessionManager,"(final SessionManager sessionManager, final String jndiName)",void,rebindSessionManagerActuallyBindsItToJndi,JndiUtilTest
+55,18516668,create,(final SessionManagerConfig config),Context,throwsExceptionWhenGivenContextClassDoesNotExtendContext,ContextFactoryTest
+56,18516668,getUnconvertedValueToJava,"(final Object fieldMapCollection, final ConverterCache converterCache)",Object,getUnconvertedValueReturnsListOfStructureBeansWhenTableParameterIsProvidedAsResultSetByRA,TableMappingTest
+57,18516668,getDestinationType,(),Class<?>,destinationTypeIsArrayListWhenFieldTypeIsArray,TableMappingTest
+58,18516668,getDestinationType,(),Class<?>,destinationTypeIsArrayListByDefaultWhenFieldTypeIsList,TableMappingTest
+59,18516668,getFieldValue,"(final Object bean, final String fieldName)",Object,getFieldValueReturnsCorrectValue,ReflectionHelperTest
+60,18516668,getDestinationType,(),Class<?>,destinationTypeIsHashSetByDefaultWhenFieldTypeIsSet,TableMappingTest
+61,18516668,getContext,(),Context,hasSameContextAfterDeserialization,SessionManagerImplTest
+62,18516668,getHibersapSessionFields,(final Object target),Set<Field>,getSessionFieldReturnsFieldWithHibersapSessionAnnotation,ReflectionUtilTest
+63,18516668,getDeclaredFieldsWithAnnotationRecursively,"(final Class<?> clazz,
+                                                                        final Class<? extends Annotation> annotationClass)",Set<Field>,getsDeclaredFieldsRecursivelyWithoutInheritance,ReflectionHelperTest
+64,18516668,getConverter,"(Class<? extends Converter<?, ?>> clazz)","Converter<Object, Object>",testThrowsHibersapExceptionIfNotInstantiable,ConverterCacheTest
+65,18516668,getDeclaredField,"(final Object bean, final String fieldName)",Field,getDeclaredFieldReturnsCorrectField,ReflectionHelperTest
+66,18516668,rollback,(),void,testRollback,JCoTransactionTest
+67,18516668,execute,(final Object bapiObject),void,bapiInterceptorFromConfigurationIsCalledWhenExecutingFunction,SessionImplTest
+68,18516668,getConverter,"(Class<? extends Converter<?, ?>> clazz)","Converter<Object, Object>",testThrowsExceptionOnNullArgument,ConverterCacheTest
+69,18516668,newInstance,(final Class<T> clazz),T,createsNewInstanceFromClassNameAndReturnsSupertype,ReflectionHelperTest
+70,18516668,createClasses,"(final BapiMapping mapping, final String packagePath)","Map<String, String>",createsClassWithChangingParameter,BapiClassFormatterTest
+71,18516668,newConnectionSpecInstance,"(final Class<?> connectionSpecClass,
+                                                       final Class<?>[] constructorParameterTypes,
+                                                       final Object[] constructorArguments)",ConnectionSpec,newConnectionSpecInstanceCalledWithDefaultConstructor,AbstractConnectionSpecFactoryTest
+72,18516668,mapBapi,(final Class<?> clazz),BapiMapping,mapsChangingParameter,AnnotationBapiMapperTest
+73,18516668,mapBapi,(final Class<?> clazz),BapiMapping,mapsTable,AnnotationBapiMapperTest
+74,18516668,createClasses,"(final BapiMapping mapping, final String packagePath)","Map<String, String>",createsClasses,BapiClassFormatterTest
+75,18516668,getGenericType,(),Class<?>,getsGenericType,BapiFieldTest
+76,18516668,getFieldValue,"(final Object bean, final String fieldName)",Object,testGetFieldValueThrowsExceptionWhenFieldDoesNotExist,ReflectionHelperTest
+77,18516668,stripTime,(final Date date),Date,testStripTime,DateUtilTest
+78,18516668,getCamelCaseSmall,(final String sapName),String,getCamelCaseSmall,BapiFormatHelperTest
+79,18516668,getUnconvertedValueToJava,"(final Object fieldMapCollection, final ConverterCache converterCache)",Object,getUnconvertedValueReturnsArrayOfStructureBeansWhenDestinationTypeIsArray,TableMappingTest
+80,18516668,injectSessionIntoTarget,"(final Object target, final Field field, final Session session)",void,injectsSessionIntoTarget,ReflectionUtilTest
+81,18516668,getConnectionSpecClass,(final String connectionSpecClass),Class<? extends ConnectionSpec>,getConnectionSpecThrowsClassNotFoundWhenCalledWithNonExistingClassName,AbstractConnectionSpecFactoryTest
+82,18516668,registerDestination,"(final String destinationName, final Properties jcoProperties)",void,canRegisterTwoDestinations,JCoEnvironmentTest
+83,18516668,newArrayFromCollection,"(final Collection<?> collection, final Class<T> elementType)",T[],newArrayFromCollectionReturnsArrayOfSizeTwoWhenCollectionHasTwoElements,ReflectionHelperTest
+84,18516668,execute,(final Object bapiObject),void,executionInterceptorsFromConfigurationIsCalledWhenExecutingFunction,SessionImplTest
+85,18516668,parseResource,(final String resourceName),HibersapConfig,simpleHibersapXmlWithANamespaceCanBeBuilt,HiberSapJaxbXmlParserTest
+86,18516668,setFieldValue,"(final Object bean, final String fieldName, final Object value)",void,setFieldValueThrowsExceptionWhenTryingToSetValueOnNullObject,ReflectionHelperTest
+87,18516668,getSessionManagerJndiName,(final Field sessionField),String,getSessionManagerJndiNameReturnsTheCorrectValue,ReflectionUtilTest
+88,18516668,unbindSessionManager,(final String jndiName),void,unbindSessionManagerWithNamingExceptionDoesNotThrowException,JndiUtilTest
+89,18516668,setFieldValue,"(final Object bean, final String fieldName, final Object value)",void,setFieldValueCanSetNullValue,ReflectionHelperTest
+90,18516668,getConverterCache,(),ConverterCache,hasConverterCacheAfterDeserialization,SessionManagerImplTest
+91,18516668,convertToSap,(Character javaValue),String,testConvertToSap,CharConverterTest
+92,18516668,newArrayFromCollection,"(final Collection<?> collection, final Class<T> elementType)",T[],newArrayFromCollectionReturnsArrayOfSizeZeroWhenCollectionIsEmpty,ReflectionHelperTest
+93,18516668,rebindSessionManager,"(final SessionManager sessionManager, final String jndiName)",void,rebindSessionManagerWithNamingExceptionThrowsHibersapException,JndiUtilTest
+94,18516668,getArrayType,(final Class<?> type),Class<?>,getArrayTypeReturnsNullWhenParameterTypeIsNotAnArray,ReflectionHelperTest
+95,18516668,registerDestination,"(final String destinationName, final Properties jcoProperties)",void,destinationProviderIsRegisteredWithJCoWhenFirstDestinationGetsRegistered,JCoEnvironmentTest
+96,18516668,getUnconvertedValueToJava,"(final Object fieldMap, final ConverterCache converterCache)",Object,getUnconvertedValueToJavaMapsFields,StructureMappingTest
+97,18516668,getDestinationType,(),Class<?>,destinationTypeIsSameAsFieldTypeWhenFieldHasConverter,TableMappingTest

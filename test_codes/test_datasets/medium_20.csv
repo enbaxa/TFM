@@ -1,0 +1,232 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,23227907,getLanguages,(RestListRequest requestList),PagedMetadata<LanguageDto>,shouldReturnAll,LanguageServiceTest
+1,23227907,flushGroup,"(String targetCache, String group)",void,flushGroup_1,CacheInfoManagerTest
+2,23227907,getComponentUsageDetails,"(String pageCode, RestListRequest restListRequest)",PagedMetadata<ComponentUsageEntity>,getPageUsageDetailsWithNoChildrenShouldReturnItself,PageServiceTest
+3,23227907,addWidget,"(@Valid @RequestBody WidgetRequest widgetRequest, BindingResult bindingResult)",ResponseEntity<SimpleRestResponse<WidgetDto>>,testAddWidget,WidgetControllerTest
+4,23227907,updateLang,"(String code, String description)",void,updateLang,LangManagerTest
+5,23227907,getPages,"(@ModelAttribute(""user"") UserDetails user, @RequestParam(value = ""parentCode"", required = false, defaultValue = ""homepage"") String parentCode)","ResponseEntity<RestResponse<List<PageDto>, Map<String, String>>>",shouldLoadAPageTree,PageControllerTest
+6,23227907,deleteExpiredToken,(int expirationTime),void,deleteExpiredToken,OAuth2TokenDAOTest
+7,23227907,getLanguages,(RestListRequest requestList),PagedMetadata<LanguageDto>,shouldSortByIsActive,LanguageServiceTest
+8,23227907,isValidFilenameNoExtension,(String basename),boolean,isValidFilenameNoExtension,StorageManagerUtilTest
+9,23227907,removeLang,(String code),void,removeLang,LangManagerTest
+10,23227907,loadClientByClientId,(String clientId),ClientDetails,loadClientNotFound_3,OAuthConsumerManagerTest
+11,23227907,validate,"(Object target, Errors errors)",void,validateExistingFragment,GuiFragmentValidatorTest
+12,23227907,getUser,(String username),UserDetails,getUser_5,AuthenticationProviderManagerTest
+13,23227907,getPageValidator,(),PageValidator,shouldValidateDeletePageWithChildren,PageControllerTest
+14,23227907,getUser,(String username),UserDetails,getUser_2,AuthenticationProviderManagerTest
+15,23227907,getConsumer,(String clientId),ConsumerRecordVO,getConsumer,OAuthConsumerDAOTest
+16,23227907,addLabelGroup,(LabelDto labelRequest),LabelDto,testAddLabelGroupNotAssignableLang,LabelServiceTest
+17,23227907,deleteExpiredToken,(int expirationTime),void,failDeleteExpiredToken,OAuth2TokenDAOTest
+18,23227907,getResources,(),"Map<String, ApiResource>",testResources,ApiCatalogManagerTest
+19,23227907,getLabel,"(String key, String langCode)",String,testGetLabel,I18nManagerTest
+20,23227907,startBackup,(),ResponseEntity<SimpleRestResponse<Map>>,startBackup,DatabaseControllerTest
+21,23227907,readAuthenticationForRefreshToken,(OAuth2RefreshToken refreshToken),OAuth2Authentication,failReadAuthenticationForRefreshToken,OAuth2TokenDAOTest
+22,23227907,getWidgets,(RestListRequest restListReq),PagedMetadata<WidgetDto>,shouldFilterByCode,WidgetServiceTest
+23,23227907,findTokensByClientIdAndUserName,"(String clientId, String username)",List<OAuth2AccessToken>,findTokensByClientIdAndUserName,OAuth2TokenDAOTest
+24,23227907,getLanguages,(RestListRequest requestList),PagedMetadata<LanguageDto>,shouldFilterByIsDefault,LanguageServiceTest
+25,23227907,deleteProfile,(Object key),void,testDeleteProfile_1,UserProfileManagerAspectTest
+26,23227907,getPageModels,"(RestListRequest restListReq, Map<String, String> requestParams)",PagedMetadata<PageModelDto>,get_page_models_returns_page_models,PageModelServiceTest
+27,23227907,getConsumerKeys,(FieldSearchFilter<?>[] filters),List<String>,failGetConsumer,OAuthConsumerDAOTest
+28,23227907,getDataObjectModel,(long dataObjectModelId),DataObjectModel,testGetContentModel,DataObjectModelManagerTest
+29,23227907,removeService,(String key),void,should_update_existing_entry,ApiServiceCacheWrapperTest
+30,23227907,putInCache,"(String targetCache, String key, Object obj)",void,putInCache,CacheInfoManagerTest
+31,23227907,validate,"(Object target, Errors errors)",void,validateInvalidFragmentCode_1,GuiFragmentValidatorTest
+32,23227907,getLabelGroups,(final RestListRequest restRequest),PagedMetadata<LabelDto>,testGetLabelGroupsFilteringLike,LabelServiceTest
+33,23227907,getWidgets,(RestListRequest requestList),ResponseEntity<PagedRestResponse<WidgetDto>>,testGetWidgetList,WidgetControllerTest
+34,23227907,getConsumerRecord,(String consumerKey),ConsumerRecordVO,getConsumer,OAuthConsumerManagerTest
+35,23227907,updateConsumer,(ConsumerRecordVO consumer),ConsumerRecordVO,failUpdateConsumer,OAuthConsumerDAOTest
+36,23227907,getUser,(String username),UserDetails,getUser_7,AuthenticationProviderManagerTest
+37,23227907,getPageValidator,(),PageValidator,shouldValidateMovePageInvalidPosition,PageControllerTest
+38,23227907,createAccessTokenForLocalUser,(String username),OAuth2AccessToken,createAccessTokenForLocalUser,ApiOAuth2TokenManagerTest
+39,23227907,getConsumerRecord,(String consumerKey),ConsumerRecordVO,failGetConsumer,OAuthConsumerManagerTest
+40,23227907,readRefreshToken,(String tokenValue),OAuth2RefreshToken,readRefreshToken,OAuth2TokenDAOTest
+41,23227907,updatePageSettings,(@RequestBody PageSettingsRequest request),ResponseEntity<SimpleRestResponse<PageSettingsDto>>,should_not_update_with_empty_list_of_settings,PageSettingsControllerTest
+42,23227907,readRefreshToken,(String tokenValue),OAuth2RefreshToken,readRefreshToken,ApiOAuth2TokenManagerTest
+43,23227907,storeAccessToken,"(OAuth2AccessToken accessToken, OAuth2Authentication authentication)",void,failStoreAccessToken,OAuth2TokenDAOTest
+44,23227907,getWidgets,(RestListRequest restListReq),PagedMetadata<WidgetDto>,shouldSortByCode,WidgetServiceTest
+45,23227907,getMethod,(String resourceName),ApiMethod,testGetMethod,ApiCatalogManagerTest
+46,23227907,getLabelGroup,(String key),ApsProperties,getLabelsGroup,I18nManagerCacheWrapperTest
+47,23227907,isHealthy,(),ResponseEntity<Void>,isHealthyWithNotWorkingSystemShouldReturnStatus500,HealthControllerTest
+48,23227907,removeRefreshToken,(OAuth2RefreshToken refreshToken),void,removeRefreshToken,ApiOAuth2TokenManagerTest
+49,23227907,addPageModel,(PageModelRequest pageModelRequest),PageModelDto,add_page_model_calls_page_model_manager,PageModelServiceTest
+50,23227907,getDumpReportDto,(String reportCode),DumpReportDto,getValidReport,DatabaseServiceTest
+51,23227907,getUser,(String username),UserDetails,getUser_6,AuthenticationProviderManagerTest
+52,23227907,findTokensByClientIdAndUserName,"(String clientId, String username)",Collection<OAuth2AccessToken>,findTokensByClientIdAndUserName,ApiOAuth2TokenManagerTest
+53,23227907,initCache,(IPageManager pageManager),void,testInitCacheWithError,DataObjectMapperCacheWrapperTest
+54,23227907,getCurrentReport,(),SystemInstallationReport,should_get_currentReport,InitializerManagerTest
+55,23227907,initCache,(IPageManager pageManager),void,testInitCache,DataObjectMapperCacheWrapperTest
+56,23227907,getMyGroupPermissions,(UserDetails user),List<UserGroupPermissions>,getMyGroupPermissionsWithNullUserShouldReturnEmptyListTest,UserServiceTest
+57,23227907,getWidgets,(RestListRequest restListReq),PagedMetadata<WidgetDto>,shouldFilterByTypology,WidgetServiceTest
+58,23227907,getWidgets,(RestListRequest restListReq),PagedMetadata<WidgetDto>,shouldReturnAll,WidgetServiceTest
+59,23227907,updateProfile,(Object user),void,testUpdateProfile_1,UserProfileManagerAspectTest
+60,23227907,loadClientByClientId,(String clientId),ClientDetails,loadClientNotFound_2,OAuthConsumerManagerTest
+61,23227907,getLabelGroups,(final RestListRequest restRequest),PagedMetadata<LabelDto>,testGetLabelGroupsFilteringEqual,LabelServiceTest
+62,23227907,removeAccessToken,(OAuth2AccessToken token),void,removeAccessToken,ApiOAuth2TokenManagerTest
+63,23227907,readAccessToken,(String tokenValue),OAuth2AccessToken,readAccessToken,ApiOAuth2TokenManagerTest
+64,23227907,getComponentUsageDetails,"(String componentCode, RestListRequest restListRequest)",PagedMetadata<ComponentUsageEntity>,getWidgetUsageDetails,WidgetServiceTest
+65,23227907,isValidFilename,(String fullname),boolean,isValidFilename_2,StorageManagerUtilTest
+66,23227907,deleteProfile,(Object key),void,testDeleteProfile_2,UserProfileManagerAspectTest
+67,23227907,removeAccessTokenUsingRefreshToken,(OAuth2RefreshToken refreshToken),void,removeAccessTokenUsingRefreshToken,ApiOAuth2TokenManagerTest
+68,23227907,filterString,"(Filter filter, String value)",boolean,shouldFilterStrings,FilterUtilsTest
+69,23227907,readAuthentication,(OAuth2AccessToken token),OAuth2Authentication,readUnsupportedAuthenticationByAccessTokenObject,ApiOAuth2TokenManagerTest
+70,23227907,getPageModels,"(
+            RestListRequest requestList, @RequestParam Map<String, String> requestParams)",ResponseEntity<PagedRestResponse<PageModelDto>>,get_all_page_models_return_ok,PageModelControllerTest
+71,23227907,getComponentUsageDetails,"(String componentCode, RestListRequest restListRequest)",PagedMetadata<ComponentUsageEntity>,getWidgetUsageDetailsWithPagination,WidgetServiceTest
+72,23227907,destroy,(),void,destroy,CacheInfoManagerTest
+73,23227907,getDefaultProfileType,(),IUserProfile,testGetDefaultProfileType,UserProfileManagerTest
+74,23227907,aroundCacheableMethod,"(ProceedingJoinPoint pjp, CacheableInfo cacheableInfo)",Object,testAroundCacheableMethod,CacheInfoManagerTest
+75,23227907,isHealthy,(),ResponseEntity<Void>,isHealthyWithWorkingSystemShouldReturnStatus200,HealthControllerTest
+76,23227907,filterBoolean,"(Filter filter, boolean value)",boolean,shouldFilterBooleans,FilterUtilsTest
+77,23227907,reloadReferences,(@PathVariable String dataTypeCode),"ResponseEntity<SimpleRestResponse<Map<String, String>>>",testReloadReferences,DataTypeControllerTest
+78,23227907,isAdminUser,(String username),boolean,deleteNotAdminIsValid,UserValidatorTest
+79,23227907,removeAccessToken,(final String accessToken),void,removeAccessToken,OAuth2TokenDAOTest
+80,23227907,addConsumer,(ConsumerRecordVO consumer),ConsumerRecordVO,addConsumer,OAuthConsumerManagerTest
+81,23227907,getDefaultLang,(),Lang,getDefaultLang,LangManagerTest
+82,23227907,getDataObjectModels,(),List<DataObjectModel>,testGetContentModels,DataObjectModelManagerTest
+83,23227907,getWidgets,(RestListRequest restListReq),PagedMetadata<WidgetDto>,shouldSortByUsed,WidgetServiceTest
+84,23227907,deleteConsumer,(String clientId),void,deleteConsumer,OAuthConsumerDAOTest
+85,23227907,addProfile,(Object user),void,testAddProfile_2,UserProfileManagerAspectTest
+86,23227907,flushEntry,"(String targetCache, String key)",void,flushEntry,CacheInfoManagerTest
+87,23227907,getComponentUsageDetails,"(String componentCode, RestListRequest restListRequest)",PagedMetadata<ComponentUsageEntity>,getFragmentUsageTest,GuiFragmentServiceTest
+88,23227907,deleteProfile,(Object key),void,testDeleteProfile_3,UserProfileManagerAspectTest
+89,23227907,getLanguages,(RestListRequest requestList),PagedMetadata<LanguageDto>,shouldFilterByDescription,LanguageServiceTest
+90,23227907,getPageCode,(String dataId),String,testGetPageCode,DataObjectMapperCacheWrapperTest
+91,23227907,getServices,(),"Map<String, ApiService>",testGetServices,ApiCatalogManagerTest
+92,23227907,updateConsumer,(ConsumerRecordVO consumer),ConsumerRecordVO,updateConsumer,OAuthConsumerDAOTest
+93,23227907,updatePage,"(@ModelAttribute(""user"") UserDetails user, @PathVariable String pageCode, @Valid @RequestBody PageRequest pageRequest, BindingResult bindingResult)","ResponseEntity<RestResponse<PageDto, Map<String, String>>>",shouldValidatePutPathMismatch,PageControllerTest
+94,23227907,addWidget,(WidgetRequest widgetRequest),WidgetDto,shouldAddNewWidget,WidgetServiceTest
+95,23227907,isValidDirName,(String basename),boolean,isValidDirName,StorageManagerUtilTest
+96,23227907,getMyGroupPermissions,(UserDetails user),List<UserGroupPermissions>,getMyGroupPermissionsWithNoAuthorizationsTest,UserServiceTest
+97,23227907,getLanguages,(RestListRequest requestList),PagedMetadata<LanguageDto>,shouldFilterByCode,LanguageServiceTest
+98,23227907,reloadReferences,(@PathVariable String profileTypeCode),ResponseEntity<SimpleRestResponse<Map>>,testReloadReferences,ProfileTypeControllerTest
+99,23227907,addLabelGroup,(LabelDto labelRequest),LabelDto,testAddLabelGroup,LabelServiceTest
+100,23227907,storeAccessToken,"(OAuth2AccessToken accessToken, OAuth2Authentication authentication)",void,storeAccessToken,OAuth2TokenDAOTest
+101,23227907,getGuiFragments,(RestListRequest requestList),ResponseEntity<PagedRestResponse<GuiFragmentDtoSmall>>,should_load_the_list_of_fragments_2,GuiFragmentControllerTest
+102,23227907,isHealthy,(),boolean,withPortSchemaNotReachableShouldReturnFalse,HealthServiceTest
+103,23227907,disableLang,(String code),LanguageDto,shouldFailDisabilingUnexistingLang,LanguageServiceTest
+104,23227907,getConsumerKeys,(FieldSearchFilter<?>[] filters),List<String>,failGetConsumerKeys,OAuthConsumerDAOTest
+105,23227907,addLabelGroup,(LabelDto labelRequest),LabelDto,testAddLabelGroupError,LabelServiceTest
+106,23227907,getLanguages,(RestListRequest requestList),PagedMetadata<LanguageDto>,shouldSortByDescription,LanguageServiceTest
+107,23227907,injectProfile,(Object user),void,testInjectProfile_1,UserProfileManagerAspectTest
+108,23227907,getLanguages,(RestListRequest requestList),PagedMetadata<LanguageDto>,shouldSortByCode,LanguageServiceTest
+109,23227907,getPageValidator,(),PageValidator,shouldValidateMoveFreePageUnderReservedPage,PageControllerTest
+110,23227907,findTokensByClientId,(String clientId),List<OAuth2AccessToken>,findTokensByClientId,OAuth2TokenDAOTest
+111,23227907,addConsumer,(ConsumerRecordVO consumer),ConsumerRecordVO,failAddConsumer,OAuthConsumerDAOTest
+112,23227907,authenticate,(Authentication authentication),Authentication,authenticate,AuthenticationProviderManagerTest
+113,23227907,updateLabelGroup,"(String key, ApsProperties labels)",void,updateInvalidEntry,I18nManagerCacheWrapperTest
+114,23227907,findTokensByClientId,(String clientId),Collection<OAuth2AccessToken>,findTokensByClientId,ApiOAuth2TokenManagerTest
+115,23227907,getWidget,(@PathVariable String widgetCode),ResponseEntity<SimpleRestResponse<WidgetDto>>,testGetWidget,WidgetControllerTest
+116,23227907,getCategory,(@PathVariable String categoryCode),ResponseEntity<SimpleRestResponse<CategoryDto>>,testGetCategory,CategoryControllerTest
+117,23227907,setGuiFragmentValidator,(GuiFragmentValidator guiFragmentValidator),void,should_validate_put_path_mismatch,GuiFragmentControllerTest
+118,23227907,getDataObjectModels,(RestListRequest requestList),ResponseEntity<PagedRestResponse<DataModelDto>>,should_load_the_list_of_dataModels_2,DataObjectModelControllerTest
+119,23227907,getMyGroupPermissions,(UserDetails user),List<UserGroupPermissions>,getMyGroupPermissionsTest,UserServiceTest
+120,23227907,findTokensByUserName,(String username),Collection<OAuth2AccessToken>,findTokensByUserName,ApiOAuth2TokenManagerTest
+121,23227907,addPageModel,"(
+            @Valid @RequestBody PageModelRequest pagemodelRequest, BindingResult bindingResult)",ResponseEntity<SimpleRestResponse<PageModelDto>>,add_complex_valid_page_model_return_ok,PageModelControllerTest
+122,23227907,getUser,(String username),UserDetails,getUser_3,AuthenticationProviderManagerTest
+123,23227907,storeRefreshToken,"(OAuth2RefreshToken refreshToken, OAuth2Authentication authentication)",void,storeRefreshToken,ApiOAuth2TokenManagerTest
+124,23227907,getMethods,(),"Map<String, ApiMethod>",testGetMethods,ApiCatalogManagerTest
+125,23227907,createDataObject,(String typeCode),DataObject,testCreateDataObject,DataObjectManagerTest
+126,23227907,createSelfDeleteUserError,(BindingResult bindingResult),BindingResult,createErrorSelfDeleteContainsErrorMessage,UserValidatorTest
+127,23227907,getEntityManagers,(RestListRequest requestList),ResponseEntity<PagedRestResponse<String>>,getEntityManagers_2,EntityManagerControllerTest
+128,23227907,isValidExtension,(String extension),boolean,isValidExtension,StorageManagerUtilTest
+129,23227907,flushAll,(),void,flushAll,CacheInfoManagerTest
+130,23227907,getTableDump,"(String reportCode, String dataSource, String tableName)",byte[],getValidTableDump,DatabaseServiceTest
+131,23227907,getAccessToken,(OAuth2Authentication authentication),OAuth2AccessToken,getAccessToken,ApiOAuth2TokenManagerTest
+132,23227907,validate,"(Object target, Errors errors)",void,validateExistingAndInvalidFragment,GuiFragmentValidatorTest
+133,23227907,deleteDumpReport,(@PathVariable String reportCode),ResponseEntity<SimpleRestResponse<Map>>,deleteReport,DatabaseControllerTest
+134,23227907,getEntityManagers,(RestListRequest requestList),ResponseEntity<PagedRestResponse<String>>,getEntityManagers_1,EntityManagerControllerTest
+135,23227907,readRefreshToken,(String tokenValue),OAuth2RefreshToken,readRefreshToken_noteExists,OAuth2TokenDAOTest
+136,23227907,deleteDataType,(String dataTypeCode),void,deleteReferencedDataType,DataObjectServiceTest
+137,23227907,getWidgets,(RestListRequest restListReq),PagedMetadata<WidgetDto>,shouldSortByGroup,WidgetServiceTest
+138,23227907,addLang,(String code),void,addLang,LangManagerTest
+139,23227907,getWidgets,(RestListRequest restListReq),PagedMetadata<WidgetDto>,shouldSortByTypology,WidgetServiceTest
+140,23227907,addProfile,(Object user),void,testAddProfile_1,UserProfileManagerAspectTest
+141,23227907,getWidgets,(RestListRequest restListReq),PagedMetadata<WidgetDto>,shouldFilterByUsed,WidgetServiceTest
+142,23227907,updateWidget,"(String widgetCode, WidgetRequest widgetRequest)",WidgetDto,shouldUpdateWidget,WidgetServiceTest
+143,23227907,createDeleteAdminError,(),BindingResult,createErrorDeleteAdminContainsErrorMessage,UserValidatorTest
+144,23227907,loadClientByClientId,(String clientId),ClientDetails,loadClient,OAuthConsumerManagerTest
+145,23227907,uninstallComponentResources,"(Component componentConfiguration,
+                                            SystemInstallationReport report)",void,should_uninstall_component,DatabaseManagerTest
+146,23227907,getAccessToken,"(final String token, Connection conn)",OAuth2AccessToken,getAccessToken,OAuth2TokenDAOTest
+147,23227907,setDataObjectModelValidator,(DataObjectModelValidator dataObjectModelValidator),void,should_validate_put_path_mismatch,DataObjectModelControllerTest
+148,23227907,readRefreshToken,(String tokenValue),OAuth2RefreshToken,failReadRefreshToken,OAuth2TokenDAOTest
+149,23227907,getUser,(String username),UserDetails,getUser_1,AuthenticationProviderManagerTest
+150,23227907,removeAccessToken,(final String accessToken),void,failRemoveAccessToken,OAuth2TokenDAOTest
+151,23227907,getLanguages,(RestListRequest requestList),PagedMetadata<LanguageDto>,shouldFilterByCodeWithOrCondition,LanguageServiceTest
+152,23227907,validate,"(Object target, Errors errors)",void,validateInvalidFragmentCode_2,GuiFragmentValidatorTest
+153,23227907,updateProfile,(Object user),void,testUpdateProfile_2,UserProfileManagerAspectTest
+154,23227907,updateWidget,"(@PathVariable String widgetCode, @Valid @RequestBody WidgetRequest widgetRequest, BindingResult bindingResult)",ResponseEntity<SimpleRestResponse<WidgetDto>>,testUpdateWidget,WidgetControllerTest
+155,23227907,isAdminUser,(String username),boolean,deleteAdminIsNotValid,UserValidatorTest
+156,23227907,getDumpReportDto,(String reportCode),DumpReportDto,getInvalidReport,DatabaseServiceTest
+157,23227907,getPageValidator,(),PageValidator,shouldValidateMovePageStatusMismatch,PageControllerTest
+158,23227907,getConsumerKeys,(FieldSearchFilter<?>[] filters),List<String>,getConsumerKeys,OAuthConsumerDAOTest
+159,23227907,findTokensByUserName,(String username),List<OAuth2AccessToken>,findTokensByUserName,OAuth2TokenDAOTest
+160,23227907,updatePageSettings,(@RequestBody PageSettingsRequest request),ResponseEntity<SimpleRestResponse<PageSettingsDto>>,should_update_with_a_valid_list_of_settings,PageSettingsControllerTest
+161,23227907,readAuthentication,(OAuth2AccessToken token),OAuth2Authentication,readUnsupportedAuthenticationByAccessToken,ApiOAuth2TokenManagerTest
+162,23227907,getPageSettings,(),ResponseEntity<SimpleRestResponse<PageSettingsDto>>,should_load_the_list_of_settings,PageSettingsControllerTest
+163,23227907,updateConsumer,(ConsumerRecordVO consumer),ConsumerRecordVO,failUpdateConsumer,OAuthConsumerManagerTest
+164,23227907,updateLabelGroup,(LabelDto labelRequest),LabelDto,testUpdateLabelGroup,LabelServiceTest
+165,23227907,getAssignableLangs,(),List<Lang>,getAssignableLangs,LangManagerTest
+166,23227907,isHealthy,(),boolean,withAllSchemaaReachableShouldReturnTrue,HealthServiceTest
+167,23227907,deleteConsumer,(String clientId),void,deleteConsumer,OAuthConsumerManagerTest
+168,23227907,loadClientByClientId,(String clientId),ClientDetails,loadClientNotFound,OAuthConsumerManagerTest
+169,23227907,getLanguages,(RestListRequest requestList),PagedMetadata<LanguageDto>,shouldFilterByIsActive,LanguageServiceTest
+170,23227907,updateFromPageChanged,(PageChangedEvent event),void,updateFromPageChanged,CacheInfoManagerTest
+171,23227907,getComponentUsageDetails,"(String componentCode, RestListRequest restListRequest)",PagedMetadata<ComponentUsageEntity>,getWidgetUsageDetailsWithInvalidCodeShouldThrowResourceNotFoundException,WidgetServiceTest
+172,23227907,deleteConsumer,(String clientId),void,failDeleteConsumer,OAuthConsumerManagerTest
+173,23227907,getShortUserProfileTypes,(RestListRequest requestList),PagedMetadata<EntityTypeShortDto>,testGetShortUserProfileTypesSortByName,UserProfileTypeServiceTest
+174,23227907,getLanguages,(RestListRequest requestList),PagedMetadata<LanguageDto>,shouldSortByIsDefault,LanguageServiceTest
+175,23227907,getUser,(String username),UserDetails,getUser_8,AuthenticationProviderManagerTest
+176,23227907,loadUserByUsername,(String username),org.springframework.security.core.userdetails.UserDetails,loadUserByUsername,AuthenticationProviderManagerTest
+177,23227907,putInGroup,"(String targetCache, String key, String[] groups)",void,putInGroup,CacheInfoManagerTest
+178,23227907,browseFolder,"(@RequestParam(value = ""currentPath"", required = false, defaultValue = """") String currentPath,
+            @RequestParam(value = ""protectedFolder"", required = false) Boolean protectedFolder)","ResponseEntity<RestResponse<List<BasicFileAttributeViewDto>, Map>>",testValidRequest,FileBrowserControllerTest
+179,23227907,readAuthenticationForRefreshToken,(OAuth2RefreshToken refreshToken),OAuth2Authentication,readAuthenticationForRefreshToken,OAuth2TokenDAOTest
+180,23227907,getEntityManager,(String entityManagerCode),EntityManagerDto,testGetNotExistingManager,EntityManagerServiceTest
+181,23227907,getShortUserProfileTypes,(RestListRequest requestList),PagedMetadata<EntityTypeShortDto>,testGetShortUserProfileTypesDefaultSort,UserProfileTypeServiceTest
+182,23227907,injectProfile,(Object user),void,testInjectProfile_2,UserProfileManagerAspectTest
+183,23227907,filterDate,"(Filter filter, Date value)",boolean,shouldFilterDates,FilterUtilsTest
+184,23227907,getConsumerKeys,(FieldSearchFilter<?>[] filters),List<String>,failGetConsumerKeys_2,OAuthConsumerManagerTest
+185,23227907,addConsumer,(ConsumerRecordVO consumer),ConsumerRecordVO,failAddConsumer,OAuthConsumerManagerTest
+186,23227907,deleteLabelGroup,(String key),void,testDeleteLabels,I18nManagerTest
+187,23227907,getPageValidator,(),PageValidator,shouldValidateMovePageNameMismatch,PageControllerTest
+188,23227907,encode,(CharSequence password),String,testArgon2,CompatiblePasswordEncoderTest
+189,23227907,getLabelGroups,(final RestListRequest restRequest),PagedMetadata<LabelDto>,testGetLabelsPagination,LabelServiceTest
+190,23227907,updatePage,"(String pageCode, PageRequest pageRequest)",PageDto,shouldRemoveExtraGroup,PageServiceTest
+191,23227907,getLabelGroup,(String code),LabelDto,testGetLabelGroupNotFound,LabelServiceTest
+192,23227907,getComponentUsageDetails,"(String pageCode, RestListRequest restListRequest)",PagedMetadata<ComponentUsageEntity>,getPageUsageDetailsWithInvalidCodeShouldThrowResourceNotFoundException,PageServiceTest
+193,23227907,addConsumer,(ConsumerRecordVO consumer),ConsumerRecordVO,addConsumer,OAuthConsumerDAOTest
+194,23227907,getLabelGroups,(),"Map<String, ApsProperties>",testGetLabels,I18nManagerTest
+195,23227907,getPageValidator,(),PageValidator,shouldValidatePostConflict,PageControllerTest
+196,23227907,readAuthenticationForRefreshToken,(OAuth2RefreshToken refreshToken),OAuth2Authentication,readAuthenticationForRefreshToken,ApiOAuth2TokenManagerTest
+197,23227907,getWidgets,(RestListRequest restListReq),PagedMetadata<WidgetDto>,shouldFilterByGroup,WidgetServiceTest
+198,23227907,getPageValidator,(),PageValidator,shouldValidateMovePageGroupMismatch,PageControllerTest
+199,23227907,aroundCacheInfoEvictMethod,"(ProceedingJoinPoint pjp, CacheInfoEvict cacheInfoEvict)",Object,testAroundCacheInfoEvictMethod,CacheInfoManagerTest
+200,23227907,addLabelGroup,"(String key, ApsProperties labels)",void,testAddLabelGroup,I18nManagerTest
+201,23227907,injectProfile,(Object user),void,testInjectProfile_3,UserProfileManagerAspectTest
+202,23227907,getConsumerKeys,(FieldSearchFilter<?>[] filters),List<String>,getConsumerKeys,OAuthConsumerManagerTest
+203,23227907,isValidFilename,(String fullname),boolean,isValidFilename_1,StorageManagerUtilTest
+204,23227907,getDataObjectModels,(RestListRequest requestList),ResponseEntity<PagedRestResponse<DataModelDto>>,should_load_the_list_of_dataModels,DataObjectModelControllerTest
+205,23227907,initCache,(II18nDAO i18nDAO),void,testInitCache,I18nManagerCacheWrapperTest
+206,23227907,getWidgetInfo,(@PathVariable String widgetCode),ResponseEntity<SimpleRestResponse<WidgetInfoDto>>,testGetWidgetInfo,WidgetControllerTest
+207,23227907,getTableDump,"(String reportCode, String dataSource, String tableName)",byte[],getInValidTableDump_1,DatabaseServiceTest
+208,23227907,filterInt,"(Filter filter, Integer value)",boolean,shouldFilterNumbers,FilterUtilsTest
+209,23227907,updatePage,"(String pageCode, PageRequest pageRequest)",PageDto,shouldAddExtraGroup,PageServiceTest
+210,23227907,resolveMessageCodes,"(String errorCode, String objectName, String field, Class<?> fieldType)",String[],testResolveCode,EntandoMessageCodesResolverTest
+211,23227907,getPageValidator,(),PageValidator,shouldValidateDeleteOnlinePage,PageControllerTest
+212,23227907,getTableDump,"(String reportCode, String dataSource, String tableName)",byte[],getInValidTableDump_2,DatabaseServiceTest
+213,23227907,updateLabelGroup,"(String key, ApsProperties labels)",void,testUpdateLabels,I18nManagerTest
+214,23227907,getLabelGroup,(String code),LabelDto,testGetLabelGroup,LabelServiceTest
+215,23227907,addProfile,"(String username, IUserProfile profile)",void,testAddProfile,UserProfileManagerTest
+216,23227907,updateConsumer,(ConsumerRecordVO consumer),ConsumerRecordVO,updateConsumer,OAuthConsumerManagerTest
+217,23227907,readAccessToken,(final String accessToken),OAuth2AccessToken,failReadAccessToken,OAuth2TokenDAOTest
+218,23227907,isHealthy,(),boolean,withServSchemaNotReachableShouldReturnFalse,HealthServiceTest
+219,23227907,flushGroup,"(String targetCache, String group)",void,flushGroup_2,CacheInfoManagerTest
+220,23227907,addPageModel,"(
+            @Valid @RequestBody PageModelRequest pagemodelRequest, BindingResult bindingResult)",ResponseEntity<SimpleRestResponse<PageModelDto>>,add_simple_valid_page_model_return_OK,PageModelControllerTest
+221,23227907,validate,"(Object target, Errors errors)",void,validateRightFragment,GuiFragmentValidatorTest
+222,23227907,encode,(CharSequence password),String,testBCrypt,CompatiblePasswordEncoderTest
+223,23227907,getGuiFragments,(RestListRequest requestList),ResponseEntity<PagedRestResponse<GuiFragmentDtoSmall>>,should_load_the_list_of_fragments,GuiFragmentControllerTest
+224,23227907,initCache,(II18nDAO i18nDAO),void,testInitCacheWithErrors,I18nManagerCacheWrapperTest
+225,23227907,storeAccessToken,"(OAuth2AccessToken accessToken, OAuth2Authentication authentication)",void,storeAccessToken,ApiOAuth2TokenManagerTest

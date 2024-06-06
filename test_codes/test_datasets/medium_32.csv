@@ -1,0 +1,185 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,832676,verifyServerKey,"(ClientSession sshClientSession, SocketAddress remoteAddress,
+                                   PublicKey serverKey)",boolean,testNewKey,ServerKeyVerifierImplTest
+1,832676,delete,(Bundle bundle),void,delete,StoredWiringResolverTest
+2,832676,getEffective,(final Profile profile),Profile,testProfilePlaceholderResolverWithCycle,ProfilesTest
+3,832676,addFeatureRepositories,(Object featureService),void,testAddFeatureRepositoriesWithEmptyRepoList,RunMojoTest
+4,832676,matchesAtLeastOneName,"(String[] names, String pattern)",boolean,testMatchesAtLeastOneName,ObjectClassMatcherTest
+5,832676,execute,(),Object,testExecute,EventDisplayCommandTest
+6,832676,override,"(Map<String, T> resources, Collection<String> overrides)",void,testMatching102,OverridesTest
+7,832676,event,"(ServiceEvent event, Map<BundleContext, Collection<ListenerHook.ListenerInfo>> listeners)",void,testEventHookEvents,GuardingEventHookTest
+8,832676,start,(String id),void,testStartContainer,DockerClientTest
+9,832676,top,(String id),Top,testContainerTop,DockerClientTest
+10,832676,logs,"(String id, boolean stdout, boolean stderr, boolean timestamps, boolean details)",String,testContainerLog,DockerClientTest
+11,832676,parse,(String filter),Expression,testPackageImport,FilterParserTest
+12,832676,getDate,"(long now, String pattern)",String,testTimeZone,FastDateFormatTest
+13,832676,pause,(String id),void,testPauseContainer,DockerClientTest
+14,832676,locate,(Class<T> factoryId),Class<T>,testLocatorWithoutSystemPropertyAndTimeout,OsgiLocatorTest
+15,832676,create,"(ContainerConfig config, String name)",void,testCreateKarafContainer,DockerClientTest
+16,832676,extract,"(File repoDir, File resourceDir)",void,karExtractTest,KarTest
+17,832676,addFeaturesFromSettings,"(File featuresCfg, final InstanceSettings settings)",void,testHandleFeatures,InstanceServiceImplTest
+18,832676,deploy,"(BundleContext bundleContext, Object featureService)",void,testDeployWithPomArtifactAndAttachedFeatureXmlNoFeatureService,RunMojoTest
+19,832676,authenticate,"(final String username, final String password, final ServerSession session)",boolean,invalidRole,KarafJaasAuthenticatorTest
+20,832676,event,"(ServiceEvent event, Map<BundleContext, Collection<ListenerHook.ListenerInfo>> listeners)",void,testEventHookNoFilter,GuardingEventHookTest
+21,832676,installBootFeatures,(),void,testStagedBoot,BootFeaturesInstallerTest
+22,832676,find,"(BundleContext bundleContext, String name, String filter, boolean allServices, Collection<ServiceReference<?>> references)",void,testNullFilter,GuardingFindHookTest
+23,832676,authenticate,"(final String username, final String password, final ServerSession session)",boolean,noRole,KarafJaasAuthenticatorTest
+24,832676,parse,(Reader reader),void,parseTestDoc,WikiParserTest
+25,832676,override,"(Map<String, T> resources, Collection<String> overrides)",void,testDifferentVendors,OverridesTest
+26,832676,unjar,"(JarInputStream jis, File dir)",void,badExtractTest,FileUtilTest
+27,832676,matchesName,"(String name, String pattern)",boolean,testMatchesName,ObjectClassMatcherTest
+28,832676,pidsToExtract,(List<String> pidsToExtract),Builder,testPidsToExtract,BuilderTest
+29,832676,unpause,(String id),void,testUnpauseContainer,DockerClientTest
+30,832676,filterMatches,"(BundleRequirement requirement, Collection<BundleCapability> candidates)",void,filterMatches,StoredWiringResolverTest
+31,832676,extract,"(File repoDir, File resourceDir)",void,badEncodedKarExtractTest,KarTest
+32,832676,accept,(Event event),void,testPrintVerbose,EventPrinterTest
+33,832676,restart,"(String id, int timeToWait)",void,testRestartContainer,DockerClientTest
+34,832676,asCompositeData,(),CompositeData,testJmxRepositoryCompositeData,JmxRepositoryTest
+35,832676,serviceChanged,(ServiceEvent event),void,testHandleServiceUnregistering,GuardProxyCatalogTest
+36,832676,rename,"(String id, String name)",void,testRenameContainer,DockerClientTest
+37,832676,setName,(String name),void,testSetName,SystemServiceImplTest
+38,832676,kill,"(String id, String signal)",void,testKillContainer,DockerClientTest
+39,832676,rmi,"(String name, boolean force, boolean noprune)",void,testRemoveImage,DockerClientTest
+40,832676,execute,(),Object,testModuleAdd,ManageRealmCommandTest
+41,832676,parse,(List<String> propList),"Map<String, String>",testParseNoKey,EventSendCommandTest
+42,832676,parse,(List<String> propList),"Map<String, String>",testParseStrange,EventSendCommandTest
+43,832676,update,(Bundle bundle),void,updateExisting,StoredWiringResolverTest
+44,832676,deploy,"(BundleContext bundleContext, Object featureService)",void,testDeployWithNullArtifact,RunMojoTest
+45,832676,proxyIfNotAlreadyProxied,(final ServiceReference<?> originalRef),void,testServiceFactoryBehaviour,GuardProxyCatalogTest
+46,832676,locate,(Class<T> factoryId),Class<T>,testLocatorWithSystemPropertyAndTimeout,OsgiLocatorTest
+47,832676,getLocalRepoFromConfig,"(Dictionary<String, Object> dict)",String,testLocalRepoFromSettingsNs,MavenConfigServiceTest
+48,832676,deploy,"(BundleContext bundleContext, Object featureService)",void,testDeployWithExistingArtifactButProjectNotBundle,RunMojoTest
+49,832676,getOverlay,"(Profile profile, Map<String, Profile> profiles)",Profile,overlayProfiles,ProfilesTest
+50,832676,getOverlay,"(Profile profile, Map<String, Profile> profiles)",Profile,inheritanceOrder,ProfilesTest
+51,832676,getLevel,(String logger),"Map<String, String>",testLoggerNameWithNumbers,LogServiceLog4j2ImplTest
+52,832676,deploy,"(BundleContext bundleContext, Object featureService)",void,testDeployWithPomArtifactAndAttachedFeatureXml,RunMojoTest
+53,832676,resolve,(URI artifactUri),URI,testResolve,SimpleMavenResolverTest
+54,832676,deploy,"(BundleContext bundleContext, Object featureService)",void,testDeployWithExistingArtifactFailsInInstall,RunMojoTest
+55,832676,parse,(List<String> propList),"Map<String, String>",testParse,EventSendCommandTest
+56,832676,execute,(),void,testSystemProperties,RunMojoTest
+57,832676,pull,"(String name, String tag, boolean verbose)",void,testPullImage,DockerClientTest
+58,832676,addFeatures,(Object featureService),void,testAddFeaturesNullFeatureService,RunMojoTest
+59,832676,write,(PrintStream stream),void,writeTreeWithOneChildAndNodeConverter,TreeTest
+60,832676,renameInstance,"(final String oldName, final String newName, final boolean printOutput)",void,testRenameInstance,InstanceServiceImplTest
+61,832676,buildKexAlgorithms,(String[] names),List<KeyExchangeFactory>,testKexAlgorithmsDefault,SshUtilsTest
+62,832676,getFeatures,(String nameOrId),Feature[],testGetFeatureStripVersion,FeaturesServiceImplTest
+63,832676,asCompositeData,(),CompositeData,testJmxFeatureCompositeData,JmxFeatureTest
+64,832676,extract,"(File repoDir, File resourceDir)",void,badKarExtractTest,KarTest
+65,832676,getValueString,(Object obj),String,testGetValueString,ShellUtilTest
+66,832676,modifyConfiguration,"(ServiceReference<?> reference, Dictionary<String, Object> properties)",void,testSystemProperty,KarafConfigurationPluginTest
+67,832676,getOverlay,"(Profile profile, Map<String, Profile> profiles)",Profile,testProfilesOverlayComments,ProfilesTest
+68,832676,parseRoles,(String roleStr),List<String>,testParseRoles,ACLConfigurationParserTest
+69,832676,getLockUpdateStatement,(long moment),String,getCustomLockUpdateStatement,StatementsTest
+70,832676,getEffective,(final Profile profile),Profile,testProfilePlaceholderResolver,ProfilesTest
+71,832676,authenticate,"(final String username, final String password, final ServerSession session)",boolean,authenticateKo,KarafJaasAuthenticatorTest
+72,832676,addFeatureRepositories,(Object featureService),void,testAddFeatureRepositories,RunMojoTest
+73,832676,insertIndented,"(Element loggers, Element element, boolean atBeginning)",void,testInsertIndentedSpacesWithRoot,LogServiceLog4j2XmlImplTest
+74,832676,extractingRolesSyncope1,(String response),List<String>,testRolesExtractionSyncope1,SyncopeLoginModuleTest
+75,832676,canHandle,(File file),boolean,shouldIgnoreZipFileWithoutKarafManifest,KarArtifactInstallerTest
+76,832676,lock,(),boolean,lockShouldReturnFalseIfTheRowIsAlreadyLocked,OracleJDBCLockTest
+77,832676,buildMacs,(String[] names),List<NamedFactory<Mac>>,testMacsDefault,SshUtilsTest
+78,832676,verifyServerKey,"(ClientSession sshClientSession, SocketAddress remoteAddress,
+                                   PublicKey serverKey)",boolean,testKnownAndCorrectKey,ServerKeyVerifierImplTest
+79,832676,execute,(),Object,testExecute,EventSendCommandTest
+80,832676,getValueString,(Object obj),String,testGetValueStringWithCustomCollection,ShellUtilTest
+81,832676,insertIndented,"(Element loggers, Element element, boolean atBeginning)",void,testInsertIndentedTabs,LogServiceLog4j2XmlImplTest
+82,832676,getRolesForInvocation,"(String methodName, Object[] params, String[] signature,
+                                                    Dictionary<String, Object> config, List<String> addToRoles)",Specificity,testGetRolesForInvocation,ACLConfigurationParserTest
+83,832676,getLocalRepoFromConfig,"(Dictionary<String, Object> dict)",String,testLocalRepoEmpty,MavenConfigServiceTest
+84,832676,insertIndented,"(Element loggers, Element element, boolean atBeginning)",void,testInsertIndentedSpaces,LogServiceLog4j2XmlImplTest
+85,832676,update,(Bundle bundle),void,updateNew,StoredWiringResolverTest
+86,832676,getLockCreateStatement,(),String,getCustomLockCreateStatement,StatementsTest
+87,832676,canHandle,(File file),boolean,shouldIgnoreBadZipFile,KarArtifactInstallerTest
+88,832676,filterCandidates,"( BundleRequirement requirement, Collection<BundleCapability> candidates)",Set<BundleCapability>,testFilterCandidatesSelfSatisfiedCapability,BundleWiresTest
+89,832676,asRepositorySpec,(),String,uris,MavenRepositoryURLTest
+90,832676,getFeatures,(String nameOrId),Feature[],testListFeatureWithoutVersion,FeaturesServiceImplTest
+91,832676,event,"(ServiceEvent event, Map<BundleContext, Collection<ListenerHook.ListenerInfo>> listeners)",void,testEventHookProxyEvents,GuardingEventHookTest
+92,832676,getPattern,(List<String> features),Pattern,testFeaturePattern,VerifyMojoTest
+93,832676,lock,(),boolean,lockShouldReturnFalseIfTableIsEmpty,OracleJDBCLockTest
+94,832676,parse,(String filter),Expression,testSimpleItem,FilterParserTest
+95,832676,handleEvent,(Event event),void,testHandleEvent,EventCollectorTest
+96,832676,modifyConfiguration,"(ServiceReference<?> reference, Dictionary<String, Object> properties)",void,testAppending,KarafConfigurationPluginTest
+97,832676,deploy,"(BundleContext bundleContext, Object featureService)",void,testDeployWithDeployProjectArtifactFalse,RunMojoTest
+98,832676,verifyServerKey,"(ClientSession sshClientSession, SocketAddress remoteAddress,
+                                   PublicKey serverKey)",boolean,testKnownAndIncorrectKey,ServerKeyVerifierImplTest
+99,832676,install,"(String url, String finalname, boolean override)",void,testInstall,ConfigMBeanImplTest
+100,832676,unjar,"(JarInputStream jis, File dir)",void,goodExtractTest,FileUtilTest
+101,832676,version,(),Version,testDockerVersion,DockerClientTest
+102,832676,filterCandidates,"( BundleRequirement requirement, Collection<BundleCapability> candidates)",Set<BundleCapability>,testFilterCandidates,BundleWiresTest
+103,832676,deploy,"(BundleContext bundleContext, Object featureService)",void,testDeployWithPomArtifactAndAttachedFeatureXmlRepoRegistrationFails,RunMojoTest
+104,832676,addFeatureRepositories,(Object featureService),void,testAddFeatureRepositoriesWithNullRepoList,RunMojoTest
+105,832676,getLockCreateStatement,(),String,getDefaultLockCreateStatement,StatementsTest
+106,832676,authenticate,"(final String username, final String password, final ServerSession session)",boolean,authenticateOk,KarafJaasAuthenticatorTest
+107,832676,getEffective,(final Profile profile),Profile,testNonSubstitution,ProfilesTest
+108,832676,getPrincipalInfo,(),String,getPrincipalInfo,AbstractAuditLoginModuleTest
+109,832676,info,(),Info,testDockerInfo,DockerClientTest
+110,832676,insertIndented,"(Element loggers, Element element, boolean atBeginning)",void,testInsertIndentedTabsWithRoot,LogServiceLog4j2XmlImplTest
+111,832676,images,(boolean showAll),List<Image>,testListImages,DockerClientTest
+112,832676,substFinalName,(String finalname),String,testSubstFinalName,FeatureConfigInstallerTest
+113,832676,canHandle,(File file),boolean,shouldHandleKarFile,KarArtifactInstallerTest
+114,832676,getShortName,(String name),String,testGetShortName,ObjectClassMatcherTest
+115,832676,rm,"(String id, boolean removeVolumes, boolean force)",void,testRemoveContainer,DockerClientTest
+116,832676,parse,(List<String> propList),"Map<String, String>",testParseNull,EventSendCommandTest
+117,832676,addFeatures,(Object featureService),void,testAddFeatures,RunMojoTest
+118,832676,getLockCreateSchemaStatements,(long moment),String[],getDefaultLockCreateSchemaStatements,StatementsTest
+119,832676,find,"(BundleContext bundleContext, String name, String filter, boolean allServices, Collection<ServiceReference<?>> references)",void,testFindHook,GuardingFindHookTest
+120,832676,window,"(InputStream is, int begin, int end, int tabs)",AnsiBufferedReader,testWindow,AnsiSplitterTest
+121,832676,getLockCreateSchemaStatements,(long moment),String[],getCustomLockCreateSchemaStatements,StatementsTest
+122,832676,nextSequenceFile,"(File dataDir, Pattern pattern, String fileNameFormat)",File,sequenceFiles,MavenConfigurationSupportTest
+123,832676,create,"(ContainerConfig config, String name)",void,testCreateContainer,DockerClientTest
+124,832676,lock,(),boolean,lockShouldReturnFalseIfAnotherRowIsLocked,OracleJDBCLockTest
+125,832676,installBootFeatures,(),void,testStartDoesNotFailWithOneInvalidUri,BootFeaturesInstallerTest
+126,832676,getLocalRepoFromConfig,"(Dictionary<String, Object> dict)",String,testLocalRepoFromSettings,MavenConfigServiceTest
+127,832676,addFeatureRepositories,(Object featureService),void,testAddFeatureRepositoriesWithEmptyRepoListAndNullFeatureService,RunMojoTest
+128,832676,findFeatureService,(BundleContext bundleContext),Object,testFindFeatureServiceNullServiceRef,RunMojoTest
+129,832676,delete,(Bundle bundle),void,deleteNonExisting,StoredWiringResolverTest
+130,832676,findFeatureService,(BundleContext bundleContext),Object,testFindFeatureService,RunMojoTest
+131,832676,stop,"(String id, int timeToWait)",void,testStopContainer,DockerClientTest
+132,832676,extractingRolesSyncope2,(String response),List<String>,testGroupsExtractionSyncope2,SyncopeLoginModuleTest
+133,832676,parseBootFeatures,(String bootFeatures),List<Set<String>>,testParser,BootFeaturesInstallerTest
+134,832676,getFeatures,(String nameOrId),Feature[],testGetFeatureHighestAvailable,FeaturesServiceImplTest
+135,832676,provision,"(String name, String sshPort, String jmxRmiPort, String jmxRmiRegistryPort, String httpPort, boolean copy, String url)",void,testProvision,DockerServiceImplTest
+136,832676,parse,(String filter),Expression,testPackageImportNoVersions,FilterParserTest
+137,832676,getFeatures,(String nameOrId),Feature[],testGetFeatureNotAvailable,FeaturesServiceImplTest
+138,832676,lock,(),boolean,lockShouldReturnTrueItTheTableIsNotLocked,OracleJDBCLockTest
+139,832676,loadOverrides,(String overridesUrl),Set<String>,testLoadOverrides,OverridesTest
+140,832676,getServlets,(),TabularData,testRegisterMBean,HttpMBeanImplTest
+141,832676,parse,(String filter),Expression,testNotSimpleItem,FilterParserTest
+142,832676,stop,(BundleContext bundleContext),void,testStopActivator,ActivatorTest
+143,832676,handleProxificationForHook,(ServiceReference<?> sr),boolean,testHandleProxificationForHook,GuardProxyCatalogTest
+144,832676,blacklistBundle,(LocationPattern locationPattern),void,testBlacklistBundle,BlacklistTest
+145,832676,getFeature,(String name),Feature,testGetFeature,FeaturesServiceImplTest
+146,832676,load,(),void,load,StoredWiringResolverTest
+147,832676,getLockUpdateStatement,(long moment),String,getDefaultLockUpdateStatement,StatementsTest
+148,832676,getDate,"(long now, String pattern)",String,test,FastDateFormatTest
+149,832676,find,"(BundleContext bundleContext, String name, String filter, boolean allServices, Collection<ServiceReference<?>> references)",void,testFindHookProxyServices,GuardingFindHookTest
+150,832676,filterMatches,"(BundleRequirement requirement, Collection<BundleCapability> candidates)",void,filterMatchesFragmentBundle,StoredWiringResolverTest
+151,832676,execute,(),void,testConsoleLevel,RunMojoTest
+152,832676,override,"(Map<String, T> resources, Collection<String> overrides)",void,testMatchingRange,OverridesTest
+154,832676,locate,(Class<T> factoryId),Class<T>,testLocatorWithSystemProperty,OsgiLocatorTest
+155,832676,start,(BundleContext bundleContext),void,testStartActivator,ActivatorTest
+156,832676,history,(String name),List<ImageHistory>,testHistoryImage,DockerClientTest
+157,832676,addFeatures,(Object featureService),void,testAddFeaturesNullFeaturesToInstall,RunMojoTest
+158,832676,getUser,(),String,testDefaultUser,ClientConfigTest
+159,832676,search,(String term),List<ImageSearch>,testSearchImages,DockerClientTest
+160,832676,deploy,"(BundleContext bundleContext, Object featureService)",void,testDeployWithPomArtifactAndAttachedFeatureXmlAndNoFeatures,RunMojoTest
+161,832676,execute,(),Object,testTail,EventTailCommandTest
+162,832676,parseBootFeatures,(String bootFeatures),List<Set<String>>,testParseBootFeatures,BootFeaturesInstallerTest
+163,832676,parse,(List<String> propList),"Map<String, String>",testParseNoKeyValue,EventSendCommandTest
+164,832676,override,"(Map<String, T> resources, Collection<String> overrides)",void,testMatching101,OverridesTest
+165,832676,deploy,"(BundleContext bundleContext, Object featureService)",void,testDeployWithNonExistingArtifact,RunMojoTest
+166,832676,canHandle,(File file),boolean,shouldHandleZipFileWithKarafManifest,KarArtifactInstallerTest
+167,832676,getLocalRepoFromConfig,"(Dictionary<String, Object> dict)",String,testLocalRepoExplicit,MavenConfigServiceTest
+168,832676,setExtraProtocols,( Collection<String> protocols ),void,testSetExtraProtocols,DownloadManagerHelperTest
+169,832676,parse,(Reader reader),void,parseHeadingSpecialCases,WikiParserTest
+170,832676,start,(BundleContext bundleContext),void,testStartActivatorNoServicesSecured,ActivatorTest
+171,832676,authenticate,"(final String username, final String password, final ServerSession session)",boolean,customRole,KarafJaasAuthenticatorTest
+172,832676,installBootFeatures,(),void,testDefaultBootFeatures,BootFeaturesInstallerTest
+173,832676,execute,(),Object,testRealmAdd,ManageRealmCommandTest
+174,832676,locate,(Class<T> factoryId),Class<T>,testLocatorWithoutSystemProperty,OsgiLocatorTest
+175,832676,buildCiphers,(String[] names),List<NamedFactory<Cipher>>,testCiphersDefault,SshUtilsTest
+176,832676,override,"(Map<String, T> resources, Collection<String> overrides)",void,testNotMatching,OverridesTest
+177,832676,isProxy,(ServiceReference<?> sr),boolean,testIsProxy,GuardProxyCatalogTest
+178,832676,execute,(),void,testArgs,RunMojoTest
+179,832676,accept,(Event event),void,testPrint,EventPrinterTest
+180,832676,deploy,"(BundleContext bundleContext, Object featureService)",void,testDeployWithExistingArtifact,RunMojoTest

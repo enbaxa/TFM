@@ -1,0 +1,155 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,46404009,parseExecutionPlan,"(String policyDefinition, Map<String, StreamDefinition> inputStreamDefinitions)",PolicyExecutionPlan,testParseTwoStreamPolicyQueryInnerJoinWithConditionHavingNotFoundAlias,PolicyInterpreterTest
+1,46404009,create,"(List<E> entities, EntityDefinition entityDefinition)",ModifyResult<String>,testWriterPerformance,TestJdbcStorage
+2,46404009,getBoolean,"(JSONObject obj, String field)",Boolean,testGetBoolean,JSONUtilsTest
+3,46404009,scan,(),void,testScan,TestEntityRepositoryScanner
+4,46404009,parsePolicyId,"(String siteId, String policyName)",String,testParsePolicyId,PolicyIdConversionsTest
+5,46404009,getResource,"(Constants.ResourceType resourceType, Constants.CompressionType compressionType, Object... parameter)",List<AppInfo>,testRunningMrJob,RMResourceFetcherTest
+6,46404009,parse,(String logLine),OozieAuditLogObject,testParser,TestOozieAuditLogParser
+7,46404009,parseExecutionPlan,"(String policyDefinition, Map<String, StreamDefinition> inputStreamDefinitions)",PolicyExecutionPlan,testParseTwoStreamPolicyQueryWithMultiplePartition,PolicyInterpreterTest
+8,46404009,createGenericMetricEntity,(List<GenericMetricEntity> entities),GenericCreateAPIResponseEntity,testCreateGenericMetricEntity,TestEagleMetricResource
+9,46404009,getZKConfig,(Config config),ZKConfig,testZKConfigBuilder,TestZKConfigBuilder
+10,46404009,fromString,(String xmlContent),Configuration,testFromString,TestConfiguration
+11,46404009,getTopologies,(),List<TopologyStatus>,testGetTopologies,TopologyMgmtResourceImplTest
+12,46404009,getKey,(T t),String,testGetKey,TestMetadataUtils
+13,46404009,sendByEmail,"(Map<String, Object> alertData)",void,test,MRHistoryJobDailyReporterTest
+14,46404009,makeLockPath,(String zkrootWithSiteId),String,testMakeLockPath2,UtilsTest
+15,46404009,removeAuditListener,(AuditListener listener),void,testRemoveNull,TestAuditSupport
+16,46404009,equals,(Object obj),boolean,testStreamRepartitionStrategy1,StreamRepartitionStrategyTest
+18,46404009,parseExecutionPlan,"(String policyDefinition, Map<String, StreamDefinition> inputStreamDefinitions)",PolicyExecutionPlan,testParseTwoStreamPolicyQueryInnerJoinWithConditionHavingAlias,PolicyInterpreterTest
+19,46404009,partition,"(int numTotalParts, String jobId)",int,testPartition,DefaultJobIdPartitionerTest
+20,46404009,decode,(String input),byte[],test,TestEagleBase64Wrapper
+22,46404009,startTopology,(String topologyName),void,testStartTopology1,TopologyMgmtResourceImplTest
+24,46404009,getResource,"(Constants.ResourceType resourceType, Constants.CompressionType compressionType, Object... parameter)",List<AppInfo>,testSparkRunningJob,RMResourceFetcherTest
+25,46404009,getAllOozieSensitivityMap,(),"Map<String, Map<String, String>>",testGetAllOozieSensitivityMap,TestOozieSensitivityMetadataDAOImpl
+26,46404009,joinOozieResourceSensitivity,"(String site, List<CoordinatorJob> coordinatorJobs)",List<OozieResourceEntity>,testOozieResourceSensitivityDataJoiner,TestOozieResourceSensitivityDataJoiner
+27,46404009,validate,"(PolicyDefinition policy, Map<String, StreamDefinition> allDefinitions)",PolicyValidationResult,testInvalidPolicyForNotDefinedOutputStream,PolicyInterpreterTest
+28,46404009,formatSiteStreamId,"(String siteId, String streamTypeId)",String,testGenerateUniqueStreamId,StreamIdConversionsTest
+29,46404009,validate,"(PolicyDefinition policy, Map<String, StreamDefinition> allDefinitions)",PolicyValidationResult,testInvalidPolicyForNotDefinedInputStream,PolicyInterpreterTest
+30,46404009,execute,"(Config config, StormEnvironment environment)",StormTopology,testMRRunningJobParseBolt,MRRunningJobApplicationTest
+31,46404009,authenticate,(BasicCredentials credentials),Optional<User>,testNormal,SimpleBasicAuthenticatorTest
+32,46404009,startTopology,(String topologyName),void,testStartTopology,TopologyMgmtResourceImplTest
+33,46404009,getAllOozieSensitivityMap,(),"Map<String, Map<String, String>>",testGetAllOozieSensitivityMapWithDiffSite,TestOozieSensitivityMetadataDAOImpl
+34,46404009,moveTimeForwardOneDay,(String startTime),String,test,TestMRJobCountImpl
+35,46404009,getKey,(T t),String,testGetKeyThrowable,TestMetadataUtils
+36,46404009,create,"(List<E> entities, EntityDefinition entityDefinition)",ModifyResult<String>,testWrite,TestJdbcStorage
+37,46404009,getInt,"(JSONObject obj, String field)",int,testGetInt,JSONUtilsTest
+38,46404009,getContextEnvironment,"(String sanitizedUsername, String password)","Hashtable<String, String>",testGetContextEnvironmentNormalWithSSL,LdapBasicAuthenticatorTest
+39,46404009,parseExecutionPlan,"(String policyDefinition, Map<String, StreamDefinition> inputStreamDefinitions)",PolicyExecutionPlan,testParseSingleStreamPolicyWithPattern,PolicyInterpreterTest
+40,46404009,byQuery,(String query),DeleteRequestBuilder,testDeleteRequestByQuery,TestDeleteRequestBuilder
+41,46404009,parseMemory,(String memory),long,testParseMemory,UtilsTest
+42,46404009,dedup,(AlertStreamEvent event),List<AlertStreamEvent>,testNormal,DefaultDeduplicatorTest
+43,46404009,execute,(DataStorage dataStorage),QueryResult<?>,testQueryExecute,TestQueryStatement
+44,46404009,getReferenceNames,(),List<String>,testParseInvalidVelocityTemplate,VelocityTemplateParserTest
+45,46404009,buildSchedulerInfoURL,(String urlBase),String,testBuildSchedulerInfoURLWithBaseURLTailingSlash,YarnClusterResourceURLBuilderTest
+46,46404009,wrap,(Exception ex),String,testWrap,TestEagleExceptionWrapper
+47,46404009,getReferenceNames,(),List<String>,testParseVelocityTemplate,VelocityTemplateParserTest
+48,46404009,getString,"(JSONObject obj, String field)",String,testGetString,JSONUtilsTest
+49,46404009,createAlertPublishEvent,(AlertStreamEvent event),AlertPublishEvent,testAlertPublishEvent,AlertPublishEventTest
+50,46404009,validate,"(PolicyDefinition policy, Map<String, StreamDefinition> allDefinitions)",PolicyValidationResult,testInvalidPolicyForSyntaxError,PolicyInterpreterTest
+51,46404009,validateContext,"(Map<String, Object> context)",void,testValidateInvalidVelocityContext,VelocityTemplateParserTest
+52,46404009,query,"(CompiledQuery query, EntityDefinition entityDefinition)",QueryResult<E>,testReadByComplexQueryWithLike,TestJdbcStorage
+53,46404009,validate,"(PolicyDefinition policy, Map<String, StreamDefinition> allDefinitions)",PolicyValidationResult,testValidPolicyWithExternalTimeWindow,PolicyInterpreterTest
+55,46404009,executeGet,"(String restUrl, String username, String password)",JSONObject,TestExecuteGet,HttpRequestTest
+56,46404009,dedup,"(AlertStreamEvent event, EventUniq eventEniq,
+                                        String dedupStateField, String stateFieldValue,
+                                        String stateCloseValue)",List<AlertStreamEvent>,testNormal,DedupCacheTest
+57,46404009,parseMemory,(String memory),long,testParseMemory1,UtilsTest
+58,46404009,roundDown,"(int field, long timeInMillis)",long,testRound3,TestDateTimeUtil
+59,46404009,equals,(Object obj),boolean,testEqualsInstanceOf,TestGenericAuditEntity
+60,46404009,add,(TaggedLogAPIEntity entity),void,testMRJobEntityCreationHandlerWithCounts,MRJobEntityCreationHandlerTest
+61,46404009,validate,"(PolicyDefinition policy, Map<String, StreamDefinition> allDefinitions)",PolicyValidationResult,testValidPolicyWithPattern,PolicyInterpreterTest
+62,46404009,getModule,(),MetadataStore,testGetModuleWithConf,TestMetadataStoreModuleFactory
+63,46404009,fromStream,(InputStream inputStream),Configuration,testFromStream,TestConfiguration
+64,46404009,validate,"(PolicyDefinition policy, Map<String, StreamDefinition> allDefinitions)",PolicyValidationResult,testValidPolicyWithSequence,PolicyInterpreterTest
+65,46404009,buildClusterMetricsURL,(String urlBase),String,testBuildClusterMetricsURLWithBaseURLTailingSlash,YarnClusterResourceURLBuilderTest
+66,46404009,add,(Object[] data),void,test,TestSiddhiAggregator
+68,46404009,removeTrailingSlash,(String url),String,testRemoveTrailingSlash,URLUtilTest
+69,46404009,parse,(String logLine),OozieAuditLogObject,testParserNotMatch,TestOozieAuditLogParser
+70,46404009,validate,"(PolicyDefinition policy, Map<String, StreamDefinition> allDefinitions)",PolicyValidationResult,testValidPolicyWithTimeWindow,PolicyInterpreterTest
+71,46404009,getResource,"(Constants.ResourceType resourceType, Constants.CompressionType compressionType, Object... parameter)",List<AppInfo>,testCompleteMrJob,RMResourceFetcherTest
+72,46404009,validate,"(PolicyDefinition policy, Map<String, StreamDefinition> allDefinitions)",PolicyValidationResult,testValidPolicyWithSequenceSort,PolicyInterpreterTest
+73,46404009,builder,(),StreamAggregatorBuilder,test,TestStreamAggregator
+74,46404009,createAlertPublishEvent,(AlertStreamEvent event),AlertPublishEvent,testAlertPublishEvent1,AlertPublishEventTest
+75,46404009,validate,"(PolicyDefinition policy, Map<String, StreamDefinition> allDefinitions)",PolicyValidationResult,testValidPolicyWithTooManyInputStreams,PolicyInterpreterTest
+76,46404009,hashCode,(),int,testStreamRepartitionStrategy,StreamRepartitionStrategyTest
+77,46404009,addAuditListener,(AuditListener listener),void,addAuditLFieldListenerNull,TestAuditSupport
+78,46404009,checkUrl,(),void,testCheckUrl,HAURLSelectorImplTest
+79,46404009,copy,(),StreamEvent,testStreamEventEqual,StreamEventTest
+80,46404009,equals,(Object obj),boolean,testEqualsFalse,TestGenericAuditEntity
+82,46404009,build,"(String url, String... parameters)",String,testBuild,SparkCompleteJobServiceURLBuilderImplTest
+83,46404009,createEntityDefinition,(Class<? extends TaggedLogAPIEntity> cls),EntityDefinition,testCreateEntityDefinition,TestEntityDefinitionManager
+84,46404009,getContextEnvironment,"(String sanitizedUsername, String password)","Hashtable<String, String>",testGetContextEnvironmentMeaninglessCAPathSSL,LdapBasicAuthenticatorTest
+86,46404009,getSelectedUrl,(),String,testGetSelectedUrl,HAURLSelectorImplTest
+87,46404009,generateUniquePolicyId,"(String siteId, String policyName)",String,testGenerateUniquePolicyId,PolicyIdConversionsTest
+88,46404009,equals,(Object obj),boolean,testEqualsObj,TestGenericAuditEntity
+89,46404009,roundDown,"(int field, long timeInMillis)",long,testRound2,TestDateTimeUtil
+90,46404009,open,"(Map conf, TopologyContext context, SpoutOutputCollector collector)",void,testOpen,TestHiveJobFetchSpout
+92,46404009,query,"(CompiledQuery query, EntityDefinition entityDefinition)",QueryResult<E>,testReadByComplexQuery,TestJdbcStorage
+93,46404009,makeLockPath,(String zkrootWithSiteId),String,testMakeLockPath1,UtilsTest
+95,46404009,reSelectUrl,(),void,testReSelectUrl,HAURLSelectorImplTest
+96,46404009,comprisePrincipal,(String sanitizedUsername),String,testComprisePrincipal,LdapBasicAuthenticatorTest
+97,46404009,getLong,"(JSONObject obj, String field)",long,testGetLong1,JSONUtilsTest
+98,46404009,createEntityDefinition,(Class<? extends TaggedLogAPIEntity> cls),EntityDefinition,testCreateMetricEntityDefinition,TestEntityDefinitionManager
+99,46404009,getInstance,(String webappDirLocation),EmbeddedServer,test,TestEmbeddedServer
+100,46404009,execute,(DataStorage<I> dataStorage),QueryResult<?>,testRowkeyExecute,TestRowkeyQueryStatement
+101,46404009,getTopologies,(),List<TopologyStatus>,testGetTopologies1,TopologyMgmtResourceImplTest
+102,46404009,buildRunningAppsURL,(String urlBase),String,testBuildRunningAppsURLWithoutBaseURLTailingSlash,YarnClusterResourceURLBuilderTest
+103,46404009,validate,"(PolicyDefinition policy, Map<String, StreamDefinition> allDefinitions)",PolicyValidationResult,testValidPolicyWithPatternSort,PolicyInterpreterTest
+104,46404009,checkUrl,(),void,testCheckUrl1,HAURLSelectorImplTest
+105,46404009,query,"(CompiledQuery query, EntityDefinition entityDefinition)",QueryResult<E>,testReadByNotEqualCondition,TestJdbcStorage
+106,46404009,getLong,"(JSONObject obj, String field)",long,testGetLong,JSONUtilsTest
+107,46404009,loadPublishmentTypes,(),List<PublishmentType>,testPublishmentTypeLoader,PublishementTypeLoaderTest
+108,46404009,initJobCountList,"(List<UnitJobCount> jobCounts, long startTime, long endTime, long intervalInSecs)",void,test2,TestMRJobCountImpl
+109,46404009,getOozieSensitivityMap,(String site),"Map<String, String>",testGetOozieSensitivityMap,TestOozieSensitivityMetadataDAOImpl
+110,46404009,build,"(String url, String... parameters)",String,testBuild,JobListServiceURLBuilderImplTest
+111,46404009,updateDatabase,(Statement<ModifyResult<String>> statement),GenericServiceAPIResponseEntity,testGenericEntityServiceResourceupdateDatabaseNullDataStorage,TestGenericEntityServiceResource
+112,46404009,ensureSerializable,(T value),T,testEnsureUnserializableObject,TestSerializableUtils
+113,46404009,authenticate,(BasicCredentials credentials),Optional<User>,testWrongPassword,SimpleBasicAuthenticatorTest
+114,46404009,getContextEnvironment,"(String sanitizedUsername, String password)","Hashtable<String, String>",testGetContextEnvironmentUnexistingCA_SSL,LdapBasicAuthenticatorTest
+115,46404009,formStreamTypeId,(String streamTypeId),String,testFormatStreamId,StreamIdConversionsTest
+116,46404009,parseExecutionPlan,"(String policyDefinition, Map<String, StreamDefinition> inputStreamDefinitions)",PolicyExecutionPlan,testParseTwoStreamPolicyQueryInnerJoinWithCondition,PolicyInterpreterTest
+118,46404009,fromResource,(String resourceName),Configuration,testFromResource,TestConfiguration
+119,46404009,buildFinishedAppsURL,(String urlBase),String,testBuildFinishedAppsURLWithBaseURLTailingSlash,YarnClusterResourceURLBuilderTest
+120,46404009,build,"(String url, String... parameters)",String,testBuild,SparkJobServiceURLBuilderImplTest
+121,46404009,parseExecutionPlan,"(String policyDefinition, Map<String, StreamDefinition> inputStreamDefinitions)",PolicyExecutionPlan,testParseTwoStreamPolicyQueryWithSinglePartition,PolicyInterpreterTest
+122,46404009,createTable,"(String tableName, String cf)",void,testHBaseCreateTable,EmbeddedHBaseTest
+123,46404009,checkUrl,(),void,testReSelectUrl2,HAURLSelectorImplTest
+124,46404009,buildFinishedAppsURL,(String urlBase),String,testBuildFinishedAppsURLWithoutBaseURLTailingSlash,YarnClusterResourceURLBuilderTest
+125,46404009,equals,(Object obj),boolean,testEqualsTrue,TestGenericAuditEntity
+126,46404009,roundDown,"(int field, long timeInMillis)",long,testRound1,TestDateTimeUtil
+127,46404009,getDependentFields,(),List<String>,testgetDependency,TestExpressionParser
+128,46404009,buildRunningAppsURL,(String urlBase),String,testBuildRunningAppsURLWithBaseURLTailingSlash,YarnClusterResourceURLBuilderTest
+129,46404009,validateContext,"(Map<String, Object> context)",void,testValidateVelocityContext,VelocityTemplateParserTest
+130,46404009,add,(TaggedLogAPIEntity entity),void,testMRJobEntityCreationHandlerAdd,MRJobEntityCreationHandlerTest
+131,46404009,parse,(String logLine),HBaseAuditLogObject,test,TestHBaseAuditLogParser
+134,46404009,makeLockPath,(String zkrootWithSiteId),String,testMakeLockPath,UtilsTest
+135,46404009,sanitizeUsername,(String username),String,testSanitizeUsername,LdapBasicAuthenticatorTest
+136,46404009,parseExecutionPlan,"(String policyDefinition, Map<String, StreamDefinition> inputStreamDefinitions)",PolicyExecutionPlan,testParseSingleStreamPolicyQueryWithConflictPartition,PolicyInterpreterTest
+137,46404009,parseExecutionPlan,"(String policyDefinition, Map<String, StreamDefinition> inputStreamDefinitions)",PolicyExecutionPlan,testParseSingleStreamPolicyQuery,PolicyInterpreterTest
+138,46404009,getInt,"(JSONObject obj, String field)",int,testGetInt1,JSONUtilsTest
+139,46404009,getContextEnvironment,"(String sanitizedUsername, String password)","Hashtable<String, String>",testGetContextEnvironmentBlankStrategy,LdapBasicAuthenticatorTest
+140,46404009,parse,(String logLine),HBaseAuditLogObject,test2,TestHBaseAuditLogParser
+141,46404009,validate,"(PolicyDefinition policy, Map<String, StreamDefinition> allDefinitions)",PolicyValidationResult,testValidPolicyWithTooFewOutputStreams,PolicyInterpreterTest
+142,46404009,serializeToByteArray,(Object value),byte[],testUnserializableObject,TestSerializableUtils
+143,46404009,getClusterInfo,(),ClusterInfo,testGetClusterInfo,RMResourceFetcherTest
+145,46404009,authenticate,(BasicCredentials credentials),Optional<User>,testUnexistingUsername,SimpleBasicAuthenticatorTest
+146,46404009,parseStreamTypeId,"(String siteId, String generatedUniqueStreamId)",String,testParseStreamTypeId,StreamIdConversionsTest
+147,46404009,dateTimeToLong,(String date),long,testDateTimeToLong,UtilsTest
+149,46404009,compareTo,"(byte[] value, int offset, int length)",int,testCompare,TestTypedByteArrayComparator
+150,46404009,addAuditListener,(AuditListener listener),void,addAuditProxyNullListener,TestAuditSupport
+151,46404009,buildClusterMetricsURL,(String urlBase),String,testBuildClusterMetricsURLWithoutBaseURLTailingSlash,YarnClusterResourceURLBuilderTest
+152,46404009,parseExecutionPlan,"(String policyDefinition, Map<String, StreamDefinition> inputStreamDefinitions)",PolicyExecutionPlan,testParseSingleStreamPolicyQueryWithMultiplePartitionUsingLargerWindow,PolicyInterpreterTest
+153,46404009,addAuditListener,(AuditListener listener),void,addAuditProxyHBase,TestAuditSupport
+154,46404009,stopTopology,(String topologyName),void,testStopTopology,TopologyMgmtResourceImplTest
+155,46404009,validate,"(PolicyDefinition policy, Map<String, StreamDefinition> allDefinitions)",PolicyValidationResult,testExtendPolicy,PolicyInterpreterTest
+156,46404009,parsePolicyId,"(String siteId, String policyName)",String,testParsePolicyId2,PolicyIdConversionsTest
+158,46404009,buildSchedulerInfoURL,(String urlBase),String,testBuildSchedulerInfoURLWithoutBaseURLTailingSlash,YarnClusterResourceURLBuilderTest
+159,46404009,getResource,"(Constants.ResourceType resourceType, Constants.CompressionType compressionType, Object... parameter)",List<AppInfo>,testCompleteSparkJob,RMResourceFetcherTest
+160,46404009,query,"(CompiledQuery query, EntityDefinition entityDefinition)",QueryResult<E>,testReadBySimpleQuery,TestJdbcStorage
+161,46404009,getContextEnvironment,"(String sanitizedUsername, String password)","Hashtable<String, String>",testGetContextEnvironmentNormal,LdapBasicAuthenticatorTest
+162,46404009,validate,"(PolicyDefinition policy, Map<String, StreamDefinition> allDefinitions)",PolicyValidationResult,testLeftJoin,PolicyInterpreterTest
+164,46404009,checkUrl,(),void,testReSelectUrl1,HAURLSelectorImplTest
+165,46404009,fireAudit,"(String serviceName, List<GenericAuditEntity> auditEntities)",void,testFireAudit,TestAuditSupport
+166,46404009,listPolicies,(),List<PolicyDefinition>,test,TestMetadataServiceClientImpl
+167,46404009,parseExecutionPlan,"(String policyDefinition, Map<String, StreamDefinition> inputStreamDefinitions)",PolicyExecutionPlan,testParseTwoStreamPolicyQueryInnerJoin,PolicyInterpreterTest

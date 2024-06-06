@@ -1,0 +1,158 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,8328088,add,(E e),boolean,testAdd,LinkedListTest
+1,8328088,iterativeInorder,(BinaryTreeNode<E> root),List<E>,testIterativeInorder,BinaryTreeWalkerTest
+2,8328088,decrypt,(String inputFile),void,testDecrypt,XMLEncryptorTest
+3,8328088,isSame,"(IntegerNode root1, IntegerNode root2)",boolean,testIsSame,BinaryTreeUtilTest
+4,8328088,capacity,(),int,testCapacity,CircularQueueTest
+5,8328088,recursiveInorder,(BinaryTreeNode<E> root),List<E>,testRecursiveInorder,BinaryTreeWalkerTest
+6,8328088,max,(),int,testMax,MaxStackTest
+7,8328088,isEmpty,(),boolean,testIsEmpty,SetOfStacksTest
+8,8328088,bucketSort,(int[] arr),int[],testBucketSort,SorterTest
+9,8328088,validateFile,(File... files),void,testValidateUnreadableDirectory,MovieManagerTest
+10,8328088,longestRepeatedSubstring,(String str),String,testLongestRepeatedSubstring,AlgorithmsTest
+11,8328088,isPalindrome,(LinkedList<E> linkedList),boolean,testIsPalindrome,PracticeQuestionsCh2Test
+12,8328088,computeParities,(final long[] input),long[],testComputeParities,PracticeQuestionsCh5Test
+13,8328088,getInstance,(),ClientFactory,testFactory,ClientFactoryTest
+14,8328088,validate,(final String romanNumber),void,testValidNumber4,TestValidator
+15,8328088,binarySearch,"(BinarySearchTree<E> binTree,
+			BinaryTreeNode<E> startNode, E value)",BinaryTreeNode<E>,testBinarySearch,SearcherTest
+16,8328088,isPermutationOfEachOther,"(String s, String t)",boolean,testIsPermutationOfEachOther,AssignmentTest
+17,8328088,dequeue,(),int,testDequeue,CircularQueueTest
+18,8328088,toDecimal,(final String romanNumber),long,testInvalidRomanNumber1,TestConversionRulesEngine
+19,8328088,pop,(),E,testPop,SetOfStacksTest
+20,8328088,addExtension,"(String filename, final String newExtension, final boolean removeExistingExtension)",String,testAddExtension,IOUtilsTest
+21,8328088,getSummaryByGenre,"(Set<Movie> movieSetFilteredByGenre,
+			String genre)",GenreSummary,testGetSummaryByGenre,MovieServiceImplTest
+22,8328088,call,(),String,test1,HttpHeadTaskTest
+23,8328088,peek,(),E,testPeek,SetOfStacksTest
+24,8328088,depthFirstSearch,"(BinarySearchTree<E> binTree,
+			BinaryTreeNode<E> startNode, E value)",BinaryTreeNode<E>,testDepthFirstSearch,SearcherTest
+26,8328088,restTemplate,(),RestTemplate,testRestTemplate,ClientConfigTest
+27,8328088,stringToLong,(final String s),long,testStringToLongFailure,AssignmentTest
+28,8328088,reverse,(),void,testReverse,LinkedListTest
+29,8328088,reserveTable,"(final int seating, final SpecialFeature... specialFeatures)",Table,testReserveTable,TableManagerTest
+30,8328088,reverse,(LinkedList<Integer> l),void,testReverse,PracticeQuestionsCh7Test
+31,8328088,isUnique,(String s),boolean,testIsUnique,PracticeQuestionsCh1Test
+32,8328088,encrypt,"(String inputFile, String outputFile)",void,testEncrypt,XMLEncryptorTest
+33,8328088,longestPrefix,(String inputWord),String,testLongestPrefix2,TrieTest
+34,8328088,getName,(),String,testNewMovieRentalFor5Days,CustomerRefactoredTest
+35,8328088,getName,(),String,testRegularMovieRentalFor3Days,CustomerRefactoredTest
+36,8328088,getClient,(ClientType type),Client,testClients,ClientFactoryTest
+37,8328088,reverseList,(IntegerNode head),IntegerNode,testReverseList,JackOfAllTradesTest
+38,8328088,equals,(Object obj),boolean,testEquals,MovieTest
+39,8328088,reserveTable,"(final int seating, final SpecialFeature... specialFeatures)",Table,testReserveMoreTablesThanAvailable,TableManagerTest
+40,8328088,encodeRepeatedChars,(final String str),String,testEncodeRepeatedChars,PracticeQuestionsCh1Test
+41,8328088,getName,(),String,testRegularMovieRentalForADay,CustomerRefactoredTest
+42,8328088,getMovieInfoById,"(String id, Map<String, String>... param)",Movie,testGetNoSuchMovieInfoById,OmdbApiClientTest
+43,8328088,validate,(final String romanNumber),void,testValidNumber2,TestValidator
+44,8328088,getMovieInfoById,"(String id, Map<String, String>... param)",Movie,testGetMovieInfoById,OmdbApiClientTest
+45,8328088,cancelReservation,"(final String customerName, final Date date)",boolean,testCancelReservation,ReservationSystemTest
+46,8328088,validate,(final String romanNumber),void,testInvalidNumber2,TestValidator
+47,8328088,findInMapFile,"(final Text key, URI dirURI, final Configuration conf)",Writable,testKeyFound,IOUtilsTest
+48,8328088,groupMovieSetByGenre,(Set<Movie> movieSet),"Map<String, Set<Movie>>",testGroupMovieSetByGenre,MovieServiceImplTest
+49,8328088,validate,(final String romanNumber),void,testValidNumber1,TestValidator
+50,8328088,reserveTable,"(final int seating, final SpecialFeature... specialFeatures)",Table,testReserveTableWhenNoneMatches,TableManagerTest
+51,8328088,employees,(String file),"Map<String, Employee>",testEmployees,JSONParserTest
+52,8328088,deanClatworthyClient,(),Client,testDeanClatworthyClient,ClientConfigTest
+53,8328088,omdbApiClient,(),Client,testOmdbApiClient,ClientConfigTest
+54,8328088,quickSort,(int[] arr),int[],testQuickSort,SorterTest
+55,8328088,isRotation,"(String s1, String s2)",boolean,testIsRotation,PracticeQuestionsCh1Test
+56,8328088,intersection,"(final int[] a, final int[] b)",Integer[],testIntersection,PracticeQuestionsCh13Test
+57,8328088,getName,(),String,test1RegularAnd1ChidrensMovieRentalsFor3Days,CustomerRefactoredTest
+58,8328088,resize,(),void,testResize,CircularQueueTest
+59,8328088,pop,(),int,testPop,MaxStackTest
+60,8328088,solve,(),boolean,testCannotSolve,JigsawPuzzleTest
+62,8328088,countingSort,(final int[] arr),Integer[],testCountingSort,SorterTest
+63,8328088,mergeSort,(int[] arr),int[],testMergeSort,SorterTest
+64,8328088,toDecimal,(final String romanNumber),long,testNullRomanNumber,TestConversionRulesEngine
+65,8328088,isPalindromeVariant,(LinkedList<E> linkedList),boolean,testIsPalindromeVariant,PracticeQuestionsCh2Test
+66,8328088,reduce,"(TaggedKey key, Iterable<Text> values, Context ctx)",void,testReduce,ReduceSideJoinReducerTest
+67,8328088,solve,(),boolean,testSolve,JigsawPuzzleTest
+68,8328088,isSkipped,(),boolean,testReadLineForOtherApp,SkippableLogRecordTest
+69,8328088,push,(E element),E,testPush,SetOfStacksTest
+71,8328088,perm,(String s),Set<String>,testPerm,PracticeQuestionsCh9Test
+72,8328088,mergeLists,"(LinkedList<Integer> l, LinkedList<Integer> f)",LinkedListNode<Integer>,testMergeLists,PracticeQuestionsCh7Test
+73,8328088,getAttendant,(),Attendant,testParkingOneCompact,ParkingGarageTest
+74,8328088,pop,(),int,testPopWhenEmpty,MaxStackTest
+75,8328088,toDecimal,(final String romanNumber),long,testInvalidRomanNumber2,TestConversionRulesEngine
+76,8328088,getSummary,"(Map<String, Set<Movie>> movieSetGroupedByGenre)",Summary,testGetSummary,MovieServiceImplTest
+77,8328088,getKeyPair,"(String keystore, String storePassword,
+	    String keyPassword, String alias)",KeyPair,testPublicKey,KeyStoreManagerTest
+78,8328088,evalRpn,(String expr),int,testEvalRpn,PracticeQuestionsCh8Test
+79,8328088,swapBits,"(final long x, final int i, final int j)",long,testSwapBits,PracticeQuestionsCh5Test
+80,8328088,push,(int element),int,testPush,MaxStackTest
+82,8328088,fillIfZero,(int[][] matrix),void,testFillIfZero,PracticeQuestionsCh1Test
+83,8328088,removeExtension,(String filename),String,testRemoveExtension,IOUtilsTest
+84,8328088,remove,(),E,testRemove,LinkedListTest
+85,8328088,breadthFirstSearch,"(BinarySearchTree<E> binTree,
+			BinaryTreeNode<E> startNode, E value)",BinaryTreeNode<E>,testBreadthFirstSearch,SearcherTest
+86,8328088,getName,(),String,test2RegularMovieRentalsFor3Days,CustomerRefactoredTest
+87,8328088,startOfLoop,(LinkedList<Integer> l),LinkedListNode<Integer>,testStartOfLoop,PracticeQuestionsCh7Test
+88,8328088,dequeue,(),int,testDequeueWhenEmpty,CircularQueueTest
+89,8328088,getMovieInfoByTitleAndYear,"(String title, short year,
+			Map<String, String>... param)",Movie,testGetMovieInfoByTitleAndYear,OmdbApiClientTest
+90,8328088,filterMovieSetByGenre,"(Set<Movie> movieSet, String genre)",Set<Movie>,testFilterMovieSetByGenre,MovieServiceImplTest
+91,8328088,contains,(int value),boolean,testContains,BinarySearchTreeTest
+92,8328088,partition,"(LinkedList<E> linkedList, E pivot)",void,testPartition,PracticeQuestionsCh2Test
+93,8328088,getMovieInfoByTitleOnly,"(String title,
+			Map<String, String>... param)",Movie,testGetMovieInfoByTitleOnly,OmdbApiClientTest
+94,8328088,validate,(final String romanNumber),void,testValidNumber5,TestValidator
+95,8328088,equals,(Object obj),boolean,testEquals,GenreSummaryTest
+96,8328088,nodes,(),List<Integer>,testNodes,BinarySearchTreeTest
+97,8328088,validate,(final String romanNumber),void,testInvalidNumber3,TestValidator
+98,8328088,makeReservation,"(final String customerName, final int seating, final Date date,
+			final SpecialFeature... specialFeatures)",int,testMakeReservation,ReservationSystemTest
+99,8328088,isPermutation,"(String s1, String s2)",boolean,testIsPermutation,PracticeQuestionsCh1Test
+100,8328088,toDecimal,(final String romanNumber),long,testEmptyRomanNumber,TestConversionRulesEngine
+101,8328088,toDecimal,(final String romanNumber),long,testToDecimal,TestConversionRulesEngine
+102,8328088,min,(),E,testMin,StackWithMinTest
+104,8328088,validate,(final String romanNumber),void,testValidNumber3,TestValidator
+105,8328088,firstOccurrence,"(final int[] arr, final int key)",int,testFirstOccurance,PracticeQuestionsCh11Test
+106,8328088,hashCode,(),int,testHashCode,GenreSummaryTest
+107,8328088,removeDupes,(LinkedList<E> linkedList),void,testRemoveDupes,PracticeQuestionsCh2Test
+108,8328088,kSort,"(Integer[] arr, int k)",int[],testKSort,PracticeQuestionsCh10Test
+109,8328088,createSummarySheet,(Summary summary),void,testCreateSummarySheet,MovieManagerTest
+110,8328088,validateFile,(File... files),void,testValidateUnacceptableFileExtension,MovieManagerTest
+111,8328088,equals,(Object obj),boolean,testEquals,SummaryTest
+112,8328088,add,(E e),boolean,testInvalidIndexOperation,LinkedListTest
+113,8328088,insertMIntoN,"(int N, int M, int i, int j)",int,testInsertMIntoN,PracticeQuestionsCh5Test
+114,8328088,createGenreSheet,"(Set<Movie> filteredMovieSetByGenre,
+			String genre)",void,testCreateGenreSheets,MovieManagerTest
+115,8328088,height,(IntegerNode root),int,testHeight,BinaryTreeUtilTest
+116,8328088,isParentNotASeries,(String parent),boolean,testIsParentNotASeries,MovieServiceImplTest
+117,8328088,move,"(int numDisks, int fromPeg, int toPeg)",void,testMove,TowerOfHanoiTest
+118,8328088,enqueue,(int element),int,testEnqueue,CircularQueueTest
+119,8328088,keypadPermutation,(int num),List<String>,testKeypadPermutation,PracticeQuestionsCh6Test
+120,8328088,lowestCommonAncestor,"(BinaryTreeNode<Integer> root,
+			BinaryTreeNode<Integer> n1, BinaryTreeNode<Integer> n2)",BinaryTreeNode<Integer>,testLowestCommonAncestor,PracticeQuestionsCh9Test
+121,8328088,equals,(Object obj),boolean,testListEquality,MovieTest
+122,8328088,getLongestString,"(int n, List<String> inputs)",String,testGetLongestString,AssignmentTest
+123,8328088,makeReservation,"(final String customerName, final int seating, final Date date,
+			final SpecialFeature... specialFeatures)",int,testMakeReservationsUntilTablesExhausted,ReservationSystemTest
+124,8328088,getAttendant,(),Attendant,testParkingOneSUV,ParkingGarageTest
+125,8328088,toDecimal,(final String romanNumber),long,testInvalidRomanNumber3,TestConversionRulesEngine
+126,8328088,hashCode,(),int,testHashCode,SummaryTest
+127,8328088,allPermutations,(String str),List<String>,testAllPermutationsOfAString,JackOfAllTradesTest
+128,8328088,anagrams,(final List<String> dictionary),List<List<String>>,testAnagrams,PracticeQuestionsCh12Test
+129,8328088,longestPrefix,(String inputWord),String,testLongestPrefix1,TrieTest
+130,8328088,getName,(),String,testChildrensMovieRentalFor5Days,CustomerRefactoredTest
+131,8328088,hashCode,(),int,testHashCode,MovieTest
+132,8328088,root,(),ParentAwareIntegerNode,testIsBST,BinarySearchTreeTest
+133,8328088,validate,(String inputFile),void,testValidate,XMLSignerTest
+134,8328088,stringToLong,(final String s),long,testStringToLongSuccess,AssignmentTest
+135,8328088,validateFile,(File... files),void,testValidateGood,MovieManagerTest
+136,8328088,sign,"(String inputFile, String outputFile, String referenceURI)",void,testSign,XMLSignerTest
+137,8328088,convertToBase,"(int x, int b)",StringBuilder,testConvertToBase,PracticeQuestionsCh5Test
+138,8328088,stringToInt,(String s),int,testStringToInt,PracticeQuestionsCh5Test
+139,8328088,runningMedian,(int[] elements),int[],testRunningMedian,PracticeQuestionsCh10Test
+140,8328088,findInMapFile,"(final Text key, URI dirURI, final Configuration conf)",Writable,testKeyNotFound,IOUtilsTest
+141,8328088,lowestCommonAncestor,"(IntegerNode root, int value1, int value2)",IntegerNode,testLowestCommonAncestor,BinaryTreeUtilTest
+142,8328088,intersection,"(LinkedList<Integer> l1, LinkedList<Integer> l2)",LinkedListNode<Integer>,testIntersection,PracticeQuestionsCh7Test
+143,8328088,getAttendant,(),Attendant,testParkingOneHybrid,ParkingGarageTest
+144,8328088,evenOddMerge,(LinkedList<Integer> l),void,testEvenOddMerge,PracticeQuestionsCh7Test
+145,8328088,powerSet,(Set<Integer> set),void,testPowerSet,PracticeQuestionsCh5Test
+146,8328088,magicIndex,"(int[] array, int startIndex, int endIndex)",int,testMagicIndex,PracticeQuestionsCh9Test
+147,8328088,toDecimal,(final String romanNumber),long,testBlankRomanNumber,TestConversionRulesEngine
+148,8328088,getAttendant,(),Attendant,testParkingOneCompactAndHybrid,ParkingGarageTest
+149,8328088,validate,(final String romanNumber),void,testInvalidNumber1,TestValidator
+150,8328088,callBingoNumber,(),String,testGenerateBingoNumber,BingoNumberCallerTest

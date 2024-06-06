@@ -1,0 +1,155 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,4180644,getRaxaAlertByAlertType,"(String alertType, boolean includeSeen)",List<RaxaAlert>,testGetRaxaAlertByAlertType,HibernateRaxaAlertDAOTest
+1,4180644,getDrugInfoByName,(String name),List<DrugInfo>,testGetDrugInfoByName,HibernateDrugInfoDAOTest
+2,4180644,searchByProviderRecipient,"(@RequestParam(""providerRecipient"") String providerRecipient,
+	        HttpServletRequest request)",String,searchByProviderRecipient_shouldGetAlertsByProvider,RaxaAlertControllerTest
+3,4180644,deleteDrugInfo,(DrugInfo drugInfo),void,testDeleteDrugInfoShouldUsePrivileges,DrugInfoServiceImplTest
+4,4180644,getRelationships,"(@RequestParam Map<String, String> params, HttpServletRequest request)",String,testGetRelationships,RaxaPatientAccessControllerTest
+5,4180644,deleteDrugInfo,(DrugInfo drugInfo),void,testDeleteDrugInfo,HibernateDrugInfoDAOTest
+6,4180644,retireDrug,"(@PathVariable(""uuid"") String uuid,
+	        @RequestParam(value = ""reason"", defaultValue = ""web service call"") String reason, HttpServletRequest request,
+	        HttpServletResponse response)",Object,testRetireDrug,RaxaDrugControllerTest
+7,4180644,getPatientsInPatientList,(PatientList patientList),List<Patient>,testGetPatientsInPatientListShouldReturnPatients,PatientListServiceImplTest
+8,4180644,createNewDrugGroup,"(@RequestBody SimpleObject post, HttpServletRequest request, HttpServletResponse response)",Object,createNewDrugGroup_shouldSaveANewDrugGroup,DrugGroupControllerTest
+9,4180644,searchByStockLocation,"(@RequestParam(""stockLocation"") String stockLocation, HttpServletRequest request)",String,searchByStockLocation_shouldGetPurchaseOrdersByStockLocation,DrugPurchaseOrderControllerTest
+10,4180644,getPatientListByUuid,(String uuid),PatientList,testGetPatientListByUuidShouldUsePrivileges,PatientListServiceImplTest
+11,4180644,getRaxaAlert,(Integer raxaAlertId),RaxaAlert,testGetRaxaAlert,HibernateRaxaAlertDAOTest
+12,4180644,getEncountersInPatientList,(PatientList patientList),List<Encounter>,testGetEncountersInPatientListShouldReturnEncounters,PatientListServiceImplTest
+13,4180644,getAllDrugPurchaseOrders,(),List<DrugPurchaseOrder>,testGetAllDrugPurchaseOrders,HibernateDrugPurchaseOrderDAOTest
+14,4180644,getAllPatientList,(boolean includeRetired),List<PatientList>,testGetAllPatientList_shouldReturnUnretiredPatientList,PatientListServiceImplTest
+15,4180644,createNewPatientList,"(@RequestBody SimpleObject post, HttpServletRequest request,
+	        HttpServletResponse response)",Object,createNewPatientList_shouldSaveANewPatientList,PatientListControllerTest
+16,4180644,purgeDrugInfo,"(@PathVariable(""uuid"") String uuid, HttpServletRequest request, HttpServletResponse response)",Object,testPurgeDrugInfo,DrugInfoControllerTest
+17,4180644,updateDrugInfo,(DrugInfo drugInfo),DrugInfo,testUpdateDrugInfo,HibernateDrugInfoDAOTest
+18,4180644,getDrugGroupByUuid,(String uuid),DrugGroup,testGetDrugGroupByUuidShouldReturnDrugGroup,DrugGroupServiceImplTest
+19,4180644,getEncountersInPatientList,(PatientList patientList),List<Encounter>,testGetEncountersInPatientListShouldNotReturnEncountersWithInvalidDates,PatientListServiceImplTest
+20,4180644,getDrugInfoByUuid,(String uuid),DrugInfo,testGetDrugInfoByUuidShouldReturnDrugInfo,DrugInfoServiceImplTest
+21,4180644,getDrugByUuid,"(@PathVariable(""uuid"") String uuid, HttpServletRequest request)",String,getDrugByUuid_shouldGetDrug,RaxaDrugControllerTest
+22,4180644,getAllDrugGroupByUuid,"(@PathVariable(""uuid"") String uuid, HttpServletRequest request)",String,getDrugGroupByUuid_shouldGetADefaultRepresentationOfADrugGroup,DrugGroupControllerTest
+23,4180644,getAllPatientListByUuid,"(@PathVariable(""uuid"") String uuid, HttpServletRequest request)",String,getPatientListByUuid_shouldGetADefaultRepresentationOfAPatientList,PatientListControllerTest
+24,4180644,getPatientList,(Integer id),PatientList,testGetPatientListShouldUsePrivileges,PatientListServiceImplTest
+25,4180644,getDrugInventoryByUuid,(String uuid),DrugInventory,testGetDrugInventoryByUuid,HibernateDrugInventoryDAOTest
+26,4180644,createNewRelationship,"(@RequestBody SimpleObject post, HttpServletRequest request,
+	        HttpServletResponse response)",Object,testCreateNewRelationship,RaxaPatientAccessControllerTest
+27,4180644,getDrugGroupByUuid,(String uuid),DrugGroup,testGetDrugGroupByUuid,HibernateDrugGroupDAOTest
+28,4180644,getPatientListByEncounterType,(EncounterType encounterType),List<PatientList>,testGetPatientListByEncounterTypeShouldReturnPatientList,PatientListServiceImplTest
+29,4180644,getAllDrugs,"(HttpServletRequest request, HttpServletResponse response)",String,getAllDrugs_shouldGetDrugs,RaxaDrugControllerTest
+30,4180644,getAllPatientList,(boolean includeRetired),List<PatientList>,testGetAllPatientList_shouldReturnAllPatientListIncludingRetired,HibernatePatientListDAOTest
+31,4180644,getPatientListByName,(String name),List<PatientList>,testGetPatientListByNameShouldReturnPatientList,PatientListServiceImplTest
+32,4180644,getRaxaAlertByUuid,"(@PathVariable(""uuid"") String uuid, HttpServletRequest request)",String,getRaxaAlertByUuid_shouldGetADefaultRepresentationOfARaxaAlert,RaxaAlertControllerTest
+33,4180644,getPatientListByName,(String name),List<PatientList>,testGetPatientListByName,HibernatePatientListDAOTest
+34,4180644,getAllDrugInfo,"(HttpServletRequest request, HttpServletResponse response)",String,testGetAllDrugInfo,DrugInfoControllerTest
+35,4180644,getPatientList,(Integer id),PatientList,testGetPatientListShouldReturnPatientList,PatientListServiceImplTest
+36,4180644,deletePatientList,(PatientList patientList),void,testDeletePatientListShouldUsePrivileges,PatientListServiceImplTest
+37,4180644,saveRaxaAlert,(RaxaAlert raxaAlert),RaxaAlert,testSaveRaxaAlert,HibernateRaxaAlertDAOTest
+38,4180644,getPatientListByUuid,(String uuid),PatientList,testGetPatientListByUuidShouldReturnPatientList,PatientListServiceImplTest
+39,4180644,getPatientListByUuid,(String uuid),PatientList,testGetPatientListByUuid,HibernatePatientListDAOTest
+40,4180644,getAllDrugInfoByUuidFull,"(@PathVariable(""uuid"") String uuid, @RequestParam(""v"") String rep,
+	        HttpServletRequest request)",String,testGetAllDrugInfoByUuidFull,DrugInfoControllerTest
+41,4180644,getAllDrugPurchaseOrders,"(HttpServletRequest request, HttpServletResponse response)",String,shouldGetAll,DrugPurchaseOrderControllerTest
+42,4180644,getDrugInventoriesByDrugPurchaseOrder,(Integer drugPurchaseOrderId),List<DrugInventory>,testGetDrugInventoryByDrugPurchaseOrder,HibernateDrugInventoryDAOTest
+43,4180644,getRaxaAlertByProviderSentId,"(Integer providerSentId, boolean includeSeen)",List<RaxaAlert>,testGetRaxaAlertByProviderSentId,HibernateRaxaAlertDAOTest
+44,4180644,retirePatientList,"(@PathVariable(""uuid"") String uuid,
+	        @RequestParam(value = ""reason"", defaultValue = ""web service call"") String reason, HttpServletRequest request,
+	        HttpServletResponse response)",Object,retirePatientList_shouldRetireAPatientList,PatientListControllerTest
+45,4180644,createNewPatient,"(@RequestBody SimpleObject post, HttpServletRequest request, HttpServletResponse response)",Object,testCreateNewPatient,RaxaPatientControllerTest
+46,4180644,getDrugInfoByUuid,(String uuid),DrugInfo,testGetDrugInfoByUuidShouldUsePrivileges,DrugInfoServiceImplTest
+47,4180644,getDrugPurchaseOrderByProvider,(Integer providerId),List<DrugPurchaseOrder>,testGetDrugPurchaseOrderByProvider,HibernateDrugPurchaseOrderDAOTest
+48,4180644,updateRaxaAlert,(RaxaAlert raxaAlert),RaxaAlert,testUpdateRaxaAlert,HibernateRaxaAlertDAOTest
+49,4180644,saveDrugInventory,(DrugInventory drugInventory),DrugInventory,testSaveDrugInventory,HibernateDrugInventoryDAOTest
+50,4180644,deleteDrugInventory,(DrugInventory drugInventory),void,testDeleteDrugInventory,HibernateDrugInventoryDAOTest
+51,4180644,getPatientsInPatientList,(PatientList patientList),List<Patient>,testGetPatientsInPatientListShouldUsePrivileges,PatientListServiceImplTest
+52,4180644,createNewDrugPurchaseOrder,"(@RequestBody SimpleObject post, HttpServletRequest request,
+	        HttpServletResponse response)",Object,testCreateNewDrugPurchaseOrder,DrugPurchaseOrderControllerTest
+53,4180644,getAllDrugInfo,(boolean includeVoided),List<DrugInfo>,testGetAllDrugInfo_shouldReturnUnretiredDrugInfo,DrugInfoServiceImplTest
+54,4180644,markRaxaAlertAsSeen,(RaxaAlert raxaAlert),RaxaAlert,testMarkRaxaAlertAsSeen,HibernateRaxaAlertDAOTest
+55,4180644,getDrugInfo,(Integer drugInfoId),DrugInfo,testGetDrugInfo,HibernateDrugInfoDAOTest
+56,4180644,createNewUser,"(@RequestBody SimpleObject post, HttpServletRequest request, HttpServletResponse response)",Object,testCreateNewPatientUser,RaxaUserControllerTest
+57,4180644,getAllRaxaAlerts,(boolean includeSeen),List<RaxaAlert>,testGetAllRaxaAlert_shouldReturnAllUnvoidedRaxaAlerts,HibernateRaxaAlertDAOTest
+58,4180644,getDrugInventoryByUuid,"(@PathVariable(""uuid"") String uuid, HttpServletRequest request)",String,testGetDrugInventoryByUuid,DrugInventoryControllerTest
+59,4180644,getEncounterByUuidFull,"(@PathVariable(""uuid"") String uuid, HttpServletRequest request)",String,testGetEncounterByUuidFull,RaxaEncounterControllerTest
+60,4180644,getEncountersByProvider,"(@RequestParam Map<String, String> params, HttpServletRequest request)",String,testGetEncountersByProvider,RaxaEncounterControllerTest
+61,4180644,saveDrugPurchaseOrder,(DrugPurchaseOrder drugPurchaseOrder),DrugPurchaseOrder,testsaveDrugPurchaseOrder,HibernateDrugPurchaseOrderDAOTest
+62,4180644,getRaxaAlertByPatientId,"(Integer patientId, boolean includeSeen)",List<RaxaAlert>,testGetRaxaAlertByPatientId,HibernateRaxaAlertDAOTest
+63,4180644,getDrugGroupByName,(String name),List<DrugGroup>,testGetDrugGroupByName,HibernateDrugGroupDAOTest
+64,4180644,getDrugPurchaseOrderByDispenseLocation,(Integer dispenseLocation),List<DrugPurchaseOrder>,testGetDrugPurchaseOrderByDispenseLocation,HibernateDrugPurchaseOrderDAOTest
+65,4180644,searchByLocation,"(@RequestParam(""location"") String location, HttpServletRequest request)",String,searchByLocation_shouldGetInventoriesByLocation,DrugInventoryControllerTest
+66,4180644,getDrugGroupsByName,"(@RequestParam(""q"") String query, HttpServletRequest request)",String,getDrugGroupsByName_shouldReturnNoResultsIfThereAreNoMatchingDrugGroup,DrugGroupControllerTest
+67,4180644,getAllDrugInventories,"(HttpServletRequest request, HttpServletResponse response)",String,shouldGetAll,DrugInventoryControllerTest
+68,4180644,getDrugPurchaseOrderByUuid,(String uuid),DrugPurchaseOrder,testGetDrugPurchaseOrderByUuid,HibernateDrugPurchaseOrderDAOTest
+69,4180644,getPatientListsByName,"(@RequestParam(""q"") String query, HttpServletRequest request)",String,getPatientListsByName_shouldFindMatchingPatientList,PatientListControllerTest
+70,4180644,deleteRaxaAlert,(RaxaAlert raxaAlert),void,testDeleteRaxaAlert,HibernateRaxaAlertDAOTest
+71,4180644,getAllPatientList,(boolean includeRetired),List<PatientList>,testGetAllPatientList_shouldReturnUnretiredPatientList,HibernatePatientListDAOTest
+72,4180644,createNewDrug,"(@RequestBody SimpleObject post, HttpServletRequest request, HttpServletResponse response)",Object,createNewDrug_shouldCreateNewDrugInfo,RaxaDrugControllerTest
+73,4180644,deletePatientList,(PatientList patientList),void,testDeletePatientList,HibernatePatientListDAOTest
+74,4180644,deleteDrugGroup,(DrugGroup drugGroup),void,testDeleteDrugGroupShouldUsePrivileges,DrugGroupServiceImplTest
+75,4180644,getPatientsInPatientList,"(@RequestParam Map<String, String> params, HttpServletRequest request)",String,getPatientsInPatientList_shouldGetPatientsInPatientList,PatientListControllerTest
+76,4180644,getAllRaxaAlerts,(boolean includeSeen),List<RaxaAlert>,testGetAllRaxaAlert_shouldReturnAllRaxaAlertsIncludingVoided,HibernateRaxaAlertDAOTest
+77,4180644,getDrugGroupByUuid,(String uuid),DrugGroup,testGetDrugGroupByUuidShouldUsePrivileges,DrugGroupServiceImplTest
+78,4180644,createNewEncounter,"(@RequestBody SimpleObject post, HttpServletRequest request, HttpServletResponse response)",Object,testCreateNewEncounter,RaxaEncounterControllerTest
+79,4180644,getDrugGroup,(Integer id),DrugGroup,testGetDrugGroupShouldReturnDrugGroup,DrugGroupServiceImplTest
+80,4180644,getDrugGroupByName,(String name),List<DrugGroup>,testGetDrugGroupByNameShouldUsePrivileges,DrugGroupServiceImplTest
+81,4180644,getAllDrugInfoByUuid,"(@PathVariable(""uuid"") String uuid, HttpServletRequest request)",String,testGetAllDrugInfoByUuid,DrugInfoControllerTest
+82,4180644,searchByToLocation,"(@RequestParam(""toLocation"") String toLocation, HttpServletRequest request)",String,searchByToLocation_shouldGetAlertsByLocation,RaxaAlertControllerTest
+83,4180644,saveDrugInfo,(DrugInfo drugInfo),DrugInfo,testSaveDrugInfo,HibernateDrugInfoDAOTest
+84,4180644,getDrugByUuidFull,"(@PathVariable(""uuid"") String uuid, @RequestParam(""v"") String rep,
+	        HttpServletRequest request)",String,getDrugByUuidFull_shouldGetFullDrug,RaxaDrugControllerTest
+85,4180644,getDrugPuchaseOrderByUuid,"(@PathVariable(""uuid"") String uuid, HttpServletRequest request)",String,testGetDrugPuchaseOrderByUuid,DrugPurchaseOrderControllerTest
+86,4180644,savePatientList,(PatientList patientList),PatientList,testSavePatientList,HibernatePatientListDAOTest
+87,4180644,saveDrugInfo,(DrugInfo drugInfo),DrugInfo,testSaveDrugInfoShouldUsePrivileges,DrugInfoServiceImplTest
+88,4180644,getEncountersInPatientList,(PatientList patientList),List<Encounter>,testGetEncountersInPatientListShouldReturnEncountersOfRequiredProvider,PatientListServiceImplTest
+89,4180644,getPatientListByName,(String name),List<PatientList>,testGetPatientListByNameShouldUsePrivileges,PatientListServiceImplTest
+90,4180644,getDrugGroupsByName,"(@RequestParam(""q"") String query, HttpServletRequest request)",String,getDrugGroupsByName_shouldFindMatchingDrugGroups,DrugGroupControllerTest
+91,4180644,getRaxaAlertByProviderRecipientId,"(Integer providerRecipientId, boolean includeSeen)",List<RaxaAlert>,testGetRaxaAlertByProviderRecipientId,HibernateRaxaAlertDAOTest
+92,4180644,getDrugInfo,(Integer id),DrugInfo,testGetDrugInfoShouldUsePrivileges,DrugInfoServiceImplTest
+93,4180644,getPatientsInPatientList,(PatientList patientList),List<Patient>,testGetPatientsInPatientListShouldNotReturnPatientsWithInvalidDates,PatientListServiceImplTest
+94,4180644,getAllDrugInfo,(boolean includeRetired),List<DrugInfo>,testGetAllDrugInfo_shouldReturnUnretiredDrugInfo,HibernateDrugInfoDAOTest
+95,4180644,getAllRaxaAlerts,"(HttpServletRequest request, HttpServletResponse response)",String,shouldGetAll,RaxaAlertControllerTest
+96,4180644,deleteDrugPurchaseOrder,(DrugPurchaseOrder drugPurchaseOrder),void,testDeleteDrugPurchaseOrder,HibernateDrugPurchaseOrderDAOTest
+97,4180644,getDrugInventoryByProvider,(Integer providerId),List<DrugInventory>,testGetDrugInventoryByProvider,HibernateDrugInventoryDAOTest
+98,4180644,getDrugInfo,(Integer id),DrugInfo,testGetDrugInfoShouldReturnDrugInfo,DrugInfoServiceImplTest
+99,4180644,getAllPatientList,(boolean includeRetired),List<PatientList>,testGetAllPatientList_shouldReturnAllPatientListIncludingRetired,PatientListServiceImplTest
+100,4180644,retireDrugInfo,"(@PathVariable(""uuid"") String uuid,
+	        @RequestParam(value = ""reason"", defaultValue = ""web service call"") String reason, HttpServletRequest request,
+	        HttpServletResponse response)",Object,testRetireDrugInfo,DrugInfoControllerTest
+101,4180644,deleteDrugGroup,(DrugGroup drugGroup),void,testDeleteDrugGroup,HibernateDrugGroupDAOTest
+102,4180644,updateDrugGroup,(DrugGroup drugGroup),DrugGroup,testUpdateDrugGroup,HibernateDrugGroupDAOTest
+103,4180644,getAllDrugInfo,(boolean includeRetired),List<DrugInfo>,testGetAllDrugInfo_shouldReturnAllDrugInfoIncludingRetired,HibernateDrugInfoDAOTest
+104,4180644,getPatientList,(Integer patientListId),PatientList,testGetPatientList,HibernatePatientListDAOTest
+105,4180644,getLoginInfo,"(HttpServletRequest request, HttpServletResponse response)",String,testGetLoginInfo,RaxaLoginControllerTest
+106,4180644,updateDrugInventory,(DrugInventory drugInventory),DrugInventory,testUpdateDrugInventory,HibernateDrugInventoryDAOTest
+107,4180644,saveDrugInventory,"(@RequestBody SimpleObject post, HttpServletRequest request, HttpServletResponse response)",Object,testSaveDrugInventory,DrugInventoryControllerTest
+108,4180644,getDrugInfoByUuid,(String uuid),DrugInfo,testGetDrugInfoByUuid,HibernateDrugInfoDAOTest
+109,4180644,createNewUser,"(@RequestBody SimpleObject post, HttpServletRequest request, HttpServletResponse response)",Object,testCreateNewProviderUser,RaxaUserControllerTest
+110,4180644,getAllDrugInfo,(boolean includeVoided),List<DrugInfo>,testGetAllDrugInfo_shouldReturnAllDrugInfoIncludingRetired,DrugInfoServiceImplTest
+111,4180644,getAllDrugInventories,(),List<DrugInventory>,testGetAllDrugInventories,HibernateDrugInventoryDAOTest
+112,4180644,getRaxaAlertByUuid,(String uuid),RaxaAlert,testGetRaxaAlertByUuid,HibernateRaxaAlertDAOTest
+113,4180644,getAllDrugPurchaseOrdersNotReceived,(),List<DrugPurchaseOrder>,testGetAllDrugPurchaseOrdersNotReceived,HibernateDrugPurchaseOrderDAOTest
+114,4180644,getPatientsInPatientListV2,"(@RequestParam Map<String, String> params, HttpServletRequest request)",String,getPatientsInPatientListV2_shouldGetPatients,PatientListControllerTest
+115,4180644,saveDrugGroup,(DrugGroup drugGroup),DrugGroup,testSaveDrugGroupShouldUsePrivileges,DrugGroupServiceImplTest
+116,4180644,getAllDrugInventoriesByStatus,(String status),List<DrugInventory>,testGetAllDrugInventoriesByStatus,HibernateDrugInventoryDAOTest
+117,4180644,updatePatientList,(PatientList patientList),PatientList,testUpdatePatientList,HibernatePatientListDAOTest
+118,4180644,getRelationshipByUuid,"(@PathVariable(""uuid"") String uuid, HttpServletRequest request)",String,testGetRelationshipByUuid,RaxaPatientAccessControllerTest
+119,4180644,retireDrugGroup,"(@PathVariable(""uuid"") String uuid,
+	        @RequestParam(value = ""reason"", defaultValue = ""web service call"") String reason, HttpServletRequest request,
+	        HttpServletResponse response)",Object,retireDrugGroup_shouldRetireADrugGroup,DrugGroupControllerTest
+120,4180644,getPatientListByEncounterType,(EncounterType encounterType),List<PatientList>,testGetPatientListByEncounterTypeShouldUsePrivileges,PatientListServiceImplTest
+121,4180644,getDrugGroup,(Integer id),DrugGroup,testGetDrugGroupShouldUsePrivileges,DrugGroupServiceImplTest
+122,4180644,getDrugPurchaseOrderByStockLocation,(Integer stockLocation),List<DrugPurchaseOrder>,testGetDrugPurchaseOrderByStockLocation,HibernateDrugPurchaseOrderDAOTest
+123,4180644,getRaxaAlertByName,"(String name, boolean includeSeen)",List<RaxaAlert>,testGetRaxaAlertByName,HibernateRaxaAlertDAOTest
+124,4180644,getAllRelationships,"(HttpServletRequest request, HttpServletResponse response)",String,testGetAllRelationships,RaxaPatientAccessControllerTest
+125,4180644,savePatientList,(PatientList patientList),PatientList,testSavePatientListShouldUsePrivileges,PatientListServiceImplTest
+126,4180644,getDrugGroupByName,(String name),List<DrugGroup>,testGetDrugGroupByNameShouldReturnDrugGroup,DrugGroupServiceImplTest
+127,4180644,saveDrugGroup,(DrugGroup drugGroup),DrugGroup,testSaveDrugGroup,HibernateDrugGroupDAOTest
+128,4180644,getDrugInfosByDrugName,(String name),List<DrugInfo>,testGetDrugInfosByNameShouldReturnDrugInfos,DrugInfoServiceImplTest
+129,4180644,getAllPatientListByUuidFull,"(@PathVariable(""uuid"") String uuid, @RequestParam(""v"") String rep,
+	        HttpServletRequest request)",String,getPatientListByUuidFull_shouldGetAFullRepresentationOfAPatientList,PatientListControllerTest
+130,4180644,getDrugInventoriesByLocation,(Integer location),List<DrugInventory>,testGetDrugInventoryByLocation,HibernateDrugInventoryDAOTest
+131,4180644,getPatientListByEncounterType,(EncounterType encounterType),List<PatientList>,testGetPatientListByEncounterType,HibernatePatientListDAOTest
+132,4180644,getDrugGroup,(Integer drugGroupId),DrugGroup,testGetDrugGroup,HibernateDrugGroupDAOTest
+133,4180644,getAllDrugGroups,"(HttpServletRequest request, HttpServletResponse response)",String,shouldGetAll,DrugGroupControllerTest
+134,4180644,getPatientListsByName,"(@RequestParam(""q"") String query, HttpServletRequest request)",String,getPatientListsByName_shouldReturnNoResultsIfThereAreNoMatchingPatientList,PatientListControllerTest
+135,4180644,getAllDrugGroupByUuidFull,"(@PathVariable(""uuid"") String uuid, @RequestParam(""v"") String rep,
+	        HttpServletRequest request)",String,getDrugGroupByUuidFull_shouldGetAFullRepresentationOfADrugGroup,DrugGroupControllerTest
+136,4180644,getAllPatientLists,"(HttpServletRequest request, HttpServletResponse response)",String,shouldGetAll,PatientListControllerTest
+137,4180644,getEncountersInPatientList,(PatientList patientList),List<Encounter>,testGetEncountersInPatientListShouldFilterDrugOrders,PatientListServiceImplTest

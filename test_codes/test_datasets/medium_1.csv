@@ -1,0 +1,172 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,688360,compare,"(char[] c1, char[] c2)",int,testNullOrEmptyCharArrayComparison,GenericUtilsTest
+1,688360,scan,(),Collection<Path>,testDeepScanning,DirectoryScannerTest
+2,688360,readLength,(),int,testReadLengthConstraint,DERParserTest
+3,688360,providerOf,"(ClientSession clientSession, String prompt)",PasswordIdentityProvider,testInteractionAllowedConsultation,InteractivePasswordIdentityProviderTest
+4,688360,validateStrictKeyFilePermissions,"(Path path, LinkOption... options)","SimpleImmutableEntry<String, Object>",testValidateStrictKeyFilePermissions,KeyUtilsTest
+5,688360,add,(int delta),IntUnaryOperator,testAdd,Int2IntFunctionTest
+6,688360,handleWindowAdjust,(Buffer buffer),void,testHandleWindowAdjust,ChannelSessionTest
+7,688360,validateStrictConfigFilePermissions,"(Path path, LinkOption... options)","SimpleImmutableEntry<String, Object>",testValidateStrictConfigFilePermissions,ModifiableFileWatcherTest
+8,688360,configure,"(
+            M manager, PropertyResolver props, boolean lenient, boolean ignoreUnsupported)",M,testConfigureAbstractFactoryManagerWithDefaults,SshConfigFileReaderTest
+9,688360,writePrivateKey,"(KeyPair key, String comment, OpenSSHKeyEncryptionContext options, OutputStream out)",void,testWritePrivateKeyEncryptedAesCbc128,OpenSSHKeyPairResourceWriterTest
+10,688360,stop,(),void,stopMethodShouldBeIdempotent,SshServerTest
+11,688360,getEOLBytes,(),byte[],testGetEOLBytes,IoUtilsTest
+12,688360,close,(),void,testCanKeepReadingAfterClose,NoCloseInputStreamTest
+13,688360,getPath,(URI uri),Path,testReadFileInvalid,RootedFileSystemProviderTest
+14,688360,getSession,(),Session<DirEntry>,testOpenCloseStateReport,ApacheSshdSftpSessionFactoryTest
+15,688360,isECCSupported,(),boolean,testLoadUnencryptedECPrivateKey,SecurityUtilsTest
+16,688360,readIdentification,(Buffer buffer),boolean,testReadIdentLongHeader,AbstractSessionTest
+17,688360,close,(),void,testCanKeepReadingAfterClose,NoCloseReaderTest
+18,688360,reloadClientIdentities,"(SessionContext session, Path path)",Iterable<KeyPair>,testIdentityReload,ClientIdentityFileWatcherTest
+19,688360,sub,(int delta),IntUnaryOperator,testSub,Int2IntFunctionTest
+20,688360,verify,"(SessionContext session, byte[] sig)",boolean,testTooShortSignature,SignatureDSATest
+21,688360,isIntegerNumber,(CharSequence cs),boolean,testIsInvalidIntegerNumber,NumberUtilsTest
+22,688360,detectDefaultPublicRingFilePath,(),Path,testDefaultRingPath,PGPPublicRingWatcherTest
+23,688360,writePrivateKey,"(KeyPair key, String comment, OpenSSHKeyEncryptionContext options, OutputStream out)",void,testFileRoundtripWithEncryption,OpenSSHKeyPairResourceWriterTest
+24,688360,sub,(int delta),IntUnaryOperator,testSubIdentity,Int2IntFunctionTest
+25,688360,accumulateException,"(T current, T extra)",T,testAccumulateExceptionOnNullValues,GenericUtilsTest
+26,688360,reloadHostConfigEntries,"(
+            Path path, String host, int port, String username, String proxyJump)",List<HostConfigEntry>,testConfigFileReload,ConfigFileHostEntryResolverTest
+27,688360,accumulateException,"(T current, T extra)",T,testAccumulateExceptionOnExistingCurrent,GenericUtilsTest
+28,688360,provider,(),SftpFileSystemProvider,testFileChannel,SftpFileSystemTest
+29,688360,getDisconnectReasonName,(int reason),String,testGetDisconnectReason,SshConstantsTest
+30,688360,div,(int factor),IntUnaryOperator,testDiv,Int2IntFunctionTest
+31,688360,getUserPrincipalLookupService,(),UserPrincipalLookupService,testAttributes,SftpFileSystemTest
+32,688360,writePublicKey,"(PublicKey key, String comment, OutputStream out)",void,testWritePublicKeyNoComment,OpenSSHKeyPairResourceWriterTest
+33,688360,writePrivateKey,"(KeyPair key, String comment, OpenSSHKeyEncryptionContext options, OutputStream out)",void,testWritePrivateKeyEncryptedNoPassword,OpenSSHKeyPairResourceWriterTest
+34,688360,getSignatures,(PropertyResolver props),BuiltinSignatures.ParseResult,testParseSignaturesList,SshConfigFileReaderTest
+35,688360,constant,(int v),IntUnaryOperator,testConstant,Int2IntFunctionTest
+36,688360,read,(),int,testInternalBufferSizeDoesNotGrow,TtyFilterInputStreamTest
+37,688360,writePublicKey,"(PublicKey key, String comment, OutputStream out)",void,testWritePublicKeyWithComment,OpenSSHKeyPairResourceWriterTest
+38,688360,writePublicKey,"(PublicKey key, String comment, OutputStream out)",void,testWritePublicKeyEmptyComment,OpenSSHKeyPairResourceWriterTest
+39,688360,getSession,(),Session<DirEntry>,testWriteRemoteFileContents,ApacheSshdSftpSessionFactoryTest
+40,688360,getOpenErrorCodeName,(int code),String,testGetOpenErrorName,SshConstantsTest
+41,688360,authenticate,"(String username, String password, ServerSession session)",boolean,testPasswordComparison,LdapPasswordAuthenticatorTest
+42,688360,resolvePort,(int originalPort),int,testResolvePort,HostConfigEntryTest
+43,688360,compare,"(char[] c1, char[] c2)",int,testCharArrayComparison,GenericUtilsTest
+44,688360,read,(),int,testReadOneChar,NullInputStreamTest
+45,688360,getSecurityProvider,(),Provider,testGetSecurityProvider,EdDSASecurityProviderRegistrarTest
+46,688360,getNextPowerOf2,(int value),int,testIntNextPowerOf2,NumberUtilsTest
+47,688360,writePrivateKey,"(KeyPair key, String comment, OpenSSHKeyEncryptionContext options, OutputStream out)",void,testWritePrivateKeyEncryptedWrongPassword,OpenSSHKeyPairResourceWriterTest
+48,688360,div,(int factor),IntUnaryOperator,testDivIdentity,Int2IntFunctionTest
+49,688360,getNextPowerOf2,(int value),int,testIntNextPowerOf2Overflow,NumberUtilsTest
+50,688360,checkNotNull,"(T t, String message)",T,checkNotNull,ValidateUtilsTest
+51,688360,readIdentification,(Buffer buffer),boolean,testReadIdentSimple,AbstractSessionTest
+52,688360,close,(),void,testCanKeepWritingAfterClose,NoCloseOutputStreamTest
+53,688360,resolveIdentityFilePath,"(String id, String host, int port, String username)",String,testResolveIdentityFilePath,HostConfigEntryTest
+54,688360,read,(),int,testReadFullBuffer,NullInputStreamTest
+55,688360,close,(),void,testCanKeepWritingAfterClose,NoCloseWriterTest
+56,688360,createLink,"(Path link, Path existing)",void,testCreateLink,RootedFileSystemProviderTest
+57,688360,writePEMKeyPair,"(KeyPair kp, Path targetPath)",void,testKeyReadWrite,BouncyCastleGeneratorHostKeyProviderTest
+58,688360,getPath,(URI uri),Path,testRmdirInvalid,RootedFileSystemProviderTest
+59,688360,putAndWipeBytes,(byte[] b),void,testPutAndWipeBytes,BufferTest
+60,688360,available,(),int,testAvailable,ChannelPipedInputStreamTest
+61,688360,resolveKeyLength,(PrivateKeyEncryptionContext encContext),int,testAvailableKeyLengthExists,AESPrivateKeyObfuscatorTest
+62,688360,loadKeys,(SessionContext session),Iterable<KeyPair>,testLazyKeyIdentityMultiProvider,MultiKeyIdentityProviderTest
+63,688360,getFingerPrint,(PublicKey key),String,testGenerateFingerPrintOnException,KeyUtilsTest
+64,688360,getPath,(URI uri),Path,testDeleteFileInvalid,RootedFileSystemProviderTest
+65,688360,getSession,(),Session<DirEntry>,testRetrieveRemoteFileContents,ApacheSshdSftpSessionFactoryTest
+66,688360,lazyConcatenateIterables,(Iterable<? extends Iterable<? extends T>> iterables),Iterable<T>,testLazyConcatenateIterables,LazyIterablesConcatenatorTest
+67,688360,scan,(),Collection<Path>,testFileSuffixMatching,DirectoryScannerTest
+68,688360,transferTo,"(long position, long count, WritableByteChannel target)",long,testTransferToFileChannel,SftpRemotePathChannelTest
+69,688360,followLinks,(LinkOption... options),boolean,testFollowLinks,IoUtilsTest
+70,688360,toHeader,(),String,testHeaderEquality,AbstractScpCommandDetailsTest
+71,688360,getPath,(URI uri),Path,testWriteFileInvalid,RootedFileSystemProviderTest
+72,688360,getUnsupportedAttributePolicy,(),UnsupportedAttributePolicy,testBuilderDefaultFactoryValues,SftpSubsystemFactoryTest
+73,688360,getPath,(URI uri),Path,testCopyFile,RootedFileSystemProviderTest
+74,688360,read,(),int,testReadPartialBuffer,NullInputStreamTest
+75,688360,copyFile,"(String src, String dst, boolean overwriteDestination)",void,testCopyFileExtension,CopyFileExtensionImplTest
+76,688360,newInstance,(Class<T> clazz),T,testBuiltinIoServiceFactoryFactories,DefaultIoServiceFactoryFactoryTest
+77,688360,create,(FactoryManager manager),IoServiceFactory,testExecutorServiceInitialization,DefaultIoServiceFactoryFactoryTest
+78,688360,toInteger,(Number n),Integer,testToInteger,NumberUtilsTest
+79,688360,createFileSystem,(SessionContext session),FileSystem,testFileSystemCreation,NoneFileSystemFactoryTest
+80,688360,skip,(long n),long,testSkip,NullInputStreamTest
+81,688360,readIdentification,(Buffer buffer),boolean,testReadIdentWithHeaders,AbstractSessionTest
+82,688360,writePrivateKey,"(KeyPair key, String comment, OpenSSHKeyEncryptionContext options, OutputStream out)",void,testWritePrivateKeyNoPassword,OpenSSHKeyPairResourceWriterTest
+83,688360,getFileName,(),T,testRelativePathSingleName,BasePathTest
+84,688360,getLong,(),long,testGetLong,BufferTest
+85,688360,resolveUsername,(String originalUser),String,testResolveUsername,HostConfigEntryTest
+86,688360,transferFile,"(String source, String destination, boolean preserveAttributes)",void,testTransferFiles,ScpRemote2RemoteTransferHelperTest
+87,688360,configureSignatures,"(
+            M manager, PropertyResolver props, boolean lenient, boolean ignoreUnsupported)",M,testNonLenientSignaturesConfiguration,SshConfigFileReaderTest
+88,688360,updateKnownHostsFile,"(
+            ClientSession clientSession, SocketAddress remoteAddress, PublicKey serverKey,
+            Path file, Collection<HostEntryPair> knownHosts)",KnownHostEntry,testNoUpdatesNoNewHostsAuthentication,KnownHostsServerKeyVerifierTest
+89,688360,write,(int b),void,testLineParsing,LineOutputStreamTest
+90,688360,calculateHashValue,"(String host, int port, Factory<? extends Mac> factory, byte[] salt)",byte[],testCalculateHashValue,KnownHostHashValueTest
+91,688360,transferDirectory,"(String source, String destination, boolean preserveAttributes)",void,testTransferDirectoriesRecursively,ScpRemote2RemoteTransferHelperTest
+92,688360,setSocketOptions,(S socket),S,testSetSocketOptions,Nio2ServiceTest
+93,688360,configureMacs,"(
+            M manager, PropertyResolver resolver, boolean lenient, boolean ignoreUnsupported)",M,testNonLenientMacsConfiguration,SshConfigFileReaderTest
+94,688360,readIdentification,(Buffer buffer),boolean,testReadIdentLongLine,AbstractSessionTest
+95,688360,toString,(),String,testIsValidPatternChar,HostConfigEntryTest
+96,688360,getVersion,(),int,testFileSystem,SftpFileSystemTest
+97,688360,stripQuotes,(CharSequence s),CharSequence,testStripQuotes,GenericUtilsTest
+98,688360,proxyWrapper,"(Class<T> listenerType, Iterable<? extends T> listeners)",T,testListenerInstanceComparatorOnProxy,EventListenerUtilsTest
+99,688360,mul,(int factor),IntUnaryOperator,testMulZero,Int2IntFunctionTest
+100,688360,writePrivateKey,"(KeyPair key, String comment, OpenSSHKeyEncryptionContext options, OutputStream out)",void,testFileRoundtripAsymmetric,OpenSSHKeyPairResourceWriterTest
+101,688360,translateToFileSystemPath,"(String path, String pathSeparator, FileSystem fs)",String,testTranslateToFileSystemPath,SelectorUtilsTest
+102,688360,readHostConfigEntries,"(Path path, OpenOption... options)",List<HostConfigEntry>,testReadSimpleHostsConfigEntries,HostConfigEntryTest
+103,688360,isIntegerNumber,(CharSequence cs),boolean,testIsValidIntegerNumber,NumberUtilsTest
+104,688360,div,(int factor),IntUnaryOperator,testDivZeroFactor,Int2IntFunctionTest
+105,688360,getPath,(URI uri),Path,testReadFile,RootedFileSystemProviderTest
+106,688360,getPath,(URI uri),Path,testCopyFileInvalid,RootedFileSystemProviderTest
+107,688360,resolveSibling,(Path other),Path,testResolveSiblingGivenEmptyPath,BasePathTest
+108,688360,getCompression,(PropertyResolver props),CompressionFactory,testGetCompression,SshConfigFileReaderTest
+109,688360,getCanonicalKeyType,(String keyType),String,testRSAKeyTypeAliases,KeyUtilsTest
+110,688360,getCiphers,(PropertyResolver props),BuiltinCiphers.ParseResult,testParseCiphersList,SshConfigFileReaderTest
+111,688360,loadInternalModuli,(URL url),List<DhGroup>,testLoadInternalModuli,ModuliTest
+112,688360,readHostConfigEntries,"(Path path, OpenOption... options)",List<HostConfigEntry>,testReadMultipleHostPatterns,HostConfigEntryTest
+113,688360,getCommandMessageName,(int cmd),String,testRealPathModesNotMarkedAsOpcodes,SftpConstantsTest
+114,688360,getPath,(URI uri),Path,testDeleteFile,RootedFileSystemProviderTest
+115,688360,readIdentification,(Buffer buffer),boolean,testReadIdentWithSplitPackets,AbstractSessionTest
+116,688360,createCipherSelector,"(int keyLength, String cipherMode)",Predicate<CipherInformation>,testSingleCipherMatch,AESPrivateKeyObfuscatorTest
+117,688360,getPath,(URI uri),Path,testMoveFile,RootedFileSystemProviderTest
+118,688360,stripDelimiters,"(CharSequence s, char delim)",CharSequence,testStripDelimiters,GenericUtilsTest
+119,688360,acceptModifiedServerKey,"(
+            ClientSession clientSession, SocketAddress remoteAddress,
+            KnownHostEntry entry, PublicKey expected, PublicKey actual)",boolean,testRejectModifiedServerKey,KnownHostsServerKeyVerifierTest
+120,688360,getCommandMessageName,(int cmd),String,testRenameModesNotMarkedAsOpcodes,SftpConstantsTest
+121,688360,readIdentification,(Buffer buffer),boolean,testReadIdentBadLineEnding,AbstractSessionTest
+122,688360,isHostMatch,"(String host, int port)",boolean,testHostMatch,KnownHostHashValueTest
+123,688360,readIdentification,(Buffer buffer),boolean,testReadIdentWithNullChar,AbstractSessionTest
+124,688360,putAndWipeChars,(char[] chars),void,testPutAndWipeChars,BufferTest
+125,688360,updateKnownHostsFile,"(
+            ClientSession clientSession, SocketAddress remoteAddress, PublicKey serverKey,
+            Path file, Collection<HostEntryPair> knownHosts)",KnownHostEntry,testFileUpdatedOnEveryNewHost,KnownHostsServerKeyVerifierTest
+126,688360,relativize,(Path other),T,testRelativizeOneAbsoluteOneRelative,BasePathTest
+127,688360,translateToLocalPath,(String path),String,testAbsoluteWindowsPathTranslation,SelectorUtilsTest
+128,688360,writePrivateKey,"(KeyPair key, String comment, OpenSSHKeyEncryptionContext options, OutputStream out)",void,testFileRoundtripNoEncryption,OpenSSHKeyPairResourceWriterTest
+129,688360,isSecurityEntitySupported,"(Class<?> entityType, String name)",boolean,testSupportedSecurityEntities,EdDSASecurityProviderRegistrarTest
+130,688360,mul,(int factor),IntUnaryOperator,testMul,Int2IntFunctionTest
+131,688360,getKexFactories,(PropertyResolver props),BuiltinDHFactories.ParseResult,testParseKexFactoriesList,SshConfigFileReaderTest
+132,688360,writePrivateKey,"(KeyPair key, String comment, OpenSSHKeyEncryptionContext options, OutputStream out)",void,testWritePrivateKeyNoEncryption,OpenSSHKeyPairResourceWriterTest
+133,688360,getSession,(),Session<DirEntry>,testListContents,ApacheSshdSftpSessionFactoryTest
+134,688360,readIdentification,(Buffer buffer),boolean,testReadIdentWithoutCR,AbstractSessionTest
+135,688360,getSession,(),ServerSession,testNoFlush,ChannelSessionTest
+136,688360,writePrivateKey,"(KeyPair key, String comment, OpenSSHKeyEncryptionContext options, OutputStream out)",void,testWritePrivateKeyEncryptedAesCtr256,OpenSSHKeyPairResourceWriterTest
+137,688360,resolveSibling,(Path other),Path,testResolveSiblingAgainstEmptyPath,BasePathTest
+138,688360,getStatusName,(int status),String,testSubstatusNameResolution,SftpConstantsTest
+139,688360,root,"(RootedFileSystem rfs, DirectoryStream<Path> ds)",DirectoryStream<Path>,testRoot,RootedFileSystemProviderTest
+140,688360,stripLeadingZeroes,(byte[] x),byte[],testStripLeadingZeroes,AbstractDHTest
+141,688360,mul,(int factor),IntUnaryOperator,testMulIdentity,Int2IntFunctionTest
+142,688360,transferFrom,"(ReadableByteChannel src, long position, long count)",long,testTransferFromFileChannel,SftpRemotePathChannelTest
+143,688360,findBestMatch,(Collection<? extends HostConfigEntry> matches),HostConfigEntry,testFindBestMatch,HostConfigEntryTest
+144,688360,toString,(),String,testHostSingleCharPatternMatching,HostConfigEntryTest
+145,688360,getUnsupportedAttributePolicy,(),UnsupportedAttributePolicy,testBuilderCorrectlyInitializesFactory,SftpSubsystemFactoryTest
+146,688360,parsePtyModes,(String stty),"Map<PtyMode, Integer>",testParseSttyOutput,SttySupportTest
+147,688360,proxyWrapper,"(Class<T> listenerType, Iterable<? extends T> listeners)",T,testProxyWrapper,EventListenerUtilsTest
+148,688360,concatPaths,"(String p1, String p2, char fsSeparator)",String,testConcatPathsOneEmptyOrNull,SelectorUtilsTest
+149,688360,transferTo,"(long position, long count, WritableByteChannel target)",long,testTransferToFileChannelLoopFile,SftpRemotePathChannelTest
+150,688360,getPath,(URI uri),Path,testWriteFile,RootedFileSystemProviderTest
+151,688360,writePublicKey,"(PublicKey key, String comment, OutputStream out)",void,testWritePublicKeyWithMultilineComment,OpenSSHKeyPairResourceWriterTest
+152,688360,getUserHomeDir,(SessionContext session),Path,testUserHomeDirectory,NoneFileSystemFactoryTest
+153,688360,configureCiphers,"(
+            M manager, PropertyResolver props, boolean lenient, boolean ignoreUnsupported)",M,testNonLenientCiphersConfiguration,SshConfigFileReaderTest
+154,688360,lazySelectMatchingTypes,"(Iterator<?> values, Class<T> type)",Iterator<T>,testLazySelectMatchingTypes,LazyMatchingTypeIteratorTest
+155,688360,available,(),int,testAvailable,NullInputStreamTest
+157,688360,getPath,(URI uri),Path,testMoveFileInvalid,RootedFileSystemProviderTest
+158,688360,getMacs,(PropertyResolver props),BuiltinMacs.ParseResult,testParseMacsList,SshConfigFileReaderTest
+159,688360,add,(int delta),IntUnaryOperator,testAddIdentity,Int2IntFunctionTest
+160,688360,available,(String path),SpaceAvailableExtensionInfo,testFileStoreReport,SpaceAvailableExtensionImplTest

@@ -1,0 +1,192 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,4265123,getSingularName,(String pluralName),String,testGetSingularName,MethodHelperTest
+1,4265123,getTemplateParameterSubstitution,(Type type),List<String>,testGetTemplateParameterSubstitutionNotPrimitiveType,UmlHelperTest
+2,4265123,generatePackage,"(Classifier clazz, AST ast, CompilationUnit cu)",void,testGeneratePackage,InterfaceGeneratorTest
+3,4265123,findSlotByName,"(String name, EnumerationLiteral enumLiteral)",Slot,testFindSlotByNameFoundIt,EnumGeneratorTest
+4,4265123,getAstParameterizedType,"(AST ast, String typeName)",ParameterizedType,testGetAstParameterizedTypesComplex2,JdtHelperTest
+5,4265123,isParameterizedType,(String typeName),boolean,testIsParameterizedType1,DataTypeUtilsTest
+6,4265123,removeUmlPrefixes,(final String fullQualifiedName),String,testRemoveUmlPrefixes7,PackageHelperTest
+7,4265123,generateGetterSetterJavadoc,"(AST ast, Property property,
+			MethodDeclaration methodDeclaration)",void,testGenerateGetterSetterJavadoc,InterfaceGeneratorTest
+8,4265123,createReturnTypeAsCollection,"(AST ast,
+			AbstractTypeDeclaration td, MethodDeclaration md,
+			String umlTypeName, String umlQualifiedTypeName,
+			String sourceDirectoryPackageName, String collectionTypeConstant)",void,testCreateReturnTypeAsCollectionResultCollection,JdtHelperTest
+9,4265123,generateAssociationEndUpperCardinalityMultiples,"(AST ast,
+			AbstractTypeDeclaration td, Property property,
+			MethodDeclaration mdGetter, String umlTypeName,
+			String umlQualifiedTypeName)",void,testGenerateAssociationEndUpperCardinalityMultiplesDefault,InterfaceGeneratorTest
+10,4265123,getFullPackageName,"(Classifier clazz,
+			String sourceDirectoryPackageName)",String,testGetFullPackageNameWithGenericsDataBindings2,PackageHelperTest
+11,4265123,createFullQualifiedTypeAsName,"(AST ast,
+			String fullQualifiedUmlTypeName, String sourceDirectoryPackageName)",Name,testCreateFullQualifiedTypeAsName,JdtHelperTest
+12,4265123,generateAssociationEndUpperCardinalityMultiples,"(AST ast,
+			AbstractTypeDeclaration td, Property property,
+			MethodDeclaration mdGetter, String umlTypeName,
+			String umlQualifiedTypeName)",void,testGenerateAssociationEndUpperCardinalityMultiplesIsOrdered,InterfaceGeneratorTest
+13,4265123,removeUmlPrefixes,(final String fullQualifiedName),String,testRemoveUmlPrefixes8,PackageHelperTest
+14,4265123,getGetterName,(String name),String,testGetGetterName,MethodHelperTest
+15,4265123,getGuiceModuleName,(String transformerClazzName),String,testGetGuiceModuleName,KissMdaMojoTest
+16,4265123,generateClass,"(Classifier clazz, AST ast,
+			CompilationUnit cu)",TypeDeclaration,testGenerateClassCheckedExceptionWithNoInheritance,ExceptionGeneratorTest
+17,4265123,removeUmlPrefixes,(final String fullQualifiedName),String,testRemoveUmlPrefixes14,PackageHelperTest
+18,4265123,removeUmlPrefixes,(final String fullQualifiedName),String,testRemoveUmlPrefixes3,PackageHelperTest
+19,4265123,createReturnTypeAsCollection,"(AST ast,
+			AbstractTypeDeclaration td, MethodDeclaration md,
+			String umlTypeName, String umlQualifiedTypeName,
+			String sourceDirectoryPackageName, String collectionTypeConstant)",void,testCreateReturnTypeAsCollectionResultSet,JdtHelperTest
+20,4265123,transform,(Context context),void,testTransform,ImportPackerTransformerTest
+21,4265123,getFullPackageName,"(Classifier clazz,
+			String sourceDirectoryPackageName)",String,testGetFullPackageNameWithGenericsDataBindings1,PackageHelperTest
+22,4265123,generateMethodParams,"(AST ast, TypeDeclaration td,
+			Operation operation, MethodDeclaration md)",void,testGenerateMethodParams,InterfaceGeneratorTest
+23,4265123,isArrayType,(String typeName),boolean,testIsArrayType2,DataTypeUtilsTest
+24,4265123,createFile,"(final Context context, final String directory, final String fileName,
+			final String fileContent)",void,testCreateFile,FileWriterTest
+25,4265123,generateConstructorWithParams,"(Classifier clazz, AST ast,
+			TypeDeclaration td, String[] varTypes, String[] varNames)",void,testGenerateConstructorWithParams,ExceptionGeneratorTest
+26,4265123,removeUmlPrefixes,(final String fullQualifiedName),String,testRemoveUmlPrefixes11,PackageHelperTest
+27,4265123,createParameterTypes,"(AST ast, AbstractTypeDeclaration td,
+			MethodDeclaration md, String umlTypeName,
+			String umlQualifiedTypeName, String umlPropertyName,
+			String sourceDirectoryPackageName)",void,testCreateParameterTypes,JdtHelperTest
+28,4265123,generateGetterMethod,"(AST ast,
+			AbstractTypeDeclaration td, Property property, String umlTypeName,
+			String umlQualifiedTypeName)",MethodDeclaration,testGenerateGetterMethodTypeLowerCaseBoolean,InterfaceGeneratorTest
+29,4265123,getFullPackageName,"(Classifier clazz,
+			String sourceDirectoryPackageName)",String,testGetFullPackageNameWithGenericsDataBindings3,PackageHelperTest
+30,4265123,getAstParameterizedType,"(AST ast, String typeName)",ParameterizedType,testGetAstParameterizedTypeWithFullyQualifiedName,JdtHelperTest
+31,4265123,getAstPrimitiveType,"(AST ast, String typeName)",PrimitiveType,testGetAstPrimitiveType,JdtHelperTest
+32,4265123,getAstParameterizedType,"(AST ast, String typeName)",ParameterizedType,testGetAstParameterizedTypesWithEmptySpace,JdtHelperTest
+33,4265123,getAstSimpleType,"(AST ast, String typeName)",SimpleType,testGetAstSimpleTypeJavaTypeList,JdtHelperTest
+34,4265123,isParameterizedType,(String typeName),boolean,testIsNotParameterizedType,DataTypeUtilsTest
+35,4265123,generateGetterMethod,"(Classifier clazz, AST ast,
+			EnumDeclaration ed)",void,testGenerateGetterMethod,EnumGeneratorTest
+36,4265123,removeUmlPrefixes,(final String fullQualifiedName),String,testRemoveUmlPrefixes5,PackageHelperTest
+37,4265123,getFullPackageName,"(Classifier clazz,
+			String sourceDirectoryPackageName)",String,testGetFullPackageNameWithGenerics,PackageHelperTest
+38,4265123,getPluralName,(String singularName),String,testGetPluralName,MethodHelperTest
+39,4265123,generateAssociationEndUpperCardinalityMultiples,"(AST ast,
+			AbstractTypeDeclaration td, Property property,
+			MethodDeclaration mdGetter, String umlTypeName,
+			String umlQualifiedTypeName)",void,testGenerateAssociationEndUpperCardinalityMultiplesIsUniqueAndIsOrdered,InterfaceGeneratorTest
+40,4265123,getFullPackageName,"(Classifier clazz,
+			String sourceDirectoryPackageName)",String,testGetFullPackageNameWithCompanyWithDataAndUmlPrefixes,PackageHelperTest
+41,4265123,getTemplateParameterSubstitution,(Type type),List<String>,testGetTemplateParameterSubstitutionPrimitiveType,UmlHelperTest
+42,4265123,generateMethodParams,"(AST ast, TypeDeclaration td,
+			Operation operation, MethodDeclaration md)",void,testGenerateMethodParamsWithOneParameterWithGenerics,InterfaceGeneratorTest
+43,4265123,getAstParameterizedType,"(AST ast, String typeName)",ParameterizedType,testGetAstParameterizedType,JdtHelperTest
+44,4265123,createReturnTypeAsCollection,"(AST ast,
+			AbstractTypeDeclaration td, MethodDeclaration md,
+			String umlTypeName, String umlQualifiedTypeName,
+			String sourceDirectoryPackageName, String collectionTypeConstant)",void,testCreateReturnTypeGenericsAsCollectionResultSortedSet,JdtHelperTest
+45,4265123,removeUmlPrefixes,(final String fullQualifiedName),String,testRemoveUmlPrefixes13,PackageHelperTest
+46,4265123,generateGetterMethod,"(AST ast,
+			AbstractTypeDeclaration td, Property property, String umlTypeName,
+			String umlQualifiedTypeName)",MethodDeclaration,testGenerateGetterMethodTypeBoolean,InterfaceGeneratorTest
+47,4265123,generateClass,"(Classifier clazz, AST ast,
+			CompilationUnit cu)",TypeDeclaration,testGenerateClass,InterfaceGeneratorTest
+48,4265123,getTemplateParameterSubstitution,(Type type),List<String>,testGetTemplateParameterSubstitutionNotPrimitiveTypeButJavaType,UmlHelperTest
+49,4265123,getFullPackageName,"(Classifier clazz,
+			String sourceDirectoryPackageName)",String,testGetFullPackageNameWithString,PackageHelperTest
+50,4265123,generateClass,"(Classifier clazz, AST ast,
+			CompilationUnit cu)",TypeDeclaration,testGenerateClassCheckedExceptionWithInheritance,ExceptionGeneratorTest
+51,4265123,configure,(),void,testConfigure,SimpleJavaModuleTest
+52,4265123,removeUmlPrefixes,(final String fullQualifiedName),String,testRemoveUmlPrefixes6,PackageHelperTest
+53,4265123,isJavaType,(String typeName),boolean,testIsJavaType2,DataTypeUtilsTest
+54,4265123,removeUmlPrefixes,(final String fullQualifiedName),String,testRemoveUmlPrefixes2,PackageHelperTest
+55,4265123,generateEnum,"(Classifier clazz,
+			String sourceDirectoryPackageName)",CompilationUnit,testGenerateEnum,EnumGeneratorTest
+56,4265123,generateGetterMethod,"(AST ast,
+			AbstractTypeDeclaration td, Property property, String umlTypeName,
+			String umlQualifiedTypeName)",MethodDeclaration,testGenerateGetterMethodUpperAsterisk,InterfaceGeneratorTest
+57,4265123,removeUmlPrefixes,(final String fullQualifiedName),String,testRemoveUmlPrefixes9,PackageHelperTest
+58,4265123,removeUmlPrefixes,(final String fullQualifiedName),String,testRemoveUmlPrefixes4,PackageHelperTest
+59,4265123,generateConstructors,"(Classifier clazz, AST ast,
+			TypeDeclaration td)",void,testGenerateConstructors,ExceptionGeneratorTest
+60,4265123,findSlotByName,"(String name, EnumerationLiteral enumLiteral)",Slot,testFindSlotByNameNotFound,EnumGeneratorTest
+61,4265123,removeUmlPrefixes,(final String fullQualifiedName),String,testRemoveUmlPrefixes10,PackageHelperTest
+62,4265123,getFullPackageName,"(Classifier clazz,
+			String sourceDirectoryPackageName)",String,testGetFullPackageNameWithStringNonData,PackageHelperTest
+63,4265123,generateMethodTemplateParams,"(AST ast, Operation operation,
+			MethodDeclaration md)",void,testGenerateMethodTemplateParams,InterfaceGeneratorTest
+64,4265123,generateClass,"(Classifier clazz, AST ast,
+			CompilationUnit cu)",TypeDeclaration,testGenerateClassCheckedExceptionWithTemplate,ExceptionGeneratorTest
+65,4265123,generateContructorParameters,"(Classifier clazz, AST ast,
+			MethodDeclaration md)",void,testGenerateContructorParameters,EnumGeneratorTest
+66,4265123,getAstSimpleType,"(AST ast, String typeName)",SimpleType,testGetAstSimpleTypeJavaTypeNotNull,JdtHelperTest
+67,4265123,getFullPackageName,"(Classifier clazz,
+			String sourceDirectoryPackageName)",String,testGetFullPackageNameWithStringWithDataAndUmlPrefixes,PackageHelperTest
+68,4265123,generateGetterMethod,"(AST ast,
+			AbstractTypeDeclaration td, Property property, String umlTypeName,
+			String umlQualifiedTypeName)",MethodDeclaration,testGenerateGetterMethodUpperZero,InterfaceGeneratorTest
+69,4265123,checkParameterizedTypeForTemplateParameterSubstitution,"(
+			Type type)","Map<String, String>",testCheckParameterizedTypeForTemplateParameterSubstitution,UmlHelperTest
+70,4265123,isJavaType,(String typeName),boolean,testIsJavaType1,DataTypeUtilsTest
+71,4265123,getAstSimpleType,"(AST ast, String typeName)",SimpleType,testGetAstSimpleTypeJavaTypeNull,JdtHelperTest
+72,4265123,getAstArrayType,"(AST ast, String typeName)",ArrayType,testGetAstArrayTypePrimitive,JdtHelperTest
+73,4265123,generateClassJavadoc,"(Classifier clazz, AST ast,
+			AbstractTypeDeclaration td)",void,testGenerateClassJavadoc,InterfaceGeneratorTest
+74,4265123,isParameterizedType,(String typeName),boolean,testIsParameterizedType2,DataTypeUtilsTest
+75,4265123,checkParameterizedTypeForTemplateParameterSubstitution,"(
+			Type type)","Map<String, String>",testCheckParameterizedTypeForTemplateParameterSubstitutionWithNoSubstitution,UmlHelperTest
+76,4265123,createParameterTypesAsCollection,"(AST ast,
+			AbstractTypeDeclaration td, MethodDeclaration md,
+			String umlTypeName, String umlQualifiedTypeName,
+			String umlPropertyName, String sourceDirectoryPackageName,
+			String collectionTypeConstant)",void,testCreateParameterTypesAsCollection,JdtHelperTest
+77,4265123,getAstSimpleType,"(AST ast, String typeName)",SimpleType,testGetAstSimpleTypeJavaTypeCollection,JdtHelperTest
+78,4265123,getAstPrimitiveType,"(AST ast, String typeName)",PrimitiveType,testGetAstPrimitiveTypeBoolean,JdtHelperTest
+79,4265123,generateClass,"(Classifier clazz, AST ast,
+			CompilationUnit cu)",TypeDeclaration,testGenerateClassWithInheritance,InterfaceGeneratorTest
+80,4265123,getFullPackageName,"(Classifier clazz,
+			String sourceDirectoryPackageName)",String,testGetFullPackageNameWithClass,PackageHelperTest
+81,4265123,getLevel,(String level),Level,testGetLevel,LoggingLevelMapperTest
+82,4265123,generateClass,"(Classifier clazz, AST ast,
+			CompilationUnit cu)",TypeDeclaration,testGenerateClassWithTemplate,InterfaceGeneratorTest
+83,4265123,overwriteJavaTypes,(),void,testOverwriteJavaTypes,DataTypeUtilsTest
+84,4265123,generateAssociationEndUpperCardinalityMultiples,"(AST ast,
+			AbstractTypeDeclaration td, Property property,
+			MethodDeclaration mdGetter, String umlTypeName,
+			String umlQualifiedTypeName)",void,testGenerateAssociationEndUpperCardinalityMultiplesIsUnique,InterfaceGeneratorTest
+85,4265123,getAstParameterizedType,"(AST ast, String typeName)",ParameterizedType,testGetAstParameterizedTypesComplex1,JdtHelperTest
+86,4265123,generateMethodParams,"(AST ast, TypeDeclaration td,
+			Operation operation, MethodDeclaration md)",void,testGenerateMethodParamsWithOneParameter,InterfaceGeneratorTest
+87,4265123,getFullPackageName,"(Classifier clazz,
+			String sourceDirectoryPackageName)",String,testGetFullPackageNameWithStringAlreadyOk,PackageHelperTest
+88,4265123,removeUmlPrefixes,(final String fullQualifiedName),String,testRemoveUmlPrefixes12,PackageHelperTest
+89,4265123,getAdderName,(String name),String,testAdderName,MethodHelperTest
+90,4265123,generateAttribute,"(Classifier clazz, AST ast,
+			Property property)",FieldDeclaration,testGenerateAttribute,EnumGeneratorTest
+91,4265123,getFullPackageName,"(Classifier clazz,
+			String sourceDirectoryPackageName)",String,testGetFullPackageNameWithStringAlreadyOkWithoutSourceDirectoryPackageName,PackageHelperTest
+92,4265123,format,(String compilationUnit),String,testFormat,JavaCodeFormatterTest
+93,4265123,isPrimitiveType,(String typeName),boolean,testIsPrimitiveType1,DataTypeUtilsTest
+94,4265123,generateMethodJavadoc,"(AST ast, Operation operation,
+			MethodDeclaration md)",void,testGenerateMethodJavadoc,InterfaceGeneratorTest
+95,4265123,getClassName,(final String fullClassName),String,testGetClassName,JdtHelperTest
+96,4265123,generateMethods,"(Classifier clazz, AST ast, TypeDeclaration td)",void,testGenerateMethods,InterfaceGeneratorTest
+97,4265123,pack,(),void,test_Existing_Static_Imports2,ImportPackerTest
+98,4265123,createReturnTypeAsCollection,"(AST ast,
+			AbstractTypeDeclaration td, MethodDeclaration md,
+			String umlTypeName, String umlQualifiedTypeName,
+			String sourceDirectoryPackageName, String collectionTypeConstant)",void,testCreateReturnTypeAsCollectionResultList,JdtHelperTest
+99,4265123,generateSerialVersionUID,"(Classifier clazz, AST ast,
+			TypeDeclaration td)",void,testGenerateSerialVersionUID,ExceptionGeneratorTest
+100,4265123,getSetterName,(String name),String,testGetSetterName,MethodHelperTest
+101,4265123,createJavaFile,"(final Context context, final String packageName,
+			final String className, final String classContent)",void,testCreateFile,JavaFileWriterTest
+102,4265123,createReturnType,"(AST ast, AbstractTypeDeclaration td,
+			MethodDeclaration md, String umlTypeName,
+			String umlQualifiedTypeName, String sourceDirectoryPackageName)",void,testCreateReturnType,JdtHelperTest
+103,4265123,generatePackage,"(Classifier clazz, AST ast, CompilationUnit cu)",void,testGeneratePackage,EnumGeneratorTest
+104,4265123,isPrimitiveType,(String typeName),boolean,testIsPrimitiveType2,DataTypeUtilsTest
+105,4265123,isArrayType,(String typeName),boolean,testIsArrayType1,DataTypeUtilsTest
+106,4265123,getAstParameterizedType,"(AST ast, String typeName)",ParameterizedType,testGetAstParameterizedTypesComplex3,JdtHelperTest
+107,4265123,createReturnTypeAsCollection,"(AST ast,
+			AbstractTypeDeclaration td, MethodDeclaration md,
+			String umlTypeName, String umlQualifiedTypeName,
+			String sourceDirectoryPackageName, String collectionTypeConstant)",void,testCreateReturnTypeAsCollectionResultSortedSet,JdtHelperTest
+108,4265123,getAstParameterizedType,"(AST ast, String typeName)",ParameterizedType,testGetAstParameterizedTypesWithoutEmptySpace,JdtHelperTest
+109,4265123,getIsName,(String name),String,testIsName,MethodHelperTest
+110,4265123,removeUmlPrefixes,(final String fullQualifiedName),String,testRemoveUmlPrefixes1,PackageHelperTest

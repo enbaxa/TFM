@@ -1,0 +1,233 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,6290993,topNYbyX,"(PTable<X, Y> input, final int n)","PTable<X, Collection<Pair<Long, Y>>>",testTopNYbyX,TopListTest
+1,6290993,isGeneric,(),boolean,testIsGeneric_SpecificAvroTable,AvroTypeTest
+2,6290993,booleans,(),AvroType<Boolean>,testBooleans,AvrosTest
+3,6290993,quads,"(PType<V1> p1, PType<V2> p2, PType<V3> p3,
+      PType<V4> p4)","AvroType<Tuple4<V1, V2, V3, V4>>",testQuads,AvrosTest
+4,6290993,equals,(Object obj),boolean,partitionOffsetNotEqualDiffGreaterTopic,OffsetsTest
+5,6290993,floats,(),AvroType<Float>,testFloats,AvrosTest
+6,6290993,doubles,(),"WritableType<Double, DoubleWritable>",testDoubles,WritablesTest
+7,6290993,distinct,(PCollection<S> input),PCollection<S>,testDistinct,DistinctTest
+8,6290993,specifics,(Class<T> clazz),AvroType<T>,testSpecific_AutoRegisterClassLoader,AvrosTest
+9,6290993,persistenceTimeToFileName,(long persistedTime),String,timeToFileName,HDFSOffsetWriterTest
+10,6290993,orcs,(TypeInfo typeInfo),PType<OrcStruct>,testOrcs,OrcsTest
+11,6290993,addJarToDistributedCache,"(Configuration conf, File jarFile)",void,testAddJar,DistCacheTest
+12,6290993,longs,(),"WritableType<Long, LongWritable>",testLongs,WritablesTest
+13,6290993,getPersistedTimeStoragePath,"(Path baseStoragePath, long persistedTime)",Path,getPersistedStoragePath,HDFSOffsetWriterTest
+14,6290993,getRecommendedPartitions,(PCollection<T> pcollection),int,testBasic,PartitionUtilsTest
+15,6290993,STRING_CONCAT,"(String separator, boolean skipNull)",Aggregator<String>,testConcatenation,AggregatorsTest
+16,6290993,bytes,(),AvroType<ByteBuffer>,testBytes,AvrosTest
+17,6290993,avroFile,"(String pathName, Class<T> avroClass)",Source<T>,testAvroFile_DirectoryWithSchemaInferenceIsSupported,FromTest
+18,6290993,formatNodePath,"(NodePath nodePath, JobPrototype jobPrototype)",List<String>,testFormatNodePath,DotfileWriterTest
+19,6290993,equals,(Object obj),boolean,partitionOffsetNotEqualDiffTopic,OffsetsTest
+20,6290993,getData,(),GenericData,getDataGeneric,AvroModeTest
+21,6290993,build,(),String,testBuild,JobNameBuilderTest
+22,6290993,nulls,(),"WritableType<Void, NullWritable>",testNulls,WritablesTest
+23,6290993,getRecommendedPartitions,(PCollection<T> pcollection),int,testDefaultMaxRecommended,PartitionUtilsTest
+24,6290993,FIRST_N,(int n),Aggregator<V>,testFirstN,AggregatorsTest
+25,6290993,getStoredOffsetPersistenceTimes,(),List<Long>,skipReadingDirectory,HDFSOffsetReaderTest
+26,6290993,readCSVLine,(final Text input),int,testMalformedBrokenLineParsingInChinese,CSVLineReaderTest
+27,6290993,weightedReservoirSample,"(
+      PCollection<Pair<T, N>> input,
+      int sampleSize)",PCollection<T>,testWRS,SampleTest
+28,6290993,limitNodeNameLength,(String nodeName),String,testLimitNodeNameLength_OverLimit,DotfileWriterTest
+29,6290993,hasSpecific,(),boolean,testIsSpecific_GenericData,AvroTypeTest
+30,6290993,isGeneric,(),boolean,testIsGeneric_NonAvroClass,AvroTypeTest
+31,6290993,equals,(Object obj),boolean,partitionOffsetNotEqualDiffOffset,OffsetsTest
+32,6290993,getStoredOffsetPersistenceTimes,(),List<Long>,skipInvalidFile,HDFSOffsetReaderTest
+33,6290993,getReduceOutputName,"(Configuration configuration, Path outputDirectory, int partitionId)",String,testGetReduceOutputName_EmptyDirectory,SequentialFileNamingSchemeTest
+34,6290993,STRING_CONCAT,"(String separator, boolean skipNull)",Aggregator<String>,testConcatenationNullException,AggregatorsTest
+35,6290993,getDetachedValue,"(Pair<K, V> value)","Pair<K, V>",testGetDetachedValue,AvroTableTypeTest
+36,6290993,isGeneric,(),boolean,testIsGeneric_GenericAvroTable,AvroTypeTest
+37,6290993,collections,(PType<T> ptype),"WritableType<Collection<T>, GenericArrayWritable>",testCollections,WritablesTest
+38,6290993,writables,(Class<T> clazz),AvroType<T>,testWritables,AvrosTest
+39,6290993,nulls,(),AvroType<Void>,testNulls,AvrosTest
+40,6290993,tuples,(PType... ptypes),PType<TupleN>,testTuples,OrcsTest
+41,6290993,configureForMapReduce,"(Job job, PType<?> ptype, Path outputPath, String name)",void,testConfigureForMapReduce,HFileTargetTest
+42,6290993,oneToManyJoin,"(PTable<K, U> left, PTable<K, V> right,
+                                                          DoFn<Pair<U, Iterable<V>>, T> postProcessFn, PType<T> ptype)",PCollection<T>,testOneToMany,OneToManyJoinTest
+43,6290993,nextKeyValue,(),boolean,nextKeyValue_recordIsBeyondEndOffset,KafkaRecordReaderTest
+44,6290993,hasReflect,(),boolean,testIsReflect_TableWithReflectValue,AvroTypeTest
+45,6290993,hasReflect,(),boolean,testIsReflect_TableOfNonReflectTypes,AvroTypeTest
+46,6290993,create,(Object... values),T,testByteBufferObjectInspector,TupleObjectInspectorTest
+47,6290993,write,"(long asOfTime, Map<TopicPartition, Long> offsets)",void,writeNullInvalidAsOfTime,HDFSOffsetWriterTest
+48,6290993,formatNodeCollection,(List<String> nodeCollection),String,testFormatNodeCollection,DotfileWriterTest
+49,6290993,registerComparable,(Class<? extends WritableComparable> clazz),void,testRegisterComparable,WritablesTest
+50,6290993,triples,"(PType<V1> p1, PType<V2> p2,
+      PType<V3> p3)","WritableType<Tuple3<V1, V2, V3>, TupleWritable>",testTriples,WritablesTest
+51,6290993,hasReflect,(),boolean,testIsReflect_ReflectSubType,AvroTypeTest
+52,6290993,reflects,(Class<T> clazz),AvroType<T>,testReflect_AutoRegisterClassLoader,AvrosTest
+53,6290993,getPartition,"(KEY key, VALUE value, int numPartitions)",int,testGetPartition,UniformHashPartitionerTest
+54,6290993,readCSVLine,(final Text input),int,testVariousUTF8Characters,CSVLineReaderTest
+55,6290993,readLatestOffsets,(),"Map<TopicPartition, Long>",readOffsetLatest,HDFSOffsetReaderTest
+56,6290993,avroFile,"(String pathName, Class<T> avroClass)",Source<T>,testAvroFile_FileWithSchemaInferenceIsSupported,FromTest
+57,6290993,write,"(long asOfTime, Map<TopicPartition, Long> offsets)",void,writeNullOffsets,HDFSOffsetWriterTest
+58,6290993,emit,(Object emitted),void,testEmit_MultipleChildrenDisableDeepCopy,IntermediateEmitterTest
+59,6290993,addJarDirToDistributedCache,"(Configuration conf, File jarDirectory)",void,testAddJarDirectory,DistCacheTest
+60,6290993,doubles,(),AvroType<Double>,testDoubles,AvrosTest
+61,6290993,formatPCollectionNodeDeclaration,"(PCollectionImpl<?> pcollectionImpl, JobPrototype jobPrototype)",String,testFormatPCollectionNodeDeclaration_InputPCollection,DotfileWriterTest
+62,6290993,getDetachedValue,(T value),T,testGetDetachedValue_NotInitialized,WritableTypeTest
+63,6290993,limitNodeNameLength,(String nodeName),String,testLimitNodeNameLength_AlreadyWithinLimit,DotfileWriterTest
+64,6290993,sortPairs,"(PCollection<Pair<U, V>> collection,
+      ColumnOrder... columnOrders)","PCollection<Pair<U, V>>",testInMemoryReverseAvro,SortTest
+65,6290993,readOffsets,(long persistedOffsetTime),"Map<TopicPartition, Long>",readOffsetForTime,HDFSOffsetReaderTest
+66,6290993,equals,(Object obj),boolean,partitionOffsetEqual,OffsetsTest
+67,6290993,get,(),long,testGet,CappedExponentialCounterTest
+68,6290993,emit,(Object emitted),void,testEmit_SingleChild,IntermediateEmitterTest
+69,6290993,equals,(Object obj),boolean,partitionOffsetSame,OffsetsTest
+70,6290993,getDetachedValue,(T value),T,testGetDetachedValue_NotInitialized,AvroTypeTest
+71,6290993,addJarToDistributedCache,"(Configuration conf, File jarFile)",void,testAddJarThatDoesntExist,DistCacheTest
+72,6290993,getPathSize,"(Configuration conf, Path path)",long,testGetNonExistentPathSize_NonExistantPath,SourceTargetHelperTest
+73,6290993,readCSVLine,(final Text input),int,testBrokenLineParsingInChinese,CSVLineReaderTest
+74,6290993,sample,"(PCollection<S> input, double probability)",PCollection<S>,testSample,SampleTest
+75,6290993,readOffsets,(long persistedOffsetTime),"Map<TopicPartition, Long>",readOffsetNoMatchForTime,HDFSOffsetReaderTest
+76,6290993,getTupleFactory,(Class<T> tupleClass),TupleFactory<T>,testGetTupleFactory_TupleN,TupleFactoryTest
+77,6290993,getTaskGraphAttributes,(MRTaskType taskType),String,testGetTaskGraphAttributes_Map,DotfileWriterTest
+78,6290993,createDatumReader,(AvroType<T> atype),DatumReader<T>,testCreateDatumReader_ReflectAndSpecific,AvroFileReaderFactoryTest
+79,6290993,oneToManyJoin,"(PTable<K, U> left, PTable<K, V> right,
+                                                          DoFn<Pair<U, Iterable<V>>, T> postProcessFn, PType<T> ptype)",PCollection<T>,testOneToMany_MultipleValuesForSameKeyOnLeft,OneToManyJoinTest
+80,6290993,fileNameToPersistenceTime,(String fileName),long,fileNameToTime,HDFSOffsetWriterTest
+81,6290993,serialize,"(ConsumerRecord<BytesWritable, BytesWritable> record)",byte[],serialize_nullRecord,ConsumerRecordHelperTest
+82,6290993,of,"(T first, U second)","Pair<T, U>",testPairOf,PairTest
+83,6290993,formatPCollectionNodeDeclaration,"(PCollectionImpl<?> pcollectionImpl, JobPrototype jobPrototype)",String,testFormatPGroupedTableImplDeclarationAutomatic,DotfileWriterTest
+84,6290993,getMapOutputName,"(Configuration configuration, Path outputDirectory)",String,testGetMapOutputName_EmptyDirectory,SequentialFileNamingSchemeTest
+85,6290993,deepCopy,(T source),T,testDeepCopy_Null,WritableDeepCopierTest
+86,6290993,getPathSize,"(Configuration conf, Path path)",long,testGetNonexistentPathSize,SourceTargetHelperTest
+87,6290993,longs,(),AvroType<Long>,testLongs,AvrosTest
+88,6290993,configureForMapReduce,"(Job job, PType<?> ptype, Path outputPath, String name)",void,testConfigureForMapReduce,HBaseTargetTest
+89,6290993,split,"(PCollection<Pair<T, U>> pCollection)","Pair<PCollection<T>, PCollection<U>>",split,ChannelsTest
+90,6290993,getEarliestOffset,(),long,getEarliestOffset,KafkaRecordReaderTest
+91,6290993,getData,(),GenericData,getDataSpecific,AvroModeTest
+92,6290993,setJobReplication,"(Configuration jobConfiguration, boolean onlyHasTemporaryOutput)",void,initialReplicationFactorSetForLeafOutputTargets,JobPrototypeTest
+93,6290993,distinct,(PCollection<S> input),PCollection<S>,testDistinctFlush,DistinctTest
+94,6290993,isGeneric,(),boolean,testIsGeneric_GenericData,AvroTypeTest
+95,6290993,fileNameToPersistenceTime,(String fileName),long,fileNameToTimeInvalidFileName,HDFSOffsetWriterTest
+96,6290993,formatTargetNodeDeclaration,(Target target),String,testFormatTargetNodeDeclaration,DotfileWriterTest
+97,6290993,equals,(Object obj),boolean,partitionOffsetNotEqualDiffGreaterOffset,OffsetsTest
+98,6290993,createDatumReader,(AvroType<T> atype),DatumReader<T>,testCreateDatumReader_Generic,AvroFileReaderFactoryTest
+99,6290993,uuid,(PTypeFamily ptf),PType<UUID>,testUUID,PTypesTest
+100,6290993,hashCode,(),int,testEquality,HBaseTargetTest
+101,6290993,getBundle,"(AvroType<S> ptype, AvroMode mode)",FormatBundle,testConfigureJob_ReflectData,AvroFileSourceTest
+102,6290993,ints,(),AvroType<Integer>,testInts,AvrosTest
+103,6290993,detach,"(final DoFn<Pair<K, Iterable<V>>, T> reduceFn, final PType<V> valueType)","DoFn<Pair<K, Iterable<V>>, T>",testDetach,DoFnsTest
+104,6290993,textFile,(String pathName),Source<String>,testTextFile_EmptyPathListNotAllowed,FromTest
+105,6290993,LAST_N,(int n),Aggregator<V>,testLastN,AggregatorsTest
+106,6290993,getReduceOutputName,"(Configuration configuration, Path outputDirectory, int partitionId)",String,testGetReduceOutputName_NonEmptyDirectory,SequentialFileNamingSchemeTest
+107,6290993,deepCopy,"(Map<String, T> source)","Map<String, T>",testDeepCopy,MapDeepCopierTest
+108,6290993,triples,"(PType<V1> p1, PType<V2> p2, PType<V3> p3)","AvroType<Tuple3<V1, V2, V3>>",testTriples,AvrosTest
+109,6290993,isGeneric,(),boolean,testIsGeneric_SpecificData,AvroTypeTest
+110,6290993,deepCopy,(Collection<T> source),Collection<T>,testDeepCopy,CollectionDeepCopierTest
+111,6290993,generateConnectionPropertyKey,(String property),String,generateConnectionPropertyKeyTest,KafkaInputFormatTest
+112,6290993,writeConnectionPropertiesToBundle,"(Properties connectionProperties, FormatBundle bundle)",void,writeConnectionPropertiesToBundleTest,KafkaInputFormatTest
+113,6290993,get,(),long,testCap,CappedExponentialCounterTest
+114,6290993,avroFile,"(String pathName, Class<T> avroClass)",Source<T>,testAvroFile_GlobWithSchemaInferenceIsSupported,FromTest
+115,6290993,getTupleFactory,(Class<T> tupleClass),TupleFactory<T>,testGetTupleFactory_Tuple4,TupleFactoryTest
+116,6290993,pairs,"(PType<V1> p1, PType<V2> p2)","AvroType<Pair<V1, V2>>",testPairs,AvrosTest
+117,6290993,createDatumReader,(AvroType<T> atype),DatumReader<T>,testCreateDatumReader_Reflect,AvroFileReaderFactoryTest
+118,6290993,readLatestOffsets,(),"Map<TopicPartition, Long>",readOffsetLatestNone,HDFSOffsetReaderTest
+119,6290993,hasSpecific,(),boolean,testIsSpecific_GenericAvroTable,AvroTypeTest
+120,6290993,pairs,"(PType<V1> p1, PType<V2> p2)","WritableType<Pair<V1, V2>, TupleWritable>",testPairs,WritablesTest
+121,6290993,initialize,(Configuration conf),void,testSerializableReflectPType,AvroDeepCopierTest
+122,6290993,getDetachedValue,"(Pair<K, Iterable<V>> value)","Pair<K, Iterable<V>>",testGetDetachedValue,AvroGroupedTableTypeTest
+123,6290993,swapKeyValue,"(PTable<K, V> table)","PTable<V, K>",testSwapKeyValue,PTablesTest
+124,6290993,hasReflect,(),boolean,testReflect_CollectionNotContainingReflectValue,AvroTypeTest
+125,6290993,strings,(),"WritableType<String, Text>",testStrings,WritablesTest
+126,6290993,MAX_UNIQUE_N,"(int n, Class<V> cls)",Aggregator<V>,testMaxUniqueN,AggregatorsTest
+127,6290993,getTupleFactory,(Class<T> tupleClass),TupleFactory<T>,testGetTupleFactory_Tuple3,TupleFactoryTest
+128,6290993,hasReflect,(),boolean,testReflect_CollectionContainingReflectValue,AvroTypeTest
+129,6290993,reflects,(Class<T> clazz),PType<T>,testReflects,OrcsTest
+130,6290993,isTempDir,"(Job job, String outputPath)",boolean,isTempDirFalseWhenCrunchCreatesNoDirs,DistributedPipelineTest
+131,6290993,hasSpecific,(),boolean,testIsSpecific_SpecificData,AvroTypeTest
+132,6290993,hasSpecific,(),boolean,testIsSpecific_NonAvroClass,AvroTypeTest
+133,6290993,read,"(FileSystem fs, final Path path)",Iterator<T>,testRead_GenericReader,AvroFileReaderFactoryTest
+134,6290993,process,"(String line, Emitter<String> emitter)",void,testProcess,TokenizerTest
+135,6290993,getTupleFactory,(Class<T> tupleClass),TupleFactory<T>,testGetTupleFactory_Pair,TupleFactoryTest
+136,6290993,getTaskGraphAttributes,(MRTaskType taskType),String,testGetTaskGraphAttributes_Reduce,DotfileWriterTest
+137,6290993,strings,(),AvroType<String>,testStrings,AvrosTest
+138,6290993,records,(Class<T> clazz),"WritableType<T, W>",testRecords,WritablesTest
+139,6290993,fileNameToPersistenceTime,(String fileName),long,fileNameToTimeEmptyFileName,HDFSOffsetWriterTest
+140,6290993,compareTo,(OrcWritable arg0),int,testCompareTo,OrcWritableTest
+141,6290993,getConnectionPropertyFromKey,(String key),String,getConnectionPropertyFromKeyTest,KafkaInputFormatTest
+142,6290993,hasReflect,(),boolean,testIsReflect_GenericType,AvroTypeTest
+143,6290993,createDatumReader,(AvroType<T> atype),DatumReader<T>,testCreateDatumReader_ReflectAndSpecific_NotSupported,AvroFileReaderFactoryTest
+144,6290993,addJarDirToDistributedCache,"(Configuration conf, File jarDirectory)",void,testAddJarDirectoryNotDirectory,DistCacheTest
+145,6290993,formatPCollection,"(PCollectionImpl<?> pcollectionImpl, JobPrototype jobPrototype)",String,testFormatPCollection_InputCollection,DotfileWriterTest
+146,6290993,read,"(FileSystem fs, Path path)",Iterator<T>,testProjection,AvroParquetFileReaderFactoryTest
+147,6290993,hashCode,(),int,testInequality,HBaseTargetTest
+148,6290993,formatPCollectionNodeDeclaration,"(PCollectionImpl<?> pcollectionImpl, JobPrototype jobPrototype)",String,testFormatPGroupedTableImplDeclarationManual,DotfileWriterTest
+149,6290993,getRecommendedPartitions,(PCollection<T> pcollection),int,testBytesPerTask,PartitionUtilsTest
+150,6290993,sortAndApply,"(
+      PTable<K, Pair<V1, V2>> input,
+      DoFn<Pair<K, Iterable<Pair<V1, V2>>>, T> doFn,
+      PType<T> ptype)",PCollection<T>,testInMemory,SecondarySortTest
+151,6290993,addJarDirToDistributedCache,"(Configuration conf, File jarDirectory)",void,testAddJarDirectoryThatDoesntExist,DistCacheTest
+152,6290993,getRecommendedPartitions,(PCollection<T> pcollection),int,testNegativeMaxRecommended,PartitionUtilsTest
+153,6290993,formatNodeCollection,(List<String> nodeCollection),String,testFormatNodeCollection_WithStyles,DotfileWriterTest
+154,6290993,getMapOutputName,"(Configuration configuration, Path outputDirectory)",String,testGetMapOutputName_NonEmptyDirectory,SequentialFileNamingSchemeTest
+155,6290993,getPathSize,"(Configuration conf, Path path)",long,testGetPathSizeGlobPathRecursive,SourceTargetHelperTest
+156,6290993,createDatumReader,(AvroType<T> atype),DatumReader<T>,testCreateDatumReader_Specific,AvroFileReaderFactoryTest
+157,6290993,avroFile,"(String pathName, Class<T> avroClass)",Source<T>,testAvroFile_EmptyPathListNotAllowed,FromTest
+158,6290993,read,"(FileSystem fs, final Path path)",Iterator<T>,testRead_SpecificReader,AvroFileReaderFactoryTest
+159,6290993,bytes,(),"WritableType<ByteBuffer, BytesWritable>",testBytes,WritablesTest
+160,6290993,nextKeyValue,(),boolean,nextKeyValue_noRecord_nonEmptyPartition,KafkaRecordReaderTest
+161,6290993,MIN_UNIQUE_N,"(int n, Class<V> cls)",Aggregator<V>,testMinUniqueN,AggregatorsTest
+162,6290993,getSchema,(),Schema,testStableTupleNames,AvroTypeTest
+163,6290993,filterConnectionProperties,(Properties props),Properties,filterConnectionPropertiesTest,KafkaInputFormatTest
+164,6290993,quads,"(PType<V1> p1, PType<V2> p2,
+      PType<V3> p3, PType<V4> p4)","WritableType<Tuple4<V1, V2, V3, V4>, TupleWritable>",testQuads,WritablesTest
+165,6290993,getStoredOffsetPersistenceTimes,(),List<Long>,getStoredOffsetPersistenceTimesMultipleValues,HDFSOffsetReaderTest
+166,6290993,parse,"(String groupName, PCollection<String> input,
+      Extractor<T> extractor)",PCollection<T>,testParse,ParseTest
+167,6290993,oneToManyJoin,"(PTable<K, U> left, PTable<K, V> right,
+                                                          DoFn<Pair<U, Iterable<V>>, T> postProcessFn, PType<T> ptype)",PCollection<T>,testOneToMany_UnmatchedOnRightSide,OneToManyJoinTest
+168,6290993,fileNameToPersistenceTime,(String fileName),long,fileNameToTimeNullFileName,HDFSOffsetWriterTest
+169,6290993,getPersistedTimeStoragePath,"(Path baseStoragePath, long persistedTime)",Path,getPersistedStoragePathNullBase,HDFSOffsetWriterTest
+170,6290993,isTempDir,"(Job job, String outputPath)",boolean,isTempDirFalseWhenFileIsNotInTempDir,DistributedPipelineTest
+171,6290993,equals,(Object obj),boolean,partitionOffsetNotEqualDiffGreaterPartition,OffsetsTest
+172,6290993,getDetachedValue,"(Pair<K, Iterable<V>> value)","Pair<K, Iterable<V>>",testGetDetachedValue,WritableGroupedTableTypeTest
+173,6290993,accept,(String word),boolean,testFilter,StopWordFilterTest
+174,6290993,getRecommendedPartitions,(PCollection<T> pcollection),int,testMaxRecommended,PartitionUtilsTest
+175,6290993,tableOf,"(PType<K> key, PType<V> value)","AvroTableType<K, V>",testTableOf,AvrosTest
+176,6290993,hasReflect,(),boolean,testIsReflect_NonReflectSubType,AvroTypeTest
+177,6290993,formatPCollectionNodeDeclaration,"(PCollectionImpl<?> pcollectionImpl, JobPrototype jobPrototype)",String,testFormatPCollectionNodeDeclaration,DotfileWriterTest
+178,6290993,getDetachedValue,"(Pair<K, V> value)","Pair<K, V>",testGetDetachedValue,WritableTableTypeTest
+179,6290993,formattedFile,"(
+      String pathName, Class<? extends FileInputFormat<K, V>> formatClass,
+      Class<K> keyClass, Class<V> valueClass)","TableSource<K, V>",testFormattedFile_EmptyPathListNotAllowed,FromTest
+180,6290993,tableOf,"(PType<K> key, PType<V> value)","WritableTableType<K, V>",testTableOf,WritablesTest
+181,6290993,hashCode,(),int,testEquality,FileTargetImplTest
+182,6290993,getEarliestOffset,(),long,getEarliestOffset_noOffsetFound,KafkaRecordReaderTest
+183,6290993,isTempDir,"(Job job, String outputPath)",boolean,isTempDirTrueWhenFileIsInTempDir,DistributedPipelineTest
+185,6290993,handleInitialReplication,(Configuration jobConfiguration),void,initialReplicationFactorSetIfUserSpecified,JobPrototypeTest
+186,6290993,equals,(Object obj),boolean,partitionOffsetNotEqualDiffPartition,OffsetsTest
+187,6290993,formatPCollection,"(PCollectionImpl<?> pcollectionImpl, JobPrototype jobPrototype)",String,testFormatPCollection,DotfileWriterTest
+188,6290993,formatNodePath,"(NodePath nodePath, JobPrototype jobPrototype)",List<String>,testFormatNodePathWithTargetDependencies,DotfileWriterTest
+189,6290993,hashCode,(),int,testInequality,FileTargetImplTest
+190,6290993,cross,"(PTable<K1, U> left, PTable<K2, V> right)","PTable<Pair<K1, K2>, Pair<U, V>>",testCartesianCollection_SingleValues,CartesianTest
+191,6290993,ints,(),"WritableType<Integer, IntWritable>",testInts,WritablesTest
+192,6290993,floats,(),"WritableType<Float, FloatWritable>",testFloats,WritablesTest
+193,6290993,hasReflect,(),boolean,testIsReflect_TableWithReflectKey,AvroTypeTest
+194,6290993,deepCopy,(T source),T,testDeepCopy,WritableDeepCopierTest
+195,6290993,setJobReplication,"(Configuration jobConfiguration, boolean onlyHasTemporaryOutput)",void,userDefinedTmpDirReplicationFactorSetForIntermediateTargets,JobPrototypeTest
+196,6290993,booleans,(),"WritableType<Boolean, BooleanWritable>",testBoolean,WritablesTest
+197,6290993,deserialize,(byte[] bytes),"ConsumerRecord<BytesWritable, BytesWritable>",deserialize_nullRecord,ConsumerRecordHelperTest
+198,6290993,nextKeyValue,(),boolean,nextKeyValue_noRecord_emptyPartition,KafkaRecordReaderTest
+199,6290993,nextKeyValue,(),boolean,nextKeyValue,KafkaRecordReaderTest
+200,6290993,cross,"(PTable<K1, U> left, PTable<K2, V> right)","PTable<Pair<K1, K2>, Pair<U, V>>",testCartesianCollection_Tables,CartesianTest
+201,6290993,register,"(Class<T> clazz, WritableType<T, ? extends Writable> ptype)",void,testRegister,WritablesTest
+202,6290993,getStoredOffsetPersistenceTimes,(),List<Long>,getStoredOffsetPersistenceTimesNoValues,HDFSOffsetReaderTest
+203,6290993,read,"(FileSystem fs, final Path path)",Iterator<T>,testRead_ReflectReader,AvroFileReaderFactoryTest
+204,6290993,iterator,(),Iterator<T>,testIterator,SingleUseIterableTest
+205,6290993,meanValue,"(PTable<K, V> table)","PTable<K, Double>",testMeanValue,AverageTest
+206,6290993,getBundle,"(AvroType<S> ptype, AvroMode mode)",FormatBundle,testConfigureJob_GenericData,AvroFileSourceTest
+207,6290993,globalToplist,(PCollection<X> input),"PTable<X, Long>",testGlobalToplist,TopListTest
+208,6290993,hasReflect,(),boolean,testIsReflect_SpecificType,AvroTypeTest
+209,6290993,hasSpecific,(),boolean,testIsSpecific_SpecificAvroTable,AvroTypeTest
+210,6290993,oneToManyJoin,"(PTable<K, U> left, PTable<K, V> right,
+                                                          DoFn<Pair<U, Iterable<V>>, T> postProcessFn, PType<T> ptype)",PCollection<T>,testOneToMany_UnmatchedLeftSide,OneToManyJoinTest
+211,6290993,hasReflect,(),boolean,testIsReflect_ReflectSimpleType,AvroTypeTest
+212,6290993,collections,(PType<T> ptype),AvroType<Collection<T>>,testCollections,AvrosTest
+213,6290993,emit,(Object emitted),void,testEmit_MultipleChildren,IntermediateEmitterTest
+214,6290993,sequenceFile,"(String pathName, Class<T> valueClass)",Source<T>,testSequenceFile_EmptyPathListNotAllowed,FromTest
+215,6290993,read,"(FileSystem fs, final Path path)",Iterator<T>,testColumnPruning,OrcFileReaderFactoryTest
+216,6290993,getData,(),GenericData,getDataReflect,AvroModeTest

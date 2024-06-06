@@ -1,0 +1,166 @@
+,repository_id,method_name,method_params,method_return,test_case_name,test_class_name
+0,25461792,deleteBoxObject,"(ButtonType confim, BoxPath path, BoxObject object)",void,testDeleteBoxFile,RemoteFSControllerTest
+1,25461792,renderString,"(String dropPayload, ResourceBundle resourceBundle)",String,renderStringHandlesOutdatedShares,ShareNotificationRendererTest
+2,25461792,isValid,(),boolean,testValidatesOnValidProperties,SyncSetupControllerTest
+3,25461792,downloadBoxObject,"(BoxObject boxObject, ReadableBoxNavigation nav, BoxPath source, Path destination)",void,testDownloadFileFromSubNode,RemoteFSControllerTest
+4,25461792,getFileName,(),Path,rootHasNoFilename,BoxPathTest
+5,25461792,startsWith,(Path other),boolean,equalStartIsTheStart,BoxPathTest
+6,25461792,getSyncers,(),List<Syncer>,loadsNewConfigs,SyncDaemonTest
+7,25461792,render,"(String prefixAlias, String dropPayload, ResourceBundle resourceBundle)",TextFlow,rendersMessageNode,PlaintextMessageRendererTest
+8,25461792,upload,"(Path source, BoxPath destination)",void,testUploadFiles,RemoteFSControllerTest
+9,25461792,getQuotaDescription,"(QuotaState q, String quotaDescriptionPattern)",String,quotaDescriptionWith90Free,QuotaUtilTest
+10,25461792,loadInfos,(),VersionInformation,testParsesVersion,HttpUpdateCheckerTest
+11,25461792,getQuotaDescription,"(QuotaState q, String quotaDescriptionPattern)",String,quotaDescriptionWithNoFreeSpace,QuotaUtilTest
+12,25461792,createFolder,(TreeItem<BoxObject> item),void,testCalculateFolderStructure,RemoteFSControllerTest
+13,25461792,getIgnoreButton,(),ToggleButton,ignoreContact,AssignContactControllerTest
+14,25461792,onFinish,(Runnable finishHandler),void,showsSpinnerOnUpload,IdentityEditControllerTest
+15,25461792,isValid,(),boolean,deleteTypeInvalidatesOnMkdir,LocalChangeEventTest
+16,25461792,startsWith,(Path other),boolean,contentOfNamesIsCompared,BoxPathTest
+17,25461792,startsWith,(Path other),boolean,startWithWorksWithStrings,BoxPathTest
+18,25461792,renderString,"(String dropPayload, ResourceBundle resourceBundle)",String,rendersPlaintextFromJson,PlaintextMessageRendererTest
+19,25461792,isValid,(),boolean,updateTypeIsValidOnSameMtime,LocalChangeEventTest
+20,25461792,getButtonForIdentity,(Identity identity),ToggleButton,unknownContactGetsAssignedToBothIdentities,AssignContactControllerTest
+21,25461792,isAbsolute,(),boolean,relativePathIsNotAbsolute,BoxPathTest
+22,25461792,sendFeedback,"(String feedback, String name, String email)",void,sendFeedback,HockeyAppTest
+23,25461792,getVersions,(),List<HockeyAppVersion>,getVersions,VersionClientTest
+24,25461792,matches,(Path path),boolean,doesntMatchWithoutPattern,PatternBlacklistTest
+25,25461792,hasAccount,(),boolean,knowsWhenAccountIsMissing,DefaultClientConfigurationTest
+26,25461792,importIdentity,(File file),void,importIdentityTest,AccountingControllerTest
+27,25461792,download,(Download download),void,deletesFilesLocally,DefaultTransferManagerTest
+28,25461792,find,(String key),String,throwsExceptionWhenKeyIsNotFound,SqliteClientConfigRepositoryTest
+29,25461792,render,"(String prefixAlias, String dropPayload, ResourceBundle resourceBundle)",TextFlow,rendersNodes,PlaintextMessageRendererTest
+30,25461792,refresh,(),void,testRefreshesShares,VirtualShareTreeItemTest
+31,25461792,getNameCount,(),int,rootElementHasNoNames,BoxPathTest
+32,25461792,add,(Transaction transaction),void,givenANotStartedTransaction_progressIs0,TransactionGroupTest
+33,25461792,isLeaf,(),boolean,isLeafWithoutFiles,FolderTreeItemTest
+34,25461792,endsWith,(Path other),boolean,nothingEndsWithAnAbsolutePath,BoxPathTest
+35,25461792,getNameCount,(),int,absolutePathHasNameCount,BoxPathTest
+36,25461792,addReceivedMessage,(DropMessage dropMessage),void,addMessageToActionlogTest,ActionlogControllerTest
+37,25461792,createAvatar,"(String alias, Pane container)",void,canCreateAvatar,SyncItemControllerTest
+38,25461792,receiveMessages,(),void,receivesMessagesForAllIdentities,DropDaemonTest
+39,25461792,isValid,(),boolean,updateTypeInvalidatesOnDelete,LocalChangeEventTest
+40,25461792,getRessource,(),ResourceBundle,injectlTest,RemoteFSControllerTest
+41,25461792,run,(),void,bootstrappingCreatesDirIfLocalDirDoesNotExist,DefaultSyncerTest
+42,25461792,endsWith,(Path other),boolean,doesNotEndWithNonSuffix,BoxPathTest
+43,25461792,getIdentity,(),Identity,showsItsIdentits,DefaultBoxSyncConfigTest
+44,25461792,download,(Download download),void,downloadsFolders,DefaultTransferManagerTest
+45,25461792,uploadDirectory,"(Path source, BoxPath destination)",void,testUploadedDirectoryInChildNode,RemoteFSControllerTest
+46,25461792,isValid,(),boolean,updateTypeInvalidatesOnMtimeChange,LocalChangeEventTest
+47,25461792,addUpload,(Upload upload),void,skipsTempFilesWithStagingArea,DefaultTransferManagerTest
+48,25461792,startsWith,(Path other),boolean,absolutePathStartsWithRoot,BoxPathTest
+49,25461792,handleSendButtonAction,(),void,createEMailBodyTest,FeedbackControllerTest
+50,25461792,isValid,(),boolean,deleteTypeInvalidatesOnCreation,LocalChangeEventTest
+51,25461792,renderString,"(String dropPayload, ResourceBundle resourceBundle)",String,rendersString,ShareNotificationRendererTest
+52,25461792,setProgress,(HasProgress progress),void,updatesOnProgress,FxProgressModelTest
+53,25461792,getButtonForIdentity,(Identity identity),ToggleButton,acceptsContact,AssignContactControllerTest
+54,25461792,isAllowed,(String version),boolean,deniesOutdatedVersion,HttpUpdateCheckerTest
+55,25461792,add,(Transaction transaction),void,givenMultipleTransactions_progressDependsOnSize,TransactionGroupTest
+56,25461792,getButtonForIdentity,(Identity identity),ToggleButton,unacceptedContactsShowSelected,AssignContactControllerTest
+57,25461792,isPrivate,(),boolean,loadsPrivateIdentities,IdentityEditControllerTest
+58,25461792,setTransactionLabelRenderer,"(Function<Transaction, String> transactionLabelRenderer)",void,usesTransactionLabelRenderer,TransferViewModelTest
+59,25461792,formatKey,(String keyIdentifier),String,testKeyFormat,AssignContactControllerTest
+60,25461792,startsWith,(Path other),boolean,prefixDoesNotStartWithLongerPath,BoxPathTest
+61,25461792,getParent,(),BoxPath,rootHasNoParent,BoxPathTest
+62,25461792,load,(),LaunchConfig,loadsDropUrls,LaunchConfigurationReaderTest
+63,25461792,getAccount,(),Account,showsItsAccount,DefaultBoxSyncConfigTest
+64,25461792,renderString,"(String dropPayload, ResourceBundle resourceBundle)",String,renderStringHandlesOtherMetadataLoadingExceptions,ShareNotificationRendererTest
+65,25461792,setPrivate,(boolean isPrivate),void,saveButtonSwitchesLabels,IdentityEditControllerTest
+66,25461792,add,(Transaction transaction),void,givenAStartedTransaction_progressDependsOnTransaction,TransactionGroupTest
+67,25461792,send,"(Contact c, DropMessage d)",void,sendDropMessageFailTest,HttpDropConnectorTest
+68,25461792,createFolder,(TreeItem<BoxObject> item),void,testObserveFoldersSubfolder,RemoteFSControllerTest
+69,25461792,download,(Download download),void,closesDownload,DefaultTransferManagerTest
+70,25461792,addDownload,(Download download),void,downloadsAreNotStaged,DefaultTransferManagerTest
+71,25461792,getUsedRatioInPercent,(QuotaState q),int,ratioWithNoFreeSpace,QuotaUtilTest
+72,25461792,totalElements,(),long,knowsWhenEmpty,TransactionGroupTest
+73,25461792,createEMailBody,(),String,createEMailBodyTest,InviteControllerTest
+74,25461792,parseVersionsResponse,(String responseContent),List<HockeyAppVersion>,parseInvalidVersionsResponse,VersionClientTest
+75,25461792,deleteBoxObject,"(ButtonType confim, BoxPath path, BoxObject object)",void,testDontDeleteBoxFolder,RemoteFSControllerTest
+76,25461792,receiveMessages,(),void,helloProtocol,DropDaemonTest
+77,25461792,subpath,"(int beginIndex, int endIndex)",BoxPath,subpath,BoxPathTest
+78,25461792,get,(BoxPath relativePath),SyncIndexEntry,persistsStatesThroughSessions,SqliteSyncIndexTest
+79,25461792,endsWith,(Path other),boolean,relativePathEndsWithItseld,BoxPathTest
+80,25461792,getDesktop,(),LatestVersionInfo,testStructure,AppInfosTest
+81,25461792,pause,(),void,doesNotNotifyIfPauseStatusWasChanged,DefaultBoxSyncConfigTest
+82,25461792,addSentMessage,(DropMessage dropMessage),void,addOwnMessageToActionlogTest,ActionlogControllerTest
+83,25461792,findVersion,(String shortVersion),HockeyAppVersion,validFindVersion,VersionClientTest
+84,25461792,getButtonForIdentity,(Identity identity),ToggleButton,addsAssignment,AssignContactControllerTest
+85,25461792,filteredContacts,"(Collection<Contact> contacts, ContactsFilter filter)",List<Contact>,filterContacts,ContactControllerTest
+86,25461792,saveIdentity,(),void,showsAlertIfSaveFailed,IdentityEditControllerTest
+87,25461792,sendDropMessage,"(Contact c, String text)",void,convertsEmojiAliasesToUnicode,ActionlogControllerTest
+88,25461792,endsWith,(Path other),boolean,stringEndsWithSuffix,BoxPathTest
+89,25461792,isValid,(),boolean,updateTypeDirectoryValidatesByDefault,LocalChangeEventTest
+90,25461792,upload,(Upload upload),void,closesUpload,DefaultTransferManagerTest
+91,25461792,receiveMessages,(),void,receiveMessagesTest,DropDaemonTest
+92,25461792,onlineProperty,(),BooleanProperty,statusIsChangedInPlatformThread,FxNetworkStatusTest
+93,25461792,shareAndSendMessage,"(Identity sender, Contact receiver, BoxFile objectToShare, String message, BoxNavigation navigation)",void,shareAndSendMessage,BlockSharingServiceTest
+94,25461792,createEMailSubject,(),String,createEMailSubjectTest,InviteControllerTest
+95,25461792,endsWith,(Path other),boolean,relativePathDoesNotEndWithAbsolutePath,BoxPathTest
+96,25461792,createIdentityEdit,(Pane container),void,canCreateIdentityEditView,IdentityContextMenuControllerTest
+97,25461792,getNameCount,(),int,relativePathHasNameCount,BoxPathTest
+98,25461792,getPath,(Path oldPath),BoxPath,testRootResolution,BoxFileSystemTest
+99,25461792,add,(Transaction transaction),void,givenUnfinishedProgress_allTransactionsRemainInWindow,WindowedTransactionGroupTest
+100,25461792,sendDropMessage,"(Contact c, String text)",void,addDropMessageMetadata,ActionlogControllerTest
+101,25461792,setText,(String text),void,refreshTime,ActionlogControllerTest
+102,25461792,deleteBoxObject,"(ButtonType confim, BoxPath path, BoxObject object)",void,TestDeleteBoxFileFromRootNode,RemoteFSControllerTest
+103,25461792,selectIdentity,(Identity identity),void,onDuplicateSelectionDoesNotUpdate,DefaultClientConfigurationTest
+104,25461792,add,(Transaction transaction),void,testClosesWindowWhenAllTransactionsAreFinished,WindowedTransactionGroupTest
+105,25461792,setContact,(Contact contact),void,doesNotMarkSeenIfChatIsClosed,ActionlogControllerTest
+106,25461792,buildCreateParameters,(String version),List<NameValuePair>,buildParameters,VersionClientTest
+107,25461792,startsWith,(Path other),boolean,absolutePathDoesNotStartWithRelativePath,BoxPathTest
+108,25461792,getPath,(Path oldPath),BoxPath,testPathResolution,BoxFileSystemTest
+109,25461792,isAbsolute,(),boolean,rootIsAbsolute,BoxPathTest
+110,25461792,getUsedRatioInPercent,(QuotaState q),int,ratioWithFreeSpace,QuotaUtilTest
+111,25461792,addDownload,(Download download),void,notifiesOnAddDownload,MonitoredTransferManagerTest
+112,25461792,setProgress,(HasProgress progress),void,updatesFromCurrentProgress,FxProgressModelTest
+113,25461792,setLocalPath,(Path localPath),void,preventsHardToDebugRelativeLocalPath,DefaultBoxSyncConfigTest
+114,25461792,run,(),void,createsLocalDirIfNotExisting,DefaultSyncerTest
+115,25461792,finishWizard,(),void,testAddsEmail,WizardControllerTest
+116,25461792,getUnseenMessageCount,(),int,testActionlogKnowsUnseenMessages,ActionlogTest
+117,25461792,getUnseenMessageCount,(),int,actionlogKnowsWhenMessageWasSeen,ActionlogTest
+118,25461792,findVersion,(String shortVersion),HockeyAppVersion,invalidFindVersion,VersionClientTest
+119,25461792,isAllowed,(String version),boolean,allowsLeastAllowedVersion,HttpUpdateCheckerTest
+120,25461792,getSyncers,(),List<Syncer>,loadsExistingConfigs,SyncDaemonTest
+121,25461792,delete,(Identity identity),void,deletesIdentity,DeleteIdentityActionTest
+122,25461792,getRoot,(),BoxPath,relativePathHasNoRoot,BoxPathTest
+123,25461792,size,(),int,givenZeroTransactions_groupHasZero,TransactionGroupTest
+124,25461792,isAbsolute,(),boolean,absolutePathIsAbsolute,BoxPathTest
+125,25461792,save,(PersistenceDropMessage message),void,hasLegacyLoadMethod,SqliteDropMessageRepositoryTest
+126,25461792,run,(),void,addsFilesAsUploads,DefaultSyncerTest
+127,25461792,getButtonForIdentity,(Identity identity),ToggleButton,removesAssignment,AssignContactControllerTest
+128,25461792,startsWith,(Path other),boolean,pathStartWithItself,BoxPathTest
+129,25461792,createVersion,(String version),HockeyAppVersion,invalidCreateResponse,VersionClientTest
+130,25461792,setContact,(Contact contact),void,marksSeenMessages,ActionlogControllerTest
+131,25461792,buildApiUri,(String apiCallPath),String,validUri,HockeyAppRequestBuilderTest
+132,25461792,setProgress,(HasProgress progress),void,setsFromProgress,FxProgressModelTest
+133,25461792,isValid,(),boolean,updateTypeDirectoryInvalidatesOnDelete,LocalChangeEventTest
+134,25461792,setPrivate,(boolean isPrivate),void,removesIdentityOnPrivateSave,IdentityEditControllerTest
+135,25461792,sendDropMessage,"(Contact c, String text)",void,switchBetweenIdentitesTest,ActionlogControllerTest
+136,25461792,add,(Transaction transaction),void,notifiesOnProgressChangeViaAdd,WindowedTransactionGroupTest
+137,25461792,getParent,(),BoxPath,relativeSingleElementPathHasNoParent,BoxPathTest
+138,25461792,getFileName,(),Path,emptyPathHasNoFilename,BoxPathTest
+139,25461792,hashCode,(),int,equality,SyncStateTest
+140,25461792,setSleepTime,(long sleepTime),void,handlesErrorsTest,DropDaemonTest
+141,25461792,getCurrentStep,(),VBox,loadFirstStep,WizardControllerTest
+142,25461792,sendStacktrace,"(String feedback, String stacktrace)",void,sendCrashReport,HockeyAppTest
+143,25461792,sendDropMessage,"(Contact c, String text)",void,showsMessagesOfCurrentConversation,ActionlogControllerTest
+144,25461792,run,(),void,runs,MonitoredTransferManagerTest
+145,25461792,loadVersions,(),List<HockeyAppVersion>,loadVersions,VersionClientTest
+146,25461792,addUpload,(Upload upload),void,notifiesOnAddUpload,MonitoredTransferManagerTest
+147,25461792,isAbsolute,(),boolean,emptyPathIsNotAbsolute,BoxPathTest
+148,25461792,isValid,(),boolean,deleteTypeIsValidWhileDeleted,LocalChangeEventTest
+149,25461792,getBoxSyncConfigs,(),ObservableList<BoxSyncConfig>,notifiesOnSyncConfigChange,DefaultClientConfigurationTest
+150,25461792,createFolder,(TreeItem<BoxObject> item),void,testCreateFolder,RemoteFSControllerTest
+151,25461792,showThanksDialog,(),void,showAlertDialog,FeedbackControllerTest
+152,25461792,getShareNotification,(Identity identity),ShareNotifications,knowsShares,RepositoryBasedClientConfigTest
+153,25461792,isCurrent,(String version),boolean,passesFreshReleasesAsCurrentVersion,HttpUpdateCheckerTest
+154,25461792,getChildren,(),ObservableList<TreeItem<BoxObject>>,synchronouslyReturnsEmptyList,FolderTreeItemTest
+155,25461792,upload,"(Path source, BoxPath destination)",void,testCalculateFileStructure,RemoteFSControllerTest
+156,25461792,add,(Transaction transaction),void,doesntAddskippedTransactions,WindowedTransactionGroupTest
+157,25461792,deleteBoxObject,"(ButtonType confim, BoxPath path, BoxObject object)",void,TestDeleteBoxFolder,RemoteFSControllerTest
+158,25461792,contains,(String key),boolean,knowsMissingValues,SqliteClientConfigRepositoryTest
+159,25461792,isEmpty,(),boolean,givenNoTransactions_groupIsEmpty,TransactionGroupTest
+160,25461792,startsWith,(Path other),boolean,relativePathDoesNotStartWithAbsolutePath,BoxPathTest
+161,25461792,receive,"(Identity i, Date since)",DropPollResponse,setsNetworkState,HttpDropConnectorTest
+162,25461792,setName,(String name),void,startButtonIsDisabledWhenValidationFails,SyncSetupControllerTest
+163,25461792,upload,(Upload upload),void,createsRootDirectory,DefaultTransferManagerTest
+164,25461792,fillQuotaInformation,(QuotaState quotaState),void,testFillQuotaInformation,LayoutControllerTest
