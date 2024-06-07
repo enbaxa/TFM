@@ -111,9 +111,11 @@ class CategoricNeuralNetwork(nn.Module):
         self.cos: nn.CosineSimilarity = nn.CosineSimilarity(dim=1)
 
         # Print the parameters that will be trained
+        training_message = [""]
         for name, param in self.named_parameters():
             if param.requires_grad:
-                printer.debug(f"{name} will be part of the learning layer.")
+                training_message.append(f"{name} will be part of the learning layer")
+        printer.debug("\n".join(training_message))
 
     def build_neural_network(self, neurons, number_layers):
         """

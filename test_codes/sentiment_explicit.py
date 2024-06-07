@@ -294,7 +294,7 @@ def main(neurons: int, layers: int):
         loss_fn=loss_fn,
         optimizer=optimizer,
         scheduler=scheduler,
-        lr_decay_targets={"f1": 0.75},
+        train_targets={"f1": 0.75},
         )
 
     # the model is now trained, let's evaluate it with some sentences

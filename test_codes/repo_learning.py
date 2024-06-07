@@ -55,7 +55,7 @@ def main(dataset_name):
     config.model_uses_output_embedding = True
     config.nlp_model_name = "huggingface/CodeBERTa-small-v1"
     config.train_size = 1.0
-    config.lr_decay_targets = {"f1": 0.75, "recall": 0.75}
+    config.train_targets = {"f1": 0.75, "recall": 0.75}
     # Define the model and training setup
     model = model_api.create_model(dataset=dataset)
     loss_fn = model_api.get_loss_fn()

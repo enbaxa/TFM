@@ -38,14 +38,13 @@ from typing import ClassVar
 
 import pandas as pd
 import seaborn as sns
+# import matplotlib
+# matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import torch
 from torch.utils.data import DataLoader
 from dataset_define import CategoricDataset
 from learning_model import CategoricNeuralNetwork, StopTraining
-import matplotlib
-matplotlib.use('Agg')
-
 logger: logging.Logger = logging.getLogger("TFM")
 printer: logging.Logger = logging.getLogger("printer")
 
@@ -78,6 +77,10 @@ class ConfigRun:
     batch_size: ClassVar[int] = 32
     epochs: ClassVar[int] = 15
     train_size: ClassVar[float] = 0.8
+    train_targets: ClassVar[dict] = {
+        "f1": 0.75
+    }
+
     # Optimizer
     optimizer_name: ClassVar[str] = "AdamW"
     nlp_model_name: ClassVar[str] = "huggingface/CodeBERTa-small-v1"
@@ -87,12 +90,9 @@ class ConfigRun:
     # Scheduler: relevant only if Reduce on Plateau
     scheduler_plateau_mode: ClassVar[str] = "max"
     lr_decay_patience: ClassVar[int] = 4
-    lr_decay_targets: ClassVar[dict] = {
-        "f1": 0.75
-    }
+    lr_decay_target: ClassVar[str] = "f1"
     # Scheduler: relevant only if reduce on step
     lr_decay_step: ClassVar[int] = 10
-
 
 def configure_dataset(
         df: pd.DataFrame,
@@ -399,10 +399,12 @@ def train(
         test_dataloader: DataLoader,
         loss_fn: torch.nn.Module,
         optimizer: torch.optim.Optimizer,
-        scheduler: torch.optim.lr_scheduler._LRScheduler | None = None,
+        train_targets: dict = None,
         epochs: int = None,
-        lr_decay_targets: dict = None,
-        do_report: bool = True
+        lr_decay_target: str = None,
+        scheduler: torch.optim.lr_scheduler._LRScheduler | None = None,
+        do_report: bool = True,
+        live_report: bool = False
           ) -> None:
     """
     Train the model on the dataset.
@@ -414,10 +416,18 @@ def train(
             test_dataloader (DataLoader): The DataLoader for the testing dataset.
             loss_fn (torch.nn.Module): The loss function to be used.
             optimizer (torch.optim.Optimizer): The optimizer to be used.
+
         Optional (will default to the values in ConfigRun):
             scheduler (torch.optim.lr_scheduler._LRScheduler): The scheduler to be used.
-            The following will default to the values in ConfigRun:
             epochs (int): The number of epochs to train the model.
+            train_targets (dict): The targets for the training.
+            lr_decay_target (str): The target for the learning rate decay.
+                                   Only relevant if the scheduler is ReduceLROnPlateau.
+
+        Optional (will default to the values in the function call):
+            do_report (bool): Whether to generate a report.
+            live_report (bool): Whether to generate a live report.
+
 
     Returns:
         None
@@ -426,13 +436,16 @@ def train(
     if epochs is None:
         epochs = ConfigRun.epochs
 
+    if train_targets is None:
+        train_targets = ConfigRun.train_targets
     if isinstance(scheduler, torch.optim.lr_scheduler.ReduceLROnPlateau):
-        if lr_decay_targets is None:
-            lr_decay_targets = ConfigRun.lr_decay_targets
+        if lr_decay_target is None:
+            lr_decay_target = ConfigRun.lr_decay_target
 
-    f1_target = lr_decay_targets.get("f1", None)
-    precision_target = lr_decay_targets.get("precision", None)
-    recall_target = lr_decay_targets.get("recall", None)
+    # Define targets for training
+    f1_target = train_targets.get("f1", None)
+    precision_target = train_targets.get("precision", None)
+    recall_target = train_targets.get("recall", None)
 
     monitor_f1: bool = f1_target is not None
     monitor_precision: bool = precision_target is not None
@@ -455,14 +468,21 @@ def train(
     printer.debug("\n".join(info_message))
     try:
         if do_report:
-            df = pd.DataFrame(columns=["Epoch", "F1", "Precision", "Recall"])
+            df = pd.DataFrame([[0]*4], columns=["Epoch", "F1", "Precision", "Recall"])
         for t in range(epochs):
             printer.info(f"\nEpoch {t+1}\n-------------------------------")
             model.train_loop(train_dataloader, loss_fn, optimizer)
             f1_score, precision, recall = model.test_loop(test_dataloader, loss_fn)
             if scheduler is not None:
                 if isinstance(scheduler, torch.optim.lr_scheduler.ReduceLROnPlateau):
-                    scheduler.step(f1_score)
+                    if lr_decay_target == "f1":
+                        scheduler.step(f1_score)
+                    elif lr_decay_target == "precision":
+                        scheduler.step(precision)
+                    elif lr_decay_target == "recall":
+                        scheduler.step(recall)
+                    else:
+                        raise ValueError("lr_decay_target must be 'f1', 'precision', or 'recall'.")
                 elif isinstance(scheduler, torch.optim.lr_scheduler.StepLR):
                     scheduler.step()
                 else:
@@ -475,11 +495,19 @@ def train(
                     "Recall": [recall]}
                     )
                 df = pd.concat([df, new_row], ignore_index=True)
-                # Real-time plotting with Seaborn
-                #plt.clf()  # Clear the current figure
-                #sns.lineplot(x='Epoch', y='F1', data=df, label='F1 Score')
-                #plt.legend()
-                #plt.pause(0.01)  # Pause to update the plot
+                if live_report:
+                    # Real-time plotting with Seaborn
+                    plt.ion()
+                    plt.clf()  # Clear the current figure
+                    if "f1" in train_targets.keys():
+                        sns.lineplot(x='Epoch', y='F1', data=df, label='F1 Score')
+                    if "precision" in train_targets:
+                        sns.lineplot(x='Epoch', y='Precision', data=df, label='Precision')
+                    if "recall" in train_targets:
+                        sns.lineplot(x='Epoch', y='Recall', data=df, label='Recall')
+                    plt.legend()
+                    plt.pause(0.01)  # Pause to update the plot
+                    plt.draw()  # Ensure the plot is updated
 
             if all([
                 f1_score > f1_target if monitor_f1 else True,
@@ -492,7 +520,7 @@ def train(
     except KeyboardInterrupt:
         logger.info("Training interrupted by user.")
     if do_report:
-        write_report(df, "report.png")
+        write_report(df, "training_report.png", )
 
 
 def write_report(df: pd.DataFrame, filename: str) -> None:
@@ -516,11 +544,14 @@ def write_report(df: pd.DataFrame, filename: str) -> None:
     Report.append(f"Precision: {df['Precision'].iloc[-1]}")
     Report.append(f"Recall: {df['Recall'].iloc[-1]}")
     printer.info("\n".join(Report))
+    sns.set_style("darkgrid")
+    sns.set_context("paper")  # Options: paper, notebook, talk, poster
     # save a plot of the report
     fig, ax = plt.subplots()
     sns.lineplot(x='Epoch', y='F1', data=df, label='F1 Score', ax=ax)
     sns.lineplot(x='Epoch', y='Recall', data=df, label='Recall', ax=ax)
     sns.lineplot(x='Epoch', y='Precision', data=df, label='Precision', ax=ax)
+    ax.set_ylabel("Score", rotation="horizontal")
     # save the
     fig.savefig(filename)
 

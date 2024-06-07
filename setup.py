@@ -10,7 +10,9 @@ setup(
         "torch",
         "pandas",
         "numpy",
-        "transformers"
+        "transformers",
+        "matplotlib",
+        "seaborn"
     ],
     author='Enric Basso',
     # author_email='your_email@example.com',

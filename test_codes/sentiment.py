@@ -251,7 +251,7 @@ def main(neurons: int, layers: int):
     config.batch_size = 32
     config.max_hidden_neurons = neurons
     config.hidden_layers = layers
-    config.lr_decay_targets = {"f1": 0.75}
+    config.train_targets = {"f1": 0.75}
     config.nlp_model_name = "distilbert-base-uncased"
 
     printer.info(f"Running test with {neurons} neurons and {layers} layers")
