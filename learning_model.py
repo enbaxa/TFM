@@ -12,7 +12,6 @@ from nlp_embedding import NlpEmbedding
 
 logger = logging.getLogger("TFM")
 printer = logging.getLogger("printer")
-printer.setLevel(logging.INFO)
 
 
 class StopTraining(Exception):
@@ -57,7 +56,7 @@ class CategoricNeuralNetwork(nn.Module):
         self._nlp_model_name = nlp_model_name
         # Initialize the NLP embedding model if needed
         if self._use_input_embedding is False and self._use_output_embedding is False:
-            printer.warning("Using no embeddings can lead to poor performance.")
+            printer.warning("Using no embeddings.")
             self._nlp_embedding_model: NlpEmbedding | None = None
         else:
             self._nlp_embedding_model: NlpEmbedding | None = NlpEmbedding(model_name=self._nlp_model_name)
@@ -92,7 +91,7 @@ class CategoricNeuralNetwork(nn.Module):
         # Initialize the hidden layers
         # Define the neural network
         self.linear_relu_stack = nn.Sequential()
-        printer.debug("Estimating the number of neurons needed in the hidden layers.")
+        printer.info("Estimating the number of neurons needed in the hidden layers.")
         neurons: int = 0
         # dummy counter variable
         i: int = 1
@@ -150,7 +149,7 @@ class CategoricNeuralNetwork(nn.Module):
             add_drop=False,
             add_normalization=False
             )
-        printer.info("Using a model with the following setup:\n%s", str(self.linear_relu_stack))
+        logger.info("Using a model with the following setup:\n%s", str(self.linear_relu_stack))
 
     def add_layer(
             self,
@@ -213,7 +212,7 @@ class CategoricNeuralNetwork(nn.Module):
         if self._use_output_embedding:
             # Use a pretrained model for the output embeddings
             self._output_size: int = self._nlp_embedding_model.model.config.hidden_size * len(self.output_categories)
-            printer.info(
+            logger.info(
                 "Using output embeddings. "
                 "Using pretrained model "
                 "of %s embedded dimensions.",
@@ -489,13 +488,13 @@ class CategoricNeuralNetwork(nn.Module):
             # Print the loss every 100 batches
             if batch % 100 == 0 or batch == size - 1:
                 loss, current = loss.item(), (batch + 1)
-                print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
+                printer.info(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
 
     def test_loop(
             self,
             dataloader: torch.utils.data.DataLoader,
             loss_fn: nn.Module
-            ) -> float:
+            ) -> tuple[float, float, float]:
         """
         Function to evaluate the model on a test dataset.
 
@@ -504,7 +503,9 @@ class CategoricNeuralNetwork(nn.Module):
             loss_fn (torch.nn.Module): The loss function used for evaluation.
 
         Returns:
-            None
+            f1_score (float): The F1 score of the model.
+            precision (float): The precision of the model.
+            recall (float): The recall of the model.
         """
         # Set the model to evaluation mode - important for batch normalization and dropout layers
         # Unnecessary in this situation but added for best practices
@@ -657,7 +658,7 @@ class CategoricNeuralNetwork(nn.Module):
             total_positives: int
             ) -> tuple[float, float, float]:
         """
-        Computes the precision, recall, and F1 score for a batch of data.
+        Computes the precision, recall, and F1 score from the performance values.
 
         Args:
             correct_positives (int): The number of correct positives.
@@ -853,7 +854,7 @@ class CategoricNeuralNetwork(nn.Module):
             elif all(isinstance(element, list) for element in data):
                 assert len(data) == len(self.input_categories), \
                                      "The number of input categories does not match the input data."
-                logger.debug("Make sure that the order of the input categories is correct: %s", self.input_order)
+                printer.debug("Make sure that the order of the input categories is correct: %s", self.input_order)
                 # make a list of lists of eacn n-th element of each list in data
                 batch_length = len(data[0])  # all lists should have the same length
                 assert all(len(element) == batch_length for element in data), \
@@ -889,7 +890,7 @@ class CategoricNeuralNetwork(nn.Module):
         error_message.append("Please provide the input data as a list of lists.")
         error_message.append("Each element of the outer list should correspond to a different input category.")
         error_message.append(f"The order of categories MUST be as follows: {self.input_order}")
-        logger.error("%s", "\n".join(error_message))
+        printer.error("%s", "\n".join(error_message))
         raise ValueError
 
     @property
@@ -925,7 +926,10 @@ class CategoricNeuralNetwork(nn.Module):
             # if we are training the embeddings or they are not computed
             # we have to compute them also if it is the first time
             if not self._train_nlp_embedding:
-                printer.debug("This should only happen once.")
+                printer.debug(
+                    "Embeddings are not computed yet. Computing them now."
+                    "\nThis should only happen once."
+                )
             all_outputs_texts = [
                 [field for field in self.category_mappings[category]]
                 for category in self.output_categories.values()

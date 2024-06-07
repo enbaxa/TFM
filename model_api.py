@@ -35,16 +35,16 @@ please, scroll down to the end of this file.
 import logging
 from dataclasses import dataclass
 from typing import ClassVar
+from pathlib import Path
 
 import pandas as pd
 import seaborn as sns
-import matplotlib
-matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import torch
 from torch.utils.data import DataLoader
 from dataset_define import CategoricDataset
 from learning_model import CategoricNeuralNetwork, StopTraining
+import set_logger
 logger: logging.Logger = logging.getLogger("TFM")
 printer: logging.Logger = logging.getLogger("printer")
 
@@ -80,7 +80,6 @@ class ConfigRun:
     train_targets: ClassVar[dict] = {
         "f1": 0.75
     }
-
     # Optimizer
     optimizer_name: ClassVar[str] = "AdamW"
     nlp_model_name: ClassVar[str] = "huggingface/CodeBERTa-small-v1"
@@ -93,6 +92,77 @@ class ConfigRun:
     lr_decay_target: ClassVar[str] = "f1"
     # Scheduler: relevant only if reduce on step
     lr_decay_step: ClassVar[int] = 10
+    # Reports
+    report_filename: ClassVar[str] = "report"
+    report_dir: ClassVar[str] = Path("reports").resolve()
+
+def configure_default_loggers(fil_name: str = None, fil_dir: str = None):
+    """
+    Configure the default loggers for the module.
+
+    Args:
+        fil_name (str): The name of the file to be used for logging.
+        fil_dir (str): The directory to be used for logging.
+    """
+    if fil_name is None:
+        fil_name: str = ConfigRun.report_filename
+        if fil_dir is None:
+            fil_dir: Path = ConfigRun.report_dir
+        fil_name: Path = fil_dir.joinpath(fil_name)
+    if not fil_name.parent.exists():
+        fil_name.parent.mkdir(parents=True)
+    # attach handlers to root logger
+    root_logger = logging.getLogger()
+    root_logger.setLevel(logging.NOTSET)
+    # create file handler which will log messages to screen.
+    # in principle those are messages that come from logger "printer"
+    screen_handler = set_logger.PrinterScreenHandler()
+    screen_handler.addFilter(set_logger.Filter_name("printer"))
+    screen_handler.setLevel(logging.INFO)
+    root_logger.addHandler(screen_handler)
+    # create file handler which will log messages to file.
+    # in principle those are messages that come from logger "logger"
+    file_handler = set_logger.DetailedFileHandler(f"{fil_name}.log", mode="w")
+    # Put everything both logs in the file
+    file_handler.addFilter(set_logger.Filter_name(["TFM", "printer"]))
+    file_handler.setLevel(logging.DEBUG)
+    root_logger.addHandler(file_handler)
+    # create file handler which will log all messages to file in json format.
+    json_handler = set_logger.PersistentLogHandler(f"{fil_name}.jsonl", mode="w")
+    json_handler.setLevel(logging.DEBUG)
+    # No filter is needed because it will log all messages
+    root_logger.addHandler(json_handler)
+    logger.debug("Loggers configured.")
+    logger.debug("Log and report files will be saved in %s", fil_dir)
+
+
+def wipe_handlers():
+    """
+    Wipe the loggers from the root logger.
+
+    This eliminates all handlers from the root logger.
+    """
+    root_logger = logging.getLogger()
+    logger.debug("Wiping all handlers.")
+    handlers = list(root_logger.handlers)
+    for handler in handlers:
+        root_logger.removeHandler(handler)
+
+def reconfigure_loggers():
+    """
+    Reconfigure the loggers.
+
+    This function will wipe the handlers from the root logger and then reconfigure them.
+    This assures that the configuration is updated by the user, otherwise
+    it will use the default configuration.
+    """
+    wipe_handlers()
+    configure_default_loggers()
+    logger.debug("Loggers reconfigured.")
+    logger.debug(
+        "All handlers wiped and reconfigured."
+        "This includes any handlers added by the user!"
+        )
 
 
 def configure_dataset(
@@ -133,6 +203,7 @@ def configure_dataset(
     dataset: CategoricDataset = CategoricDataset(data=df)
     # define the input and output columns and create auxiliary variables
     dataset.define_input_output(input_columns=input_columns, output_columns=output_columns, store_input_features=False)
+    logger.info("Dataset configured.")
     return dataset
 
 
@@ -174,6 +245,7 @@ def get_dataloaders(
         )
 
     if aggregate_outputs:
+        logger.debug("Aggregating outputs in the dataframe.")
         test_dataset.group_by()
     test_dataloader: DataLoader = DataLoader(
         dataset=test_dataset,
@@ -285,6 +357,7 @@ def get_optimizer(
         optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
     else:
         raise ValueError("optimizer_name must be one of 'AdamW', 'SGD', or 'Adam'.")
+    logger.debug("Optimizer created.")
     return optimizer
 
 
@@ -332,7 +405,7 @@ def get_scheduler(
             mode = ConfigRun.scheduler_plateau_mode
         # if the scheduler is ReduceLROnPlateau, the steps will be ignored
         if steps is not None:
-            logger.warning(
+            printer.warning(
                 "Steps is not used in ReduceLROnPlateau scheduler."
                 " However it was set in the function call."
                 " It will be ignored."
@@ -348,14 +421,14 @@ def get_scheduler(
             steps = ConfigRun.lr_decay_step
         # if the scheduler is StepLR, the patience will be ignored
         if patience is not None:
-            logger.warning(
+            printer.warning(
                 "Patience is not used in StepLR scheduler."
                 " However it was set in the function call."
                 " It will be ignored."
                 )
         # if the scheduler is StepLR, the mode will be ignored
         if mode is not None:
-            logger.warning(
+            printer.warning(
                 "Mode is not used in StepLR scheduler."
                 " However it was set in the function call."
                 " It will be ignored."
@@ -367,6 +440,7 @@ def get_scheduler(
             )
     else:
         raise ValueError("scheduler_type must be one of 'StepLR' or 'ReduceLROnPlateau'.")
+    logger.debug("Scheduler created: %s", scheduler.__class__.__name__)
     return scheduler
 
 
@@ -391,6 +465,7 @@ def get_loss_fn(
         loss_fn = torch.nn.CosineEmbeddingLoss()
     else:
         loss_fn = torch.nn.BCEWithLogitsLoss()
+    logger.debug("Loss function created: %s", loss_fn.__class__.__name__)
     return loss_fn
 
 
@@ -471,7 +546,7 @@ def train(
         if do_report:
             df = pd.DataFrame([[0]*4], columns=["Epoch", "F1", "Precision", "Recall"])
         for t in range(epochs):
-            printer.info("\nEpoch %d\n-------------------------------", t+1)
+            printer.info("Epoch %d\n-------------------------------", t+1)
             model.train_loop(train_dataloader, loss_fn, optimizer)
             f1_score, precision, recall = model.test_loop(test_dataloader, loss_fn)
             if scheduler is not None:
@@ -498,6 +573,7 @@ def train(
                 df = pd.concat([df, new_row], ignore_index=True)
                 if live_report:
                     # Real-time plotting with Seaborn
+                    logger.debug("Updating Plotted report live.")
                     plt.ion()
                     plt.clf()  # Clear the current figure
                     if "f1" in train_targets.keys():
@@ -519,22 +595,30 @@ def train(
     except StopTraining as e:
         printer.info(e)
     except KeyboardInterrupt:
-        logger.info("Training interrupted by user.")
+        printer.warning("Training interrupted by user.")
     if do_report:
-        write_report(df, "training_report.png", )
+        write_report(df, train_targets = train_targets)
 
 
-def write_report(df: pd.DataFrame, filename: str) -> None:
+def write_report(df: pd.DataFrame, filename: str = None, train_targets: dict[str, float]=None) -> None:
     """
     Write a report to a file.
 
     Args:
         df (pd.DataFrame): The DataFrame to be written.
         filename (str): The name of the file to be written.
+                        If None, it will use the configuration in ConfigRun.
+        train_targets (dict): The targets for the training.
+
 
     Returns:
         None
     """
+    if filename is None:
+        filename: Path = ConfigRun.report_dir.joinpath(ConfigRun.report_filename)
+        filename.with_suffix(".png")
+    if not filename.parent.exists():
+        filename.parent.mkdir(parents=True)
     Report = []
     Report.append("Report on the training")
     Report.append("-------------------------------")
@@ -549,12 +633,27 @@ def write_report(df: pd.DataFrame, filename: str) -> None:
     sns.set_context("paper")  # Options: paper, notebook, talk, poster
     # save a plot of the report
     fig, ax = plt.subplots()
-    sns.lineplot(x='Epoch', y='F1', data=df, label='F1 Score', ax=ax)
-    sns.lineplot(x='Epoch', y='Recall', data=df, label='Recall', ax=ax)
-    sns.lineplot(x='Epoch', y='Precision', data=df, label='Precision', ax=ax)
+    f1_color = 'red'
+    precision_color = 'blue'
+    recall_color = 'green'
+    sns.lineplot(x='Epoch', y='F1', data=df, label='F1 Score', ax=ax, color=f1_color)
+    sns.lineplot(x='Epoch', y='Recall', data=df, label='Recall', ax=ax, color= recall_color)
+    sns.lineplot(x='Epoch', y='Precision', data=df, label='Precision', ax=ax, color=precision_color )
+    # print the training targets present
+    if train_targets:
+        for key, value in train_targets.items():
+            if key == "f1":
+                ax.axhline(value, color=f1_color, linestyle='--', label=f"{key} target")
+            elif key == "precision":
+                ax.axhline(value, color=precision_color, linestyle='--', label=f"{key} target")
+            elif key == "recall":
+                ax.axhline(value, color=recall_color, linestyle='--', label=f"{key} target")
+            else:
+                ax.axhline(value, color='black', linestyle='--', label=f"{key} target")
     ax.set_ylabel("Score", rotation="horizontal")
     # save the
     fig.savefig(filename)
+    logger.debug("Report saved as %s", filename)
 
 
 def build_and_train_model(
@@ -567,20 +666,35 @@ def build_and_train_model(
     They can be set before hand for a custom configuration.
 
     Args:
-        dataset (pd.DataFrame): The dataset to be used.
+        df (pd.DataFrame): The dataset to be used.
         input_columns (list): The names of the columns to be used as input.
         output_columns (list): The names of the columns to be used as output.
 
     Returns:
         model (CategoricNeuralNetwork): The trained model.
     """
+    logger.debug("Building and training the model automatically.")
     dataset = configure_dataset(df, input_columns, output_columns)
+    logger.debug("Dataset configuration executed.")
     train_dataloader, test_dataloader = get_dataloaders(dataset)
+    logger.debug("Dataloaders creation executed.")
     model = create_model(dataset)
+    logger.debug("Model creation executed.")
     loss_fn = get_loss_fn()
+    logger.debug("Loss function creation executed.")
     optimizer = get_optimizer(model)
+    logger.debug("Optimizer creation executed.")
     scheduler = get_scheduler(optimizer)
-    train(model, train_dataloader, test_dataloader, loss_fn, optimizer, scheduler)
+    logger.debug("Scheduler creation executed.")
+    train(
+        model=model,
+        train_dataloader=train_dataloader,
+        test_dataloader=test_dataloader,
+        loss_fn=loss_fn,
+        optimizer=optimizer,
+        scheduler=scheduler
+        )
+    logger.debug("Training executed. Returning the trained model.")
     return model
 
 

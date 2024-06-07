@@ -11,6 +11,8 @@ This allows for consistent logging practices across the application,
 making it easier to debug issues and track application flow.
 """
 import logging
+import json
+from datetime import datetime as dt
 from color import Color
 
 
@@ -43,9 +45,48 @@ class _PrettierRecord(logging.Filter):
             bool: Always returns True to ensure the record is not filtered out.
         """
         record.color = self.color_levels.get(record.levelname, '')
-        record.module_name = record.pathname.split("/")[-1]
         record.reset = Color.reset
         return True
+
+
+class Filter_name(logging.Filter):
+    """
+    A logging filter that will determine if a log record should be processed
+    based on which logger emitted the record. This filter is used to separate
+    log records based on the logger name, allowing for different handling
+    of log records based on their source. Useful to attach it to a handler
+
+    Attributes:
+        name (str): The name of the logger to filter by. If the logger name
+            matches this value, the log record will be processed.
+    """
+    def __init__(self, allowed: str | list = None):
+        """
+        Initializes the filter with the specified logger name.
+
+        If no name is provided, the filter will block all log records.
+
+        Parameters:
+            name (str or list): The names of the loggers to filter by.
+        """
+        super().__init__()
+        self.allowed = allowed
+        if self.allowed is not None and not isinstance(self.allowed, list):
+            self.allowed = [self.allowed]
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        """
+        Determines if the log record should be processed based on the logger name.
+
+        Parameters:
+            record (logging.LogRecord): The log record to process.
+
+        Returns:
+            bool: True if the log record should be processed, False otherwise.
+        """
+        if self.allowed is None:
+            return False
+        return record.name in self.allowed
 
 
 class PrettyScreenHandler(logging.StreamHandler):
@@ -162,6 +203,60 @@ class ColoredPrinterScreenHandler(logging.StreamHandler):
         self.setLevel(logging.NOTSET)
 
 
+class PersistentLogHandler(logging.FileHandler):
+    """
+    A file-based logging handler that records log messages as plain text.
+    This handler is suitable for persistent logging to a file, where
+    all data in the log message can be stored for future reference.
+    The log messages are formatted as json objects for easy parsing.
+
+    Inherits from logging.FileHandler.
+    """
+    def __init__(self, filename, mode='a', encoding=None, delay=False):
+        super().__init__(filename, mode, encoding, delay)
+        self.setFormatter(Formatters.json_formatter())
+        self.setLevel(logging.NOTSET)
+
+
+class PersistentLogHandlerStructured(logging.FileHandler):
+    """
+    A file-based logging handler that records log messages as plain text.
+    This handler is suitable for persistent logging to a file, where
+    all data in the log message can be stored for future reference.
+    The log messages are formatted as json objects for easy parsing.
+
+    Inherits from logging.FileHandler.
+    """
+    def __init__(self, filename, mode='a', encoding=None, delay=False):
+        super().__init__(filename, mode, encoding, delay)
+        self.setFormatter(Formatters.json_formatter(structured=True))
+        self.setLevel(logging.NOTSET)
+
+
+class JsonFormatter(logging.Formatter):
+    """
+    Creates a formatter for logging messages as json
+
+    Returns:
+        logging.Formatter: An instance configured for json log messages.
+    """
+
+    def __init__(self, structured: bool = False):
+        super().__init__()
+        self.indent = 2 if structured else None
+
+    def format(self, record: logging.LogRecord) -> str:
+        log_record = {
+            'message': record.getMessage(),
+            'level': record.levelname,
+            'module': record.filename,
+            'function': record.funcName,
+            'line': record.lineno,
+            'time': dt.fromtimestamp(record.created).isoformat()
+        }
+        return json.dumps(log_record, indent=self.indent)
+
+
 class Formatters:
     """
     Provides static methods for creating various logging.Formatter objects.
@@ -204,8 +299,8 @@ class Formatters:
             logging.Formatter: An instance configured for detailed log messages.
         """
         return logging.Formatter(
-            "{levelname}: {module_name}:"
-            " in line {lineno}: {message}\n", style="{"
+            "{levelname}: {filename}:"
+            " in line {lineno}:\n {message}\n", style="{"
             )
 
     @staticmethod
@@ -221,7 +316,7 @@ class Formatters:
         """
         return logging.Formatter(
             "{color}{levelname} from {name}: "
-            "{module_name}: in line {lineno}: {reset}\n{message}\n",
+            "{filename}: in line {lineno}: {reset}\n{message}\n",
             style="{"
             )
 
@@ -272,3 +367,16 @@ class Formatters:
             logging.Formatter: An instance configured for plain text, colored log messages.
         """
         return logging.Formatter("{color}{message}{reset}", style="{")
+
+    @staticmethod
+    def json_formatter(structured=False) -> logging.Formatter:
+        """
+        Creates a formatter for logging messages as json objects.
+        This formatter is suitable for persistent logging to a file,
+        where structured data is required for further processing.
+
+        Returns:
+            logging.Formatter: An instance configured for json log messages.
+
+        """
+        return JsonFormatter(structured=structured)

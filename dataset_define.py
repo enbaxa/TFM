@@ -220,8 +220,8 @@ class CategoricDataset(TorchDataset):
         # make test and train datasets be equal to the original dataset except for the data
         self._copy_specs(train)
         self._copy_specs(test)
-        printer.debug("Training set size: %d {len(train)}", len(train))
-        printer.debug("Testing set size: %d {len(test)}", len(test))
+        printer.debug("Training set size: %d", len(train))
+        printer.debug("Testing set size: %d", len(test))
         if self.output_columns is not None:
             # Check if all output possibilities are represented in the training set
             train_output: set = set(train.data[self.output_columns].nunique())
