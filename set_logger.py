@@ -179,7 +179,7 @@ class Formatters:
         Returns:
             logging.Formatter: An instance configured for simple log messages.
         """
-        return logging.Formatter("{levelname}: {msg}\n", style="{")
+        return logging.Formatter("{levelname}: {message}\n", style="{")
 
     @staticmethod
     def colored_simple_formatter() -> logging.Formatter:
@@ -191,7 +191,7 @@ class Formatters:
         Returns:
             logging.Formatter: An instance configured for simple, colored log messages.
         """
-        return logging.Formatter("{color}{levelname}: {reset}{msg}\n", style="{")
+        return logging.Formatter("{color}{levelname}: {reset}{message}\n", style="{")
 
     @staticmethod
     def detailed_formatter() -> logging.Formatter:
@@ -205,7 +205,7 @@ class Formatters:
         """
         return logging.Formatter(
             "{levelname}: {module_name}:"
-            " in line {lineno}: {msg}\n", style="{"
+            " in line {lineno}: {message}\n", style="{"
             )
 
     @staticmethod
@@ -221,7 +221,7 @@ class Formatters:
         """
         return logging.Formatter(
             "{color}{levelname} from {name}: "
-            "{module_name}: in line {lineno}: {reset}\n{msg}\n",
+            "{module_name}: in line {lineno}: {reset}\n{message}\n",
             style="{"
             )
 
@@ -241,7 +241,7 @@ class Formatters:
             f"{divisor}"
             "\n{levelname} from {name} "
             "logger in function \"{funcName}\" line {lineno}:\n"
-            "{reset}\n{msg}\n{color}"
+            "{reset}\n{message}\n{color}"
             f"{divisor}"
             "{reset}\n",
             style="{"
@@ -258,7 +258,7 @@ class Formatters:
         Returns:
             logging.Formatter: An instance configured for plain text log messages.
         """
-        return logging.Formatter("{msg}", style="{")
+        return logging.Formatter("{message}", style="{")
 
     @staticmethod
     def colored_print_formatter() -> logging.Formatter:
@@ -271,4 +271,4 @@ class Formatters:
         Returns:
             logging.Formatter: An instance configured for plain text, colored log messages.
         """
-        return logging.Formatter("{color}{msg}{reset}", style="{")
+        return logging.Formatter("{color}{message}{reset}", style="{")

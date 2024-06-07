@@ -87,7 +87,7 @@ class CategoricNeuralNetwork(nn.Module):
         elif self._train_nlp_embedding is False and self._nlp_embedding_model is not None:
             for param in self._nlp_embedding_model.model.parameters():
                 param.requires_grad = False
-        printer.info(f"Input size: {self._input_size}, Mapping to Output size: {self._output_size}")
+        printer.info("Input size: %s, Mapping to Output size: %s", self._input_size, self._output_size)
 
         # Initialize the hidden layers
         # Define the neural network
@@ -115,7 +115,7 @@ class CategoricNeuralNetwork(nn.Module):
         for name, param in self.named_parameters():
             if param.requires_grad:
                 training_message.append(f"{name} will be part of the learning layer")
-        printer.debug("\n".join(training_message))
+        printer.debug("%s", "\n".join(training_message))
 
     def build_neural_network(self, neurons, number_layers):
         """
@@ -150,7 +150,7 @@ class CategoricNeuralNetwork(nn.Module):
             add_drop=False,
             add_normalization=False
             )
-        printer.info(f"Using a model with the following setup:\n{str(self.linear_relu_stack):s}")
+        printer.info("Using a model with the following setup:\n%s", str(self.linear_relu_stack))
 
     def add_layer(
             self,
@@ -214,9 +214,10 @@ class CategoricNeuralNetwork(nn.Module):
             # Use a pretrained model for the output embeddings
             self._output_size: int = self._nlp_embedding_model.model.config.hidden_size * len(self.output_categories)
             printer.info(
-                f"Using output embeddings. "
-                f"Using pretrained model "
-                f"of {self._output_size} embedded dimensions."
+                "Using output embeddings. "
+                "Using pretrained model "
+                "of %s embedded dimensions.",
+                self._output_size
                 )
         else:
             # If no embeddings are used, the output size is the number of categories
@@ -283,7 +284,7 @@ class CategoricNeuralNetwork(nn.Module):
         try:
             assert len(lengths) == 1, "Not all input fields have the same length in this batch"
         except AssertionError:
-            printer.debug(batch)
+            printer.debug("%s", str(batch))
             raise
 
         # Initialize an empty list to hold the embeddings
@@ -483,7 +484,7 @@ class CategoricNeuralNetwork(nn.Module):
                  ]
                 )
             if not weights_changed:
-                printer.warning(f"Warning: Weights did not change for batch {batch}")
+                printer.warning("Warning: Weights did not change for batch %s", str(batch))
 
             # Print the loss every 100 batches
             if batch % 100 == 0 or batch == size - 1:
@@ -620,7 +621,7 @@ class CategoricNeuralNetwork(nn.Module):
                     thresholds_metrics,
                     key=lambda x: thresholds_metrics[x]["f1"]
                     )
-                printer.info(f"Best threshold: {self._similarity_threshold:.2f}")
+                printer.info("Best threshold: %.2f", self._similarity_threshold)
                 # Get the metrics for the best threshold into an easy-to-access variable
                 best_metrics: dict[str, Union[float, int]] = thresholds_metrics[self._similarity_threshold]
                 # Get the metrics for the best threshold to printout
@@ -637,7 +638,7 @@ class CategoricNeuralNetwork(nn.Module):
         message_printout: str = (
             f"\nTest Result:\nPrecision: {(precision):>6.4f}, Recall: {(recall):>6.4f}, Avg loss: {test_loss:>8.4f} "
             f"\nF1 Score: {f1_score:>12.8f}"
-            f"\nCorrect: {correct_positives:>1.0f} / {total_positives}, False Positives: {false_positives:>1.0f}\n"
+            f"\nCorrect: {correct_positives:>d} / {total_positives}, False Positives: {false_positives:>d}\n"
         )
         if self._similarity_threshold != 0:
             message_printout = (
@@ -749,7 +750,6 @@ class CategoricNeuralNetwork(nn.Module):
             "monolabel", "multilabel", "priority"
             ], \
             "Mode must be either 'monolabel' or 'multilabel' or 'priority'."
-        print(inp)
         logits = self(inp)
         output_possibilites: dict[int, str] = {
             i: x for x, i in self.category_mappings[
@@ -853,7 +853,7 @@ class CategoricNeuralNetwork(nn.Module):
             elif all(isinstance(element, list) for element in data):
                 assert len(data) == len(self.input_categories), \
                                      "The number of input categories does not match the input data."
-                logger.debug(f"Make sure that the order of the input categories is correct: {self.input_order}")
+                logger.debug("Make sure that the order of the input categories is correct: %s", self.input_order)
                 # make a list of lists of eacn n-th element of each list in data
                 batch_length = len(data[0])  # all lists should have the same length
                 assert all(len(element) == batch_length for element in data), \
@@ -889,7 +889,7 @@ class CategoricNeuralNetwork(nn.Module):
         error_message.append("Please provide the input data as a list of lists.")
         error_message.append("Each element of the outer list should correspond to a different input category.")
         error_message.append(f"The order of categories MUST be as follows: {self.input_order}")
-        logger.error("\n".join(error_message))
+        logger.error("%s", "\n".join(error_message))
         raise ValueError
 
     @property
@@ -987,7 +987,7 @@ class CategoricNeuralNetwork(nn.Module):
             if torch.backends.mps.is_available()
             else "cpu"
         )
-        logger.info(f"Using {device} device")
+        logger.info("Using %s device", device)
         return device
 
 

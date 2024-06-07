@@ -267,13 +267,16 @@ def main(neurons: int, layers: int):
 
     # Count the number of correct guesses
     correct, total = 0, 0
+    # Count the number of correct guesses
+    correct, total = 0, 0
     for sentence in positive_sentences:
         guessed_category = model.execute(sentence, mode="monolabel")[0]
         printer.info(
-            f"Input Sentence: '{sentence}'\n"
-            f"Guessed Category: {guessed_category}\n"
-            f"Expected Category: 'positive'\n"
-            "-----------------------------"
+            "Input Sentence: '%s'\n"
+            "Guessed Category: %s\n"
+            "Expected Category: 'positive'\n"
+            "-----------------------------",
+            sentence, guessed_category
         )
         correct += 1 if guessed_category == "positive" else 0
         total += 1
@@ -281,16 +284,17 @@ def main(neurons: int, layers: int):
     for sentence in negative_sentences:
         guessed_category = model.execute(sentence, mode="monolabel")[0]
         printer.info(
-            f"Input Sentence: '{sentence}'\n"
-            f"Guessed Category: {guessed_category}\n"
-            f"Expected Category: 'negative'\n"
-            "-----------------------------"
+            "Input Sentence: '%s'\n"
+            "Guessed Category: %s\n"
+            "Expected Category: 'negative'\n"
+            "-----------------------------",
+            sentence, guessed_category
         )
         correct += 1 if guessed_category == "negative" else 0
         total += 1
 
-    printer.info(f"correct count: {correct:f} / {total:f}")
-    printer.info(f"Accuracy: {correct/total*100:.2f}%")
+    printer.info("correct count: %d/%d", correct, total)
+    printer.info("Accuracy: %.2f%%", correct/total*100)
     return correct / total*100, model
 
 
@@ -312,4 +316,4 @@ if __name__ == "__main__":
         for layers in layers_attempt:
             accuracy, model = main(neurons, layers)
             msg.append(f"Accuracy with {neurons} neurons and {layers} layers: {accuracy:.2f}%\n")
-    printer.info("".join(msg))
+    printer.info("%s", "".join(msg))

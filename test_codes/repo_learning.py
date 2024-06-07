@@ -71,7 +71,7 @@ def main(dataset_name):
                     scheduler=scheduler
                     )
     printer.debug("Training finished.")
-    printer.debug(f"Time taken: {(time.time() - start) / 60} minutes.")
+    printer.debug("Time taken: %.2f minutes.", (time.time() - start) / 60)
     # Get a set of random instances from the dataset and test the model
     model.eval()
     dataset.group_by()
@@ -87,7 +87,8 @@ def main(dataset_name):
         outp.append(inp)
         outp.append(out)
         outp.append("\n")
-    printer.info("\n".join(outp))
+    printer.info("%s", "\n".join(outp))
+
 
 if __name__ == '__main__':
     logger.addHandler(DetailedScreenHandler())

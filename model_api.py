@@ -38,8 +38,8 @@ from typing import ClassVar
 
 import pandas as pd
 import seaborn as sns
-# import matplotlib
-# matplotlib.use('Agg')
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import torch
 from torch.utils.data import DataLoader
@@ -93,6 +93,7 @@ class ConfigRun:
     lr_decay_target: ClassVar[str] = "f1"
     # Scheduler: relevant only if reduce on step
     lr_decay_step: ClassVar[int] = 10
+
 
 def configure_dataset(
         df: pd.DataFrame,
@@ -235,7 +236,7 @@ def create_model(
     info_message.append(f"train_nlp_embedding = {train_nlp_embedding}")
     info_message.append(f"nlp_model_name = {nlp_model_name}")
 
-    printer.debug("\n".join(info_message))
+    printer.debug("%s", "\n".join(info_message))
 
     model: CategoricNeuralNetwork = CategoricNeuralNetwork(
         category_mappings=dataset.category_mappings,
@@ -470,7 +471,7 @@ def train(
         if do_report:
             df = pd.DataFrame([[0]*4], columns=["Epoch", "F1", "Precision", "Recall"])
         for t in range(epochs):
-            printer.info(f"\nEpoch {t+1}\n-------------------------------")
+            printer.info("\nEpoch %d\n-------------------------------", t+1)
             model.train_loop(train_dataloader, loss_fn, optimizer)
             f1_score, precision, recall = model.test_loop(test_dataloader, loss_fn)
             if scheduler is not None:
@@ -543,7 +544,7 @@ def write_report(df: pd.DataFrame, filename: str) -> None:
     Report.append(f"F1: {df['F1'].iloc[-1]}")
     Report.append(f"Precision: {df['Precision'].iloc[-1]}")
     Report.append(f"Recall: {df['Recall'].iloc[-1]}")
-    printer.info("\n".join(Report))
+    printer.info("%s", "\n".join(Report))
     sns.set_style("darkgrid")
     sns.set_context("paper")  # Options: paper, notebook, talk, poster
     # save a plot of the report
@@ -554,6 +555,7 @@ def write_report(df: pd.DataFrame, filename: str) -> None:
     ax.set_ylabel("Score", rotation="horizontal")
     # save the
     fig.savefig(filename)
+
 
 def build_and_train_model(
         df: pd.DataFrame,
