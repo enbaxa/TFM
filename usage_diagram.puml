@@ -7,8 +7,9 @@ title =Usage diagram
 allowmixing
 
 package Dependencies[
-    pyTorch
     pandas
+    seaborn
+    pyTorch
     Transformers
 ]
 
