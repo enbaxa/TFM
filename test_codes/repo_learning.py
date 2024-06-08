@@ -12,10 +12,8 @@ import logging
 import time
 import argparse
 from pathlib import Path
-import matplotlib
 import pandas as pd
 import model_api
-matplotlib.use("Agg")
 
 logger = logging.getLogger("TFM")
 printer = logging.getLogger("printer")
@@ -45,20 +43,13 @@ def main(
     train_size: float = 1.0,
     f1: float = 0.75,
     recall: float = 0.75,
-    report_dir: str = "reports"
+    case_name: str = "default"
         ):
     """
     Main function for training and evaluating a model recognizing relations
     between function names and their tests.
     """
-    # Configure the dataset using the input and output columns
-    # Give them as lists of strings
-    df = get_data(dataset_name=dataset_name)
-    input_columns = ["method_name"]
-    output_columns = ["test_case_name"]
 
-    # configure the dataset into a model_api.Dataset object
-    dataset = model_api.configure_dataset(df, input_columns=input_columns, output_columns=output_columns)
     # Define the configuration for the model
     config = model_api.ConfigRun
     config.epochs = epochs
@@ -72,8 +63,15 @@ def main(
         config.train_targets["f1"] = f1
     if recall is not None:
         config.train_targets["recall"] = recall
-    config.report_dir = Path(report_dir)
+    config.case_name = case_name
     model_api.reconfigure_loggers()
+    # Configure the dataset using the input and output columns
+    # Give them as lists of strings
+    df = get_data(dataset_name=dataset_name)
+    input_columns = ["method_name"]
+    output_columns = ["test_case_name"]
+    # configure the dataset into a model_api.Dataset object
+    dataset = model_api.configure_dataset(df, input_columns=input_columns, output_columns=output_columns)
     # Define the model and training setup
     model = model_api.create_model(dataset=dataset)
     loss_fn = model_api.get_loss_fn()
@@ -94,6 +92,15 @@ def main(
     model.eval()
     dataset.group_by()
     outp = []
+    # initialize counters
+    correct_guesses = 0
+    incorrect_guesses = 0
+    missing_guesses = 0
+    perfect_guesses = 0
+    correct_guesses_priority = 0
+    total_guesses_made = 0
+    total_guesses_expected = 0
+    total_classifications_made = 0
     for i in range(dataset.data.shape[0]):
         # take a random entry of df and use the input to get some output
         # and compare it with the real output
@@ -102,11 +109,44 @@ def main(
         guess = model.execute(inp_name, mode="multilabel")
         inp = f"Input: {inp_name}\nGuess: {guess}"
         out = f"Real: {expected_output}"
-        #outp.append(inp)
-        #outp.append(out)
         outp.append("\n".join((inp, out, "\n")))
+        correct_guesses += len([x for x in guess if x in expected_output])
+        incorrect_guesses += len([x for x in guess if x not in expected_output])
+        missing_guesses += len([x for x in expected_output if x not in guess])
+        if set(guess) == set(expected_output):
+            perfect_guesses += 1
+        # priority mode
+        guess_priority = model.execute(inp_name, mode="priority")
+        # count correct guesses in the first 20% of the list
+        if all([x in guess_priority[:int(len(guess_priority) * 0.2)] for x in expected_output]):
+            correct_guesses_priority += 1
+        total_guesses_made += len(guess)
+        total_guesses_expected += len(expected_output)
+        total_classifications_made += 1
+
     printer.info("%s", "\n".join(outp[:5]))
     logger.info("%s", "\n".join(outp))
+
+    results_percentual_dict ={
+        "Correct guesses": correct_guesses / total_guesses_made * 100,
+        "Incorrect guesses": incorrect_guesses / total_guesses_made * 100,
+        "Missing guesses": missing_guesses / total_guesses_expected * 100,
+        "Perfect guesses": perfect_guesses / total_classifications_made * 100,
+        "correctintop20": perfect_guesses / total_classifications_made * 100
+    }
+    logger.info(
+        "Correct guesses: %d. This is %.3f%% of the total\n"
+        "Incorrect guesses: %d. This is %.3f%% of the total\n\n"
+        "Missing guesses: %d. This is %.3f%% of the total\n\n"
+        "Perfect guesses: %d\n. This is %.3f%% of the total\n\n"
+        "All correct guesses in first 20%% of priority mode: %.4f%% of the total\n",
+        correct_guesses, results_percentual_dict["Correct guesses"],
+        incorrect_guesses, results_percentual_dict["Incorrect guesses"],
+        missing_guesses, results_percentual_dict["Missing guesses"],
+        perfect_guesses, results_percentual_dict["Perfect guesses"],
+        results_percentual_dict["correctintop20"]
+        )
+    return results_percentual_dict
 
 
 if __name__ == '__main__':
@@ -157,12 +197,6 @@ if __name__ == '__main__':
         default=0.75,
         help="The target recall score for training the model."
     )
-    parser.add_argument(
-        "--report_dir",
-        type=str,
-        default="reports",
-        help="The directory to save the reports of the model."
-    )
     args = parser.parse_args()
     dataset_name = args.dataset_name  # default "medium_36.csv" is hard to learn
     neurons = args.neurons
@@ -171,7 +205,6 @@ if __name__ == '__main__':
     train_size = args.train_size
     f1 = args.f1
     recall = args.recall
-    report_dir = args.report_dir
     main(
         dataset_name=dataset_name + ".csv",
         neurons=neurons,
@@ -180,5 +213,5 @@ if __name__ == '__main__':
         train_size=train_size,
         f1=f1,
         recall=recall,
-        report_dir=report_dir
+        case_name=dataset_name
         )

@@ -50,6 +50,7 @@ logger: logging.Logger = logging.getLogger("TFM")
 printer: logging.Logger = logging.getLogger("printer")
 matplotlib.use("Agg")
 
+
 @dataclass
 class ConfigRun:
     """
