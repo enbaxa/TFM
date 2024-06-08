@@ -51,12 +51,12 @@ def main(neurons: int, layers: int):
         accuracy (float): The accuracy of the model on the test sentences.
         model (model_api.Model): The trained model.
     """
-    df: pd.DataFrame = get_data()
-    model_api.ConfigRun.epochs = Path(f"reports/reports_n{neurons}_l{layers}")
+    model_api.ConfigRun.case_name = f"sentiment_explicit_n{neurons}_l{layers}"
     model_api.reconfigure_loggers()
 
     printer.info(f"Running test with {neurons} neurons and {layers} layers")
     # Define the input and output columns
+    df: pd.DataFrame = get_data()
     input_columns = ["text"]
     output_columns = ["label"]
     # Configure the dataset using the input and output columns

@@ -39,6 +39,7 @@ from pathlib import Path
 
 import pandas as pd
 import seaborn as sns
+import matplotlib
 import matplotlib.pyplot as plt
 import torch
 from torch.utils.data import DataLoader
@@ -47,7 +48,7 @@ from learning_model import CategoricNeuralNetwork, StopTraining
 import set_logger
 logger: logging.Logger = logging.getLogger("TFM")
 printer: logging.Logger = logging.getLogger("printer")
-
+matplotlib.use("Agg")
 
 @dataclass
 class ConfigRun:
@@ -92,9 +93,12 @@ class ConfigRun:
     lr_decay_target: ClassVar[str] = "f1"
     # Scheduler: relevant only if reduce on step
     lr_decay_step: ClassVar[int] = 10
-    # Reports
+    # Reports and outputs
+    out_dir: ClassVar[Path] = Path("out").resolve()
+    case_name: ClassVar[str] = "default"
+    report_dir: ClassVar[str] = "reports"
     report_filename: ClassVar[str] = "report"
-    report_dir: ClassVar[str] = Path("reports").resolve()
+
 
 def configure_default_loggers(fil_name: str = None, fil_dir: str = None):
     """
@@ -107,7 +111,9 @@ def configure_default_loggers(fil_name: str = None, fil_dir: str = None):
     if fil_name is None:
         fil_name: str = ConfigRun.report_filename
         if fil_dir is None:
-            fil_dir: Path = ConfigRun.report_dir
+            fil_dir: Path = ConfigRun.out_dir
+            fil_dir = fil_dir.joinpath(ConfigRun.case_name)
+            fil_dir = fil_dir.joinpath(ConfigRun.report_dir)
         fil_name: Path = fil_dir.joinpath(fil_name)
     if not fil_name.parent.exists():
         fil_name.parent.mkdir(parents=True)
@@ -120,6 +126,10 @@ def configure_default_loggers(fil_name: str = None, fil_dir: str = None):
     screen_handler.addFilter(set_logger.Filter_name("printer"))
     screen_handler.setLevel(logging.INFO)
     root_logger.addHandler(screen_handler)
+    # Add a second screen handler to root logger to print out warning+ messages
+    screen_handler_high = set_logger.ColoredDetailedScreenHandler()
+    screen_handler_high.setLevel(logging.WARNING)
+    root_logger.addHandler(screen_handler_high)
     # create file handler which will log messages to file.
     # in principle those are messages that come from logger "logger"
     file_handler = set_logger.DetailedFileHandler(f"{fil_name}.log", mode="w")
@@ -147,6 +157,7 @@ def wipe_handlers():
     handlers = list(root_logger.handlers)
     for handler in handlers:
         root_logger.removeHandler(handler)
+
 
 def reconfigure_loggers():
     """
@@ -405,7 +416,7 @@ def get_scheduler(
             mode = ConfigRun.scheduler_plateau_mode
         # if the scheduler is ReduceLROnPlateau, the steps will be ignored
         if steps is not None:
-            printer.warning(
+            logger.warning(
                 "Steps is not used in ReduceLROnPlateau scheduler."
                 " However it was set in the function call."
                 " It will be ignored."
@@ -421,14 +432,14 @@ def get_scheduler(
             steps = ConfigRun.lr_decay_step
         # if the scheduler is StepLR, the patience will be ignored
         if patience is not None:
-            printer.warning(
+            logger.warning(
                 "Patience is not used in StepLR scheduler."
                 " However it was set in the function call."
                 " It will be ignored."
                 )
         # if the scheduler is StepLR, the mode will be ignored
         if mode is not None:
-            printer.warning(
+            logger.warning(
                 "Mode is not used in StepLR scheduler."
                 " However it was set in the function call."
                 " It will be ignored."
@@ -577,11 +588,17 @@ def train(
                     plt.ion()
                     plt.clf()  # Clear the current figure
                     if "f1" in train_targets.keys():
-                        sns.lineplot(x='Epoch', y='F1', data=df, label='F1 Score')
-                    if "precision" in train_targets:
-                        sns.lineplot(x='Epoch', y='Precision', data=df, label='Precision')
+                        color = "red"
+                        sns.lineplot(x='Epoch', y='F1', data=df, label='F1 Score', color=color)
+                        sns.lineplot(x='Epoch', y=train_targets["f1"], data=df, label='F1 Target', color=color)
                     if "recall" in train_targets:
-                        sns.lineplot(x='Epoch', y='Recall', data=df, label='Recall')
+                        color = "green"
+                        sns.lineplot(x='Epoch', y='Recall', data=df, label='Recall', color=color)
+                        sns.lineplot(x='Epoch', y=train_targets["recall"], data=df, label='Recall Target', color=color)
+                    if "precision" in train_targets:
+                        color = "blue"
+                        sns.lineplot(x='Epoch', y='Precision', data=df, label='Precision', color=color)
+                        sns.lineplot(x='Epoch', y=train_targets["precision"], data=df, label='Precision Target', color=color)
                     plt.legend()
                     plt.pause(0.01)  # Pause to update the plot
                     plt.draw()  # Ensure the plot is updated
@@ -595,12 +612,16 @@ def train(
     except StopTraining as e:
         printer.info(e)
     except KeyboardInterrupt:
-        printer.warning("Training interrupted by user.")
+        logger.warning("Training interrupted by user.")
     if do_report:
-        write_report(df, train_targets = train_targets)
+        write_report(df, train_targets=train_targets)
 
 
-def write_report(df: pd.DataFrame, filename: str = None, train_targets: dict[str, float]=None) -> None:
+def write_report(
+        df: pd.DataFrame,
+        filename: str = None,
+        train_targets: dict[str, float] = None
+        ) -> None:
     """
     Write a report to a file.
 
@@ -615,20 +636,22 @@ def write_report(df: pd.DataFrame, filename: str = None, train_targets: dict[str
         None
     """
     if filename is None:
-        filename: Path = ConfigRun.report_dir.joinpath(ConfigRun.report_filename)
+        filename: Path = ConfigRun.out_dir.joinpath(ConfigRun.case_name)
+        filename = filename.joinpath(ConfigRun.report_dir)
+        filename = filename.joinpath(ConfigRun.report_filename)
         filename.with_suffix(".png")
     if not filename.parent.exists():
         filename.parent.mkdir(parents=True)
-    Report = []
-    Report.append("Report on the training")
-    Report.append("-------------------------------")
-    Report.append(df.to_string())
-    Report.append(f"Ran for {df.shape[0]} epochs.")
-    Report.append("Final values:")
-    Report.append(f"F1: {df['F1'].iloc[-1]}")
-    Report.append(f"Precision: {df['Precision'].iloc[-1]}")
-    Report.append(f"Recall: {df['Recall'].iloc[-1]}")
-    printer.info("%s", "\n".join(Report))
+    report = []
+    report.append("Report on the training")
+    report.append("-------------------------------")
+    report.append(df.to_string())
+    report.append(f"Ran for {df.shape[0]} epochs.")
+    report.append("Final values:")
+    report.append(f"F1: {df['F1'].iloc[-1]}")
+    report.append(f"Precision: {df['Precision'].iloc[-1]}")
+    report.append(f"Recall: {df['Recall'].iloc[-1]}")
+    printer.info("%s", "\n".join(report))
     sns.set_style("darkgrid")
     sns.set_context("paper")  # Options: paper, notebook, talk, poster
     # save a plot of the report
@@ -637,8 +660,8 @@ def write_report(df: pd.DataFrame, filename: str = None, train_targets: dict[str
     precision_color = 'blue'
     recall_color = 'green'
     sns.lineplot(x='Epoch', y='F1', data=df, label='F1 Score', ax=ax, color=f1_color)
-    sns.lineplot(x='Epoch', y='Recall', data=df, label='Recall', ax=ax, color= recall_color)
-    sns.lineplot(x='Epoch', y='Precision', data=df, label='Precision', ax=ax, color=precision_color )
+    sns.lineplot(x='Epoch', y='Recall', data=df, label='Recall', ax=ax, color=recall_color)
+    sns.lineplot(x='Epoch', y='Precision', data=df, label='Precision', ax=ax, color=precision_color)
     # print the training targets present
     if train_targets:
         for key, value in train_targets.items():
@@ -651,6 +674,8 @@ def write_report(df: pd.DataFrame, filename: str = None, train_targets: dict[str
             else:
                 ax.axhline(value, color='black', linestyle='--', label=f"{key} target")
     ax.set_ylabel("Score", rotation="horizontal")
+    if ConfigRun.case_name != "default":
+        ax.set_title(f"Training {ConfigRun.case_name}")
     # save the
     fig.savefig(filename)
     logger.debug("Report saved as %s", filename)

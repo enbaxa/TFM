@@ -48,18 +48,18 @@ def main(neurons: int, layers: int):
         accuracy (float): The accuracy of the model on the test sentences.
         model (model_api.Model): The trained model.
     """
-    df: pd.DataFrame = get_data()
     # Create an instance of the ConfigRun class
     config = model_api.ConfigRun
     config.max_hidden_neurons = neurons
     config.hidden_layers = layers
     config.model_uses_output_embedding = False  # This is a classification task
     config.nlp_model_name = "distilbert-base-uncased"  # Generic NLP model
-    config.report_dir = Path(f"reports/reports_n{neurons}_l{layers}")
+    config.case_name = f"sentiment_compact_n{neurons}_l{layers}"
     model_api.reconfigure_loggers()
 
     printer.info(f"Running test with {neurons} neurons and {layers} layers")
     # Define the input and output columns
+    df: pd.DataFrame = get_data()
     input_columns = ["text"]
     output_columns = ["label"]
     model = model_api.build_and_train_model(

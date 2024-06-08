@@ -56,7 +56,7 @@ class CategoricNeuralNetwork(nn.Module):
         self._nlp_model_name = nlp_model_name
         # Initialize the NLP embedding model if needed
         if self._use_input_embedding is False and self._use_output_embedding is False:
-            printer.warning("Using no embeddings.")
+            logger.warning("Using no embeddings.")
             self._nlp_embedding_model: NlpEmbedding | None = None
         else:
             self._nlp_embedding_model: NlpEmbedding | None = NlpEmbedding(model_name=self._nlp_model_name)
@@ -76,7 +76,7 @@ class CategoricNeuralNetwork(nn.Module):
         self._configure_output()
 
         if self._train_nlp_embedding and self._nlp_embedding_model is not None:
-            printer.warning(
+            logger.warning(
                 "Training the NLP embedding model can be very slow and resource-intensive.\n"
                 "It is recommended to not train pretrained models further."
                 "It can also be very unstable and might not converge.\n"
@@ -483,7 +483,7 @@ class CategoricNeuralNetwork(nn.Module):
                  ]
                 )
             if not weights_changed:
-                printer.warning("Warning: Weights did not change for batch %s", str(batch))
+                logger.warning("Warning: Weights did not change for batch %s", str(batch))
 
             # Print the loss every 100 batches
             if batch % 100 == 0 or batch == size - 1:
@@ -637,8 +637,8 @@ class CategoricNeuralNetwork(nn.Module):
                     )
         # Print the results
         message_printout: str = (
-            f"\nTest Result:\nPrecision: {(precision):>6.4f}, Recall: {(recall):>6.4f}, Avg loss: {test_loss:>8.4f} "
-            f"\nF1 Score: {f1_score:>12.8f}"
+            f"\nTest Result: Avg loss: {test_loss:>8.4f} "
+            f"\nF1 Score: {f1_score:>12.8f}, \nPrecision: {(precision):>6.4f}, Recall: {(recall):>6.4f}"
             f"\nCorrect: {correct_positives:>d} / {total_positives}, False Positives: {false_positives:>d}\n"
         )
         if self._similarity_threshold != 0:
