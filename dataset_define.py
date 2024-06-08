@@ -229,15 +229,64 @@ class CategoricDataset(TorchDataset):
             if all_output.difference(train_output):
                 logger.warning(
                     "Not all output possibilities are represented in the training set."
+                    " It could be bad luck or that the dataset has very sparse outputs."
                     )
+                # check if the original dataset has very sparse outputs in general
+                if self.data[self.output_columns].value_counts().median() < 10:
+                    logger.warning(
+                        "The dataset has very sparse outputs."
+                        " It is recommended to use a different dataset."
+                        " \nThe program will continue, but the results"
+                        " might be meaningless as the model will most likely"
+                        " overfit to the training set."
+                        "\nThe program will now do its best to make a meaningful"
+                        " split, but it is not guaranteed."
+                    )
+                # create a new training set equal to the original dataset
+                train = CategoricDataset(self.data.copy())
+                self._copy_specs(train)
+                # create an empty testing set with the same columns as the training set
+                test = CategoricDataset(pd.DataFrame(columns=train.data.columns))
+                self._copy_specs(test)
+                # Take the most common output value.
+                # Remove 1 row from the training set with that value in the column.
+                # Add it to the testing set
+                # do it in a loop until the split size is as request or until
+                # no more rows with the value count of some output dropping to 0
+                while len(train) / len(self) >= train_size:
+                    output_count = train.data[train.output_columns[0]].value_counts()
+                    if output_count.max() == 1:
+                        logger.warning(
+                            "The output column has no repeated values."
+                            " It is not possible to split the dataset further."
+                            " final size ratio of training set: %d%%",
+                            len(train) / len(self) * 100
+                            )
+                        break
+                    train, test = self.cherry_pick_split(train, test)
                 logger.warning(
-                    "Forcefully copying missing rows to the training."
-                    " This can lead to overfitting, and to a biased analysis."
-                    " But if there are missing values in the training set,"
-                    " the model will not be able to predict them."
-                    " There is no way around it if the training set is not representative."
+                    "Cherry picking split: Training with %d%% of data",
+                    len(train) / len(self) * 100
                     )
-                self.add_missing_rows(train, test, self.output_columns[0])
+                if False:  # deprecated
+                    logger.warning(
+                        "Forcefully copying missing rows to the training."
+                        " This can lead to overfitting, and to a biased analysis."
+                        " But if there are missing values in the training set,"
+                        " the model will not be able to predict them."
+                        " There is no way around it if the training set is not representative."
+                        )
+                    self.add_missing_rows(train, test, self.output_columns[0])
+        return train, test
+
+    @staticmethod
+    def cherry_pick_split(train, test):
+        output_count = train.data[train.output_columns[0]].value_counts()
+        value = output_count.idxmax()
+        row = train.data[train.data[train.output_columns[0]] == value].sample()
+        test.data = pd.concat([test.data, row], ignore_index=True)
+        train.data.drop(row.index, inplace=True)
+        train.data.reset_index(drop=True, inplace=True)
         return train, test
 
     def balance(self, column):
@@ -366,6 +415,7 @@ class CategoricDataset(TorchDataset):
         Returns:
             None
         """
+        logger.error("This function is deprecated and should not be used.")
         df1 = dataset1.data
         df2 = dataset2.data
         # Find the values in the 'output' column of test that are not in train
