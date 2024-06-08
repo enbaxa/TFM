@@ -232,6 +232,30 @@ class CategoricDataset(TorchDataset):
                     )
         return train, test
 
+    def balance(self, column):
+        df = self.data
+        # Count the occurrences of each value in the specified column
+        value_counts = df[column].value_counts()
+        # Determine the maximum count
+        max_count = value_counts.max()
+        # Create a list to hold the balanced rows
+        balanced_rows = []
+        # Iterate over each unique value in the column
+        for value, count in value_counts.items():
+            # Select all rows with the current value
+            rows = df[df[column] == value]
+            # Calculate the number of times we need to duplicate the rows
+            num_to_duplicate = max_count - count
+            # Append the original rows and the duplicated rows to the list
+            balanced_rows.append(rows)
+            if num_to_duplicate > 0:
+                balanced_rows.append(rows.sample(n=num_to_duplicate, replace=True))
+        # Concatenate all balanced rows into a single DataFrame
+        balanced_df = pd.concat(balanced_rows)
+        # Shuffle the balanced DataFrame to mix the rows
+        balanced_df = balanced_df.sample(frac=1).reset_index(drop=True)
+        self.data = balanced_df
+
     def standarize(self) -> None:
         """
         Standarize the dataset by normalizing the data.

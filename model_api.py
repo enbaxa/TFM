@@ -223,6 +223,7 @@ def get_dataloaders(
         dataset: CategoricDataset,
         train_size: float = None,
         batch_size: int = None,
+        balance_training_data: bool = True,
         aggregate_outputs: bool = True
         ) -> tuple:
     """
@@ -234,6 +235,9 @@ def get_dataloaders(
                             If None, it will use the configuration in ConfigRun.
         batch_size (int): The batch size to be used.
                           If None, it will use the configuration in ConfigRun.
+
+        balance_training_data (bool): Whether to balance the training data.
+                                      This is done by oversampling the minority classes.
 
         aggregate_outputs (bool): Whether to aggregate the outputs.
                                   This is useful if some input appears multiple times
@@ -249,6 +253,8 @@ def get_dataloaders(
         train_size = ConfigRun.train_size
 
     train_dataset, test_dataset = dataset.train_test_split(train_size=train_size)
+    if balance_training_data:
+        train_dataset.balance(train_dataset.output_columns[0])
     train_dataloader: DataLoader = DataLoader(
         dataset=train_dataset,
         batch_size=batch_size,
