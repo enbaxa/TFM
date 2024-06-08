@@ -227,9 +227,17 @@ class CategoricDataset(TorchDataset):
             train_output: set = set(train.data[self.output_columns].nunique())
             all_output: set = set(self.data[self.output_columns].nunique())
             if all_output.difference(train_output):
-                printer.warning(
+                logger.warning(
                     "Not all output possibilities are represented in the training set."
                     )
+                logger.warning(
+                    "Forcefully copying missing rows to the training."
+                    " This can lead to overfitting, and to a biased analysis."
+                    " But if there are missing values in the training set,"
+                    " the model will not be able to predict them."
+                    " There is no way around it if the training set is not representative."
+                    )
+                self.add_missing_rows(train, test, self.output_columns[0])
         return train, test
 
     def balance(self, column):
@@ -342,3 +350,28 @@ class CategoricDataset(TorchDataset):
         output_texts: list[str] = [str(element[col]) for col in self.output_columns]
         # Prepare the output tensor - one-hot encoding
         return input_texts, output_texts
+
+    @staticmethod
+    def add_missing_rows(dataset1, dataset2, column):
+        """
+        Add missing rows from dataset2 to dataset1.
+        This is useful when the training dataset has missing values that are present in the test dataset.
+        This function adds the missing rows to the training dataset.
+
+        Args:
+            dataset1 (CategoricDataset): The training dataset.
+            dataset2 (CategoricDataset): The test dataset.
+            column (str): The column to compare between the two datasets.
+
+        Returns:
+            None
+        """
+        df1 = dataset1.data
+        df2 = dataset2.data
+        # Find the values in the 'output' column of test that are not in train
+        missing_values = df2[~df2[column].isin(df1[column])]
+        # Append the missing rows to the train DataFrame
+        updated_df1 = pd.concat([df1, missing_values]).reset_index(drop=True)
+        dataset1.data = updated_df1
+
+
