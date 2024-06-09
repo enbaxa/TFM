@@ -99,6 +99,7 @@ def main(
     # initialize counters
     return evaluate_instances(dataset, model)
 
+
 def evaluate_instances(dataset, model):
     correct_guesses = 0
     incorrect_guesses = 0

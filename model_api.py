@@ -1,35 +1,16 @@
 """
-This module contains the API for the training of the model.
+This module provides classes and functions for creating, training and configuring a categoric neural network model.
 
-This module contains the following functions:
-    * configure_dataset - Configure the dataset for training the model.
-    * get_dataloaders - Get the dataloaders for the training and testing of the model.
-    * train - Train the model on the dataset.
+Classes:
+    - ConfigRun: A dataclass to store the default configuration for the model training.
 
-This module also contains the following dataclass:
-    * ConfigRun - A dataclass to store the configuration for the model training.
-
-This module requires the following modules:
-    * pandas
-    * torch
-    * logging
-    * dataclasses
-    * dataset_define
-    * learning_model
-    * set_logger
-    * torch.utils.data
-
-This module contains the following classes:
-    * ConfigRun
-
-This module contains the following functions:
-    * configure_dataset
-    * get_dataloaders
-    * train
-
-If you want to see the documentation of the function or class,
-please, scroll down to the end of this file.
-
+Functions:
+    - configure_default_loggers(fil_name: str = None, fil_dir: str = None): Configure the default loggers for the module.
+    - wipe_handlers(): Wipe the loggers from the root logger.
+    - reconfigure_loggers(): Reconfigure the loggers.
+    - configure_dataset(df: pd.DataFrame, input_columns: list, output_columns: list) -> CategoricDataset: Configure the dataset for training the model.
+    - get_dataloaders(dataset: CategoricDataset, train_size: float = None, batch_size: int = None, balance_training_data: bool = True, aggregate_outputs: bool = True) -> tuple: Get the dataloaders for the training and testing of the model.
+    - create_model(dataset: CategoricDataset, use_input_embedding: bool = None, use_output_embedding: bool = None, max_hidden_neurons: int = None, hidden_layers: int = None, train_nlp_embedding: bool = None, nlp_model_name: str = None) -> CategoricNeuralNetwork
 """
 
 import logging
@@ -57,12 +38,28 @@ class ConfigRun:
     A dataclass to store the default configuration for the model training.
 
     Attributes:
+        max_hidden_neurons (int): The maximum number of hidden neurons in the model.
+        hidden_layers (int): The number of hidden layers in the model.
+        model_uses_input_embedding (bool): Whether the model uses input embedding.
+        model_uses_output_embedding (bool): Whether the model uses output embedding.
+        model_trains_nlp_embedding (bool): Whether the model trains the NLP embedding.
         learning_rate (float): The learning rate for the model.
         batch_size (int): The batch size for the model.
-        epochs (int): The number of epochs to train the model.
-        f1_target (float): The target F1 score to stop the training.
-        max_hidden_neurons (int): The maximum number of hidden neurons.
-        hidden_layers (int): The number of hidden layers.
+        epochs (int): The number of epochs for the model.
+        train_size (float): The proportion of the dataset to be used for training.
+        train_targets (dict): The targets for the training.
+        optimizer_name (str): The name of the optimizer to be used.
+        nlp_model_name (str): The name of the NLP model to be used.
+        lr_decay_factor (float): The factor by which the learning rate will be decayed.
+        scheduler_type (str): The type of the scheduler.
+        scheduler_plateau_mode (str): The mode for the scheduler.
+        lr_decay_patience (int): The patience for the scheduler.
+        lr_decay_target (str): The target for the learning rate decay.
+        lr_decay_step (int): The steps for the scheduler.
+        out_dir (Path): The directory to save the reports and outputs.
+        case_name (str): The name of the case.
+        report_dir (str): The directory to save the reports.
+        report_filename (str): The name of the report file.
 
     Methods:
         None
@@ -105,9 +102,18 @@ def configure_default_loggers(fil_name: str = None, fil_dir: str = None):
     """
     Configure the default loggers for the module.
 
+    Those are loggers named "TFM" and "printer".
+    They will be handled by the root logger, as they emit messages
+    from throughout the application. The user can use them to
+    print messages to the console or to save them in a log file, and
+    the logging hierarchy will be respected.
+
     Args:
-        fil_name (str): The name of the file to be used for logging.
-        fil_dir (str): The directory to be used for logging.
+        fil_name (str): The name of the file to save the logs.
+        fil_dir (str): The directory to save the logs.
+
+    Returns:
+        None
     """
     if fil_name is None:
         fil_name: str = ConfigRun.report_filename
@@ -125,7 +131,7 @@ def configure_default_loggers(fil_name: str = None, fil_dir: str = None):
     # in principle those are messages that come from logger "printer"
     screen_handler = set_logger.PrinterScreenHandler()
     screen_handler.addFilter(set_logger.Filter_name("printer"))
-    screen_handler.setLevel(logging.INFO)
+    screen_handler.setLevel(logging.DEBUG)
     root_logger.addHandler(screen_handler)
     # Add a second screen handler to root logger to print out warning+ messages
     screen_handler_high = set_logger.ColoredDetailedScreenHandler()
@@ -152,6 +158,9 @@ def wipe_handlers():
     Wipe the loggers from the root logger.
 
     This eliminates all handlers from the root logger.
+
+    Returns:
+        None
     """
     root_logger = logging.getLogger()
     logger.debug("Wiping all handlers.")
@@ -167,6 +176,9 @@ def reconfigure_loggers():
     This function will wipe the handlers from the root logger and then reconfigure them.
     This assures that the configuration is updated by the user, otherwise
     it will use the default configuration.
+
+    Returns:
+        None
     """
     wipe_handlers()
     configure_default_loggers()
@@ -186,9 +198,9 @@ def configure_dataset(
     Configure the dataset for training the model.
 
     Args:
-        df (pd.DataFrame): The data to be used by the dataset.
-        input_columns (list): The names of the columns to be used as input.
-        output_columns (list): The names of the columns to be used as output.
+        df (pd.DataFrame): The DataFrame to be used.
+        input_columns (list): The columns to be used as input.
+        output_columns (list): The columns to be used as output.
 
     Returns:
         dataset (CategoricDataset): The configured dataset.
@@ -223,7 +235,7 @@ def get_dataloaders(
         dataset: CategoricDataset,
         train_size: float = None,
         batch_size: int = None,
-        balance_training_data: bool = True,
+        balance_training_data: bool = False,
         aggregate_outputs: bool = True
         ) -> tuple:
     """
@@ -284,22 +296,19 @@ def create_model(
         nlp_model_name: str = None
         ) -> CategoricNeuralNetwork:
     """
-    Create an instance of the CategoricNeuralNetwork model.
+    Create a categoric neural network model.
 
     Args:
-        dataset (CategoricDataset): The dataset to be used.
-        If None, it will use the configuration in ConfigRun.
-        use_input_embedding (bool): Whether to use an embedding layer for the input.
-        use_output_embedding (bool): Whether to use an embedding layer for the output.
-        max_hidden_neurons (int): The number of neurons in the hidden layers.
-                                  If None, it will use the configuration in ConfigRun.
-        hidden_layers (int): The number of hidden layers.
-                                If None, it will use the configuration in ConfigRun.
-        train_nlp_embedding (bool): Whether to train the NLP embedding layer.
+        dataset (CategoricDataset): The dataset to be used for training the model.
+        use_input_embedding (bool): Whether to use input embedding in the model.
+        use_output_embedding (bool): Whether to use output embedding in the model.
+        max_hidden_neurons (int): The maximum number of hidden neurons in the model.
+        hidden_layers (int): The number of hidden layers in the model.
+        train_nlp_embedding (bool): Whether to train the NLP embedding in the model.
         nlp_model_name (str): The name of the NLP model to be used.
 
     Returns:
-        model (CategoricNeuralNetwork): The model to be used.
+        model (CategoricNeuralNetwork): The created categoric neural network model.
     """
     assert dataset.already_configured, "The dataset must be configured before creating the model."
     if use_input_embedding is None:
@@ -352,10 +361,8 @@ def get_optimizer(
     Args:
         model (CategoricNeuralNetwork): The model to be used.
         learning_rate (float): The learning rate for the optimizer.
-                                If None, it will use the configuration in ConfigRun.
         optimizer_name (str): The name of the optimizer to be used.
-                                If None, it will use the configuration in ConfigRun.
-                                Must be one of "AdamW", "SGD", or "Adam".
+                              Must be one of "AdamW", "SGD", or "Adam".
 
     Returns:
         optimizer (torch.optim.Optimizer): The optimizer to be used.
@@ -392,16 +399,12 @@ def get_scheduler(
 
     Args:
         optimizer (torch.optim.Optimizer): The optimizer to be used.
-        factor (float): The factor for the scheduler.
+        factor (float): The factor by which the learning rate will be decayed.
         mode (str): The mode for the scheduler.
-                        Relevant only if the scheduler is ReduceLROnPlateau.
         patience (int): The patience for the scheduler.
-                        Relevant only if the scheduler is ReduceLROnPlateau.
         steps (int): The steps for the scheduler.
-                        Relevant only if the scheduler is StepLR.
-        scheduler_type (str): The type of scheduler to be used.
-                                If None, it will use the configuration in ConfigRun.
-                                Must be one of "StepLR" or "ReduceLROnPlateau".
+        scheduler_type (str): The type of the scheduler.
+                              Must be one of "ReduceLROnPlateau" or "StepLR".
 
     Returns:
         scheduler (torch.optim.lr_scheduler._LRScheduler): The scheduler to be used.
@@ -637,7 +640,7 @@ def write_report(
         filename (str): The name of the file to be written.
                         If None, it will use the configuration in ConfigRun.
         train_targets (dict): The targets for the training.
-
+                              If there are targets, they will be plotted.
 
     Returns:
         None

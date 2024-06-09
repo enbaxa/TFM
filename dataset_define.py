@@ -19,34 +19,38 @@ class CategoricDataset(TorchDataset):
     This class is used to handle categoric data in a dataset.
     It is used to prepare the data for training a neural network model.
     The dataset should be a pandas DataFrame with labelled columns.
-
-    Attributes:
-        data (pd.DataFrame): The data to be used by the dataset.
-        input_columns (list[str]): The names of the columns to be used as input.
-        output_columns (list[str]): The name of the column to be used as output.
-        input_categories (dict): The categories of the input columns.
-        output_categories (dict): The categories of the output columns.
-        category_mappings (dict): A dictionary mapping categories to unique identifiers.
+    The input and output columns should be specified before training the model.
+    The input and output columns are used to group the data and aggregate the outputs.
+    The outputs are aggregated by concatenating them into a list.
+    The input and output categories are mapped to unique identifiers.
+    The input and output tensors are returned by the __getitem__ method.
+    The inputs are the raw text data, and the outputs are multi-hot encoded tensors.
+    The dataset can be split into training and testing sets using the train_test_split method.
 
     Methods:
         define_input_output: Defines the input and output columns to be used by the dataset.
-        _create_identifiers: Creates unique identifiers for each category in the output columns.
         reverse_mapping: Given a column name and a numeric id, returns the original category value.
         train_test_split: Split the dataset into training and testing sets.
+        balance: Balance the dataset by duplicating rows to match the maximum count.
         standarize: Standarize the dataset by normalizing the data.
-        _copy_specs: Copies the specifications of the current dataset to another dataset.
         group_by: Group the data by the specified input columns and aggregate the outputs.
         __len__: Returns the length of the dataset.
         __getitem__: Returns the item at the given index.
+
+    Attributes:
+        number_input_categories: Returns the number of categories of the input column.
+        number_output_categories: Returns the number of categories of the outputs.
+        already_configured: Returns whether the dataset has already been configured.
     """
 
     def __init__(self, data: pd.DataFrame, standarize: bool = False):
         """
-        Initializes a new instance of the MyDataset class.
+        Initializes a new instance of the CategoricDataset class.
 
         Args:
             data (pandas.DataFrame): The data to be used by the dataset.
                                      It should have labelled columns.
+            standarize (bool): Whether to standarize the data.
 
         Returns:
             None
@@ -192,14 +196,12 @@ class CategoricDataset(TorchDataset):
         Split the dataset into training and testing sets.
 
         Args:
-            dataset (SingleCategoricDataset): The dataset to split.
-            train_size (float): The proportion of the dataset to include in the training set.
-            output_columns (str):The name of the column to be used as output.
-                                 This is optional, and it is only to check if
-                                 all output possibilities are reprsented in the training set.
+            train_size (float): The size of the training set.
+                                The testing set will be the remaining data.
+                                The default value is 0.8.   # 80% training, 20% testing
 
         Returns:
-            tuple: A tuple containing the training and testing sets.
+            tuple: A tuple containing the training and testing datasets.
         """
         # Split the data into training and testing sets
         train_df: pd.DataFrame = self.data.sample(frac=train_size, random_state=0)
@@ -235,13 +237,15 @@ class CategoricDataset(TorchDataset):
                 if self.data[self.output_columns].value_counts().median() < 10:
                     logger.warning(
                         "The dataset has very sparse outputs."
+                        " The median of the output counts is %d"
                         " It is recommended to use a different dataset."
                         " \nThe program will continue, but the results"
                         " might be meaningless as the model will most likely"
                         " overfit to the training set."
                         "\nThe program will now do its best to make a meaningful"
-                        " split, but it is not guaranteed."
-                    )
+                        " split, but it is not guaranteed.",
+                        self.data[self.output_columns].value_counts().median()
+                        )
                 # create a new training set equal to the original dataset
                 train = CategoricDataset(self.data.copy())
                 self._copy_specs(train)
@@ -281,6 +285,23 @@ class CategoricDataset(TorchDataset):
 
     @staticmethod
     def cherry_pick_split(train, test):
+        """
+        Cherry pick a row from the training set and add it to the testing set.
+        This is useful when the training dataset is sparse.
+        To avoid having unseen outputs in the testing set, we cherry pick a row
+        with the most common output value and add it to the testing set.
+        That way, the model will be able to at least guarantee seeing the
+        least common output value. This is sub-optimal, but not having seen
+        outputs in the testing set is worse.
+
+        Args:
+            train (CategoricDataset): The training dataset.
+            test (CategoricDataset): The testing dataset.
+
+        Returns:
+            tuple: A tuple containing the training and testing datasets.
+        """
+
         output_count = train.data[train.output_columns[0]].value_counts()
         value = output_count.idxmax()
         row = train.data[train.data[train.output_columns[0]] == value].sample()
@@ -290,6 +311,16 @@ class CategoricDataset(TorchDataset):
         return train, test
 
     def balance(self, column):
+        """
+        Balance the dataset by duplicating rows to match the maximum count.
+        (Oversampling minority classes).
+
+        Args:
+            column (str): The column to balance.
+
+        Returns:
+            None
+        """
         df = self.data
         # Count the occurrences of each value in the specified column
         value_counts = df[column].value_counts()
@@ -316,6 +347,7 @@ class CategoricDataset(TorchDataset):
     def standarize(self) -> None:
         """
         Standarize the dataset by normalizing the data.
+        This is done by making all string columns lowercase.
 
         Args:
             None
@@ -339,6 +371,7 @@ class CategoricDataset(TorchDataset):
     def _copy_specs(self, other) -> None:
         """
         Copies the specifications of the current dataset to another dataset.
+        This is useful when splitting the dataset into training and testing sets.
 
         Args:
             other (CategoricDataset): The dataset to copy the specifications to.
@@ -352,6 +385,11 @@ class CategoricDataset(TorchDataset):
         """
         Group the data by the specified input columns and aggregate the outputs.
         The aggregation is done by concatenating the outputs into a list.
+
+        This is useful when the dataset has multiple outputs for a single input,
+        and each is split into a separate rows. When training the model,
+        this is fine, but when checking the results, we need to group the outputs
+        for each input to compare them with all the expected outputs at once.
 
         Args:
            None
@@ -423,5 +461,4 @@ class CategoricDataset(TorchDataset):
         # Append the missing rows to the train DataFrame
         updated_df1 = pd.concat([df1, missing_values]).reset_index(drop=True)
         dataset1.data = updated_df1
-
 

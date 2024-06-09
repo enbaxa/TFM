@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>learning_model.py &#8212; repoclass 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="learning-model-py">
+<span id="learning-model"></span><h1>learning_model.py<a class="headerlink" href="#learning-model-py" title="Link to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p id="module-learning_model">This module contains the definition models for the neural network.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="learning_model.CategoricNeuralNetwork">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">learning_model.</span></span><span class="sig-name descname"><span class="pre">CategoricNeuralNetwork</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">category_mappings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_hidden_neurons</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8192</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_input_embedding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_output_embedding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_nlp_embedding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlp_model_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'distilbert-base-uncased'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/learning_model.html#CategoricNeuralNetwork"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#learning_model.CategoricNeuralNetwork" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<p>Neural Network model for classification for a single category.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>category_mappings</strong> (<em>dict</em>) – A dictionary containing the mappings of the categories.</p></li>
+<li><p><strong>max_hidden_neurons</strong> (<em>int</em>) – The maximum number of hidden neurons in the model.</p></li>
+<li><p><strong>hidden_layers</strong> (<em>int</em>) – The number of hidden layers in the model.</p></li>
+<li><p><strong>use_input_embedding</strong> (<em>bool</em>) – Whether to use input embeddings or not.</p></li>
+<li><p><strong>use_output_embedding</strong> (<em>bool</em>) – Whether to use output embeddings or not.</p></li>
+<li><p><strong>train_nlp_embedding</strong> (<em>bool</em>) – Whether to train the NLP embedding model or not.</p></li>
+<li><p><strong>nlp_model_name</strong> (<em>str</em>) – The name of the NLP model to be used for embeddings.
+It should be available through the transformers library.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="learning_model.CategoricNeuralNetwork.add_layer">
+<span class="sig-name descname"><span class="pre">add_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neurons_in</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neurons_out</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_normalization</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_activation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_drop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="model_api.html#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span></span><a class="reference internal" href="_modules/learning_model.html#CategoricNeuralNetwork.add_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#learning_model.CategoricNeuralNetwork.add_layer" title="Link to this definition">¶</a></dt>
+<dd><p>Adds a layer to the model.</p>
+<p>The layer can be a linear layer, and can have normalization,
+activation, and dropout layers after it. The layer is added
+to the linear_relu_stack attribute of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layer</strong> (<em>nn.Module</em>) – The layer to be added.</p></li>
+<li><p><strong>neurons</strong> (<em>int</em>) – The number of neurons in the layer.</p></li>
+<li><p><strong>add_activation</strong> (<em>bool</em>) – Whether to add an activation function after the layer.</p></li>
+<li><p><strong>add_normalization</strong> (<em>bool</em>) – Whether to add a normalization layer after the layer.</p></li>
+<li><p><strong>add_drop</strong> (<em>bool</em>) – Whether to add a dropout layer after the layer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="learning_model.CategoricNeuralNetwork.assess_device">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">assess_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/learning_model.html#CategoricNeuralNetwork.assess_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#learning_model.CategoricNeuralNetwork.assess_device" title="Link to this definition">¶</a></dt>
+<dd><p>Determines the device to be used for computation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The device to be used for computation.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>device (str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="learning_model.CategoricNeuralNetwork.build_neural_network">
+<span class="sig-name descname"><span class="pre">build_neural_network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">neurons</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_layers</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/learning_model.html#CategoricNeuralNetwork.build_neural_network"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#learning_model.CategoricNeuralNetwork.build_neural_network" title="Link to this definition">¶</a></dt>
+<dd><p>Builds the neural network.</p>
+<p>The neural network is built with a number of hidden layers
+and a number of neurons per layer that decreases gradually
+from the input size to the output size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>neurons</strong> (<em>int</em>) – The number of neurons in the hidden layers.</p></li>
+<li><p><strong>number_layers</strong> (<em>int</em>) – The number of hidden layers.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="learning_model.CategoricNeuralNetwork.device">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">device</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#learning_model.CategoricNeuralNetwork.device" title="Link to this definition">¶</a></dt>
+<dd><p>The device used for training the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The device used for training the model.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>device (torch.device)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="learning_model.CategoricNeuralNetwork.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'monolabel'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/learning_model.html#CategoricNeuralNetwork.evaluate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#learning_model.CategoricNeuralNetwork.evaluate" title="Link to this definition">¶</a></dt>
+<dd><p>Evaluates the model on a single input.</p>
+<p>This is a low-level function that can be used to evaluate the model
+on a single input. For a higher-level function that can be used
+to evaluate the model on a batch of inputs, use the execute function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> (<em>list</em>) – The input data.
+It is a list, each element of which is a list of strings.
+each element of the list corresponds to a different input category.
+each element of the inner list corresponds to a different batch element.</p></li>
+<li><p><strong>mode</strong> (<em>str</em>) – The mode of evaluation.
+Can be either ‘monolabel’ or ‘multilabel’ or ‘priority’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The chosen categories.</dt><dd><p>if mode is ‘monolabel’, single element list.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>chosen_categories (list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="learning_model.CategoricNeuralNetwork.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'monolabel'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/learning_model.html#CategoricNeuralNetwork.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#learning_model.CategoricNeuralNetwork.execute" title="Link to this definition">¶</a></dt>
+<dd><p>Applies the model on a batch of data.</p>
+<p>This is a high-level function that can be used to execute the model
+on a single input of data. It is just a wrapper around the evaluate function,
+to make it easier are more intuitive to use.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>list</em><em>|</em><em>str</em>) – <p>The data to execute the model on.
+For a single input category, it can be:</p>
+<blockquote>
+<div><p>A string
+A list of strings.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>For multiple input categories, it should be a list of lists</dt><dd><p>Each element of the outer list corresponds to a different input category.
+Each element of the inner list corresponds to a value for that category.</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>mode</strong> (<em>str</em>) – The mode of evaluation.
+Can be either ‘monolabel’ or ‘multilabel’ or ‘priority’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The chosen categories.</dt><dd><p>if mode is ‘monolabel’, single element list.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>chosen_categories (list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="learning_model.CategoricNeuralNetwork.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="_modules/learning_model.html#CategoricNeuralNetwork.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#learning_model.CategoricNeuralNetwork.forward" title="Link to this definition">¶</a></dt>
+<dd><p>Performs forward pass through the network.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>inputs</strong> (<em>dict</em>) – A dictionary containing the input data.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The output of the network (logits).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="learning_model.CategoricNeuralNetwork.input_categories">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">input_categories</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#learning_model.CategoricNeuralNetwork.input_categories" title="Link to this definition">¶</a></dt>
+<dd><p>The input categories for the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The input categories for the model.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>input_categories (dict)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="learning_model.CategoricNeuralNetwork.input_order">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">input_order</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#learning_model.CategoricNeuralNetwork.input_order" title="Link to this definition">¶</a></dt>
+<dd><p>The order of the input categories for the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The order of the input categories for the model.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>input_order (list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="learning_model.CategoricNeuralNetwork.output_categories">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">output_categories</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#learning_model.CategoricNeuralNetwork.output_categories" title="Link to this definition">¶</a></dt>
+<dd><p>The output categories for the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The output categories for the model.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>output_categories (dict)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="learning_model.CategoricNeuralNetwork.output_category_embeddings_nlp">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">output_category_embeddings_nlp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#learning_model.CategoricNeuralNetwork.output_category_embeddings_nlp" title="Link to this definition">¶</a></dt>
+<dd><p>The output category embeddings for the model.
+Consider it as base against which to compare the embedded logits.
+Consider it as a property to avoid accidental changes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The output category embeddings.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>output_category_embeddings_nlp (torch.Tensor)</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AttributeError</strong> – If the embeddings have not been initialized.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="learning_model.CategoricNeuralNetwork.test_loop">
+<span class="sig-name descname"><span class="pre">test_loop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataloader</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataLoader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/learning_model.html#CategoricNeuralNetwork.test_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#learning_model.CategoricNeuralNetwork.test_loop" title="Link to this definition">¶</a></dt>
+<dd><p>Function to evaluate the model on a test dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataloader</strong> (<em>torch.utils.data.DataLoader</em>) – The data loader for the test dataset.</p></li>
+<li><p><strong>loss_fn</strong> (<em>torch.nn.Module</em>) – The loss function used for evaluation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The F1 score of the model.
+precision (float): The precision of the model.
+recall (float): The recall of the model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>f1_score (float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="learning_model.CategoricNeuralNetwork.train_loop">
+<span class="sig-name descname"><span class="pre">train_loop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataloader</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataLoader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optimizer</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="model_api.html#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span></span><a class="reference internal" href="_modules/learning_model.html#CategoricNeuralNetwork.train_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#learning_model.CategoricNeuralNetwork.train_loop" title="Link to this definition">¶</a></dt>
+<dd><p>Trains the model using the given dataloader, loss function, and optimizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataloader</strong> (<em>torch.utils.data.DataLoader</em>) – The dataloader containing the training dataset.</p></li>
+<li><p><strong>loss_fn</strong> (<em>torch.nn.Module</em>) – The loss function used to compute the loss.</p></li>
+<li><p><strong>optimizer</strong> (<em>torch.optim.Optimizer</em>) – The optimizer used to update the model’s parameters.</p></li>
+<li><p><strong>scheduler</strong> (<em>torch.optim.lr_scheduler._LRScheduler</em>) – The scheduler used to adjust the learning rate.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="learning_model.StopTraining">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">learning_model.</span></span><span class="sig-name descname"><span class="pre">StopTraining</span></span><a class="reference internal" href="_modules/learning_model.html#StopTraining"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#learning_model.StopTraining" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Custom exception to stop training the model.</p>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">repoclass</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Enric Basso.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/model_api copy.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

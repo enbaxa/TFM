@@ -24,18 +24,19 @@ class CategoricNeuralNetwork(nn.Module):
     """
     Neural Network model for classification for a single category.
 
+    The model is a feedforward neural network with a number of hidden layers
+    and a number of neurons per layer that decreases gradually from the input
+    size to the output size.
+
     Args:
-        category_mappings (dict): A dictionary containing the mappings of the categories.
+        category_mappings (dict[str, dict[int, str]]): A dictionary containing the mappings
+                                                      of the categories to their corresponding indexes.
         max_hidden_neurons (int): The maximum number of hidden neurons in the model.
         hidden_layers (int): The number of hidden layers in the model.
         use_input_embedding (bool): Whether to use input embeddings or not.
         use_output_embedding (bool): Whether to use output embeddings or not.
         train_nlp_embedding (bool): Whether to train the NLP embedding model or not.
-        nlp_model_name (str): The name of the NLP model to be used for embeddings.
-                              It should be available through the transformers library.
-
-    Returns:
-        None
+        nlp_model_name (str): The name of the NLP model to use for embeddings.
     """
 
     def __init__(
@@ -175,7 +176,6 @@ class CategoricNeuralNetwork(nn.Module):
             add_normalization (bool): Whether to add a normalization layer after the layer.
             add_drop (bool): Whether to add a dropout layer after the layer.
 
-
         Returns:
             None
         """
@@ -203,7 +203,6 @@ class CategoricNeuralNetwork(nn.Module):
     def _configure_output(self):
         """
         Initializes the output size.
-        It also initializes the output embedding model if needed.
 
         Returns:
             None
@@ -231,15 +230,15 @@ class CategoricNeuralNetwork(nn.Module):
                 nn.init.kaiming_normal_(m.weight)
                 nn.init.zeros_(m.bias)
 
-    def forward(self, inputs: dict) -> torch.Tensor:
+    def forward(self, inputs) -> torch.Tensor:
         """
-        Performs forward pass through the network.
+        Forward pass of the model.
 
         Args:
-            inputs (dict): A dictionary containing the input data.
+            inputs *list): The input data.
 
         Returns:
-            torch.Tensor: The output of the network (logits).
+            logits (torch.Tensor): The logits of the model.
         """
         if self._use_input_embedding:
             pre_processed_inputs: torch.Tensor = self._process_batch_to_embedding(
@@ -273,10 +272,9 @@ class CategoricNeuralNetwork(nn.Module):
 
         Args:
             batch (list): The list of elements to preprocess.
-            nlp (bool): Whether to use NLP embeddings or not.
 
         Returns:
-            embeddings (torch.Tensor): The embeddings.
+            embeddings (torch.Tensor): The embeddings of the elements.
         """
         # Get the length of the lists in the input dictionary
         lengths: set = set([len(v) for v in batch])
@@ -455,7 +453,6 @@ class CategoricNeuralNetwork(nn.Module):
             dataloader (torch.utils.data.DataLoader): The dataloader containing the training dataset.
             loss_fn (torch.nn.Module): The loss function used to compute the loss.
             optimizer (torch.optim.Optimizer): The optimizer used to update the model's parameters.
-            scheduler (torch.optim.lr_scheduler._LRScheduler): The scheduler used to adjust the learning rate.
 
         Returns:
             None
@@ -497,6 +494,8 @@ class CategoricNeuralNetwork(nn.Module):
             ) -> tuple[float, float, float]:
         """
         Function to evaluate the model on a test dataset.
+
+        It computes the F1 score, precision, and recall of the model for the test dataset.
 
         Args:
             dataloader (torch.utils.data.DataLoader): The data loader for the test dataset.

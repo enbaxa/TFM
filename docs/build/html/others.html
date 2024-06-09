@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Modules &#8212; repoclass 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="modules">
+<span id="id1"></span><h1>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p id="module-model_api">This module provides classes and functions for training and configuring a categoric neural network model.</p>
+<dl class="simple">
+<dt>Classes:</dt><dd><ul class="simple">
+<li><p>ConfigRun: A dataclass to store the default configuration for the model training.</p></li>
+</ul>
+</dd>
+<dt>Functions:</dt><dd><ul class="simple">
+<li><p>configure_default_loggers(fil_name: str = None, fil_dir: str = None): Configure the default loggers for the module.</p></li>
+<li><p>wipe_handlers(): Wipe the loggers from the root logger.</p></li>
+<li><p>reconfigure_loggers(): Reconfigure the loggers.</p></li>
+<li><p>configure_dataset(df: pd.DataFrame, input_columns: list, output_columns: list) -&gt; CategoricDataset: Configure the dataset for training the model.</p></li>
+<li><p>get_dataloaders(dataset: CategoricDataset, train_size: float = None, batch_size: int = None, balance_training_data: bool = True, aggregate_outputs: bool = True) -&gt; tuple: Get the dataloaders for the training and testing of the model.</p></li>
+<li><p>create_model(dataset: CategoricDataset, use_input_embedding: bool = None, use_output_embedding: bool = None, max_hidden_neurons: int = None, hidden_layers: int = None, train_nlp_embedding: bool = None, nlp_model_name: str = None) -&gt; CategoricNeuralNetwork</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="model_api.ConfigRun">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">model_api.</span></span><span class="sig-name descname"><span class="pre">ConfigRun</span></span><a class="reference internal" href="_modules/model_api.html#ConfigRun"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model_api.ConfigRun" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A dataclass to store the default configuration for the model training.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.learning_rate">
+<span class="sig-name descname"><span class="pre">learning_rate</span></span><a class="headerlink" href="#model_api.ConfigRun.learning_rate" title="Link to this definition">¶</a></dt>
+<dd><p>The learning rate for the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.batch_size">
+<span class="sig-name descname"><span class="pre">batch_size</span></span><a class="headerlink" href="#model_api.ConfigRun.batch_size" title="Link to this definition">¶</a></dt>
+<dd><p>The batch size for the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.epochs">
+<span class="sig-name descname"><span class="pre">epochs</span></span><a class="headerlink" href="#model_api.ConfigRun.epochs" title="Link to this definition">¶</a></dt>
+<dd><p>The number of epochs to train the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.f1_target">
+<span class="sig-name descname"><span class="pre">f1_target</span></span><a class="headerlink" href="#model_api.ConfigRun.f1_target" title="Link to this definition">¶</a></dt>
+<dd><p>The target F1 score to stop the training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.max_hidden_neurons">
+<span class="sig-name descname"><span class="pre">max_hidden_neurons</span></span><a class="headerlink" href="#model_api.ConfigRun.max_hidden_neurons" title="Link to this definition">¶</a></dt>
+<dd><p>The maximum number of hidden neurons.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.hidden_layers">
+<span class="sig-name descname"><span class="pre">hidden_layers</span></span><a class="headerlink" href="#model_api.ConfigRun.hidden_layers" title="Link to this definition">¶</a></dt>
+<dd><p>The number of hidden layers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="model_api.ConfigRun.None">
+<span class="sig-name descname"><span class="pre">None</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#model_api.ConfigRun.None" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">batch_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></em><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.case_name">
+<span class="sig-name descname"><span class="pre">case_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'default'</span></em><a class="headerlink" href="#model_api.ConfigRun.case_name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">epochs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">15</span></em><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">hidden_layers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">learning_rate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.001</span></em><a class="headerlink" href="#id4" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.lr_decay_factor">
+<span class="sig-name descname"><span class="pre">lr_decay_factor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.1</span></em><a class="headerlink" href="#model_api.ConfigRun.lr_decay_factor" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.lr_decay_patience">
+<span class="sig-name descname"><span class="pre">lr_decay_patience</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#model_api.ConfigRun.lr_decay_patience" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.lr_decay_step">
+<span class="sig-name descname"><span class="pre">lr_decay_step</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10</span></em><a class="headerlink" href="#model_api.ConfigRun.lr_decay_step" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.lr_decay_target">
+<span class="sig-name descname"><span class="pre">lr_decay_target</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'f1'</span></em><a class="headerlink" href="#model_api.ConfigRun.lr_decay_target" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">max_hidden_neurons</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2058</span></em><a class="headerlink" href="#id5" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.model_trains_nlp_embedding">
+<span class="sig-name descname"><span class="pre">model_trains_nlp_embedding</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#model_api.ConfigRun.model_trains_nlp_embedding" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.model_uses_input_embedding">
+<span class="sig-name descname"><span class="pre">model_uses_input_embedding</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#model_api.ConfigRun.model_uses_input_embedding" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.model_uses_output_embedding">
+<span class="sig-name descname"><span class="pre">model_uses_output_embedding</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#model_api.ConfigRun.model_uses_output_embedding" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.nlp_model_name">
+<span class="sig-name descname"><span class="pre">nlp_model_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'huggingface/CodeBERTa-small-v1'</span></em><a class="headerlink" href="#model_api.ConfigRun.nlp_model_name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.optimizer_name">
+<span class="sig-name descname"><span class="pre">optimizer_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AdamW'</span></em><a class="headerlink" href="#model_api.ConfigRun.optimizer_name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.out_dir">
+<span class="sig-name descname"><span class="pre">out_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PosixPath('/home/ebasso/Projects/TFM/docs/out')</span></em><a class="headerlink" href="#model_api.ConfigRun.out_dir" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.report_dir">
+<span class="sig-name descname"><span class="pre">report_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'reports'</span></em><a class="headerlink" href="#model_api.ConfigRun.report_dir" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.report_filename">
+<span class="sig-name descname"><span class="pre">report_filename</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'report'</span></em><a class="headerlink" href="#model_api.ConfigRun.report_filename" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.scheduler_plateau_mode">
+<span class="sig-name descname"><span class="pre">scheduler_plateau_mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'max'</span></em><a class="headerlink" href="#model_api.ConfigRun.scheduler_plateau_mode" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.scheduler_type">
+<span class="sig-name descname"><span class="pre">scheduler_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#model_api.ConfigRun.scheduler_type" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.train_size">
+<span class="sig-name descname"><span class="pre">train_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.8</span></em><a class="headerlink" href="#model_api.ConfigRun.train_size" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="model_api.ConfigRun.train_targets">
+<span class="sig-name descname"><span class="pre">train_targets</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'f1':</span> <span class="pre">0.75}</span></em><a class="headerlink" href="#model_api.ConfigRun.train_targets" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="model_api.build_and_train_model">
+<span class="sig-prename descclassname"><span class="pre">model_api.</span></span><span class="sig-name descname"><span class="pre">build_and_train_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">CategoricNeuralNetwork</span></span></span><a class="reference internal" href="_modules/model_api.html#build_and_train_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model_api.build_and_train_model" title="Link to this definition">¶</a></dt>
+<dd><p>Build and train the model. Will make use of values in ConfigRun.
+They can be set before hand for a custom configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – The dataset to be used.</p></li>
+<li><p><strong>input_columns</strong> (<em>list</em>) – The names of the columns to be used as input.</p></li>
+<li><p><strong>output_columns</strong> (<em>list</em>) – The names of the columns to be used as output.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The trained model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>model (CategoricNeuralNetwork)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="model_api.configure_dataset">
+<span class="sig-prename descclassname"><span class="pre">model_api.</span></span><span class="sig-name descname"><span class="pre">configure_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">CategoricDataset</span></span></span><a class="reference internal" href="_modules/model_api.html#configure_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model_api.configure_dataset" title="Link to this definition">¶</a></dt>
+<dd><p>Configure the dataset for training the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – The data to be used by the dataset.</p></li>
+<li><p><strong>input_columns</strong> (<em>list</em>) – The names of the columns to be used as input.</p></li>
+<li><p><strong>output_columns</strong> (<em>list</em>) – The names of the columns to be used as output.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The configured dataset.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dataset (CategoricDataset)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="model_api.configure_default_loggers">
+<span class="sig-prename descclassname"><span class="pre">model_api.</span></span><span class="sig-name descname"><span class="pre">configure_default_loggers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fil_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fil_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/model_api.html#configure_default_loggers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model_api.configure_default_loggers" title="Link to this definition">¶</a></dt>
+<dd><p>Configure the default loggers for the module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fil_name</strong> (<em>str</em>) – The name of the file to be used for logging.</p></li>
+<li><p><strong>fil_dir</strong> (<em>str</em>) – The directory to be used for logging.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="model_api.create_model">
+<span class="sig-prename descclassname"><span class="pre">model_api.</span></span><span class="sig-name descname"><span class="pre">create_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CategoricDataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_input_embedding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_output_embedding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_hidden_neurons</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_nlp_embedding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlp_model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">CategoricNeuralNetwork</span></span></span><a class="reference internal" href="_modules/model_api.html#create_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model_api.create_model" title="Link to this definition">¶</a></dt>
+<dd><p>Create a categoric neural network model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<em>CategoricDataset</em>) – The dataset to be used for training the model.</p></li>
+<li><p><strong>use_input_embedding</strong> (<em>bool</em>) – Whether to use input embedding in the model.</p></li>
+<li><p><strong>use_output_embedding</strong> (<em>bool</em>) – Whether to use output embedding in the model.</p></li>
+<li><p><strong>max_hidden_neurons</strong> (<em>int</em>) – The maximum number of hidden neurons in the model.</p></li>
+<li><p><strong>hidden_layers</strong> (<em>int</em>) – The number of hidden layers in the model.</p></li>
+<li><p><strong>train_nlp_embedding</strong> (<em>bool</em>) – Whether to train the NLP embedding in the model.</p></li>
+<li><p><strong>nlp_model_name</strong> (<em>str</em>) – The name of the NLP model to be used.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created categoric neural network model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>model (CategoricNeuralNetwork)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="model_api.get_dataloaders">
+<span class="sig-prename descclassname"><span class="pre">model_api.</span></span><span class="sig-name descname"><span class="pre">get_dataloaders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CategoricDataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">balance_training_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregate_outputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="reference internal" href="_modules/model_api.html#get_dataloaders"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model_api.get_dataloaders" title="Link to this definition">¶</a></dt>
+<dd><p>Get the dataloaders for the training and testing of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<em>CategoricDataset</em>) – The dataset to be used.</p></li>
+<li><p><strong>train_size</strong> (<em>float</em>) – The proportion of the dataset to be used for training.
+If None, it will use the configuration in ConfigRun.</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em>) – The batch size to be used.
+If None, it will use the configuration in ConfigRun.</p></li>
+<li><p><strong>balance_training_data</strong> (<em>bool</em>) – Whether to balance the training data.
+This is done by oversampling the minority classes.</p></li>
+<li><p><strong>aggregate_outputs</strong> (<em>bool</em>) – <p>Whether to aggregate the outputs.
+This is useful if some input appears multiple times</p>
+<blockquote>
+<div><p>with different outputs.</p>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The DataLoader for the training dataset.
+test_dataloader (DataLoader or None): The DataLoader for the testing dataset.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>train_dataloader (DataLoader)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="model_api.get_loss_fn">
+<span class="sig-prename descclassname"><span class="pre">model_api.</span></span><span class="sig-name descname"><span class="pre">get_loss_fn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use_output_embedding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Module</span></span></span><a class="reference internal" href="_modules/model_api.html#get_loss_fn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model_api.get_loss_fn" title="Link to this definition">¶</a></dt>
+<dd><p>Get the loss function for the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>use_output_embedding</strong> (<em>bool</em>) – Whether to use an embedding layer for the output.
+If None, it will use the configuration in ConfigRun.
+This decides the loss function to be used.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The loss function to be used.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>loss_fn (torch.nn.Module)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="model_api.get_optimizer">
+<span class="sig-prename descclassname"><span class="pre">model_api.</span></span><span class="sig-name descname"><span class="pre">get_optimizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CategoricNeuralNetwork</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'AdamW'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optimizer</span></span></span><a class="reference internal" href="_modules/model_api.html#get_optimizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model_api.get_optimizer" title="Link to this definition">¶</a></dt>
+<dd><p>Get the optimizer for the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>CategoricNeuralNetwork</em>) – The model to be used.</p></li>
+<li><p><strong>learning_rate</strong> (<em>float</em>) – The learning rate for the optimizer.</p></li>
+<li><p><strong>optimizer_name</strong> (<em>str</em>) – The name of the optimizer to be used.
+Must be one of “AdamW”, “SGD”, or “Adam”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The optimizer to be used.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>optimizer (torch.optim.Optimizer)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="model_api.get_scheduler">
+<span class="sig-prename descclassname"><span class="pre">model_api.</span></span><span class="sig-name descname"><span class="pre">get_scheduler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patience</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scheduler_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_LRScheduler</span></span></span><a class="reference internal" href="_modules/model_api.html#get_scheduler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model_api.get_scheduler" title="Link to this definition">¶</a></dt>
+<dd><p>Get the scheduler for the optimizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>optimizer</strong> (<em>torch.optim.Optimizer</em>) – The optimizer to be used.</p></li>
+<li><p><strong>factor</strong> (<em>float</em>) – The factor by which the learning rate will be decayed.</p></li>
+<li><p><strong>mode</strong> (<em>str</em>) – The mode for the scheduler.</p></li>
+<li><p><strong>patience</strong> (<em>int</em>) – The patience for the scheduler.</p></li>
+<li><p><strong>steps</strong> (<em>int</em>) – The steps for the scheduler.</p></li>
+<li><p><strong>scheduler_type</strong> (<em>str</em>) – The type of the scheduler.
+Must be one of “ReduceLROnPlateau” or “StepLR”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The scheduler to be used.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>scheduler (torch.optim.lr_scheduler._LRScheduler)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="model_api.reconfigure_loggers">
+<span class="sig-prename descclassname"><span class="pre">model_api.</span></span><span class="sig-name descname"><span class="pre">reconfigure_loggers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model_api.html#reconfigure_loggers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model_api.reconfigure_loggers" title="Link to this definition">¶</a></dt>
+<dd><p>Reconfigure the loggers.</p>
+<p>This function will wipe the handlers from the root logger and then reconfigure them.
+This assures that the configuration is updated by the user, otherwise
+it will use the default configuration.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="model_api.train">
+<span class="sig-prename descclassname"><span class="pre">model_api.</span></span><span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CategoricNeuralNetwork</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_dataloader</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataLoader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_dataloader</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataLoader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_targets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr_decay_target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scheduler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_LRScheduler</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_report</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">live_report</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span></span><a class="reference internal" href="_modules/model_api.html#train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model_api.train" title="Link to this definition">¶</a></dt>
+<dd><p>Train the model on the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Necessary</strong> – model (CategoricNeuralNetwork): The model to be trained.
+train_dataloader (DataLoader): The DataLoader for the training dataset.
+test_dataloader (DataLoader): The DataLoader for the testing dataset.
+loss_fn (torch.nn.Module): The loss function to be used.
+optimizer (torch.optim.Optimizer): The optimizer to be used.</p></li>
+<li><p><strong>Optional</strong> (<em>will default to the values in the function call</em>) – <p>scheduler (torch.optim.lr_scheduler._LRScheduler): The scheduler to be used.
+epochs (int): The number of epochs to train the model.
+train_targets (dict): The targets for the training.
+lr_decay_target (str): The target for the learning rate decay.</p>
+<blockquote>
+<div><p>Only relevant if the scheduler is ReduceLROnPlateau.</p>
+</div></blockquote>
+</p></li>
+<li><p><strong>Optional</strong> – do_report (bool): Whether to generate a report.
+live_report (bool): Whether to generate a live report.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="model_api.wipe_handlers">
+<span class="sig-prename descclassname"><span class="pre">model_api.</span></span><span class="sig-name descname"><span class="pre">wipe_handlers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/model_api.html#wipe_handlers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model_api.wipe_handlers" title="Link to this definition">¶</a></dt>
+<dd><p>Wipe the loggers from the root logger.</p>
+<p>This eliminates all handlers from the root logger.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="model_api.write_report">
+<span class="sig-prename descclassname"><span class="pre">model_api.</span></span><span class="sig-name descname"><span class="pre">write_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_targets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#model_api.ConfigRun.None" title="model_api.ConfigRun.None"><span class="pre">None</span></a></span></span><a class="reference internal" href="_modules/model_api.html#write_report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#model_api.write_report" title="Link to this definition">¶</a></dt>
+<dd><p>Write a report to a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – The DataFrame to be written.</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – The name of the file to be written.
+If None, it will use the configuration in ConfigRun.</p></li>
+<li><p><strong>train_targets</strong> (<em>dict</em>) – The targets for the training.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">repoclass</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Enric Basso.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/others.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
