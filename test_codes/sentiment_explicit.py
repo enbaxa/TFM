@@ -13,7 +13,7 @@ import pandas as pd
 import torch
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 import model_api
-from sentences import positive_sentences, negative_sentences
+from test_codes.sentences import positive_sentences, negative_sentences
 
 logger = logging.getLogger("TFM")
 printer = logging.getLogger("printer")

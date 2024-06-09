@@ -40,6 +40,7 @@ def main(
     neurons,
     layers,
     epochs: int = 30,
+    learning_rate: float = 0.001,
     train_size: float = 1.0,
     f1: float = 0.75,
     recall: float = 0.75,
@@ -58,12 +59,16 @@ def main(
     config.model_uses_output_embedding = True
     config.nlp_model_name = "huggingface/CodeBERTa-small-v1"
     config.train_size = train_size
+    config.learning_rate = learning_rate
     config.train_targets = {}
     if f1 is not None:
         config.train_targets["f1"] = f1
     if recall is not None:
         config.train_targets["recall"] = recall
     config.case_name = case_name
+    config.out_dir = Path("out_cherry").resolve()
+    config.model_trains_nlp_embedding = False
+    config.model_uses_output_embedding = True
     model_api.reconfigure_loggers()
     # Configure the dataset using the input and output columns
     # Give them as lists of strings
@@ -91,8 +96,10 @@ def main(
     # Get a set of random instances from the dataset and test the model
     model.eval()
     dataset.group_by()
-    outp = []
     # initialize counters
+    return evaluate_instances(dataset, model)
+
+def evaluate_instances(dataset, model):
     correct_guesses = 0
     incorrect_guesses = 0
     missing_guesses = 0
@@ -101,15 +108,21 @@ def main(
     total_guesses_made = 0
     total_guesses_expected = 0
     total_classifications_made = 0
-    for i in range(dataset.data.shape[0]):
+    outp = []
+    dataset.data.reset_index(drop=True, inplace=True)  # reset index to avoid problems
+    for i, row in dataset.data.iterrows():
+        if i % 10 == 0:
+            printer.info("Evaluating instance %d of %d", i, dataset.data.shape[0])
         # take a random entry of df and use the input to get some output
         # and compare it with the real output
-        inp_name = dataset.data.iloc[i]["method_name"]
-        expected_output = dataset.data.iloc[i]["test_case_name"]
+        inp_name = row["method_name"]
+        expected_output = row["test_case_name"]
         guess = model.execute(inp_name, mode="multilabel")
         inp = f"Input: {inp_name}\nGuess: {guess}"
         out = f"Real: {expected_output}"
         outp.append("\n".join((inp, out, "\n")))
+        if i < 5:
+            printer.info("\n%s", "\n".join((inp, out, "\n")))
         correct_guesses += len([x for x in guess if x in expected_output])
         incorrect_guesses += len([x for x in guess if x not in expected_output])
         missing_guesses += len([x for x in expected_output if x not in guess])
@@ -123,11 +136,7 @@ def main(
         total_guesses_made += len(guess)
         total_guesses_expected += len(expected_output)
         total_classifications_made += 1
-
-    printer.info("%s", "\n".join(outp[:5]))
-    logger.info("%s", "\n".join(outp))
-
-    results_percentual_dict ={
+    results_percentual_dict = {
         "Correct guesses": correct_guesses / total_guesses_made * 100,
         "Incorrect guesses": incorrect_guesses / total_guesses_made * 100,
         "Missing guesses": missing_guesses / total_guesses_expected * 100,
@@ -146,6 +155,7 @@ def main(
         perfect_guesses, results_percentual_dict["Perfect guesses"],
         results_percentual_dict["correctintop20"]
         )
+    logger.info("%s", "\n".join(outp))
     return results_percentual_dict
 
 
@@ -196,6 +206,12 @@ if __name__ == '__main__':
         type=float,
         default=0.75,
         help="The target recall score for training the model."
+    )
+    parser.add_argument(
+        "--learning_rate",
+        type=float,
+        default=0.001,
+        help="The initial learning rate to use for training the model."
     )
     args = parser.parse_args()
     dataset_name = args.dataset_name  # default "medium_36.csv" is hard to learn

@@ -11,7 +11,7 @@ from pathlib import Path
 
 import pandas as pd
 import model_api
-from sentences import positive_sentences, negative_sentences
+from test_codes.sentences import positive_sentences, negative_sentences
 
 
 logger = logging.getLogger("TFM")
