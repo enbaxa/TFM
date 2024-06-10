@@ -87,7 +87,7 @@ class ConfigRun:
     scheduler_type: ClassVar[str] = None
     # Scheduler: relevant only if Reduce on Plateau
     scheduler_plateau_mode: ClassVar[str] = "max"
-    lr_decay_patience: ClassVar[int] = 4
+    lr_decay_patience: ClassVar[int] = 10
     lr_decay_target: ClassVar[str] = "f1"
     # Scheduler: relevant only if reduce on step
     lr_decay_step: ClassVar[int] = 10
@@ -96,6 +96,17 @@ class ConfigRun:
     case_name: ClassVar[str] = "default"
     report_dir: ClassVar[str] = "reports"
     report_filename: ClassVar[str] = "report"
+
+    @classmethod
+    def print(cls):
+        """
+        Print all config values
+        """
+        out = []
+        for key, value in cls.__dict__.items():
+            if not key.startswith("__") and key != "print":
+                out.append(f"{key}: {value}")
+        return "\n".join(out)
 
 
 def configure_default_loggers(fil_name: str = None, fil_dir: str = None):
@@ -235,7 +246,7 @@ def get_dataloaders(
         dataset: CategoricDataset,
         train_size: float = None,
         batch_size: int = None,
-        balance_training_data: bool = False,
+        balance_training_data: bool = True,
         aggregate_outputs: bool = True
         ) -> tuple:
     """
@@ -264,6 +275,8 @@ def get_dataloaders(
     if train_size is None:
         train_size = ConfigRun.train_size
 
+    train_dataset: CategoricDataset
+    test_dataset: CategoricDataset
     train_dataset, test_dataset = dataset.train_test_split(train_size=train_size)
     if balance_training_data:
         train_dataset.balance(train_dataset.output_columns[0])
@@ -555,12 +568,14 @@ def train(
     info_message.append(f"Optimizer: {optimizer}")
     info_message.append(f"Scheduler: {scheduler}")
     info_message.append(f"Epochs: {epochs}")
+    info_message.append(f"Configuration: {ConfigRun.print()}")
     if monitor_f1:
         info_message.append(f"f1_target = {f1_target}")
     if monitor_precision:
         info_message.append(f"precision_target = {precision_target}")
     if monitor_recall:
         info_message.append(f"recall_target = {recall_target}")
+    info_message.append(f"\n")
 
     printer.debug("\n".join(info_message))
     try:
@@ -571,6 +586,7 @@ def train(
             model.train_loop(train_dataloader, loss_fn, optimizer)
             f1_score, precision, recall = model.test_loop(test_dataloader, loss_fn)
             if scheduler is not None:
+                lr_1 = scheduler.get_last_lr()[0]
                 if isinstance(scheduler, torch.optim.lr_scheduler.ReduceLROnPlateau):
                     if lr_decay_target == "f1":
                         scheduler.step(f1_score)
@@ -584,6 +600,14 @@ def train(
                     scheduler.step()
                 else:
                     raise ValueError("scheduler must be ReduceLROnPlateau or StepLR.")
+                lr_2 = scheduler.get_last_lr()[0]
+                if lr_1 != lr_2:
+                    printer.info("\nLearning rate changed from %s to %s\n", lr_1, lr_2)
+                    if lr_2 <= 1e-7:
+                        raise StopTraining(
+                            "Learning rate got too small.\n"
+                            "It is meaningless to continue training. "
+                            "Increase patience or decrease factor.")
             if do_report:
                 new_row = pd.DataFrame({
                     "Epoch": [t+1],
