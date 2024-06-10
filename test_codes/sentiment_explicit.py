@@ -44,12 +44,12 @@ def main(neurons: int, layers: int):
     This is exactly equivalent to sentiment.py, but with explicit calls to the model API functions.
 
     Args:
-        neurons (int): The number of neurons in the hidden layers.
-        layers (int): The number of hidden layers.
+        - neurons (int): The number of neurons in the hidden layers.
+        - layers (int): The number of hidden layers.
 
     Returns:
-        accuracy (float): The accuracy of the model on the test sentences.
-        model (model_api.Model): The trained model.
+        - accuracy (float): The accuracy of the model on the test sentences.
+        - model (model_api.Model): The trained model.
     """
     model_api.ConfigRun.case_name = f"sentiment_explicit_n{neurons}_l{layers}"
     model_api.reconfigure_loggers()
@@ -149,7 +149,7 @@ if __name__ == "__main__":
     model_api.configure_default_loggers()
     # Run the main function with different configurations
     msg = []
-    neurons_attempt = (64, 128, 256)
+    neurons_attempt = (16, 32, 64)
     layers_attempt = (1, 2, 3)
     for neurons in neurons_attempt:
         for layers in layers_attempt:

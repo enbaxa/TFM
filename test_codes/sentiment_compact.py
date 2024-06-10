@@ -17,6 +17,7 @@ from test_codes.sentences import positive_sentences, negative_sentences
 logger = logging.getLogger("TFM")
 printer = logging.getLogger("printer")
 
+
 def get_data():
     """
     Reads the sentiment dataset and returns it as a pandas DataFrame.
@@ -41,12 +42,12 @@ def main(neurons: int, layers: int):
     Trains a model to classify sentiment and evaluates it with some sentences.
 
     Args:
-        neurons (int): The number of neurons in the hidden layers.
-        layers (int): The number of hidden layers.
+        - neurons (int): The number of neurons in the hidden layers.
+        - layers (int): The number of hidden layers.
 
     Returns:
-        accuracy (float): The accuracy of the model on the test sentences.
-        model (model_api.Model): The trained model.
+        - accuracy (float): The accuracy of the model on the test sentences.
+        - model (model_api.Model): The trained model.
     """
     # Create an instance of the ConfigRun class
     config = model_api.ConfigRun
@@ -110,7 +111,7 @@ if __name__ == "__main__":
     model_api.configure_default_loggers()
     # Run the main function with different configurations
     msg = []
-    neurons_attempt = (64, 128, 256)
+    neurons_attempt = (16, 32, 64)
     layers_attempt = (1, 2, 3)
     for neurons in neurons_attempt:
         for layers in layers_attempt:
