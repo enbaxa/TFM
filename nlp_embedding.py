@@ -16,7 +16,7 @@ import torch
 from transformers import AutoTokenizer, AutoModel
 
 
-class NlpEmbedding():
+class NlpEmbedding(torch.nn.Module):
     """
     Class to handle the NLP embeddings.
 
@@ -33,6 +33,7 @@ class NlpEmbedding():
     """
 
     def __init__(self, model_name: str = 'distilbert-base-uncased'):
+        super().__init__()
         self._model_name: str = model_name
         self._device: str = None
         self._configure()
