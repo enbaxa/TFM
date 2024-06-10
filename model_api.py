@@ -14,6 +14,7 @@ Functions:
 """
 
 import logging
+import json
 from dataclasses import dataclass
 from typing import ClassVar
 from pathlib import Path
@@ -756,6 +757,58 @@ def build_and_train_model(
     logger.debug("Training executed. Returning the trained model.")
     return model
 
+def save_model(model: CategoricNeuralNetwork, filename: str | Path) -> None:
+    """
+    Save the model to a file.
+
+    This will save the model and its initialization parameters to a file.
+    Note that for a given model, 2 files are needed, the initialization parameters
+    and the weights of the model parameters themselves.
+
+    Args:
+        model (CategoricalNeuralNetwork): The model to be saved.
+        filename (str): The name of the file to save the model.
+
+    Returns:
+        None
+    """
+    if not isinstance(filename, Path):
+        filename = Path(filename).resolve()
+    if not filename.parent.exists():
+        filename.parent.mkdir(parents=True)
+
+    model_file = filename.with_suffix(".pth")
+    ini_file = filename.with_suffix(".ini")
+    torch.save(model.state_dict(), model_file)
+    ini_file.write_text(json.dumps(model._config), encoding="utf-8")
+    logger.info("Model saved as %s", filename)
+
+def load_model(filename: str) -> CategoricNeuralNetwork:
+    """
+    Load a model from a file.
+
+    Args:
+        filename (str): The name of the file to load the model from.
+
+    Returns:
+        model (CategoricNeuralNetwork): The loaded model.
+    """
+
+    ini_path = Path(filename).with_suffix(".ini")
+    if not ini_path.exists():
+        logger.error("File %s does not exist.", ini_path)
+        raise FileNotFoundError
+    ini_params = json.loads(ini_path.read_text(encoding="utf-8"))
+    model = CategoricNeuralNetwork(**ini_params)
+    model_path = Path(filename).with_suffix(".pth")
+    if not model_path.exists():
+        logger.error("File %s does not exist.", model_path)
+        raise FileNotFoundError
+    model.load_state_dict(torch.load(model_path))
+    logger.info("Model loaded from %s", filename)
+    logger.debug("Changing the model to evaluation mode mode.")
+    model.eval()
+    return model
 
 if __name__ == '__main__':
     pass
