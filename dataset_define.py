@@ -224,67 +224,52 @@ class CategoricDataset(TorchDataset):
         self._copy_specs(test)
         printer.debug("Training set size: %d", len(train))
         printer.debug("Testing set size: %d", len(test))
-        if self.output_columns is not None:
-            # Check if all output possibilities are represented in the training set
-            train_output: set = set(train.data[self.output_columns].nunique())
-            all_output: set = set(self.data[self.output_columns].nunique())
-            if all_output.difference(train_output):
+
+        # Check if all output possibilities are represented in the training set
+        train_output: set = set(train.data[self.output_columns].nunique())
+        all_output: set = set(self.data[self.output_columns].nunique())
+        if all_output != train_output:
+            logger.warning(
+                "Not all output possibilities are represented in the training set."
+                " It could be bad luck or that the dataset has very sparse outputs."
+                )
+            # check if the original dataset has very sparse outputs in general
+            output_counts_median = self.data[self.output_columns].value_counts().median()
+            if output_counts_median < 10:
                 logger.warning(
-                    "Not all output possibilities are represented in the training set."
-                    " It could be bad luck or that the dataset has very sparse outputs."
+                    "The dataset has very sparse outputs."
+                    " The median of the output counts is %d"
+                    " It is recommended to use a different dataset."
+                    " \nThe program will continue, but the results"
+                    " might be meaningless as the model will most likely"
+                    " overfit to the training set."
+                    "\nThe program will now do its best to make a meaningful"
+                    " split, but it is not guaranteed.",
+                    output_counts_median
                     )
-                # check if the original dataset has very sparse outputs in general
-                if self.data[self.output_columns].value_counts().median() < 10:
-                    logger.warning(
-                        "The dataset has very sparse outputs."
-                        " The median of the output counts is %d"
-                        " It is recommended to use a different dataset."
-                        " \nThe program will continue, but the results"
-                        " might be meaningless as the model will most likely"
-                        " overfit to the training set."
-                        "\nThe program will now do its best to make a meaningful"
-                        " split, but it is not guaranteed.",
-                        self.data[self.output_columns].value_counts().median()
-                        )
-                # create a new training set equal to the original dataset
-                train = CategoricDataset(self.data.copy())
-                self._copy_specs(train)
-                # create an empty testing set with the same columns as the training set
-                test = CategoricDataset(pd.DataFrame(columns=train.data.columns))
-                self._copy_specs(test)
-                # Take the most common output value.
-                # Remove 1 row from the training set with that value in the column.
-                # Add it to the testing set
-                # do it in a loop until the split size is as request or until
-                # no more rows with the value count of some output dropping to 0
-                while len(train) / len(self) >= train_size:
-                    output_count = train.data[train.output_columns[0]].value_counts()
-                    if output_count.max() == 1:
-                        logger.warning(
-                            "The output column has no repeated values."
-                            " It is not possible to split the dataset further."
-                            " final size ratio of training set: %d%%",
-                            len(train) / len(self) * 100
-                            )
-                        break
-                    train, test = self.cherry_pick_split(train, test)
+            # create a new training set equal to the original dataset
+            train = CategoricDataset(self.data.copy())
+            self._copy_specs(train)
+            # create an empty testing set with the same columns as the training set
+            test = CategoricDataset(pd.DataFrame(columns=train.data.columns))
+            self._copy_specs(test)
+            train, test = self.cherry_pick_split(train, test, train_size=train_size)
+            logger.warning(
+                "Cherry picking split: Training with %d%% of data",
+                len(train) / len(self) * 100
+                )
+            if False:  # deprecated
                 logger.warning(
-                    "Cherry picking split: Training with %d%% of data",
-                    len(train) / len(self) * 100
+                    "Forcefully copying missing rows to the training."
+                    " This can lead to overfitting, and to a biased analysis."
+                    " But if there are missing values in the training set,"
+                    " the model will not be able to predict them."
+                    " There is no way around it if the training set is not representative."
                     )
-                if False:  # deprecated
-                    logger.warning(
-                        "Forcefully copying missing rows to the training."
-                        " This can lead to overfitting, and to a biased analysis."
-                        " But if there are missing values in the training set,"
-                        " the model will not be able to predict them."
-                        " There is no way around it if the training set is not representative."
-                        )
-                    self.add_missing_rows(train, test, self.output_columns[0])
+                self.add_missing_rows(train, test, self.output_columns[0])
         return train, test
 
-    @staticmethod
-    def cherry_pick_split(train, test):
+    def cherry_pick_split(self, train, test, train_size=0.8):
         """
         Cherry pick a row from the training set and add it to the testing set.
         This is useful when the training dataset is sparse.
@@ -301,18 +286,48 @@ class CategoricDataset(TorchDataset):
         Returns:
             tuple: A tuple containing the training and testing datasets.
         """
-
-        output_count = train.data[train.output_columns[0]].value_counts()
-        value = output_count.idxmax()
-        row = train.data[train.data[train.output_columns[0]] == value].sample()
-        test.data = pd.concat([test.data, row], ignore_index=True)
-        train.data.drop(row.index, inplace=True)
-        train.data.reset_index(drop=True, inplace=True)
+        # Take the most common output value.
+        # Remove 1 row from the training set with that value in the column.
+        # Add it to the testing set
+        # do it in a loop until the split size is as request or until
+        # no more rows with the value count of some output dropping to 0
+        train: CategoricDataset
+        test: CategoricDataset
+        train.data: pd.DataFrame
+        test.data: pd.DataFrame
+        while len(train) / len(self) >= train_size:
+            output_count = train.data[train.output_columns[0]].value_counts()
+            if output_count.max() == 1:
+                logger.warning(
+                    "The output column has no repeated values."
+                    " It is not possible to split the dataset further."
+                    " final size ratio of training set: %d%%"
+                    " Test size is likely to be tiny, this can cause validation errors.",
+                    len(train) / len(self) * 100
+                    )
+                logger.warning(
+                    "Populating the test with random columns from training set."
+                    " This is not ideal, but some statistics are needed to assess the model"
+                    )
+                # check how many entries we need to add to the test set
+                # to reach the desired split size
+                needed = int(len(self) * (1 - train_size) - len(test))
+                rows = train.data.sample(needed)
+                test.data = pd.concat([test.data, rows], ignore_index=True)
+                logger.warning("Added %d rows to the test set that are also in training set",
+                               needed)
+                return train, test
+            output_count = train.data[train.output_columns[0]].value_counts()
+            value = output_count.idxmax()
+            row = train.data[train.data[train.output_columns[0]] == value].sample()
+            test.data = pd.concat([test.data, row], ignore_index=True)
+            train.data.drop(row.index, inplace=True)
+            train.data.reset_index(drop=True, inplace=True)
         return train, test
 
     def balance(self, column):
         """
-        Balance the dataset by duplicating rows to match the maximum count.
+        Balance the dataset by duplicating rows to come closer to the mean count.
         (Oversampling minority classes).
 
         Args:
@@ -321,28 +336,44 @@ class CategoricDataset(TorchDataset):
         Returns:
             None
         """
-        df = self.data
+        df: pd.DataFrame = self.data
         # Count the occurrences of each value in the specified column
-        value_counts = df[column].value_counts()
+        value_counts: pd.Series = df[column].value_counts()
         # Determine the maximum count
-        max_count = value_counts.max()
-        # Create a list to hold the balanced rows
-        balanced_rows = []
+        mean_count: float = value_counts.mean()
+        std_count: float = value_counts.std()
         # Iterate over each unique value in the column
+        # Create a list to hold the balanced rows
+        balancing_rows = []
         for value, count in value_counts.items():
             # Select all rows with the current value
-            rows = df[df[column] == value]
+            rows: pd.DataFrame = df[df[column] == value]
             # Calculate the number of times we need to duplicate the rows
-            num_to_duplicate = max_count - count
-            # Append the original rows and the duplicated rows to the list
-            balanced_rows.append(rows)
-            if num_to_duplicate > 0:
-                balanced_rows.append(rows.sample(n=num_to_duplicate, replace=True))
+            separation_from_mean: int = mean_count - count
+            # if lower than mean by more than 3 times sigma, oversample
+            # until it reaches within 3 times sigma
+            if separation_from_mean > 3 * std_count:
+                num_to_duplicate = int(mean_count - 3 * std_count - count)
+                # Append the original rows and the duplicated rows to the list
+                balancing_rows.append(rows)
+                if num_to_duplicate > 0:
+                    balancing_rows.append(rows.sample(n=num_to_duplicate, replace=True))
         # Concatenate all balanced rows into a single DataFrame
-        balanced_df = pd.concat(balanced_rows)
+        balanced_df = pd.concat([df, pd.DataFrame(balancing_rows, columns=df.columns)])
         # Shuffle the balanced DataFrame to mix the rows
         balanced_df = balanced_df.sample(frac=1).reset_index(drop=True)
+        # Update the data attribute with the balanced DataFrame
         self.data = balanced_df
+        if len(df) != len(balanced_df):
+            logger.info(
+                "Balanced dataset by duplicating rows to overcome class imbalance."
+                " The df size changed from %d to %d",
+                len(df), len(balanced_df)
+            )
+        else:
+            logger.debug("No Balancing done. The df size remained the same: %d",
+                         len(df)
+                         )
 
     def standarize(self) -> None:
         """
