@@ -340,28 +340,32 @@ class CategoricDataset(TorchDataset):
         # Count the occurrences of each value in the specified column
         value_counts: pd.Series = df[column].value_counts()
         # Determine the maximum count
-        mean_count: float = value_counts.mean()
+        med_count: float = value_counts.median()
         std_count: float = value_counts.std()
+        logger.debug(
+            "Attempting to balance the dataset by duplicating rows to overcome class imbalance."
+            "median= %d, std= %.2f",
+            med_count, std_count)
         # Iterate over each unique value in the column
         # Create a list to hold the balanced rows
-        balancing_rows = []
+        df_oversampled_rows = None
         for value, count in value_counts.items():
             # Select all rows with the current value
             rows: pd.DataFrame = df[df[column] == value]
             # Calculate the number of times we need to duplicate the rows
-            separation_from_mean: int = mean_count - count
+            separation_from_med: int = med_count - count
             # if lower than mean by more than 3 times sigma, oversample
             # until it reaches within 3 times sigma
-            if separation_from_mean > 3 * std_count:
-                num_to_duplicate = int(mean_count - 3 * std_count - count)
+            if separation_from_med > 3 * std_count:
+                num_to_duplicate = int(med_count - std_count - count)
                 # Append the original rows and the duplicated rows to the list
-                balancing_rows.append(rows)
                 if num_to_duplicate > 0:
-                    balancing_rows.append(rows.sample(n=num_to_duplicate, replace=True))
+                    df_oversampled_rows = pd.concat([df_oversampled_rows, rows.sample(n=num_to_duplicate, replace=True)])
         # Concatenate all balanced rows into a single DataFrame
-        balanced_df = pd.concat([df, pd.DataFrame(balancing_rows, columns=df.columns)])
+        balanced_df = pd.concat([df, df_oversampled_rows])
         # Shuffle the balanced DataFrame to mix the rows
         balanced_df = balanced_df.sample(frac=1).reset_index(drop=True)
+
         # Update the data attribute with the balanced DataFrame
         self.data = balanced_df
         if len(df) != len(balanced_df):
@@ -430,7 +434,7 @@ class CategoricDataset(TorchDataset):
         """
         # Aggregate the outputs for each unique input
         self.data = self.data.groupby(self.input_columns)[self.output_columns]\
-            .agg(list)\
+            .agg(lambda x: list(set(x)))\
             .reset_index()
 
     def __len__(self) -> int:
