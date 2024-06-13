@@ -51,6 +51,18 @@ class CategoricNeuralNetwork(nn.Module):
             nlp_model_name='distilbert-base-uncased',
             ):
         super().__init__()
+        # Save all input parameters in a dictionary for easy access
+        # later when we save it to a file.
+        # This is only to create the new instance when loading the model
+        self._config = {
+            "category_mappings": category_mappings,
+            "max_hidden_neurons": max_hidden_neurons,
+            "hidden_layers": hidden_layers,
+            "use_input_embedding": use_input_embedding,
+            "use_output_embedding": use_output_embedding,
+            "train_nlp_embedding": train_nlp_embedding,
+            "nlp_model_name": nlp_model_name
+        }
         self._device: str = self.assess_device()
         self._use_input_embedding: bool = use_input_embedding
         self._use_output_embedding: bool = use_output_embedding
@@ -62,6 +74,16 @@ class CategoricNeuralNetwork(nn.Module):
         else:
             self._nlp_embedding_model: NlpEmbedding | None = NlpEmbedding(model_name=self._nlp_model_name)
             self._nlp_embedding_model.device = self.device
+            # # We will also need an RNN layer to process the embeddings
+            # logger.info("Because embeddings are being used, an RNN layer will be added to the model.")
+            # self.rnn = nn.RNN(
+            #     input_size=self._nlp_embedding_model.model.config.hidden_size,
+            #     hidden_size=self._nlp_embedding_model.model.config.hidden_size,
+            #     num_layers=1,
+            #     batch_first=True,
+            #     nonlinearity='relu',
+            #     dropout=0.3,
+            #     )
         # make a dict of each element of dataset.input_columns and their corresponding index in the list
         self.category_mappings: dict[str, dict[int, str]] = category_mappings
         # "Private" variables
@@ -111,11 +133,15 @@ class CategoricNeuralNetwork(nn.Module):
         self.cos: nn.CosineSimilarity = nn.CosineSimilarity(dim=1)
 
         # Print the parameters that will be trained
-        training_message = [""]
+        training_message = ["The following parameters will be trained:"]
+        not_training_message = ["The following parameters will not be trained:"]
         for name, param in self.named_parameters():
             if param.requires_grad:
-                training_message.append(f"{name} will be part of the learning layer")
+                training_message.append(f"{name}")
+            else:
+                not_training_message.append(f"{name} will not be part of the learning layer")
         printer.debug("%s", "\n".join(training_message))
+        printer.debug("%s", "\n".join(not_training_message))
 
     def build_neural_network(self, neurons, number_layers):
         """
@@ -185,7 +211,7 @@ class CategoricNeuralNetwork(nn.Module):
         if add_activation:
             self.linear_relu_stack.add_module(name+"_2", nn.LeakyReLU())
         if add_drop:
-            self.linear_relu_stack.add_module(name+"_3", nn.Dropout(0.1))
+            self.linear_relu_stack.add_module(name+"_3", nn.Dropout(0.3))
 
     def _configure_input(self):
         """
@@ -227,7 +253,10 @@ class CategoricNeuralNetwork(nn.Module):
         """
         for m in self.modules():
             if isinstance(m, nn.Linear):
-                nn.init.kaiming_normal_(m.weight)
+                nn.init.kaiming_normal_(m.weight, nonlinearity='leaky_relu')
+                nn.init.zeros_(m.bias)
+            elif isinstance(m, nn.BatchNorm1d):
+                nn.init.ones_(m.weight)
                 nn.init.zeros_(m.bias)
 
     def forward(self, inputs) -> torch.Tensor:
@@ -244,6 +273,9 @@ class CategoricNeuralNetwork(nn.Module):
             pre_processed_inputs: torch.Tensor = self._process_batch_to_embedding(
                 batch=inputs
                 )
+            # Failed approach to use RNN layer
+            # pre_processed_inputs, _ = self.rnn(pre_processed_inputs)
+
         else:
             # No embeddings
             try:
