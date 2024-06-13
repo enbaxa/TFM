@@ -16,7 +16,7 @@ import torch
 from transformers import AutoTokenizer, AutoModel
 
 
-class NlpEmbedding(torch.nn.Module):
+class NlpEmbedding():
     """
     Class to handle the NLP embeddings.
 
