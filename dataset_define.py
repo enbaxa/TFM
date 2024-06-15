@@ -13,34 +13,42 @@ printer = logging.getLogger("printer")
 
 class CategoricDataset(TorchDataset):
     """
-
     A custom dataset class for handling categoric data.
 
-    This class is used to handle categoric data in a dataset.
-    It is used to prepare the data for training a neural network model.
-    The dataset should be a pandas DataFrame with labelled columns.
-    The input and output columns should be specified before training the model.
-    The input and output columns are used to group the data and aggregate the outputs.
-    The outputs are aggregated by concatenating them into a list.
-    The input and output categories are mapped to unique identifiers.
-    The input and output tensors are returned by the __getitem__ method.
-    The inputs are the raw text data, and the outputs are multi-hot encoded tensors.
-    The dataset can be split into training and testing sets using the train_test_split method.
+    This class is used to prepare the data for training the neural network.
+    It is designed to work with datasets that have labelled columns.
+
+    The class provides methods for defining the input and output columns,
+    splitting the dataset into training and testing sets, and balancing the dataset.
+
+    The class also provides methods for grouping the data by the input columns
+    and aggregating the outputs, and for standarizing the data.
+
+    The class inherits from the TorchDataset class, which is used by the DataLoader
 
     Methods:
-        define_input_output: Defines the input and output columns to be used by the dataset.
-        reverse_mapping: Given a column name and a numeric id, returns the original category value.
-        train_test_split: Split the dataset into training and testing sets.
-        balance: Balance the dataset by duplicating rows to match the maximum count.
-        standarize: Standarize the dataset by normalizing the data.
-        group_by: Group the data by the specified input columns and aggregate the outputs.
-        __len__: Returns the length of the dataset.
-        __getitem__: Returns the item at the given index.
-
-    Attributes:
+        __init__(data: pd.DataFrame, standarize: bool = False): Initializes a new instance of the CategoricDataset class.
+        define_input_output(input_columns: list[str], output_columns: list[str], store_input_features: bool = False): Defines the input and output columns to be used by the dataset.
+        _create_identifiers(columns=None): Creates unique identifiers for each value in the input and output columns.
+        reverse_mapping(column: str, code: int): Given a column name and a numeric id, returns the original category value.
         number_input_categories: Returns the number of categories of the input column.
         number_output_categories: Returns the number of categories of the outputs.
+        train_test_split(train_size: float = 0.8): Split the dataset into training and testing sets.
+        cherry_pick_split(train, test, train_size=0.8): Cherry pick a row from the training set and add it to the testing set.
+        balance(column): Balance the dataset by duplicating rows to come closer to the mean count.
+        standarize(): Standarize the dataset by normalizing the data.
         already_configured: Returns whether the dataset has already been configured.
+        group_by(): Group the data by the specified input columns and aggregate the outputs.
+        __len__(): Returns the length of the dataset.
+        __getitem__(idx): Returns the item at the given index.
+        add_missing_rows(dataset1, dataset2, column): Add missing rows from dataset2 to dataset1.
+
+    Attributes:
+        data (pd.DataFrame): The data to be used by the dataset.
+        input_columns (list[str]): The names of the columns to be used as input.
+        output_columns (list[str]): The name of the column to be used as output.
+        category_mappings (dict[dict]): A dictionary mapping the input and output categories to unique identifiers.
+        _already_configured (bool): Whether the dataset has already been configured.
     """
 
     def __init__(self, data: pd.DataFrame, standarize: bool = False):
@@ -55,7 +63,7 @@ class CategoricDataset(TorchDataset):
         Returns:
             None
         """
-        printer.debug("Creating a new instance of CategoricDataset.")
+        logger.debug("Creating a new instance of CategoricDataset.")
         # "Public" Variables
         self.data: pd.DataFrame = data
         if standarize:
@@ -295,9 +303,10 @@ class CategoricDataset(TorchDataset):
         test: CategoricDataset
         train.data: pd.DataFrame
         test.data: pd.DataFrame
+        no_more_elegible: bool = False
         while len(train) / len(self) >= train_size:
             output_count = train.data[train.output_columns[0]].value_counts()
-            if output_count.max() == 1:
+            if output_count.max() == 1 or no_more_elegible is True:
                 logger.warning(
                     "The output column has no repeated values."
                     " It is not possible to split the dataset further."
@@ -317,12 +326,26 @@ class CategoricDataset(TorchDataset):
                 logger.warning("Added %d rows to the test set that are also in training set",
                                needed)
                 return train, test
-            output_count = train.data[train.output_columns[0]].value_counts()
-            value = output_count.idxmax()
-            row = train.data[train.data[train.output_columns[0]] == value].sample()
+            # sample rows whose value count is over one
+            rows = train.data[train.data[train.output_columns[0]].isin(
+                output_count[output_count > 1].index)]
+            # filter out all entries whose value count is below mean - 3*std
+            rows = rows[rows[train.output_columns[0]].isin(
+                output_count[output_count > output_count.mean() - 3 * output_count.std()].index)]
+            if len(rows) == 0:
+                no_more_elegible = True
+                continue
+            # sample one row
+            row = rows.sample(1)
+            # add it to the test set
             test.data = pd.concat([test.data, row], ignore_index=True)
-            train.data.drop(row.index, inplace=True)
-            train.data.reset_index(drop=True, inplace=True)
+            # remove it from the training set
+            train.data = train.data.drop(row.index)
+        logger.warning(
+            "Cherry picked rows from more frequent classes."
+            " Training set size: %d, Test set size: %d",
+            len(train), len(test)
+            )
         return train, test
 
     def balance(self, column):
@@ -340,12 +363,12 @@ class CategoricDataset(TorchDataset):
         # Count the occurrences of each value in the specified column
         value_counts: pd.Series = df[column].value_counts()
         # Determine the maximum count
-        med_count: float = value_counts.median()
+        mean_count: float = value_counts.mean()
         std_count: float = value_counts.std()
         logger.debug(
             "Attempting to balance the dataset by duplicating rows to overcome class imbalance."
             "median= %d, std= %.2f",
-            med_count, std_count)
+            mean_count, std_count)
         # Iterate over each unique value in the column
         # Create a list to hold the balanced rows
         df_oversampled_rows = None
@@ -353,11 +376,11 @@ class CategoricDataset(TorchDataset):
             # Select all rows with the current value
             rows: pd.DataFrame = df[df[column] == value]
             # Calculate the number of times we need to duplicate the rows
-            separation_from_med: int = med_count - count
+            separation_from_med: int = mean_count - count
             # if lower than mean by more than 3 times sigma, oversample
             # until it reaches within 3 times sigma
-            if separation_from_med > 3 * std_count:
-                num_to_duplicate = int(med_count - std_count - count)
+            if separation_from_med > std_count:
+                num_to_duplicate = int(mean_count - 3 * std_count - count)
                 # Append the original rows and the duplicated rows to the list
                 if num_to_duplicate > 0:
                     df_oversampled_rows = pd.concat([df_oversampled_rows, rows.sample(n=num_to_duplicate, replace=True)])
@@ -365,7 +388,6 @@ class CategoricDataset(TorchDataset):
         balanced_df = pd.concat([df, df_oversampled_rows])
         # Shuffle the balanced DataFrame to mix the rows
         balanced_df = balanced_df.sample(frac=1).reset_index(drop=True)
-
         # Update the data attribute with the balanced DataFrame
         self.data = balanced_df
         if len(df) != len(balanced_df):
