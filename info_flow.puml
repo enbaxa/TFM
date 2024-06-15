@@ -1,0 +1,83 @@
+@startuml flow
+allowmixing
+title "Execution flow"
+
+
+database "Pandas DataFrame" as DataFrame
+
+class "Pytorch DataLoader" as PL{
+    + batch_size : int
+    + shuffle : bool
+}
+
+class "CategoricDataset" as D{
+      + data : DataFrame
+      + CategoryMappings : dict
+      --
+      + balance()
+      + train_test_split()
+      + group_by()
+      --
+      +__getitem__()
+      __
+      - Private implementation
+}
+
+
+class "CategoricNeuralNetwork" as N{
+        + CategoryMappings : dict
+        + relu_stack : nn.Sequential
+        --
+        + train_loop()
+        + test_loop()
+        + execute()
+        __
+        - Private implementation
+
+}
+
+class "NlpEmbedding" as NLP{
+    + model_name : str
+    --
+    + get_embedding()
+    __
+    - Private implementation
+
+}
+
+rectangle "Outputs" as O{
+    collections Logs
+    collections "validation metrics" as VM
+
+}
+
+
+note  "configure on init call" as N1
+
+usecase U[
+    To further uses
+    ==
+    Validation metric check
+    ..
+    launch more training
+    ..
+    model use
+    ..
+    persistent save
+    ..
+]
+
+DataFrame --> D
+PL -u- D::__getitem__
+D::__getitem__ -> N : feed batches
+
+N1 .. N
+N1 .. NLP
+D::CategoryMappings -> N::CategoryMappings : stored
+N -> NLP : call for embedding
+N <- NLP : return embedded
+
+N -d-> O
+N --> U
+O -d- U
+@enduml
