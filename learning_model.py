@@ -22,21 +22,66 @@ class StopTraining(Exception):
 
 class CategoricNeuralNetwork(nn.Module):
     """
-    Neural Network model for classification for a single category.
+    A neural network model for categoric data.
 
-    The model is a feedforward neural network with a number of hidden layers
-    and a number of neurons per layer that decreases gradually from the input
-    size to the output size.
+    The model can be trained using a dataset containing input and output data. The model
+    can be trained to predict the output data based on the input data.
 
-    Args:
-        category_mappings (dict[str, dict[int, str]]): A dictionary containing the mappings
-                                                      of the categories to their corresponding indexes.
-        max_hidden_neurons (int): The maximum number of hidden neurons in the model.
-        hidden_layers (int): The number of hidden layers in the model.
-        use_input_embedding (bool): Whether to use input embeddings or not.
-        use_output_embedding (bool): Whether to use output embeddings or not.
-        train_nlp_embedding (bool): Whether to train the NLP embedding model or not.
-        nlp_model_name (str): The name of the NLP model to use for embeddings.
+    The model is designed to work with categoric data, such as the names of functions
+    and their test cases. It can be used to predict categories based on the input data.
+
+    The model can use embeddings for the input and output data. The input data can be
+    embedded using a pretrained NLP model, and the output data can be embedded using
+    the same model. Embedding either is applied independtly of each other.
+
+    The model can be trained to update the embeddings of the NLP model. This can be
+    useful when the model is used in a domain-specific context where the pretrained
+    embeddings are not sufficient.
+
+    The model can be configured to use a different number of hidden layers and neurons
+    in the hidden layers. The number of hidden layers and neurons can be specified when
+    creating the model.
+
+    Methods:
+        forward: The forward pass of the model.
+        train_loop: The training loop of the model.
+        test_loop: The testing loop of the model.
+        evaluate: Evaluates the model on a test instance (direct).
+        execute: Executes the model on a test instance (wrapper of evaluate).
+        build_neural_network: Builds the neural network.
+        add_layer: Adds a layer to the model.
+        _process_batch_to_embedding: Preprocesses the batch to embeddings.
+        _process_batch_to_one_hot: Preprocesses the batch to one-hot vectors.
+        _get_batch_loss: Computes the loss for a batch of data.
+        _get_multi_one_hot: Preprocesses the field value to a multi-hot vector.
+        _configure_input: Initializes the input size.
+        _configure_output: Initializes the output size.
+        _initialize_weights: Initializes the weights and biases of the model.
+        _get_performance: Calculates the performance of the model.
+        _compute_total_metrics: Computes the total metrics of the model.
+
+    Attributes:
+        category_mappings: A dictionary containing the mappings of the categories.
+        max_hidden_neurons: The maximum number of hidden neurons in the hidden layers.
+        hidden_layers: The number of hidden layers in the model.
+        use_input_embedding: Whether to use input embeddings or not.
+        use_output_embedding: Whether to use output embeddings or not.
+        train_nlp_embedding: Whether to train the NLP embedding model or not.
+        nlp_model_name: The name of the NLP model to use for embeddings.
+        device: The device to use for the model.
+        _use_input_embedding: Whether to use input embeddings or not.
+        _use_output_embedding: Whether to use output embeddings or not.
+        _nlp_model_name: The name of the NLP model to use for embeddings.
+        _device: The device to use for the model.
+        _nlp_embedding_model: The NLP embedding model to use for embeddings.
+        _output_category_embeddings_nlp: The output category embeddings for the NLP model.
+        _similarity_threshold: The similarity threshold to use for the model (Cosine Embeddings).
+        _train_nlp_embedding: Whether to train the NLP embedding model or not.
+        _input_size: The size of the input data.
+        _output_size: The size of the output data.
+        linear_relu_stack: The neural network model.
+        softmax: The softmax function.
+        cos: The cosine similarity function.
     """
 
     def __init__(

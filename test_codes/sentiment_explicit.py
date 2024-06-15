@@ -51,8 +51,9 @@ def main(neurons: int, layers: int):
         - accuracy (float): The accuracy of the model on the test sentences.
         - model (model_api.Model): The trained model.
     """
-    model_api.ConfigRun.case_name = f"sentiment_explicit_n{neurons}_l{layers}"
-    model_api.reconfigure_loggers()
+    api = model_api.ModelApi()
+    api.config.case_name = f"sentiment_explicit_n{neurons}_l{layers}"
+    api.reconfigure_loggers()
 
     printer.info(f"Running test with {neurons} neurons and {layers} layers")
     # Define the input and output columns
@@ -60,9 +61,9 @@ def main(neurons: int, layers: int):
     input_columns = ["text"]
     output_columns = ["label"]
     # Configure the dataset using the input and output columns
-    dataset = model_api.configure_dataset(df, input_columns=input_columns, output_columns=output_columns)
+    dataset = api.configure_dataset(df, input_columns=input_columns, output_columns=output_columns)
     # Create an instance of the model
-    model = model_api.create_model(
+    model = api.create_model(
         dataset=dataset,
         use_input_embedding=True,
         use_output_embedding=False,
@@ -83,7 +84,7 @@ def main(neurons: int, layers: int):
         )
     # Get the train and test dataloaders
 
-    train_dataloader, test_dataloader = model_api.get_dataloaders(
+    train_dataloader, test_dataloader = api.get_dataloaders(
         dataset,
         train_size=0.8,
         batch_size=32,
@@ -93,7 +94,7 @@ def main(neurons: int, layers: int):
     if test_dataloader is None:
         test_dataloader = train_dataloader
 
-    model_api.train(
+    api.train(
         model=model,
         train_dataloader=train_dataloader,
         test_dataloader=test_dataloader,
@@ -146,7 +147,6 @@ def main(neurons: int, layers: int):
 
 if __name__ == "__main__":
     # Set up the logger
-    model_api.configure_default_loggers()
     # Run the main function with different configurations
     msg = []
     neurons_attempt = (16, 32, 64)

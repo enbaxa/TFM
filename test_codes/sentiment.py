@@ -49,16 +49,16 @@ def main(neurons: int, layers: int):
         - model (model_api.Model): The trained model.
     """
     # Create an instance of the ConfigRun class
-    config = model_api.ConfigRun
-    config.model_uses_input_embedding = True
-    config.model_uses_output_embedding = False
-    config.batch_size = 32
-    config.max_hidden_neurons = neurons
-    config.hidden_layers = layers
-    config.train_targets = {"f1": 0.75}
-    config.nlp_model_name = "distilbert-base-uncased"
-    config.case_name = f"sentiment_n{neurons}_l{layers}"
-    model_api.reconfigure_loggers()
+    api = model_api.ModelApi()
+    api.config.model_uses_input_embedding = True
+    api.config.model_uses_output_embedding = False
+    api.config.batch_size = 32
+    api.config.max_hidden_neurons = neurons
+    api.config.hidden_layers = layers
+    api.config.train_targets = {"f1": 0.75}
+    api.config.nlp_model_name = "distilbert-base-uncased"
+    api.config.case_name = f"sentiment_n{neurons}_l{layers}_faster"
+    api.reconfigure_loggers()
 
     printer.info(f"Running test with {neurons} neurons and {layers} layers")
     # Define the input and output columns
@@ -66,17 +66,17 @@ def main(neurons: int, layers: int):
     input_columns = ["text"]
     output_columns = ["label"]
     # Configure the dataset using the input and output columns
-    dataset = model_api.configure_dataset(df, input_columns=input_columns, output_columns=output_columns)
+    dataset = api.configure_dataset(df, input_columns=input_columns, output_columns=output_columns)
     # Create an instance of the model
-    model = model_api.create_model(dataset=dataset)
+    model = api.create_model(dataset=dataset)
     # Get loss function, optimizer, and scheduler
-    loss_fn = model_api.get_loss_fn()
-    optimizer = model_api.get_optimizer(model)
-    scheduler = model_api.get_scheduler(optimizer)
+    loss_fn = api.get_loss_fn()
+    optimizer = api.get_optimizer(model)
+    scheduler = api.get_scheduler(optimizer)
     # Get the train and test dataloaders
-    train_dataloader, test_dataloader = model_api.get_dataloaders(dataset)
+    train_dataloader, test_dataloader = api.get_dataloaders(dataset)
     # Train the model
-    model_api.train(
+    api.train(
         model=model,
         train_dataloader=train_dataloader,
         test_dataloader=test_dataloader,
@@ -119,12 +119,15 @@ def main(neurons: int, layers: int):
 
     printer.info("correct count: %d/%d", correct, total)
     printer.info("Accuracy: %.2f%%\n\n", correct/total*100)
+
+    printer.info("ALTERNATIVE METHOD")
+    printer.info("correct count: %d/%d", count_p+count_n, total)
+    printer.info("Accuracy: %.2f%%\n\n", (count_p+count_n)/total*100)
+
     return correct / total*100, model
 
 
 if __name__ == "__main__":
-    # Set up the logger
-    model_api.configure_default_loggers()
     # Run the main function with different configurations
     msg = []
     neurons_attempt = (16, 32, 64)

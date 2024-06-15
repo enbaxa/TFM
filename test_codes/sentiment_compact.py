@@ -50,20 +50,20 @@ def main(neurons: int, layers: int):
         - model (model_api.Model): The trained model.
     """
     # Create an instance of the ConfigRun class
-    config = model_api.ConfigRun
-    config.max_hidden_neurons = neurons
-    config.hidden_layers = layers
-    config.model_uses_output_embedding = False  # This is a classification task
-    config.nlp_model_name = "distilbert-base-uncased"  # Generic NLP model
-    config.case_name = f"sentiment_compact_n{neurons}_l{layers}"
-    model_api.reconfigure_loggers()
+    api = model_api.ModelApi()
+    api.config.max_hidden_neurons = neurons
+    api.config.hidden_layers = layers
+    api.config.model_uses_output_embedding = False  # This is a classification task
+    api.config.nlp_model_name = "distilbert-base-uncased"  # Generic NLP model
+    api.config.case_name = f"sentiment_compact_n{neurons}_l{layers}"
+    api.reconfigure_loggers()
 
     printer.info(f"Running test with {neurons} neurons and {layers} layers")
     # Define the input and output columns
     df: pd.DataFrame = get_data()
     input_columns = ["text"]
     output_columns = ["label"]
-    model = model_api.build_and_train_model(
+    model = api.build_and_train_model(
         df=df,
         input_columns=input_columns,
         output_columns=output_columns
@@ -103,12 +103,12 @@ def main(neurons: int, layers: int):
 
     printer.info("correct count: %d/%d", correct, total)
     printer.info("Accuracy: %.2f%%\n\n", correct/total*100)
+    api.save_model(model)
     return correct / total*100, model
 
 
 if __name__ == "__main__":
     # Set up the logger
-    model_api.configure_default_loggers()
     # Run the main function with different configurations
     msg = []
     neurons_attempt = (16, 32, 64)
