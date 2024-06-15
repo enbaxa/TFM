@@ -8,6 +8,7 @@ allowmixing
 
 package Dependencies[
     pandas
+    matplotlib
     seaborn
     pyTorch
     Transformers
@@ -23,7 +24,7 @@ package Application{
         rectangle "Configuration Variables" as ConfigRun
 
         collections "API functions" as fucs
-        ConfigRun --> fucs : "used as \n default values"
+        ConfigRun --* fucs : "Composited"
         user --> Application.model_api.ConfigRun : edits
         user --> fucs : calls
 
@@ -44,6 +45,9 @@ package Application{
 rectangle outputs{
     collections logs
     rectangle "Trained Model" as model
+    collections "configuration files" as config
+    logs -[hidden]d- model
+    config -[hidden]d- model
 }
 
 rectangle "Trained Model" as model

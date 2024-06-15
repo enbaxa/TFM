@@ -119,24 +119,24 @@
 <span class="sd">    Trains a model to classify sentiment and evaluates it with some sentences.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        neurons (int): The number of neurons in the hidden layers.</span>
-<span class="sd">        layers (int): The number of hidden layers.</span>
+<span class="sd">        - neurons (int): The number of neurons in the hidden layers.</span>
+<span class="sd">        - layers (int): The number of hidden layers.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        accuracy (float): The accuracy of the model on the test sentences.</span>
-<span class="sd">        model (model_api.Model): The trained model.</span>
+<span class="sd">        - accuracy (float): The accuracy of the model on the test sentences.</span>
+<span class="sd">        - model (model_api.Model): The trained model.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Create an instance of the ConfigRun class</span>
-    <span class="n">config</span> <span class="o">=</span> <span class="n">model_api</span><span class="o">.</span><span class="n">ConfigRun</span>
-    <span class="n">config</span><span class="o">.</span><span class="n">model_uses_input_embedding</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">config</span><span class="o">.</span><span class="n">model_uses_output_embedding</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="n">config</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>
-    <span class="n">config</span><span class="o">.</span><span class="n">max_hidden_neurons</span> <span class="o">=</span> <span class="n">neurons</span>
-    <span class="n">config</span><span class="o">.</span><span class="n">hidden_layers</span> <span class="o">=</span> <span class="n">layers</span>
-    <span class="n">config</span><span class="o">.</span><span class="n">train_targets</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;f1&quot;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">}</span>
-    <span class="n">config</span><span class="o">.</span><span class="n">nlp_model_name</span> <span class="o">=</span> <span class="s2">&quot;distilbert-base-uncased&quot;</span>
-    <span class="n">config</span><span class="o">.</span><span class="n">case_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;sentiment_n</span><span class="si">{</span><span class="n">neurons</span><span class="si">}</span><span class="s2">_l</span><span class="si">{</span><span class="n">layers</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="n">model_api</span><span class="o">.</span><span class="n">reconfigure_loggers</span><span class="p">()</span>
+    <span class="n">api</span> <span class="o">=</span> <span class="n">model_api</span><span class="o">.</span><span class="n">ModelApi</span><span class="p">()</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">model_uses_input_embedding</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">model_uses_output_embedding</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_hidden_neurons</span> <span class="o">=</span> <span class="n">neurons</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">hidden_layers</span> <span class="o">=</span> <span class="n">layers</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">train_targets</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;f1&quot;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">}</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">nlp_model_name</span> <span class="o">=</span> <span class="s2">&quot;distilbert-base-uncased&quot;</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">case_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;sentiment_n</span><span class="si">{</span><span class="n">neurons</span><span class="si">}</span><span class="s2">_l</span><span class="si">{</span><span class="n">layers</span><span class="si">}</span><span class="s2">_faster&quot;</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">reconfigure_loggers</span><span class="p">()</span>
 
     <span class="n">printer</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running test with </span><span class="si">{</span><span class="n">neurons</span><span class="si">}</span><span class="s2"> neurons and </span><span class="si">{</span><span class="n">layers</span><span class="si">}</span><span class="s2"> layers&quot;</span><span class="p">)</span>
     <span class="c1"># Define the input and output columns</span>
@@ -144,17 +144,17 @@
     <span class="n">input_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span>
     <span class="n">output_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span>
     <span class="c1"># Configure the dataset using the input and output columns</span>
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">model_api</span><span class="o">.</span><span class="n">configure_dataset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">input_columns</span><span class="o">=</span><span class="n">input_columns</span><span class="p">,</span> <span class="n">output_columns</span><span class="o">=</span><span class="n">output_columns</span><span class="p">)</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">configure_dataset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">input_columns</span><span class="o">=</span><span class="n">input_columns</span><span class="p">,</span> <span class="n">output_columns</span><span class="o">=</span><span class="n">output_columns</span><span class="p">)</span>
     <span class="c1"># Create an instance of the model</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">model_api</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">)</span>
     <span class="c1"># Get loss function, optimizer, and scheduler</span>
-    <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">model_api</span><span class="o">.</span><span class="n">get_loss_fn</span><span class="p">()</span>
-    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">model_api</span><span class="o">.</span><span class="n">get_optimizer</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-    <span class="n">scheduler</span> <span class="o">=</span> <span class="n">model_api</span><span class="o">.</span><span class="n">get_scheduler</span><span class="p">(</span><span class="n">optimizer</span><span class="p">)</span>
+    <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_loss_fn</span><span class="p">()</span>
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_optimizer</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="n">scheduler</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_scheduler</span><span class="p">(</span><span class="n">optimizer</span><span class="p">)</span>
     <span class="c1"># Get the train and test dataloaders</span>
-    <span class="n">train_dataloader</span><span class="p">,</span> <span class="n">test_dataloader</span> <span class="o">=</span> <span class="n">model_api</span><span class="o">.</span><span class="n">get_dataloaders</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="n">train_dataloader</span><span class="p">,</span> <span class="n">test_dataloader</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_dataloaders</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
     <span class="c1"># Train the model</span>
-    <span class="n">model_api</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
         <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
         <span class="n">train_dataloader</span><span class="o">=</span><span class="n">train_dataloader</span><span class="p">,</span>
         <span class="n">test_dataloader</span><span class="o">=</span><span class="n">test_dataloader</span><span class="p">,</span>
@@ -197,16 +197,19 @@
 
     <span class="n">printer</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;correct count: </span><span class="si">%d</span><span class="s2">/</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">correct</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
     <span class="n">printer</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Accuracy: </span><span class="si">%.2f%%</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">correct</span><span class="o">/</span><span class="n">total</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+
+    <span class="n">printer</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;ALTERNATIVE METHOD&quot;</span><span class="p">)</span>
+    <span class="n">printer</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;correct count: </span><span class="si">%d</span><span class="s2">/</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">count_p</span><span class="o">+</span><span class="n">count_n</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+    <span class="n">printer</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Accuracy: </span><span class="si">%.2f%%</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">count_p</span><span class="o">+</span><span class="n">count_n</span><span class="p">)</span><span class="o">/</span><span class="n">total</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+
     <span class="k">return</span> <span class="n">correct</span> <span class="o">/</span> <span class="n">total</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">model</span></div>
 
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="c1"># Set up the logger</span>
-    <span class="n">model_api</span><span class="o">.</span><span class="n">configure_default_loggers</span><span class="p">()</span>
     <span class="c1"># Run the main function with different configurations</span>
     <span class="n">msg</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">neurons_attempt</span> <span class="o">=</span> <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+    <span class="n">neurons_attempt</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
     <span class="n">layers_attempt</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">neurons</span> <span class="ow">in</span> <span class="n">neurons_attempt</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">layers</span> <span class="ow">in</span> <span class="n">layers_attempt</span><span class="p">:</span>

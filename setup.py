@@ -9,7 +9,6 @@ setup(
     install_requires=[
         "torch",
         "pandas",
-        "numpy",
         "transformers",
         "matplotlib",
         "seaborn"

@@ -46,3 +46,14 @@ html_theme = 'sphinx_rtd_theme'
 
 
 html_static_path = ['_static']
+
+latex_elements = {
+    'papersize': 'a4paper',
+    'pointsize': '10pt',
+    'preamble': '',
+    'figure_align': 'htbp',
+}
+
+latex_documents = [
+    ('index', 'MyProject.tex', 'My Project Documentation', 'Author Name', 'manual'),
+]

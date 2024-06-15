@@ -100,21 +100,66 @@
 <a class="viewcode-back" href="../learning_model.html#learning_model.CategoricNeuralNetwork">[docs]</a>
 <span class="k">class</span> <span class="nc">CategoricNeuralNetwork</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Neural Network model for classification for a single category.</span>
+<span class="sd">    A neural network model for categoric data.</span>
 
-<span class="sd">    The model is a feedforward neural network with a number of hidden layers</span>
-<span class="sd">    and a number of neurons per layer that decreases gradually from the input</span>
-<span class="sd">    size to the output size.</span>
+<span class="sd">    The model can be trained using a dataset containing input and output data. The model</span>
+<span class="sd">    can be trained to predict the output data based on the input data.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        category_mappings (dict[str, dict[int, str]]): A dictionary containing the mappings</span>
-<span class="sd">                                                      of the categories to their corresponding indexes.</span>
-<span class="sd">        max_hidden_neurons (int): The maximum number of hidden neurons in the model.</span>
-<span class="sd">        hidden_layers (int): The number of hidden layers in the model.</span>
-<span class="sd">        use_input_embedding (bool): Whether to use input embeddings or not.</span>
-<span class="sd">        use_output_embedding (bool): Whether to use output embeddings or not.</span>
-<span class="sd">        train_nlp_embedding (bool): Whether to train the NLP embedding model or not.</span>
-<span class="sd">        nlp_model_name (str): The name of the NLP model to use for embeddings.</span>
+<span class="sd">    The model is designed to work with categoric data, such as the names of functions</span>
+<span class="sd">    and their test cases. It can be used to predict categories based on the input data.</span>
+
+<span class="sd">    The model can use embeddings for the input and output data. The input data can be</span>
+<span class="sd">    embedded using a pretrained NLP model, and the output data can be embedded using</span>
+<span class="sd">    the same model. Embedding either is applied independtly of each other.</span>
+
+<span class="sd">    The model can be trained to update the embeddings of the NLP model. This can be</span>
+<span class="sd">    useful when the model is used in a domain-specific context where the pretrained</span>
+<span class="sd">    embeddings are not sufficient.</span>
+
+<span class="sd">    The model can be configured to use a different number of hidden layers and neurons</span>
+<span class="sd">    in the hidden layers. The number of hidden layers and neurons can be specified when</span>
+<span class="sd">    creating the model.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        forward: The forward pass of the model.</span>
+<span class="sd">        train_loop: The training loop of the model.</span>
+<span class="sd">        test_loop: The testing loop of the model.</span>
+<span class="sd">        evaluate: Evaluates the model on a test instance (direct).</span>
+<span class="sd">        execute: Executes the model on a test instance (wrapper of evaluate).</span>
+<span class="sd">        build_neural_network: Builds the neural network.</span>
+<span class="sd">        add_layer: Adds a layer to the model.</span>
+<span class="sd">        _process_batch_to_embedding: Preprocesses the batch to embeddings.</span>
+<span class="sd">        _process_batch_to_one_hot: Preprocesses the batch to one-hot vectors.</span>
+<span class="sd">        _get_batch_loss: Computes the loss for a batch of data.</span>
+<span class="sd">        _get_multi_one_hot: Preprocesses the field value to a multi-hot vector.</span>
+<span class="sd">        _configure_input: Initializes the input size.</span>
+<span class="sd">        _configure_output: Initializes the output size.</span>
+<span class="sd">        _initialize_weights: Initializes the weights and biases of the model.</span>
+<span class="sd">        _get_performance: Calculates the performance of the model.</span>
+<span class="sd">        _compute_total_metrics: Computes the total metrics of the model.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        category_mappings: A dictionary containing the mappings of the categories.</span>
+<span class="sd">        max_hidden_neurons: The maximum number of hidden neurons in the hidden layers.</span>
+<span class="sd">        hidden_layers: The number of hidden layers in the model.</span>
+<span class="sd">        use_input_embedding: Whether to use input embeddings or not.</span>
+<span class="sd">        use_output_embedding: Whether to use output embeddings or not.</span>
+<span class="sd">        train_nlp_embedding: Whether to train the NLP embedding model or not.</span>
+<span class="sd">        nlp_model_name: The name of the NLP model to use for embeddings.</span>
+<span class="sd">        device: The device to use for the model.</span>
+<span class="sd">        _use_input_embedding: Whether to use input embeddings or not.</span>
+<span class="sd">        _use_output_embedding: Whether to use output embeddings or not.</span>
+<span class="sd">        _nlp_model_name: The name of the NLP model to use for embeddings.</span>
+<span class="sd">        _device: The device to use for the model.</span>
+<span class="sd">        _nlp_embedding_model: The NLP embedding model to use for embeddings.</span>
+<span class="sd">        _output_category_embeddings_nlp: The output category embeddings for the NLP model.</span>
+<span class="sd">        _similarity_threshold: The similarity threshold to use for the model (Cosine Embeddings).</span>
+<span class="sd">        _train_nlp_embedding: Whether to train the NLP embedding model or not.</span>
+<span class="sd">        _input_size: The size of the input data.</span>
+<span class="sd">        _output_size: The size of the output data.</span>
+<span class="sd">        linear_relu_stack: The neural network model.</span>
+<span class="sd">        softmax: The softmax function.</span>
+<span class="sd">        cos: The cosine similarity function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -129,6 +174,18 @@
             <span class="n">nlp_model_name</span><span class="o">=</span><span class="s1">&#39;distilbert-base-uncased&#39;</span><span class="p">,</span>
             <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># Save all input parameters in a dictionary for easy access</span>
+        <span class="c1"># later when we save it to a file.</span>
+        <span class="c1"># This is only to create the new instance when loading the model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;category_mappings&quot;</span><span class="p">:</span> <span class="n">category_mappings</span><span class="p">,</span>
+            <span class="s2">&quot;max_hidden_neurons&quot;</span><span class="p">:</span> <span class="n">max_hidden_neurons</span><span class="p">,</span>
+            <span class="s2">&quot;hidden_layers&quot;</span><span class="p">:</span> <span class="n">hidden_layers</span><span class="p">,</span>
+            <span class="s2">&quot;use_input_embedding&quot;</span><span class="p">:</span> <span class="n">use_input_embedding</span><span class="p">,</span>
+            <span class="s2">&quot;use_output_embedding&quot;</span><span class="p">:</span> <span class="n">use_output_embedding</span><span class="p">,</span>
+            <span class="s2">&quot;train_nlp_embedding&quot;</span><span class="p">:</span> <span class="n">train_nlp_embedding</span><span class="p">,</span>
+            <span class="s2">&quot;nlp_model_name&quot;</span><span class="p">:</span> <span class="n">nlp_model_name</span>
+        <span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">assess_device</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_use_input_embedding</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">use_input_embedding</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_use_output_embedding</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">use_output_embedding</span>
@@ -140,6 +197,16 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_nlp_embedding_model</span><span class="p">:</span> <span class="n">NlpEmbedding</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">NlpEmbedding</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_nlp_model_name</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_nlp_embedding_model</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span>
+            <span class="c1"># # We will also need an RNN layer to process the embeddings</span>
+            <span class="c1"># logger.info(&quot;Because embeddings are being used, an RNN layer will be added to the model.&quot;)</span>
+            <span class="c1"># self.rnn = nn.RNN(</span>
+            <span class="c1">#     input_size=self._nlp_embedding_model.model.config.hidden_size,</span>
+            <span class="c1">#     hidden_size=self._nlp_embedding_model.model.config.hidden_size,</span>
+            <span class="c1">#     num_layers=1,</span>
+            <span class="c1">#     batch_first=True,</span>
+            <span class="c1">#     nonlinearity=&#39;relu&#39;,</span>
+            <span class="c1">#     dropout=0.3,</span>
+            <span class="c1">#     )</span>
         <span class="c1"># make a dict of each element of dataset.input_columns and their corresponding index in the list</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">category_mappings</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">category_mappings</span>
         <span class="c1"># &quot;Private&quot; variables</span>
@@ -189,11 +256,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">cos</span><span class="p">:</span> <span class="n">nn</span><span class="o">.</span><span class="n">CosineSimilarity</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CosineSimilarity</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="c1"># Print the parameters that will be trained</span>
-        <span class="n">training_message</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">]</span>
+        <span class="n">training_message</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;The following parameters will be trained:&quot;</span><span class="p">]</span>
+        <span class="n">not_training_message</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;The following parameters will not be trained:&quot;</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">param</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">:</span>
-                <span class="n">training_message</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> will be part of the learning layer&quot;</span><span class="p">)</span>
+                <span class="n">training_message</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">not_training_message</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> will not be part of the learning layer&quot;</span><span class="p">)</span>
         <span class="n">printer</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">training_message</span><span class="p">))</span>
+        <span class="n">printer</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">not_training_message</span><span class="p">))</span>
 
 <div class="viewcode-block" id="CategoricNeuralNetwork.build_neural_network">
 <a class="viewcode-back" href="../learning_model.html#learning_model.CategoricNeuralNetwork.build_neural_network">[docs]</a>
@@ -268,9 +339,11 @@
         <span class="k">if</span> <span class="n">add_activation</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">linear_relu_stack</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="n">name</span><span class="o">+</span><span class="s2">&quot;_2&quot;</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">LeakyReLU</span><span class="p">())</span>
         <span class="k">if</span> <span class="n">add_drop</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">linear_relu_stack</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="n">name</span><span class="o">+</span><span class="s2">&quot;_3&quot;</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.1</span><span class="p">))</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">linear_relu_stack</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="n">name</span><span class="o">+</span><span class="s2">&quot;_3&quot;</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.3</span><span class="p">))</span></div>
 
 
+<div class="viewcode-block" id="CategoricNeuralNetwork._configure_input">
+<a class="viewcode-back" href="../learning_model.html#learning_model.CategoricNeuralNetwork._configure_input">[docs]</a>
     <span class="k">def</span> <span class="nf">_configure_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the input size.</span>
@@ -282,8 +355,11 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_use_input_embedding</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_input_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nlp_embedding_model</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">hidden_size</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_categories</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_input_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">category_mappings</span><span class="p">[</span><span class="n">col</span><span class="p">])</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_categories</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_input_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">category_mappings</span><span class="p">[</span><span class="n">col</span><span class="p">])</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_categories</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span></div>
 
+
+<div class="viewcode-block" id="CategoricNeuralNetwork._configure_output">
+<a class="viewcode-back" href="../learning_model.html#learning_model.CategoricNeuralNetwork._configure_output">[docs]</a>
     <span class="k">def</span> <span class="nf">_configure_output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the output size.</span>
@@ -303,16 +379,23 @@
                 <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># If no embeddings are used, the output size is the number of categories</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_output_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">total_output_fields</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_output_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">total_output_fields</span></div>
 
+
+<div class="viewcode-block" id="CategoricNeuralNetwork._initialize_weights">
+<a class="viewcode-back" href="../learning_model.html#learning_model.CategoricNeuralNetwork._initialize_weights">[docs]</a>
     <span class="k">def</span> <span class="nf">_initialize_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the weights and biases of the model.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="p">():</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">):</span>
-                <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">kaiming_normal_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+                <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">kaiming_normal_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="n">nonlinearity</span><span class="o">=</span><span class="s1">&#39;leaky_relu&#39;</span><span class="p">)</span>
                 <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">zeros_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">):</span>
+                <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">ones_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+                <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">zeros_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="CategoricNeuralNetwork.forward">
 <a class="viewcode-back" href="../learning_model.html#learning_model.CategoricNeuralNetwork.forward">[docs]</a>
@@ -330,6 +413,9 @@
             <span class="n">pre_processed_inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_batch_to_embedding</span><span class="p">(</span>
                 <span class="n">batch</span><span class="o">=</span><span class="n">inputs</span>
                 <span class="p">)</span>
+            <span class="c1"># Failed approach to use RNN layer</span>
+            <span class="c1"># pre_processed_inputs, _ = self.rnn(pre_processed_inputs)</span>
+
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># No embeddings</span>
             <span class="k">try</span><span class="p">:</span>
@@ -350,6 +436,8 @@
         <span class="k">return</span> <span class="n">logits</span></div>
 
 
+<div class="viewcode-block" id="CategoricNeuralNetwork._process_batch_to_embedding">
+<a class="viewcode-back" href="../learning_model.html#learning_model.CategoricNeuralNetwork._process_batch_to_embedding">[docs]</a>
     <span class="k">def</span> <span class="nf">_process_batch_to_embedding</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">batch</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
@@ -383,8 +471,11 @@
             <span class="n">embeddings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">embedded_element</span><span class="p">)</span>
         <span class="c1"># Stack the embeddings into a tensor. Represents the whole batch</span>
         <span class="n">stacked_embeddings</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">stacked_embeddings</span>
+        <span class="k">return</span> <span class="n">stacked_embeddings</span></div>
 
+
+<div class="viewcode-block" id="CategoricNeuralNetwork._process_batch_to_one_hot">
+<a class="viewcode-back" href="../learning_model.html#learning_model.CategoricNeuralNetwork._process_batch_to_one_hot">[docs]</a>
     <span class="k">def</span> <span class="nf">_process_batch_to_one_hot</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">batch</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
@@ -446,8 +537,11 @@
             <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">all_one_hot_vectors</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
             <span class="p">)</span>
         <span class="c1"># Convert the processed inputs to float</span>
-        <span class="k">return</span> <span class="n">processed</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">processed</span><span class="o">.</span><span class="n">float</span><span class="p">()</span></div>
 
+
+<div class="viewcode-block" id="CategoricNeuralNetwork._get_multi_one_hot">
+<a class="viewcode-back" href="../learning_model.html#learning_model.CategoricNeuralNetwork._get_multi_one_hot">[docs]</a>
     <span class="k">def</span> <span class="nf">_get_multi_one_hot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">field_value</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Preprocesses the field value to a multi-hot vector.</span>
@@ -472,8 +566,11 @@
         <span class="c1"># If there are multiple field indexes, sum them to get the multi-hot vector</span>
         <span class="n">one_hot</span> <span class="o">=</span> <span class="n">one_hot</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="c1"># Append the one-hot vector to the list</span>
-        <span class="k">return</span> <span class="n">one_hot</span>
+        <span class="k">return</span> <span class="n">one_hot</span></div>
 
+
+<div class="viewcode-block" id="CategoricNeuralNetwork._get_batch_loss">
+<a class="viewcode-back" href="../learning_model.html#learning_model.CategoricNeuralNetwork._get_batch_loss">[docs]</a>
     <span class="k">def</span> <span class="nf">_get_batch_loss</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">loss_fn</span><span class="p">:</span> <span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span>
@@ -525,7 +622,8 @@
         <span class="k">if</span> <span class="n">return_y_one_hot</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">loss</span><span class="p">,</span> <span class="n">yp</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">loss</span>
+            <span class="k">return</span> <span class="n">loss</span></div>
+
 
 <div class="viewcode-block" id="CategoricNeuralNetwork.train_loop">
 <a class="viewcode-back" href="../learning_model.html#learning_model.CategoricNeuralNetwork.train_loop">[docs]</a>
@@ -743,6 +841,8 @@
         <span class="k">return</span> <span class="n">f1_score</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span></div>
 
 
+<div class="viewcode-block" id="CategoricNeuralNetwork._compute_total_metrics">
+<a class="viewcode-back" href="../learning_model.html#learning_model.CategoricNeuralNetwork._compute_total_metrics">[docs]</a>
     <span class="k">def</span> <span class="nf">_compute_total_metrics</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">correct_positives</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -775,8 +875,11 @@
             <span class="n">f1_score</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">precision</span> <span class="o">*</span> <span class="n">recall</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">precision</span> <span class="o">+</span> <span class="n">recall</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
             <span class="n">f1_score</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">return</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1_score</span>
+        <span class="k">return</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1_score</span></div>
 
+
+<div class="viewcode-block" id="CategoricNeuralNetwork._get_performance">
+<a class="viewcode-back" href="../learning_model.html#learning_model.CategoricNeuralNetwork._get_performance">[docs]</a>
     <span class="k">def</span> <span class="nf">_get_performance</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">y_one_hot</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
@@ -812,7 +915,8 @@
         <span class="n">correct_choices</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">prb_set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">y_set</span><span class="p">))</span>
         <span class="n">incorrect_choices</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">prb_set</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">y_set</span><span class="p">))</span>
         <span class="n">total_positives</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_indices</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">correct_choices</span><span class="p">,</span> <span class="n">incorrect_choices</span><span class="p">,</span> <span class="n">total_positives</span>
+        <span class="k">return</span> <span class="n">correct_choices</span><span class="p">,</span> <span class="n">incorrect_choices</span><span class="p">,</span> <span class="n">total_positives</span></div>
+
 
 <div class="viewcode-block" id="CategoricNeuralNetwork.evaluate">
 <a class="viewcode-back" href="../learning_model.html#learning_model.CategoricNeuralNetwork.evaluate">[docs]</a>
