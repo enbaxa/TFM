@@ -94,6 +94,7 @@ class CategoricNeuralNetwork(nn.Module):
             use_output_embedding: bool = False,
             train_nlp_embedding: bool = False,
             nlp_model_name='distilbert-base-uncased',
+            similarity_threshold: float = 0.5
             ):
         super().__init__()
         # Save all input parameters in a dictionary for easy access
@@ -106,7 +107,8 @@ class CategoricNeuralNetwork(nn.Module):
             "use_input_embedding": use_input_embedding,
             "use_output_embedding": use_output_embedding,
             "train_nlp_embedding": train_nlp_embedding,
-            "nlp_model_name": nlp_model_name
+            "nlp_model_name": nlp_model_name,
+            "similarity_threshold": similarity_threshold
         }
         self._device: str = self.assess_device()
         self._use_input_embedding: bool = use_input_embedding
@@ -133,7 +135,7 @@ class CategoricNeuralNetwork(nn.Module):
         self.category_mappings: dict[str, dict[int, str]] = category_mappings
         # "Private" variables
         self._output_category_embeddings_nlp: torch.Tensor | None = None
-        self._similarity_threshold: float = 0
+        self._similarity_threshold: float = similarity_threshold
         self._train_nlp_embedding: bool = train_nlp_embedding
         self._input_size: int = 0
         self._output_size: int = 0
@@ -317,7 +319,7 @@ class CategoricNeuralNetwork(nn.Module):
         if self._use_input_embedding:
             pre_processed_inputs: torch.Tensor = self._process_batch_to_embedding(
                 batch=inputs
-                )
+                ).to(self.device)
             # Failed approach to use RNN layer
             # pre_processed_inputs, _ = self.rnn(pre_processed_inputs)
 
@@ -327,7 +329,7 @@ class CategoricNeuralNetwork(nn.Module):
                 pre_processed_inputs: torch.Tensor = self._process_batch_to_one_hot(
                     batch=inputs,
                     fields_type="inputs"
-                    )
+                    ).to(self.device)
             except KeyError:
                 printer.error(
                     "The input fields are not correctly defined."
@@ -698,6 +700,8 @@ class CategoricNeuralNetwork(nn.Module):
                     thresholds_metrics,
                     key=lambda x: thresholds_metrics[x]["f1"]
                     )
+                # update it in the config
+                self._config["similarity_threshold"] = self._similarity_threshold
                 printer.info("Best threshold: %.2f", self._similarity_threshold)
                 # Get the metrics for the best threshold into an easy-to-access variable
                 best_metrics: dict[str, Union[float, int]] = thresholds_metrics[self._similarity_threshold]
@@ -1069,6 +1073,31 @@ class CategoricNeuralNetwork(nn.Module):
         )
         logger.info("Using %s device", device)
         return device
+
+    def add_output_possibility(self, category: str, possibility: str) -> None:
+        """
+        Adds an output possibility to the model.
+
+        Args:
+            category (str): The category to add the possibility to.
+            possibility (str): The possibility to add to the category.
+
+        Returns:
+            None
+        """
+        if category not in self.output_categories.values():
+            raise ValueError(f"Category {category} is not in the output categories.")
+        if not self._use_output_embedding:
+            logger.error(
+                "Cannot add output possibilities when not using output embeddings."
+                "This would require changing the output size of the model."
+                )
+            raise ValueError("Cannot add output possibilities when not using output embeddings.")
+        self.category_mappings[category][possibility] = len(self.category_mappings[category])
+        logger.info("Added possibility %s to category %s as a new possible output", possibility, category)
+        # eliminate the output embeddings to recalculate them when needed
+        # This can be done more efficiently (i.e. just appending the new, but for now this is experimental)
+        self._output_category_embeddings_nlp = None
 
 
 if __name__ == "__main__":

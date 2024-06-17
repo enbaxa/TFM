@@ -39,6 +39,8 @@ class ConfigRun:
     A dataclass to store the default configuration for the model training.
 
     Attributes:
+        balance_training_data (bool): Whether to balance the training data.
+        aggregate_outputs (bool): Whether to aggregate the outputs.
         max_hidden_neurons (int): The maximum number of hidden neurons in the model.
         hidden_layers (int): The number of hidden layers in the model.
         model_uses_input_embedding (bool): Whether the model uses input embedding.
@@ -66,6 +68,9 @@ class ConfigRun:
         None
 
     """
+    # Preprocessing parameters
+    balance_training_data: bool = True
+    aggregate_outputs: bool = True
     # Model parameters
     max_hidden_neurons: int = 2058
     hidden_layers: int = 2
@@ -148,12 +153,16 @@ class ModelApi:
         get_scheduler(optimizer: torch.optim.Optimizer, factor: float = 0.1, mode: str = None, patience: int = None, steps: int = None, scheduler_type: str = None) -> torch.optim.lr_scheduler._LRScheduler
         get_loss_fn(use_output_embedding: bool = None) -> torch.nn.Module
         train(model: CategoricNeuralNetwork, train_dataloader: DataLoader, test_dataloader: DataLoader, loss_fn: torch.nn.Module, optimizer: torch.optim.Optimizer, train_targets: dict = None, epochs: int = None, lr_decay_target: str = None, scheduler: torch.optim.lr_scheduler._LRScheduler | None = None, do_report: bool = True, live_report: bool = False) -> None
-    """
+        build_and_train_model(df: pd.DataFrame, input_columns: list, output_columns: list) -> CategoricNeuralNetwork
+        save_model(model: CategoricNeuralNetwork, path: str) -> None
+        load_model(path: str) -> CategoricNeuralNetwork
+        add_output_posssibilities(df: pd.DataFrame,  output_category: str, output_value: str) -> pd.DataFrame
+        """
 
     def __init__(self):
         self.config = ConfigRun()
 
-    def configure_default_loggers(self, fil_name: str = None):
+    def configure_default_loggers(self, fil_name: str = None) -> None:
         """
         Configure the default loggers for the module.
 
@@ -204,7 +213,7 @@ class ModelApi:
         logger.debug("Loggers configured.")
         logger.debug("Log and report files will be saved in %s", fil_path)
 
-    def wipe_handlers(self):
+    def wipe_handlers(self) -> None:
         """
         Wipe the loggers from the root logger.
 
@@ -219,7 +228,7 @@ class ModelApi:
         for handler in handlers:
             root_logger.removeHandler(handler)
 
-    def reconfigure_loggers(self):
+    def reconfigure_loggers(self) -> None:
         """
         Reconfigure the loggers.
 
@@ -285,8 +294,8 @@ class ModelApi:
             dataset: CategoricDataset,
             train_size: float = None,
             batch_size: int = None,
-            balance_training_data: bool = True,
-            aggregate_outputs: bool = True
+            balance_training_data: bool = None,
+            aggregate_outputs: bool = None
             ) -> tuple:
         """
         Get the dataloaders for the training and testing of the model.
@@ -317,7 +326,14 @@ class ModelApi:
             train_size = self.config.train_size
         else:
             logger.info("Train size was set to %.2f overriding the config", train_size)
-
+        if balance_training_data is None:
+            balance_training_data = self.config.balance_training_data
+        else:
+            logger.info("balance_training_data was set to %s overriding the config", balance_training_data)
+        if aggregate_outputs is None:
+            aggregate_outputs = self.config.aggregate_outputs
+        else:
+            logger.info("aggregate_outputs was set to %s overriding the config", aggregate_outputs)
 
         train_dataset: CategoricDataset
         test_dataset: CategoricDataset
@@ -734,9 +750,9 @@ class ModelApi:
             logger.warning("Training interrupted by user.")
         printer.info("Time taken: %.2f minutes.\n", (time.time() - start_time) / 60)
         if do_report:
-            self.write_report(df, train_targets=train_targets)
+            self._write_report(df, train_targets=train_targets)
 
-    def write_report(
+    def _write_report(
             self,
             df: pd.DataFrame,
             train_targets: dict[str, float] = None
@@ -897,9 +913,23 @@ class ModelApi:
         model.load_state_dict(torch.load(model_path))
         logger.info("Model loaded from %s", filename)
         logger.debug("Changing the model to evaluation mode mode.")
+        model.to(model.device)
         model.eval()
         return model
 
+    def add_output_possibility(self, model: CategoricNeuralNetwork, output_category: str, output_value: str) -> None:
+        """
+        Add a possibility for the output to the dataset.
+
+        Args:
+            model (CategoricNeuralNetwork): The model to be used.
+            output_category (str): The name of the output category.
+            output_value (str): The value of the output category.
+        Returns:
+            None
+        """
+        model.add_output_possibility(output_category, output_value)
+        logger.info("Output possibility added to the model.")
 
 if __name__ == '__main__':
     pass
