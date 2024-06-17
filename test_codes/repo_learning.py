@@ -155,7 +155,7 @@ def main(
     if recall is not None:
         api.config.train_targets["recall"] = recall
     api.config.lr_decay_patience = 3
-    api.config.case_name = case_name + f"_l{layers}_class"
+    api.config.case_name = case_name + f"_l{layers}"
     api.config.out_dir = Path("out/").resolve()
     api.config.model_trains_nlp_embedding = False
     api.config.model_uses_output_embedding = True
