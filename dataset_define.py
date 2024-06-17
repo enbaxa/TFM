@@ -511,6 +511,7 @@ class CategoricDataset(TorchDataset):
             None
         """
         logger.error("This function is deprecated and should not be used.")
+        raise RuntimeError("This function is deprecated and should not be used.")
         df1 = dataset1.data
         df2 = dataset2.data
         # Find the values in the 'output' column of test that are not in train
