@@ -6,7 +6,6 @@ The accuracy of the model is evaluated with some test sentences, which are not i
 The test sentences are a mix of positive and negative sentences.
 """
 import logging
-import re
 from pathlib import Path
 
 import pandas as pd
@@ -27,12 +26,9 @@ def get_data():
     # Read the sentiment dataset
     dataset_location = Path("test_datasets/sentiment_dataset.txt")
     dataset_path = Path(__file__).resolve().parent.joinpath(dataset_location)
-    entry_re = re.compile(r"(^.*)(\d$)", re.MULTILINE)
-    with open(dataset_path, "r", encoding="utf-8") as file:
-        data = entry_re.findall(file.read())
-    # put both entries of each match as columns text and label of a df
-    df = pd.DataFrame(data, columns=["text", "label"])
-    df["label"] = ["positive" if x == "1" else "negative" for x in df["label"]]
+    df = pd.read_csv(dataset_path, sep="\t", header=None, names=["text", "label"])
+    df["label"] = ["positive" if x == 1 else "negative" for x in df["label"]]
+    print(df)
     return df
 
 
@@ -119,11 +115,6 @@ def main(neurons: int, layers: int):
 
     printer.info("correct count: %d/%d", correct, total)
     printer.info("Accuracy: %.2f%%\n\n", correct/total*100)
-
-    printer.info("ALTERNATIVE METHOD")
-    printer.info("correct count: %d/%d", count_p+count_n, total)
-    printer.info("Accuracy: %.2f%%\n\n", (count_p+count_n)/total*100)
-
     return correct / total*100, model
 
 

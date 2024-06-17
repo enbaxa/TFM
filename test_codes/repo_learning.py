@@ -37,69 +37,18 @@ def get_data(dataset_name):
     return df
 
 
-def main(
-    *,
-    dataset_name,
-    neurons,
-    layers,
-    epochs: int = 30,
-    learning_rate: float = 0.001,
-    train_size: float = 1.0,
-    f1: float = 0.75,
-    recall: float = 0.75,
-    case_name: str = "default"
-        ):
+def evaluate_instances(dataset: CategoricDataset, model: CategoricNeuralNetwork, api: model_api.ModelApi):
     """
-    Main function for training and evaluating a model recognizing relations
-    between function names and their tests.
+    Evaluates the model on the instances of the dataset.
+
+    Args:
+        dataset (CategoricDataset): The dataset to evaluate the model on.
+        model (CategoricNeuralNetwork): The model to evaluate.
+        api (model_api.ModelApi): The model API instance.
+
+    Returns:
+        results_percentual_dict (dict): A dictionary with the results of the evaluation.
     """
-
-    # Define the configuration for the model
-    api = model_api.ModelApi()
-    api.config.epochs = epochs
-    api.config.max_hidden_neurons = neurons
-    api.config.hidden_layers = layers
-    api.config.model_uses_output_embedding = True
-    api.config.nlp_model_name = "huggingface/CodeBERTa-small-v1"
-    api.config.train_size = train_size
-    api.config.learning_rate = learning_rate
-    api.config.train_targets = {}
-    if f1 is not None:
-        api.config.train_targets["f1"] = f1
-    if recall is not None:
-        api.config.train_targets["recall"] = recall
-    api.config.lr_decay_patience = 3
-    api.config.case_name = case_name + f"_l{layers}"
-    api.config.out_dir = Path("out/layer_study").resolve()
-    api.config.model_trains_nlp_embedding = False
-    api.config.model_uses_output_embedding = True
-    api.reconfigure_loggers()
-    # Configure the dataset using the input and output columns
-    # Give them as lists of strings
-    df = get_data(dataset_name=dataset_name)
-    input_columns = ["method_name"]
-    output_columns = ["test_case_name"]
-    dataset = api.configure_dataset(df, input_columns=input_columns, output_columns=output_columns)
-    # Define the model and training setup
-    model = api.create_model(dataset=dataset)
-    loss_fn = api.get_loss_fn()
-    optimizer = api.get_optimizer(model)
-    scheduler = api.get_scheduler(optimizer)
-    train_dataloader, test_dataloader = api.get_dataloaders(dataset)
-    api.train(model=model,
-                    train_dataloader=train_dataloader,
-                    test_dataloader=test_dataloader,
-                    loss_fn=loss_fn,
-                    optimizer=optimizer,
-                    scheduler=scheduler
-                    )
-    printer.info("Training finished.")
-    api.save_model(model, api.config.out_dir.joinpath(api.config.case_name).joinpath("model"))
-    # initialize counters
-    return evaluate_instances(dataset, model, api)
-
-
-def evaluate_instances(dataset: CategoricDataset, model: CategoricNeuralNetwork, api):
     correct_guesses = 0
     incorrect_guesses = 0
     missing_guesses = 0
@@ -118,7 +67,7 @@ def evaluate_instances(dataset: CategoricDataset, model: CategoricNeuralNetwork,
         # take a random entry of df and use the input to get some output
         # and compare it with the real output
         inp_name = row["method_name"]
-        expected_output = row["test_case_name"]
+        expected_output = row["test_class_name"]
         guess = model.execute(inp_name, mode="multilabel")
         inp = f"Input: {inp_name}\nGuess: {guess}"
         out = f"Real: {expected_output}"
@@ -178,6 +127,52 @@ def evaluate_instances(dataset: CategoricDataset, model: CategoricNeuralNetwork,
     results_percentual_dict.update({k: float(v) for k, v in mat.groupdict().items()})
     return results_percentual_dict
 
+def main(
+    *,
+    dataset_name,
+    neurons,
+    layers,
+    epochs: int = 30,
+    learning_rate: float = 0.001,
+    train_size: float = 1.0,
+    f1: float = 0.75,
+    recall: float = 0.75,
+    case_name: str = "default"
+        ):
+
+    # Define the configuration for the model
+    api = model_api.ModelApi()
+    api.config.epochs = epochs
+    api.config.max_hidden_neurons = neurons
+    api.config.hidden_layers = layers
+    api.config.model_uses_output_embedding = True
+    api.config.nlp_model_name = "huggingface/CodeBERTa-small-v1"
+    api.config.train_size = train_size
+    api.config.learning_rate = learning_rate
+    api.config.train_targets = {}
+    if f1 is not None:
+        api.config.train_targets["f1"] = f1
+    if recall is not None:
+        api.config.train_targets["recall"] = recall
+    api.config.lr_decay_patience = 3
+    api.config.case_name = case_name + f"_l{layers}_class"
+    api.config.out_dir = Path("out/").resolve()
+    api.config.model_trains_nlp_embedding = False
+    api.config.model_uses_output_embedding = True
+    api.reconfigure_loggers()
+    # Configure the dataset using the input and output columns
+    # Give them as lists of strings
+    df = get_data(dataset_name=dataset_name)
+    input_columns = ["method_name"]
+    output_columns = ["test_class_name"]
+    model = api.build_and_train_model(df, input_columns, output_columns)
+    printer.info("Training finished.")
+    api.save_model(model, api.config.out_dir.joinpath(api.config.case_name).joinpath("model"))
+    # initialize counters
+    dataset = api.configure_dataset(df, input_columns=input_columns, output_columns=output_columns)
+    return evaluate_instances(dataset, model, api)
+
+
 if __name__ == '__main__':
     description = (
         "Train and evaluate a model recognizing relations between function names and their tests."
@@ -187,7 +182,7 @@ if __name__ == '__main__':
     parser.add_argument(
         "--dataset_name",
         type=str,
-        default="medium_36",
+        default="medium_3",
         help="The name of the dataset to use for training and evaluation.",
     )
     parser.add_argument(
@@ -199,7 +194,7 @@ if __name__ == '__main__':
     parser.add_argument(
         "--layers",
         type=int,
-        default=2,
+        default=1,
         help="The number of hidden layers to use in the model."
     )
     parser.add_argument(
@@ -217,7 +212,7 @@ if __name__ == '__main__':
     parser.add_argument(
         "--f1",
         type=float,
-        default=0.75,
+        default=0.70,
         help="The target F1 score for training the model."
     )
     parser.add_argument(
@@ -233,7 +228,7 @@ if __name__ == '__main__':
         help="The initial learning rate to use for training the model."
     )
     args = parser.parse_args()
-    dataset_name = args.dataset_name  # default "medium_36.csv" is hard to learn
+    dataset_name = args.dataset_name  # default "medium_3.csv" learns nicely
     neurons = args.neurons
     layers = args.layers
     epochs = args.epochs
