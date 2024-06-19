@@ -30,7 +30,7 @@ from learning_model import CategoricNeuralNetwork, StopTraining
 import set_logger
 logger: logging.Logger = logging.getLogger("TFM")
 printer: logging.Logger = logging.getLogger("printer")
-matplotlib.use("Agg")
+#matplotlib.use("Agg")
 
 
 @dataclasses.dataclass

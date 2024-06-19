@@ -172,6 +172,7 @@
             <span class="n">use_output_embedding</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
             <span class="n">train_nlp_embedding</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
             <span class="n">nlp_model_name</span><span class="o">=</span><span class="s1">&#39;distilbert-base-uncased&#39;</span><span class="p">,</span>
+            <span class="n">similarity_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span>
             <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="c1"># Save all input parameters in a dictionary for easy access</span>
@@ -184,7 +185,8 @@
             <span class="s2">&quot;use_input_embedding&quot;</span><span class="p">:</span> <span class="n">use_input_embedding</span><span class="p">,</span>
             <span class="s2">&quot;use_output_embedding&quot;</span><span class="p">:</span> <span class="n">use_output_embedding</span><span class="p">,</span>
             <span class="s2">&quot;train_nlp_embedding&quot;</span><span class="p">:</span> <span class="n">train_nlp_embedding</span><span class="p">,</span>
-            <span class="s2">&quot;nlp_model_name&quot;</span><span class="p">:</span> <span class="n">nlp_model_name</span>
+            <span class="s2">&quot;nlp_model_name&quot;</span><span class="p">:</span> <span class="n">nlp_model_name</span><span class="p">,</span>
+            <span class="s2">&quot;similarity_threshold&quot;</span><span class="p">:</span> <span class="n">similarity_threshold</span>
         <span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_device</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">assess_device</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_use_input_embedding</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">use_input_embedding</span>
@@ -211,7 +213,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">category_mappings</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">category_mappings</span>
         <span class="c1"># &quot;Private&quot; variables</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_output_category_embeddings_nlp</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_similarity_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_similarity_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">similarity_threshold</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_train_nlp_embedding</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">train_nlp_embedding</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_input_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_output_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
@@ -412,7 +414,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_use_input_embedding</span><span class="p">:</span>
             <span class="n">pre_processed_inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_batch_to_embedding</span><span class="p">(</span>
                 <span class="n">batch</span><span class="o">=</span><span class="n">inputs</span>
-                <span class="p">)</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
             <span class="c1"># Failed approach to use RNN layer</span>
             <span class="c1"># pre_processed_inputs, _ = self.rnn(pre_processed_inputs)</span>
 
@@ -422,7 +424,7 @@
                 <span class="n">pre_processed_inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_batch_to_one_hot</span><span class="p">(</span>
                     <span class="n">batch</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
                     <span class="n">fields_type</span><span class="o">=</span><span class="s2">&quot;inputs&quot;</span>
-                    <span class="p">)</span>
+                    <span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
                 <span class="n">printer</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
                     <span class="s2">&quot;The input fields are not correctly defined.&quot;</span>
@@ -811,6 +813,8 @@
                     <span class="n">thresholds_metrics</span><span class="p">,</span>
                     <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">thresholds_metrics</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="s2">&quot;f1&quot;</span><span class="p">]</span>
                     <span class="p">)</span>
+                <span class="c1"># update it in the config</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">[</span><span class="s2">&quot;similarity_threshold&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_similarity_threshold</span>
                 <span class="n">printer</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Best threshold: </span><span class="si">%.2f</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_similarity_threshold</span><span class="p">)</span>
                 <span class="c1"># Get the metrics for the best threshold into an easy-to-access variable</span>
                 <span class="n">best_metrics</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="n">thresholds_metrics</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_similarity_threshold</span><span class="p">]</span>
@@ -1197,6 +1201,34 @@
         <span class="p">)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Using </span><span class="si">%s</span><span class="s2"> device&quot;</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">device</span></div>
+
+
+<div class="viewcode-block" id="CategoricNeuralNetwork.add_output_possibility">
+<a class="viewcode-back" href="../learning_model.html#learning_model.CategoricNeuralNetwork.add_output_possibility">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_output_possibility</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">possibility</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds an output possibility to the model.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            category (str): The category to add the possibility to.</span>
+<span class="sd">            possibility (str): The possibility to add to the category.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">category</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_categories</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Category </span><span class="si">{</span><span class="n">category</span><span class="si">}</span><span class="s2"> is not in the output categories.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_use_output_embedding</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                <span class="s2">&quot;Cannot add output possibilities when not using output embeddings.&quot;</span>
+                <span class="s2">&quot;This would require changing the output size of the model.&quot;</span>
+                <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot add output possibilities when not using output embeddings.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">category_mappings</span><span class="p">[</span><span class="n">category</span><span class="p">][</span><span class="n">possibility</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">category_mappings</span><span class="p">[</span><span class="n">category</span><span class="p">])</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Added possibility </span><span class="si">%s</span><span class="s2"> to category </span><span class="si">%s</span><span class="s2"> as a new possible output&quot;</span><span class="p">,</span> <span class="n">possibility</span><span class="p">,</span> <span class="n">category</span><span class="p">)</span>
+        <span class="c1"># eliminate the output embeddings to recalculate them when needed</span>
+        <span class="c1"># This can be done more efficiently (i.e. just appending the new, but for now this is experimental)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_output_category_embeddings_nlp</span> <span class="o">=</span> <span class="kc">None</span></div>
 </div>
 
 

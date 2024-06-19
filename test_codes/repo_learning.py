@@ -127,6 +127,7 @@ def evaluate_instances(dataset: CategoricDataset, model: CategoricNeuralNetwork,
     results_percentual_dict.update({k: float(v) for k, v in mat.groupdict().items()})
     return results_percentual_dict
 
+
 def main(
     *,
     dataset_name,
@@ -212,13 +213,13 @@ if __name__ == '__main__':
     parser.add_argument(
         "--f1",
         type=float,
-        default=0.70,
+        default=0.75,
         help="The target F1 score for training the model."
     )
     parser.add_argument(
         "--recall",
         type=float,
-        default=0.75,
+        default=0.80,
         help="The target recall score for training the model."
     )
     parser.add_argument(

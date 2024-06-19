@@ -114,6 +114,8 @@
 <span class="sd">    A dataclass to store the default configuration for the model training.</span>
 
 <span class="sd">    Attributes:</span>
+<span class="sd">        balance_training_data (bool): Whether to balance the training data.</span>
+<span class="sd">        aggregate_outputs (bool): Whether to aggregate the outputs.</span>
 <span class="sd">        max_hidden_neurons (int): The maximum number of hidden neurons in the model.</span>
 <span class="sd">        hidden_layers (int): The number of hidden layers in the model.</span>
 <span class="sd">        model_uses_input_embedding (bool): Whether the model uses input embedding.</span>
@@ -141,6 +143,9 @@
 <span class="sd">        None</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Preprocessing parameters</span>
+    <span class="n">balance_training_data</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">aggregate_outputs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="c1"># Model parameters</span>
     <span class="n">max_hidden_neurons</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2058</span>
     <span class="n">hidden_layers</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span>
@@ -235,14 +240,18 @@
 <span class="sd">        get_scheduler(optimizer: torch.optim.Optimizer, factor: float = 0.1, mode: str = None, patience: int = None, steps: int = None, scheduler_type: str = None) -&gt; torch.optim.lr_scheduler._LRScheduler</span>
 <span class="sd">        get_loss_fn(use_output_embedding: bool = None) -&gt; torch.nn.Module</span>
 <span class="sd">        train(model: CategoricNeuralNetwork, train_dataloader: DataLoader, test_dataloader: DataLoader, loss_fn: torch.nn.Module, optimizer: torch.optim.Optimizer, train_targets: dict = None, epochs: int = None, lr_decay_target: str = None, scheduler: torch.optim.lr_scheduler._LRScheduler | None = None, do_report: bool = True, live_report: bool = False) -&gt; None</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        build_and_train_model(df: pd.DataFrame, input_columns: list, output_columns: list) -&gt; CategoricNeuralNetwork</span>
+<span class="sd">        save_model(model: CategoricNeuralNetwork, path: str) -&gt; None</span>
+<span class="sd">        load_model(path: str) -&gt; CategoricNeuralNetwork</span>
+<span class="sd">        add_output_posssibilities(df: pd.DataFrame,  output_category: str, output_value: str) -&gt; pd.DataFrame</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">ConfigRun</span><span class="p">()</span>
 
 <div class="viewcode-block" id="ModelApi.configure_default_loggers">
 <a class="viewcode-back" href="../model_api.html#model_api.ModelApi.configure_default_loggers">[docs]</a>
-    <span class="k">def</span> <span class="nf">configure_default_loggers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fil_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">configure_default_loggers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fil_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Configure the default loggers for the module.</span>
 
@@ -296,7 +305,7 @@
 
 <div class="viewcode-block" id="ModelApi.wipe_handlers">
 <a class="viewcode-back" href="../model_api.html#model_api.ModelApi.wipe_handlers">[docs]</a>
-    <span class="k">def</span> <span class="nf">wipe_handlers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wipe_handlers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Wipe the loggers from the root logger.</span>
 
@@ -314,7 +323,7 @@
 
 <div class="viewcode-block" id="ModelApi.reconfigure_loggers">
 <a class="viewcode-back" href="../model_api.html#model_api.ModelApi.reconfigure_loggers">[docs]</a>
-    <span class="k">def</span> <span class="nf">reconfigure_loggers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">reconfigure_loggers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reconfigure the loggers.</span>
 
@@ -386,8 +395,8 @@
             <span class="n">dataset</span><span class="p">:</span> <span class="n">CategoricDataset</span><span class="p">,</span>
             <span class="n">train_size</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">balance_training_data</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-            <span class="n">aggregate_outputs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">balance_training_data</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">aggregate_outputs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the dataloaders for the training and testing of the model.</span>
@@ -418,7 +427,14 @@
             <span class="n">train_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">train_size</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Train size was set to </span><span class="si">%.2f</span><span class="s2"> overriding the config&quot;</span><span class="p">,</span> <span class="n">train_size</span><span class="p">)</span>
-
+        <span class="k">if</span> <span class="n">balance_training_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">balance_training_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">balance_training_data</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;balance_training_data was set to </span><span class="si">%s</span><span class="s2"> overriding the config&quot;</span><span class="p">,</span> <span class="n">balance_training_data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">aggregate_outputs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">aggregate_outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">aggregate_outputs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;aggregate_outputs was set to </span><span class="si">%s</span><span class="s2"> overriding the config&quot;</span><span class="p">,</span> <span class="n">aggregate_outputs</span><span class="p">)</span>
 
         <span class="n">train_dataset</span><span class="p">:</span> <span class="n">CategoricDataset</span>
         <span class="n">test_dataset</span><span class="p">:</span> <span class="n">CategoricDataset</span>
@@ -850,12 +866,10 @@
             <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Training interrupted by user.&quot;</span><span class="p">)</span>
         <span class="n">printer</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Time taken: </span><span class="si">%.2f</span><span class="s2"> minutes.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">do_report</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">write_report</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">train_targets</span><span class="o">=</span><span class="n">train_targets</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_write_report</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">train_targets</span><span class="o">=</span><span class="n">train_targets</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="ModelApi.write_report">
-<a class="viewcode-back" href="../model_api.html#model_api.ModelApi.write_report">[docs]</a>
-    <span class="k">def</span> <span class="nf">write_report</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">_write_report</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
             <span class="n">train_targets</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -911,8 +925,7 @@
             <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">case_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="c1"># save the</span>
         <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Report saved as </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span></div>
-
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Report saved as </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ModelApi.build_and_train_model">
 <a class="viewcode-back" href="../model_api.html#model_api.ModelApi.build_and_train_model">[docs]</a>
@@ -1025,10 +1038,27 @@
         <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">))</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Model loaded from </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Changing the model to evaluation mode mode.&quot;</span><span class="p">)</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
         <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">model</span></div>
-</div>
 
+
+<div class="viewcode-block" id="ModelApi.add_output_possibility">
+<a class="viewcode-back" href="../model_api.html#model_api.ModelApi.add_output_possibility">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_output_possibility</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">CategoricNeuralNetwork</span><span class="p">,</span> <span class="n">output_category</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add a possibility for the output to the dataset.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            model (CategoricNeuralNetwork): The model to be used.</span>
+<span class="sd">            output_category (str): The name of the output category.</span>
+<span class="sd">            output_value (str): The value of the output category.</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">add_output_possibility</span><span class="p">(</span><span class="n">output_category</span><span class="p">,</span> <span class="n">output_value</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Output possibility added to the model.&quot;</span><span class="p">)</span></div>
+</div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>

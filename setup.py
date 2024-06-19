@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name='thetesterpackage',
+    name='nnBuilder',
     version='1.0',
     packages=find_packages(),
     install_requires=[
@@ -14,7 +14,5 @@ setup(
         "seaborn"
     ],
     author='Enric Basso',
-    # author_email='your_email@example.com',
     description='A basic package',
-    # url='https://github.com/your_username/my_package',
 )
