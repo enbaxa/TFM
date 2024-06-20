@@ -1,4 +1,5 @@
 """
+This script is exactly equivalent to sentiment.py, but it fully uses the model_api module to build and the model.
 This script trains a model to classify sentiment and evaluates it with some sentences.
 The dataset used for training is a sentiment dataset with positive and negative sentences.
 The model is trained with different configurations of hidden layers and neurons in the hidden layers.

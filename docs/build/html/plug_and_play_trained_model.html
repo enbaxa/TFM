@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to nnBuilder’s documentation! &mdash; nnBuilder 1.0 documentation</title>
+  <title>plug_and_play_trained_model.py &mdash; nnBuilder 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -21,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Modules" href="modules.html" /> 
+    <link rel="prev" title="repo_learning.py" href="repo_learning.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -32,7 +32,7 @@
 
           
           
-          <a href="#" class="icon icon-home">
+          <a href="index.html" class="icon icon-home">
             nnBuilder
           </a>
 <div role="search">
@@ -44,8 +44,24 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="set_logger.html">set_logger.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="learning_model.html">learning_model.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nlp_embedding.html">nlp_embedding.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_api.html">model_api.py</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="test_codes.html">test_codes.py</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sentiment.html">sentiment.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sentiment_compact.html">sentiment_compact.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sentiment_explicit.html">sentiment_explicit.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="repo_learning.html">repo_learning.py</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">plug_and_play_trained_model.py</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -54,17 +70,19 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">nnBuilder</a>
+          <a href="index.html">nnBuilder</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Welcome to nnBuilder’s documentation!</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">Modules</a></li>
+          <li class="breadcrumb-item"><a href="test_codes.html">test_codes.py</a></li>
+      <li class="breadcrumb-item active">plug_and_play_trained_model.py</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/plug_and_play_trained_model.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -72,36 +90,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="welcome-to-nnbuilder-s-documentation">
-<h1>Welcome to nnBuilder’s documentation!<a class="headerlink" href="#welcome-to-nnbuilder-s-documentation" title="Link to this heading"></a></h1>
+  <section id="plug-and-play-trained-model-py">
+<span id="plug-and-play-trained-model"></span><h1>plug_and_play_trained_model.py<a class="headerlink" href="#plug-and-play-trained-model-py" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="set_logger.html">set_logger.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="learning_model.html">learning_model.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nlp_embedding.html">nlp_embedding.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="model_api.html">model_api.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="test_codes.html">test_codes.py</a></li>
-</ul>
-</li>
-</ul>
 </div>
-</section>
-<section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
-</ul>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modules.html" class="btn btn-neutral float-right" title="Modules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="repo_learning.html" class="btn btn-neutral float-left" title="repo_learning.py" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

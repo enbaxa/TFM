@@ -1,4 +1,6 @@
 """
+This is exactly equivalent to sentiment.py, but with explicit calls to the model API functions.
+It is designed to show how to configure the run ad hoc in the calls.
 This script trains a model to classify sentiment and evaluates it with some sentences.
 The dataset used for training is a sentiment dataset with positive and negative sentences.
 The model is trained with different configurations of hidden layers and neurons in the hidden layers.
@@ -37,7 +39,6 @@ def get_data():
 def main(neurons: int, layers: int):
     """
     Trains a model to classify sentiment and evaluates it with some sentences.
-    This is exactly equivalent to sentiment.py, but with explicit calls to the model API functions.
 
     Args:
         - neurons (int): The number of neurons in the hidden layers.

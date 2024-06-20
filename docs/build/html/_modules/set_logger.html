@@ -1,34 +1,75 @@
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>set_logger &mdash; repoclass 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
-<html lang="en" data-content_root="../">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>set_logger &#8212; repoclass 1.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
-    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
-    <script src="../_static/documentation_options.js?v=f2a433a1"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-   
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
 
-  
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
           
+          
+          <a href="../index.html" class="icon icon-home">
+            repoclass
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Modules</a></li>
+</ul>
 
-          <div class="body" role="main">
-            
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">repoclass</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">set_logger</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <h1>Source code for set_logger</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python3</span>
 <span class="c1"># Author: Enric Basso</span>
@@ -82,7 +123,7 @@
 
 
 <div class="viewcode-block" id="Filter_name">
-<a class="viewcode-back" href="../modules.html#set_logger.Filter_name">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.Filter_name">[docs]</a>
 <span class="k">class</span> <span class="nc">Filter_name</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Filter</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A logging filter that will determine if a log record should be processed</span>
@@ -109,7 +150,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">allowed</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">allowed</span><span class="p">]</span>
 
 <div class="viewcode-block" id="Filter_name.filter">
-<a class="viewcode-back" href="../modules.html#set_logger.Filter_name.filter">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.Filter_name.filter">[docs]</a>
     <span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">LogRecord</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Determines if the log record should be processed based on the logger name.</span>
@@ -128,7 +169,7 @@
 
 
 <div class="viewcode-block" id="PrettyScreenHandler">
-<a class="viewcode-back" href="../modules.html#set_logger.PrettyScreenHandler">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.PrettyScreenHandler">[docs]</a>
 <span class="k">class</span> <span class="nc">PrettyScreenHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A logging handler that formats log messages for display on the screen</span>
@@ -147,7 +188,7 @@
 
 
 <div class="viewcode-block" id="SimpleScreenHandler">
-<a class="viewcode-back" href="../modules.html#set_logger.SimpleScreenHandler">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.SimpleScreenHandler">[docs]</a>
 <span class="k">class</span> <span class="nc">SimpleScreenHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A logging handler designed for simple, uncolored output to the screen.</span>
@@ -165,7 +206,7 @@
 
 
 <div class="viewcode-block" id="DetailedScreenHandler">
-<a class="viewcode-back" href="../modules.html#set_logger.DetailedScreenHandler">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.DetailedScreenHandler">[docs]</a>
 <span class="k">class</span> <span class="nc">DetailedScreenHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A logging handler that outputs detailed log messages to the screen without</span>
@@ -184,7 +225,7 @@
 
 
 <div class="viewcode-block" id="ColoredDetailedScreenHandler">
-<a class="viewcode-back" href="../modules.html#set_logger.ColoredDetailedScreenHandler">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.ColoredDetailedScreenHandler">[docs]</a>
 <span class="k">class</span> <span class="nc">ColoredDetailedScreenHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A logging handler designed for outputting detailed log messages to the screen,</span>
@@ -204,7 +245,7 @@
 
 
 <div class="viewcode-block" id="DetailedFileHandler">
-<a class="viewcode-back" href="../modules.html#set_logger.DetailedFileHandler">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.DetailedFileHandler">[docs]</a>
 <span class="k">class</span> <span class="nc">DetailedFileHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A file-based logging handler that records detailed log messages,</span>
@@ -224,7 +265,7 @@
 
 
 <div class="viewcode-block" id="PrinterScreenHandler">
-<a class="viewcode-back" href="../modules.html#set_logger.PrinterScreenHandler">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.PrinterScreenHandler">[docs]</a>
 <span class="k">class</span> <span class="nc">PrinterScreenHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A logging handler that outputs log messages as plain text to the screen,</span>
@@ -243,7 +284,7 @@
 
 
 <div class="viewcode-block" id="ColoredPrinterScreenHandler">
-<a class="viewcode-back" href="../modules.html#set_logger.ColoredPrinterScreenHandler">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.ColoredPrinterScreenHandler">[docs]</a>
 <span class="k">class</span> <span class="nc">ColoredPrinterScreenHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A logging handler for outputting log messages as plain text with severity</span>
@@ -263,7 +304,7 @@
 
 
 <div class="viewcode-block" id="PersistentLogHandler">
-<a class="viewcode-back" href="../modules.html#set_logger.PersistentLogHandler">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.PersistentLogHandler">[docs]</a>
 <span class="k">class</span> <span class="nc">PersistentLogHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A file-based logging handler that records log messages as plain text.</span>
@@ -281,7 +322,7 @@
 
 
 <div class="viewcode-block" id="PersistentLogHandlerStructured">
-<a class="viewcode-back" href="../modules.html#set_logger.PersistentLogHandlerStructured">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.PersistentLogHandlerStructured">[docs]</a>
 <span class="k">class</span> <span class="nc">PersistentLogHandlerStructured</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A file-based logging handler that records log messages as plain text.</span>
@@ -299,7 +340,7 @@
 
 
 <div class="viewcode-block" id="JsonFormatter">
-<a class="viewcode-back" href="../modules.html#set_logger.JsonFormatter">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.JsonFormatter">[docs]</a>
 <span class="k">class</span> <span class="nc">JsonFormatter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates a formatter for logging messages as json</span>
@@ -313,7 +354,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">indent</span> <span class="o">=</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">structured</span> <span class="k">else</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="JsonFormatter.format">
-<a class="viewcode-back" href="../modules.html#set_logger.JsonFormatter.format">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.JsonFormatter.format">[docs]</a>
     <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">LogRecord</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="n">log_record</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">record</span><span class="o">.</span><span class="n">getMessage</span><span class="p">(),</span>
@@ -329,7 +370,7 @@
 
 
 <div class="viewcode-block" id="Formatters">
-<a class="viewcode-back" href="../modules.html#set_logger.Formatters">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.Formatters">[docs]</a>
 <span class="k">class</span> <span class="nc">Formatters</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Provides static methods for creating various logging.Formatter objects.</span>
@@ -339,7 +380,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Formatters.simple_formatter">
-<a class="viewcode-back" href="../modules.html#set_logger.Formatters.simple_formatter">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.Formatters.simple_formatter">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">simple_formatter</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -353,7 +394,7 @@
 
 
 <div class="viewcode-block" id="Formatters.colored_simple_formatter">
-<a class="viewcode-back" href="../modules.html#set_logger.Formatters.colored_simple_formatter">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.Formatters.colored_simple_formatter">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">colored_simple_formatter</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -368,7 +409,7 @@
 
 
 <div class="viewcode-block" id="Formatters.detailed_formatter">
-<a class="viewcode-back" href="../modules.html#set_logger.Formatters.detailed_formatter">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.Formatters.detailed_formatter">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">detailed_formatter</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -386,7 +427,7 @@
 
 
 <div class="viewcode-block" id="Formatters.colored_detailed_formatter">
-<a class="viewcode-back" href="../modules.html#set_logger.Formatters.colored_detailed_formatter">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.Formatters.colored_detailed_formatter">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">colored_detailed_formatter</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -406,7 +447,7 @@
 
 
 <div class="viewcode-block" id="Formatters.pretty_formatter">
-<a class="viewcode-back" href="../modules.html#set_logger.Formatters.pretty_formatter">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.Formatters.pretty_formatter">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">pretty_formatter</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -431,7 +472,7 @@
 
 
 <div class="viewcode-block" id="Formatters.print_formatter">
-<a class="viewcode-back" href="../modules.html#set_logger.Formatters.print_formatter">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.Formatters.print_formatter">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">print_formatter</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -447,7 +488,7 @@
 
 
 <div class="viewcode-block" id="Formatters.colored_print_formatter">
-<a class="viewcode-back" href="../modules.html#set_logger.Formatters.colored_print_formatter">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.Formatters.colored_print_formatter">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">colored_print_formatter</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -463,7 +504,7 @@
 
 
 <div class="viewcode-block" id="Formatters.json_formatter">
-<a class="viewcode-back" href="../modules.html#set_logger.Formatters.json_formatter">[docs]</a>
+<a class="viewcode-back" href="../set_logger.html#set_logger.Formatters.json_formatter">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">json_formatter</span><span class="p">(</span><span class="n">structured</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -480,65 +521,31 @@
 
 </pre></div>
 
+           </div>
           </div>
-          
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Enric Basso.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">repoclass</a></h1>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">Module code</a><ul>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<search id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</search>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &#169;2024, Enric Basso.
-      
-      |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
-      
-    </div>
-
-    
-
-    
-  </body>
+</body>
 </html>

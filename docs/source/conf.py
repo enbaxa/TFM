@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 import sphinx_rtd_theme
 
-project = 'repoclass'
+project = 'nnBuilder'
 copyright = '2024, Enric Basso'
 author = 'Enric Basso'
 release = '1.0'

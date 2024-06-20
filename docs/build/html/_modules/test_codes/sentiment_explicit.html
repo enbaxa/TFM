@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>test_codes.sentiment_explicit &mdash; repoclass 1.0 documentation</title>
+  <title>test_codes.sentiment_explicit &mdash; nnBuilder 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
 
@@ -31,7 +31,7 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            repoclass
+            nnBuilder
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -52,7 +52,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">repoclass</a>
+          <a href="../../index.html">nnBuilder</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -72,6 +72,8 @@
              
   <h1>Source code for test_codes.sentiment_explicit</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This is exactly equivalent to sentiment.py, but with explicit calls to the model API functions.</span>
+<span class="sd">It is designed to show how to configure the run ad hoc in the calls.</span>
 <span class="sd">This script trains a model to classify sentiment and evaluates it with some sentences.</span>
 <span class="sd">The dataset used for training is a sentiment dataset with positive and negative sentences.</span>
 <span class="sd">The model is trained with different configurations of hidden layers and neurons in the hidden layers.</span>
@@ -79,7 +81,6 @@
 <span class="sd">The test sentences are a mix of positive and negative sentences.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -93,7 +94,7 @@
 
 
 <div class="viewcode-block" id="get_data">
-<a class="viewcode-back" href="../../sentiment.html#test_codes.sentiment_explicit.get_data">[docs]</a>
+<a class="viewcode-back" href="../../sentiment_explicit.html#test_codes.sentiment_explicit.get_data">[docs]</a>
 <span class="k">def</span> <span class="nf">get_data</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Reads the sentiment dataset and returns it as a pandas DataFrame.</span>
@@ -104,33 +105,30 @@
     <span class="c1"># Read the sentiment dataset</span>
     <span class="n">dataset_location</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;test_datasets/sentiment_dataset.txt&quot;</span><span class="p">)</span>
     <span class="n">dataset_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="n">dataset_location</span><span class="p">)</span>
-    <span class="n">entry_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(^.*)(\d$)&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">MULTILINE</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">entry_re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-    <span class="c1"># put both entries of each match as columns text and label of a df</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">])</span>
-    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;positive&quot;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span> <span class="k">else</span> <span class="s2">&quot;negative&quot;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]]</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">])</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;positive&quot;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;negative&quot;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">df</span></div>
 
 
 
 <div class="viewcode-block" id="main">
-<a class="viewcode-back" href="../../sentiment.html#test_codes.sentiment_explicit.main">[docs]</a>
+<a class="viewcode-back" href="../../sentiment_explicit.html#test_codes.sentiment_explicit.main">[docs]</a>
 <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">neurons</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">layers</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Trains a model to classify sentiment and evaluates it with some sentences.</span>
-<span class="sd">    This is exactly equivalent to sentiment.py, but with explicit calls to the model API functions.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        neurons (int): The number of neurons in the hidden layers.</span>
-<span class="sd">        layers (int): The number of hidden layers.</span>
+<span class="sd">        - neurons (int): The number of neurons in the hidden layers.</span>
+<span class="sd">        - layers (int): The number of hidden layers.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        accuracy (float): The accuracy of the model on the test sentences.</span>
-<span class="sd">        model (model_api.Model): The trained model.</span>
+<span class="sd">        - accuracy (float): The accuracy of the model on the test sentences.</span>
+<span class="sd">        - model (model_api.Model): The trained model.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">model_api</span><span class="o">.</span><span class="n">ConfigRun</span><span class="o">.</span><span class="n">case_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;sentiment_explicit_n</span><span class="si">{</span><span class="n">neurons</span><span class="si">}</span><span class="s2">_l</span><span class="si">{</span><span class="n">layers</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="n">model_api</span><span class="o">.</span><span class="n">reconfigure_loggers</span><span class="p">()</span>
+    <span class="n">api</span> <span class="o">=</span> <span class="n">model_api</span><span class="o">.</span><span class="n">ModelApi</span><span class="p">()</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">case_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;sentiment_explicit_n</span><span class="si">{</span><span class="n">neurons</span><span class="si">}</span><span class="s2">_l</span><span class="si">{</span><span class="n">layers</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">reconfigure_loggers</span><span class="p">()</span>
 
     <span class="n">printer</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running test with </span><span class="si">{</span><span class="n">neurons</span><span class="si">}</span><span class="s2"> neurons and </span><span class="si">{</span><span class="n">layers</span><span class="si">}</span><span class="s2"> layers&quot;</span><span class="p">)</span>
     <span class="c1"># Define the input and output columns</span>
@@ -138,9 +136,9 @@
     <span class="n">input_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span>
     <span class="n">output_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span>
     <span class="c1"># Configure the dataset using the input and output columns</span>
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">model_api</span><span class="o">.</span><span class="n">configure_dataset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">input_columns</span><span class="o">=</span><span class="n">input_columns</span><span class="p">,</span> <span class="n">output_columns</span><span class="o">=</span><span class="n">output_columns</span><span class="p">)</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">configure_dataset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">input_columns</span><span class="o">=</span><span class="n">input_columns</span><span class="p">,</span> <span class="n">output_columns</span><span class="o">=</span><span class="n">output_columns</span><span class="p">)</span>
     <span class="c1"># Create an instance of the model</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">model_api</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span>
         <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span>
         <span class="n">use_input_embedding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">use_output_embedding</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -161,7 +159,7 @@
         <span class="p">)</span>
     <span class="c1"># Get the train and test dataloaders</span>
 
-    <span class="n">train_dataloader</span><span class="p">,</span> <span class="n">test_dataloader</span> <span class="o">=</span> <span class="n">model_api</span><span class="o">.</span><span class="n">get_dataloaders</span><span class="p">(</span>
+    <span class="n">train_dataloader</span><span class="p">,</span> <span class="n">test_dataloader</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_dataloaders</span><span class="p">(</span>
         <span class="n">dataset</span><span class="p">,</span>
         <span class="n">train_size</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
         <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
@@ -171,7 +169,7 @@
     <span class="k">if</span> <span class="n">test_dataloader</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">test_dataloader</span> <span class="o">=</span> <span class="n">train_dataloader</span>
 
-    <span class="n">model_api</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
         <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
         <span class="n">train_dataloader</span><span class="o">=</span><span class="n">train_dataloader</span><span class="p">,</span>
         <span class="n">test_dataloader</span><span class="o">=</span><span class="n">test_dataloader</span><span class="p">,</span>
@@ -225,10 +223,9 @@
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="c1"># Set up the logger</span>
-    <span class="n">model_api</span><span class="o">.</span><span class="n">configure_default_loggers</span><span class="p">()</span>
     <span class="c1"># Run the main function with different configurations</span>
     <span class="n">msg</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">neurons_attempt</span> <span class="o">=</span> <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+    <span class="n">neurons_attempt</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
     <span class="n">layers_attempt</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">neurons</span> <span class="ow">in</span> <span class="n">neurons_attempt</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">layers</span> <span class="ow">in</span> <span class="n">layers_attempt</span><span class="p">:</span>
